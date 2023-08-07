@@ -15,7 +15,7 @@
 <c:import url="header.jsp"/>
 <body>
 <section>
-    <h2>Main Contents</h2>
+    <h2>주요 식단 정보(체중조절, 비건, 균형)</h2>
     <h2>오늘 뭐먹지?</h2>
 </section>
 </body>

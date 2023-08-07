@@ -46,8 +46,8 @@
         </div>
         <div class="nav">
             <a href="material">이달의 식재료</a>
-            <a href="searchmenu">식단검색</a>
             <a href="menu">맞춤식단</a>
+            <a href="review">이용후기</a>
         </div>
     </div>
 </header>

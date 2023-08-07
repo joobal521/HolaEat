@@ -24,8 +24,5 @@ public class MainController {
     @GetMapping(value = "review")
     public String review() {return "review";}
 
-    @GetMapping(value = "searchmenu")
-    public String searchmenu() {return "searchmenu";}
-
 
 }
