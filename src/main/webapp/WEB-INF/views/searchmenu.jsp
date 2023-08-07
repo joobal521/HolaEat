@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
-  User: 주바리
-  Date: 2023-08-05
-  Time: 오후 7:06
+  User: user
+  Date: 2023-08-07
+  Time: 오후 3:46
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -11,12 +11,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="../style/grid.css">
 </head>
 <c:import url="header.jsp"/>
 <body>
 <section>
-    <h2>Main Contents</h2>
-    <h2>오늘 뭐먹지?</h2>
+    <h2>식단 검색</h2>
 </section>
 </body>
 <c:import url="footer.jsp"/>
