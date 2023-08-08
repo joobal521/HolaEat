@@ -41,13 +41,14 @@
                         <input type="hidden" id="userProfileImg" name="userProfileImg" value="resources/img/belle.jpg">
                     </li>
                     <li>
-                        <input type="submit" id="submit" name="submit" value="회원가입">
+                        <input type="button" id="submit" name="submit" value="회원가입" onclick="checkValue(form)">
                     </li>
                 </ul>
             </div>
         </form>
     </div>
 </section>
+<script src="${path}/resources/js/login.js"></script>
 </body>
 <c:import url="footer.jsp"/>
 </html>
