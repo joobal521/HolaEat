@@ -16,11 +16,11 @@
 <body>
 <section>
     <div class="form_wrap">
-        <form action="" method="POST">
+        <form action="login" method="POST">
             <span><h2>아이디</h2></span>
-            <input type="text" id="id" name="id" placeholder="아이디">
+            <input type="text" id="id" name="user_id" placeholder="아이디">
             <span><h2>비밀번호</h2></span>
-            <input type="password" id="password" name="password" placeholder="비밀번호">
+            <input type="password" id="password" name="user_password" placeholder="비밀번호">
             <input type="submit" id="submit" name="submit" value="로그인">
         </form>
     </div>

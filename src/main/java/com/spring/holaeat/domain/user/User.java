@@ -25,11 +25,6 @@ public class User extends Timestamp {
     private byte[]user_profile_img;
 
 
-
-
-
-
-
     //생성자
     public User(UserRequestDto userDto) {
         this.user_id = userDto.getUser_id();
@@ -38,15 +33,5 @@ public class User extends Timestamp {
         this.user_email = userDto.getUser_email();
         this.user_profile_img = userDto.getUser_profile_img();
     }
-
-
-
-
-
-
-
-
-
-
 
 }
