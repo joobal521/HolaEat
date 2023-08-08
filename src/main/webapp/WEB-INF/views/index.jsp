@@ -82,6 +82,15 @@
 <%--            로그인 시 --%>
             <c:when test="${not empty log}">
                 <p>회원 로그인 메인 페이지 입니다</p>
+                <div>
+                <form action="" method="">
+                    <ul>
+                        <li><h2>선호 메뉴</h2></li>
+                        <li><h2>좋아하는 재료</h2></li>
+                        <li><h2>싫어하는 재료</h2></li>
+                    </ul>
+                </form>
+                </div>
             </c:when>
 <%--            비 로그인 시--%>
             <c:otherwise>
@@ -135,7 +144,7 @@
 <%--        랜덤 룰렛 끝--%>
     </div>
 </section>
-<script src="resources/rotate.js"></script>
+<script src="resources/js/rotate.js"></script>
 </body>
 <c:import url="footer.jsp"/>
 </html>
