@@ -18,10 +18,12 @@ public class IngredientsController {
         this.ingredientsService = ingredientsService;
     }
 
-    @GetMapping("/ingredients-by-month")
-    public String getIngredientsByMonth(Model model) {
+    @GetMapping("/ingredients")
+    public String getIngredients(Model model) {
         List<Ingredients> ingredientsList = ingredientsService.findByMonthEquals();
         model.addAttribute("ingredientsList", ingredientsList);
+
+
         return "ingredients"; // ingredients.jsp
     }
 }
