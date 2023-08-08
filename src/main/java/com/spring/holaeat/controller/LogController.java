@@ -15,14 +15,6 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class LogController {
 
-    // 1. Model 을 활용한 데이터 전달
-//    @PostMapping("login")
-//    public String login(@RequestBody User user, Model model) {
-//        model.addAttribute("log", user.getUsername());
-//        return "index";
-//    }
-
-    // 2. ModelAndView 를 활용한 데이터 전달
     @SessionScope
     @PostMapping("login")
     public ModelAndView login(@RequestParam("user_id") String userId, @RequestParam("user_password") String userPassword) {
@@ -31,4 +23,14 @@ public class LogController {
         modelAndView.addObject("log", userId);
         return modelAndView;
     }
+
+    @PostMapping("logout")
+    public String logout(WebRequest request, SessionStatus status) {
+        // 우선 호출 후,
+        status.setComplete();
+        // 세션 속성을 수정
+        request.removeAttribute("log", WebRequest.SCOPE_SESSION);
+        return "redirect:/";
+    }
+
 }
