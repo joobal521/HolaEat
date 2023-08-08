@@ -5,34 +5,38 @@ import com.spring.holaeat.domain.user.UserRepository;
 import com.spring.holaeat.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.json.JSONObject;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Map;
 
 @RequiredArgsConstructor
 @RestController
 
-@RequestMapping("api/v1/users")
+//@RequestMapping("api/v1/users")
 public class UserController {
 
     private final UserService userService;
     private final UserRepository userRepository;
 
 //회원가입
-@PostMapping("join")
-    public String join(@ModelAttribute UserRequestDto userDto){
+@PostMapping("/join")
+    public Map join(@ModelAttribute UserRequestDto userDto){
+    JSONObject response =new JSONObject();
 
     try{
         userService.getUserById(userDto.getUserId());
         System.out.println("join fail");
+        response.put("leave", "fail");
+
 
     }catch (IllegalArgumentException e){
         userService.createUser(userDto);
         System.out.println("join success");
+        response.put("join","success");
 
     }
-    return "login";
+    return response.toMap();
 
 }
 
