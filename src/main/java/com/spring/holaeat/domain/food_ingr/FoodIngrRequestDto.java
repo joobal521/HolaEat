@@ -6,6 +6,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class FoodIngrRequestDto {
-    private String food_id;
-    private String ingr_id;
+    private String foodId;
+    private String ingrId;
 }

@@ -6,7 +6,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class NutritionsRequestDto {
-    private String food_id;
+    private String foodId;
     private int kcal;
     private int carb;
     private int protein;

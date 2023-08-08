@@ -4,6 +4,6 @@ import lombok.Getter;
 
 @Getter
 public class DislikeResponseDto {
-    private String user_id;
-    private String ingr_id;
+    private String userId;
+    private String ingrId;
 }

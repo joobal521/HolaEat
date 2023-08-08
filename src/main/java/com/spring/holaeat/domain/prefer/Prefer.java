@@ -5,5 +5,5 @@ import lombok.Getter;
 @Getter
 public class Prefer {
     private String user_id;
-    private String ingr_id;
+    private String ingrId;
 }

@@ -4,7 +4,7 @@ import lombok.Getter;
 
 @Getter
 public class NutritionsResponseDto {
-    private String food_id;
+    private String foodId;
     private int kcal;
     private int carb;
     private int protein;

@@ -6,6 +6,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class MenuRequestDto {
-    private String menu_id;
-    private String food_list_id;
+    private String menuId;
+    private String foodListId;
 }
