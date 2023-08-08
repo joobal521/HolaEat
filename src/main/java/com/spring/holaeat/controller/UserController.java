@@ -20,8 +20,8 @@ public class UserController {
     private final UserRepository userRepository;
 
 //회원가입
-@PostMapping("/join")
-    public Map join(@RequestBody UserRequestDto userDto){
+@PostMapping(value = "/join", consumes = "application/json")
+    public  Map<String, Object> join(@RequestBody UserRequestDto userDto){
     JSONObject response =new JSONObject();
 
 

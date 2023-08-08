@@ -12,13 +12,14 @@
     <title>Title</title>
     <c:set var="path" value="${pageContext.request.contextPath}"/>
     <link rel="stylesheet" type="text/css" href="${path}/resources/style/form.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 </head>
 <c:import url="header.jsp"/>
 <body>
 <body>
 <section>
     <div class="form_wrap">
-        <form action="/join" method="POST" enctype="multipart/form-data">
+        <form enctype="multipart/form-data">
             <div class="form_container">
                 <ul>
                     <li>
@@ -41,14 +42,14 @@
                         <input type="hidden" id="userProfileImg" name="userProfileImg" value="resources/img/belle.jpg">
                     </li>
                     <li>
-                        <input type="button" id="submit" name="submit" value="회원가입" onclick="checkValue(form)">
+                        <button type="button" id="submit" name="submit" onclick="checkValue(form)">회원가입</button>
                     </li>
                 </ul>
             </div>
         </form>
     </div>
 </section>
-<script src="${path}/resources/js/login.js"></script>
+<script src="${path}/resources/js/join.js"></script>
 </body>
 <c:import url="footer.jsp"/>
 </html>
