@@ -17,7 +17,7 @@
 <body>
 <section>
     <div class="form_wrap">
-        <form action="api/v1/users/join" method="POST" enctype="multipart/form-data">
+        <form action="/join" method="POST" enctype="multipart/form-data">
             <div class="form_container">
                 <ul>
                     <li>
