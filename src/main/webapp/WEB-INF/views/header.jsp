@@ -7,6 +7,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html>
 <head>
     <title>Title</title>
@@ -47,7 +48,14 @@
         </div>
         <div class="nav">
             <a href="ingredients">이달의 식재료</a>
-            <a href="menu">맞춤식단</a>
+            <c:choose>
+                <c:when test="${not empty log }">
+                    <a href="menu">맞춤식단</a>
+                </c:when>
+                <c:otherwise>
+                    <a href="login">맞춤식단</a>
+                </c:otherwise>
+            </c:choose>
             <a href="review">이용후기</a>
         </div>
     </div>
