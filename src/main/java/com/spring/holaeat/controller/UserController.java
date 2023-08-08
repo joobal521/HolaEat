@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 @RequiredArgsConstructor
-@RestController
+@Controller
 
 //@RequestMapping("api/v1/users")
 public class UserController {
@@ -21,22 +21,23 @@ public class UserController {
 
 //회원가입
 @PostMapping("/join")
-    public Map join(@ModelAttribute UserRequestDto userDto){
-    JSONObject response =new JSONObject();
+    public String join(@ModelAttribute UserRequestDto userDto){
+
 
     try{
         userService.getUserById(userDto.getUserId());
         System.out.println("join fail");
-        response.put("leave", "fail");
+        //response.put("leave", "fail");
 
 
     }catch (IllegalArgumentException e){
         userService.createUser(userDto);
         System.out.println("join success");
-        response.put("join","success");
+        //response.put("join","success");
 
     }
-    return response.toMap();
+    return "login";
+
 
 }
 
