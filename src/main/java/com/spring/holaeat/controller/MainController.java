@@ -24,5 +24,8 @@ public class MainController {
     @GetMapping(value = "review")
     public String review() {return "review";}
 
+    @GetMapping(value = "review/write")
+    public String reviewForm() {return "review_form";}
+
 
 }
