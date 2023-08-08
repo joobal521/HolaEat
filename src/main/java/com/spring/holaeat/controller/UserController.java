@@ -6,6 +6,7 @@ import com.spring.holaeat.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.json.JSONObject;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Map;
 
@@ -20,18 +21,19 @@ public class UserController {
 
 //회원가입
 @PostMapping("join")
-    public Map join(@RequestBody UserRequestDto userDto){
-    JSONObject response=new JSONObject();
+    public String join(@ModelAttribute UserRequestDto userDto){
 
     try{
         userService.getUserById(userDto.getUserId());
-        response.put("leave","fail");
+        System.out.println("join fail");
+
     }catch (IllegalArgumentException e){
         userService.createUser(userDto);
-        response.put("join","success");
-    }
+        System.out.println("join success");
 
-    return response.toMap();
+    }
+    return "login";
+
 }
 
 

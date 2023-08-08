@@ -17,24 +17,27 @@
 <body>
 <section>
     <div class="form_wrap">
-        <form action="">
+        <form action="api/v1/users/join" method="POST" enctype="multipart/form-data">
             <div class="form_container">
                 <ul>
                     <li>
                         <h2>아이디</h2>
-                        <input type="text" id="id" name="id" placeholder="아이디">
+                        <input type="text" id="userId" name="userId" placeholder="아이디">
                     </li>
                     <li>
                         <h2>비밀번호</h2>
-                        <input type="password" id="password" name="password" placeholder="비밀번호">
+                        <input type="password" id="userPassword" name="userPassword" placeholder="비밀번호">
                     </li>
                     <li>
                         <h2>이메일</h2>
-                        <input type="email" id="email" name="email" placeholder="이메일">
+                        <input type="email" id="userEmail" name="userEmail" placeholder="이메일">
                     </li>
                     <li>
                         <h2>이름</h2>
-                        <input type="text" id="name" name="name" placeholder="이름">
+                        <input type="text" id="userName" name="userName" placeholder="이름">
+                    </li>
+                    <li>
+                        <input type="hidden" id="userProfileImg" name="userProfileImg" value="resources/img/belle.jpg">
                     </li>
                     <li>
                         <input type="submit" id="submit" name="submit" value="회원가입">
