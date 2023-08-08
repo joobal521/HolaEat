@@ -26,8 +26,6 @@ public class User extends Timestamp {
     private byte[]userProfileImg;
 
 
-
-
     //생성자
     public User(UserRequestDto userDto) {
         this.userId = userDto.getUserId();

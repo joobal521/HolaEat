@@ -15,8 +15,8 @@ import java.util.List;
 public class UserService {
      private  final UserRepository userRepository;
 
-     public List<User>findByIdAndEmail(String userId, String userEmail){
-          return (List<User>) userRepository.findAllByUserIdAndUserEmail(userId,userEmail);
+     public List<User>findByIdAndEmail(String userId, String userPassword){
+          return (List<User>) userRepository.findAllByUserIdAndUserEmail(userId,userPassword);
      }
 
      public List<User> getUserAll(){
@@ -24,8 +24,8 @@ public class UserService {
           return list;
      }
 
-     public User getUserById(String user_id){
-          User user=userRepository.findById(user_id).orElseThrow(
+     public User getUserById(String userId){
+          User user=userRepository.findById(userId).orElseThrow(
                   ()->new IllegalArgumentException("존재하지 않는 사용자입니다.")
           );
           return user;
@@ -42,6 +42,7 @@ public class UserService {
      //회원탈퇴
      @Transactional
      public void deleteUserById(String userId){
+
           userRepository.deleteById(userId);
      }
 

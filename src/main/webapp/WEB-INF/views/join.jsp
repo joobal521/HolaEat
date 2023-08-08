@@ -37,7 +37,7 @@
                         <input type="text" id="name" name="name" placeholder="이름">
                     </li>
                     <li>
-                        <input type="submit">
+                        <input type="submit" id="submit" name="submit" value="회원가입">
                     </li>
                 </ul>
             </div>
