@@ -36,6 +36,9 @@
                         <h2>이름</h2>
                         <input type="text" id="name" name="name" placeholder="이름">
                     </li>
+                    <li>
+                        <input type="submit">
+                    </li>
                 </ul>
             </div>
         </form>

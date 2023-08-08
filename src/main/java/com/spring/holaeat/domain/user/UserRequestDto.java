@@ -10,11 +10,11 @@ import lombok.Setter;
 @AllArgsConstructor
 public class UserRequestDto {
 
-    private String user_id;
-    private String user_password;
-    private String user_name;
-    private String user_email;
-    private byte[]user_profile_img;
+    private String userId;
+    private String userPassword;
+    private String userName;
+    private String userEmail;
+    private byte[]userProfileImg;
 
 
 

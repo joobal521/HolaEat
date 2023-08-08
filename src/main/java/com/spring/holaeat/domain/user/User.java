@@ -9,34 +9,40 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+
 @NoArgsConstructor
 @Getter
-@Table(name = "users")
+@Table(name = "user")
 @Entity
 public class User extends Timestamp {
 
 
     @Id
-    private String user_id;
-    private String user_password;
-    private String user_name;
+    private String userId;
+    private String userPassword;
+    private String userName;
     @Column(unique = true)
-    private String user_email;
-    private byte[]user_profile_img;
-
-
-
+    private String userEmail;
+    private byte[]userProfileImg;
 
 
 
 
     //생성자
     public User(UserRequestDto userDto) {
-        this.user_id = userDto.getUser_id();
-        this.user_password = userDto.getUser_password();
-        this.user_name = userDto.getUser_name();
-        this.user_email = userDto.getUser_email();
-        this.user_profile_img = userDto.getUser_profile_img();
+        this.userId = userDto.getUserId();
+        this.userPassword=userDto.getUserPassword();
+        this.userName=userDto.getUserName();
+        this.userEmail=userDto.getUserEmail();
+        this.userProfileImg=userDto.getUserProfileImg();
+    }
+
+    //기능 메소드
+    public void update(UserRequestDto userDto){
+       this.userPassword=userDto.getUserPassword();
+      this.userName=userDto.getUserName();
+        this.userEmail=userDto.getUserEmail();
+
     }
 
 
