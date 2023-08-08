@@ -35,8 +35,10 @@
             <div class="user_nav">
                 <c:choose>
                     <c:when test="${not empty log }">
+                        <form action="logout" method="POST">
                         <input type="submit" id="logout" name="logout" value="로그아웃">
-                    </c:when>
+                        </form>
+                            </c:when>
                     <c:otherwise>
                         <a href="login">로그인</a>
                     </c:otherwise>

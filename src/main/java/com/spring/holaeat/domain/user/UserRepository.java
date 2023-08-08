@@ -2,13 +2,15 @@ package com.spring.holaeat.domain.user;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository extends JpaRepository<User,String> {
+import java.util.List;
 
-    public User findAllByUserIdAndUserEmail(String userId, String userEmail);
-
-    //2
-    //SELECT *FROM users WHERE email LIKE ?
-    //public List<User> findAllByUser_emailLikeOrderByUser_name(String pattern);
+public interface UserRepository extends JpaRepository<User, String> {
+//    // 수정된 메소드명과 반환 타입
+//    public List<User> findAllByUserIdAndUserEmail(String userId, String userEmail);
+//
+//    //2
+//    //SELECT *FROM users WHERE email LIKE ?
+//    public List<User> findAllByUser_emailLikeOrderByUser_name(String pattern);
 
 
 
