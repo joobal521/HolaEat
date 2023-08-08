@@ -7,8 +7,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<c:set var="path" value="${pageContext.request.contextPath}"/>
-<link rel="stylesheet" type="text/css" href="${path}/resources/style/grid.css">
+    <c:set var="path" value="${pageContext.request.contextPath}"/>
+    <link rel="stylesheet" type="text/css" href="${path}/resources/style/grid.css">
 <body>
 <header>
     <div class="header_wrap">
@@ -20,10 +20,9 @@
                 <%--                로고 옆 로그인 상태 표시--%>
                 <c:choose>
                     <c:when test="${not empty log }">
-                        <span>회원</span>
+                        <span>${userName}님 안녕하세요!</span>
                     </c:when>
                     <c:otherwise>
-                        <span>비회원</span>
                     </c:otherwise>
                 </c:choose>
             </div>
@@ -45,7 +44,14 @@
         </div>
         <div class="nav">
             <a href="ingredients">이달의 식재료</a>
-            <a href="menu">맞춤식단</a>
+            <c:choose>
+                <c:when test="${not empty log }">
+                    <a href="menu">맞춤식단</a>
+                </c:when>
+                <c:otherwise>
+                    <a href="login">맞춤식단</a>
+                </c:otherwise>
+            </c:choose>
             <a href="review">이용후기</a>
         </div>
     </div>

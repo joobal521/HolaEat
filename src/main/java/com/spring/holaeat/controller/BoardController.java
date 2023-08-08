@@ -13,11 +13,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 @RequiredArgsConstructor
-@RequestMapping("api/v1/board")
+@RequestMapping("api/v1/review")
 @RestController
 public class BoardController {
 
@@ -29,6 +31,7 @@ public class BoardController {
     @PostMapping(value = "write", consumes ={"multipart/form-data"} )
     public Response write(WebRequest request,@ModelAttribute BoardRequestDto boardDto){
         String log = (String)request.getAttribute("log" , WebRequest.SCOPE_SESSION);
+        System.out.println("log 확인" + log);
 
         if(log ==null)
             return new Response("post","fail");
@@ -39,6 +42,7 @@ public class BoardController {
         boardRepository.save(board);
         return new Response("post","success");
     }
+
 
 
     @GetMapping("list")
@@ -123,7 +127,7 @@ public class BoardController {
 
 
 
-    @GetMapping("/boards/list")
+    @GetMapping("/review/list")
     public String  boardlist(Model model){ // 데이터를 담아 페이지로 보내기 위해 Model 자료형을 인자로
         model.addAttribute("list", boardService.boardlist()); // boardService에서 생성한 boardlist메소드를 통해 list가 반환되는데 해당 list를 "list"라는 이름으로 넘겨주겠다는 것(html에 나올 수 있게)
         return "boardlist";

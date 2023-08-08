@@ -15,14 +15,17 @@ public class MainController {
     @GetMapping(value = "login")
     public String login() {return "login";}
 
-    @GetMapping(value = "ingredients")
-    public String material() {return "ingredients";}
+//    @GetMapping(value = "ingredients")
+//    public String ingredients() {return "ingredients";}
 
     @GetMapping(value = "menu")
     public String menu() {return "menu";}
 
     @GetMapping(value = "review")
     public String review() {return "review";}
+
+    @GetMapping(value = "review/write")
+    public String reviewForm() {return "review_form";}
 
 
 }

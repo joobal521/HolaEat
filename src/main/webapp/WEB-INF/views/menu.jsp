@@ -14,7 +14,7 @@
 <c:import url="header.jsp"/>
 <body>
 <section>
-    <h2> 식단 </h2>
+            <h2> ${userName}님을 위한 식단이 준비되어 있습니다! </h2>
 </section>
 </body>
 <c:import url="footer.jsp"/>
