@@ -3,18 +3,25 @@ package com.spring.holaeat.domain.ingredients;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 @NoArgsConstructor
 @Getter
-
+@Entity
+@Table(name="ingredients")
 public class Ingredients {
-    private int ingr_id;
-    private String ingr_name;
+    @Id
+    private int ingrId;
+    private String ingrName;
     private Boolean allergy;
     private Boolean month;
 
-    public Ingredients(int ingr_id, String ingr_name, Boolean allergy, Boolean month) {
-        this.ingr_id = ingr_id;
-        this.ingr_name = ingr_name;
+
+    public Ingredients(int ingrId, String ingrName, Boolean allergy, Boolean month) {
+        this.ingrId = ingrId;
+        this.ingrName = ingrName;
         this.allergy = allergy;
         this.month = month;
     }

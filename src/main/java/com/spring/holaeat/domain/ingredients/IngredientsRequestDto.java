@@ -7,8 +7,8 @@ import lombok.Setter;
 @Setter
 public class IngredientsRequestDto {
 
-    private int ingr_id;
-    private String ingr_name;
+    private int ingrId;
+    private String ingrName;
     private Boolean allergy;
     private Boolean month;
 

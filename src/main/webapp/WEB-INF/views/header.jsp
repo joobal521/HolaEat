@@ -7,11 +7,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Title</title>
-    <link rel="stylesheet" href="../style/grid.css">
-</head>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
+<link rel="stylesheet" type="text/css" href="${path}/resources/style/grid.css">
 <body>
 <header>
     <div class="header_wrap">
@@ -54,4 +51,3 @@
     </div>
 </header>
 </body>
-</html>

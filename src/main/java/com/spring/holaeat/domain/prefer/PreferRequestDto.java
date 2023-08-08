@@ -7,6 +7,6 @@ import lombok.Setter;
 @Setter
 public class PreferRequestDto {
 
-    private String user_id;
-    private String ingr_id;
+    private String userId;
+    private String ingrId;
 }

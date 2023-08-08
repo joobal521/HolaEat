@@ -15,6 +15,20 @@
 <body>
 <section>
     <h2> 식재료 </h2>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Allergy</th>
+        </tr>
+        <c:forEach items="${ingredientsList}" var="ingredient">
+            <tr>
+                <td>${ingredient.ingrId}</td>
+                <td>${ingredient.ingrName}</td>
+                <td>${ingredient.allergy}</td>
+            </tr>
+        </c:forEach>
+    </table>
 </section>
 </body>
 <c:import url="footer.jsp"/>
