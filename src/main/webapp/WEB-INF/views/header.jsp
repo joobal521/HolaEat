@@ -23,10 +23,9 @@
                 <%--                로고 옆 로그인 상태 표시--%>
                 <c:choose>
                     <c:when test="${not empty log }">
-                        <span>회원</span>
+                        <span>${userName}님 안녕하세요!</span>
                     </c:when>
                     <c:otherwise>
-                        <span>비회원</span>
                     </c:otherwise>
                 </c:choose>
             </div>
