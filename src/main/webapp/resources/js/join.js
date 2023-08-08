@@ -1,3 +1,26 @@
+$('#userId').on('change', e => {
+    if ($('#userId').val() !== "") {
+        $('#error-id').hide();
+        $('#userId').parent().css('border-color', 'lightgrey');
+        $('#userId').parent().css('border-top', 'none');
+    }
+});
+$('#userPassword').on('change', e => {
+    if ($('#userPassword').val() !== "") {
+        $('#error-password').hide();
+        $('#user_password').parent().css('border-color', 'lightgrey');
+        $('#user_paswword').parent().css('border-top', 'none');
+    }
+});
+
+
+$('#user_name').on('change', e => {
+    if ($('#user_name').val() !== "") {
+        $('#error-name').hide();
+        $('#user_name').parent().css('border-color', 'lightgrey');
+        $('#user_name').parent().css('border-top', 'none');
+    }
+});
 function checkValue(htmlForm) {
     const id = htmlForm.userId.value;
     const password = htmlForm.userPassword.value;

@@ -21,15 +21,23 @@
     <div class="form_wrap">
         <form enctype="multipart/form-data">
             <div class="form_container">
-                <ul>
+                <li>
                     <li>
                         <h2>아이디</h2>
                         <input type="text" id="userId" name="userId" placeholder="아이디">
                     </li>
+                    <p class="error" id="error-id">아이디는 필수정보입니다.</p>
+                <span class="err" id="chkid" size="1"></span>
+                <span class="err" id="chkMsgid" size="1"></span>
                     <li>
                         <h2>비밀번호</h2>
-                        <input type="password" id="userPassword" name="userPassword" placeholder="비밀번호">
+                        <input type="password" id="userPassword" name="userPassword" placeholder="4-10자의 영문, 특수문자, 숫자 조합">
                     </li>
+                    <li>
+                    <p class="err">*특수문자는 '! @ # $ % ^ & +='만 사용 가능합니다.</p>
+                        <p class="error" id="error-password">비밀번호는 필수정보입니다.</p>
+                    <span class="err" id="chkNotice1" size="1"></span>
+                   </li>
                     <li>
                         <h2>이메일</h2>
                         <input type="email" id="userEmail" name="userEmail" placeholder="이메일">

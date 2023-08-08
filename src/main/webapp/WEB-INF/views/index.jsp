@@ -135,7 +135,7 @@
 <%--        랜덤 룰렛 끝--%>
     </div>
 </section>
-<script src="resources/rotate.js"></script>
+<script src="resources/js/rotate.js"></script>
 </body>
 <c:import url="footer.jsp"/>
 </html>
