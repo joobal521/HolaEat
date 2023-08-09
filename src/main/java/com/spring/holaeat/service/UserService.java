@@ -47,7 +47,6 @@ public class UserService {
      //회원탈퇴
      @Transactional
      public void deleteUserById(String userId){
-
           userRepository.deleteById(userId);
      }
 
