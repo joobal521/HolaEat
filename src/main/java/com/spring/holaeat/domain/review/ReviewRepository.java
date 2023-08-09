@@ -12,4 +12,6 @@ public interface ReviewRepository extends JpaRepository<Review,Long> {
     public List<Review> findAllByOrderByReviewNoDesc();
 
     public List<Review> findAllByTitleLike(String pattern, Pageable pageable);
+
+
 }
