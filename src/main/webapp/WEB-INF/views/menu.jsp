@@ -17,7 +17,6 @@
 <body>
 <section>
     <h2> ${userName}님을 위한 식단이 준비되어 있습니다! </h2>
-    <h2>Age: ${userAge}</h2>
     <h3>정확한 식단 제공을 위해, ${userName}님에 대해 더욱 자세히 알려주세요!</h3>
     <div class="form_wrap">
         <form action="/saveCalories" method="POST">

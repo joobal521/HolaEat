@@ -54,6 +54,13 @@ public class LogController {
         status.setComplete();
         // 세션 속성을 수정
         request.removeAttribute("log", WebRequest.SCOPE_SESSION);
+        request.removeAttribute("userName", WebRequest.SCOPE_SESSION);
+        request.removeAttribute("userAge", WebRequest.SCOPE_SESSION);
+        request.removeAttribute("userHeight", WebRequest.SCOPE_SESSION);
+        request.removeAttribute("userWeight", WebRequest.SCOPE_SESSION);
+        request.removeAttribute("userRecCalories", WebRequest.SCOPE_SESSION);
+        request.removeAttribute("userAllergy", WebRequest.SCOPE_SESSION);
+        request.removeAttribute("userGender", WebRequest.SCOPE_SESSION);
         return "redirect:/";
     }
 
