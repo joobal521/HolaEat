@@ -10,8 +10,12 @@
 <html>
 <head>
     <title>reviewlist</title>
+    <link rel="stylesheet" href="../style/form.css">
 </head>
+<c:import url="header.jsp"/>
 <body>
+<div class="wrapper">
+<div>게시글 목록</div>
 <c:forEach items="${reviewlist}" var="review">
 
     <div>
@@ -23,11 +27,12 @@
 </c:forEach>
 
 <div>
-    <a href="review_form">
+    <a href="reviewform">
         글쓰기
     </a>
 </div>
 
-
+</div>
 </body>
+<c:import url="footer.jsp"/>
 </html>
