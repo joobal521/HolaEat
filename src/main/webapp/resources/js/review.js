@@ -24,8 +24,6 @@ function checkValueWrite(htmlForm) {
     let title_space = /[ ]/; /* 공백 */
 
 
-
-
     if (check) {
 
         console.log(title);
@@ -60,7 +58,6 @@ function checkValueWrite(htmlForm) {
 
     }
 }
-
 
 
 
@@ -106,5 +103,8 @@ function checkValueWrite(htmlForm) {
 //
 //
 // }
+
+
+
 
 

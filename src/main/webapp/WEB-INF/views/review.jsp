@@ -20,9 +20,15 @@
 
         <h2>게시글</h2>
         <div id="review-contents">
-            <input type="text" id="title" name="title"  >
-            <input type="text" id="userId" value="${sessionScope.userId}" readonly>
+            <div>
+            <input type="text" id="title" name="title">
+            </div>
+            <div>
+            <input type="text" id="userId" value="${review.userId}" readonly>
+            </div>
+            <div>
             <textarea id="content" name="content" readonly ></textarea>
+            </div>
             <div id="image-container">
                 <img id="img" name="img" >
             </div>
