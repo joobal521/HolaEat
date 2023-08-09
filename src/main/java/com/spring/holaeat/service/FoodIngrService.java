@@ -15,7 +15,6 @@ public class FoodIngrService {
 
     public List<FoodIngr> findFoodIdByIngrId(String ingrId) {
         List<FoodIngr> list = foodIngrRepository.findFoodIdByIngrId(ingrId);
-        System.out.println("foodservice");
         return list;
 
     }
