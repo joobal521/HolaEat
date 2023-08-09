@@ -7,24 +7,37 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
+
 <html>
 <head>
+    <link rel="stylesheet" type="text/css" href="${path}/resources/style/ingredients.css">
     <title>Title</title>
 </head>
 <c:import url="header.jsp"/>
 <body>
-<section>
-    <h2> 식재료 </h2>
-    <table border="1">
-        <tr>
-            <th>Name</th>
-        </tr>
-        <c:forEach items="${ingredientsList}" var="ingredient">
-            <tr>
-                <td>${ingredient.ingrName}</td>
-            </tr>
+<section class="ingr-section">
+    <h2> 이달의 식재료 </h2>
+    <c:forEach items="${ingredientsList}" var="ingredient">
+
+        <div class="ingr-img">
+            <a class="ingrOfMonth" href="">
+
+            </a>
+            <h3>${ingredient.ingrName}</h3>
+        </div>
+        <div class="ingr-foods">
+            <c:forEach items="${allFoodIngrList}" var="foodingr">
+                <c:if test="${foodingr.ingrId==ingredient.ingrId}">
+                    <a class="ingr-food" href="">${foodingr.foodId}</a>
+                </c:if>
+
+            </c:forEach>
+        </div>
+
+
+        
         </c:forEach>
-    </table>
 </section>
 </body>
 <c:import url="footer.jsp"/>
