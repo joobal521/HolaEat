@@ -38,6 +38,8 @@ public class ReviewService {
     @Transactional
 public void delete(long reviewNo){
         reviewRepository.deleteById(reviewNo);
+
+
 }
 
 
