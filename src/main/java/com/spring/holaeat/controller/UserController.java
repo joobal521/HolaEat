@@ -8,7 +8,10 @@ import lombok.RequiredArgsConstructor;
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.context.request.WebRequest;
 
+import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 @RequiredArgsConstructor
@@ -44,12 +47,13 @@ public class UserController {
 
 //회원탈퇴
     @DeleteMapping("leave")
-    public Map leave(@RequestBody  Map<String, String> requestData){
+    public Map leave(@RequestBody  Map<String, String> requestData, HttpSession session){
         String userId = requestData.get("userId");
         JSONObject response =new JSONObject();
 
         try{
             userService.deleteUserById(userId);
+            session.removeAttribute("log"); // 세션에서 log 속성 제거
             response.put("result", true);
 
         }catch (Exception e) {

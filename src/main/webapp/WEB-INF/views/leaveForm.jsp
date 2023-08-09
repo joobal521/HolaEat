@@ -12,6 +12,7 @@
     <title>leave</title>
     <c:set var="path" value="${pageContext.request.contextPath}"/>
     <link rel="stylesheet" type="text/css" href="${path}/resources/style/form.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 </head>
 <c:import url="header.jsp"/>
 <body>
@@ -31,8 +32,8 @@
                 <li class="error" id="error-password">비밀번호를 입력해주세요.
                 <li>
             </ul>
-            <input type="button" id="delete-btn" value="회원 탈퇴"
-                   onclick="checkValue(form)">
+            <button type="button" id="delete-btn"
+                    onclick="checkValue(form)">회원탈퇴</button>
         </form>
 
         <div class="back_box">
@@ -40,7 +41,7 @@
         </div>
     </div>
 </section>
-
+<script src="${path}/resources/js/leave.js"></script>
 </body>
 <c:import url="footer.jsp"/>
 </html>
