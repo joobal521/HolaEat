@@ -2,6 +2,7 @@ package com.spring.holaeat.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class MainController {
@@ -15,6 +16,9 @@ public class MainController {
     @GetMapping(value = "login")
     public String login() {return "login";}
 
+    @GetMapping(value ="leave")
+    public String leave(){return "leaveForm";}
+
 //    @GetMapping(value = "ingredients")
 //    public String ingredients() {return "ingredients";}
 
@@ -24,8 +28,7 @@ public class MainController {
 //    @GetMapping(value = "review")
 //    public String review() {return "review";}
 
-    @GetMapping(value = "write")
+    @GetMapping(value = "reviewform")
     public String reviewForm() {return "reviewform";}
-
 
 }

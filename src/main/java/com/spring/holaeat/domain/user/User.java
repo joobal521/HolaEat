@@ -1,13 +1,11 @@
 package com.spring.holaeat.domain.user;
 
+import com.spring.holaeat.domain.user_detail.UserDetail;
 import com.spring.holaeat.util.Timestamp;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 
 @NoArgsConstructor
@@ -16,6 +14,12 @@ import javax.persistence.Table;
 @Entity
 public class User extends Timestamp {
 
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private UserDetail userDetail;
+
+    public UserDetail getUserDetail() {
+        return userDetail;
+    }
 
     @Id
     private String userId;
