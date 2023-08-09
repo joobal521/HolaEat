@@ -20,12 +20,12 @@
         <h2 class="delete_text"> "${not empty log}"님 정말떠나시나요?</h2>
         <form id="delete">
             <div>
-                <input type="text" class="square" id="user_email"
-                       name="user_email" value="${sessionScope.email}" readonly>
+                <input type="text" class="square" id="userId"
+                       name="userId" value="${sessionScope.log}" readonly>
             </div>
             <div>
-                <input type="password" class="square" id="user_password"
-                       name="user_password" placeholder="비밀번호">
+                <input type="password" class="square" id="userPassword"
+                       name="userPassword" placeholder="비밀번호">
             </div>
             <ul>
                 <li class="error" id="error-password">비밀번호를 입력해주세요.

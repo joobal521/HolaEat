@@ -50,14 +50,26 @@ public class UserController {
 
         try{
             userService.deleteUserById(userId);
-            response.put("leave", "success");
+            response.put("result", true);
 
         }catch (Exception e) {
             e.printStackTrace();
-            response.put("leave", "fail");
+            response.put("result", false);
         }
         return response.toMap();
 
+    }
+
+    //회원정보 수정 PUT
+    @PutMapping("user/{username}/update")
+    public Map update(@PathVariable String username, @RequestBody UserRequestDto userDto){
+
+        userService.updateUser(username,userDto);
+        JSONObject response =new JSONObject();
+        response.put("update", "success");
+
+
+        return response.toMap();
     }
 
 
