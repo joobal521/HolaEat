@@ -31,12 +31,12 @@ public class UserCaloriesService {
         }
     }
 
-    @Transactional
-    public void updateUserCalories(String userId, double recCalories) {
-        User user = userRepository.findById(userId).orElseThrow(
-                () -> new IllegalArgumentException("존재하지 않는 사용자입니다.")
-        );
-        user.setRecCalories(recCalories);
-        userRepository.save(user);
-    }
+//    @Transactional
+//    public void updateUserCalories(String userId, double recCalories) {
+//        User user = userRepository.findById(userId).orElseThrow(
+//                () -> new IllegalArgumentException("존재하지 않는 사용자입니다.")
+//        );
+//        user.setRecCalories(recCalories);
+//        userRepository.save(user);
+//    }
 }

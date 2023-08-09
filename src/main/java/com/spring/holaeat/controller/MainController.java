@@ -31,10 +31,10 @@ public class MainController {
     @GetMapping(value = "reviewform")
     public String reviewForm() {return "reviewform";}
 
-    @GetMapping("reviewlist/{pageNum}")
-    public String reviewListPage(){
-        return "reviewlist";
-    }
+//    @GetMapping("reviewlist/{pageNumber}")
+//    public String reviewListPage(){
+//        return "reviewlist";
+//    }
 
 
 

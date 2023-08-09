@@ -33,13 +33,13 @@ public class ReviewListController {
 
 
     //게시글 하나 조회
-//    @GetMapping("list/{reviewNo}")
-//    public List<Review> getBoardByNo(@PathVariable long reviewNo){
-//        return reviewRepository.findByNo(reviewNo);
-//    }
+    @GetMapping("{reviewNo}")
+    public List<Review> getBoardByNo(@PathVariable long reviewNo){
+        return reviewRepository.findByReviewNo(reviewNo);
+    }
 
     //게시글 목록 조회
-    @GetMapping("/list/{pageNumber}")
+    @GetMapping("reviewlist/{pageNumber}")
     public List<Review> getReviewAll(@PathVariable int pageNumber,
                                      @RequestParam(required = false) String keyword,
                                      @PageableDefault(size = 10) Pageable pageable) {
