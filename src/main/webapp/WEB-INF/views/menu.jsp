@@ -19,6 +19,7 @@
     <h2> ${userName}님을 위한 식단이 준비되어 있습니다! </h2>
     <h3>정확한 식단 제공을 위해, ${userName}님에 대해 더욱 자세히 알려주세요!</h3>
     <div class="form_wrap">
+<%--        열량 계산 시작 --%>
         <form id="myform" action="/saveCalories" method="POST">
             <ul>
                 <li>
@@ -69,6 +70,50 @@
                 </li>
             </ul>
         </form>
+<%--        열량 계산 끝 --%>
+
+<%--        <div class="form_con">--%>
+<%--        <form action="">--%>
+<%--            <h2>취향에 맞게 식단을 짜보세요!</h2>--%>
+<%--            <h3>선호하는 재료</h3>--%>
+<%--            <label for="tofu">--%>
+<%--                <input type="radio" id="tofu" name="prefer">--%>
+<%--                두부--%>
+<%--            </label>--%>
+<%--            <label for="sesame">--%>
+<%--                <input type="radio" id="sesame" name="prefer">--%>
+<%--                깨--%>
+<%--            </label>--%>
+<%--            <label for="rice">--%>
+<%--                <input type="radio" id="rice" name="prefer">--%>
+<%--                쌀--%>
+<%--            </label>--%>
+<%--            <label for="potato">--%>
+<%--                <input type="radio" id="potato" name="prefer">--%>
+<%--                감자--%>
+<%--            </label>--%>
+<%--            <label for="pork">--%>
+<%--                <input type="radio" id="pork" name="prefer">--%>
+<%--                돼지고기--%>
+<%--            </label>--%>
+<%--            <label for="chicken">--%>
+<%--                <input type="radio" id="chicken" name="prefer">--%>
+<%--                닭고기--%>
+<%--            </label>--%>
+<%--            <label for="fish">--%>
+<%--                <input type="radio" id="fish" name="prefer">--%>
+<%--                생선--%>
+<%--            </label>--%>
+<%--            <label for="meat">--%>
+<%--                <input type="radio" id="meat" name="prefer">--%>
+<%--                소고기--%>
+<%--            </label>--%>
+<%--            <label for="peach">--%>
+<%--                <input type="radio" id="peach" name="prefer">--%>
+<%--                복숭아--%>
+<%--            </label>--%>
+<%--        </form>--%>
+<%--        </div>--%>
     </div>
 </section>
 <script src="resources/js/cal.js"></script>

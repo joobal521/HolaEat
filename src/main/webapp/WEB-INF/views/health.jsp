@@ -16,7 +16,20 @@
 <body>
 <section>
     <div class="wrap">
-        <h2>건강정보 게시판</h2>
+        <div class="container">
+            <div class="con_1">
+                <h2>음식이 싱거울 땐, 소금을 넣어라.</h2>
+                <p>내용 1</p>
+            </div>
+            <div class="con_2">
+                <h2>콜라가 미지근 할때, 냉장고에 넣어두면 좋다.</h2>
+                <p>내용 2</p>
+            </div>
+            <div class="con_3">
+                <h2>배가 고플 땐, 뭐라도 먹는 것이 도움이 된다.</h2>
+                <p>내용 3</p>
+            </div>
+        </div>
     </div>
 </section>
 </body>
