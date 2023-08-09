@@ -10,24 +10,29 @@
 <html>
 <head>
     <title>reviewlist</title>
+    <link rel="stylesheet" href="../style/form.css">
 </head>
+<c:import url="header.jsp"/>
 <body>
-<c:forEach items="${boardlist}" var="board">
+<div class="wrapper">
+<div>게시글 목록</div>
+<c:forEach items="${reviewlist}" var="review">
 
     <div>
-        <div>작성자 : ${board.userId}</div>
-        <div>제목 : ${board.title}</div>
-        <div>${board.img}</div>
+        <div>작성자 : ${review.userId}</div>
+        <div>제목 : ${review.title}</div>
+        <img src="${pageContext.request.contextPath}/${review.img}" alt="Review Image">
     </div>
 
 </c:forEach>
 
 <div>
-    <a href="review_form">
+    <a href="reviewform">
         글쓰기
     </a>
 </div>
 
-
+</div>
 </body>
+<c:import url="footer.jsp"/>
 </html>
