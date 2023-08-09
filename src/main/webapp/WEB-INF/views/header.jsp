@@ -56,7 +56,7 @@
                     <a href="login">맞춤식단</a>
                 </c:otherwise>
             </c:choose>
-            <a href="review">이용후기</a>
+            <a href="reviewlist">이용후기</a>
         </div>
     </div>
 </header>
