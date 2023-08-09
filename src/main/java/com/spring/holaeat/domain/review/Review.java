@@ -1,7 +1,5 @@
-package com.spring.holaeat.domain.board;
+package com.spring.holaeat.domain.review;
 
-import com.spring.holaeat.domain.user.User;
-import com.spring.holaeat.domain.user.UserRequestDto;
 import com.spring.holaeat.util.Timestamp;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,7 +12,7 @@ import java.io.IOException;
 @Getter
 @Table(name="review")
 @Entity
-public class Board extends Timestamp {
+public class Review extends Timestamp {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,7 +33,7 @@ public class Board extends Timestamp {
     private byte[] img;
 
 
-    public Board(BoardRequestDto boardDto){
+    public Review(ReviewRequestDto boardDto){
         this.title = boardDto.getTitle();
         this.content = boardDto.getContent();
         this.userId = boardDto.getUserId();
@@ -51,7 +49,7 @@ public class Board extends Timestamp {
     }
 
 
-    public void update(BoardRequestDto boardDto) {
+    public void update(ReviewRequestDto boardDto) {
         this.title = boardDto.getTitle();
         this.content = boardDto.getContent();
 
