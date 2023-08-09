@@ -31,13 +31,13 @@ public class ReviewListController {
         return "reviewlist";
     }
 
-    //
-//    //게시글 하나 조회
-//    @GetMapping("/{reviewNo}")
-//    public List<Board> getBoardByNo(@PathVariable long reviewNo){
-//        return boardRepository.findByNo(reviewNo);
-//    }
-//
+
+    //게시글 하나 조회
+    @GetMapping("list/{reviewNo}")
+    public List<Review> getBoardByNo(@PathVariable long reviewNo){
+        return reviewRepository.findByNo(reviewNo);
+    }
+
     //게시글 목록 조회
     @GetMapping("/list/{pageNumber}")
     public List<Review> getReviewAll(@PathVariable int pageNumber,

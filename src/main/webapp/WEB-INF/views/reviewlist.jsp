@@ -21,7 +21,7 @@
     <div>
         <div>작성자 : ${review.userId}</div>
         <div>제목 : ${review.title}</div>
-        <div>${review.img}</div>
+        <img src="${pageContext.request.contextPath}/${review.img}" alt="Review Image">
     </div>
 
 </c:forEach>
