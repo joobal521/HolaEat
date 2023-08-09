@@ -45,7 +45,7 @@ public class ReviewController {
 
 
 
-    @GetMapping("/review/list")
+    @GetMapping("/reviewlist")
     public String getReviewAll(Model model){
         List<Review> list = reviewService.findAllByOrderByReviewNoDesc();
 

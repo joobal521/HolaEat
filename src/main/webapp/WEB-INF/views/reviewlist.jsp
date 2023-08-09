@@ -12,12 +12,12 @@
     <title>reviewlist</title>
 </head>
 <body>
-<c:forEach items="${boardlist}" var="board">
+<c:forEach items="${reviewlist}" var="review">
 
     <div>
-        <div>작성자 : ${board.userId}</div>
-        <div>제목 : ${board.title}</div>
-        <div>${board.img}</div>
+        <div>작성자 : ${review.userId}</div>
+        <div>제목 : ${review.title}</div>
+        <div>${review.img}</div>
     </div>
 
 </c:forEach>
