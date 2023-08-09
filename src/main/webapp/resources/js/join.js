@@ -175,7 +175,7 @@ function checkValue(htmlForm) {
     }
 
 
-    if (check && isIdChecked && isToKenChecked) {
+    if (check) {
 
         const data = {
             userId: id,
@@ -207,9 +207,6 @@ function checkValue(htmlForm) {
 
 
 
-    } else if (!isIdChecked) {
-    alert("이메일 중복 확인을 해주세요.");
-} else if (!isToKenChecked) {
-    alert("이메일 인증을 해주세요.");
-}
+    }
+
 }
