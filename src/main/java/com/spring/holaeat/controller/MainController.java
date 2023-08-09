@@ -15,6 +15,9 @@ public class MainController {
     @GetMapping(value = "login")
     public String login() {return "login";}
 
+    @GetMapping(value ="leave")
+    public String leave(){return "leaveForm";}
+
 //    @GetMapping(value = "ingredients")
 //    public String ingredients() {return "ingredients";}
 
