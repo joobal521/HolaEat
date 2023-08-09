@@ -26,60 +26,39 @@ function calculateCalories() {
 
 
 }
-
-    // cal.js
-    function validateForm() {
-        var ageInput = document.getElementById("age").value;
-        if (isNaN(ageInput) || ageInput === "") {
-            alert("나이를 유효한 숫자로 입력해주세요.");
-            return false; // 폼 제출 중단
-        }
-
-    }
-
-// Ajax로 폼 값을 서버에 비동기로 전송하는 함수
-function saveFormValues() {
-    var formData = {
-        gender: $("input[name='gender']:checked").val(),
-        age: $("#age").val(),
-        height: $("#height").val(),
-        weight: $("#weight").val(),
-        allergy: $("#allergy").val(),
-        recCalories: $("#recCalories").val()
-    };
-
-    $.ajax({
-        type: "POST",
-        url: "/saveCalories", // 폼 데이터를 처리하는 컨트롤러 URL
-        data: formData,
-        success: function(data) {
-            $("#userAge").text(data.age);
-            $("#userWeight").text(data.weight);
-            $("#userHeight").text(data.height);
-            $("#userAllergy").text(data.allergy);
-            $("#userRecCalories").text(data.recCalories);
-        }
-    });
-}
-
-
-// 폼 필드 값이 변경될 때마다 saveFormValues 함수 호출
-$("input, select").on("change", function() {
-    saveFormValues();
-});
-
-updateSessionValues();
-
-function updateSessionValues() {
-    $.ajax({
-        type: "GET",
-        url: "/getSessionValues", // 세션 값을 가져오는 컨트롤러 URL
-        success: function(data) {
-            $("#age").val(data.userAge);
-            $("#height").val(data.userHeight);
-            $("#weight").val(data.userWeight);
-            $("#allergy").val(data.userAllergy);
-            $("#recCalories").val(data.userRecCalories);
-        }
-    });
-}
+//
+// // '저장' 버튼 클릭 시에 호출되는 함수
+// function saveFormValues() {
+//     var formData = {
+//         gender: $("input[name='gender']:checked").val(),
+//         age: $("#age").val(),
+//         height: $("#height").val(),
+//         weight: $("#weight").val(),
+//         allergy: $("#allergy").val(),
+//         recCalories: $("#recCalories").val()
+//     };
+//
+//     $.ajax({
+//         type: "POST",
+//         url: "/saveCalories", // 폼 데이터를 처리하는 컨트롤러 URL
+//         data: formData,
+//         success: function(data) {
+//             // 필요한 업데이트 수행
+//             $("#age").val(data.age);
+//             $("#height").val(data.height);
+//             $("#weight").val(data.weight);
+//             $("#allergy").val(data.allergy);
+//             $("#recCalories").val(data.recCalories);
+//         }
+//     });
+// }
+//
+// // '저장' 버튼 클릭 이벤트 리스너
+// $("#save_btn").on("click", function() {
+//     saveFormValues(); // 비동기 요청 및 화면 업데이트 수행
+// });
+//
+// // 계산 함수 (예시)
+// function calculateCalories() {
+//     // 계산 로직
+// }

@@ -57,7 +57,7 @@
                         <option value="4" ${userAllergy eq '4' ? 'selected' : ''}>견과류</option>
                     </select>
                 </li>
-                <input type="submit" id="save_btn" name="save_btn" value="저장">
+                <input type="button" id="save_btn" name="save_btn" value="저장">
                 <input type="button" id="calculate" name="calculate" value="계산" onclick="calculateCalories()">
 
             </ul>

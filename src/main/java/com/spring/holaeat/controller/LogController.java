@@ -31,36 +31,51 @@ public class LogController {
     @PostMapping("login")
     public ModelAndView login(@RequestParam("userId") String userId, @RequestParam("userPassword") String userPassword, HttpSession session, Model model) {
         User user = userRepository.findByUserId(userId); // 사용자 정보를 데이터베이스에서 조회
-        UserDetail userDetail = userDetailRepository.findByUserId(userId); // 사용자 상세 정보를 데이터베이스에서 조회
 
-        // 로그인 로직 및 세션 처리
-        ModelAndView modelAndView = new ModelAndView("index");
-        modelAndView.addObject("log", userId);
-        model.addAttribute("userName", user.getUserName());
+        if (user != null) {
+            UserDetail userDetail = userDetailRepository.findByUserId(userId); // 사용자 상세 정보를 데이터베이스에서 조회
 
-        session.setAttribute("userAge", user.getUserDetail().getAge());
-        session.setAttribute("userHeight", user.getUserDetail().getHeight());
-        session.setAttribute("userWeight", user.getUserDetail().getWeight());
-        session.setAttribute("userRecCalories", user.getUserDetail().getRecCalories());
-        session.setAttribute("userAllergy", user.getUserDetail().getAllergy());
-        session.setAttribute("userGender", user.getUserDetail().getGender());
+            // 로그인 로직 및 세션 처리
+            ModelAndView modelAndView = new ModelAndView("index");
+            modelAndView.addObject("log", userId);
+            model.addAttribute("userName", user.getUserName());
 
-        return modelAndView;
+            if (userDetail != null) {
+                session.setAttribute("userAge", userDetail.getAge());
+                session.setAttribute("userHeight", userDetail.getHeight());
+                session.setAttribute("userWeight", userDetail.getWeight());
+                session.setAttribute("userRecCalories", userDetail.getRecCalories());
+                session.setAttribute("userAllergy", userDetail.getAllergy());
+                session.setAttribute("userGender", userDetail.getGender());
+            }
+
+            return modelAndView;
+        } else {
+            // 로그인 실패 처리 로직
+            // ...
+            return new ModelAndView("login"); // 예시로 로그인 실패 시 login 페이지로 리다이렉트
+        }
     }
 
+
     @PostMapping("logout")
-    public String logout(WebRequest request, SessionStatus status) {
+    public String logout(WebRequest request, SessionStatus status, HttpSession session) {
         // 우선 호출 후,
         status.setComplete();
         // 세션 속성을 수정
         request.removeAttribute("log", WebRequest.SCOPE_SESSION);
         request.removeAttribute("userName", WebRequest.SCOPE_SESSION);
-        request.removeAttribute("userAge", WebRequest.SCOPE_SESSION);
-        request.removeAttribute("userHeight", WebRequest.SCOPE_SESSION);
-        request.removeAttribute("userWeight", WebRequest.SCOPE_SESSION);
-        request.removeAttribute("userRecCalories", WebRequest.SCOPE_SESSION);
-        request.removeAttribute("userAllergy", WebRequest.SCOPE_SESSION);
-        request.removeAttribute("userGender", WebRequest.SCOPE_SESSION);
+
+        UserDetail userDetail = (UserDetail) session.getAttribute("userDetail");
+        if (userDetail != null) {
+            request.removeAttribute("userAge", WebRequest.SCOPE_SESSION);
+            request.removeAttribute("userHeight", WebRequest.SCOPE_SESSION);
+            request.removeAttribute("userWeight", WebRequest.SCOPE_SESSION);
+            request.removeAttribute("userRecCalories", WebRequest.SCOPE_SESSION);
+            request.removeAttribute("userAllergy", WebRequest.SCOPE_SESSION);
+            request.removeAttribute("userGender", WebRequest.SCOPE_SESSION);
+        }
+
         return "redirect:/";
     }
 
