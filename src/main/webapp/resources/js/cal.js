@@ -1,3 +1,46 @@
+$(document).ready(function () {
+    $('#save_btn').click(function () {
+        var gender = $('input[name="gender"]:checked').val();
+        var age = $('#age').val();
+        var height = $('#height').val();
+        var weight = $('#weight').val();
+        var allergy = $('#allergy').val();
+        var recCalories = $('#recCalories').val();
+
+        var formData = {
+            gender: gender,
+            age: age,
+            height: height,
+            weight: weight,
+            allergy: allergy,
+            recCalories: recCalories
+        };
+
+        $.ajax({
+            type: "POST",
+            url: "/saveCalories", // 해당 URL에 맞게 수정
+            data: formData,
+            success: function (data) {
+                // 서버 응답 처리
+                console.log("저장 성공:", data);
+                // 필요한 업데이트 작업 수행
+                $('#age').val(data.age);
+                $('#height').val(data.height);
+                $('#weight').val(data.weight);
+                $('#allergy').val(data.allergy);
+                $('#recCalories').val(data.recCalories);
+
+                alert("저장에 성공하였습니다.")
+
+            },
+            error: function (error) {
+                console.error("저장 에러:", error);
+                // 에러 처리
+            }
+        });
+    });
+});
+
 function calculateCalories() {
     // 필요한 변수들을 가져옴
     var gender = document.querySelector('input[name="gender"]:checked').value;
@@ -26,39 +69,4 @@ function calculateCalories() {
 
 
 }
-//
-// // '저장' 버튼 클릭 시에 호출되는 함수
-// function saveFormValues() {
-//     var formData = {
-//         gender: $("input[name='gender']:checked").val(),
-//         age: $("#age").val(),
-//         height: $("#height").val(),
-//         weight: $("#weight").val(),
-//         allergy: $("#allergy").val(),
-//         recCalories: $("#recCalories").val()
-//     };
-//
-//     $.ajax({
-//         type: "POST",
-//         url: "/saveCalories", // 폼 데이터를 처리하는 컨트롤러 URL
-//         data: formData,
-//         success: function(data) {
-//             // 필요한 업데이트 수행
-//             $("#age").val(data.age);
-//             $("#height").val(data.height);
-//             $("#weight").val(data.weight);
-//             $("#allergy").val(data.allergy);
-//             $("#recCalories").val(data.recCalories);
-//         }
-//     });
-// }
-//
-// // '저장' 버튼 클릭 이벤트 리스너
-// $("#save_btn").on("click", function() {
-//     saveFormValues(); // 비동기 요청 및 화면 업데이트 수행
-// });
-//
-// // 계산 함수 (예시)
-// function calculateCalories() {
-//     // 계산 로직
-// }
+
