@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ReviewRepository extends JpaRepository<Review,Long> {
 
-    public List<Review> findByNo(long reviewNo);
+//    public List<Review> findByNo(long reviewNo);
 
     public List<Review> findAllByOrderByReviewNoDesc();
 
