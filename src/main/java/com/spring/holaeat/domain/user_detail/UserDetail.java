@@ -38,6 +38,10 @@ public class UserDetail {
     @Column(name = "rec_calories")
     private double recCalories;
 
+
+
+
+
     // Getters and setters
 }
 
