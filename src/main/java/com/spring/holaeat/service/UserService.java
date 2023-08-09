@@ -3,11 +3,16 @@ package com.spring.holaeat.service;
 import com.spring.holaeat.domain.user.User;
 import com.spring.holaeat.domain.user.UserRequestDto;
 import com.spring.holaeat.domain.user.UserRepository;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 @RequiredArgsConstructor
@@ -53,12 +58,6 @@ public class UserService {
           user.update(userDto);
 
      }
-
-
-
-
-
-
 
 
 
