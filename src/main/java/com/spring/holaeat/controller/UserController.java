@@ -8,7 +8,10 @@ import lombok.RequiredArgsConstructor;
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.context.request.WebRequest;
 
+import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 @RequiredArgsConstructor
@@ -47,6 +50,7 @@ public class UserController {
     public Map leave(@RequestBody  Map<String, String> requestData){
         String userId = requestData.get("userId");
         JSONObject response =new JSONObject();
+
 
         try{
             userService.deleteUserById(userId);
