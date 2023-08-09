@@ -1,8 +1,10 @@
 package com.spring.holaeat.controller;
 
+import com.spring.holaeat.domain.food.Food;
 import com.spring.holaeat.domain.food_ingr.FoodIngr;
 import com.spring.holaeat.domain.ingredients.Ingredients;
 import com.spring.holaeat.service.FoodIngrService;
+import com.spring.holaeat.service.FoodService;
 import com.spring.holaeat.service.IngredientsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,31 +18,41 @@ import java.util.List;
 public class IngredientsController {
     private final IngredientsService ingredientsService;
     private final FoodIngrService foodIngrService;
+    private final FoodService foodService;
 
 
     @Autowired
-    public IngredientsController(IngredientsService ingredientsService, FoodIngrService foodIngrService) {
+    public IngredientsController(IngredientsService ingredientsService, FoodIngrService foodIngrService,FoodService foodService) {
         this.ingredientsService = ingredientsService;
         this.foodIngrService = foodIngrService;
+        this.foodService = foodService;
     }
 
     @GetMapping("/ingredients")
     public String getIngredients(Model model) {
         List<Ingredients> ingredientsList = ingredientsService.findByMonthEquals();
-        System.out.println("ingrservice");
-        List<FoodIngr> allFoodIngrList = new ArrayList<>(); // 전체 foodIngrList를 담을 리스트
-        System.out.println("foodlist");
+        List<FoodIngr> monthFoodIngrList = new ArrayList<>(); // 전체 foodIngrList를 담을 리스트
+        List<Food> monthFoods= new ArrayList<>();
+
         for (Ingredients ingredient : ingredientsList) {
             String ingrId = String.valueOf(ingredient.getIngrId());
             List<FoodIngr> foodIngrList = foodIngrService.findFoodIdByIngrId(ingrId);
-            allFoodIngrList.addAll(foodIngrList); // 현재 ingrId에 해당하는 foodIngrList를 전체 리스트에 추가
+            monthFoodIngrList.addAll(foodIngrList); // 현재 ingrId에 해당하는 foodIngrList를 전체 리스트에 추가
         }
-        System.out.println("foodservice for");
-        model.addAttribute("ingredientsList", ingredientsList);
-        model.addAttribute("allFoodIngrList", allFoodIngrList);
+
+        for(FoodIngr foodIngr : monthFoodIngrList){
+            String foodId = String.valueOf(foodIngr.getFoodId());
+            List<Food> foods = foodService.findFoodByFoodId(foodId);
+            monthFoods.addAll(foods);
+        }
+
+        model.addAttribute("ingredientsList", ingredientsList);//식재료리스트
+        model.addAttribute("monthFoodIngrList", monthFoodIngrList);//
+        model.addAttribute("monthFoods", monthFoods);
 
         return "ingredients"; // ingredients.jsp
     }
+
 
 
 }
