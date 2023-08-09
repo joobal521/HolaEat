@@ -15,10 +15,14 @@ function checkValueWrite(htmlForm) {
     const content = htmlForm.content.value;
     const imgFile = htmlForm.img.files[0];
 
-
+    if (title.trim() === "") {
+        console.log("Title is required.");
+        return; // 제목이 비어있을 경우 처리 중단
+    }
 
     let check = true;
     let title_space = /[ ]/; /* 공백 */
+
 
 
 
@@ -31,7 +35,10 @@ function checkValueWrite(htmlForm) {
         var form = new FormData();
         form.append("title", title);
         form.append("content", content);
-        form.append("img", imgFile);
+
+        if (imgFile) {
+            form.append("img", imgFile);
+        }
 
         var settings = {
             "url": "/write",
@@ -44,7 +51,9 @@ function checkValueWrite(htmlForm) {
         };
 
         $.ajax(settings).done(function (response) {
+
             console.log(response);
+            location.href = "reviewlist";
         });
 
 

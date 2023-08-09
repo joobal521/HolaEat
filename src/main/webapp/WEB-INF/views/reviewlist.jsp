@@ -18,7 +18,7 @@
 <div>게시글 목록</div>
 <c:forEach items="${reviewlist}" var="review">
 
-    <div>
+    <div style="border: 1px solid black; margin: 1px;">
         <div>작성자 : ${review.userId}</div>
         <div>제목 : ${review.title}</div>
         <img src="${pageContext.request.contextPath}/${review.img}" alt="Review Image">

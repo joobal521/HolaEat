@@ -10,27 +10,25 @@
 <html>
 <head>
     <title>Title</title>
+    <c:set var="path" value="${pageContext.request.contextPath}"/>
+    <link rel="stylesheet" type="text/css" href="${path}/resources/style/form.css">
 </head>
 <c:import url="header.jsp"/>
 <body>
-<section>
+<section id = "review-section">
     <h2>리뷰 게시판 상세</h2>
-    <form enctype="multipart/form-data">
-        <div>
-            <input type="text" id="title" name="title">
-        </div>
-        <div>
-            <textarea id="content" name="content" ></textarea>
-        </div>
-        <div>
-            <input type="file" id="img" name="img" accept="image/png, image/jpg, image/jpeg, image.gif">
-        </div>
-        <div>
-            <button type="button" id="submit" name="submit" onclick="checkValueWrite(form)">등록</button>
-        </div>
-    </form>
 
-
+        <h2>게시글</h2>
+        <div id="review-contents">
+            <input type="text" id="title" name="title"  >
+            <input type="text" id="userId" value="${sessionScope.userId}" readonly>
+            <textarea id="content" name="content" readonly ></textarea>
+            <div id="image-container">
+                <img id="img" name="img" >
+            </div>
+            <input type="datetime" id="created_at" readonly>
+            <input type="datetime" id="modified_at" readonly>
+        </div>
 
 </section>
 </body>
