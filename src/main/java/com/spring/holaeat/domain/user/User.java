@@ -47,11 +47,6 @@ public class User extends Timestamp {
 
     }
 
-    private double recCalories; // recCalories 필드 추가
-
-    public void setRecCalories(double recCalories) {
-        this.recCalories = recCalories;
-    }
 
 
 
