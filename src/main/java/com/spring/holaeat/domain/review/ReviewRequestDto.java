@@ -1,7 +1,6 @@
-package com.spring.holaeat.domain.board;
+package com.spring.holaeat.domain.review;
 
 
-import com.spring.holaeat.domain.user.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,7 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 @Setter
 @Getter
 @NoArgsConstructor
-public class BoardRequestDto {
+public class ReviewRequestDto {
 
     private long reviewNo;
     private String title;

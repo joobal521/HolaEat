@@ -21,11 +21,11 @@ public class MainController {
     @GetMapping(value = "menu")
     public String menu() {return "menu";}
 
-    @GetMapping(value = "review")
-    public String review() {return "review";}
+//    @GetMapping(value = "review")
+//    public String review() {return "review";}
 
-    @GetMapping(value = "review/write")
-    public String reviewForm() {return "review_form";}
+    @GetMapping(value = "write")
+    public String reviewForm() {return "reviewform";}
 
 
 }

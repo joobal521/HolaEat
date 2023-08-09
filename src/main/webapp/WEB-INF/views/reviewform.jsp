@@ -16,15 +16,15 @@
 <section>
     <div class="wrapper">
 
-        <form method="POST" action="api/v1/review/write">
+        <form method="POST" action="/write" enctype="multipart/form-data">
             <div>
                 <input type="text" id="title" name="title">
             </div>
             <div>
-                <textarea id="contents" name="contents" ></textarea>
+                <textarea id="content" name="content" ></textarea>
             </div>
             <div>
-                <input type="file" id="file" name="loded_file" accept="image/png, image/jpg, image/jpeg, image.gif">
+                <input type="file" id="img" name="img" accept="image/png, image/jpg, image/jpeg, image.gif">
             </div>
             <div>
                 <input type="submit">
