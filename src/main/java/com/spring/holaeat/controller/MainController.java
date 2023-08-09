@@ -36,7 +36,8 @@ public class MainController {
         return "reviewlist";
     }
 
-
+    @GetMapping("health")
+    public String health() {return "health";}
 
 
 }
