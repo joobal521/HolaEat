@@ -20,35 +20,38 @@
 <section id = "review-section">
     <h2>리뷰 게시판 수정</h2>
 
-        <h2>게시글</h2>
-        <c:if test="${review!=null}">
+    <c:out value="${review}" />
 
+
+    <c:if test="${review!=null}">
+            테스트
 
             <div id="review-contents">
                 <form id="review-detail" enctype="multipart/form-data">
                     <div>
-                        <input type="text" id="reviewNo" name="reviewNo" value="${review.get(0).reviewNo}" readonly>
+                        <input type="text" id="reviewNo" name="reviewNo" value="${review.reviewNo}" readonly>
                     </div>
                 <div>
-                    <input type="text" id="title" name="title" value="${review.get(0).title}" >
+                    <input type="text" id="title" name="title" value="${review.title}" >
+                </div>admin
+                <div>
+                    <input type="text" id="userId" name="userId" value="${review.userId}" >
+
                 </div>
                 <div>
-                    <input type="text" id="userId" name="userId" value="${review.get(0).userId}" >
-                </div>
-                <div>
-                    <input type="text" id="content" name="content" value="${review.get(0).content}"  >
+                    <input type="text" id="content" name="content" value="${review.content}"  >
                 </div>
                 <div id="image-container">
-                    <img src="${review.get(0).img}" id="img" name="img"  alt="Review Image">
+                    <img src="${review.img}" id="img" name="img"  alt="Review Image">
 
 
                 </div>
-                <input type="datetime" id="created_at" readonly>
-                <input type="datetime" id="modified_at" readonly>
+                <input type="datetime" id="created_at" name="created_at"  readonly>
+                <input type="datetime" id="modified_at" name="modified_at" readonly>
 
 
-<%--                    <button type="button" id="update" name="update" onclick="CheckValueUpdate(form)">수정</button>--%>
-                    <input type="button" class="cancel" id="cancel" value="취소" onclick="goBack()">
+                    <button type="button" id="update" name="update" onclick="CheckValueUpdate(form)">수정</button>
+                    <input type="button" class="cancel" id="cancel" value="수정 취소" onclick="goBack()">
 
 
                 </form>

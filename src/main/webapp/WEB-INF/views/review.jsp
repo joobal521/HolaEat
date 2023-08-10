@@ -27,28 +27,27 @@
             <div id="review-contents">
                 <form id="review-detail" enctype="multipart/form-data">
                     <div>
-                        <input type="text" id="reviewNo" name="reviewNo" value="${review.get(0).reviewNo}" readonly>
+                        <input type="text" id="reviewNo" name="reviewNo" value="${review.reviewNo}" readonly>
                     </div>
                 <div>
-                    <input type="text" id="title" name="title" value="${review.get(0).title}" readonly>
+                    <input type="text" id="title" name="title" value="${review.title}" readonly>
                 </div>
                 <div>
-                    <input type="text" id="userId" name="userId" value="${review.get(0).userId}" readonly>
+                    <input type="text" id="userId" name="userId" value="${review.userId}" readonly>
                 </div>
+
                 <div>
-                    <input type="text" id="content" name="content" value="${review.get(0).content}" readonly >
+                    <input type="text" id="content" name="content" value="${review.content}" readonly >
                 </div>
                 <div id="image-container">
-                    <img src="${review.get(0).img}" id="img" name="img"  alt="Review Image">
-
-
+                    <img src="data:image/png, image/jpg, image/jpeg, image.gif;base64,${blob}" id="img" name="img"  alt="Review Image">
                 </div>
                 <input type="datetime" id="created_at" readonly>
                 <input type="datetime" id="modified_at" readonly>
 
+                    <button type="button" id="update" name="update" onclick="redirectToReviewUpdate(reviewNo)">수정</button>
 
-                    <button type="button" id="update" name="update" onclick="CheckValueUpdate(form)">수정</button>
-                    <button type="button" id="delete" name="delete" onclick="CheckValueDelete(document.getElementById('review-detail'), ${review.get(0).reviewNo})">삭제</button>
+                    <button type="button" id="delete" name="delete" onclick="CheckValueDelete(document.getElementById('review-detail'), ${review.reviewNo})">삭제</button>
 
 
                 </form>

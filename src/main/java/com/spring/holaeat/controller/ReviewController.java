@@ -15,6 +15,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 
+import java.beans.Transient;
+import java.util.Base64;
 import java.util.List;
 import java.util.Map;
 
@@ -57,6 +59,7 @@ public class ReviewController {
                 reviewRequestDto.setUserId(log);
                 Review review = new Review(reviewRequestDto);
 
+
                 reviewRepository.save(review);
                 response.put("reviewlist", true);
 
@@ -72,6 +75,8 @@ public class ReviewController {
         return response.toMap();
 
     }
+
+
 
 
 //수정

@@ -1,3 +1,9 @@
+// $(document).ready(function() {
+//     const blob = $('#blob').val();
+//     console.log("blob : ", blob);
+//     $('#img').attr('src', URL.createObjectURL(blob));
+// })
+
 $('#title').on('change', e => {
     if ($('#title').val() !== "") {
         $('#error-title').hide();
@@ -5,10 +11,6 @@ $('#title').on('change', e => {
         $('#title').parent().css('border-top', 'none');
     }
 });
-
-
-
-
 
 function checkValueWrite(htmlForm) {
     const title = htmlForm.title.value;
@@ -66,47 +68,55 @@ function checkValueWrite(htmlForm) {
 
 
 
-// function CheckValueUpdate(htmlForm){
-//     const title = htmlForm.title.value;
-//     const content = htmlForm.content.value;
-//     const imgFile = htmlForm.img.files[0];
-//
-//
-//     let check = true;
-//
-//     if(check){
-//
-//         console.log(title);
-//         console.log(content);
-//         console.log(imgFile);
-//
-//
-//         var form = new FormData();
-//         form.append("title", title);
-//         form.append("content", content);
-//         form.append("img", imgFile);
-//
-//         var settings = {
-//             "url": "/update",
-//             "method": "PUT",
-//             "timeout": 0,
-//             "processData": false,
-//             "mimeType": "multipart/form-data",
-//             "contentType": false,
-//             "data": form
-//         };
-//     }
-//
-//
-//
-//     $.ajax(settings).done(function (response) {
-//         console.log(response);
-//         location.href = "reviewUpdate";
-//     });
-//
-//
-//
-// }
+function CheckValueUpdate(htmlForm){
+    const title = htmlForm.title.value;
+    const content = htmlForm.content.value;
+
+    let check = true;
+
+    let imgFile = null;
+    if (htmlForm.img && htmlForm.img.files && htmlForm.img.files[0]) {
+        imgFile = htmlForm.img.files[0];
+    }
+
+
+    if(check){
+
+        console.log(title);
+        console.log(content);
+        console.log(imgFile);
+
+
+        var form = new FormData();
+        form.append("title", title);
+        form.append("content", content);
+
+
+        if (imgFile) {
+            form.append("img", imgFile);
+        }
+
+        var settings = {
+            "url": "/" + reviewNo + "/update",
+            "method": "PUT",
+            "timeout": 0,
+            "processData": false,
+            "mimeType": "multipart/form-data",
+            "contentType": false,
+            "data": form
+        };
+    }
+
+
+
+    $.ajax(settings).done(function (response) {
+        console.log(response);
+        location.href = "reviewlist";
+    });
+
+
+
+}
 
 function CheckValueDelete(htmlForm, reviewNo){
 
@@ -159,15 +169,17 @@ function CheckValueDelete(htmlForm, reviewNo){
 }
 
 
+function redirectToReviewUpdate() {
+    var reviewNoElement = document.getElementById("reviewNo");
+    var reviewNo = reviewNoElement.value;
+
+    window.location.href = "../reviewUpdate?reviewNo=" + reviewNo;
+}
 
 function goBack() {
-    // 현재 스크롤 위치를 최상단으로 올려줌
     window.scrollTo(0, 0);
-    // 뷰포트 크기를 고정
     document.documentElement.style.overflow = 'hidden';
-    // 뒤로가기 실행
     history.back();
-    // 뷰포트 크기 고정을 해제
     document.documentElement.style.overflow = 'auto';
 }
 
