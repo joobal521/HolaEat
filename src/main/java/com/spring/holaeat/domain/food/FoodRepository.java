@@ -16,7 +16,10 @@ public interface FoodRepository extends JpaRepository<Food,String> {
     @Query(nativeQuery = true, value = "SELECT food_national FROM food")
     List<String> getAllFoodNationals();
 
-    @Query(nativeQuery = true, value = "SELECT food_name FROM food WHERE food_national = ?")
+    @Query(nativeQuery = true, value = "SELECT food_name FROM food WHERE food_national = ?1")
     List<String> getFoodNamesByNational(String foodNational);
+
+    @Query(nativeQuery = true, value = "SELECT ingr_name FROM ingredients")
+    List<String> getAllIngrNames();
 
 }

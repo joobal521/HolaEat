@@ -70,7 +70,8 @@
                 </li>
             </ul>
         </form>
-    <div class="btn-container">
+
+    <div class="btn-container1">
         <a class="btn" href="/menu?national=all">All</a>
         <a class="btn" href="/menu?national=한식">한식</a>
         <a class="btn" href="/menu?national=양식">양식</a>
@@ -79,11 +80,22 @@
         <a class="btn" href="/menu?national=샐러드">샐러드</a>
     </div>
 
-    <div class="store-container">
+    <div class="store-container1">
         <c:forEach var="foodName" items="${foodNames}">
             <div class="store-item">${foodName}</div>
         </c:forEach>
     </div>
+
+    <div class="btn-container2">
+        <button>재료 목록</button>
+    </div>
+
+    <div class="store-container2"> <!-- 추가 -->
+        <c:forEach var="ingrName" items="${ingrNames}">
+            <div class="store-item">${ingrName}</div>
+        </c:forEach>
+    </div>
+
 
     <%--    js 일단 주석--%>
     <script>
