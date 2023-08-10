@@ -13,8 +13,25 @@
     <link rel="stylesheet" href="resources/style/form.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <style>
-        .selected {
+        .preferred.selected {
             background-color: lightblue; /* 선택된 버튼 배경색 */
+
+        }
+
+        .unpreferred.selected {
+            background-color: lightcoral; /* 선택되었을 때 배경색을 빨간색으로 변경 */
+            color: white; /* 선택되었을 때 글자 색상을 흰색으로 변경 */
+        }
+
+        .dislike_title, .prefer_title {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+        }
+        .store-container1, .store-container2{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
         }
     </style>
 </head>
@@ -24,17 +41,19 @@
     <h2> ${userName}님을 위한 식단이 준비되어 있습니다! </h2>
     <h3>정확한 식단 제공을 위해, ${userName}님에 대해 더욱 자세히 알려주세요!</h3>
     <div class="form_wrap">
-<%--        열량 계산 시작 --%>
+        <%--        열량 계산 시작 --%>
         <form id="myform" action="/saveCalories" method="POST">
             <ul>
                 <li>
                     <h2>성별</h2>
                     <label>
-                        <input type="radio" id="male" name="gender" value="male" ${userGender eq 'male' ? 'checked' : ''}>
+                        <input type="radio" id="male" name="gender"
+                               value="male" ${userGender eq 'male' ? 'checked' : ''}>
                         <span>남자</span>
                     </label>
                     <label>
-                        <input type="radio" id="female" name="gender" value="female" ${userGender eq 'female' ? 'checked' : ''}>
+                        <input type="radio" id="female" name="gender"
+                               value="female" ${userGender eq 'female' ? 'checked' : ''}>
                         <span>여자</span>
                     </label>
                 </li>
@@ -75,118 +94,65 @@
                 </li>
             </ul>
         </form>
+        <%--    열량 계산기 끝 --%>
 
-    <div class="btn-container1">
-        <a class="btn" href="/menu?national=all">All</a>
-        <a class="btn" href="/menu?national=한식">한식</a>
-        <a class="btn" href="/menu?national=양식">양식</a>
-        <a class="btn" href="/menu?national=일식">일식</a>
-        <a class="btn" href="/menu?national=중식">중식</a>
-        <a class="btn" href="/menu?national=샐러드">샐러드</a>
-    </div>
+        <div class="json_wrap">
 
-    <div class="store-container1">
-        <c:forEach var="foodName" items="${foodNames}">
-            <div class="store-item">${foodName}</div>
-        </c:forEach>
-    </div>
+            <div class="prefer_title">
+                <h2>선호하는 재료(최대 3개)</h2>
+            </div>
+            <div class="ingredients">
 
-    <div class="btn-container2">
-        <button>재료 목록</button>
-    </div>
+                <div class="btn-container1">
+                    <button>재료 목록</button>
+                </div>
+<%--선호--%>
+                <div class="store-container1">
+                    <c:forEach var="ingrName" items="${ingrNames}">
+                        <div class="store-item">
+                            <button class="preferred">${ingrName}</button>
+                        </div>
+                    </c:forEach>
+                </div>
 
-    <div class="store-container2"> <!-- 추가 -->
-        <c:forEach var="ingrName" items="${ingrNames}">
-            <div class="store-item"><button>${ingrName}</button></div>
-        </c:forEach>
-    </div>
+                <div class="selected-ingredients">
+                    선택된 재료:
+                    <ul id="preferred-selected-list"></ul>
+                </div>
+                <hr>
+<%--비선호--%>
+                <div class="dislike_title">
+                    <h2>선호하지 않는 재료(최대 3개)</h2>
+                </div>
+                <div class="btn-container2">
+                    <button>재료 목록</button>
+                </div>
 
-    <div class="selected-ingredients">
-        선택된 재료:
-        <ul id="selected-list"></ul>
-    </div>
+                <div class="store-container2">
+                    <c:forEach var="ingrName" items="${ingrNames}">
+                        <div class="store-item">
+                            <button class="unpreferred">${ingrName}</button>
+                        </div>
+                    </c:forEach>
+                </div>
 
-    <script>
-        const ingredientButtons = document.querySelectorAll('.store-item button');
-        const selectedList = document.getElementById('selected-list');
+                <div class="selected-ingredients">
+                    선택된 재료:
+                    <ul id="unpreferred-selected-list"></ul>
+                </div>
+            </div>
+<%--            재료 선택 끝--%>
+            <hr>
+            <div class="personal_menu">
+                <h2>${userName}님만을 위한 맞춤식단이 여기 있습니다!</h2>
+            </div>
 
-        const selectedIngredients = [];
+        </div>
 
-        ingredientButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const ingredient = button.textContent;
-
-                if (!selectedIngredients.includes(ingredient)) {
-                    selectedIngredients.push(ingredient);
-                    button.classList.add('selected'); // 배경색 변경
-                } else {
-                    const index = selectedIngredients.indexOf(ingredient);
-                    if (index !== -1) {
-                        selectedIngredients.splice(index, 1);
-                        button.classList.remove('selected'); // 배경색 원래대로
-                    }
-                }
-
-                updateSelectedList();
-            });
-        });
-
-        function updateSelectedList() {
-            selectedList.innerHTML = '';
-            selectedIngredients.forEach(ingredient => {
-                const li = document.createElement('li');
-                li.textContent = ingredient;
-                selectedList.appendChild(li);
-            });
-        }
-    </script>
-<%--        열량 계산 끝 --%>
-
-<%--        <div class="form_con">--%>
-<%--        <form action="">--%>
-<%--            <h2>취향에 맞게 식단을 짜보세요!</h2>--%>
-<%--            <h3>선호하는 재료</h3>--%>
-<%--            <label for="tofu">--%>
-<%--                <input type="radio" id="tofu" name="prefer">--%>
-<%--                두부--%>
-<%--            </label>--%>
-<%--            <label for="sesame">--%>
-<%--                <input type="radio" id="sesame" name="prefer">--%>
-<%--                깨--%>
-<%--            </label>--%>
-<%--            <label for="rice">--%>
-<%--                <input type="radio" id="rice" name="prefer">--%>
-<%--                쌀--%>
-<%--            </label>--%>
-<%--            <label for="potato">--%>
-<%--                <input type="radio" id="potato" name="prefer">--%>
-<%--                감자--%>
-<%--            </label>--%>
-<%--            <label for="pork">--%>
-<%--                <input type="radio" id="pork" name="prefer">--%>
-<%--                돼지고기--%>
-<%--            </label>--%>
-<%--            <label for="chicken">--%>
-<%--                <input type="radio" id="chicken" name="prefer">--%>
-<%--                닭고기--%>
-<%--            </label>--%>
-<%--            <label for="fish">--%>
-<%--                <input type="radio" id="fish" name="prefer">--%>
-<%--                생선--%>
-<%--            </label>--%>
-<%--            <label for="meat">--%>
-<%--                <input type="radio" id="meat" name="prefer">--%>
-<%--                소고기--%>
-<%--            </label>--%>
-<%--            <label for="peach">--%>
-<%--                <input type="radio" id="peach" name="prefer">--%>
-<%--                복숭아--%>
-<%--            </label>--%>
-<%--        </form>--%>
-<%--        </div>--%>
     </div>
 </section>
 <script src="resources/js/cal.js"></script>
+<script src="resources/js/ingredients.js"></script>
 </body>
 <c:import url="footer.jsp"/>
 </html>
