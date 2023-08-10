@@ -3,9 +3,11 @@ package com.spring.holaeat.controller;
 import com.spring.holaeat.domain.food.Food;
 import com.spring.holaeat.domain.food_ingr.FoodIngr;
 import com.spring.holaeat.domain.ingredients.Ingredients;
+import com.spring.holaeat.domain.recipe.Recipe;
 import com.spring.holaeat.service.FoodIngrService;
 import com.spring.holaeat.service.FoodService;
 import com.spring.holaeat.service.IngredientsService;
+import com.spring.holaeat.service.RecipeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,13 +21,20 @@ public class IngredientsController {
     private final IngredientsService ingredientsService;
     private final FoodIngrService foodIngrService;
     private final FoodService foodService;
+//    private final RecipeService recipeService;
 
 
     @Autowired
-    public IngredientsController(IngredientsService ingredientsService, FoodIngrService foodIngrService,FoodService foodService) {
+    public IngredientsController(
+//            RecipeService recipeService,
+            IngredientsService ingredientsService,
+            FoodIngrService foodIngrService,
+            FoodService foodService) {
         this.ingredientsService = ingredientsService;
         this.foodIngrService = foodIngrService;
         this.foodService = foodService;
+//        this.recipeService = recipeService;
+
     }
 
     @GetMapping("/ingredients")
