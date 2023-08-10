@@ -30,5 +30,6 @@
 .recipe-content{
     height: 500px;
     width: 100%;
-    background: rebeccapurple;
+    color:red;
+    font-size: 30px;
 }

@@ -24,7 +24,7 @@ public class IngredientsController {
 
 
     @Autowired
-    public IngredientsController(IngredientsService ingredientsService, FoodIngrService foodIngrService,FoodService foodService) {
+    public IngredientsController(IngredientsService ingredientsService, FoodIngrService foodIngrService, FoodService foodService) {
         this.ingredientsService = ingredientsService;
         this.foodIngrService = foodIngrService;
         this.foodService = foodService;
@@ -34,7 +34,7 @@ public class IngredientsController {
     public String getIngredients(Model model) {
         List<Ingredients> ingredientsList = ingredientsService.findByMonthEquals();
         List<FoodIngr> monthFoodIngrList = new ArrayList<>(); // 전체 foodIngrList를 담을 리스트
-        List<Food> monthFoods= new ArrayList<>();
+        List<Food> monthFoods = new ArrayList<>();
 
         for (Ingredients ingredient : ingredientsList) {
             String ingrId = String.valueOf(ingredient.getIngrId());
@@ -42,7 +42,7 @@ public class IngredientsController {
             monthFoodIngrList.addAll(foodIngrList); // 현재 ingrId에 해당하는 foodIngrList를 전체 리스트에 추가
         }
 
-        for(FoodIngr foodIngr : monthFoodIngrList){
+        for (FoodIngr foodIngr : monthFoodIngrList) {
             String foodId = String.valueOf(foodIngr.getFoodId());
             List<Food> foods = foodService.findFoodByFoodId(foodId);
             monthFoods.addAll(foods);
@@ -54,8 +54,6 @@ public class IngredientsController {
 
         return "ingredients"; // ingredients.jsp
     }
-
-
 
 
 }
