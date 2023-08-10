@@ -3,6 +3,7 @@ package com.spring.holaeat.controller;
 import com.spring.holaeat.domain.food.Food;
 import com.spring.holaeat.domain.food_ingr.FoodIngr;
 import com.spring.holaeat.domain.ingredients.Ingredients;
+import com.spring.holaeat.domain.ingredients.IngredientsRepository;
 import com.spring.holaeat.service.FoodIngrService;
 import com.spring.holaeat.service.FoodService;
 import com.spring.holaeat.service.IngredientsService;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,6 +54,7 @@ public class IngredientsController {
 
         return "ingredients"; // ingredients.jsp
     }
+
 
 
 

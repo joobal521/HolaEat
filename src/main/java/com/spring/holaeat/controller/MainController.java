@@ -39,5 +39,4 @@ public class MainController {
     @GetMapping("health")
     public String health() {return "health";}
 
-
 }
