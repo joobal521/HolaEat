@@ -40,6 +40,7 @@ function checkValue(htmlForm) {
             console.log(data);
             if (data.result === true) {
                 location.href = "/";
+                sessionStorage.removeItem("log");
             } else {
                 alert("회원탈퇴 실패.");
             }
