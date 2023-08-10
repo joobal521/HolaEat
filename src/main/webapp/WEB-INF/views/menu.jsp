@@ -12,6 +12,11 @@
     <title>Title</title>
     <link rel="stylesheet" href="resources/style/form.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <style>
+        .selected {
+            background-color: lightblue; /* 선택된 버튼 배경색 */
+        }
+    </style>
 </head>
 <c:import url="header.jsp"/>
 <body>
@@ -92,35 +97,48 @@
 
     <div class="store-container2"> <!-- 추가 -->
         <c:forEach var="ingrName" items="${ingrNames}">
-            <div class="store-item">${ingrName}</div>
+            <div class="store-item"><button>${ingrName}</button></div>
         </c:forEach>
     </div>
 
+    <div class="selected-ingredients">
+        선택된 재료:
+        <ul id="selected-list"></ul>
+    </div>
 
-    <%--    js 일단 주석--%>
     <script>
-        // function start() {
-        //     const buttons = document.querySelectorAll('.btn');
-        //     const storeItems = document.querySelectorAll('.store-item');
-        //
-        //     buttons.forEach(button => {
-        //         button.addEventListener('click', (e) => {
-        //             e.preventDefault();
-        //             const filter = e.target.textContent.trim(); // 버튼 내용을 가져오고 앞뒤 공백 제거
-        //
-        //             storeItems.forEach(item => {
-        //                 if (filter === 'All' || item.classList.contains(filter)) {
-        //                     item.style.display = 'block';
-        //                 } else {
-        //                     item.style.display = 'none';
-        //                 }
-        //             });
-        //         });
-        //     });
-        // }
+        const ingredientButtons = document.querySelectorAll('.store-item button');
+        const selectedList = document.getElementById('selected-list');
 
-        // 페이지 로드 후 스크립트 실행
-        // window.onload = start;
+        const selectedIngredients = [];
+
+        ingredientButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const ingredient = button.textContent;
+
+                if (!selectedIngredients.includes(ingredient)) {
+                    selectedIngredients.push(ingredient);
+                    button.classList.add('selected'); // 배경색 변경
+                } else {
+                    const index = selectedIngredients.indexOf(ingredient);
+                    if (index !== -1) {
+                        selectedIngredients.splice(index, 1);
+                        button.classList.remove('selected'); // 배경색 원래대로
+                    }
+                }
+
+                updateSelectedList();
+            });
+        });
+
+        function updateSelectedList() {
+            selectedList.innerHTML = '';
+            selectedIngredients.forEach(ingredient => {
+                const li = document.createElement('li');
+                li.textContent = ingredient;
+                selectedList.appendChild(li);
+            });
+        }
     </script>
 <%--        열량 계산 끝 --%>
 
