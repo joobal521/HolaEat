@@ -6,9 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface ReviewRepository extends JpaRepository<Review,Long> {
-
-    public List<Review> findByReviewNo(long reviewNo);
-
     public List<Review> findAllByOrderByReviewNoDesc();
 
     public List<Review> findAllByTitleLike(String pattern, Pageable pageable);

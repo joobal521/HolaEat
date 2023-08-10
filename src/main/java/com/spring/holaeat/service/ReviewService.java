@@ -22,11 +22,11 @@ public class ReviewService {
         return list;
     }
 
-    public List<Review> findByReviewNo(long reviewNo){
-        List<Review> list = reviewRepository.findByReviewNo(reviewNo);
-//        System.out.println("reviewNo : " + reviewNo);
-//        System.out.println("list" + list.get(0).getUserId());
-       return list;
+    public Review findByReviewNo(long reviewNo){
+        Review review = reviewRepository.findById(reviewNo).orElseThrow(
+                () -> new IllegalArgumentException("존재하지 않는 리뷰입니다.")
+        );
+       return review;
     }
 
 

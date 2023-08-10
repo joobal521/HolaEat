@@ -1,9 +1,11 @@
 package com.spring.holaeat.controller;
 
 
+import com.mysql.cj.jdbc.Blob;
 import com.spring.holaeat.domain.review.Review;
 import com.spring.holaeat.domain.review.ReviewRepository;
 import com.spring.holaeat.service.ReviewService;
+import com.spring.holaeat.util.ImageParsor;
 import lombok.RequiredArgsConstructor;
 import netscape.javascript.JSObject;
 import org.springframework.data.domain.Pageable;
@@ -14,7 +16,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.imageio.ImageIO;
+import java.beans.Transient;
+import java.util.Base64;
 import java.util.List;
 
 @Controller
@@ -28,8 +34,8 @@ public class ReviewListController {
     @GetMapping("/reviewlist")
     public String getReviewAll(Model model) {
         List<Review> list = reviewService.findAllByOrderByReviewNoDesc();
-
         model.addAttribute("reviewlist", list);
+
         return "reviewlist";
     }
 
@@ -37,10 +43,22 @@ public class ReviewListController {
     //게시글 하나 조회
     @GetMapping("/review/{reviewNo}")
     public String findByReviewNo(Model model, @PathVariable long reviewNo){
-        List<Review> list = reviewService.findByReviewNo(reviewNo);
-//        System.out.println("list1" + list.get(0).getUserId());
-        model.addAttribute("review",list);
+        Review review = reviewService.findByReviewNo(reviewNo);
+//        model.addAttribute("review", review);
 
+        if (review != null) {
+            model.addAttribute("review", review);
+
+            byte[] img = review.getImg();
+            if (img != null) {
+                model.addAttribute("blob", ImageParsor.parseBlobToBase64(review.getImg()));
+            }
+        } else {
+            model.addAttribute("errorMessage", "Review not found");
+        }
+
+
+//        model.addAttribute("blob", ImageParsor.parseBlobToBase64(review.getImg()));
         return "review";
     }
 

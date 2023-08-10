@@ -32,6 +32,7 @@ public class Review extends Timestamp {
     @Column(columnDefinition = "BLOB")
     private byte[] img;
 
+    private String base64Image;
 
     public Review(ReviewRequestDto boardDto){
         this.title = boardDto.getTitle();
@@ -65,6 +66,7 @@ public class Review extends Timestamp {
     }
 
 
-
-
+//    public void setBase64Image(String base64Image) {
+//        this.base64Image = base64Image;
+//    }
 }
