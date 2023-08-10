@@ -70,6 +70,46 @@
                 </li>
             </ul>
         </form>
+    <div class="btn-container">
+        <a class="btn" href="/menu?national=all">All</a>
+        <a class="btn" href="/menu?national=한식">한식</a>
+        <a class="btn" href="/menu?national=양식">양식</a>
+        <a class="btn" href="/menu?national=일식">일식</a>
+        <a class="btn" href="/menu?national=중식">중식</a>
+        <a class="btn" href="/menu?national=샐러드">샐러드</a>
+    </div>
+
+    <div class="store-container">
+        <c:forEach var="foodName" items="${foodNames}">
+            <div class="store-item">${foodName}</div>
+        </c:forEach>
+    </div>
+
+    <%--    js 일단 주석--%>
+    <script>
+        // function start() {
+        //     const buttons = document.querySelectorAll('.btn');
+        //     const storeItems = document.querySelectorAll('.store-item');
+        //
+        //     buttons.forEach(button => {
+        //         button.addEventListener('click', (e) => {
+        //             e.preventDefault();
+        //             const filter = e.target.textContent.trim(); // 버튼 내용을 가져오고 앞뒤 공백 제거
+        //
+        //             storeItems.forEach(item => {
+        //                 if (filter === 'All' || item.classList.contains(filter)) {
+        //                     item.style.display = 'block';
+        //                 } else {
+        //                     item.style.display = 'none';
+        //                 }
+        //             });
+        //         });
+        //     });
+        // }
+
+        // 페이지 로드 후 스크립트 실행
+        // window.onload = start;
+    </script>
 <%--        열량 계산 끝 --%>
 
 <%--        <div class="form_con">--%>

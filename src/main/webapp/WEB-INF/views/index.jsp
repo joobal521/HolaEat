@@ -82,12 +82,31 @@
 <%--            로그인 시 --%>
             <c:when test="${not empty log}">
                 <p>회원 로그인 메인 페이지 입니다</p>
-                <div>
+                <div class="form_wrap" style="border: solid 1px black">
                 <form action="" method="">
                     <ul>
-                        <li><h2>선호 메뉴</h2></li>
-                        <li><h2>좋아하는 재료</h2></li>
-                        <li><h2>싫어하는 재료</h2></li>
+                        <li>
+                            <h2>선호 메뉴</h2>
+                            <div class="favorite_menu">
+<%--                                <input type="button" value="한식">--%>
+<%--                                <input type="button" value="중식">--%>
+<%--                                <input type="button" value="일식">--%>
+<%--                                <input type="button" value="양식">--%>
+<%--                                <input type="button" value="샐러드">--%>
+<%--                                <button>한식</button>--%>
+<%--                                <button>중식</button>--%>
+<%--                                <button>일식</button>--%>
+<%--                                <button>양식</button>--%>
+<%--                                <button>샐러드</button>--%>
+
+                            </div>
+                        </li>
+                        <li>
+                            <h2>좋아하는 재료</h2>
+                        </li>
+                        <li>
+                            <h2>싫어하는 재료</h2>
+                        </li>
                     </ul>
                 </form>
                 </div>
