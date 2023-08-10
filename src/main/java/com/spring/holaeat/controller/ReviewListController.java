@@ -5,7 +5,9 @@ import com.spring.holaeat.domain.review.Review;
 import com.spring.holaeat.domain.review.ReviewRepository;
 import com.spring.holaeat.service.ReviewService;
 import lombok.RequiredArgsConstructor;
+import netscape.javascript.JSObject;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,16 +35,20 @@ public class ReviewListController {
 
 
     //게시글 하나 조회
-    @GetMapping("{reviewNo}")
-    public List<Review> getBoardByNo(@PathVariable long reviewNo){
-        return reviewRepository.findByReviewNo(reviewNo);
+    @GetMapping("/review/{reviewNo}")
+    public String findByReviewNo(Model model, @PathVariable long reviewNo){
+        List<Review> list = reviewService.findByReviewNo(reviewNo);
+        System.out.println("list1" + list.get(0).getUserId());
+        model.addAttribute("review",list);
+
+        return "review";
     }
 
     //게시글 목록 조회
-    @GetMapping("reviewlist/{pageNumber}")
+    @GetMapping("/reviewlist/{pageNumber}")
     public List<Review> getReviewAll(@PathVariable int pageNumber,
                                      @RequestParam(required = false) String keyword,
-                                     @PageableDefault(size = 10) Pageable pageable) {
+                                     @PageableDefault(page=0,size = 10,sort = "reviewNo", direction = Sort.Direction.DESC) Pageable pageable) {
 
         if (keyword != null && !keyword.isEmpty()) {
             String pattern = "%" + keyword + "%";

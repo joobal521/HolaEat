@@ -25,8 +25,8 @@ public class MainController {
     @GetMapping(value = "menu")
     public String menu() {return "menu";}
 
-    @GetMapping(value = "review")
-    public String review() {return "review";}
+//    @GetMapping(value = "review")
+//    public String review() {return "review";}
 
     @GetMapping(value = "reviewform")
     public String reviewForm() {return "reviewform";}

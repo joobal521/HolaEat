@@ -15,13 +15,19 @@ public class ReviewService {
 
     private final ReviewRepository reviewRepository;
 
-    //전체 적용?
+    //전체 적용
     public List<Review> findAllByOrderByReviewNoDesc(){
         List<Review> list = reviewRepository.findAllByOrderByReviewNoDesc();
         System.out.println("list : " + list);
         return list;
     }
 
+    public List<Review> findByReviewNo(long reviewNo){
+        List<Review> list = reviewRepository.findByReviewNo(reviewNo);
+        System.out.println("reviewNo : " + reviewNo);
+        System.out.println("list" + list.get(0).getUserId());
+       return list;
+    }
 
 
 

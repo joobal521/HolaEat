@@ -18,12 +18,14 @@
 <div>게시글 목록</div>
 <c:forEach items="${reviewlist}" var="review">
 
+    <a href="<c:url value='/review/${review.reviewNo}'/>">
     <div style="border: 1px solid black; margin: 1px;">
+        <div>NO. ${review.reviewNo}</div>
         <div>작성자 : ${review.userId}</div>
         <div>제목 : ${review.title}</div>
         <img src="${pageContext.request.contextPath}/${review.img}" alt="Review Image">
     </div>
-
+    </a>
 </c:forEach>
 
 <div>
