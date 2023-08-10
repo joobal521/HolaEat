@@ -118,3 +118,13 @@ function updateUnpreferredSelectedList() {
     const unpreferredSelectedList = document.querySelector('.ingredients .store-container2 + .selected-ingredients ul');
     updateSelectedList(unpreferredSelectedList, unpreferredSelectedIngredients);
 }
+
+function updateSelectedList(listElement, selectedIngredients) {
+    listElement.innerHTML = ''; // 기존 목록 초기화
+
+    selectedIngredients.forEach(ingredient => {
+        const listItem = document.createElement('li');
+        listItem.textContent = ingredient;
+        listElement.appendChild(listItem);
+    });
+}
