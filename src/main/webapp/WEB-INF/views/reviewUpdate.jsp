@@ -18,7 +18,7 @@
 <c:import url="header.jsp"/>
 <body>
 <section id = "review-section">
-    <h2>리뷰 게시판 상세</h2>
+    <h2>리뷰 게시판 수정</h2>
 
         <h2>게시글</h2>
         <c:if test="${review!=null}">
@@ -30,13 +30,13 @@
                         <input type="text" id="reviewNo" name="reviewNo" value="${review.get(0).reviewNo}" readonly>
                     </div>
                 <div>
-                    <input type="text" id="title" name="title" value="${review.get(0).title}" readonly>
+                    <input type="text" id="title" name="title" value="${review.get(0).title}" >
                 </div>
                 <div>
-                    <input type="text" id="userId" name="userId" value="${review.get(0).userId}" readonly>
+                    <input type="text" id="userId" name="userId" value="${review.get(0).userId}" >
                 </div>
                 <div>
-                    <input type="text" id="content" name="content" value="${review.get(0).content}" readonly >
+                    <input type="text" id="content" name="content" value="${review.get(0).content}"  >
                 </div>
                 <div id="image-container">
                     <img src="${review.get(0).img}" id="img" name="img"  alt="Review Image">
@@ -47,8 +47,8 @@
                 <input type="datetime" id="modified_at" readonly>
 
 
-                    <button type="button" id="update" name="update" onclick="CheckValueUpdate(form)">수정</button>
-                    <button type="button" id="delete" name="delete" onclick="CheckValueDelete(document.getElementById('review-detail'), ${review.get(0).reviewNo})">삭제</button>
+<%--                    <button type="button" id="update" name="update" onclick="CheckValueUpdate(form)">수정</button>--%>
+                    <input type="button" class="cancel" id="cancel" value="취소" onclick="goBack()">
 
 
                 </form>
