@@ -61,6 +61,27 @@ public class ReviewListController {
 //        model.addAttribute("blob", ImageParsor.parseBlobToBase64(review.getImg()));
         return "review";
     }
+//    @GetMapping("/review/{reviewNo}")
+//    public String findByReviewNo(Model model, @PathVariable long reviewNo){
+//        Review review = reviewService.findByReviewNo(reviewNo);
+//
+//        if (review != null) {
+//            model.addAttribute("review", review);
+//
+//            byte[] img = review.getImg();
+//            if (img != null) {
+//                model.addAttribute("blob", ImageParsor.parseBlobToBase64(review.getImg()));
+//            }
+//        } else {
+//            model.addAttribute("errorMessage", "Review not found");
+//        }
+//
+//        // 상대 경로를 수정하여 절대 경로로 변경
+//        model.addAttribute("loginUrl", "/login");
+//
+//        return "review";
+//    }
+
 
     //게시글 목록 조회
     @GetMapping("/reviewlist/{pageNumber}")
