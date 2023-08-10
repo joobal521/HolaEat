@@ -9,7 +9,7 @@
     background: white;
 }
 
-.modal {
+.ingr-modal {
     display: none;
     position: fixed;
     top: 0;
@@ -19,9 +19,16 @@
     background-color: rgba(0, 0, 0, 0.5);
 }
 
-.modal-content {
+.ingr-modal-content {
     background-color: #fff;
     width: 60%;
     margin: 100px auto;
     padding: 20px;
+}
+
+
+.recipe-content{
+    height: 500px;
+    width: 100%;
+    background: rebeccapurple;
 }

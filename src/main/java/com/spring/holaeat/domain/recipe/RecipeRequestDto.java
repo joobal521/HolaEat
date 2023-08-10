@@ -7,9 +7,9 @@ import lombok.Setter;
 @Setter
 public class RecipeRequestDto {
     private String foodId;
-    private String step01;
-    private String step02;
-    private String step03;
-    private String step04;
-    private String step05;
+    private String step_01;
+    private String step_02;
+    private String step_03;
+    private String step_04;
+    private String step_05;
 }
