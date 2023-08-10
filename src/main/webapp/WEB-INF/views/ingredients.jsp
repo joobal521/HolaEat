@@ -7,7 +7,7 @@
     <script src="${path}/resources/js/recipe-ajax.js"></script>
     <link rel="stylesheet" type="text/css" href="${path}/resources/style/ingredients.css">
     <title>Title</title>
-<%--    --%>
+    <%--    --%>
 </head>
 <c:import url="header.jsp"/>
 <body>
@@ -24,7 +24,8 @@
                 <c:if test="${monthFoodIngr.ingrId==ingredient.ingrId}">
                     <c:forEach items="${monthFoods}" var="monthFood">
                         <c:if test="${monthFoodIngr.foodId==monthFood.foodId}">
-                            <input type="button" class="foodbtn" value="${monthFood.foodName}" data-foodid="${monthFood.foodId}">
+                            <input type="button" class="foodbtn" value="${monthFood.foodName}"
+                                   data-foodid="${monthFood.foodId}">
                             <div class="ingr-modal">
                                 <div class="ingr-modal-content">
                                     <h2>${monthFood.foodName}</h2>
@@ -42,8 +43,6 @@
     </c:forEach>
 </section>
 <script>
-
-
 
 
 </script>
