@@ -38,7 +38,7 @@ public class ReviewListController {
     @GetMapping("/review/{reviewNo}")
     public String findByReviewNo(Model model, @PathVariable long reviewNo){
         List<Review> list = reviewService.findByReviewNo(reviewNo);
-        System.out.println("list1" + list.get(0).getUserId());
+//        System.out.println("list1" + list.get(0).getUserId());
         model.addAttribute("review",list);
 
         return "review";
