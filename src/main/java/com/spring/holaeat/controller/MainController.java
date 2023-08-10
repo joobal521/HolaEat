@@ -22,8 +22,8 @@ public class MainController {
 //    @GetMapping(value = "ingredients")
 //    public String ingredients() {return "ingredients";}
 
-    @GetMapping(value = "menu")
-    public String menu() {return "menu";}
+//    @GetMapping(value = "menu")
+//    public String menu() {return "menu";}
 
 //    @GetMapping(value = "review")
 //    public String review() {return "review";}
@@ -38,6 +38,5 @@ public class MainController {
 
     @GetMapping("health")
     public String health() {return "health";}
-
 
 }

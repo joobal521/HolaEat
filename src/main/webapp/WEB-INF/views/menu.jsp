@@ -12,6 +12,11 @@
     <title>Title</title>
     <link rel="stylesheet" href="resources/style/form.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <style>
+        .selected {
+            background-color: lightblue; /* 선택된 버튼 배경색 */
+        }
+    </style>
 </head>
 <c:import url="header.jsp"/>
 <body>
@@ -70,6 +75,71 @@
                 </li>
             </ul>
         </form>
+
+    <div class="btn-container1">
+        <a class="btn" href="/menu?national=all">All</a>
+        <a class="btn" href="/menu?national=한식">한식</a>
+        <a class="btn" href="/menu?national=양식">양식</a>
+        <a class="btn" href="/menu?national=일식">일식</a>
+        <a class="btn" href="/menu?national=중식">중식</a>
+        <a class="btn" href="/menu?national=샐러드">샐러드</a>
+    </div>
+
+    <div class="store-container1">
+        <c:forEach var="foodName" items="${foodNames}">
+            <div class="store-item">${foodName}</div>
+        </c:forEach>
+    </div>
+
+    <div class="btn-container2">
+        <button>재료 목록</button>
+    </div>
+
+    <div class="store-container2"> <!-- 추가 -->
+        <c:forEach var="ingrName" items="${ingrNames}">
+            <div class="store-item"><button>${ingrName}</button></div>
+        </c:forEach>
+    </div>
+
+    <div class="selected-ingredients">
+        선택된 재료:
+        <ul id="selected-list"></ul>
+    </div>
+
+    <script>
+        const ingredientButtons = document.querySelectorAll('.store-item button');
+        const selectedList = document.getElementById('selected-list');
+
+        const selectedIngredients = [];
+
+        ingredientButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const ingredient = button.textContent;
+
+                if (!selectedIngredients.includes(ingredient)) {
+                    selectedIngredients.push(ingredient);
+                    button.classList.add('selected'); // 배경색 변경
+                } else {
+                    const index = selectedIngredients.indexOf(ingredient);
+                    if (index !== -1) {
+                        selectedIngredients.splice(index, 1);
+                        button.classList.remove('selected'); // 배경색 원래대로
+                    }
+                }
+
+                updateSelectedList();
+            });
+        });
+
+        function updateSelectedList() {
+            selectedList.innerHTML = '';
+            selectedIngredients.forEach(ingredient => {
+                const li = document.createElement('li');
+                li.textContent = ingredient;
+                selectedList.appendChild(li);
+            });
+        }
+    </script>
 <%--        열량 계산 끝 --%>
 
 <%--        <div class="form_con">--%>

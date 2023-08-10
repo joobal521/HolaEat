@@ -10,4 +10,5 @@ public interface IngredientsRepository extends JpaRepository<Ingredients,String>
     @Query(nativeQuery = true,value = "SELECT * FROM ingredients WHERE month = 1")
     public List<Ingredients> findByMonthEquals();
 
+
 }

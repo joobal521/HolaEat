@@ -29,16 +29,14 @@ public class LogController {
     }
 
     @PostMapping("login")
-    public ModelAndView login(@RequestParam("userId") String userId, @RequestParam("userPassword") String userPassword, HttpSession session, Model model) {
-        User user = userRepository.findByUserId(userId); // 사용자 정보를 데이터베이스에서 조회
+    public String login(@RequestParam("userId") String userId, @RequestParam("userPassword") String userPassword, HttpSession session, Model model) {
+        User user = userRepository.findByUserId(userId);
 
         if (user != null) {
-            UserDetail userDetail = userDetailRepository.findByUserId(userId); // 사용자 상세 정보를 데이터베이스에서 조회
+            UserDetail userDetail = userDetailRepository.findByUserId(userId);
 
-            // 로그인 로직 및 세션 처리
-            ModelAndView modelAndView = new ModelAndView("index");
-            modelAndView.addObject("log", userId);
-            model.addAttribute("userName", user.getUserName());
+            session.setAttribute("log", user.getUserId()); // 세션에 로그인된 사용자 이름 저장
+            session.setAttribute("userName", user.getUserName()); // 세션에 로그인된 사용자 이름 저장
 
             if (userDetail != null) {
                 session.setAttribute("userAge", userDetail.getAge());
@@ -49,14 +47,13 @@ public class LogController {
                 session.setAttribute("userGender", userDetail.getGender());
             }
 
-            return modelAndView;
+            return "redirect:/"; // 리다이렉트할 때 세션 정보를 유지하고 원하는 도메인으로 이동
         } else {
             // 로그인 실패 처리 로직
             // ...
-            return new ModelAndView("login"); // 예시로 로그인 실패 시 login 페이지로 리다이렉트
+            return "login"; // 로그인 실패 시 login 페이지로 리다이렉트
         }
     }
-
 
     @PostMapping("logout")
     public String logout(WebRequest request, SessionStatus status, HttpSession session) {
