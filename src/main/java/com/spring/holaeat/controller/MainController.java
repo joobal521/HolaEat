@@ -39,4 +39,8 @@ public class MainController {
     @GetMapping("health")
     public String health() {return "health";}
 
+    @GetMapping("update")
+    public String update(){return "updateForm";}
+
+
 }

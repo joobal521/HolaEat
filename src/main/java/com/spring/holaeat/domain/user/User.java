@@ -41,8 +41,8 @@ public class User extends Timestamp {
 
     //기능 메소드
     public void update(UserRequestDto userDto){
-       this.userPassword=userDto.getUserPassword();
-      this.userName=userDto.getUserName();
+        this.userPassword=userDto.getUserPassword();
+        this.userName=userDto.getUserName();
         this.userEmail=userDto.getUserEmail();
 
     }

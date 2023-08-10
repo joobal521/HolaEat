@@ -26,7 +26,7 @@
                         <h2>아이디</h2>
                         <input type="text" id="userId" name="userId" placeholder="아이디">
                         <input
-                                type="button" id="emailDupl" name="emailDupl"
+                                type="button" id="idDupl" name="idDupl"
                                 value="중복 확인" onclick="chkId()">
                     </li>
 
@@ -46,6 +46,7 @@
                 <li>
                     <h2>비밀번호 확인</h2>
                     <input type="password" id="userPasswordCh" name="userPasswordCh" placeholder="비밀번호 확인">
+                    <span class="err" id="chkNotice2" size="1"></span>
                 </li>
 
                     <li>

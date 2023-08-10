@@ -18,7 +18,7 @@
 <body>
 <section id="delete-section">
     <div class="delete">
-        <h2 class="delete_text"> "${not empty log}"님 정말떠나시나요?</h2>
+        <h2 class="delete_text"> "${sessionScope.userName}"님 정말떠나시나요?</h2>
         <form id="delete">
             <div>
                 <input type="text" class="square" id="userId"

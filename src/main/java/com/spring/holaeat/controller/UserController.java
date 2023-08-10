@@ -49,13 +49,22 @@ public class UserController {
     @DeleteMapping("leave")
     public Map leave(@RequestBody  Map<String, String> requestData, HttpSession session){
         String userId = requestData.get("userId");
+        String userPassword = requestData.get("userPassword"); // 입력한 비밀번호
+
         JSONObject response =new JSONObject();
 
         try{
-            userService.deleteUserById(userId);
-            session.removeAttribute("log"); // 세션에서 log 속성 제거
-            response.put("result", true);
 
+            User user = userService.getUserById(userId);
+
+            if (user != null && user.getUserPassword().equals(userPassword)) {
+
+                userService.deleteUserById(userId);
+                session.removeAttribute("log"); // 세션에서 log 속성 제거
+                response.put("result", true);
+            }else{
+                response.put("result", false);
+            }
         }catch (Exception e) {
             e.printStackTrace();
             response.put("result", false);
@@ -65,13 +74,47 @@ public class UserController {
     }
 
     //회원정보 수정 PUT
-    @PutMapping("user/{username}/update")
-    public Map update(@PathVariable String username, @RequestBody UserRequestDto userDto){
+    @PutMapping("update")
+    public Map update(@RequestBody  Map<String, String> requestData){
+        String userId = requestData.get("userId");
+        String userPassword = requestData.get("userPassword");
+        String newPassword = requestData.get("newPassword");
+        String newPasswordCh = requestData.get("newPasswordCh");
+        String userEmail = requestData.get("userEmail");
+        String userName = requestData.get("userName");
 
-        userService.updateUser(username,userDto);
-        JSONObject response =new JSONObject();
+
+        JSONObject response = new JSONObject();
+
+        try {
+            User user = userService.getUserById(userId);
+
+            if (user != null && user.getUserPassword().equals(userPassword)) {
+                if (newPassword.equals(newPasswordCh)) {
+                    UserRequestDto updatedUserDto = new UserRequestDto();
+                    updatedUserDto.setUserId(userId);
+                    updatedUserDto.setUserPassword(newPassword);
+                    updatedUserDto.setUserEmail(userEmail);
+                    updatedUserDto.setUserName(userName);
+
+                    userService.updateUser(userId, updatedUserDto);
+
+                    response.put("result", true);
+                } else {
+                    response.put("result", false);
+                    response.put("message", "새 비밀번호와 확인 비밀번호가 일치하지 않습니다.");
+                }
+            } else {
+                response.put("result", false);
+                response.put("message", "기존 비밀번호가 일치하지 않습니다.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.put("result", false);
+            response.put("message", "회원 정보 수정 실패");
+        }
+
         response.put("update", "success");
-
 
         return response.toMap();
     }
