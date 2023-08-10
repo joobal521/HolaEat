@@ -54,7 +54,11 @@ public class UserService {
      @Transactional
      public void updateUser(String userId, UserRequestDto userDto){
           User user=getUserById(userId);
-          user.update(userDto);
+          if (user != null) {
+               user.update(userDto);
+          } else {
+               throw new IllegalArgumentException("해당 사용자를 찾을 수 없습니다.");
+          }
 
      }
 
