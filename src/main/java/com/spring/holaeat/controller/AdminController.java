@@ -23,18 +23,18 @@ public class AdminController {
 
 
 
-    @PostMapping("gainPower")
+    @PostMapping("gainpower")
     public String gainPower(@RequestParam("adminid") String id, @RequestParam("adminpwd") String pwd, HttpSession session) {
         List<Admin> admin = adminRepository.findAdminByIdAndPassword(id, pwd);
 
         if (admin.isEmpty()) {
             System.out.println("관리자 로그인 실패");
-            return "gainPower"; // 실패 시 해당 뷰로 반환
+            return "gainpower"; // 실패 시 해당 뷰로 반환
 
         } else {
             session.setAttribute("authority", "POWERED");
             System.out.println("관리자 로그인");
-            return "admin"; // 성공 시 FOODLE 페이지로 리다이렉트
+            return "admin"; // 성공 시 admin 페이지로 리다이렉트
         }
     }
 

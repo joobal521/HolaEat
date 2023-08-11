@@ -6,7 +6,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Optional;
@@ -44,10 +43,10 @@ public class MainController {
     @GetMapping(value = "mypage")
     public String myPage() {return "myPage";}
 
-    @GetMapping(value = "gainPower")
-    public String gainAuthority() {return "gainAuthority";}
+    @GetMapping(value = "gainpower")
+    public String admin_login() {return "gainpower";}
 
-    @GetMapping(value = "FOODLE")
+    @GetMapping(value = "admin")
     public String admin() {return "admin";}
 
     @GetMapping(value = "/reviewUpdate")
