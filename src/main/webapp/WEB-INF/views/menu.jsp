@@ -13,16 +13,14 @@
     <link rel="stylesheet" href="resources/style/form.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <style>
-        .preferred.selected {
-            background-color: lightblue; /* 선택된 버튼 배경색 */
-
+        .preferred.selected{
+            background-color: lightblue;
         }
 
-        .unpreferred.selected {
-            background-color: lightcoral; /* 선택되었을 때 배경색을 빨간색으로 변경 */
-            color: white; /* 선택되었을 때 글자 색상을 흰색으로 변경 */
+        .unpreferred.selected{
+            background-color: lightcoral;
+            container: white;
         }
-
         .dislike_title, .prefer_title {
             display: flex;
             flex-direction: row;
@@ -98,15 +96,16 @@
 
         <div class="json_wrap">
 
+<%--선호--%>
             <div class="prefer_title">
                 <h2>선호하는 재료(최대 3개)</h2>
+                <button class="default1" onclick="resetPreferredIngredients()">초기화</button>
             </div>
             <div class="ingredients">
 
                 <div class="btn-container1">
                     <button>재료 목록</button>
                 </div>
-<%--선호--%>
                 <div class="store-container1">
                     <c:forEach var="ingrName" items="${ingrNames}">
                         <div class="store-item">
@@ -115,7 +114,7 @@
                     </c:forEach>
                 </div>
 
-                <div class="selected-ingredients">
+                <div class="selected-ingredients1">
                     선택된 재료:
                     <ul id="preferred-selected-list"></ul>
                 </div>
@@ -123,6 +122,8 @@
 <%--비선호--%>
                 <div class="dislike_title">
                     <h2>선호하지 않는 재료(최대 3개)</h2>
+                    <button class="default2" onclick="resetUnpreferredIngredients()">초기화</button>
+
                 </div>
                 <div class="btn-container2">
                     <button>재료 목록</button>
@@ -136,7 +137,7 @@
                     </c:forEach>
                 </div>
 
-                <div class="selected-ingredients">
+                <div class="selected-ingredients2">
                     선택된 재료:
                     <ul id="unpreferred-selected-list"></ul>
                 </div>
