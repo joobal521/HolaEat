@@ -41,6 +41,8 @@ public class MainController {
     @GetMapping(value = "reviewform")
     public String reviewForm() {return "reviewform";}
 
+    @GetMapping(value = "mypage")
+    public String myPage() {return "myPage";}
 
     @GetMapping(value = "/reviewUpdate")
     public String reviewUpdate(@RequestParam("reviewNo") long reviewNo, Model model) {
