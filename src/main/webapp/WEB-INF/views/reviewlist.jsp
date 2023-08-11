@@ -55,7 +55,10 @@
                 <div>NO. ${review.reviewNo}</div>
                 <div>작성자 : ${review.userId}</div>
                 <div>제목 : ${review.title}</div>
-                <img src="data:image/png;base64,${blobs[loop.index]}" id="img" name="img" alt="Review Image">
+                <c:if test="${imageMap[review.reviewNo] != null}">
+                    <img src="data:image/png;base64,${imageMap[review.reviewNo]}" id="img" name="img" alt="Review Image">
+                </c:if>
+<%--                <img src="data:image/png;base64,${blobs[loop.index]}" id="img" name="img" alt="Review Image">--%>
             </div>
         </a>
     </c:forEach>

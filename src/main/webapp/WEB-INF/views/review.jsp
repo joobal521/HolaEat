@@ -14,6 +14,13 @@
     <link rel="stylesheet" type="text/css" href="${path}/resources/style/form.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 
+
+    <style>
+        #img , #file{
+            width: 100px;
+            height: 100px;
+        }
+    </style>
 </head>
 <c:import url="header.jsp"/>
 <body>
@@ -22,8 +29,6 @@
 
         <h2>게시글</h2>
         <c:if test="${review!=null}">
-
-
             <div id="review-contents">
                 <form id="review-detail" enctype="multipart/form-data">
                     <div>
@@ -47,14 +52,11 @@
                 <input type="datetime" id="modified_at" readonly>
 
                     <button type="button" id="update" name="update" onclick="redirectToReviewUpdate(reviewNo)">수정</button>
-
                     <button type="button" id="delete" name="delete" onclick="CheckValueDelete(document.getElementById('review-detail'), ${review.reviewNo})">삭제</button>
-
 
                 </form>
             </div>
         </c:if>
-
 
 </section>
 </body>
