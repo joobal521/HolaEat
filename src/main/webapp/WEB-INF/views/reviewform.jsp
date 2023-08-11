@@ -12,7 +12,7 @@
 <head>
     <title>reviewform</title>
     <c:set var="path" value="${pageContext.request.contextPath}"/>
-    <link rel="stylesheet" href="../style/form.css">
+    <link rel="stylesheet" type="text/css" href="${path}/resources/style/form.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 </head>
 <c:import url="header.jsp"/>
