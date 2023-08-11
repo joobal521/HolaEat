@@ -20,6 +20,11 @@
     <div class="form_wrap">
         <form enctype="multipart/form-data">
             <div class="form_container">
+                <img src="/image/${login.memberImg}" style=" max-width: 50%;  height: auto;"> <br />
+                <div class="card">
+                        <input type="file" name="file">
+                        <input type="button" class="btn btn-primary" value="사진변경" onclick="updateImg">
+
                 <ul>
                     <li>
                         <h2>아이디</h2>

@@ -44,7 +44,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.7.5'
 
     //email
-    implementation 'javax.mail:mail:1.4.7'
+    implementation 'com.sun.mail:javax.mail:1.6.2'
 
     //spring-context-support
     implementation 'org.springframework:spring-context-support:5.3.9'
