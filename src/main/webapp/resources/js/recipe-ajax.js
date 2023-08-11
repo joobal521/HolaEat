@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
     openModalBtns.forEach((openModalBtn, index) => {
         openModalBtn.addEventListener('click', () => {
             modals[index].style.display = 'block';
+            loadRecipe(openModalBtn, modals[index]);
         });
     });
 
@@ -17,24 +18,18 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
-$(document).ready(function () {
 
-    $(".foodbtn").click(function () {
-        var foodId = $(this).data("foodid");
-        var $modal = $(this).closest(".ingr-modal");
-        var $recipeContent = $modal.find(".recipe-content");
+function loadRecipe(btn, modal) {
+    var foodId = btn.getAttribute("data-foodid");
+    var $recipeContent = modal.querySelector(".recipe-content");
 
-        $.ajax({
-            url: "getRecipe/" + foodId,
-            type: "GET",
-            dataType: "text",
-
-            success: function (response) {
-                console.log("response:" + response)
-                $recipeContent.html(response); // 레시피 정보를 해당 모달 내부에 추가
-                $recipeContent.find("input").val(response);
-
-            }
-        })
+    $.ajax({
+        url: "getRecipe/" + foodId,
+        type: "GET",
+        dataType: "html",
+        success: function (response) {
+            console.log("response:" + response);
+            $recipeContent.innerHTML = response; // 레시피 정보를 해당 모달 내부에 추가
+        }
     });
-});
+}

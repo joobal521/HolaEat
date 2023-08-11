@@ -20,10 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.imageio.ImageIO;
 import java.beans.Transient;
-import java.util.ArrayList;
-import java.util.Base64;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 @Controller
 @RequiredArgsConstructor
@@ -36,16 +33,17 @@ public class ReviewListController {
     @GetMapping("/reviewlist")
     public String getReviewAll(Model model) {
         List<Review> list = reviewService.findAllByOrderByReviewNoDesc();
-        List<String> blobList = new ArrayList<>();
+        Map<Long, String> imageMap = new HashMap<>();
 
-
-        for (Review pics: list) {
-           if(pics.getImg()!=null) {
-               blobList.add(ImageParsor.parseBlobToBase64(pics.getImg()));
-           }
+        for (Review review : list) {
+            if (review.getImg() != null) {
+                String base64Image = ImageParsor.parseBlobToBase64(review.getImg());
+                imageMap.put(review.getReviewNo(), base64Image);
+            }
         }
+
         model.addAttribute("reviewlist", list);
-        model.addAttribute("blobs", blobList);
+        model.addAttribute("imageMap", imageMap);
         return "reviewlist";
     }
 

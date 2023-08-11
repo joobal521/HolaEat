@@ -4,6 +4,12 @@
 //     $('#img').attr('src', URL.createObjectURL(blob));
 // })
 
+//썸네일 출력
+$('#file').change(e => {
+    // console.log("file is changed.");
+    loadthumb();
+});
+
 $('#title').on('change', e => {
     if ($('#title').val() !== "") {
         $('#error-title').hide();
@@ -12,6 +18,7 @@ $('#title').on('change', e => {
     }
 });
 
+//게시글 등록
 function checkValueWrite(htmlForm) {
     const title = htmlForm.title.value;
     const content = htmlForm.content.value;
@@ -25,37 +32,8 @@ function checkValueWrite(htmlForm) {
     let check = true;
     let title_space = /[ ]/; /* 공백 */
 
-
     if (check) {
 
-
-
-        // var form = new FormData();
-        // form.append("title", title);
-        // form.append("content", content);
-        //
-        // const imgElement = document.getElementById('img');
-        // if (imgFile) {
-        //     imgElement.src = URL.createObjectURL(imgFile);
-        // } else {
-        //     imgElement.src = ''; // 이미지 없을 때 빈 상태로 설정
-        // }
-        //
-        // var settings = {
-        //     "url": "/write",
-        //     "method": "POST",
-        //     "timeout": 0,
-        //     "processData": false,
-        //     "mimeType": "multipart/form-data",
-        //     "contentType": false,
-        //     "data": form
-        // };
-        //
-        // $.ajax(settings).done(function (response) {
-        //
-        //     console.log(response);
-        //     // location.href = "reviewlist";
-        // });
         var form = new FormData();
         form.append("title", title);
         form.append("content", content);
@@ -66,7 +44,7 @@ function checkValueWrite(htmlForm) {
         console.log(title);
         console.log(content);
         console.log(imgFile);
-        alert("title"+ title + "content" + content + "img" + imgFile)
+        alert("title" + title + "content" + content + "img" + imgFile)
         if (imgFile) {
             imgElement.src = URL.createObjectURL(imgFile);
 
@@ -88,32 +66,26 @@ function checkValueWrite(htmlForm) {
 
         $.ajax(settings).done(function (response) {
             console.log(response);
-            // location.href = "reviewlist";
+            location.href = "reviewlist";
         });
-
-
-
 
     }
 }
 
-
-
-
-
-function CheckValueUpdate(htmlForm){
+//게시글 수정
+function CheckValueUpdate(htmlForm, reviewNo) {
     const title = htmlForm.title.value;
     const content = htmlForm.content.value;
 
     let check = true;
-
     let imgFile = null;
-    if (htmlForm.img && htmlForm.img.files && htmlForm.img.files[0]) {
-        imgFile = htmlForm.img.files[0];
+
+    if (htmlForm.file && htmlForm.file.files && htmlForm.file.files[0]) {
+        imgFile = htmlForm.file.files[0];
     }
 
 
-    if(check){
+    if (check) {
 
         console.log(title);
         console.log(content);
@@ -128,6 +100,10 @@ function CheckValueUpdate(htmlForm){
         if (imgFile) {
             form.append("img", imgFile);
         }
+        // else{
+        //     const currentImg = $(".select_img img").attr("src");
+        //     form.append("img", currentImg);
+        // }
 
         var settings = {
             "url": "/" + reviewNo + "/update",
@@ -136,41 +112,51 @@ function CheckValueUpdate(htmlForm){
             "processData": false,
             "mimeType": "multipart/form-data",
             "contentType": false,
-            "data": form
+            "data": form,
+            // 동기식으로 처리
+            // "async": false
         };
     }
 
-
-
-    $.ajax(settings).done(function (response) {
-        console.log(response);
-        location.href = "reviewlist";
-    });
-
-
-
+    $.ajax(settings)
+        .done(function (response) {
+            console.log(response);
+            alert("글 수정이 성공했습니다.");
+            location.href = "review/" + reviewNo;
+        })
+        .fail(function (jqXHR, textStatus, errorThrown) {
+            console.error(jqXHR.responseText);
+            alert("글 수정에 실패했습니다.");
+        });
 }
 
-function CheckValueDelete(htmlForm, reviewNo){
+//이미지 썸네일 로드, 이미지 파일을 선택하면 해당 이미지를 읽어들여 화면에 표시하는 역할
+function loadthumb() {
+    var reader = new FileReader;
+    reader.onload = function (data) {
+        $(".select_img img").attr("src", data.target.result).width(500);
+    }
+    reader.readAsDataURL($('#file').prop("files")[0]);
+}
+
+//게시글 삭제
+function CheckValueDelete(htmlForm, reviewNo) {
 
     const title = htmlForm.title.value;
     const content = htmlForm.content.value;
 
-
     let check = true;
-
-
     let imgFile = null;
+
     if (htmlForm.img && htmlForm.img.files && htmlForm.img.files[0]) {
         imgFile = htmlForm.img.files[0];
     }
 
-    if(check){
+    if (check) {
 
-        console.log("title "  + title);
+        console.log("title " + title);
         console.log("content : " + content);
         console.log("imgFile : " + imgFile);
-
 
         var form = new FormData();
         form.append("title", title);
@@ -195,9 +181,7 @@ function CheckValueDelete(htmlForm, reviewNo){
             location.href = "reviewlist";
         });
 
-
     }
-
 
 }
 
