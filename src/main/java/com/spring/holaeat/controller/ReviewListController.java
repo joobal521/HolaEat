@@ -20,7 +20,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.imageio.ImageIO;
 import java.beans.Transient;
+import java.util.ArrayList;
 import java.util.Base64;
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -34,8 +36,16 @@ public class ReviewListController {
     @GetMapping("/reviewlist")
     public String getReviewAll(Model model) {
         List<Review> list = reviewService.findAllByOrderByReviewNoDesc();
-        model.addAttribute("reviewlist", list);
+        List<String> blobList = new ArrayList<>();
 
+
+        for (Review pics: list) {
+           if(pics.getImg()!=null) {
+               blobList.add(ImageParsor.parseBlobToBase64(pics.getImg()));
+           }
+        }
+        model.addAttribute("reviewlist", list);
+        model.addAttribute("blobs", blobList);
         return "reviewlist";
     }
 
@@ -44,23 +54,16 @@ public class ReviewListController {
     @GetMapping("/review/{reviewNo}")
     public String findByReviewNo(Model model, @PathVariable long reviewNo){
         Review review = reviewService.findByReviewNo(reviewNo);
-//        model.addAttribute("review", review);
-
-        if (review != null) {
-            model.addAttribute("review", review);
-
-            byte[] img = review.getImg();
-            if (img != null) {
-                model.addAttribute("blob", ImageParsor.parseBlobToBase64(review.getImg()));
-            }
-        } else {
-            model.addAttribute("errorMessage", "Review not found");
-        }
+        model.addAttribute("review", review);
 
 
-//        model.addAttribute("blob", ImageParsor.parseBlobToBase64(review.getImg()));
+        if(review.getImg()==null)
+            return "review";
+
+        model.addAttribute("blob", ImageParsor.parseBlobToBase64(review.getImg()));
         return "review";
     }
+
 
     //게시글 목록 조회
     @GetMapping("/reviewlist/{pageNumber}")

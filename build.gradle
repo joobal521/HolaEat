@@ -42,7 +42,14 @@ dependencies {
     //Database
     implementation 'mysql:mysql-connector-java:8.0.16'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.7.5'
-    //update
+
+    //email
+    implementation 'javax.mail:mail:1.4.7'
+
+    //spring-context-support
+    implementation 'org.springframework:spring-context-support:5.3.9'
+
+
 
 }
 

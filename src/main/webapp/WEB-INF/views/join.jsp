@@ -52,9 +52,18 @@
                     <li>
                         <h2>이메일</h2>
                         <input type="email" id="userEmail" name="userEmail"  placeholder="example@holaEat.com">
+                        <input type="button" class="square"
+                                                      id="email_ch" onclick="emailAuthentication()" value="인증메일 보내기">
                         <p class="error" id="error-email">이메일은 필수정보입니다.</p>
                         <span class="err" id="chkEmail" size="1"></span>
                     </li>
+                    <li>
+                        <input type="text" name="code" class="square" id="code"
+                               maxlength="10">
+                    <input type="button" id="code_ch" onclick="authCodeCheck()"
+                           value="인증">
+                    </li>
+
 
                     <li>
                         <h2>이름</h2>
