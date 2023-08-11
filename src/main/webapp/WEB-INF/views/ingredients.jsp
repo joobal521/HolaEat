@@ -44,7 +44,6 @@
 </section>
 <script>
 
-
 </script>
 </body>
 <c:import url="footer.jsp"/>
