@@ -30,9 +30,9 @@
                                 <div class="ingr-modal-content">
                                     <h2>${monthFood.foodName}</h2>
                                     <span>${monthFood.foodGroup}</span>
-<%--                                    <div class="recipe-content" id="recipe-content">--%>
-                                            <input type="text" name="recipe-content" class="recipe-content">
-<%--                                    </div>--%>
+                                    <div class="recipe-content" id="recipe-content">
+
+                                    </div>
                                 </div>
                             </div>
                         </c:if>
