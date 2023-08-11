@@ -114,6 +114,35 @@ function chkId() {
 
 }
 
+/* 이메일 인증번호 전송 */
+function emailAuthentication() {
+    if (isIdChecked) {
+        var userEmail = $('#userEmail').val();
+        $("#email_ch").prop('disabled', true);
+        $.ajax({
+            type: "POST",
+            url: "/EmailVerification",
+            data: { user_email: user_email },
+            success: function(response) {
+                if (response.result === "VERIFICATION_SENT") {
+                    $("#code_ch").prop('disabled', false);
+                    alert("인증번호를 확인을 해주세요.");
+                    console.log("이메일 확인 코드가 발송되었습니다.");
+                    console.log("확인 코드: " + response.verification_code);
+                    console.log("확인 코드 유효 시간: " + response.verification_duration + "분");
+                } else {
+                    console.log("이메일 확인 코드 발송에 실패하였습니다.");
+                }
+            },
+            error: function(xhr, status, error) {
+                console.log(error);
+            }
+        });
+    } else {
+        alert("이메일 중복 확인을 해주세요.");
+    }
+}
+
 
 function checkValue(htmlForm) {
     const id = htmlForm.userId.value;
