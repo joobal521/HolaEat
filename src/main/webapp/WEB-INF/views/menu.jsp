@@ -17,6 +17,14 @@
     <link rel="stylesheet" href="resources/style/form.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <style>
+        .selected-prefer button,.selected-dislike button{
+            margin-left: 8px; /* 버튼과 재료 사이의 간격 조정 */
+            background-color: transparent;
+            border: none;
+            color: red; /* 'X' 버튼의 색상 설정 */
+            cursor: pointer;
+        }
+
         .category button.selected {
             background-color: darkcyan;
         }
@@ -143,15 +151,15 @@
                 </select>
             </div>
 
-            <div class="selected-ingredients">
+            <div class="selected-prefer">
                 <h2>선택된 재료</h2>
                 <ul id="selectedIngredientsList"></ul>
             </div>
 
-                <button id="savePreferButton">저장</button>
+            <button id="savePreferButton">저장</button>
 
 
-                <div class="dislike">
+            <div class="dislike">
                 <h2>선호하지 않는 재료</h2>
                 <select name="dislike" id="dislike">
                     <option value="">선택하세요</option>
@@ -184,12 +192,12 @@
                 </select>
             </div>
 
-                <button id="saveDislikeButton">저장</button>
+            <button id="saveDislikeButton">저장</button>
 
-                <div class="selected-Uningredients">
-                    <h2>선택된 재료</h2>
-                    <ul id="selectedUnIngredientsList"></ul>
-                </div>
+            <div class="selected-dislike">
+                <h2>선택된 재료</h2>
+                <ul id="selectedUnIngredientsList"></ul>
+            </div>
 
             <hr>
             <div class="personal_menu">
@@ -206,4 +214,3 @@
 </body>
 <c:import url="footer.jsp"/>
 </html>
-

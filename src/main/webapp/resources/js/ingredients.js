@@ -1,40 +1,29 @@
 document.addEventListener("DOMContentLoaded", function() {
     const preferDropdown = document.getElementById("prefer");
     const dislikeDropdown = document.getElementById("dislike");
-    const savePreferButton = document.getElementById("savePreferButton");
-    const saveDislikeButton = document.getElementById("saveDislikeButton");
     const selectedIngredientsList = document.getElementById("selectedIngredientsList");
     const selectedUnIngredientsList = document.getElementById("selectedUnIngredientsList");
 
-    savePreferButton.addEventListener("click", function() {
-        const selectedOption = preferDropdown.options[preferDropdown.selectedIndex];
-        if (selectedOption.value !== "") {
-            const ingredientName = selectedOption.text;
-            const newListItem = document.createElement("li");
-            newListItem.textContent = ingredientName;
-            selectedIngredientsList.appendChild(newListItem);
-        }
-    });
+    function createListItem(text, list) {
+        const newListItem = document.createElement("li");
+        newListItem.textContent = text;
 
-    saveDislikeButton.addEventListener("click", function() {
-        const selectedOption = dislikeDropdown.options[dislikeDropdown.selectedIndex];
-        if (selectedOption.value !== "") {
-            const ingredientName = selectedOption.text;
-            const newListItem = document.createElement("li");
-            newListItem.textContent = ingredientName;
-            selectedUnIngredientsList.appendChild(newListItem); // 올바른 id인 selectedUnIngredientsList를 사용합니다.
-        }
-    });
+        const removeButton = document.createElement("button");
+        removeButton.textContent = "X";
+        removeButton.classList.add("remove-button");
+        removeButton.addEventListener("click", function() {
+            list.removeChild(newListItem);
+        });
 
-
+        newListItem.appendChild(removeButton);
+        list.appendChild(newListItem);
+    }
 
     preferDropdown.addEventListener("change", function() {
         const selectedOption = preferDropdown.options[preferDropdown.selectedIndex];
         if (selectedOption.value !== "") {
             const ingredientName = selectedOption.text;
-            const newListItem = document.createElement("li");
-            newListItem.textContent = ingredientName;
-            selectedIngredientsList.appendChild(newListItem);
+            createListItem(ingredientName, selectedIngredientsList);
         }
     });
 
@@ -42,14 +31,11 @@ document.addEventListener("DOMContentLoaded", function() {
         const selectedOption = dislikeDropdown.options[dislikeDropdown.selectedIndex];
         if (selectedOption.value !== "") {
             const ingredientName = selectedOption.text;
-            const newListItem = document.createElement("li");
-            newListItem.textContent = ingredientName;
-            selectedUnIngredientsList.appendChild(newListItem);
+            createListItem(ingredientName, selectedUnIngredientsList);
         }
     });
-
-
 });
+
 
 
 
