@@ -25,4 +25,5 @@ public class Ingredients {
         this.allergy = allergy;
         this.month = month;
     }
+
 }

@@ -1,4 +1,8 @@
-<%--
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="org.json.JSONArray" %>
+<%@ page import="com.spring.holaeat.domain.ingredients.Ingredients" %>
+<%@ page import="com.spring.holaeat.domain.ingredients.IngredientsRepository" %><%--
   Created by IntelliJ IDEA.
   User: user
   Date: 2023-08-07
@@ -13,20 +17,25 @@
     <link rel="stylesheet" href="resources/style/form.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <style>
-        .preferred.selected{
-            background-color: lightblue;
+        .selected-prefer button,.selected-dislike button{
+            margin-left: 8px; /* 버튼과 재료 사이의 간격 조정 */
+            background-color: transparent;
+            border: none;
+            color: red; /* 'X' 버튼의 색상 설정 */
+            cursor: pointer;
         }
 
-        .unpreferred.selected{
-            background-color: lightcoral;
-            container: white;
+        .category button.selected {
+            background-color: darkcyan;
         }
+
         .dislike_title, .prefer_title {
             display: flex;
             flex-direction: row;
             justify-content: space-evenly;
         }
-        .store-container1, .store-container2{
+
+        .store-container1, .store-container2 {
             display: flex;
             flex-direction: row;
             justify-content: space-around;
@@ -95,54 +104,101 @@
         <%--    열량 계산기 끝 --%>
 
         <div class="json_wrap">
-
-<%--선호--%>
-            <div class="prefer_title">
-                <h2>선호하는 재료(최대 3개)</h2>
-                <button class="default1" onclick="resetPreferredIngredients()">초기화</button>
+            <%--        카테고리    --%>
+            <div class="category_title">
+                <h2>어떤 메뉴를 드시고 싶으신가요?</h2>
             </div>
-            <div class="ingredients">
-
-                <div class="btn-container1">
-                    <button>재료 목록</button>
-                </div>
-                <div class="store-container1">
-                    <c:forEach var="ingrName" items="${ingrNames}">
-                        <div class="store-item">
-                            <button class="preferred">${ingrName}</button>
-                        </div>
-                    </c:forEach>
-                </div>
-
-                <div class="selected-ingredients1">
-                    선택된 재료:
-                    <ul id="preferred-selected-list"></ul>
-                </div>
-                <hr>
-<%--비선호--%>
-                <div class="dislike_title">
-                    <h2>선호하지 않는 재료(최대 3개)</h2>
-                    <button class="default2" onclick="resetUnpreferredIngredients()">초기화</button>
-
-                </div>
-                <div class="btn-container2">
-                    <button>재료 목록</button>
-                </div>
-
-                <div class="store-container2">
-                    <c:forEach var="ingrName" items="${ingrNames}">
-                        <div class="store-item">
-                            <button class="unpreferred">${ingrName}</button>
-                        </div>
-                    </c:forEach>
-                </div>
-
-                <div class="selected-ingredients2">
-                    선택된 재료:
-                    <ul id="unpreferred-selected-list"></ul>
-                </div>
+            <div class="category">
+                <select name="national" id="national">
+                    <option value="">선택하세요</option>
+                    <option class="korean" value="">한식</option>
+                    <option class="chinese" value="">중식</option>
+                    <option class="japanese" value="">일식</option>
+                    <option class="western" value="">양식</option>
+                    <option class="salad" value="">샐러드</option>
+                </select>
             </div>
-<%--            재료 선택 끝--%>
+            <div class="prefer">
+                <h2>선호하는 재료</h2>
+                <select name="prefer" id="prefer">
+                    <option value="">선택하세요</option>
+                    <option value="1">우유</option>
+                    <option value="2">메밀</option>
+                    <option value="3">땅콩</option>
+                    <option value="4">대두</option>
+                    <option value="5">밀</option>
+                    <option value="6">고등어</option>
+                    <option value="7">게</option>
+                    <option value="8">새우</option>
+                    <option value="9">복숭아</option>
+                    <option value="10">토마토</option>
+                    <option value="11">두부</option>
+                    <option value="12">깨</option>
+                    <option value="13">쌀</option>
+                    <option value="14">두유</option>
+                    <option value="15">감자</option>
+                    <option value="16">계란</option>
+                    <option value="17">쇠고기</option>
+                    <option value="18">생선</option>
+                    <option value="19">닭고기</option>
+                    <option value="20">돼지고기</option>
+                    <option value="21">수박</option>
+                    <option value="22">참외</option>
+                    <option value="23">케찹</option>
+                    <option value="24">소금</option>
+                    <option value="25">포도</option>
+                    <option value="26">연근</option>
+                </select>
+            </div>
+
+            <div class="selected-prefer">
+                <h2>선택된 재료</h2>
+                <ul id="selectedIngredientsList"></ul>
+            </div>
+
+            <button id="savePreferButton">저장</button>
+
+
+            <div class="dislike">
+                <h2>선호하지 않는 재료</h2>
+                <select name="dislike" id="dislike">
+                    <option value="">선택하세요</option>
+                    <option value="1">우유</option>
+                    <option value="2">메밀</option>
+                    <option value="3">땅콩</option>
+                    <option value="4">대두</option>
+                    <option value="5">밀</option>
+                    <option value="6">고등어</option>
+                    <option value="7">게</option>
+                    <option value="8">새우</option>
+                    <option value="9">복숭아</option>
+                    <option value="10">토마토</option>
+                    <option value="11">두부</option>
+                    <option value="12">깨</option>
+                    <option value="13">쌀</option>
+                    <option value="14">두유</option>
+                    <option value="15">감자</option>
+                    <option value="16">계란</option>
+                    <option value="17">쇠고기</option>
+                    <option value="18">생선</option>
+                    <option value="19">닭고기</option>
+                    <option value="20">돼지고기</option>
+                    <option value="21">수박</option>
+                    <option value="22">참외</option>
+                    <option value="23">케찹</option>
+                    <option value="24">소금</option>
+                    <option value="25">포도</option>
+                    <option value="26">연근</option>
+                </select>
+            </div>
+
+            <button id="saveDislikeButton">저장</button>
+
+            <div class="selected-dislike">
+                <h2>선택된 재료</h2>
+                <ul id="selectedUnIngredientsList"></ul>
+            </div>
+
             <hr>
             <div class="personal_menu">
                 <h2>${userName}님만을 위한 맞춤식단이 여기 있습니다!</h2>
@@ -150,10 +206,11 @@
 
         </div>
 
-    </div>
+
 </section>
 <script src="resources/js/cal.js"></script>
 <script src="resources/js/ingredients.js"></script>
+
 </body>
 <c:import url="footer.jsp"/>
 </html>

@@ -1,9 +1,20 @@
 package com.spring.holaeat.domain.prefer;
 
 import lombok.Getter;
+import lombok.Setter;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Getter
+@Setter
+@Entity
 public class Prefer {
-    private String userId;
-    private String ingrId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String userId; // userId를 기본 키로 사용
+    private int ingrId;
 }
