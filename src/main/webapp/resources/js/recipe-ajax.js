@@ -22,16 +22,18 @@ $(document).ready(function () {
     $(".foodbtn").click(function () {
         var foodId = $(this).data("foodid");
         var $modal = $(this).closest(".ingr-modal");
-        var $recipeContent = $modal.find("#recipe-content");
+        var $recipeContent = $modal.find(".recipe-content");
 
         $.ajax({
             url: "getRecipe/" + foodId,
             type: "GET",
-            dataType: "html",
+            dataType: "text",
 
             success: function (response) {
                 console.log("response:" + response)
                 $recipeContent.html(response); // 레시피 정보를 해당 모달 내부에 추가
+                $recipeContent.find("input").val(response);
+
             }
         })
     });

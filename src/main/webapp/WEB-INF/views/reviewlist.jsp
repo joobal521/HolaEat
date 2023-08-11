@@ -12,28 +12,55 @@
     <title>reviewlist</title>
     <c:set var="path" value="${pageContext.request.contextPath}"/>
     <link rel="stylesheet" type="text/css" href="${path}/resources/style/form.css">
+    <style>
+        #review-container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        #review{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width : 200px;
+            height: 250px;
+            border : solid 1px lightblue;
+            padding: 10px;
+            margin: 10px;
+
+        }
+
+        #img{
+            width: 100px;
+            height: 100px;
+        }
+
+    </style>
 </head>
 <c:import url="header.jsp"/>
 <body>
 <div class="wrapper">
-<div>게시글 목록</div>
-<c:forEach items="${reviewlist}" var="review">
+    <div>게시글 목록</div>
 
-    <a href="<c:url value='/review/${review.reviewNo}'/>">
-    <div style="border: 1px solid black; margin: 1px;">
-        <div>NO. ${review.reviewNo}</div>
-        <div>작성자 : ${review.userId}</div>
-        <div>제목 : ${review.title}</div>
-        <img src="data:image/png, image/jpg, image/jpeg, image.gif;base64,${blob}" id="img" alt="Review Image">
+
+    <div>
+        <a href="reviewform">
+            글쓰기
+        </a>
     </div>
-    </a>
-</c:forEach>
-
-<div>
-    <a href="reviewform">
-        글쓰기
-    </a>
+<div id="review-container">
+    <c:forEach items="${reviewlist}" var="review" varStatus="loop">
+        <a href="<c:url value='/review/${review.reviewNo}'/>">
+            <div id = review >
+                <div>NO. ${review.reviewNo}</div>
+                <div>작성자 : ${review.userId}</div>
+                <div>제목 : ${review.title}</div>
+                <img src="data:image/png;base64,${blobs[loop.index]}" id="img" name="img" alt="Review Image">
+            </div>
+        </a>
+    </c:forEach>
 </div>
+
 
 </div>
 </body>

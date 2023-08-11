@@ -40,7 +40,8 @@
                     <input type="text" id="content" name="content" value="${review.content}" readonly >
                 </div>
                 <div id="image-container">
-                    <img src="data:image/png, image/jpg, image/jpeg, image.gif;base64,${blob}" id="img" name="img"  alt="Review Image">
+                    <img src="data:image/png;base64,${blob}" id="img" name="img"  alt="Review Image">
+
                 </div>
                 <input type="datetime" id="created_at" readonly>
                 <input type="datetime" id="modified_at" readonly>

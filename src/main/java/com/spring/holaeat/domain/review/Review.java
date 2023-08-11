@@ -29,19 +29,19 @@ public class Review extends Timestamp {
     @Column(length = 4000)
     private String content;
 
-    @Column(columnDefinition = "BLOB")
+    @Column(columnDefinition = "LONGBLOB")
     private byte[] img;
 
-    private String base64Image;
 
-    public Review(ReviewRequestDto boardDto){
-        this.title = boardDto.getTitle();
-        this.content = boardDto.getContent();
-        this.userId = boardDto.getUserId();
 
-        if (boardDto.getImg() != null) {
+    public Review(ReviewRequestDto reviewRequestDto){
+        this.title = reviewRequestDto.getTitle();
+        this.content = reviewRequestDto.getContent();
+        this.userId = reviewRequestDto.getUserId();
+
+        if (reviewRequestDto.getImg() != null) {
             try {
-                this.img = boardDto.getImg().getBytes();
+                this.img = reviewRequestDto.getImg().getBytes();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -50,13 +50,13 @@ public class Review extends Timestamp {
     }
 
 
-    public void update(ReviewRequestDto boardDto) {
-        this.title = boardDto.getTitle();
-        this.content = boardDto.getContent();
+    public void update(ReviewRequestDto reviewRequestDto) {
+        this.title = reviewRequestDto.getTitle();
+        this.content = reviewRequestDto.getContent();
 
-        if (boardDto.getImg() != null) {
+        if (reviewRequestDto.getImg() != null) {
             try {
-                this.img = boardDto.getImg().getBytes();
+                this.img = reviewRequestDto.getImg().getBytes();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -66,7 +66,4 @@ public class Review extends Timestamp {
     }
 
 
-//    public void setBase64Image(String base64Image) {
-//        this.base64Image = base64Image;
-//    }
 }

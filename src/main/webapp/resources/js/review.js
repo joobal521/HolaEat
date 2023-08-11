@@ -28,17 +28,50 @@ function checkValueWrite(htmlForm) {
 
     if (check) {
 
-        console.log(title);
-        console.log(content);
-        console.log(imgFile);
 
+
+        // var form = new FormData();
+        // form.append("title", title);
+        // form.append("content", content);
+        //
+        // const imgElement = document.getElementById('img');
+        // if (imgFile) {
+        //     imgElement.src = URL.createObjectURL(imgFile);
+        // } else {
+        //     imgElement.src = ''; // 이미지 없을 때 빈 상태로 설정
+        // }
+        //
+        // var settings = {
+        //     "url": "/write",
+        //     "method": "POST",
+        //     "timeout": 0,
+        //     "processData": false,
+        //     "mimeType": "multipart/form-data",
+        //     "contentType": false,
+        //     "data": form
+        // };
+        //
+        // $.ajax(settings).done(function (response) {
+        //
+        //     console.log(response);
+        //     // location.href = "reviewlist";
+        // });
         var form = new FormData();
         form.append("title", title);
         form.append("content", content);
 
         const imgElement = document.getElementById('img');
+        const imgFile = imgElement.files[0]; // 이미지 파일 가져오기
+
+        console.log(title);
+        console.log(content);
+        console.log(imgFile);
+        alert("title"+ title + "content" + content + "img" + imgFile)
         if (imgFile) {
             imgElement.src = URL.createObjectURL(imgFile);
+
+            // 이미지 파일을 FormData에 추가
+            form.append("img", imgFile);
         } else {
             imgElement.src = ''; // 이미지 없을 때 빈 상태로 설정
         }
@@ -54,10 +87,10 @@ function checkValueWrite(htmlForm) {
         };
 
         $.ajax(settings).done(function (response) {
-
             console.log(response);
-            location.href = "reviewlist";
+            // location.href = "reviewlist";
         });
+
 
 
 
