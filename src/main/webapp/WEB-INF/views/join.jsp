@@ -57,13 +57,12 @@
                         <p class="error" id="error-email">이메일은 필수정보입니다.</p>
                         <span class="err" id="chkEmail" size="1"></span>
                     </li>
+
                     <li>
-                        <input type="text" name="code" class="square" id="code"
-                               maxlength="10">
+                        <input class="form-control mail-check-input" placeholder="인증번호 6자리를 입력해주세요!" disabled="disabled" maxlength="6">
                     <input type="button" id="code_ch" onclick="authCodeCheck()"
                            value="인증">
                     </li>
-
 
                     <li>
                         <h2>이름</h2>
@@ -100,7 +99,7 @@
                     </div>
 
                     <li>
-                        <input type="hidden" id="userProfileImg" name="userProfileImg" value="">
+                        <input type="file" id="userProfileImg" name="userProfileImg" accept="image/png, image/jpg, image/jpeg, image.gif">
                     </li>
                     <li>
                         <button type="button" id="submit" name="submit" onclick="checkValue(form)">회원가입</button>

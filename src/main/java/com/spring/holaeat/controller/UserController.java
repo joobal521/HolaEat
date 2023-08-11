@@ -15,7 +15,6 @@ import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 @RequiredArgsConstructor
-//@Controller
 @RestController
 @RequestMapping("api/v1/users")
 public class UserController {
@@ -44,6 +43,23 @@ public class UserController {
 
 
 }
+
+//아이디 중복체크
+    @PostMapping("userIdDupl")
+    public Map checkUserId(@RequestBody  Map<String, String> requestData) {
+        String userId=requestData.get("userId");
+        boolean dupl = userService.duplCheckUserId(userId);
+        JSONObject response =new JSONObject();
+
+
+        if(!dupl){
+            response.put("result", true);
+
+        }else {
+            response.put("result", false);
+        }
+        return response.toMap();
+    }
 
 //회원탈퇴
     @DeleteMapping("leave")
