@@ -28,7 +28,7 @@ function loadRecipe(btn, modal) {
         type: "GET",
         dataType: "html",
         success: function (response) {
-            console.log("response:" + response);
+            // console.log("response:" + response);
             $recipeContent.innerHTML = response; // 레시피 정보를 해당 모달 내부에 추가
         }
     });

@@ -16,7 +16,6 @@
 </head>
 <c:import url="header.jsp"/>
 <body>
-<body>
 <section>
     <div class="form_wrap">
         <form enctype="multipart/form-data">
