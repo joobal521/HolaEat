@@ -12,4 +12,9 @@ public interface IngredientsRepository extends JpaRepository<Ingredients,Integer
 
     Ingredients findByIngrName(String ingrName); // 이 부분을 추가합니다.
 
+    List<Ingredients> findAll();
+
+    Ingredients findByIngrId(int id);
+
+
 }

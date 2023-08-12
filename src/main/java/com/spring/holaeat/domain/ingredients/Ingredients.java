@@ -1,11 +1,13 @@
 package com.spring.holaeat.domain.ingredients;
 
+import com.spring.holaeat.domain.review.ReviewRequestDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.IOException;
 
 @NoArgsConstructor
 @Getter
@@ -24,6 +26,15 @@ public class Ingredients {
         this.ingrName = ingrName;
         this.allergy = allergy;
         this.month = month;
+    }
+
+
+    public void update(IngredientsRequestDto ingredientsRequestDto) {
+        this.allergy = ingredientsRequestDto.getAllergy();
+        this.ingrName = ingredientsRequestDto.getIngrName();
+        this.month = ingredientsRequestDto.getMonth();
+
+
     }
 
 }

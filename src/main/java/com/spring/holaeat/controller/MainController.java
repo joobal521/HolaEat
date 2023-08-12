@@ -6,7 +6,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Optional;
@@ -44,11 +43,23 @@ public class MainController {
     @GetMapping(value = "mypage")
     public String myPage() {return "myPage";}
 
-    @GetMapping(value = "gainPower")
-    public String gainAuthority() {return "gainAuthority";}
+    @GetMapping(value = "gainpower")
+    public String admin_login() {return "gainpower";}
 
-    @GetMapping(value = "FOODLE")
+    @GetMapping(value = "admin")
     public String admin() {return "admin";}
+
+    @GetMapping(value = "adminMenu")
+    public String adminMenu() {return "adminMenu";}
+    @GetMapping(value = "adminHealth")
+    public String adminHealth() {return "adminHealth";}
+    @GetMapping(value = "adminUser")
+    public String adminUser() {return "adminUser";}
+    @GetMapping(value = "adminReview")
+    public String adminReview() {return "adminReview";}
+//    @GetMapping(value = "adminIngr")
+//    public String adminIngr() {return "adminIngr";}
+
 
     @GetMapping(value = "/reviewUpdate")
     public String reviewUpdate(@RequestParam("reviewNo") long reviewNo, Model model) {
@@ -60,8 +71,6 @@ public class MainController {
         model.addAttribute("review", review.get());
         return "reviewUpdate";
     }
-
-
 
     @GetMapping("health")
     public String health() {return "health";}
