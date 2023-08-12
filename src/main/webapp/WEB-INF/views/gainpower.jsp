@@ -15,7 +15,7 @@
 </head>
 <body>
 <div>
-    <form id="form" method="post" action="gainPower">
+    <form id="form" method="post" action="gainpower">
         <input type="text" id="adminid" name="adminid">
         <input type="password" id="adminpwd" name="adminpwd">
         <input type="submit" id="submit" value="PROCEED">
