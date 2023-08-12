@@ -101,8 +101,10 @@ function CheckValueUpdate(htmlForm, reviewNo) {
             form.append("img", imgFile);
         }
         // else{
-        //     const currentImg = $(".select_img img").attr("src");
-        //     form.append("img", currentImg);
+        //     // const currentImg = $(".select_img img").attr("src");
+        //     // form.append("img", currentImg);
+        //     // const currentImg = htmlForm.currentImgUrl.value;
+        //     // form.append("img", currentImg);
         // }
 
         var settings = {
@@ -121,12 +123,12 @@ function CheckValueUpdate(htmlForm, reviewNo) {
     $.ajax(settings)
         .done(function (response) {
             console.log(response);
-            alert("글 수정이 성공했습니다.");
+            alert("글 수정 성공.");
             location.href = "review/" + reviewNo;
         })
         .fail(function (jqXHR, textStatus, errorThrown) {
             console.error(jqXHR.responseText);
-            alert("글 수정에 실패했습니다.");
+            alert("글 수정 실패.");
         });
 }
 
@@ -192,6 +194,13 @@ function redirectToReviewUpdate() {
 
     window.location.href = "../reviewUpdate?reviewNo=" + reviewNo;
 }
+
+
+// function redirectToReviewUpdate(reviewNo) {
+//     window.location.href  = "../reviewUpdate?reviewNo=" + reviewNo;
+//
+// }
+
 
 function goBack() {
     window.scrollTo(0, 0);

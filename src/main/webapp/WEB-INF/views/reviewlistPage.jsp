@@ -72,13 +72,13 @@
         </a>
     </div>
 <div id="review-container">
-    <c:forEach items="${reviewlist}" var="review" varStatus="loop">
+    <c:forEach items="${reviewlistPage}" var="review" varStatus="loop">
         <a href="<c:url value='/review/${review.reviewNo}'/>">
             <div id = review >
                 <div>NO. ${review.reviewNo}</div>
                 <div>작성자 : ${review.userId}</div>
                 <div>제목 : ${review.title}</div>
-                <c:if test="${imageMap[review.reviewNo] != null}">
+                <c:if test="${imageMapPage[review.reviewNo] != null}">
                     <img src="data:image/png;base64,${imageMap[review.reviewNo]}" id="img" name="img" alt="Review Image">
                 </c:if>
 <%--                <img src="data:image/png;base64,${blobs[loop.index]}" id="img" name="img" alt="Review Image">--%>
