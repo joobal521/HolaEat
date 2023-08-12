@@ -33,27 +33,31 @@ public class LogController {
         User user = userRepository.findByUserId(userId);
 
         if (user != null) {
-            UserDetail userDetail = userDetailRepository.findByUserId(userId);
+            if (user.getUserPassword().equals(userPassword)) {
+                UserDetail userDetail = userDetailRepository.findByUserId(userId);
 
-            session.setAttribute("log", user.getUserId()); // 세션에 로그인된 사용자 이름 저장
-            session.setAttribute("userName", user.getUserName()); // 세션에 로그인된 사용자 이름 저장
+                session.setAttribute("log", user.getUserId());
+                session.setAttribute("userName", user.getUserName());
 
-            if (userDetail != null) {
-                session.setAttribute("userAge", userDetail.getAge());
-                session.setAttribute("userHeight", userDetail.getHeight());
-                session.setAttribute("userWeight", userDetail.getWeight());
-                session.setAttribute("userRecCalories", userDetail.getRecCalories());
-                session.setAttribute("userAllergy", userDetail.getAllergy());
-                session.setAttribute("userGender", userDetail.getGender());
+                if (userDetail != null) {
+                    session.setAttribute("userAge", userDetail.getAge());
+                    session.setAttribute("userHeight", userDetail.getHeight());
+                    session.setAttribute("userWeight", userDetail.getWeight());
+                    session.setAttribute("userRecCalories", userDetail.getRecCalories());
+                    session.setAttribute("userAllergy", userDetail.getAllergy());
+                    session.setAttribute("userGender", userDetail.getGender());
+                }
+                return "redirect:/";
+            } else {
+                model.addAttribute("loginFailed", true); // 로그인 실패 시 오류 메시지 전달
+                return "login"; // 로그인 실패 시 다시 로그인 페이지로 이동
             }
-
-            return "redirect:/"; // 리다이렉트할 때 세션 정보를 유지하고 원하는 도메인으로 이동
         } else {
-            // 로그인 실패 처리 로직
-            // ...
-            return "login"; // 로그인 실패 시 login 페이지로 리다이렉트
+            model.addAttribute("loginFailed", true); // 로그인 실패 시 오류 메시지 전달
+            return "login"; // 로그인 실패 시 다시 로그인 페이지로 이동
         }
     }
+
 
     @PostMapping("logout")
     public String logout(WebRequest request, SessionStatus status, HttpSession session) {
