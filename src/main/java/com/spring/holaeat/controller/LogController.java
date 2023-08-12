@@ -38,6 +38,7 @@ public class LogController {
 
                 session.setAttribute("log", user.getUserId());
                 session.setAttribute("userName", user.getUserName());
+                session.setAttribute("userProfileImg",user.getUserProfileImg()); //프로필 이미지 추가
 
                 if (userDetail != null) {
                     session.setAttribute("userAge", userDetail.getAge());

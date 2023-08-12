@@ -98,7 +98,7 @@
                     </div>
 
                     <li>
-                        <input type="file" id="userProfileImg" name="userProfileImg" accept="image/png, image/jpg, image/jpeg, image.gif">
+                        <input type="hidden" id="userProfileImg" name="userProfileImg" value="data:image/png;base64,">
                     </li>
                     <li>
                         <button type="button" id="submit" name="submit" onclick="checkValue(form)">회원가입</button>

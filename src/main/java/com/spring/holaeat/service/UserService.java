@@ -46,6 +46,19 @@ public class UserService {
 
      }
 
+     //프로필 이미지 수정
+//     public void updateProfileImage(String userId, byte[] profileImage) {
+//          User user = userRepository.findById(userId).orElse(null);
+//
+//          if (user != null) {
+//               user.updateProfile(userDto);
+//
+//          }
+
+          //user.setUserProfileImg(profileImage);
+//          userRepository.save(user);
+//}
+
      //회원탈퇴
      @Transactional
      public void deleteUserById(String userId){
@@ -63,6 +76,7 @@ public class UserService {
           }
 
      }
+
 
 
 

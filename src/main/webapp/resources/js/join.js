@@ -188,10 +188,6 @@ function authCodeCheck() {
             alert("이메일인증 보내기 실패입니다: " + error.responseJSON.message);
 
         });
-    } else {
-        $("#code").prop('disabled', true);
-        $("#code_ch").prop('disabled', true);
-        alert("이메일 중복 확인을 해주세요.");
     }
 }
 

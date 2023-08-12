@@ -27,6 +27,8 @@ public class User extends Timestamp {
     private String userName;
     @Column(unique = true)
     private String userEmail;
+
+    @Column(columnDefinition = "LONGBLOB")
     private byte[]userProfileImg;
 
 
@@ -45,6 +47,10 @@ public class User extends Timestamp {
         this.userName=userDto.getUserName();
         this.userEmail=userDto.getUserEmail();
 
+    }
+
+    public void updateProfile(UserRequestDto userDto){
+        this.userProfileImg=userDto.getUserProfileImg();
     }
 
 

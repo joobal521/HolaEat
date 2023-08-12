@@ -156,7 +156,7 @@ function checkValue() {
                 alert("회원수정 완료")
                 location.href = "/";
             }else{
-                alert("회원수정 실패")
+                alert("기존 비밀번호가 일치하지 않습니다.")
                 location.href="update"
             }
         }).fail(function (error){
