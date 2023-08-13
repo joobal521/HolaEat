@@ -34,22 +34,6 @@ public class ReviewController {
 
     //게시글 작성
 
-//    @PostMapping(value = "/write", consumes ={"multipart/form-data"} )
-//    public String write(WebRequest request,@ModelAttribute ReviewRequestDto reviewRequestDto){
-//        String log = (String)request.getAttribute("log" , WebRequest.SCOPE_SESSION);
-//        System.out.println("log 확인" + log);
-//
-//        if(log ==null)
-//            return "reviewlist";
-//
-//        reviewRequestDto.setUserId(log);
-//        Review review = new Review(reviewRequestDto);
-//
-//        reviewRepository.save(review);
-//        return "reviewlist";
-//    }
-
-
     @PostMapping(value = "/write", consumes = "multipart/form-data")
     public Map<String,Object> write(WebRequest request, @ModelAttribute ReviewRequestDto reviewRequestDto) {
         JSONObject response = new JSONObject();
@@ -80,7 +64,6 @@ public class ReviewController {
 
 
 
-
 //수정
 
     @PutMapping(value = "/{reviewNo}/update", consumes = {"multipart/form-data"})
@@ -93,12 +76,13 @@ public class ReviewController {
                 () -> new IllegalArgumentException("게시글이 존재하지 않습니다.")
 
         );
-        model.addAttribute("blob", ImageParsor.parseBlobToBase64(review.getImg()));
+//        model.addAttribute("blob", ImageParsor.parseBlobToBase64(review.getImg()));
 
         // 이미 추가된 blob 값을 가져옴
 //        String blobValue = (String) model.asMap().get("blob");
 
-//        System.out.println("Blob Value: " + blobValue); // 출력해보기
+//        System.out.println("Blob Value: " + blobValue);
+// 출력해보기
 
 
         System.out.println(log + " = log 확인용");
@@ -136,6 +120,7 @@ public class ReviewController {
 
         reviewService.delete(reviewNo);
         System.out.println("게시글 삭제");
+
 
         return new Response("delete", "success");
 

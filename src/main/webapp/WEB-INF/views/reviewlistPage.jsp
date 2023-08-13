@@ -91,7 +91,9 @@
 
     <div class="container">
         <h1>Review List</h1>
-        <input type="text" id="searchInput" placeholder="Search by Title">
+        <div><input type="text" id="searchInput" placeholder="Search by Title">
+        </div>
+            <button>검색</button>
         <ul id="reviewList">
 
 
