@@ -8,6 +8,7 @@ public class IngredientsResponseDto {
     private String ingrName;
     private Boolean allergy;
     private Boolean month;
+    private byte[] ingrImg;
 
 
 }

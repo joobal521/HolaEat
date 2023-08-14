@@ -4,9 +4,11 @@ import com.spring.holaeat.domain.food.Food;
 import com.spring.holaeat.domain.food_ingr.FoodIngr;
 import com.spring.holaeat.domain.ingredients.Ingredients;
 import com.spring.holaeat.domain.ingredients.IngredientsRequestDto;
+import com.spring.holaeat.domain.review.Review;
 import com.spring.holaeat.service.FoodIngrService;
 import com.spring.holaeat.service.FoodService;
 import com.spring.holaeat.service.IngredientsService;
+import com.spring.holaeat.util.ImageParsor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +16,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class IngredientsController {
@@ -38,6 +42,15 @@ public class IngredientsController {
         List<FoodIngr> monthFoodIngrList = new ArrayList<>(); // 전체 foodIngrList를 담을 리스트
         List<Food> monthFoods = new ArrayList<>();
 
+        Map<String, String> imageMap = new HashMap<>();
+
+        for (Ingredients ingredients : ingredientsList) {
+            if (ingredients.getIngrImg() != null) {
+                String base64Image = ImageParsor.parseBlobToBase64(ingredients.getIngrImg());
+                imageMap.put(ingredients.getIngrId(), base64Image);
+            }
+        }
+
         for (Ingredients ingredient : ingredientsList) {
             String ingrId = String.valueOf(ingredient.getIngrId());
             List<FoodIngr> foodIngrList = foodIngrService.findFoodIdByIngrId(ingrId);
@@ -52,6 +65,7 @@ public class IngredientsController {
 
         model.addAttribute("ingredientsList", ingredientsList);//식재료리스트
         model.addAttribute("monthFoodIngrList", monthFoodIngrList);//
+        model.addAttribute("ingrImg",imageMap);
         model.addAttribute("monthFoods", monthFoods);
 
         return "ingredients"; // ingredients.jsp
