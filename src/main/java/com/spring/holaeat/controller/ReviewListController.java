@@ -73,6 +73,22 @@ public class ReviewListController {
             imageMap.put(review.getReviewNo(), base64Image);
         }
     }
+
+    int totalLength = 0;
+
+    totalLength = reviewRepository.findAll().size();
+    if(totalLength>0){
+        if(totalLength % 10 !=0){
+            pageNumber = totalLength/10 +1;
+        }else{
+            pageNumber = totalLength/10;
+        }
+    }
+
+    model.addAttribute("pageNumber",Integer.valueOf(pageNumber));
+
+
+
     model.addAttribute("imageMapPage", imageMap);
 
     return "reviewlistPage";

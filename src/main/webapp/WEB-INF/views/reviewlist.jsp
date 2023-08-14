@@ -182,10 +182,10 @@
 
 
 
-        <!--/* 버튼 */-->
-        <p class="btn_set tr">
-            <a th:href="@{/post/write.do}" class="btns btn_st3 btn_mid">글쓰기</a>
-        </p>
+<%--        <!--/* 버튼 */-->--%>
+<%--        <p class="btn_set tr">--%>
+<%--            <a th:href="@{/post/write.do}" class="btns btn_st3 btn_mid">글쓰기</a>--%>
+<%--        </p>--%>
 
 
 
