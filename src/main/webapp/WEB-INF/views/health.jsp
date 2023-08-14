@@ -17,6 +17,21 @@
 <section>
     <div class="wrap">
         <div class="container">
+<%--            <div id="health-box">--%>
+<%--                <c:forEach items="${health}" var="health" varStatus="loop">--%>
+<%--                    <a href="<c:url value='/review/${review.reviewNo}'/>">--%>
+<%--                        <div id = review >--%>
+<%--                            <div>NO. ${health.healthNo}</div>--%>
+<%--                            <div>작성자 : ${review.userId}</div>--%>
+<%--                            <div>제목 : ${review.title}</div>--%>
+<%--                            <c:if test="${imageMap[review.reviewNo] != null}">--%>
+<%--                                <img src="data:image/png;base64,${imageMap[review.reviewNo]}" id="img" name="img" alt="Review Image">--%>
+<%--                            </c:if>--%>
+<%--                                &lt;%&ndash;                <img src="data:image/png;base64,${blobs[loop.index]}" id="img" name="img" alt="Review Image">&ndash;%&gt;--%>
+<%--                        </div>--%>
+<%--                    </a>--%>
+<%--                </c:forEach>--%>
+<%--            </div>--%>
             <div class="con_1">
                 <h2>음식이 싱거울 땐, 소금을 넣어라.</h2>
                 <p>내용 1</p>

@@ -28,8 +28,6 @@ public class User extends Timestamp {
     @Column(unique = true)
     private String userEmail;
 
-    @Column(columnDefinition = "LONGBLOB")
-    private byte[]userProfileImg;
 
 
     //생성자
@@ -38,7 +36,7 @@ public class User extends Timestamp {
         this.userPassword=userDto.getUserPassword();
         this.userName=userDto.getUserName();
         this.userEmail=userDto.getUserEmail();
-        this.userProfileImg=userDto.getUserProfileImg();
+
     }
 
     //기능 메소드
@@ -49,9 +47,7 @@ public class User extends Timestamp {
 
     }
 
-    public void updateProfile(UserRequestDto userDto){
-        this.userProfileImg=userDto.getUserProfileImg();
-    }
+
 
 
 
