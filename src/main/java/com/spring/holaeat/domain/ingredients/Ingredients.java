@@ -1,13 +1,10 @@
 package com.spring.holaeat.domain.ingredients;
 
-import com.spring.holaeat.domain.review.ReviewRequestDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import java.io.IOException;
+import javax.persistence.*;
 
 @NoArgsConstructor
 @Getter
@@ -15,17 +12,37 @@ import java.io.IOException;
 @Table(name="ingredients")
 public class Ingredients {
     @Id
-    private int ingrId;
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "org.hibernate.id.UUIDGenerator")
+    private String ingrId;
+
     private String ingrName;
     private Boolean allergy;
     private Boolean month;
+    private byte[] ingrImg;
 
 
-    public Ingredients(int ingrId, String ingrName, Boolean allergy, Boolean month) {
+    public Ingredients(String ingrId, String ingrName, Boolean allergy, Boolean month,byte[] ingrImg) {
         this.ingrId = ingrId;
         this.ingrName = ingrName;
         this.allergy = allergy;
         this.month = month;
+        this.ingrImg = ingrImg;
+    }
+
+    public Ingredients(String ingrName, Boolean allergy, Boolean month,byte[] ingrImg) {
+        this.ingrName = ingrName;
+        this.allergy = allergy;
+        this.month = month;
+        this.ingrImg = ingrImg;
+
+    }
+
+    public Ingredients(IngredientsRequestDto ingredientsRequestDto) {
+        this.ingrName = ingredientsRequestDto.getIngrName();
+        this.allergy = ingredientsRequestDto.getAllergy();
+        this.month = ingredientsRequestDto.getMonth();
+        this.ingrImg = ingredientsRequestDto.getIngrImg();
     }
 
 

@@ -22,9 +22,10 @@ document.addEventListener("DOMContentLoaded", function () {
 function loadRecipe(btn, modal) {
     var foodId = btn.getAttribute("data-foodid");
     var $recipeContent = modal.querySelector(".recipe-content");
+    var ingrid = document.getElementById('#ingrId-modal').value;
 
     $.ajax({
-        url: "getRecipe/" + foodId,
+        url: "getRecipe/" + foodId+"?"+ingrid,
         type: "GET",
         dataType: "html",
         success: function (response) {

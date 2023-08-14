@@ -10,7 +10,8 @@
 <html>
 <head>
     <title>Title</title>
-    <link rel="stylesheet" href="../style/form.css">
+    <c:set var="path" value="${pageContext.request.contextPath}"/>
+    <link rel="stylesheet" type="text/css" href="${path}/resources/style/form.css">
 </head>
 <c:import url="header.jsp"/>
 <body>

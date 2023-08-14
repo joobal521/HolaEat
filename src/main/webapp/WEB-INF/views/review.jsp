@@ -58,6 +58,44 @@
             </div>
         </c:if>
 
+
+    <!-- 댓글 부분 -->
+    <div class="comment-section">
+        <div class="comment-write">
+            <span>댓글쓰기 </span>
+            <form method="POST" class="comment">
+            <textarea cols="80" rows="10" id="msg-box" name="msg"
+                    <c:choose>
+                        <c:when test="${empty log}">
+                            placeholder="댓글을 작성하시려면 로그인을 해주세요." readonly
+                        </c:when>
+                        <c:otherwise>
+                            placeholder="주제와 무관한 댓글, 악플은 삭제될 수 있습니다."
+                        </c:otherwise>
+                    </c:choose>></textarea>
+                <div class="commentBtn">
+                    <input type="button" id="commentBtn" value="등록하기">
+                </div>
+            </form>
+        </div>
+        <!-- 댓글 출력할 공간 -->
+        <div id="comment-container">
+            <c:if test="${not empty commentList}">
+                <c:forEach var="li" items="${commentList}">
+                    <div class="comment-item">
+                        <p>${li.getUserId()}</p>
+                        <br>
+                        <p>${li.getContent()}</p>
+                        <p>${li.getCreatedAt()}</p>
+                    </div>
+                </c:forEach>
+            </c:if>
+        </div>
+    </div>
+
+
+
+
 </section>
 </body>
 <script src="${path}/resources/js/review.js"></script>

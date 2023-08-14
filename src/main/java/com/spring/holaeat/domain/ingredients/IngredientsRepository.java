@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface IngredientsRepository extends JpaRepository<Ingredients,Integer> {
+public interface IngredientsRepository extends JpaRepository<Ingredients,String> {
 
     @Query(nativeQuery = true, value = "SELECT * FROM ingredients WHERE month = 1")
     List<Ingredients> findByMonthEquals();
@@ -14,7 +14,10 @@ public interface IngredientsRepository extends JpaRepository<Ingredients,Integer
 
     List<Ingredients> findAll();
 
-    Ingredients findByIngrId(int id);
+    void deleteIngredientsByIngrId(String ingrId);
+
+    Ingredients findByIngrId(String id);
+
 
 
 }

@@ -66,7 +66,7 @@ function checkValueWrite(htmlForm) {
 
         $.ajax(settings).done(function (response) {
             console.log(response);
-            location.href = "reviewlist";
+            location.href = "reviewlist/1";
         });
 
     }
@@ -180,7 +180,7 @@ function CheckValueDelete(htmlForm, reviewNo) {
 
         $.ajax(settings).done(function (response) {
             console.log(response);
-            location.href = "reviewlist";
+            location.href = "reviewlist/1";
         });
 
     }

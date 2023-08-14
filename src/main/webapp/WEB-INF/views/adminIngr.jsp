@@ -37,6 +37,8 @@
                 <button class="editBtn" data-id="${ingrList.ingrId}">수정하기</button>
                 <button class="updateBtn" data-id="${ingrList.ingrId}" style="display: none;">수정완료</button>
                 <button class="cancelBtn" data-id="${ingrList.ingrId}" style="display: none;">수정취소</button>
+                <input type="file" id="ingrImg" name="ingrImg" accept="image/png, image/jpg, image/jpeg, image.gif">
+                <button class="imgUpdate" data-id="${ingrList.ingrImg}" style="display: none;">사진업로드</button>
             </td>
             <td>
                 <button class="removeBtn" data-id="${ingrList.ingrId}">삭제하기</button>
@@ -47,6 +49,25 @@
 </table>
 <div>
     <input type="button" id="addBtn" value="추가하기">
+    <div id="addModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <form id="addForm">
+                <label for="ingrName">재료 이름:</label>
+                <input type="text" id="ingrName" name="ingrName" required><br><br>
+
+                <label for="month">이달의 재료:</label>
+                <input type="checkbox" id="month" name="month"><br><br>
+
+                <label for="allergy">알러지:</label>
+                <input type="checkbox" id="allergy" name="allergy"><br><br>
+
+                <label for="ingrImg">사진:</label>
+                <input type="file" id="addImg" name="addImg" accept="image/png, image/jpg, image/jpeg, image.gif">
+                <input type="submit" value="추가완료">
+            </form>
+        </div>
+    </div>
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -78,20 +99,22 @@
 
             // TODO: 변경된 데이터를 백엔드로 보내고 처리하는 로직을 추가
             $.ajax({
-                url: "adminIngr/" + ingrId, // 백엔드 엔드포인트 주소
+                url: "adminIngr/" + ingrId,
                 method: "PUT",
-                data: {
+                contentType: "application/json",
+                data: JSON.stringify({
                     ingrName: ingrName,
                     allergy: allergy,
                     month: month
-                },
+                }),
                 success: function(response) {
-                    $(".section").html(response); // .section에 응답 페이지 삽입
+                    $(".section").html(response);
                 },
                 error: function() {
                     alert("데이터 업데이트에 실패했습니다.");
                 }
             });
+
         });
 
 
@@ -113,14 +136,63 @@
 
         $(".removeBtn").click(function() {
             var ingrId = $(this).data("id");
-            // TODO: 삭제 로직을 여기에 추가
-            alert("삭제하기: " + ingrId);
+
+            $.ajax({
+                url: "adminIngr/delete/" + ingrId,
+                method: "DELETE",
+                success: function(response) {
+                    // Handle success if needed
+                    alert("삭제하기: " + ingrId);
+                },
+                error: function() {
+                    alert("삭제에 실패했습니다.");
+                }
+            });
         });
 
-        $("#addBtn").click(function() {
-            // TODO: 추가 로직을 여기에 추가
-            alert("추가하기");
 
+
+        $("#addBtn").click(function() {
+            $("#addModal").css("display", "block");
+        });
+
+        $(".close").click(function() {
+            $("#addModal").css("display", "none");
+        });
+
+        $(window).click(function(event) {
+            if (event.target == document.getElementById("addModal")) {
+                $("#addModal").css("display", "none");
+            }
+        });
+
+        // Handle the form submission
+        $("#addForm").submit(function(event) {
+            event.preventDefault();
+
+            var ingrName = $("#ingrName").val();
+            var month = $("#month").prop("checked");
+            var allergy = $("#allergy").prop("checked");
+
+            // TODO: Send the data to the backend using AJAX
+            $.ajax({
+                url: "adminIngr/create",
+                method: "POST",
+                contentType: "application/json",
+                data: JSON.stringify({
+                    ingrName: ingrName,
+                    month: month,
+                    allergy: allergy
+                }),
+                success: function(response) {
+                    alert("추가 완료");
+                    $("#addModal").css("display", "none");
+                    // TODO: Update the ingredient list if needed
+                },
+                error: function() {
+                    alert("추가 실패");
+                }
+            });
         });
     });
 </script>
