@@ -1,7 +1,7 @@
 package com.spring.holaeat.service;
 
-import com.spring.holaeat.domain.health_img.HealthImg;
-import com.spring.holaeat.domain.health_img.HealthImgRequestDto;
+import com.spring.holaeat.domain.photo.Photo;
+import com.spring.holaeat.domain.photo.PhotoRequestDto;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
@@ -16,18 +16,18 @@ import java.util.List;
 @Component
 public class FileHandler {
 
-    private final HealthImgService healthImgService;
+    private final PhotoService photoService;
 
-    public FileHandler(HealthImgService healthImgService){
-        this.healthImgService=healthImgService;
+    public FileHandler(PhotoService photoService){
+        this.photoService=photoService;
 
     }
 
-    public List<HealthImg> parseFileInfo(
+    public List<Photo> parseFileInfo(
             List<MultipartFile> multipartFiles
     )throws Exception{
         //반환할 파일 리스트
-        List<HealthImg> fileList=new ArrayList<>();
+        List<Photo> fileList=new ArrayList<>();
 
         //전달되어 온 파일이 존재할 경우
         if(!CollectionUtils.isEmpty(multipartFiles)) {
@@ -78,21 +78,21 @@ public class FileHandler {
                 String new_file_name = System.nanoTime() + originalFileExtension;
 
                 // 파일 DTO 생성
-                HealthImgRequestDto healthImgDto = HealthImgRequestDto.builder()
+                PhotoRequestDto photoDto = PhotoRequestDto.builder()
                         .fileName(multipartFile.getOriginalFilename())
                         .filePath(path + File.separator + new_file_name)
                         .fileSize(multipartFile.getSize())
                         .build();
 
                 // 파일 DTO 이용하여 Photo 엔티티 생성
-                HealthImg healthImg = new HealthImg(
-                        healthImgDto.getFileName(),
-                        healthImgDto.getFilePath(),
-                        healthImgDto.getFileSize()
+                Photo photo = new Photo(
+                        photoDto.getFileName(),
+                        photoDto.getFilePath(),
+                        photoDto.getFileSize()
                 );
 
                 // 생성 후 리스트에 추가
-                fileList.add(healthImg);
+                fileList.add(photo);
 
                 // 업로드 한 파일 데이터를 지정한 파일에 저장
                 file = new File(absolutePath + path + File.separator + new_file_name);

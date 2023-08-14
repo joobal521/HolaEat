@@ -1,6 +1,6 @@
-package com.spring.holaeat.domain.health_img;
+package com.spring.holaeat.domain.photo;
 
-import com.spring.holaeat.domain.health_board.HealthBoard;
+import com.spring.holaeat.domain.health.Health;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -11,8 +11,8 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @Entity
-@Table(name="health_img")
-public class HealthImg  {
+@Table(name="photo")
+public class Photo {
 
     @Id
     private Long fileId;
@@ -20,7 +20,7 @@ public class HealthImg  {
     //다대일
     @ManyToOne
     @JoinColumn(name="health_no")
-    private HealthBoard healthBoard;
+    private Health health;
 
     @Column(nullable = false)
     private String fileName; //파일 원본명
@@ -32,20 +32,20 @@ public class HealthImg  {
 
 
     @Builder
-    public HealthImg(String fileName, String filePath, Long fileSize){
+    public Photo(String fileName, String filePath, Long fileSize){
         this.fileName=fileName;
         this.filePath=filePath;
         this.fileSize=fileSize;
     }
 
     //healthBoard정보 저장
-    public void setHealthBoard(HealthBoard healthBoard){
-        this.healthBoard=healthBoard;
+    public void setHealth(Health health){
+        this.health=health;
 
         //게시글에 현재 파일이 존재하지 않는다면
-        if(!healthBoard.getHealthImg().contains(this)){
+        if(!health.getPhoto().contains(this)){
             //파일 추가
-            healthBoard.getHealthImg().add(this);
+            health.getPhoto().add(this);
         }
     }
 

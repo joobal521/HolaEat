@@ -1,11 +1,10 @@
-package com.spring.holaeat.domain.health_board;
+package com.spring.holaeat.domain.health;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.spring.holaeat.domain.admin.Admin;
-import com.spring.holaeat.domain.health_img.HealthImg;
+import com.spring.holaeat.domain.photo.Photo;
 import com.spring.holaeat.util.Timestamp;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -16,8 +15,8 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Entity
-@Table(name="health_board")
-public class HealthBoard extends Timestamp {
+@Table(name="health")
+public class Health extends Timestamp {
 
 
     @Id
@@ -36,20 +35,20 @@ public class HealthBoard extends Timestamp {
     private String content;
 
     @OneToMany(
-            mappedBy = "health_board",
+            mappedBy = "health",
             cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
             orphanRemoval = true
     )
 
-    private List<HealthImg> healthImg= new ArrayList<>();
+    private List<Photo> photo= new ArrayList<>();
 
 
 
 
-    public HealthBoard(HealthBoardRequestDto healthBoardDto){
-     this.admin=healthBoardDto.getAdmin();
-     this.title=healthBoardDto.getTitle();
-     this.content=healthBoardDto.getContent();
+    public Health(HealthRequestDto healthDto){
+     this.admin=healthDto.getAdmin();
+     this.title=healthDto.getTitle();
+     this.content=healthDto.getContent();
  }
 
 //    @Builder
@@ -65,12 +64,12 @@ public void update(String title, String content){
 }
 
 //healthBoard에서 파일 처리 위함
-    public void addHealthImg(HealthImg healthImg){
-     this.healthImg.add(healthImg);
+    public void addPhoto(Photo photo){
+     this.photo.add(photo);
      //게시글에 파일이 저장 되어 있지 않은 경우
-        if(healthImg.getHealthBoard()!=this) {
+        if(photo.getHealth()!=this) {
             //파일 저장
-            healthImg.setHealthBoard(this);
+            photo.setHealth(this);
         }
 
     }

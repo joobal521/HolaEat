@@ -1,4 +1,4 @@
-package com.spring.holaeat.domain.health_board;
+package com.spring.holaeat.domain.health;
 
 import lombok.Data;
 import org.springframework.web.multipart.MultipartFile;
@@ -6,7 +6,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 @Data
-public class HealthBoardFileVo {
+public class HealthFileVo {
     private String id;
     private String title;
     private String content;

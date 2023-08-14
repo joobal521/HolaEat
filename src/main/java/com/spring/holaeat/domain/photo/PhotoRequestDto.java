@@ -1,7 +1,6 @@
-package com.spring.holaeat.domain.health_img;
+package com.spring.holaeat.domain.photo;
 
 
-import com.spring.holaeat.domain.health_board.HealthBoard;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,7 +8,7 @@ import lombok.Setter;
 @Setter
 @Getter
 @Builder
-public class HealthImgRequestDto {
+public class PhotoRequestDto {
     private Long fileId;
     //private HealthBoard healthBoard;
     private String fileName;

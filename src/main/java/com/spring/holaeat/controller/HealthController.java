@@ -1,28 +1,24 @@
 package com.spring.holaeat.controller;
 
-import com.spring.holaeat.domain.health_board.HealthBoard;
-import com.spring.holaeat.domain.health_board.HealthBoardFileVo;
-import com.spring.holaeat.domain.health_board.HealthBoardRepository;
-import com.spring.holaeat.domain.health_board.HealthBoardRequestDto;
-import com.spring.holaeat.service.HealthBoardService;
-import com.spring.holaeat.service.HealthImgService;
+import com.spring.holaeat.domain.health.HealthFileVo;
+import com.spring.holaeat.domain.health.HealthRepository;
+import com.spring.holaeat.domain.health.HealthRequestDto;
+import com.spring.holaeat.service.HealthService;
 import lombok.RequiredArgsConstructor;
 import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.request.WebRequest;
 
-import java.util.List;
 import java.util.Map;
 
 @RequiredArgsConstructor
 @RestController
 
 @RequestMapping("api/v1/health")
-public class HealthBoardController {
+public class HealthController {
 
-    private final HealthBoardService healthBoardService;
-    private final HealthBoardRepository healthBoardRepository;
+    private final HealthService healthService;
+    private final HealthRepository healthRepository;
 
 
     //게시글 작성(관리지만)
@@ -37,15 +33,15 @@ public class HealthBoardController {
 
     @PostMapping("write")
     @ResponseStatus(HttpStatus.CREATED)
-    public Map boardCreate(@RequestBody HealthBoardRequestDto healthBoardDto, HealthBoardFileVo healthBoardFileVo)throws Exception{
+    public Map boardCreate(@RequestBody HealthRequestDto healthDto, HealthFileVo healthFileVo)throws Exception{
         JSONObject response =new JSONObject();
 
 
         try {
             //admin으로 조회하는 메소드
             //Admin admin=
-            Long.parseLong((healthBoardFileVo.getId()));
-            healthBoardService.create(healthBoardDto,healthBoardFileVo.getFile());
+            Long.parseLong((healthFileVo.getId()));
+            healthService.create(healthDto,healthFileVo.getFile());
             response.put("result",true);
 
         }catch (IllegalArgumentException e){
