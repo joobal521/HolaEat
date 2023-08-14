@@ -14,6 +14,7 @@ public class IngredientsRequestDto {
     private String ingrName;
     private Boolean allergy;
     private Boolean month;
+    private byte[] ingrImg;
 
 
 

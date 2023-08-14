@@ -37,6 +37,8 @@
                 <button class="editBtn" data-id="${ingrList.ingrId}">수정하기</button>
                 <button class="updateBtn" data-id="${ingrList.ingrId}" style="display: none;">수정완료</button>
                 <button class="cancelBtn" data-id="${ingrList.ingrId}" style="display: none;">수정취소</button>
+                <input type="file" id="ingrImg" name="ingrImg" accept="image/png, image/jpg, image/jpeg, image.gif">
+                <button class="imgUpdate" data-id="${ingrList.ingrImg}" style="display: none;">사진업로드</button>
             </td>
             <td>
                 <button class="removeBtn" data-id="${ingrList.ingrId}">삭제하기</button>
@@ -60,11 +62,12 @@
                 <label for="allergy">알러지:</label>
                 <input type="checkbox" id="allergy" name="allergy"><br><br>
 
+                <label for="ingrImg">사진:</label>
+                <input type="file" id="addImg" name="addImg" accept="image/png, image/jpg, image/jpeg, image.gif">
                 <input type="submit" value="추가완료">
             </form>
         </div>
     </div>
-
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -98,7 +101,7 @@
             $.ajax({
                 url: "adminIngr/" + ingrId,
                 method: "PUT",
-                contentType: "application/json",  // Set the Content-Type header
+                contentType: "application/json",
                 data: JSON.stringify({
                     ingrName: ingrName,
                     allergy: allergy,
@@ -165,7 +168,7 @@
 
         // Handle the form submission
         $("#addForm").submit(function(event) {
-            event.preventDefault(); // Prevent the default form submission behavior
+            event.preventDefault();
 
             var ingrName = $("#ingrName").val();
             var month = $("#month").prop("checked");
@@ -173,7 +176,7 @@
 
             // TODO: Send the data to the backend using AJAX
             $.ajax({
-                url: "adminIngr/create", // URL to the backend endpoint for adding ingredient
+                url: "adminIngr/create",
                 method: "POST",
                 contentType: "application/json",
                 data: JSON.stringify({

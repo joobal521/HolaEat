@@ -27,6 +27,7 @@
                       monthFoodIngr.foodId==monthFood.foodId}">
                         <input type="button" class="foodbtn" value="${monthFood.foodName}"
                                data-foodid="${monthFood.foodId}">
+                        <input type="hidden" id="ingrId-modal" value="${ingredient.ingrId}">
                         <div class="ingr-modal">
                             <div class="ingr-modal-content">
                                 <h2>${monthFood.foodName}</h2>

@@ -26,6 +26,7 @@ public class AdminController {
         this.ingredientsService = ingredientsService;
     }
 
+    //관리자 로그인
 @PostMapping("gainpower")
 public String gainPower(@RequestParam("adminid") String id, @RequestParam("adminpwd") String pwd, HttpSession session) {
     List<Admin> admin = adminRepository.findAdminByIdAndPassword(id, pwd);
@@ -40,6 +41,7 @@ public String gainPower(@RequestParam("adminid") String id, @RequestParam("admin
     }
 }
 
+//재료관리
     @GetMapping("adminIngr")
     public String getIngredients(Model model){
         List<Ingredients> list = ingredientsService.getAllIngredients();
@@ -48,8 +50,9 @@ public String gainPower(@RequestParam("adminid") String id, @RequestParam("admin
         return "adminIngr";
     }
 
-    @PostMapping("adminIngr/create")
-    public String addIngredient(@RequestBody IngredientsRequestDto ingredientsRequestDto) {
+    //재료정보생성
+    @PostMapping(value="adminIngr/create",consumes = "multipart/form-data")
+    public String addIngredient(@ModelAttribute IngredientsRequestDto ingredientsRequestDto) {
         System.out.println("creating");
 
         String id = ingredientsService.generateIngrId();
@@ -66,7 +69,8 @@ public String gainPower(@RequestParam("adminid") String id, @RequestParam("admin
         return "adminIngr";
     }
 
-    @PutMapping("adminIngr/{ingrId}")
+    //재료정보수정
+    @PutMapping(value = "adminIngr/{ingrId}",consumes = "multipart/form-data")
     public String updateIngredient(@PathVariable String ingrId, @RequestBody IngredientsRequestDto ingredientsRequestDto) {
         Ingredients ingredient = ingredientsService.findById(ingrId);
         ingredientsService.update(ingredient, ingredientsRequestDto);
@@ -74,12 +78,14 @@ public String gainPower(@RequestParam("adminid") String id, @RequestParam("admin
         return "adminIngr";
     }
 
+    //재료삭제
     @DeleteMapping("adminIngr/delete/{ingrId}")
     public String deleteIngrByID(@PathVariable String ingrId){
         ingredientsService.deleteIngredientsByIngrId(ingrId);
 
         return "adminIngr";
     }
+
 
 
 

@@ -19,25 +19,30 @@ public class Ingredients {
     private String ingrName;
     private Boolean allergy;
     private Boolean month;
+    private byte[] ingrImg;
 
 
-    public Ingredients(String ingrId, String ingrName, Boolean allergy, Boolean month) {
+    public Ingredients(String ingrId, String ingrName, Boolean allergy, Boolean month,byte[] ingrImg) {
         this.ingrId = ingrId;
         this.ingrName = ingrName;
         this.allergy = allergy;
         this.month = month;
+        this.ingrImg = ingrImg;
     }
 
-    public Ingredients(String ingrName, Boolean allergy, Boolean month) {
+    public Ingredients(String ingrName, Boolean allergy, Boolean month,byte[] ingrImg) {
         this.ingrName = ingrName;
         this.allergy = allergy;
         this.month = month;
+        this.ingrImg = ingrImg;
+
     }
 
     public Ingredients(IngredientsRequestDto ingredientsRequestDto) {
         this.ingrName = ingredientsRequestDto.getIngrName();
         this.allergy = ingredientsRequestDto.getAllergy();
         this.month = ingredientsRequestDto.getMonth();
+        this.ingrImg = ingredientsRequestDto.getIngrImg();
     }
 
 
