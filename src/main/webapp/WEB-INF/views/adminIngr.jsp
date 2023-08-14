@@ -120,6 +120,7 @@
         $("#addBtn").click(function() {
             // TODO: 추가 로직을 여기에 추가
             alert("추가하기");
+
         });
     });
 </script>

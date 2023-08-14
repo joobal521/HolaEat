@@ -56,7 +56,7 @@ public String gainPower(@RequestParam("adminid") String id, @RequestParam("admin
 
         ingredientsService.update(ingredient,ingredientsRequestDto);
 
-        return "admin/adminIngr";
+        return "adminIngr";
     }
 
 
