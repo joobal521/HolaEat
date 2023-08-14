@@ -3,7 +3,6 @@ package com.spring.holaeat.controller;
 import com.spring.holaeat.domain.admin.Admin;
 import com.spring.holaeat.domain.admin.AdminRepository;
 import com.spring.holaeat.domain.ingredients.Ingredients;
-import com.spring.holaeat.domain.ingredients.IngredientsRepository;
 import com.spring.holaeat.domain.ingredients.IngredientsRequestDto;
 import com.spring.holaeat.service.IngredientsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +21,7 @@ public class AdminController {
 
 
     @Autowired
-    public AdminController(AdminRepository adminRepository, IngredientsService ingredientsService) {
+    public AdminController(AdminRepository adminRepository, IngredientsService ingredientsService, IngredientsRequestDto ingredientsRequestDto) {
         this.adminRepository = adminRepository;
         this.ingredientsService = ingredientsService;
     }
@@ -49,12 +48,35 @@ public String gainPower(@RequestParam("adminid") String id, @RequestParam("admin
         return "adminIngr";
     }
 
+    @PostMapping("adminIngr/create")
+    public String addIngredient(@RequestBody IngredientsRequestDto ingredientsRequestDto) {
+        System.out.println("creating");
+
+        String id = ingredientsService.generateIngrId();
+        System.out.println(id);
+        System.out.println(ingredientsRequestDto.getIngrName());
+        System.out.println(ingredientsRequestDto.getIngrId());
+        System.out.println(ingredientsRequestDto.getAllergy());
+        System.out.println(ingredientsRequestDto.getMonth());
+        ingredientsRequestDto.setIngrId(id);
+        System.out.println(ingredientsRequestDto.getIngrId());
+        ingredientsService.addIngredient(ingredientsRequestDto);
+        System.out.println("created");
+
+        return "adminIngr";
+    }
+
     @PutMapping("adminIngr/{ingrId}")
-    public String updateIngredient(@PathVariable int ingrId, @ModelAttribute IngredientsRequestDto ingredientsRequestDto){
-
+    public String updateIngredient(@PathVariable String ingrId, @RequestBody IngredientsRequestDto ingredientsRequestDto) {
         Ingredients ingredient = ingredientsService.findById(ingrId);
+        ingredientsService.update(ingredient, ingredientsRequestDto);
 
-        ingredientsService.update(ingredient,ingredientsRequestDto);
+        return "adminIngr";
+    }
+
+    @DeleteMapping("adminIngr/delete/{ingrId}")
+    public String deleteIngrByID(@PathVariable String ingrId){
+        ingredientsService.deleteIngredientsByIngrId(ingrId);
 
         return "adminIngr";
     }

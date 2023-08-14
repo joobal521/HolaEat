@@ -16,5 +16,5 @@ public class Prefer {
     private Long id;
 
     private String userId; // userId를 기본 키로 사용
-    private int ingrId;
+    private String ingrId;
 }
