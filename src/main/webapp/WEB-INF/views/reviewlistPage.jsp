@@ -18,21 +18,22 @@
             flex-wrap: wrap;
         }
 
-        #review{
+        #review {
             display: flex;
             flex-direction: column;
             align-items: center;
-            width : 200px;
-            height: 250px;
-            border : solid 1px lightblue;
+            width: 400px;
+            height: 500px;
+            border: solid 1px lightblue;
             padding: 10px;
             margin: 10px;
 
         }
 
-        #img{
-            width: 100px;
-            height: 100px;
+        #img {
+            width: 300px;
+            height: 400px;
+            /*object-fit: cover;*/
         }
 
         /*페이징*/
@@ -56,7 +57,7 @@
         /*    margin-top: 20px;*/
         /*}*/
 
-        .user_profile li{
+        .user_profile li {
             display: inline-block;
         }
 
@@ -76,12 +77,11 @@
         }
 
 
-        .paging li>a {
+        .paging li > a {
             padding: 8px 8px;
             transition: background-color .3s;
             color: black;
         }
-
 
 
         .paging li:hover {
@@ -89,10 +89,11 @@
             /*background: #ffffff;*/
             font-weight: bold;
             transition: 0.1s ease-in-out;
-            border-radius:50px;
+            border-radius: 50px;
 
         }
-        .paging li>a:hover{
+
+        .paging li > a:hover {
             color: #ffffff;
         }
 
@@ -111,23 +112,29 @@
             글쓰기
         </a>
     </div>
-<div id="review-container">
-    <c:forEach items="${reviewlistPage}" var="review" varStatus="loop">
-        <a href="<c:url value='/review/${review.reviewNo}'/>">
-            <div id = review >
-                <div>NO. ${review.reviewNo}</div>
-                <div>작성자 : ${review.userId}</div>
-                <div>제목 : ${review.title}</div>
-                <c:if test="${imageMapPage[review.reviewNo] != null}">
-                    <img src="data:image/png;base64,${imageMap[review.reviewNo]}" id="img" name="img" alt="Review Image">
-                </c:if>
-<%--                <img src="data:image/png;base64,${blobs[loop.index]}" id="img" name="img" alt="Review Image">--%>
-            </div>
-        </a>
-    </c:forEach>
-</div>
+    <div id="review-container">
+        <c:forEach items="${reviewlistPage}" var="review" varStatus="loop">
+            <a href="<c:url value='/review/${review.reviewNo}'/>">
+                <div id=review>
+                    <div class="user_profile">
+                        <ul>
+                            <li class="reviewNo">NO. ${review.reviewNo}</li>
+                            <li class="userId">작성자 : ${review.userId}</li>
+                        </ul>
+                    </div>
+                    <div>제목 : ${review.title}</div>
+                        <%--이미지 출력--%>
+                    <c:set var="imageBase64" value="${imageMapPage[review.reviewNo]}"></c:set>
+                    <c:if test="${not empty imageBase64}">
+                        <img src="data:image/jpeg;base64,${imageBase64}" id="img" name="img" alt="Review Image">
+                    </c:if>
 
-<%--    페이징--%>
+                </div>
+            </a>
+        </c:forEach>
+    </div>
+
+    <%--    페이징--%>
 
     <div class="container">
         <h1>Review List</h1>
@@ -138,7 +145,7 @@
 
                 <li><a href="#" class="prevPageBtn"><</a></li>
                 <c:forEach var="i" begin="1" end="${pageNumber}" step="1">
-                <li><a href="/reviewlist/${i}">${i}</a></li>
+                    <li><a href="/reviewlist/${i}">${i}</a></li>
                 </c:forEach>
 
                 <li><a href="#" class="nextPageBtn">></a></li>
@@ -156,16 +163,12 @@
                         <option value="">제목</option>
                         <option value="">작성자</option>
                     </select>
-                    <input type="text" id="searchInput" placeholder="검색어를 입력해 주세요." title="검색창" />
-                    <button type="button" class="searchBtn"><i class="fas fa-search"></i><span class="search">검색</span></button>
+                    <input type="text" id="searchInput" placeholder="검색어를 입력해 주세요." title="검색창"/>
+                    <button type="button" class="searchBtn"><i class="fas fa-search"></i><span class="search">검색</span>
+                    </button>
                 </div>
             </form>
         </div>
-
-
-
-
-
 
 
     </div>

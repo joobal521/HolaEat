@@ -20,6 +20,15 @@ public class ReviewService {
     private final ReviewRepository reviewRepository;
 
 
+    //페이징처리추가(8/14)
+    public Page<Review> getReviewList(Pageable pageable){
+        return reviewRepository.findAll(pageable);
+    }
+
+
+
+
+
     //페이징으로 추가1 - 비지니스로직을 처리하는 서비스 클래스 생성
 
 
