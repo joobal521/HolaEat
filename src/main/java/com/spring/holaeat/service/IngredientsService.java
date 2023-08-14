@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Random;
 
 @RequiredArgsConstructor
 @Service
@@ -23,18 +24,17 @@ public class IngredientsService {
     private final PreferRepository preferRepository;
     private final DislikeRepository dislikeRepository;
 
-
     public List<Ingredients> findByMonthEquals() {
         List<Ingredients> list = ingredientsRepository.findByMonthEquals();
         return list;
     }
 
-    public int findIngrIdByName(String ingrName) {
+    public String findIngrIdByName(String ingrName) {
         Ingredients ingredient = ingredientsRepository.findByIngrName(ingrName);
-        return ingredient != null ? ingredient.getIngrId() : 0;
+        return ingredient != null ? ingredient.getIngrId() : "0";
     }
 
-    public Ingredients findById(int id) {
+    public Ingredients findById(String id) {
         Ingredients ingredient = ingredientsRepository.findByIngrId(id);
         return ingredient;
     }
@@ -46,23 +46,49 @@ public class IngredientsService {
         ingredientsRepository.save(ingredient);
     }
 
+    public void addIngredient(IngredientsRequestDto ingredientsRequestDto){
+        Ingredients ingredients = new Ingredients(ingredientsRequestDto);
+        System.out.println("service:"+ingredientsRequestDto.getIngrId());
+        ingredientsRepository.save(ingredients);
+    }
+    @Transactional
+    public void deleteIngredientsByIngrId(String id){
+        ingredientsRepository.deleteIngredientsByIngrId(id);
+    }
+
 
     public List<Ingredients> getAllIngredients(){
         List<Ingredients> list = ingredientsRepository.findAll();
         return list;
     }
-    public void savePreferredIngredient(String userId, int ingrId) {
+    public void savePreferredIngredient(String userId, String ingrId) {
         Prefer prefer = new Prefer();
         prefer.setUserId(userId);
         prefer.setIngrId(ingrId);
         preferRepository.save(prefer);
     }
 
-    public void saveDislikedIngredient(String userId, int ingrId) {
+    public void saveDislikedIngredient(String userId, String ingrId) {
         Dislike dislike = new Dislike();
         dislike.setUserId(userId);
         dislike.setIngrId(ingrId); // int 타입으로 설정
         dislikeRepository.save(dislike);
+    }
+
+    public String generateIngrId() {
+        String CHARACTERS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        int ID_LENGTH = 10;
+
+        StringBuilder idBuilder = new StringBuilder();
+        Random random = new Random();
+
+        for (int i = 0; i < ID_LENGTH; i++) {
+            int randomIndex = random.nextInt(CHARACTERS.length());
+            char randomChar = CHARACTERS.charAt(randomIndex);
+            idBuilder.append(randomChar);
+        }
+
+        return idBuilder.toString();
     }
 
 
