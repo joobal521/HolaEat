@@ -77,7 +77,14 @@
     </c:if>
 
 
+
+
+
+
+
 </section>
+
+
 </body>
 <script src="${path}/resources/js/review.js"></script>
 <script>
