@@ -15,7 +15,6 @@ public class UserRequestDto {
     private String userPassword;
     private String userName;
     private String userEmail;
-    private byte[] userProfileImg;
 
 
 

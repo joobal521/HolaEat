@@ -199,7 +199,7 @@ function checkValue(htmlForm) {
     const passwordCh = htmlForm.userPasswordCh.value;
     const email = htmlForm.userEmail.value;
     const name = htmlForm.userName.value;
-    const profile=htmlForm.userProfileImg.value;
+
 
     let check = true;
     var regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
@@ -208,7 +208,7 @@ function checkValue(htmlForm) {
 
     console.log(id);
     console.log(password);
-    console.log(profile);
+
 
     if (id === "") {
         $('#error-id').show();
@@ -260,7 +260,6 @@ function checkValue(htmlForm) {
             userPassword: password,
             userEmail: email,
             userName: name,
-            userProfileImg: profile,
         };
 
         $.ajax({

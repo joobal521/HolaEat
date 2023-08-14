@@ -49,6 +49,8 @@ dependencies {
     //spring-context-support
     implementation 'org.springframework:spring-context-support:5.3.9'
 
+    //파일 처리
+    implementation 'commons-io:commons-io:2.6'
 
 
 }
