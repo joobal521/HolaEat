@@ -32,22 +32,22 @@ public class ReviewListController {
     private final ReviewService reviewService;
     private final ReviewRepository reviewRepository;
 
-    @GetMapping("/reviewlist")
-    public String getReviewAll(Model model) {
-        List<Review> list = reviewService.findAllByOrderByReviewNoDesc();
-        Map<Long, String> imageMap = new HashMap<>();
-
-        for (Review review : list) {
-            if (review.getImg() != null) {
-                String base64Image = ImageParsor.parseBlobToBase64(review.getImg());
-                imageMap.put(review.getReviewNo(), base64Image);
-            }
-        }
-
-        model.addAttribute("reviewlist", list);
-        model.addAttribute("imageMap", imageMap);
-        return "reviewlist";
-    }
+//    @GetMapping("/reviewlist")
+//    public String getReviewAll(Model model) {
+//        List<Review> list = reviewService.findAllByOrderByReviewNoDesc();
+//        Map<Long, String> imageMap = new HashMap<>();
+//
+//        for (Review review : list) {
+//            if (review.getImg() != null) {
+//                String base64Image = ImageParsor.parseBlobToBase64(review.getImg());
+//                imageMap.put(review.getReviewNo(), base64Image);
+//            }
+//        }
+//
+//        model.addAttribute("reviewlist", list);
+//        model.addAttribute("imageMap", imageMap);
+//        return "reviewlist";
+//    }
 
 
     // 페이징
