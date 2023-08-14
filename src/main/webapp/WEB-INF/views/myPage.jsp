@@ -22,11 +22,14 @@
     <div class="card">
         <form enctype="multipart/form-data">
         <input type="file" name="userProfileImg" accept="image/png, image/jpg, image/jpeg, image.gif">
-        <input type="button" class="btn btn-primary" value="프로필 사진 변경" onclick="updateImg">
+        <button type="button" class="profile-btn" onclick="updateImg(form)">프로필 사진 변경</button>
         </form>
+    </div>
     <button type="button" id="update-btn" class="my-btn" onclick="location.href='update';">회원정보수정</button>
     <button type="button" id="leave-btn" class="my-btn" onclick="location.href='leave';" >회원탈퇴</button>
+
 </section>
+<script src="${path}/resources/js/mypage.js"></script>
 </body>
 <c:import url="footer.jsp"/>
 </html>
