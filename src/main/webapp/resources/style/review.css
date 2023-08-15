@@ -16,10 +16,15 @@
 
 }
 
-#img {
+.review_img{
     width: 400px;
     height: 77%;
     /*object-fit: cover;*/
+}
+
+.review_img #img{
+    width: 400px;
+    height: 100%;
 }
 
 .user_profile{
@@ -107,3 +112,19 @@ li {
 }
 
 
+/* 리뷰 페이지*/
+
+#review-contents{
+    width: 90%;
+    border: 1px solid black;
+}
+
+#review_detail input{
+    display: inline-block;
+    width: 55%;
+    color: rgb(0, 0, 0);
+    height: 40px;
+    margin: 10px auto;
+    border: 1px solid rgb(126, 121, 121);
+
+}
