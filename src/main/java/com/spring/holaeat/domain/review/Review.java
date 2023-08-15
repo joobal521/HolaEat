@@ -10,7 +10,7 @@ import java.io.IOException;
 
 @NoArgsConstructor
 @Getter
-@Table(name="review")
+@Table(name = "review")
 @Entity
 public class Review extends Timestamp {
 
@@ -33,8 +33,7 @@ public class Review extends Timestamp {
     private byte[] img;
 
 
-
-    public Review(ReviewRequestDto reviewRequestDto){
+    public Review(ReviewRequestDto reviewRequestDto) {
         this.title = reviewRequestDto.getTitle();
         this.content = reviewRequestDto.getContent();
         this.userId = reviewRequestDto.getUserId();
@@ -49,6 +48,11 @@ public class Review extends Timestamp {
 
     }
 
+    // 게시글 수정시 기존 이미지 담기위함
+    public void remainImg(byte[] img) {
+        this.img = img;
+    }
+
 
     public void update(ReviewRequestDto reviewRequestDto) {
         this.title = reviewRequestDto.getTitle();
@@ -60,8 +64,8 @@ public class Review extends Timestamp {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-        }else{
-            this.img=null;
+        } else {
+            this.img = null;
         }
     }
 

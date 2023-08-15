@@ -19,6 +19,11 @@ public class ReviewService {
 
     private final ReviewRepository reviewRepository;
 
+    //검색
+
+
+
+
 
     //페이징처리추가(8/14)
     public Page<Review> getReviewList(Pageable pageable){
@@ -61,6 +66,11 @@ public class ReviewService {
         reviewRepository.save(review);
     }
 
+    @Transactional
+    public void remainImage(Review review,byte[] img){
+        review.remainImg(img);
+        reviewRepository.save(review);
+    }
 
         //삭제
     @Transactional

@@ -17,11 +17,37 @@
 }
 
 #img {
-    width: 300px;
-    height: 400px;
+    width: 400px;
+    height: 77%;
     /*object-fit: cover;*/
 }
 
+.user_profile{
+    width: 90%;
+    height: 10%;
+}
+
+
+.user_profile li {
+    display: inline-block;
+}
+
+.review_title{
+    height: 10%;
+
+}
+
+
+
+.review_like{
+
+    height: 3%;
+}
+
+.review_like>i{
+    width: 20px;
+    height: 20px;
+}
 /*페이징 처리*/
 
 .container {
@@ -43,9 +69,6 @@ li {
 /*    margin-top: 20px;*/
 /*}*/
 
-.user_profile li {
-    display: inline-block;
-}
 
 
 .paging {
