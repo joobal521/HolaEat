@@ -53,7 +53,7 @@
 
                 </div>
 
-                <input type="datetime" id="created_at" name="created_at" readonly>
+                <input type="datetime" id="created_at" name="created_at" readonly value="${}">
                 <input type="datetime" id="modified_at" name="modified_at" readonly>
 
                 <button type="button" id="update" name="update" onclick="CheckValueUpdate(form, ${review.reviewNo})">

@@ -48,8 +48,10 @@
                     <img src="data:image/png;base64,${blob}" id="img" name="img"  alt="Review Image">
 
                 </div>
-                <input type="datetime" id="created_at" readonly>
-                <input type="datetime" id="modified_at" readonly>
+<%--                    <c:when test="${not empty review}">--%>
+<%--                <input type="datetime" id="created_at" readonly value="${review.createdAt}"> --%>
+<%--                <input type="datetime" id="modified_at" readonly value="${review.modifiedAt}">--%>
+<%--                    </c:when>--%>
 
                     <button type="button" id="update" name="update" onclick="redirectToReviewUpdate(reviewNo)">수정</button>
                     <button type="button" id="delete" name="delete" onclick="CheckValueDelete(document.getElementById('review-detail'), ${review.reviewNo})">삭제</button>

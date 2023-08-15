@@ -40,10 +40,12 @@
                     </div>
 
                         <%--이미지 출력--%>
+                    <div class="review_img">
                     <c:set var="imageBase64" value="${imageMapPage[review.reviewNo]}"></c:set>
                     <c:if test="${not empty imageBase64}">
                         <img src="data:image/jpeg;base64,${imageBase64}" id="img" name="img" alt="Review Image">
                     </c:if>
+                        </div>
                     <div class="review_title">제목 : ${review.title}</div>
                     <div class="review_like"><i class="fa-regular fa-heart"></i></div>
                 </div>
@@ -59,16 +61,12 @@
         <div class="paging" id="paging">
 
             <ul class="pagination">
-
-                <li><a href="#" class="prevPageBtn"><</a></li>
-                <c:forEach var="i" begin="1" end="${pageNumber}" step="1">
+                <li><a href="/reviewlist/1">1</a></li>
+                <c:forEach var="i" begin="2" end="${totalPages}" step="1">
                     <li><a href="/reviewlist/${i}">${i}</a></li>
                 </c:forEach>
-
-                <li><a href="#" class="nextPageBtn">></a></li>
-
-
             </ul>
+
         </div>
 
         <div class="search_box">
@@ -76,12 +74,12 @@
                 <%--            <form id="searchForm" onsubmit="return false;" autocomplete="off">--%>
                 <div class="searchTag">
                     <select title="검색 유형 선택" id="searchType" name="searchType">
-                        <option value="all">전체 검색</option>
-                        <option value="title">제목</option>
-                        <option value="author">작성자</option>
+                        <option name="all" value="all">전체 검색</option>
+                        <option name="title" value="title">제목</option>
+                        <option name="author" value="author">작성자</option>
                     </select>
                     <input type="text" name="keyword" id="keyword" placeholder="검색어를 입력해 주세요." title="검색창"/>
-                    <button id="searchBtn" onclick="search()" class="searchBtn">검색
+                    <button id="searchBtn" onclick="" class="searchBtn">검색
                     </button>
                 </div>
             </form>
