@@ -90,7 +90,6 @@
                         <option value="4" ${userAllergy eq '4' ? 'selected' : ''}>견과류</option>
                     </select>
                 </li>
-                <input type="button" id="save_btn" name="save_btn" value="저장">
                 <input type="button" id="calculate" name="calculate" value="계산" onclick="calculateCalories()">
 
             </ul>
@@ -122,85 +121,87 @@
             <div class="prefer">
                 <h2>선호하는 재료</h2>
                 <select name="prefer" id="prefer">
-                    <option value="">선택하세요</option>
-                    <option value="1">우유</option>
-                    <option value="2">메밀</option>
-                    <option value="3">땅콩</option>
-                    <option value="4">대두</option>
-                    <option value="5">밀</option>
-                    <option value="6">고등어</option>
-                    <option value="7">게</option>
-                    <option value="8">새우</option>
-                    <option value="9">복숭아</option>
-                    <option value="10">토마토</option>
-                    <option value="11">두부</option>
-                    <option value="12">깨</option>
-                    <option value="13">쌀</option>
-                    <option value="14">두유</option>
-                    <option value="15">감자</option>
-                    <option value="16">계란</option>
-                    <option value="17">쇠고기</option>
-                    <option value="18">생선</option>
-                    <option value="19">닭고기</option>
-                    <option value="20">돼지고기</option>
-                    <option value="21">수박</option>
-                    <option value="22">참외</option>
-                    <option value="23">케찹</option>
-                    <option value="24">소금</option>
-                    <option value="25">포도</option>
-                    <option value="26">연근</option>
+                    <option value="">없음</option>
+                    <option value="우유">우유</option>
+                    <option value="메밀">메밀</option>
+                    <option value="땅콩">땅콩</option>
+                    <option value="대두">대두</option>
+                    <option value="밀">밀</option>
+                    <option value="고등어">고등어</option>
+                    <option value="게">게</option>
+                    <option value="새우">새우</option>
+                    <option value="복숭아">복숭아</option>
+                    <option value="토마토">토마토</option>
+                    <option value="두부">두부</option>
+                    <option value="깨">깨</option>
+                    <option value="쌀">쌀</option>
+                    <option value="두유">두유</option>
+                    <option value="감자">감자</option>
+                    <option value="계란">계란</option>
+                    <option value="쇠고기">쇠고기</option>
+                    <option value="생선">생선</option>
+                    <option value="닭고기">닭고기</option>
+                    <option value="돼지고기">돼지고기</option>
+                    <option value="수박">수박</option>
+                    <option value="참외">참외</option>
+                    <option value="케찹">케찹</option>
+                    <option value="소금">소금</option>
+                    <option value="포도">포도</option>
+                    <option value="연근">연근</option>
                 </select>
             </div>
 
             <div class="selected-prefer">
                 <h2>선택된 재료</h2>
-                <ul id="selectedIngredientsList"></ul>
+                <input type="text" id="selectedIngredientsList" value="${userPrefer}">
             </div>
 
-            <button id="savePreferButton">저장</button>
+<%--            <button id="savePreferButton">저장</button>--%>
 
 
             <div class="dislike">
                 <h2>선호하지 않는 재료</h2>
                 <select name="dislike" id="dislike">
-                    <option value="">선택하세요</option>
-                    <option value="1">우유</option>
-                    <option value="2">메밀</option>
-                    <option value="3">땅콩</option>
-                    <option value="4">대두</option>
-                    <option value="5">밀</option>
-                    <option value="6">고등어</option>
-                    <option value="7">게</option>
-                    <option value="8">새우</option>
-                    <option value="9">복숭아</option>
-                    <option value="10">토마토</option>
-                    <option value="11">두부</option>
-                    <option value="12">깨</option>
-                    <option value="13">쌀</option>
-                    <option value="14">두유</option>
-                    <option value="15">감자</option>
-                    <option value="16">계란</option>
-                    <option value="17">쇠고기</option>
-                    <option value="18">생선</option>
-                    <option value="19">닭고기</option>
-                    <option value="20">돼지고기</option>
-                    <option value="21">수박</option>
-                    <option value="22">참외</option>
-                    <option value="23">케찹</option>
-                    <option value="24">소금</option>
-                    <option value="25">포도</option>
-                    <option value="26">연근</option>
+                    <option value="">없음</option>
+                    <option value="우유">우유</option>
+                    <option value="메밀">메밀</option>
+                    <option value="땅콩">땅콩</option>
+                    <option value="대두">대두</option>
+                    <option value="밀">밀</option>
+                    <option value="고등어">고등어</option>
+                    <option value="게">게</option>
+                    <option value="새우">새우</option>
+                    <option value="복숭아">복숭아</option>
+                    <option value="토마토">토마토</option>
+                    <option value="두부">두부</option>
+                    <option value="깨">깨</option>
+                    <option value="쌀">쌀</option>
+                    <option value="두유">두유</option>
+                    <option value="감자">감자</option>
+                    <option value="계란">계란</option>
+                    <option value="쇠고기">쇠고기</option>
+                    <option value="생선">생선</option>
+                    <option value="닭고기">닭고기</option>
+                    <option value="돼지고기">돼지고기</option>
+                    <option value="수박">수박</option>
+                    <option value="참외">참외</option>
+                    <option value="케찹">케찹</option>
+                    <option value="소금">소금</option>
+                    <option value="포도">포도</option>
+                    <option value="연근">연근</option>
                 </select>
             </div>
 
-            <button id="saveDislikeButton">저장</button>
+<%--            <button id="saveDislikeButton">저장</button>--%>
 
             <div class="selected-dislike">
                 <h2>선택된 재료</h2>
-                <ul id="selectedUnIngredientsList"></ul>
+<%--                <ul id="selectedUnIngredientsList"></ul>--%>
+                <input type="text" id="selectedUnIngredientsList" value="${userDislike}">
             </div>
 
-            <hr>
+                <input type="button" id="save_btn" name="save_btn" value="저장">
+                <hr>
             <div class="personal_menu">
                 <h2>${userName}님만을 위한 맞춤식단이 여기 있습니다!</h2>
             </div>
@@ -210,7 +211,7 @@
 
 </section>
 <script src="resources/js/cal.js"></script>
-<script src="resources/js/ingredients.js"></script>
+<%--<script src="resources/js/ingredients.js"></script>--%>
 
 </body>
 <c:import url="footer.jsp"/>

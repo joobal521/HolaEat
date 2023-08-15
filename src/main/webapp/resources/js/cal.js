@@ -6,6 +6,8 @@ $(document).ready(function () {
         var weight = $('#weight').val();
         var allergy = $('#allergy').val();
         var recCalories = $('#recCalories').val();
+        var selectedPrefer = $('#prefer').val();
+        var selectedDislike = $('#dislike').val();
 
         var formData = {
             gender: gender,
@@ -13,12 +15,14 @@ $(document).ready(function () {
             height: height,
             weight: weight,
             allergy: allergy,
-            recCalories: recCalories
+            recCalories: recCalories,
+            prefer: selectedPrefer, // 추가된 부분: prefer 값을 formData에 추가
+            dislike: selectedDislike // 추가된 부분: dislike 값을 formData에 추
         };
 
         $.ajax({
             type: "POST",
-            url: "/saveCalories", // 해당 URL에 맞게 수정
+            url: "/saveDetails",
             data: formData,
             success: function (data) {
                 // 서버 응답 처리
@@ -30,8 +34,7 @@ $(document).ready(function () {
                 $('#allergy').val(data.allergy);
                 $('#recCalories').val(data.recCalories);
 
-                alert("저장에 성공하였습니다.")
-
+                alert("저장에 성공하였습니다.");
             },
             error: function (error) {
                 console.error("저장 에러:", error);
