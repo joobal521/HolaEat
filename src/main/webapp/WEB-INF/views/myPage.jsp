@@ -18,11 +18,12 @@
 <body>
 <section>
    <h1>마이페이지</h1>
-    <img src="" style=" max-width: 50%;  height: auto;"> <br />
+    <img src="data:image/png;base64,${base64ImageData}" style=" max-width: 50%;  height: auto;"> <br />
     <div class="card">
         <form enctype="multipart/form-data">
-        <input type="file" name="userProfileImg" accept="image/png, image/jpg, image/jpeg, image.gif">
-        <button type="button" class="profile-btn" onclick="updateImg(form)">프로필 사진 변경</button>
+            <input type="file" name="userProfileImg" accept="image/png, image/jpg, image/jpeg, image.gif">
+            <input type="hidden" name="userId" id="userId" value="${login.userId}">
+            <button type="button" class="profile-btn" onclick="updateImg(form)">프로필 사진 변경</button>
         </form>
     </div>
     <button type="button" id="update-btn" class="my-btn" onclick="location.href='update';">회원정보수정</button>

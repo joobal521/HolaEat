@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -17,46 +18,62 @@ import java.nio.file.Paths;
 public class ProfileImg extends Timestamp {
 
     @Id
-    private long profileNo;
+    private Long profileNo;
 
     @JoinColumn(name = "userId", nullable = false)
     private String userId;
 
-    @Column(columnDefinition = "LONGBLOB")
+    @Lob
     private byte[] profileImg;
 
+    // 기본 이미지 리소스 경로
+    private static final String DEFAULT_IMAGE_PATH = "classpath:static/img/belle.jpg";
 
-    //생성자
-    public ProfileImg(ProfileImgRequestDto profileImgDto){
-        this.profileNo=profileImgDto.getProfileNo();
-        this.userId=profileImgDto.getUserId();
-        if(profileImgDto.getProfileImg()!=null){
+    private byte[] getDefaultImageBytes() throws IOException {
+        try (InputStream is = getClass().getClassLoader().getResourceAsStream("static/img/belle.jpg")) {
+            if (is != null) {
+                return is.readAllBytes();
+            }
+            throw new IOException("기본 이미지 파일을 읽을 수 없습니다.");
+        }
+    }
+
+
+
+
+// 기본 이미지 URL 반환
+    public String getDefaultImageUrl() {
+        return DEFAULT_IMAGE_PATH;
+    }
+
+    // 생성자
+    public ProfileImg(ProfileImgRequestDto profileImgDto) {
+        this.profileNo = profileImgDto.getProfileNo();
+        this.userId = profileImgDto.getUserId();
+        if (profileImgDto.getProfileImg() != null) {
             try {
                 this.profileImg = profileImgDto.getProfileImg().getBytes();
-            }catch(IOException e){
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-
     }
 
-    //기능 메소드
-    public void update(ProfileImgRequestDto profileImgDto){
-
-        if(profileImgDto.getProfileImg()!=null){
-                try {
-                    this.profileImg = profileImgDto.getProfileImg().getBytes();
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            }else{
-              System.out.println("기본 이미지");
+    // 기능 메소드
+    public void update(ProfileImgRequestDto profileImgDto) {
+        if (profileImgDto.getProfileImg() != null) {
+            try {
+                this.profileImg = profileImgDto.getProfileImg().getBytes();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
+        } else {
+            try {
+                this.profileImg = getDefaultImageBytes();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            System.out.println("기본 이미지");
         }
     }
-
-
-
-
-
-
+}
