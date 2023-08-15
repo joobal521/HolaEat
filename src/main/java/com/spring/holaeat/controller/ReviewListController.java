@@ -54,7 +54,7 @@ public class ReviewListController {
 
     @GetMapping("/reviewlist/{pageNumber}")
     public String getBoardAll(@PathVariable int pageNumber,
-                              @RequestParam(required = false) String keyword,
+                              @RequestParam(required = false, value = "keyword") String keyword,
                               @PageableDefault(size = 10) Pageable pageable, Model model) {
 
         Map<Long, String> imageMap = new HashMap<>();
@@ -100,6 +100,7 @@ public class ReviewListController {
 
         model.addAttribute("blob", ImageParsor.parseBlobToBase64(review.getImg()));
         return "review";
+
     }
 
 }

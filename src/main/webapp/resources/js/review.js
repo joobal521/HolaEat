@@ -73,52 +73,40 @@ function checkValueWrite(htmlForm) {
 }
 
 //게시글 수정
+
+
 function CheckValueUpdate(htmlForm, reviewNo) {
     const title = htmlForm.title.value;
     const content = htmlForm.content.value;
 
-    let check = true;
     let imgFile = null;
 
     if (htmlForm.file && htmlForm.file.files && htmlForm.file.files[0]) {
         imgFile = htmlForm.file.files[0];
     }
 
-
-    if (check) {
-
-        console.log(title);
-        console.log(content);
-        console.log(imgFile);
-
-
-        var form = new FormData();
-        form.append("title", title);
-        form.append("content", content);
-
-
-        if (imgFile) {
-            form.append("img", imgFile);
-        }
-        // else{
-        //     // const currentImg = $(".select_img img").attr("src");
-        //     // form.append("img", currentImg);
-        //     // const currentImg = htmlForm.currentImgUrl.value;
-        //     // form.append("img", currentImg);
-        // }
-
-        var settings = {
-            "url": "/" + reviewNo + "/update",
-            "method": "PUT",
-            "timeout": 0,
-            "processData": false,
-            "mimeType": "multipart/form-data",
-            "contentType": false,
-            "data": form,
-            // 동기식으로 처리
-            // "async": false
-        };
+    if (title.trim() === "" && content.trim() === "") {
+        alert("수정할 내용이 없습니다.");
+        return;
     }
+
+    var form = new FormData();
+    form.append("title", title);
+    form.append("content", content);
+
+    if (imgFile) {
+        form.append("img", imgFile);
+    }
+
+    var settings = {
+        "url": "/" + reviewNo + "/update",
+        "method": "PUT",
+        "timeout": 0,
+        "processData": false,
+        "mimeType": "multipart/form-data",
+        "contentType": false,
+        "data": form,
+    };
 
     $.ajax(settings)
         .done(function (response) {
@@ -193,6 +181,10 @@ function redirectToReviewUpdate() {
     var reviewNo = reviewNoElement.value;
 
     window.location.href = "../reviewUpdate?reviewNo=" + reviewNo;
+
+
+
+
 }
 
 

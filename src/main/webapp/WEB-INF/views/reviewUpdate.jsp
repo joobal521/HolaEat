@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="com.spring.holaeat.util.ImageParsor" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
@@ -43,23 +44,11 @@
                     <input type="text" id="content" name="content" value="${review.content}">
                 </div>
 
-<%--                <div class="img-container">--%>
-<%--                    <label for="file">이미지</label>--%>
-<%--                    <input type="file" id="file" name="file" accept="image/*"/>--%>
-<%--                    <div class="select_img">--%>
-<%--                        <img src="ImageServlet?reviewNo=${review.reviewNo}" id="img" name="img" alt="Review Image">--%>
-<%--                        <!-- 이미지 식별자를 사용하여 이미지를 로드 -->--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-
-
                 <div class="img-container">
                     <label for="file">이미지</label>
                     <input type="file" id="file" name="file" accept="image/*"/>
                     <div class="select_img">
-                        <img src="data:image/png;base64,${blob}" id="img" name="img" alt="Review Image">
-                        <input type="hidden" name="img" value="${review.img}"/>
-<%--                        <input type="hidden" name="currentImgUrl" value="[current_image_url_here]" />--%>
+                      <img src="data:image/png;base64,${ImageParsor.parseBlobToBase64(review.img)}" id="img" name="img"  alt="Review Image">
                     </div>
 
                 </div>
@@ -76,20 +65,11 @@
         </div>
     </c:if>
 
-
-
-
-
-
-
 </section>
 
 
 </body>
 <script src="${path}/resources/js/review.js"></script>
-<script>
 
-
-</script>
 <c:import url="footer.jsp"/>
 </html>
