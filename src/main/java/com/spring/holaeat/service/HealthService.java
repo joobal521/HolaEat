@@ -26,7 +26,7 @@ public class HealthService {
         return list;
     }
 
-    public Health getHealthBoardByHealthNo(long healthNo){
+    public Health getHealthByHealthNo(long healthNo){
         Health health=healthRepository.findById(healthNo).orElseThrow(
                 ()->new IllegalArgumentException("존재하지 않는 글입니다.")
         );
@@ -38,7 +38,7 @@ public class HealthService {
             HealthRequestDto healthDto,
             List<MultipartFile> files
     ) throws Exception {
-        // 파일 처리를 위한 Board 객체 생성
+        // 파일 처리를 위한 health 객체 생성
         Health health = new Health(healthDto);
 
         List<Photo> photoList = fileHandler.parseFileInfo(files);
@@ -62,6 +62,10 @@ public class HealthService {
         //게시글 삭제
         healthRepository.deleteById(healthNo);
     }
+
+
+
+
 
 
 

@@ -1,8 +1,11 @@
 package com.spring.holaeat.controller;
 
+import com.spring.holaeat.domain.admin.Admin;
+import com.spring.holaeat.domain.admin.AdminRepository;
 import com.spring.holaeat.domain.health.HealthFileVo;
 import com.spring.holaeat.domain.health.HealthRepository;
 import com.spring.holaeat.domain.health.HealthRequestDto;
+import com.spring.holaeat.service.AdminService;
 import com.spring.holaeat.service.HealthService;
 import lombok.RequiredArgsConstructor;
 import org.json.JSONObject;
@@ -19,16 +22,10 @@ public class HealthController {
 
     private final HealthService healthService;
     private final HealthRepository healthRepository;
+    private final AdminRepository adminRepository;
+    private final AdminService adminService;
 
 
-    //게시글 작성(관리지만)
-//
-//    @PostMapping("health-board")
-//    @ResponseStatus(HttpStatus.CREATED)
-//    public Long creat(HealthBoardFileVo healthBoardFileVo) throws Exception{
-//        //admin id로 조회하는 메소드 필요
-//        //HealthBoardRequestDto healthBaordDto=
-//   // }
 
 
     @PostMapping("write")
@@ -38,17 +35,31 @@ public class HealthController {
 
 
         try {
-            //admin으로 조회하는 메소드
-            //Admin admin=
-            Long.parseLong((healthFileVo.getId()));
-            healthService.create(healthDto,healthFileVo.getFile());
-            response.put("result",true);
-
-        }catch (IllegalArgumentException e){
+            if (healthFileVo.getId() != null) {
+            //admin id로 조회하는 메소드
+            Admin admin =adminService.getAdminById(healthFileVo.getId());
+                System.out.println(admin);
+            healthService.create(healthDto, healthFileVo.getFile());
+            response.put("result", true);
+        } else {
+            response.put("result", false);
+            response.put("message", "Invalid admin ID");
+        }
+        } catch (IllegalArgumentException e) {
             response.put("result", false);
         }
         return response.toMap();
     }
+
+    //개별조회
+//    @GetMapping("/health/{healthNo}")
+//    public Map searchById(@PathVariable Long healthNo) {
+//        healthService.getHealthByHealthNo(healthNo);
+//
+//        return
+//    }
+
+
 
     //전체 조회
 //    @GetMapping("health-board")
