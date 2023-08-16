@@ -21,6 +21,7 @@ import java.util.Map;
 public class ProfileImgController {
 
     private final ProfileImgService profileImgService;
+    //private final UserService userService;
 
 
     @Autowired
@@ -39,10 +40,10 @@ public class ProfileImgController {
 
         try {
             ProfileImgRequestDto profileImgDto = new ProfileImgRequestDto();
-            //User user = userService.getUserById(userId);
+
             profileImgDto.setProfileImg(profileImg);
 
-            //profileImgService.uploadProfileImage(user, profileImgDto);
+            profileImgService.uploadProfileImage(userId, profileImgDto);
 
             response.put("result", true);
         } catch (Exception e) {

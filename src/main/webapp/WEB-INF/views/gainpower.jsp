@@ -5,7 +5,7 @@
 <head>
     <title>pills</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-    <script src="${path}/resources/js/admin.js"></script>
+    <script src="script/admin.js"></script>
     <style>
         .error-message {
             color: red;

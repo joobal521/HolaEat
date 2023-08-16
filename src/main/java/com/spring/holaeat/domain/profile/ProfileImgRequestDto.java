@@ -11,15 +11,8 @@ import org.springframework.web.multipart.MultipartFile;
 @NoArgsConstructor
 public class ProfileImgRequestDto {
     private Long profileNo;
-    private User user;
+    private String userId;
     private MultipartFile profileImg;
-
-
-    //이거 빼도 됨
-    public void setUser(User user) {
-        this.user = user;
-    }
-
 
 
 

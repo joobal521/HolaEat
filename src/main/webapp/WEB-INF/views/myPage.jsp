@@ -18,7 +18,18 @@
 <body>
 <section>
    <h1>마이페이지</h1>
-    <img src="data:image/png;base64,${base64ImageData}" style=" max-width: 50%;  height: auto;"> <br />
+    <c:if test="${empty log}">
+        <c:url var="login" value="/login"></c:url>
+        <c:redirect url="${login}"></c:redirect>
+    </c:if>
+    <c:choose>
+        <c:when test="${empty log.profileImg}">
+            <img src="/img/belle.jpg" width="200px"><br/>
+        </c:when>
+        <c:otherwise>
+            <img src="data:image/png;base64,${profileImg}" style=" max-width: 50%;  height: auto;"> <br />
+        </c:otherwise>
+    </c:choose>
     <div class="card">
         <form enctype="multipart/form-data">
             <input type="file" name="userProfileImg" accept="image/png, image/jpg, image/jpeg, image.gif">
@@ -30,7 +41,7 @@
     <button type="button" id="leave-btn" class="my-btn" onclick="location.href='leave';" >회원탈퇴</button>
 
 </section>
-<script src="${path}/resources/js/mypage.js"></script>
+<script src="script/mypage.js"></script>
 </body>
 <c:import url="footer.jsp"/>
 </html>

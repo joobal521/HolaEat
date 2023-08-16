@@ -38,23 +38,14 @@ public class UserController {
 
 
     }catch (IllegalArgumentException e){
-        User user=new User();
-        user=userService.createUser(userDto);
+
+        //회원가입
+        userService.createUser(userDto);
 
         // 프로필 이미지 생성
         ProfileImgRequestDto profileImgDto = new ProfileImgRequestDto();
-        profileImgDto.setUser(user); // 유저 객체 설정
-
-         //기본 이미지 파일을 읽어서 byte 배열로 변환하여 설정
-        try {
-            byte[] defaultImageBytes = getDefaultImageBytes();
-
-           // profileImgDto.setProfileImg(defaultImageBytes);
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            response.put("result", false);
-            return response.toMap();
-        }
+        profileImgDto.setUserId(userDto.getUserId());
+        profileImgService.createProfile(profileImgDto);
 
         System.out.println("join success");
         response.put("result",true);

@@ -1,18 +1,29 @@
-function checkValue(htmlForm) {
-    const title = htmlForm.title.value;
-    const content = htmlForm.content.value;
-    const profileImg = htmlForm.userProfileImg.files[0];
+$('#user_password').on('change', e => {
+    const password = $('#user_password').val();
 
-    if (title.trim() === "") {
-        console.log("Title is required.");
-        return; // 제목이 비어있을 경우 처리 중단
+    if (password !== "") {
+        $('#error-password').hide();
     }
+});
+
+
+function checkValue(htmlForm) {
+    const id = htmlForm.userId.value;
+    const password = htmlForm.userPassword.value;
 
     let check = true;
-    let title_space = /[ ]/; /* 공백 */
-    console.log(title);
+    console.log(id);
 
-    if (check) {
+    if (id === "") {//readlonly라서 없어도 됨
+        check = false;
+
+    } else if (password === "") {
+        $('#error-password').show();
+        $('#userPassword').focus();//포커스 이동시켜서 다시 입력하라고
+        check = false;
+    }
+
+    if (check === true) {
         const data = {
             userId: id,
             userPassword: password,
@@ -27,7 +38,7 @@ function checkValue(htmlForm) {
         }).done(function(data){
             console.log(data);
             if (data.result === true) {
-                location.href = "/";
+                location.href = "../../../webapp";
                 sessionStorage.removeItem("log");
             } else {
                 alert("회원탈퇴 실패. 비밀번호가 올바르지 않습니다.");

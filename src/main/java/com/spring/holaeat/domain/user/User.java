@@ -30,8 +30,8 @@ public class User extends Timestamp {
     private String userEmail;
 
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private ProfileImg profileImg;
+    //@OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    //private ProfileImg profileImg;
 
 
 
@@ -51,8 +51,6 @@ public class User extends Timestamp {
         this.userEmail=userDto.getUserEmail();
 
     }
-
-
 
 
 

@@ -59,7 +59,7 @@
         };
     </script>
 
-    <link rel="stylesheet" type="text/css" href="${path}/resources/style/admin.css">
+    <link rel="stylesheet" type="text/css" href="style/admin.css">
 </head>
 <c:import url="header.jsp"/>
 <body>
@@ -92,7 +92,7 @@
 
     </section>
 </section>
-<script src="${path}/resources/js/admin.js"></script>
+<script src="script/admin.js"></script>
 </body>
 <c:import url="footer.jsp"/>
 </html>

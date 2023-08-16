@@ -8,7 +8,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
     <c:set var="path" value="${pageContext.request.contextPath}"/>
-    <link rel="stylesheet" type="text/css" href="${path}/resources/style/grid.css">
+    <link rel="stylesheet" type="text/css" href="style/grid.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <%--기준 URL로 설정--%>
 <base href="http://localhost:8081/">

@@ -4,8 +4,8 @@
 <html>
 <head>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="${path}/resources/js/recipe-ajax.js"></script>
-    <link rel="stylesheet" type="text/css" href="${path}/resources/style/ingredients.css">
+    <script src="${path}/static/script/recipe-ajax.js"></script>
+    <link rel="stylesheet" type="text/css" href="style/ingredients.css">
     <title>Title</title>
     <%--    --%>
 </head>

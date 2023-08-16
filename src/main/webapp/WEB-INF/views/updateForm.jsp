@@ -11,7 +11,7 @@
 <head>
     <title>update</title>
     <c:set var="path" value="${pageContext.request.contextPath}"/>
-    <link rel="stylesheet" type="text/css" href="${path}/resources/style/joinForm.css">
+    <link rel="stylesheet" type="text/css" href="style/joinForm.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 </head>
 <c:import url="header.jsp"/>
@@ -69,7 +69,7 @@
         </form>
     </div>
 </section>
-<script src="${path}/resources/js/update.js"></script>
+<script src="script/update.js"></script>
 
 
 </body>

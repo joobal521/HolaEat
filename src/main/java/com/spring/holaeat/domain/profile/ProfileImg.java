@@ -22,18 +22,17 @@ public class ProfileImg extends Timestamp {
     @GeneratedValue(strategy = GenerationType.IDENTITY) // 또는 다른 적절한 ID 생성 전략 선택
     private Long profileNo;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
 
+    @JoinColumn(name = "user_id", nullable = false)
+    private String userId;
+
+    @Lob
     @Column(columnDefinition = "LONGBLOB")
     private byte[] profileImg;
 
+
     // 기본 이미지 리소스 경로
     private static final String DEFAULT_IMAGE_PATH = "classpath:static/img/belle.jpg";
-
-
-
 
 
 
@@ -45,7 +44,7 @@ public class ProfileImg extends Timestamp {
     // 생성자
     public ProfileImg(ProfileImgRequestDto profileImgDto) {
         this.profileNo = profileImgDto.getProfileNo();
-        this.user = profileImgDto.getUser();
+        this.userId= profileImgDto.getUserId();
         if (profileImgDto.getProfileImg() != null) {
             try {
                 this.profileImg = profileImgDto.getProfileImg().getBytes();
