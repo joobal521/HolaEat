@@ -198,16 +198,25 @@
             <div class="category_title">
                 <h2>어떤 메뉴를 드시고 싶으신가요?</h2>
                 <div class="category">
-                    <select name="national" id="national" onchange="fetchAndDisplayMenu(this.value)">
+                    <select name="national" id="national" onchange="fetchAndDisplayAllMenus(this.value)">
                         <option value="">선택하세요</option>
                         <option class="korean" value="한식">한식</option>
-                        <option class="chinese" value="2">중식</option>
-                        <option class="japanese" value="3">일식</option>
-                        <option class="western" value="4">양식</option>
-                        <option class="salad" value="5">샐러드</option>
+                        <option class="chinese" value="중식">중식</option>
+                        <option class="japanese" value="일식">일식</option>
+                        <option class="western" value="양식">양식</option>
+                        <option class="salad" value="샐러드">샐러드</option>
                     </select>
                 </div>
             </div>
+
+
+            <div class="personal_menu">
+                <h2>${userName}님만을 위한 맞춤식단이 여기 있습니다!</h2>
+                <div id="generatedMenus"></div>
+            </div>
+
+
+        </div>
 
 
             <%--            <div class="btn-container">--%>
@@ -218,14 +227,6 @@
             <%--                <a class="btn" href="/health?national=중식">중식</a>--%>
             <%--                <a class="btn" href="/health?national=샐러드">샐러드</a>--%>
             <%--            </div>--%>
-            <div class="personal_menu">
-                <h2>${userName}님만을 위한 맞춤식단이 여기 있습니다!</h2>
-                <div id="generatedMenus"></div>
-            </div>
-
-
-        </div>
-
 
 
 </section>

@@ -8,7 +8,7 @@ import lombok.Setter;
 public class MenuRequestDto {
 
     private Long no;
-    private String menuId;
+    private int menuId;
     private int allergy;
     private String food1;
     private String food2;

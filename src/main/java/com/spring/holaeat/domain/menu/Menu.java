@@ -18,7 +18,7 @@ public class Menu {
     private Long no;
 
     @Column(name = "menu_id")
-    private String menuId;
+    private int menuId;
 
     @Column(name = "allergy")
     private int allergy;

@@ -45,39 +45,70 @@ $(document).ready(function () {
 });
 
 
-function fetchAndDisplayMenu(selectedValue) {
-    if (selectedValue === "") {
-        document.getElementById("generatedMenus").innerHTML = "";
-        return;
-    }
+function fetchAndDisplayMenu(selectedNational) {
+    $.get("/menus/generate", { national: selectedNational }, function(data) {
+        var generatedMenus = data; // 서버 응답 데이터
+        var generatedMenusDiv = document.getElementById("generatedMenus");
 
-    $.ajax({
-        url: "/menus/generate",
-        type: "GET",
-        dataType: "json",
-        success: function (data) {
-            let menuContainer = document.getElementById("generatedMenus");
-            menuContainer.innerHTML = "";
-
-            for (let i = 0; i < data.length; i++) {
-                let menu = data[i];
-                if (menu.national === selectedValue) {
-                    let menuDiv = document.createElement("div");
-                    menuDiv.className = "menu-item";
-                    menuDiv.innerHTML = `
-                        <h3>${menu.menuId}</h3>
-                        <p>음식 1: ${menu.food1Name}</p>
-                        <p>음식 2: ${menu.food2Name}</p>
-                        <p>음식 3: ${menu.food3Name}</p>
-                        <p>음식 4: ${menu.food4Name}</p>
-                        <p>음식 5: ${menu.food5Name}</p>
-                    `;
-                    menuContainer.appendChild(menuDiv);
-                }
+        // 결과를 생성하여 웹 페이지에 표시
+        var resultHtml = "<h2>산출된 식단</h2><ul>";
+        generatedMenus.forEach(function(menu, index) {
+            if (index !== 0) {
+                resultHtml += "<hr>"; // 첫 번째 메뉴 이후에만 수평선 추가
             }
-        },
-        error: function (xhr, status, error) {
-            console.error("Error fetching menus:", error);
-        }
+
+            resultHtml += "<li>" +
+                "음식1: " + menu.food1 + "</br>" +
+                "음식2: " + menu.food2 + "</br>" +
+                "음식3: " + menu.food3 + "</br>" +
+                "음식4: " + menu.food4 + "</br>" +
+                "음식5: " + menu.food5 + "</br>" +
+                "주재료1: " + menu.MAIN + "</br>" +
+                "주재료2: " + menu.MAIN2 + "</br>" +
+                "</li>" + "</br>";
+        });
+        resultHtml += "</ul>";
+
+        generatedMenusDiv.innerHTML = resultHtml;
+    });
+}
+
+function fetchAndDisplayAllMenus(selectedValue) {
+    // 선택된 value 값을 menu_id로 변환
+    var menuIdMapping = {
+        "한식": 1,
+        "중식": 2,
+        "일식": 3,
+        "양식": 4,
+        "샐러드": 5
+    };
+
+    var menuId = menuIdMapping[selectedValue];
+
+    $.get("/menus/generate", function(data) {
+        var generatedMenus = data;
+        var generatedMenusDiv = document.getElementById("generatedMenus");
+        var resultHtml = "<h2>모든 식단</h2><ul>";
+
+        generatedMenus.forEach(function(menu, index) {
+            if (index !== 0) {
+                resultHtml += "<hr>";
+            }
+
+            if (menu.menuId === menuId) { // 변환된 menu_id 값과 menu_id를 비교
+                resultHtml += "<li>" +
+                    "음식1: " + menu.food1 + "</br>" +
+                    "음식2: " + menu.food2 + "</br>" +
+                    "음식3: " + menu.food3 + "</br>" +
+                    "음식4: " + menu.food4 + "</br>" +
+                    "음식5: " + menu.food5 + "</br>" +
+                    "주재료1: " + menu.MAIN + "</br>" +
+                    "주재료2: " + menu.MAIN2 + "</br>" +
+                    "</li>" + "</br>";
+            }
+        });
+
+        resultHtml += "</ul>";
+        generatedMenusDiv.innerHTML = resultHtml;
     });
 }
