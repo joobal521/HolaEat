@@ -5,13 +5,13 @@ import com.spring.holaeat.domain.admin.AdminRepository;
 import com.spring.holaeat.domain.ingredients.Ingredients;
 import com.spring.holaeat.domain.ingredients.IngredientsRequestDto;
 import com.spring.holaeat.service.IngredientsService;
+import com.spring.holaeat.service.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
-import java.util.Arrays;
 import java.util.List;
 
 @SessionAttributes("authority")
@@ -20,11 +20,14 @@ public class AdminController {
     private final AdminRepository adminRepository;
     private final IngredientsService ingredientsService;
 
+    private final MenuService menuService;
+
 
     @Autowired
-    public AdminController(AdminRepository adminRepository, IngredientsService ingredientsService, IngredientsRequestDto ingredientsRequestDto) {
+    public AdminController(AdminRepository adminRepository, IngredientsService ingredientsService, IngredientsRequestDto ingredientsRequestDto, MenuService menuService) {
         this.adminRepository = adminRepository;
         this.ingredientsService = ingredientsService;
+        this.menuService = menuService;
     }
 
     //관리자 로그인
@@ -54,24 +57,22 @@ public String gainPower(@RequestParam("adminid") String id, @RequestParam("admin
     //재료정보생성
     @PostMapping(value="adminIngr/create",consumes = "multipart/form-data")
     public String addIngredient(@ModelAttribute IngredientsRequestDto ingredientsRequestDto) {
-        System.out.println("creating");
-
-
-        System.out.println(ingredientsRequestDto.getIngrName());
-        System.out.println(ingredientsRequestDto.getIngrId());
-        System.out.println(ingredientsRequestDto.getAllergy());
-        System.out.println(ingredientsRequestDto.getMonth());
-        System.out.println(ingredientsRequestDto.getIngrId());
-        System.out.println(ingredientsRequestDto.getIngrImg());
         ingredientsService.addIngredient(ingredientsRequestDto);
-        System.out.println("created");
+
 
         return "adminIngr";
     }
 
     //재료정보수정
-    @PutMapping(value = "adminIngr/{ingrId}",consumes = "multipart/form-data")
-    public String updateIngredient(@PathVariable int ingrId, @RequestBody IngredientsRequestDto ingredientsRequestDto) {
+//    @PutMapping(value = "adminIngr/{ingrId}", consumes = "multipart/form-data")
+//    public String updateIngredient(@PathVariable int ingrId, @RequestBody IngredientsRequestDto ingredientsRequestDto) {
+//        Ingredients ingredient = ingredientsService.findById(ingrId);
+//        ingredientsService.update(ingredient, ingredientsRequestDto);
+//
+//        return "adminIngr";
+//    }
+    @PutMapping(value = "adminIngr/{ingrId}", consumes = "multipart/form-data")
+    public String updateIngredient(@PathVariable int ingrId, @ModelAttribute IngredientsRequestDto ingredientsRequestDto) {
         Ingredients ingredient = ingredientsService.findById(ingrId);
         ingredientsService.update(ingredient, ingredientsRequestDto);
 
@@ -86,6 +87,14 @@ public String gainPower(@RequestParam("adminid") String id, @RequestParam("admin
         return "adminIngr";
     }
 
+//메뉴관리
+    @GetMapping("adminMenu")
+    public String getAllMenu(Model model){
+
+
+
+        return "adminMenu";
+    }
 
 
 
