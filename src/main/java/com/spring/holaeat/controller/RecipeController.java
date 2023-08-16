@@ -32,15 +32,16 @@ public class RecipeController {
     @GetMapping("/getRecipe/{foodId}")
     public String getRecipe(@PathVariable String foodId, Model model) {
         List<Recipe> recipe = recipeService.findStepsByFoodId(foodId);
+        model.addAttribute("recipe", recipe);
 
         byte[] foodImg = foodService.getFoodImgByFoodId(foodId);
         if(foodImg!=null) {
             String blob = ImageParsor.parseBlobToBase64(foodImg);
             model.addAttribute("blob",blob);
         }
-        model.addAttribute("recipe", recipe);
 
-        System.out.println(foodId+"foodID");
+        System.out.println("foodID:"+foodId);
+
 
 //        List<Nutritions> nutrition = nutritionsService.findByFoodId(foodId);
 //        model.addAttribute("nutritions",nutrition);
