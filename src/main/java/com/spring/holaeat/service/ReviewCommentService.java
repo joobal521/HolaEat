@@ -10,7 +10,7 @@ import javax.transaction.Transactional;
 
 @RequiredArgsConstructor
 @Service
-public class CommentService {
+public class ReviewCommentService {
 
 //수정
     private final ReviewCommentRepository reviewCommentRepository;
