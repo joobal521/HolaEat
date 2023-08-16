@@ -63,8 +63,8 @@ function fetchAndDisplayMenu(selectedNational) {
                 "음식3: " + menu.food3 + "</br>" +
                 "음식4: " + menu.food4 + "</br>" +
                 "음식5: " + menu.food5 + "</br>" +
-                "주재료1: " + menu.MAIN + "</br>" +
-                "주재료2: " + menu.MAIN2 + "</br>" +
+                "주재료1: " + menu.main1 + "</br>" + // 수정된 부분: menu.MAIN 대신 menu.main1
+                "주재료2: " + menu.main2 + "</br>" + // 수정된 부분: menu.MAIN2 대신 menu.main2
                 "</li>" + "</br>";
         });
         resultHtml += "</ul>";
@@ -74,7 +74,6 @@ function fetchAndDisplayMenu(selectedNational) {
 }
 
 function fetchAndDisplayAllMenus(selectedValue) {
-    // 선택된 value 값을 menu_id로 변환
     var menuIdMapping = {
         "한식": 1,
         "중식": 2,
@@ -95,15 +94,15 @@ function fetchAndDisplayAllMenus(selectedValue) {
                 resultHtml += "<hr>";
             }
 
-            if (menu.menuId === menuId) { // 변환된 menu_id 값과 menu_id를 비교
+            if (menu.menuId === menuId) {
                 resultHtml += "<li>" +
-                    "음식1: " + menu.food1 + "</br>" +
-                    "음식2: " + menu.food2 + "</br>" +
-                    "음식3: " + menu.food3 + "</br>" +
-                    "음식4: " + menu.food4 + "</br>" +
-                    "음식5: " + menu.food5 + "</br>" +
-                    "주재료1: " + menu.MAIN + "</br>" +
-                    "주재료2: " + menu.MAIN2 + "</br>" +
+                    "음식1: " + menu.food1 + " (" + menu.food1Weight + "Kcal)</br>" +
+                    "음식2: " + menu.food2 + " (" + menu.food2Weight + "Kcal)</br>" +
+                    "음식3: " + menu.food3 + " (" + menu.food3Weight + "Kcal)</br>" +
+                    "음식4: " + menu.food4 + " (" + menu.food4Weight + "Kcal)</br>" +
+                    "음식5: " + menu.food5 + " (" + menu.food5Weight + "Kcal)</br>" +
+                    "주재료1: " + menu.main1 + "</br>" +
+                    "주재료2: " + menu.main2 + "</br>" +
                     "</li>" + "</br>";
             }
         });

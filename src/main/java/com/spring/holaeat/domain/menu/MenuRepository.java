@@ -17,6 +17,15 @@ public interface MenuRepository extends JpaRepository<Menu, String> {
             "JOIN Food f5 ON m.food5 = f5.foodId")
     List<Object[]> getMenuWithFoodNames();
 
+    @Query("SELECT m, f1.foodName, f2.foodName, f3.foodName, f4.foodName, f5.foodName, " +
+            "f1.foodWeight, f2.foodWeight, f3.foodWeight, f4.foodWeight, f5.foodWeight " +
+            "FROM Menu m " +
+            "JOIN Food f1 ON m.food1 = f1.foodId " +
+            "JOIN Food f2 ON m.food2 = f2.foodId " +
+            "JOIN Food f3 ON m.food3 = f3.foodId " +
+            "JOIN Food f4 ON m.food4 = f4.foodId " +
+            "JOIN Food f5 ON m.food5 = f5.foodId")
+    List<Object[]> getMenuWithFoodNamesAndWeights();
 
 
 
