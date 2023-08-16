@@ -45,7 +45,6 @@ public class ProfileImgController {
 
 
             ProfileImgRequestDto profileImgDto = new ProfileImgRequestDto();
-            profileImgDto.setUserId(userId);
             profileImgDto.setProfileImg(profileImg);
 
           //  profileImgService.uploadProfileImage(user, profileImgDto);

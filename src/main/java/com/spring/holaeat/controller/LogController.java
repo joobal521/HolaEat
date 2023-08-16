@@ -40,7 +40,7 @@ public class LogController {
         if (user != null) {
             if (user.getUserPassword().equals(userPassword)) {
                 UserDetail userDetail = userDetailRepository.findByUserId(userId);
-                ProfileImg profileImg=profileImgRepository.findByUserId(userId);
+                ProfileImg profileImg=profileImgRepository.findByUser(user);
 
                 if(profileImg!=null){
                     session.setAttribute("profileImg", profileImg.getProfileImg());

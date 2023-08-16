@@ -45,7 +45,6 @@ public class UserController {
         // 프로필 이미지 생성
 
         ProfileImgRequestDto profileImgDto = new ProfileImgRequestDto();
-        profileImgDto.setUserId(userDto.getUserId());
         profileImgService.createProfile(profileImgDto);
 
         System.out.println("join success");
