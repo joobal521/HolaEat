@@ -23,5 +23,5 @@ public interface FoodRepository extends JpaRepository<Food,String> {
     List<String> getAllIngrNames();
 
 
-
+    byte[] getFoodImgByFoodId(String foodId);
 }

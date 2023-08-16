@@ -2,7 +2,6 @@ package com.spring.holaeat.controller;
 
 
 import com.spring.holaeat.domain.health.HealthRequestDto;
-import com.spring.holaeat.domain.photo.Photo;
 import com.spring.holaeat.service.HealthService;
 import com.spring.holaeat.service.PhotoService;
 import lombok.RequiredArgsConstructor;
