@@ -23,8 +23,9 @@ public class ProfileImg extends Timestamp {
     private Long profileNo;
 
 
-    @JoinColumn(name = "user_id", nullable = false)
-    private String userId;
+    @OneToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "userId", nullable = false)
+    private User user;
 
     @Lob
     @Column(columnDefinition = "LONGBLOB")
@@ -44,7 +45,7 @@ public class ProfileImg extends Timestamp {
     // 생성자
     public ProfileImg(ProfileImgRequestDto profileImgDto) {
         this.profileNo = profileImgDto.getProfileNo();
-        this.userId= profileImgDto.getUserId();
+        this.user= profileImgDto.getUser();
         if (profileImgDto.getProfileImg() != null) {
             try {
                 this.profileImg = profileImgDto.getProfileImg().getBytes();

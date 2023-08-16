@@ -40,11 +40,13 @@ public class UserController {
     }catch (IllegalArgumentException e){
 
         //회원가입
-        userService.createUser(userDto);
+        User user=new User();
+        user=userService.createUser(userDto);
 
         // 프로필 이미지 생성
+
         ProfileImgRequestDto profileImgDto = new ProfileImgRequestDto();
-        profileImgDto.setUserId(userDto.getUserId());
+        profileImgDto.setUser(user);
         profileImgService.createProfile(profileImgDto);
 
         System.out.println("join success");
@@ -89,6 +91,7 @@ public class UserController {
         String userId = requestData.get("userId");
         String userPassword = requestData.get("userPassword"); // 입력한 비밀번호
 
+
         JSONObject response =new JSONObject();
 
         try{
@@ -98,6 +101,7 @@ public class UserController {
             if (user != null && user.getUserPassword().equals(userPassword)) {
 
                 userService.deleteUserById(userId);
+                //profileImgService.deleteProfile(profileImg);
                 session.removeAttribute("log"); // 세션에서 log 속성 제거
                 response.put("result", true);
             }else{
