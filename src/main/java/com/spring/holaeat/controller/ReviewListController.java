@@ -11,6 +11,7 @@ import com.spring.holaeat.util.ImageParsor;
 import lombok.RequiredArgsConstructor;
 import netscape.javascript.JSObject;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
@@ -55,17 +56,31 @@ public class ReviewListController {
     @GetMapping("/reviewlist/{pageNumber}")
     public String getBoardAll(@PathVariable int pageNumber,
                               @RequestParam(required = false, value = "keyword") String keyword,
-                              @PageableDefault(size = 10) Pageable pageable, Model model) {
+                              @RequestParam(required = false, value = "searchType") String searchType,
+                              @PageableDefault(size = 3) Pageable pageable, Model model) {
 
         Map<Long, String> imageMap = new HashMap<>();
-        List<Review> reviewPage;
+        List<Review> reviewPage = null;
 
+        Pageable adjustedPageable = PageRequest.of(pageNumber - 1, pageable.getPageSize(), pageable.getSort());
+        
+        
         if (keyword != null && !keyword.isEmpty()) {
             String pattern = "%" + keyword + "%";
-            reviewPage = reviewRepository.findAllByTitleLike(pattern, pageable);
+            if ("title".equals(searchType)) {
+                reviewPage = reviewRepository.findAllByTitleLike(pattern, adjustedPageable);
+            }
+            if ("author".equals(searchType)) {
+                reviewPage = reviewRepository.findAllByUserIdLike(pattern, adjustedPageable);
+            }
+            if("all".equals(searchType)){
+                reviewPage = reviewRepository.findAllByTitleLikeOrUserIdLike(pattern, adjustedPageable);
+            }
         } else {
-            reviewPage = reviewRepository.findAllByOrderByReviewNoDesc(); // 내림차순으로 정렬된 데이터 가져오기
+            reviewPage = reviewRepository.findAllByOrderByReviewNoDesc(adjustedPageable);
         }
+        
+
 
         model.addAttribute("reviewlistPage", reviewPage); // reviewPage를 모델에 추가
 
@@ -79,6 +94,8 @@ public class ReviewListController {
         int totalLength = (int) reviewRepository.count(); // 총 리뷰 수 가져오기
         int totalPages = (int) Math.ceil((double) totalLength / pageable.getPageSize()); // 전체 페이지 수 계산
 
+        System.out.println("totalLength :" + totalLength );
+        System.out.println("totalPages :" + totalPages );
         model.addAttribute("pageNumber", pageNumber);
         model.addAttribute("totalPages", totalPages);
 
