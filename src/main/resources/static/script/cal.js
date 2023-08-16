@@ -57,21 +57,25 @@ function fetchAndDisplayMenu(selectedNational) {
                 resultHtml += "<hr>"; // 첫 번째 메뉴 이후에만 수평선 추가
             }
 
+            var totalCalories = menu.food1Weight + menu.food2Weight + menu.food3Weight + menu.food4Weight + menu.food5Weight;
+
             resultHtml += "<li>" +
-                "음식1: " + menu.food1 + "</br>" +
-                "음식2: " + menu.food2 + "</br>" +
-                "음식3: " + menu.food3 + "</br>" +
-                "음식4: " + menu.food4 + "</br>" +
-                "음식5: " + menu.food5 + "</br>" +
-                "주재료1: " + menu.main1 + "</br>" + // 수정된 부분: menu.MAIN 대신 menu.main1
-                "주재료2: " + menu.main2 + "</br>" + // 수정된 부분: menu.MAIN2 대신 menu.main2
-                "</li>" + "</br>";
+                "음식1: " + menu.food1 + " (" + menu.food1Weight + "Kcal)</br>" +
+                "음식2: " + menu.food2 + " (" + menu.food2Weight + "Kcal)</br>" +
+                "음식3: " + menu.food3 + " (" + menu.food3Weight + "Kcal)</br>" +
+                "음식4: " + menu.food4 + " (" + menu.food4Weight + "Kcal)</br>" +
+                "음식5: " + menu.food5 + " (" + menu.food5Weight + "Kcal)</br>" +
+                "주재료1: " + menu.main1 + "</br>" +
+                "주재료2: " + menu.main2 + "</br>" +
+                "총 칼로리: " + totalCalories + "Kcal" +
+                "</li></br>";
         });
         resultHtml += "</ul>";
 
         generatedMenusDiv.innerHTML = resultHtml;
     });
 }
+
 
 function fetchAndDisplayAllMenus(selectedValue) {
     var menuIdMapping = {
@@ -95,6 +99,8 @@ function fetchAndDisplayAllMenus(selectedValue) {
             }
 
             if (menu.menuId === menuId) {
+                var totalCalories = menu.food1Weight + menu.food2Weight + menu.food3Weight + menu.food4Weight + menu.food5Weight;
+
                 resultHtml += "<li>" +
                     "음식1: " + menu.food1 + " (" + menu.food1Weight + "Kcal)</br>" +
                     "음식2: " + menu.food2 + " (" + menu.food2Weight + "Kcal)</br>" +
@@ -103,6 +109,7 @@ function fetchAndDisplayAllMenus(selectedValue) {
                     "음식5: " + menu.food5 + " (" + menu.food5Weight + "Kcal)</br>" +
                     "주재료1: " + menu.main1 + "</br>" +
                     "주재료2: " + menu.main2 + "</br>" +
+                    "총 칼로리: " + totalCalories + "Kcal" +
                     "</li>" + "</br>";
             }
         });
