@@ -80,13 +80,13 @@
         </div>
         <!-- 댓글 출력할 공간 -->
         <div id="comment-container">
-            <c:if test="${not empty commentList}">
-                <c:forEach var="li" items="${commentList}">
+            <c:if test="${not empty reviewComment}">
+                <c:forEach var="li" items="${reviewComment}">
                     <div class="comment-item">
                         <p>${li.userId}</p>
                         <br>
                         <p>${li.content}</p>
-                        <p>${li.createdAt}</p>
+<%--                        <p>${li.createdAt}</p>--%>
                     </div>
                 </c:forEach>
             </c:if>

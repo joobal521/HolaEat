@@ -32,30 +32,30 @@ function addComment() {
     });
 }
 
-function drawComments() {
-    const reviewNo = $('#reviewNo').val();
-
-    $.ajax({
-        method: "GET",
-        url: `/comment?reviewNo=${reviewNo}`,
-    }).done(response => {
-        const list = response; // Assuming response is an array of comments
-        console.log(list);
-
-        $('#comment-container').empty();
-
-        list.forEach(comment => {
-            $('#comment-container').append(`
-                <div class="comment-item">
-                    <p>${comment.userId}</p>
-                    <br>
-                    <p>${comment.content}</p>
-                    <p>${comment.createdAt}</p>
-                </div>
-            `);
-        });
-    });
-}
+// function drawComments() {
+//     const reviewNo = $('#reviewNo').val();
+//
+//     $.ajax({
+//         method: "GET",
+//         url: `/comment?reviewNo=${reviewNo}`,
+//     }).done(response => {
+//         const list = response; // Assuming response is an array of comments
+//         console.log(list);
+//
+//         $('#comment-container').empty();
+//
+//         list.forEach(comment => {
+//             $('#comment-container').append(`
+//                 <div class="comment-item">
+//                     <p>${comment.userId}</p>
+//                     <br>
+//                     <p>${comment.content}</p>
+//                     <p>${comment.createdAt}</p>
+//                 </div>
+//             `);
+//         });
+//     });
+// }
 
 $(document).ready(function () {
     $('#msg-box').click(function () {
