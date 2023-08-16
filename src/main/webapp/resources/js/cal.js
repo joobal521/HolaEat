@@ -44,32 +44,28 @@ $(document).ready(function () {
     });
 });
 
-function calculateCalories() {
-    // 필요한 변수들을 가져옴
-    var gender = document.querySelector('input[name="gender"]:checked').value;
-    var age = parseFloat(document.getElementById("age").value);
-    var height = parseFloat(document.getElementById("height").value);
-    var weight = parseFloat(document.getElementById("weight").value);
-    var allergy = document.getElementById("allergy").value;
 
-    // 열량 계산 로직을 추가
+function fetchAndDisplayMenu() {
+    $.get("/menus/generate", function(data) {
+        var generatedMenus = data; // 서버에서 받은 JSON 데이터
+        var generatedMenusDiv = document.getElementById("generatedMenus");
 
-    var baseCalories = 0;
-    if (gender === "male") {
-    baseCalories = 10 * weight + 6.25 * height - 5 * age + 5;
-} else if (gender === "female") {
-    baseCalories = 10 * weight + 6.25 * height - 5 * age - 161;
+        // 결과를 생성하여 웹 페이지에 표시
+        var resultHtml = "<h2>산출된 식단</h2><ul>";
+        generatedMenus.forEach(function(menu) {
+            resultHtml += "<li>메뉴 ID: " + menu.menuId +
+                ", 알레르기 정보: " + menu.allergy +
+                ", 음식1: " + menu.food1 +
+                ", 음식2: " + menu.food2 +
+                ", 음식3: " + menu.food3 +
+                ", 음식4: " + menu.food4 +
+                ", 음식5: " + menu.food5 +
+                ", 메인: " + menu.main +
+                ", 메인2: " + menu.main2 +
+                "</li>";
+        });
+        resultHtml += "</ul>";
+
+        generatedMenusDiv.innerHTML = resultHtml;
+    });
 }
-
-    // 알레르기에 따른 보정 값 추가
-
-    if (allergy !== "") {
-    baseCalories *= 0.9; // 알레르기가 있을 경우 열량을 90%로 조정
-}
-
-    // 결과를 필드에 채움
-    document.getElementById("recCalories").value = baseCalories.toFixed(2); // 소수점 2자리까지 표시
-
-
-}
-

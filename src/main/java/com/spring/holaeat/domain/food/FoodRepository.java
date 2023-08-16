@@ -22,4 +22,6 @@ public interface FoodRepository extends JpaRepository<Food,String> {
     @Query(nativeQuery = true, value = "SELECT ingr_name FROM ingredients")
     List<String> getAllIngrNames();
 
+
+
 }
