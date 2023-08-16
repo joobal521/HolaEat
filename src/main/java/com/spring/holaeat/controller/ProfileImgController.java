@@ -22,43 +22,43 @@ import java.util.Map;
 @RequestMapping("api/v1/my")
 public class ProfileImgController {
 
-//    private final ProfileImgService profileImgService;
-//   // private final UserService userService;
-//
-//
-//    @Autowired
-//    public ProfileImgController(ProfileImgService profileImgService) {
-//        this.profileImgService = profileImgService;
-//    }
-//
-//
-//
-//
-//    @PutMapping("profile")
-//    public Map<String, Object> uploadProfile(
-//            @RequestParam String userId,
-//            @RequestParam MultipartFile profileImg) throws IOException {
-//        JSONObject response = new JSONObject();
-//
-//        try {
-//            User user= userService.getUserById(userId);
-//
-//
-//            ProfileImgRequestDto profileImgDto = new ProfileImgRequestDto();
-//            profileImgDto.setUser(user);
-//            profileImgDto.setProfileImg(profileImg);
-//
-//          //  profileImgService.uploadProfileImage(user, profileImgDto);
-//
-//            response.put("result", true);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            response.put("result", false);
-//            response.put("message", "프로필 업로드 실패");
-//        }
-//
-//        return response.toMap();
-//    }
+    private final ProfileImgService profileImgService;
+   // private final UserService userService;
+
+
+    @Autowired
+    public ProfileImgController(ProfileImgService profileImgService) {
+        this.profileImgService = profileImgService;
+    }
+
+
+
+
+    @PutMapping("profile")
+    public Map<String, Object> uploadProfile(
+            @RequestParam String userId,
+            @RequestParam MultipartFile profileImg) throws IOException {
+        JSONObject response = new JSONObject();
+
+        try {
+            //userService.getUserById(userId);
+
+
+            ProfileImgRequestDto profileImgDto = new ProfileImgRequestDto();
+            profileImgDto.setUserId(userId);
+            profileImgDto.setProfileImg(profileImg);
+
+          //  profileImgService.uploadProfileImage(user, profileImgDto);
+
+            response.put("result", true);
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.put("result", false);
+            response.put("message", "프로필 업로드 실패");
+        }
+
+        return response.toMap();
+    }
 }
 
 

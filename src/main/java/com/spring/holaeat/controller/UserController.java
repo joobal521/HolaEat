@@ -40,13 +40,12 @@ public class UserController {
     }catch (IllegalArgumentException e){
 
         //회원가입
-        User user=new User();
-        user=userService.createUser(userDto);
+        userService.createUser(userDto);
 
         // 프로필 이미지 생성
 
         ProfileImgRequestDto profileImgDto = new ProfileImgRequestDto();
-        profileImgDto.setUser(user);
+        profileImgDto.setUserId(userDto.getUserId());
         profileImgService.createProfile(profileImgDto);
 
         System.out.println("join success");

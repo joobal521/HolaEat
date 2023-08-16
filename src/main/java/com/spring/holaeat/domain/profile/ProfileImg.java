@@ -23,8 +23,10 @@ public class ProfileImg extends Timestamp {
     private Long profileNo;
 
 
+    @JoinColumn(name = "user_id", nullable = false)
+    private String userId;
+
     @OneToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "userId", nullable = false)
     private User user;
 
     @Lob
@@ -45,7 +47,7 @@ public class ProfileImg extends Timestamp {
     // 생성자
     public ProfileImg(ProfileImgRequestDto profileImgDto) {
         this.profileNo = profileImgDto.getProfileNo();
-        this.user= profileImgDto.getUser();
+        this.userId=profileImgDto.getUserId();
         if (profileImgDto.getProfileImg() != null) {
             try {
                 this.profileImg = profileImgDto.getProfileImg().getBytes();
