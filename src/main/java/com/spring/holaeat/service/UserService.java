@@ -40,9 +40,11 @@ public class UserService {
      }
 
      //회원가입
-     public void createUser(UserRequestDto userDto){
+     public User createUser(UserRequestDto userDto){
           User user=new User(userDto);
           userRepository.save(user);
+
+          return user;
 
      }
 

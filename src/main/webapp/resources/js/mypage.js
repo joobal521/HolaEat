@@ -2,6 +2,9 @@
 
 function updateImg(htmlForm) {
     const profileImg = htmlForm.userProfileImg.files[0];
+    const id=htmlForm.userId.value;
+
+    console.log(id);
 
     const formData = new FormData();
     formData.append("userId", $("#userId").val());

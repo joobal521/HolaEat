@@ -22,7 +22,7 @@
     <div class="card">
         <form enctype="multipart/form-data">
             <input type="file" name="userProfileImg" accept="image/png, image/jpg, image/jpeg, image.gif">
-            <input type="hidden" name="userId" id="userId" value="${login.userId}">
+            <input type="hidden" name="userId" id="userId" value="${sessionScope.log}">
             <button type="button" class="profile-btn" onclick="updateImg(form)">프로필 사진 변경</button>
         </form>
     </div>
