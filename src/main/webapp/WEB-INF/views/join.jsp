@@ -51,6 +51,9 @@
                     <li>
                         <h2>이메일</h2>
                         <input type="email" id="userEmail" name="userEmail"  placeholder="example@holaEat.com">
+                        <input
+                                type="button" id="emailDupl" name="emailDupl"
+                                value="중복 확인" onclick="chkEmail()">
                         <input type="button" class="square"
                                                       id="email_ch" onclick="emailAuthentication()" value="인증메일 보내기">
                         <p class="error" id="error-email">이메일은 필수정보입니다.</p>

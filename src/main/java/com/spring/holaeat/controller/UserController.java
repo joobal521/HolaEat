@@ -1,6 +1,6 @@
 package com.spring.holaeat.controller;
 
-import com.spring.holaeat.domain.profile.ProfileImg;
+
 import com.spring.holaeat.domain.profile.ProfileImgRequestDto;
 import com.spring.holaeat.domain.user.User;
 import com.spring.holaeat.domain.user.UserRequestDto;
@@ -8,15 +8,19 @@ import com.spring.holaeat.domain.user.UserRepository;
 import com.spring.holaeat.service.ProfileImgService;
 import com.spring.holaeat.service.UserService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.json.JSONObject;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.awt.*;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
 
+@Slf4j
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("api/v1/users")
@@ -25,6 +29,7 @@ public class UserController {
     private final UserService userService;
     private final UserRepository userRepository;
     private final ProfileImgService profileImgService;
+
 
 //회원가입
 @PostMapping(value = "join", consumes = "application/json")
@@ -159,6 +164,33 @@ public class UserController {
 
         return response.toMap();
     }
+
+    //이메일 인증
+    @PostMapping("/emails/verification-requests")
+    public Map sendMessage(@RequestBody  Map<String, String> requestData) {
+        JSONObject response = new JSONObject();
+        String userEmail = requestData.get("userEmail");
+
+        try {
+            userService.sendCodeToEmail(userEmail);
+            response.put("result", true);
+        }catch (Exception e){
+            e.printStackTrace();
+            response.put("result", false);
+            response.put("message", "인증코드 전송 실패");
+
+        }
+        return response.toMap();
+    }
+
+//    @GetMapping("/emails/verifications")
+//    public Map verificationEmail(@RequestParam("email") @Valid @CustomEmail String email,
+//                                            @RequestParam("code") String authCode) {
+//        JSONObject response = new JSONObject();
+//        EmailVerificationResult response = userService.verifiedCode(email, authCode);
+//
+//        return  response.toMap();
+//    }
 
 
 

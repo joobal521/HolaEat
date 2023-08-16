@@ -140,7 +140,7 @@ function emailAuthentication() {
 
         $.ajax({
             type: "POST",
-            url: "api/v1/users/emailCheck",
+            url: "api/v1/users/emails/verification-requests",
             data: JSON.stringify(data),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
