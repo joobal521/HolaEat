@@ -1,14 +1,20 @@
 package com.spring.holaeat.controller;
 
+import com.spring.holaeat.domain.profile.ProfileImg;
+import com.spring.holaeat.domain.profile.ProfileImgRequestDto;
 import com.spring.holaeat.domain.user.User;
 import com.spring.holaeat.domain.user.UserRequestDto;
 import com.spring.holaeat.domain.user.UserRepository;
+import com.spring.holaeat.service.ProfileImgService;
 import com.spring.holaeat.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.json.JSONObject;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.awt.*;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Map;
 
 @RequiredArgsConstructor
@@ -18,6 +24,7 @@ public class UserController {
 
     private final UserService userService;
     private final UserRepository userRepository;
+    private final ProfileImgService profileImgService;
 
 //회원가입
 @PostMapping(value = "join", consumes = "application/json")
@@ -31,15 +38,42 @@ public class UserController {
 
 
     }catch (IllegalArgumentException e){
-        userService.createUser(userDto);
+        User user=new User();
+        user=userService.createUser(userDto);
+
+        // 프로필 이미지 생성
+        ProfileImgRequestDto profileImgDto = new ProfileImgRequestDto();
+        profileImgDto.setUser(user); // 유저 객체 설정
+
+         //기본 이미지 파일을 읽어서 byte 배열로 변환하여 설정
+        try {
+            byte[] defaultImageBytes = getDefaultImageBytes();
+
+           // profileImgDto.setProfileImg(defaultImageBytes);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            response.put("result", false);
+            return response.toMap();
+        }
+
         System.out.println("join success");
         response.put("result",true);
 
     }
     return response.toMap();
 
-
 }
+
+//이미지 파일 변환
+
+    private byte[] getDefaultImageBytes() throws IOException {
+        try (InputStream is = getClass().getClassLoader().getResourceAsStream("static/img/belle.jpg")) {
+            if (is != null) {
+                return is.readAllBytes();
+            }
+            throw new IOException("기본 이미지 파일을 읽을 수 없습니다.");
+        }
+    }
 
 //아이디 중복체크
     @PostMapping("userIdDupl")

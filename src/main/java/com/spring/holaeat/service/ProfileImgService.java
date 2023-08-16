@@ -4,6 +4,7 @@ package com.spring.holaeat.service;
 import com.spring.holaeat.domain.profile.ProfileImg;
 import com.spring.holaeat.domain.profile.ProfileImgRepository;
 import com.spring.holaeat.domain.profile.ProfileImgRequestDto;
+import com.spring.holaeat.domain.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -23,10 +24,20 @@ public class ProfileImgService {
         this.profileImgRepository = profileImgRepository;
     }
 
-    public void uploadProfileImage(String userId, ProfileImgRequestDto profileImgDto) throws IOException {
-        ProfileImg profileImg = profileImgRepository.findByUserId(userId);
+    //프로필 자동 생성
+    public void createProfile(ProfileImgRequestDto profileImgDto){
+        ProfileImg profileImg=new ProfileImg(profileImgDto);
+        profileImgRepository.save(profileImg);
 
-        profileImg.update(profileImgDto);
+    }
+
+    public void uploadProfileImage(User user, ProfileImgRequestDto profileImgDto) throws IOException {
+        ProfileImg profileImg = profileImgRepository.findByUser(user);
+        if (profileImg == null) {
+            profileImg = new ProfileImg(profileImgDto); // 프로필 이미지 생성
+        } else {
+            profileImg.update(profileImgDto); // 프로필 이미지 업데이트
+        }
         profileImgRepository.save(profileImg);
     }
 

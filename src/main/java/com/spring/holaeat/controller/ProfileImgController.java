@@ -1,15 +1,16 @@
 package com.spring.holaeat.controller;
 
 import com.spring.holaeat.domain.profile.ProfileImg;
+import com.spring.holaeat.domain.profile.ProfileImgRepository;
 import com.spring.holaeat.domain.profile.ProfileImgRequestDto;
 import com.spring.holaeat.domain.review.Review;
-import com.spring.holaeat.payload.Response;
+import com.spring.holaeat.domain.user.User;
 import com.spring.holaeat.service.ProfileImgService;
+import com.spring.holaeat.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -18,12 +19,17 @@ import java.util.Map;
 @RestController
 @RequestMapping("api/v1/my")
 public class ProfileImgController {
+
     private final ProfileImgService profileImgService;
+
 
     @Autowired
     public ProfileImgController(ProfileImgService profileImgService) {
         this.profileImgService = profileImgService;
     }
+
+
+
 
     @PutMapping("profile")
     public Map<String, Object> uploadProfile(
@@ -33,10 +39,10 @@ public class ProfileImgController {
 
         try {
             ProfileImgRequestDto profileImgDto = new ProfileImgRequestDto();
-            profileImgDto.setUserId(userId);
+            //User user = userService.getUserById(userId);
             profileImgDto.setProfileImg(profileImg);
 
-            profileImgService.uploadProfileImage(userId, profileImgDto);
+            //profileImgService.uploadProfileImage(user, profileImgDto);
 
             response.put("result", true);
         } catch (Exception e) {

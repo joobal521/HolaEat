@@ -7,7 +7,7 @@
     <form  enctype="multipart/form-data">
         <input type="text" name="title" id="title">
         <textarea id="content" name="content"></textarea>
-        <input multiple="multiple" type="file" id="file" name="multi_file"  accept="image/png, image/jpg, image/jpeg, image.gif">
+        <input type="file" id="file" name="multi_file"  accept="image/png, image/jpg, image/jpeg, image.gif" multiple/>
         <button type="button" id="btn-health" class="btn" onclick="checkValue(form)">등록</button>
     </form>
 

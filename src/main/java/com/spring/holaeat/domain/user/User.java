@@ -1,5 +1,6 @@
 package com.spring.holaeat.domain.user;
 
+import com.spring.holaeat.domain.profile.ProfileImg;
 import com.spring.holaeat.domain.user_detail.UserDetail;
 import com.spring.holaeat.util.Timestamp;
 import lombok.Getter;
@@ -27,6 +28,10 @@ public class User extends Timestamp {
     private String userName;
     @Column(unique = true)
     private String userEmail;
+
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private ProfileImg profileImg;
 
 
 
