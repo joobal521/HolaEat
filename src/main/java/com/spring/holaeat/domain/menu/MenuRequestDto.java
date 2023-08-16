@@ -6,7 +6,9 @@ import lombok.Setter;
 @Getter
 @Setter
 public class MenuRequestDto {
-    private String menuId;
+
+    private Long no;
+    private int menuId;
     private int allergy;
     private String food1;
     private String food2;

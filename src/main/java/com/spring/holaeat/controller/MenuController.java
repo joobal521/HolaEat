@@ -23,4 +23,6 @@ public class MenuController {
         List<Menu> generatedMenus = menuService.generateMenuWithFoodNames();
         return ResponseEntity.ok(generatedMenus);
     }
+
+
 }

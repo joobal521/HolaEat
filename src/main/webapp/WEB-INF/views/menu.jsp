@@ -85,7 +85,7 @@
                 <li>
                     <h2>알레르기</h2>
                     <select name="allergy" id="allergy">
-                        <option value="">없음</option>
+                        <option value="0">없음</option>
                         <option value="1" ${userAllergy eq '1' ? 'selected' : ''}>유제품</option>
                         <option value="2" ${userAllergy eq '2' ? 'selected' : ''}>갑각류</option>
                         <option value="3" ${userAllergy eq '3' ? 'selected' : ''}>과일류</option>
@@ -198,16 +198,26 @@
             <div class="category_title">
                 <h2>어떤 메뉴를 드시고 싶으신가요?</h2>
                 <div class="category">
-                    <select name="national" id="national">
+                    <select name="national" id="national" onchange="fetchAndDisplayAllMenus(this.value)">
                         <option value="">선택하세요</option>
-                        <option class="korean" value="">한식</option>
-                        <option class="chinese" value="">중식</option>
-                        <option class="japanese" value="">일식</option>
-                        <option class="western" value="">양식</option>
-                        <option class="salad" value="">샐러드</option>
+                        <option class="korean" value="한식">한식</option>
+                        <option class="chinese" value="중식">중식</option>
+                        <option class="japanese" value="일식">일식</option>
+                        <option class="western" value="양식">양식</option>
+                        <option class="salad" value="샐러드">샐러드</option>
                     </select>
                 </div>
             </div>
+
+
+            <div class="personal_menu">
+                <h2>${userName}님만을 위한 맞춤식단이 여기 있습니다!</h2>
+                <div id="generatedMenus"></div>
+                <div id="total_calories"></div>
+            </div>
+
+
+        </div>
 
 
             <%--            <div class="btn-container">--%>
@@ -218,13 +228,6 @@
             <%--                <a class="btn" href="/health?national=중식">중식</a>--%>
             <%--                <a class="btn" href="/health?national=샐러드">샐러드</a>--%>
             <%--            </div>--%>
-            <div class="personal_menu">
-                <h2>${userName}님만을 위한 맞춤식단이 여기 있습니다!</h2>
-                <div id="generatedMenus"></div>
-            </div>
-
-        </div>
-
 
 
 </section>
