@@ -85,7 +85,7 @@
                 <li>
                     <h2>알레르기</h2>
                     <select name="allergy" id="allergy">
-                        <option value="">없음</option>
+                        <option value="0">없음</option>
                         <option value="1" ${userAllergy eq '1' ? 'selected' : ''}>유제품</option>
                         <option value="2" ${userAllergy eq '2' ? 'selected' : ''}>갑각류</option>
                         <option value="3" ${userAllergy eq '3' ? 'selected' : ''}>과일류</option>
