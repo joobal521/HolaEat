@@ -4,17 +4,28 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @Component
 public class IngredientsRequestDto {
-    private String ingrId;
+    private int ingrId;
     private String ingrName;
     private Boolean allergy;
     private Boolean month;
-    private byte[] ingrImg;
+//    private byte[] ingrImg;
+
+    private MultipartFile ingrImg;
+
+    public MultipartFile getIngrImg() {
+        return ingrImg;
+    }
+
+    public void setIngrImg(MultipartFile ingrImg) {
+        this.ingrImg = ingrImg;
+    }
 
 
 

@@ -24,9 +24,9 @@ public class Food {
     private boolean weightControl;
     private boolean balanced;
     private boolean sideDish;
-    private byte[] foodimg;
+    private byte[] foodImg;
 
-    public Food(String foodId, String foodNational, String foodGroup, String foodName, int foodWeight, boolean allergyInfo, boolean vegan, boolean weightControl, boolean balanced, boolean sideDish, byte[] foodimg) {
+    public Food(String foodId, String foodNational, String foodGroup, String foodName, int foodWeight, boolean allergyInfo, boolean vegan, boolean weightControl, boolean balanced, boolean sideDish, byte[] foodImg) {
         this.foodId = foodId;
         this.foodNational = foodNational;
         this.foodGroup = foodGroup;
@@ -37,6 +37,6 @@ public class Food {
         this.weightControl = weightControl;
         this.balanced = balanced;
         this.sideDish = sideDish;
-        this.foodimg = foodimg;
+        this.foodImg = foodImg;
     }
 }

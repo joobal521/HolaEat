@@ -17,4 +17,7 @@ public class FoodService {
         List<Food> list = foodRepository.findFoodByFoodId(foodId);
         return list;
     }
+    public byte[] getFoodImgByFoodId(String foodId){
+        return foodRepository.getFoodImgByFoodId(foodId);
+    }
 }

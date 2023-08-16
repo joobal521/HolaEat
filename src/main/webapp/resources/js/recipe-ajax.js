@@ -22,15 +22,17 @@ document.addEventListener("DOMContentLoaded", function () {
 function loadRecipe(btn, modal) {
     var foodId = btn.getAttribute("data-foodid");
     var $recipeContent = modal.querySelector(".recipe-content");
-    var ingrid = document.getElementById('#ingrId-modal').value;
+    var ingrid = document.getElementById('ingrId-modal').value;
 
+    console.log(foodId + "foodid");
+    console.log(ingrid + "ingrid");
     $.ajax({
-        url: "getRecipe/" + foodId+"?"+ingrid,
+        url: "getRecipe/" + foodId + "?" + ingrid,
         type: "GET",
         dataType: "html",
         success: function (response) {
-            // console.log("response:" + response);
-            $recipeContent.innerHTML = response; // 레시피 정보를 해당 모달 내부에 추가
+            $recipeContent.innerHTML = response; // Add recipe information to the modal content
         }
     });
 }
+

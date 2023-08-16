@@ -15,5 +15,5 @@ public class FoodResponseDto {
     private boolean weightControl;
     private boolean balanced;
     private boolean sideDish;
-    private byte[] foodimg;
+    private byte[] foodImg;
 }

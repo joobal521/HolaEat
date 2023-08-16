@@ -1,7 +1,7 @@
 package com.spring.holaeat.controller;
 
-import com.spring.holaeat.domain.ingredients.Ingredients;
 import com.spring.holaeat.domain.recipe.Recipe;
+import com.spring.holaeat.service.FoodService;
 import com.spring.holaeat.service.IngredientsService;
 import com.spring.holaeat.service.RecipeService;
 import com.spring.holaeat.util.ImageParsor;
@@ -18,21 +18,22 @@ public class RecipeController {
 
     private final IngredientsService ingredientsService;
     private final RecipeService recipeService;
+    private final FoodService foodService;
 
     @Autowired
-    public RecipeController (IngredientsService ingredientsService, RecipeService recipeService){
+    public RecipeController (IngredientsService ingredientsService, RecipeService recipeService, FoodService foodService){
         this.ingredientsService = ingredientsService;
         this.recipeService = recipeService;
+        this.foodService = foodService;
     }
 
-    @GetMapping("/getRecipe/{foodId}?{ingrId}")
-    public String getRecipe(@PathVariable String foodId,@PathVariable String ingrId, Model model) {
+    @GetMapping("/getRecipe/{foodId}")
+    public String getRecipe(@PathVariable String foodId, Model model) {
         List<Recipe> recipe = recipeService.findStepsByFoodId(foodId);
 
-        Ingredients ingredients = ingredientsService.findById(ingrId);
-        String blob = null;
-        if(ingredients.getIngrImg()!=null) {
-            blob = ImageParsor.parseBlobToBase64(ingredients.getIngrImg());
+        byte[] foodImg = foodService.getFoodImgByFoodId(foodId);
+        if(foodImg!=null) {
+            String blob = ImageParsor.parseBlobToBase64(foodImg);
             model.addAttribute("blob",blob);
         }
         model.addAttribute("recipe", recipe);

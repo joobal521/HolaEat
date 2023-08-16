@@ -13,9 +13,15 @@
 <body>
 <section class="ingr-section">
     <h2> 이달의 식재료 </h2>
-    <c:forEach items="${ingredientsList}" var="ingredient">
+    <c:forEach items="${blob}" var="imgblob">
+        <img src="data:image/png;base64,${blob}" id="img" name="img" alt="Review Image">
+    </c:forEach>
+    <c:forEach items="${ingredientsList}" var="ingredient" varStatus="status">
         <div class="ingr-img">
-            <a class="ingrOfMonth" href=""></a>
+            <a class="ingrOfMonth" href="">
+
+
+            </a>
             <h3>${ingredient.ingrName}</h3>
         </div>
         <div class="ingr-foods">
