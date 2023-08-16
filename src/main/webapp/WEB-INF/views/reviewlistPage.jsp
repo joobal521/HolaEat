@@ -24,9 +24,14 @@
     pageNumber 확인용 : ${pageNumber}
 
     <div>
-        <a href="reviewform">
-            글쓰기
-        </a>
+        <c:choose>
+            <c:when test="${empty log}">
+                <a href="login">글쓰기</a>
+            </c:when>
+            <c:otherwise>
+                <a href="reviewform">글쓰기</a>
+            </c:otherwise>
+        </c:choose>
     </div>
     <div id="review-container">
         <c:forEach items="${reviewlistPage}" var="review" varStatus="loop">
@@ -61,10 +66,13 @@
         <div class="paging" id="paging">
 
             <ul class="pagination">
+                <li><a href="/reviewlist/1"><<</a></li>
+
                 <li><a href="/reviewlist/1">1</a></li>
                 <c:forEach var="i" begin="2" end="${totalPages}" step="1">
                     <li><a href="/reviewlist/${i}">${i}</a></li>
                 </c:forEach>
+                <li><a href="/reviewlist/${totalPages}"> >> </a></li>
             </ul>
 
         </div>

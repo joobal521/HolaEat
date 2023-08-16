@@ -176,6 +176,45 @@ function CheckValueDelete(htmlForm, reviewNo) {
 }
 
 
+// function redirectToReviewUpdate(reviewNum, logUser) {
+//     var reviewUserIdElement = document.getElementById("userId");
+//     var reviewUserId = reviewUserIdElement.value;
+//     console.log(reviewUserId);
+//     var reviewNoElement = document.getElementById("reviewNo");
+//     var reviewNo = reviewNoElement.value;
+//     console.log(reviewNo);
+//
+//     const loggedInUser = log;
+//     console.log(loggedInUser);
+//
+//     // 로그인한 사용자와 게시글 작성자 비교
+//     if (loggedInUser === reviewUserId) {
+//         // 작성자와 로그인한 사용자가 동일한 경우 수정 페이지로 이동
+//         window.location.href = "../reviewUpdate?reviewNo=" + reviewNo;
+//     } else {
+//         alert("작성자만 수정할 수 있습니다.");
+//     }
+// }
+
+
+// function redirectToReviewUpdate() {
+//     var reviewNoElement = document.getElementById("reviewNo");
+//     var reviewNo = reviewNoElement.value;
+//
+// // 로그인한 사용자와 게시글 작성자 비교
+//     if (loggedInUser === "${review.userId}") {
+//         // 작성자와 로그인한 사용자가 동일한 경우 수정 페이지로 이동
+//         window.location.href = "../reviewUpdate?reviewNo=" + reviewNo;
+//     } else {
+//         alert("작성자만 수정할 수 있습니다.");
+//     }
+//
+//
+//
+// }
+
+
+
 function redirectToReviewUpdate() {
     var reviewNoElement = document.getElementById("reviewNo");
     var reviewNo = reviewNoElement.value;
@@ -186,13 +225,6 @@ function redirectToReviewUpdate() {
 
 
 }
-
-
-// function redirectToReviewUpdate(reviewNo) {
-//     window.location.href  = "../reviewUpdate?reviewNo=" + reviewNo;
-//
-// }
-
 
 function goBack() {
     window.scrollTo(0, 0);
