@@ -16,18 +16,18 @@
 
 }
 
-.review_img{
+.review_img {
     width: 400px;
     height: 77%;
     /*object-fit: cover;*/
 }
 
-.review_img #img{
+.review_img #img {
     width: 400px;
     height: 100%;
 }
 
-.user_profile{
+.user_profile {
     width: 90%;
     height: 10%;
 }
@@ -37,43 +37,42 @@
     display: inline-block;
 }
 
-.review_title{
+.review_title {
     height: 10%;
 
 }
 
 
-
-.review_like{
+.review_like {
 
     height: 3%;
 }
 
-.review_like>i{
+.review_like > i {
     width: 20px;
     height: 20px;
 }
+
 /*페이징 처리*/
 
-/*.container {*/
-/*    max-width: 800px;*/
-/*    margin: 0 auto;*/
-/*    padding: 20px;*/
-/*}*/
+.paging-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
 
-/*ul {*/
-/*    list-style: none;*/
-/*    padding: 0;*/
-/*}*/
+.pagination {
+    list-style: none;
+    padding: 0;
+}
 
-/*li {*/
-/*    margin: 10px 0;*/
-/*}*/
+.pagination > li {
+    margin: 10px 0;
+}
 
 /*#pagination {*/
 /*    margin-top: 20px;*/
 /*}*/
-
 
 
 .paging {
@@ -114,12 +113,12 @@
 
 /* 리뷰 페이지*/
 
-#review-contents{
+#review-contents {
     width: 90%;
     border: 1px solid black;
 }
 
-#review_detail input{
+#review_detail input {
     display: inline-block;
     width: 55%;
     color: rgb(0, 0, 0);
@@ -131,4 +130,30 @@
 
 
 /*댓글*/
+
+
+/*글쓰기 페이지 */
+
+
+#reviewform-container {
+    width: 90%;
+    border: 1px solid black;
+}
+
+#reviewform input {
+    display: inline-block;
+    width: 55%;
+    color: rgb(0, 0, 0);
+    height: 40px;
+    margin: 10px auto;
+    border: 1px solid rgb(126, 121, 121);
+
+}
+
+#reviewform textarea {
+
+    width: 55%;
+    height: 300px;
+}
+
 

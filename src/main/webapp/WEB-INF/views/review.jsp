@@ -11,8 +11,8 @@
 <head>
     <title>Title</title>
     <c:set var="path" value="${pageContext.request.contextPath}"/>
-    <link rel="stylesheet" type="text/css" href="style/form.css">
-    <link rel="stylesheet" type="text/css" href="style/review.css">
+    <link rel="stylesheet" type="text/css" href="../style/grid.css">
+    <link rel="stylesheet" type="text/css" href="../style/review.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 
 
@@ -66,6 +66,7 @@
         </c:if>
 
 
+
     <!-- 댓글 부분 -->
     <div class="comment-section">
         <div class="comment-write">
@@ -81,7 +82,7 @@
                         </c:otherwise>
                     </c:choose>></textarea>
                 <div class="commentBtn">
-                    <input type="button" id="commentBtn" value="등록하기">
+                    <input type="button" id="commentBtn" value="등록하기" onclick="addComment()">
                 </div>
             </form>
         </div>
@@ -90,17 +91,15 @@
             <c:if test="${not empty commentList}">
                 <c:forEach var="li" items="${commentList}">
                     <div class="comment-item">
-                        <p>${li.getUserId()}</p>
+                        <p>${li.userId}</p>
                         <br>
-                        <p>${li.getContent()}</p>
-                        <p>${li.getCreatedAt()}</p>
+                        <p>${li.content}</p>
+                        <p>${li.createdAt}</p>
                     </div>
                 </c:forEach>
             </c:if>
         </div>
     </div>
-
-
 
 
 </section>
