@@ -18,6 +18,7 @@ public class NutritionsService {
     }
 
     public List<Nutritions> findByFoodId(String foodId){
+        System.out.println("service foodID: " +foodId);
         return nutritionsRepository.findAllByFoodId(foodId);
     }
 }

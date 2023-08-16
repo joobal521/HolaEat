@@ -4,6 +4,7 @@ import com.spring.holaeat.domain.admin.Admin;
 import com.spring.holaeat.domain.admin.AdminRepository;
 import com.spring.holaeat.domain.ingredients.Ingredients;
 import com.spring.holaeat.domain.ingredients.IngredientsRequestDto;
+import com.spring.holaeat.domain.menu.Menu;
 import com.spring.holaeat.service.IngredientsService;
 import com.spring.holaeat.service.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -87,15 +88,35 @@ public String gainPower(@RequestParam("adminid") String id, @RequestParam("admin
         return "adminIngr";
     }
 
-//메뉴관리
-    @GetMapping("adminMenu")
-    public String getAllMenu(Model model){
-
-
-
-        return "adminMenu";
-    }
-
+////메뉴관리
+//    @GetMapping("adminMenu")
+//    public String getAllMenu(Model model){
+//
+//
+//
+//        return "adminMenu";
+//    }
+//
+//    //후기게시판관리
+//    @GetMapping("adminReview")
+//    public String getReview(Model model){
+//
+//        return "adminReview";
+//    }
+//
+//    //유저관리
+//    @GetMapping("adminUser")
+//    public String getUser(Model model){
+//
+//        return "adminUser";
+//    }
+//
+//    //건강정보관리
+//    @GetMapping("adminHealth")
+//    public String gethealth(Model mode){
+//
+//        return "adminHealth";
+//    }
 
 
 }
