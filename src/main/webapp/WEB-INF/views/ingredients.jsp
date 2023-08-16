@@ -4,8 +4,8 @@
 <html>
 <head>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="${path}/resources/js/recipe-ajax.js"></script>
-    <link rel="stylesheet" type="text/css" href="<c:url value='/resources/style/ingredients.css' />">
+    <script src="${path}/static/script/recipe-ajax.js"></script>
+    <link rel="stylesheet" type="text/css" href="style/ingredients.css">
     <title>Title</title>
     <%--    --%>
 </head>
@@ -13,9 +13,9 @@
 <body>
 <section class="ingr-section">
     <h2> 이달의 식재료 </h2>
-<%--    <c:forEach items="${blob}" var="imgblob">--%>
-<%--        <img src="data:image/png;base64,${imgblob}" id="img" name="img" alt="Review Image">--%>
-<%--    </c:forEach>--%>
+    <c:forEach items="${blob}" var="imgblob">
+        <img src="data:image/png;base64,${blob}" id="img" name="img" alt="Review Image">
+    </c:forEach>
     <c:forEach items="${ingredientsList}" var="ingredient" varStatus="status">
         <div class="ingr-img">
             <a class="ingrOfMonth" href="">

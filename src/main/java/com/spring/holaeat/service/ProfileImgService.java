@@ -31,8 +31,9 @@ public class ProfileImgService {
 
     }
 
-    public void uploadProfileImage(User user, ProfileImgRequestDto profileImgDto) throws IOException {
-        ProfileImg profileImg = profileImgRepository.findByUser(user);
+    //프로필 수정
+    public void uploadProfileImage(String userId, ProfileImgRequestDto profileImgDto) throws IOException {
+        ProfileImg profileImg = profileImgRepository.findByUserId(userId);
         if (profileImg == null) {
             profileImg = new ProfileImg(profileImgDto); // 프로필 이미지 생성
         } else {

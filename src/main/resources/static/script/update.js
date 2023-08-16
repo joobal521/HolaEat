@@ -154,7 +154,7 @@ function checkValue() {
             console.log(data);
             if (data.result === true) {
                 alert("회원수정 완료")
-                location.href = "../../webapp";
+                location.href = "../../../webapp";
             }else{
                 alert("기존 비밀번호가 일치하지 않습니다.")
                 location.href="update"

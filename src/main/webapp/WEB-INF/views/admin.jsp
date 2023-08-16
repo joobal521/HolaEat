@@ -6,6 +6,28 @@
     <title>ADMIN</title>
     <c:set var="path" value="${pageContext.request.contextPath}"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<%--    <script>--%>
+<%--        $(document).ready(function() {--%>
+<%--            $("a.menu-link").click(function(event) {--%>
+<%--                event.preventDefault(); // 기본 링크 동작 방지--%>
+
+<%--                var pageUrl = $(this).attr("href"); // 클릭한 링크의 URL--%>
+
+<%--                // AJAX 요청--%>
+<%--                $.ajax({--%>
+<%--                    url: pageUrl,--%>
+<%--                    success: function(response) {--%>
+<%--                        $(".section").html(response); // .section에 응답 페이지 삽입--%>
+<%--                    },--%>
+<%--                    error: function() {--%>
+<%--                        alert("페이지 로드에 실패했습니다.");--%>
+<%--                    }--%>
+<%--                });--%>
+<%--            });--%>
+<%--        });--%>
+<%--    </script>--%>
+    <!-- admin.jsp 파일 내용 -->
+
     <script>
         $(document).ready(function() {
             $("a.menu-link").click(function(event) {
@@ -37,7 +59,7 @@
         };
     </script>
 
-    <link rel="stylesheet" type="text/css" href=<c:url value='/resources/style/admin.css' />>
+    <link rel="stylesheet" type="text/css" href="style/admin.css">
 </head>
 <c:import url="header.jsp"/>
 <body>
@@ -70,7 +92,7 @@
 
     </section>
 </section>
-<script src="<c:url value='/resources/js/admin.js' />"></script>
+<script src="script/admin.js"></script>
 </body>
 <c:import url="footer.jsp"/>
 </html>

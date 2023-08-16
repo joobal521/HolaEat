@@ -11,7 +11,7 @@
 <head>
     <title>Title</title>
     <c:set var="path" value="${pageContext.request.contextPath}"/>
-    <link rel="stylesheet" type="text/css" href="${path}/resources/style/form.css">
+    <link rel="stylesheet" type="text/css" href="style/form.css">
 </head>
 <c:import url="header.jsp"/>
 <body>

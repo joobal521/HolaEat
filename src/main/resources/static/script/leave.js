@@ -38,7 +38,7 @@ function checkValue(htmlForm) {
         }).done(function(data){
             console.log(data);
             if (data.result === true) {
-                location.href = "../../webapp";
+                location.href = "../../../webapp";
                 sessionStorage.removeItem("log");
             } else {
                 alert("회원탈퇴 실패. 비밀번호가 올바르지 않습니다.");
