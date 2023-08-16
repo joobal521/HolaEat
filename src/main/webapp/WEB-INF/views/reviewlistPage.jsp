@@ -11,8 +11,8 @@
 <head>
     <title>reviewlist</title>
     <c:set var="path" value="${pageContext.request.contextPath}"/>
-    <link rel="stylesheet" type="text/css" href="style/form.css">
-    <link rel="stylesheet" type="text/css" href="style/review.css">
+    <link rel="stylesheet" type="text/css" href="../style/grid.css">
+    <link rel="stylesheet" type="text/css" href="../style/review.css">
     <script src="https://kit.fontawesome.com/5d67eb2efc.js" crossorigin="anonymous"></script>
 
 
@@ -60,9 +60,7 @@
 
     <%--    페이징--%>
 
-    <div class="container">
-        <h1>Review List</h1>
-
+    <div class="paging-container">
         <div class="paging" id="paging">
 
             <ul class="pagination">
@@ -79,7 +77,6 @@
 
         <div class="search_box">
             <form id="searchForm"  method="get" action="/reviewlist/1">
-                <%--            <form id="searchForm" onsubmit="return false;" autocomplete="off">--%>
                 <div class="searchTag">
                     <select title="검색 유형 선택" id="searchType" name="searchType">
                         <option name="all" value="all">전체 검색</option>
@@ -98,8 +95,6 @@
 
 </body>
 <script src="script/review.js"></script>
-
-<%--<script src="${path}/resources/js/pagination.js"></script>--%>
 
 <c:import url="footer.jsp"/>
 </html>
