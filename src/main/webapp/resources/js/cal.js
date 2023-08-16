@@ -97,11 +97,11 @@ function fetchAndDisplayAllMenus(selectedValue) {
 
             if (menu.menuId === menuId) { // 변환된 menu_id 값과 menu_id를 비교
                 resultHtml += "<li>" +
-                    "음식1: " + menu.food1 + "</br>" +
-                    "음식2: " + menu.food2 + "</br>" +
-                    "음식3: " + menu.food3 + "</br>" +
-                    "음식4: " + menu.food4 + "</br>" +
-                    "음식5: " + menu.food5 + "</br>" +
+                    "음식1: " + menu.food1.foodName + " (" + menu.food1.foodWeight + "Kcal)</br>" +
+                    "음식2: " + menu.food2.foodName + " (" + menu.food2.foodWeight + "Kcal)</br>" +
+                    "음식3: " + menu.food3.foodName + " (" + menu.food3.foodWeight + "Kcal)</br>" +
+                    "음식4: " + menu.food4.foodName + " (" + menu.food4.foodWeight + "Kcal)</br>" +
+                    "음식5: " + menu.food5.foodName + " (" + menu.food5.foodWeight + "Kcal)</br>" +
                     "주재료1: " + menu.MAIN + "</br>" +
                     "주재료2: " + menu.MAIN2 + "</br>" +
                     "</li>" + "</br>";

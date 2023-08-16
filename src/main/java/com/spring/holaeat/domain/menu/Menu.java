@@ -44,6 +44,10 @@ public class Menu {
     @Column(name = "main2")
     private String main2;
 
+
+
+
+
     public void setFood1Name(String food1Name) {
         this.food1 = food1Name;
     }

@@ -213,6 +213,7 @@
             <div class="personal_menu">
                 <h2>${userName}님만을 위한 맞춤식단이 여기 있습니다!</h2>
                 <div id="generatedMenus"></div>
+                <div id="total_calories"></div>
             </div>
 
 
