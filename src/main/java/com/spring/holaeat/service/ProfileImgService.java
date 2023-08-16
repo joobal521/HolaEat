@@ -4,9 +4,7 @@ package com.spring.holaeat.service;
 import com.spring.holaeat.domain.profile.ProfileImg;
 import com.spring.holaeat.domain.profile.ProfileImgRepository;
 import com.spring.holaeat.domain.profile.ProfileImgRequestDto;
-import com.spring.holaeat.domain.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 

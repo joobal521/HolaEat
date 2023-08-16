@@ -23,11 +23,11 @@
         <c:redirect url="${login}"></c:redirect>
     </c:if>
     <c:choose>
-        <c:when test="${empty log.profileImg}">
-            <img src="/img/belle.jpg" width="200px"><br/>
+        <c:when test="${empty profileImg}">
+            <img src="img/belle2.jpg" width="200px"><br/>
         </c:when>
         <c:otherwise>
-            <img src="data:image/png;base64,${profileImg}" style=" max-width: 50%;  height: auto;"> <br />
+            <img src="data:image/png;base64,${ImageParsor.parseBlobToBase64(profileImg)}" style=" max-width: 50%;  height: auto;"> <br />
         </c:otherwise>
     </c:choose>
     <div class="card">

@@ -55,20 +55,20 @@
 }
 /*페이징 처리*/
 
-.container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-}
+/*.container {*/
+/*    max-width: 800px;*/
+/*    margin: 0 auto;*/
+/*    padding: 20px;*/
+/*}*/
 
-ul {
-    list-style: none;
-    padding: 0;
-}
+/*ul {*/
+/*    list-style: none;*/
+/*    padding: 0;*/
+/*}*/
 
-li {
-    margin: 10px 0;
-}
+/*li {*/
+/*    margin: 10px 0;*/
+/*}*/
 
 /*#pagination {*/
 /*    margin-top: 20px;*/

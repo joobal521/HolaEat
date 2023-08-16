@@ -5,6 +5,7 @@ function updateImg(htmlForm) {
     const id=htmlForm.userId.value;
 
     console.log(id);
+    console.log(profileImg);
 
     const formData = new FormData();
     formData.append("userId", $("#userId").val());
@@ -23,7 +24,7 @@ function updateImg(htmlForm) {
             if (data.result === true) {
                 alert("프로필 업로드 완료");
                 // 이미지 데이터 업데이트
-                $("#profileImage").attr("src", "data:image/png;base64," + data.base64ImageData);
+                $("#userProfileImg").attr("src", "data:image/png;base64," + data.base64ImageData);
             } else {
                 alert("프로필 업로드 실패");
             }

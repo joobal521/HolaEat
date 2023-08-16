@@ -40,7 +40,7 @@ public class ProfileImgController {
 
         try {
             ProfileImgRequestDto profileImgDto = new ProfileImgRequestDto();
-
+            profileImgDto.setUserId(userId);
             profileImgDto.setProfileImg(profileImg);
 
             profileImgService.uploadProfileImage(userId, profileImgDto);
