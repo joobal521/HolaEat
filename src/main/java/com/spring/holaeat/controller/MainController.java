@@ -66,7 +66,7 @@ public class MainController {
         Optional<Review> review = reviewRepository.findById(reviewNo);
 
         if(review == null)
-            return "reviewlist";
+            return "reviewlistPage";
 
         model.addAttribute("review", review.get());
         return "reviewUpdate";

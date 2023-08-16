@@ -30,16 +30,6 @@ public class ReviewService {
 
 
 
-
-
-    //페이징으로 추가1 - 비지니스로직을 처리하는 서비스 클래스 생성
-
-
-//    public List<Review> findAllByTitleLikeOrderByReviewNoDesc(String pattern, Pageable pageable){
-//        return reviewRepository.findAllByTitleLikeOrderByReviewNoDesc(pattern, pageable).getContent();
-//    };
-
-
     //전체 적용
     public List<Review> findAllByOrderByReviewNoDesc(Pageable adjustedPageable){
         List<Review> list = reviewRepository.findAllByOrderByReviewNoDesc(adjustedPageable);

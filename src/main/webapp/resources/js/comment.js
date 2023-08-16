@@ -1,4 +1,38 @@
+
+
+// function  addComment(htmlForm){
 //
+//     const content = htmlForm.content.value;
+//     console.log("content : " + content);
+//
+//     const userId = htmlForm.userId.val();
+//     console.log("userId : " + userId);
+//
+//     let check = true;
+//
+//
+//     if(check){
+//
+//         var form = new FormData();
+//         form.append("content",content);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//     }
+//
+//
+// }
+//
+//
+//
+
 // $(document).ready(function () {
 //
 //     $('#msg-box').click(function () {
@@ -8,7 +42,7 @@
 //     function addComment() {
 //         const reviewNo = $('#reviewNo').val();
 //         const msgBoxValue = $('#msg-box').val();
-//         const userId = $('#logVal').val(); // Assuming logVal contains the user ID
+//         const userId = $('#logVal').val();
 //
 //         $.ajax({
 //             method: "POST",
@@ -43,7 +77,7 @@
 //
 //             list.forEach(comment => {
 //                 $('#comment-container').append(`
-//                     <div class="comments-item">
+//                     <div class="comment-item">
 //                         <p>${comment.content}</p>
 //                     </div>
 //                 `);
@@ -52,7 +86,7 @@
 //     }
 //
 //     // Assuming there's a button or trigger to add a comment
-//     $('#add-comment-btn').click(addComment);
+//     // $('#add-comment-btn').click(addComment);
 //
 //     // Initial comments rendering
 //     drawComments();

@@ -79,6 +79,7 @@ public class ReviewController {
         System.out.println(log + " = log 확인용");
 
         if (!review.getUserId().equals(log)) {
+            System.out.println(log + " = log 확인용");
             return new Response("update", "작성자만 수정할 수 있습니다.");
         }
         System.out.println("reviewRequestDto.getImg() 확인용 :" + reviewRequestDto.getImg());

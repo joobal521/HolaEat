@@ -58,7 +58,9 @@
 <%--                <input type="datetime" id="modified_at" readonly value="${review.modifiedAt}">--%>
 <%--                    </c:when>--%>
 
-                    <button type="button" id="update" name="update" onclick="redirectToReviewUpdate(reviewNo)">수정</button>
+<%--                    <input type="hidden" id="reviewUserId" value="${log}">--%>
+<%--                    <button type="button" id="update" name="update" onclick="redirectToReviewUpdate('${review.reviewNo}', '${loggedInUser}')">수정</button>--%>
+                    <button type="button" id="update" name="update" onclick="redirectToReviewUpdate()">수정</button>
                     <button type="button" id="delete" name="delete" onclick="CheckValueDelete(document.getElementById('review-detail'), ${review.reviewNo})">삭제</button>
 
                 </form>
@@ -70,7 +72,8 @@
     <div class="comment-section">
         <div class="comment-write">
             <span>댓글쓰기 </span>
-            <form method="POST" class="comment">
+            <form id="review_comment" enctype="multipart/form-data">
+
             <textarea cols="80" rows="10" id="msg-box" name="msg"
                     <c:choose>
                         <c:when test="${empty log}">
@@ -81,7 +84,7 @@
                         </c:otherwise>
                     </c:choose>></textarea>
                 <div class="commentBtn">
-                    <input type="button" id="commentBtn" value="등록하기">
+                    <button type="button" id="commentBtn" onclick="addComment()">등록하기</button>
                 </div>
             </form>
         </div>
@@ -106,5 +109,7 @@
 </section>
 </body>
 <script src="${path}/resources/js/review.js"></script>
+<script src="${path}/resources/js/comment.js"></script>
+
 <c:import url="footer.jsp"/>
 </html>
