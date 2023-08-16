@@ -117,21 +117,21 @@
                 <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner" style="height: 50vh; overflow: unset;">
                         <div class="carousel-item active">
-                            <img src="resources/img/menu_main.jpg" class="d-block w-100" alt="...">
+                            <img src="img/menu_main.jpg" class="d-block w-100" alt="...">
                             <div class="carousel-caption d-none d-md-block" style="background-color: unset;">
                                 <h5>균형잡힌 식단이 중요합니다.</h5>
                                 <p>테스트!</p>
                             </div>
                         </div>
                         <div class="carousel-item">
-                            <img src="resources/img/protein_main.jpg" class="d-block w-100" alt="...">
+                            <img src="img/protein_main.jpg" class="d-block w-100" alt="...">
                             <div class="carousel-caption d-none d-md-block">
                                 <h5>몸을 만들고 계신가요?</h5>
                                 <p>탄수화물, 단백질, 지방은 우리 몸의 3대 영양소 입니다.</p>
                             </div>
                         </div>
                         <div class="carousel-item">
-                            <img src="resources/img/vegan_main.jpg" class="d-block w-100" alt="...">
+                            <img src="img/vegan_main.jpg" class="d-block w-100" alt="...">
                             <div class="carousel-caption d-none d-md-block">
                                 <h5>당신의 선택을 생각합니다.</h5>
                                 <p>비건을 위한 식물성 식단</p>

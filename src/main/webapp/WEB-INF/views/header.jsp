@@ -18,7 +18,7 @@
         <div class="top_wrap">
             <div class="logo">
                 <a href="/">
-                    <img src="resources/img/logo.png">
+                    <img src="img/logo.png">
                 </a>
                 <%--                로고 옆 로그인 상태 표시--%>
                 <c:choose>
