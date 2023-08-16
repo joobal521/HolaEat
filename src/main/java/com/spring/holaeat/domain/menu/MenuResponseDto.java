@@ -4,6 +4,8 @@ import lombok.Getter;
 
 @Getter
 public class MenuResponseDto {
+
+    private Long no;
     private String menuId;
     private int allergy;
     private String food1;

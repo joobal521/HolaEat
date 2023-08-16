@@ -45,27 +45,39 @@ $(document).ready(function () {
 });
 
 
-function fetchAndDisplayMenu() {
-    $.get("/menus/generate", function(data) {
-        var generatedMenus = data; // 서버에서 받은 JSON 데이터
-        var generatedMenusDiv = document.getElementById("generatedMenus");
+function fetchAndDisplayMenu(selectedValue) {
+    if (selectedValue === "") {
+        document.getElementById("generatedMenus").innerHTML = "";
+        return;
+    }
 
-        // 결과를 생성하여 웹 페이지에 표시
-        var resultHtml = "<h2>산출된 식단</h2><ul>";
-        generatedMenus.forEach(function(menu) {
-            resultHtml += "<li>메뉴 ID: " + menu.menuId +
-                ", 알레르기 정보: " + menu.allergy +
-                ", 음식1: " + menu.food1 +
-                ", 음식2: " + menu.food2 +
-                ", 음식3: " + menu.food3 +
-                ", 음식4: " + menu.food4 +
-                ", 음식5: " + menu.food5 +
-                ", 메인: " + menu.main +
-                ", 메인2: " + menu.main2 +
-                "</li>";
-        });
-        resultHtml += "</ul>";
+    $.ajax({
+        url: "/menus/generate",
+        type: "GET",
+        dataType: "json",
+        success: function (data) {
+            let menuContainer = document.getElementById("generatedMenus");
+            menuContainer.innerHTML = "";
 
-        generatedMenusDiv.innerHTML = resultHtml;
+            for (let i = 0; i < data.length; i++) {
+                let menu = data[i];
+                if (menu.national === selectedValue) {
+                    let menuDiv = document.createElement("div");
+                    menuDiv.className = "menu-item";
+                    menuDiv.innerHTML = `
+                        <h3>${menu.menuId}</h3>
+                        <p>음식 1: ${menu.food1Name}</p>
+                        <p>음식 2: ${menu.food2Name}</p>
+                        <p>음식 3: ${menu.food3Name}</p>
+                        <p>음식 4: ${menu.food4Name}</p>
+                        <p>음식 5: ${menu.food5Name}</p>
+                    `;
+                    menuContainer.appendChild(menuDiv);
+                }
+            }
+        },
+        error: function (xhr, status, error) {
+            console.error("Error fetching menus:", error);
+        }
     });
 }
