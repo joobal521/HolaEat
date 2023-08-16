@@ -31,10 +31,10 @@ public class IngredientsService {
 
     public String findIngrIdByName(String ingrName) {
         Ingredients ingredient = ingredientsRepository.findByIngrName(ingrName);
-        return ingredient != null ? ingredient.getIngrId() : "0";
+        return ingredient != null ? String.valueOf(ingredient.getIngrId()) : "0";
     }
 
-    public Ingredients findById(String id) {
+    public Ingredients findById(int id) {
         Ingredients ingredient = ingredientsRepository.findByIngrId(id);
         return ingredient;
     }
@@ -52,7 +52,7 @@ public class IngredientsService {
         ingredientsRepository.save(ingredients);
     }
     @Transactional
-    public void deleteIngredientsByIngrId(String id){
+    public void deleteIngredientsByIngrId(int id){
         ingredientsRepository.deleteIngredientsByIngrId(id);
     }
 
@@ -61,35 +61,35 @@ public class IngredientsService {
         List<Ingredients> list = ingredientsRepository.findAll();
         return list;
     }
-    public void savePreferredIngredient(String userId, String ingrId) {
+    public void savePreferredIngredient(String userId, int ingrId) {
         Prefer prefer = new Prefer();
         prefer.setUserId(userId);
-        prefer.setIngrId(ingrId);
+        prefer.setIngrId(String.valueOf(ingrId));
         preferRepository.save(prefer);
     }
 
-    public void saveDislikedIngredient(String userId, String ingrId) {
+    public void saveDislikedIngredient(String userId, int ingrId) {
         Dislike dislike = new Dislike();
         dislike.setUserId(userId);
-        dislike.setIngrId(ingrId); // int 타입으로 설정
+        dislike.setIngrId(String.valueOf(ingrId)); // int 타입으로 설정
         dislikeRepository.save(dislike);
     }
 
-    public String generateIngrId() {
-        String CHARACTERS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-        int ID_LENGTH = 10;
-
-        StringBuilder idBuilder = new StringBuilder();
-        Random random = new Random();
-
-        for (int i = 0; i < ID_LENGTH; i++) {
-            int randomIndex = random.nextInt(CHARACTERS.length());
-            char randomChar = CHARACTERS.charAt(randomIndex);
-            idBuilder.append(randomChar);
-        }
-
-        return idBuilder.toString();
-    }
+//    public String generateIngrId() {
+//        String CHARACTERS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+//        int ID_LENGTH = 10;
+//
+//        StringBuilder idBuilder = new StringBuilder();
+//        Random random = new Random();
+//
+//        for (int i = 0; i < ID_LENGTH; i++) {
+//            int randomIndex = random.nextInt(CHARACTERS.length());
+//            char randomChar = CHARACTERS.charAt(randomIndex);
+//            idBuilder.append(randomChar);
+//        }
+//
+//        return idBuilder.toString();
+//    }
 
 
 

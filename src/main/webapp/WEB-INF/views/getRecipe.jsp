@@ -2,9 +2,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
     <div>
 
+    <c:if test="${not empty blob }">
         <div id="image-container">
             <img src="data:image/png;base64,${blob}" id="ingrImg" name="ingrIm"  alt="ingr Img">
         </div>
+    </c:if>
         <h1>레시피</h1>
         <c:forEach items="${recipe}" var="foodrecipe">
             <span id="step1">${foodrecipe.step_01}</span>

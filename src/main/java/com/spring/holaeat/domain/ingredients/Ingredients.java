@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.io.IOException;
 
 @NoArgsConstructor
 @Getter
@@ -12,9 +13,7 @@ import javax.persistence.*;
 @Table(name="ingredients")
 public class Ingredients {
     @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "org.hibernate.id.UUIDGenerator")
-    private String ingrId;
+    private int ingrId;
 
     private String ingrName;
     private Boolean allergy;
@@ -22,7 +21,7 @@ public class Ingredients {
     private byte[] ingrImg;
 
 
-    public Ingredients(String ingrId, String ingrName, Boolean allergy, Boolean month,byte[] ingrImg) {
+    public Ingredients(int ingrId, String ingrName, Boolean allergy, Boolean month,byte[] ingrImg) {
         this.ingrId = ingrId;
         this.ingrName = ingrName;
         this.allergy = allergy;
@@ -42,7 +41,16 @@ public class Ingredients {
         this.ingrName = ingredientsRequestDto.getIngrName();
         this.allergy = ingredientsRequestDto.getAllergy();
         this.month = ingredientsRequestDto.getMonth();
-        this.ingrImg = ingredientsRequestDto.getIngrImg();
+
+        if (ingredientsRequestDto.getIngrImg() != null) {
+            try {
+                this.ingrImg = ingredientsRequestDto.getIngrImg().getBytes();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }else{
+            this.ingrImg=null;
+        }
     }
 
 
