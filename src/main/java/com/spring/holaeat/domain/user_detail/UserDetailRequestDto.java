@@ -13,6 +13,9 @@ public class UserDetailRequestDto {
     private Integer height;
     private String allergy;
     private Double recCalories;
+    private String prefer;
+    private String dislike;
+
 
 
 

@@ -14,7 +14,7 @@ public interface HealthRepository extends JpaRepository<Health, Long> {
     Health findByHealthNo(long no);
 
     //내림차순
-    public List<Health> findAllByOrderByHealthNoDesc();
+    List<Health> findAllByOrderByHealthNoDesc();
 
 
 

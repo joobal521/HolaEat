@@ -5,9 +5,7 @@ import com.spring.holaeat.domain.review.ReviewRepository;
 import com.spring.holaeat.domain.review.ReviewRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,6 +16,11 @@ import java.util.List;
 public class ReviewService {
 
     private final ReviewRepository reviewRepository;
+
+    //검색
+
+
+
 
 
     //페이징처리추가(8/14)
@@ -38,8 +41,8 @@ public class ReviewService {
 
 
     //전체 적용
-    public List<Review> findAllByOrderByReviewNoDesc(){
-        List<Review> list = reviewRepository.findAllByOrderByReviewNoDesc();
+    public List<Review> findAllByOrderByReviewNoDesc(Pageable adjustedPageable){
+        List<Review> list = reviewRepository.findAllByOrderByReviewNoDesc(adjustedPageable);
 //        System.out.println("list : " + list);
         return list;
     }
@@ -61,6 +64,11 @@ public class ReviewService {
         reviewRepository.save(review);
     }
 
+    @Transactional
+    public void remainImage(Review review,byte[] img){
+        review.remainImg(img);
+        reviewRepository.save(review);
+    }
 
         //삭제
     @Transactional

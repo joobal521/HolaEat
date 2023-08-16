@@ -38,7 +38,7 @@ public class Photo {
         this.fileSize=fileSize;
     }
 
-    //healthBoard정보 저장
+    //health정보 저장
     public void setHealth(Health health){
         this.health=health;
 

@@ -28,9 +28,9 @@ public class UserCaloriesController {
     }
 
 
-    @PostMapping(value = "/saveCalories")
+    @PostMapping(value = "/saveDetails")
     @ResponseBody
-    public ResponseEntity<Map<String, Object>> saveCalories(@ModelAttribute UserDetailRequestDto userDetailDto, HttpSession session) {
+    public ResponseEntity<Map<String, Object>> saveDetails(@ModelAttribute UserDetailRequestDto userDetailDto, HttpSession session) {
         try {
             String userId = (String) session.getAttribute("log");
 
@@ -50,6 +50,8 @@ public class UserCaloriesController {
             userDetail.setWeight(userDetailDto.getWeight());
             userDetail.setAllergy(userDetailDto.getAllergy());
             userDetail.setRecCalories(userDetailDto.getRecCalories());
+            userDetail.setPrefer(userDetailDto.getPrefer());
+            userDetail.setDislike(userDetailDto.getDislike());
 
             userDetailRepository.save(userDetail);
 
@@ -60,6 +62,8 @@ public class UserCaloriesController {
             responseData.put("weight", userDetail.getWeight());
             responseData.put("allergy", userDetail.getAllergy());
             responseData.put("recCalories", userDetail.getRecCalories());
+            responseData.put("Prefer", userDetail.getPrefer());
+            responseData.put("Dislike", userDetail.getDislike());
 
             // 세션 값 변경
             session.setAttribute("userAge", userDetail.getAge());
@@ -67,6 +71,8 @@ public class UserCaloriesController {
             session.setAttribute("userWeight", userDetail.getWeight());
             session.setAttribute("userAllergy", userDetail.getAllergy());
             session.setAttribute("userRecCalories", userDetail.getRecCalories());
+            session.setAttribute("userPrefer", userDetail.getPrefer());
+            session.setAttribute("userDislike", userDetail.getDislike());
 
             return ResponseEntity.ok(responseData);
 

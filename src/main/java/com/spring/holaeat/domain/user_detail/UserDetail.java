@@ -38,6 +38,14 @@ public class UserDetail {
     @Column(name = "rec_calories")
     private double recCalories;
 
+    @Column(name = "prefer")
+    private String prefer;
+
+    @Column(name = "dislike")
+    private String dislike;
+
+
+
 
 
 

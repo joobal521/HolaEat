@@ -5,13 +5,14 @@
     <title>Title</title>
     <c:set var="path" value="${pageContext.request.contextPath}"/>
     <link rel="stylesheet" type="text/css" href="${path}/resources/style/form.css">
+    <link rel="stylesheet" type="text/css" href="${path}/resources/style/review.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 
 
     <style>
-        #img , #file{
-            width: 100px;
-            height: 100px;
+        #img {
+            width: 500px;
+            height: 500px;
         }
     </style>
 </head>
@@ -23,26 +24,32 @@
         <h2>게시글</h2>
         <c:if test="${review!=null}">
             <div id="review-contents">
-                <form id="review-detail" enctype="multipart/form-data">
-                    <div>
+                <form id="review_detail" enctype="multipart/form-data">
+                    <div class="review_detail_no">
+                        <label for="title">No.</label>
                         <input type="text" id="reviewNo" name="reviewNo" value="${review.reviewNo}" readonly>
                     </div>
-                <div>
+                <div class="review_detail_title">
+                    <label for="title">제목</label>
                     <input type="text" id="title" name="title" value="${review.title}" readonly>
                 </div>
-                <div>
+                <div class="review_detail_userId">
+                    <label for="userId">작성자</label>
                     <input type="text" id="userId" name="userId" value="${review.userId}" readonly>
                 </div>
 
-                <div>
+                <div class="review_detail_content">
+                    <label for="content">내용</label>
                     <input type="text" id="content" name="content" value="${review.content}" readonly >
                 </div>
                 <div id="image-container">
                     <img src="data:image/png;base64,${blob}" id="img" name="img"  alt="Review Image">
 
                 </div>
-                <input type="datetime" id="created_at" readonly>
-                <input type="datetime" id="modified_at" readonly>
+<%--                    <c:when test="${not empty review}">--%>
+<%--                <input type="datetime" id="created_at" readonly value="${review.createdAt}"> --%>
+<%--                <input type="datetime" id="modified_at" readonly value="${review.modifiedAt}">--%>
+<%--                    </c:when>--%>
 
                     <button type="button" id="update" name="update" onclick="redirectToReviewUpdate(reviewNo)">수정</button>
                     <button type="button" id="delete" name="delete" onclick="CheckValueDelete(document.getElementById('review-detail'), ${review.reviewNo})">삭제</button>

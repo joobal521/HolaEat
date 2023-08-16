@@ -16,6 +16,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletRequest;
 
 @SessionAttributes({"log","userName"})
 @Controller
@@ -46,38 +47,36 @@ public class LogController {
                     session.setAttribute("userRecCalories", userDetail.getRecCalories());
                     session.setAttribute("userAllergy", userDetail.getAllergy());
                     session.setAttribute("userGender", userDetail.getGender());
+                    if (userDetail.getPrefer() != null) {
+                        session.setAttribute("userPrefer", userDetail.getPrefer());
+                    }
+                    if (userDetail.getDislike() != null) {
+                        session.setAttribute("userDislike", userDetail.getDislike());
+                    }
                 }
                 return "redirect:/";
             } else {
-                model.addAttribute("loginFailed", true); // 로그인 실패 시 오류 메시지 전달
-                return "login"; // 로그인 실패 시 다시 로그인 페이지로 이동
+                model.addAttribute("loginFailed", true);
+                return "login";
             }
         } else {
-            model.addAttribute("loginFailed", true); // 로그인 실패 시 오류 메시지 전달
-            return "login"; // 로그인 실패 시 다시 로그인 페이지로 이동
+            model.addAttribute("loginFailed", true);
+            return "login";
         }
     }
 
-
     @PostMapping("logout")
-    public String logout(WebRequest request, SessionStatus status, HttpSession session) {
+    public String logout(HttpSession session, WebRequest request, SessionStatus status) {
+
+        session.invalidate();
+
         // 우선 호출 후,
         status.setComplete();
         // 세션 속성을 수정
         request.removeAttribute("log", WebRequest.SCOPE_SESSION);
         request.removeAttribute("userName", WebRequest.SCOPE_SESSION);
-
-        UserDetail userDetail = (UserDetail) session.getAttribute("userDetail");
-        if (userDetail != null) {
-            request.removeAttribute("userAge", WebRequest.SCOPE_SESSION);
-            request.removeAttribute("userHeight", WebRequest.SCOPE_SESSION);
-            request.removeAttribute("userWeight", WebRequest.SCOPE_SESSION);
-            request.removeAttribute("userRecCalories", WebRequest.SCOPE_SESSION);
-            request.removeAttribute("userAllergy", WebRequest.SCOPE_SESSION);
-            request.removeAttribute("userGender", WebRequest.SCOPE_SESSION);
-        }
-
         return "redirect:/";
     }
+
 
 }
