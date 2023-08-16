@@ -22,7 +22,7 @@ public class ReviewCommentService {
 
     //삭제
     @Transactional
-    public void delete(String commentId){
+    public void delete(long commentId){
         reviewCommentRepository.deleteById(commentId);
 
 
