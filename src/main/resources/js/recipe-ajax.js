@@ -22,12 +22,12 @@ document.addEventListener("DOMContentLoaded", function () {
 function loadRecipe(btn, modal) {
     var foodId = btn.getAttribute("data-foodid");
     var $recipeContent = modal.querySelector(".recipe-content");
-    var ingrid = document.getElementById('ingrId-modal').value;
+    // var ingrid = document.getElementById('ingrId-modal').value;
 
     console.log(foodId + "foodid");
-    console.log(ingrid + "ingrid");
+    // console.log(ingrid + "ingrid");
     $.ajax({
-        url: "getRecipe/" + foodId + "?" + ingrid,
+        url: "getRecipe/" + foodId,
         type: "GET",
         dataType: "html",
         success: function (response) {

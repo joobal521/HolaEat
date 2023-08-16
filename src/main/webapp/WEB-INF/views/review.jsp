@@ -20,7 +20,6 @@
 <body>
 <section id = "review-section">
     <h2>리뷰 게시판 상세</h2>
-
         <h2>게시글</h2>
         <c:if test="${review!=null}">
             <div id="review-contents">

@@ -4,11 +4,9 @@ import com.spring.holaeat.domain.food.Food;
 import com.spring.holaeat.domain.food_ingr.FoodIngr;
 import com.spring.holaeat.domain.ingredients.Ingredients;
 import com.spring.holaeat.domain.ingredients.IngredientsRequestDto;
-import com.spring.holaeat.domain.review.Review;
 import com.spring.holaeat.service.FoodIngrService;
 import com.spring.holaeat.service.FoodService;
 import com.spring.holaeat.service.IngredientsService;
-import com.spring.holaeat.service.NutritionService;
 import com.spring.holaeat.util.ImageParsor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,42 +35,76 @@ public class IngredientsController {
 
     }
 
+//    @GetMapping("/ingredients")
+//    public String getIngredients(Model model) {
+//        List<Ingredients> ingredientsList = ingredientsService.findByMonthEquals();
+//        List<FoodIngr> monthFoodIngrList = new ArrayList<>(); // 전체 foodIngrList를 담을 리스트
+//        List<Food> monthFoods = new ArrayList<>();
+//
+//        Map<String, String> imageMap = new HashMap<>();
+//
+//        for (Ingredients ingredients : ingredientsList) {
+//            if (ingredients.getIngrImg() != null) {
+//                String base64Image = ImageParsor.parseBlobToBase64(ingredients.getIngrImg());
+//                imageMap.put(String.valueOf(ingredients.getIngrId()), base64Image);
+//            }
+//        }
+//
+//        for (Ingredients ingredient : ingredientsList) {
+//            String ingrId = String.valueOf(ingredient.getIngrId());
+//            List<FoodIngr> foodIngrList = foodIngrService.findFoodIdByIngrId(ingrId);
+//            monthFoodIngrList.addAll(foodIngrList); // 현재 ingrId에 해당하는 foodIngrList를 전체 리스트에 추가
+//        }
+//
+//        for (FoodIngr foodIngr : monthFoodIngrList) {
+//            String foodId = String.valueOf(foodIngr.getFoodId());
+//            List<Food> foods = foodService.findFoodByFoodId(foodId);
+//            monthFoods.addAll(foods);
+//        }
+//
+//
+//        model.addAttribute("ingredientsList", ingredientsList);//식재료리스트
+//        model.addAttribute("monthFoodIngrList", monthFoodIngrList);//
+//        model.addAttribute("blob",imageMap);
+//        model.addAttribute("monthFoods", monthFoods);
+//
+//        return "ingredients"; // ingredients.jsp
+//    }
+
     @GetMapping("/ingredients")
-    public String getIngredients(Model model) {
-        List<Ingredients> ingredientsList = ingredientsService.findByMonthEquals();
-        List<FoodIngr> monthFoodIngrList = new ArrayList<>(); // 전체 foodIngrList를 담을 리스트
-        List<Food> monthFoods = new ArrayList<>();
+    public String ingredientsOfMonth(Model model){
+        //이달의 재료뽑기
+        List<Ingredients> monthIngr = ingredientsService.findByMonthEquals();
+        List<FoodIngr> foodIngr = new ArrayList<>();
+        List<Food> monthFood = new ArrayList<>();
+        Map<Long,String> imageMap = new HashMap<>();
 
-        Map<String, String> imageMap = new HashMap<>();
-
-        for (Ingredients ingredients : ingredientsList) {
-            if (ingredients.getIngrImg() != null) {
-                String base64Image = ImageParsor.parseBlobToBase64(ingredients.getIngrImg());
-                imageMap.put(String.valueOf(ingredients.getIngrId()), base64Image);
-            }
+        //이달의 재료로 만들 수 있는 음식목록 뽑기
+        for(Ingredients ingredients : monthIngr){
+           if(!foodIngrService.findFoodIdByIngrId(String.valueOf(ingredients.getIngrId())).isEmpty())
+                foodIngr.addAll(foodIngrService.findFoodIdByIngrId(String.valueOf(ingredients.getIngrId())));
+           if(ingredients.getIngrImg()!=null){
+               String base64Image = ImageParsor.parseBlobToBase64(ingredients.getIngrImg());
+               imageMap.put((long) ingredients.getIngrId(),base64Image);
+           }
         }
 
-        for (Ingredients ingredient : ingredientsList) {
-            String ingrId = String.valueOf(ingredient.getIngrId());
-            List<FoodIngr> foodIngrList = foodIngrService.findFoodIdByIngrId(ingrId);
-            monthFoodIngrList.addAll(foodIngrList); // 현재 ingrId에 해당하는 foodIngrList를 전체 리스트에 추가
+        for(FoodIngr showfoodIngr : foodIngr){
+            monthFood.addAll(foodService.findFoodByFoodId(showfoodIngr.getFoodId()));
         }
 
-        for (FoodIngr foodIngr : monthFoodIngrList) {
-            String foodId = String.valueOf(foodIngr.getFoodId());
-            List<Food> foods = foodService.findFoodByFoodId(foodId);
-            monthFoods.addAll(foods);
-        }
+        //재료 사진 가져오기
 
 
-        model.addAttribute("ingredientsList", ingredientsList);//식재료리스트
-        model.addAttribute("monthFoodIngrList", monthFoodIngrList);//
+
+        model.addAttribute("ingrOfMonth",monthIngr);
+        model.addAttribute("foodIngrList",foodIngr);
+        model.addAttribute("monthFoodList",monthFood);
         model.addAttribute("blob",imageMap);
-        model.addAttribute("monthFoods", monthFoods);
 
-        return "ingredients"; // ingredients.jsp
+    return "ingredients";
+
     }
-
 
     @PostMapping("/savePreferredIngredients")
     @ResponseBody

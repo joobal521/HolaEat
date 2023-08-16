@@ -3,8 +3,7 @@ package com.spring.holaeat.controller;
 import com.spring.holaeat.domain.nutritions.Nutritions;
 import com.spring.holaeat.domain.recipe.Recipe;
 import com.spring.holaeat.service.FoodService;
-import com.spring.holaeat.service.IngredientsService;
-import com.spring.holaeat.service.NutritionService;
+import com.spring.holaeat.service.NutritionsService;
 import com.spring.holaeat.service.RecipeService;
 import com.spring.holaeat.util.ImageParsor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,11 +20,11 @@ public class RecipeController {
     private final RecipeService recipeService;
     private final FoodService foodService;
 
-    private final NutritionService nutritionService;
+    private final NutritionsService nutritionsService;
 
     @Autowired
-    public RecipeController (NutritionService nutritionService, RecipeService recipeService, FoodService foodService){
-        this.nutritionService = nutritionService;
+    public RecipeController (NutritionsService nutritionsService, RecipeService recipeService, FoodService foodService){
+        this.nutritionsService = nutritionsService;
         this.recipeService = recipeService;
         this.foodService = foodService;
     }
@@ -39,10 +38,12 @@ public class RecipeController {
             String blob = ImageParsor.parseBlobToBase64(foodImg);
             model.addAttribute("blob",blob);
         }
-
-        List<Nutritions> nutritions = nutritionService.findByFoodId(foodId);
         model.addAttribute("recipe", recipe);
-        model.addAttribute("nutritions",nutritions);
+
+        System.out.println(foodId+"foodID");
+
+//        List<Nutritions> nutrition = nutritionsService.findByFoodId(foodId);
+//        model.addAttribute("nutritions",nutrition);
 
         return "getRecipe"; // 해당 레시피 정보를 보여줄 JSP 파일의 이름
     }

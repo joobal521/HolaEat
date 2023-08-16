@@ -9,15 +9,15 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class NutritionService {
+public class NutritionsService {
 
     private NutritionsRepository nutritionsRepository;
 
+    public NutritionsService(NutritionsRepository nutritionsRepository) {
+        this.nutritionsRepository = nutritionsRepository;
+    }
+
     public List<Nutritions> findByFoodId(String foodId){
-
-        List<Nutritions> list = nutritionsRepository.findByFoodId(foodId);
-
-        return list;
-
+        return nutritionsRepository.findAllByFoodId(foodId);
     }
 }
