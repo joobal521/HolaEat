@@ -8,6 +8,7 @@ import com.spring.holaeat.domain.review.Review;
 import com.spring.holaeat.service.FoodIngrService;
 import com.spring.holaeat.service.FoodService;
 import com.spring.holaeat.service.IngredientsService;
+import com.spring.holaeat.service.NutritionService;
 import com.spring.holaeat.util.ImageParsor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,15 +26,15 @@ public class IngredientsController {
     private final IngredientsService ingredientsService;
     private final FoodIngrService foodIngrService;
     private final FoodService foodService;
-    private final  IngredientsRequestDto ingredientsRequestDto;
+
 
 
     @Autowired
-    public IngredientsController(IngredientsService ingredientsService, FoodIngrService foodIngrService, FoodService foodService, IngredientsRequestDto ingredientsRequestDto) {
+    public IngredientsController(IngredientsService ingredientsService, FoodIngrService foodIngrService, FoodService foodService) {
         this.ingredientsService = ingredientsService;
         this.foodIngrService = foodIngrService;
         this.foodService = foodService;
-        this.ingredientsRequestDto = ingredientsRequestDto;
+
     }
 
     @GetMapping("/ingredients")
@@ -62,7 +63,6 @@ public class IngredientsController {
             List<Food> foods = foodService.findFoodByFoodId(foodId);
             monthFoods.addAll(foods);
         }
-
 
 
         model.addAttribute("ingredientsList", ingredientsList);//식재료리스트

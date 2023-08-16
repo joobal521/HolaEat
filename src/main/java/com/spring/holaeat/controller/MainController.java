@@ -49,17 +49,14 @@ public class MainController {
     @GetMapping(value = "admin")
     public String admin() {return "admin";}
 
-    @GetMapping(value = "adminMenu")
-    public String adminMenu() {return "adminMenu";}
     @GetMapping(value = "adminHealth")
     public String adminHealth() {return "adminHealth";}
+
     @GetMapping(value = "adminUser")
     public String adminUser() {return "adminUser";}
+
     @GetMapping(value = "adminReview")
     public String adminReview() {return "adminReview";}
-//    @GetMapping(value = "adminIngr")
-//    public String adminIngr() {return "adminIngr";}
-
 
     @GetMapping(value = "/reviewUpdate")
     public String reviewUpdate(@RequestParam("reviewNo") long reviewNo, Model model) {

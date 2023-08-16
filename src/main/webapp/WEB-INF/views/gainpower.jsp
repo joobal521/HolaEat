@@ -1,11 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set var="path" value="${pageContext.request.contextPath}"/>
 <html>
 <head>
     <title>pills</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-    <script src="${path}/resources/js/admin.js"></script>
+    <script src="<c:url value='/resources/js/admin.js' />"></script>
     <style>
         .error-message {
             color: red;
