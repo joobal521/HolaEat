@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.Arrays;
 import java.util.List;
 
 @SessionAttributes("authority")
@@ -55,14 +56,13 @@ public String gainPower(@RequestParam("adminid") String id, @RequestParam("admin
     public String addIngredient(@ModelAttribute IngredientsRequestDto ingredientsRequestDto) {
         System.out.println("creating");
 
-        String id = ingredientsService.generateIngrId();
-        System.out.println(id);
+
         System.out.println(ingredientsRequestDto.getIngrName());
         System.out.println(ingredientsRequestDto.getIngrId());
         System.out.println(ingredientsRequestDto.getAllergy());
         System.out.println(ingredientsRequestDto.getMonth());
-        ingredientsRequestDto.setIngrId(id);
         System.out.println(ingredientsRequestDto.getIngrId());
+        System.out.println(ingredientsRequestDto.getIngrImg());
         ingredientsService.addIngredient(ingredientsRequestDto);
         System.out.println("created");
 
@@ -71,7 +71,7 @@ public String gainPower(@RequestParam("adminid") String id, @RequestParam("admin
 
     //재료정보수정
     @PutMapping(value = "adminIngr/{ingrId}",consumes = "multipart/form-data")
-    public String updateIngredient(@PathVariable String ingrId, @RequestBody IngredientsRequestDto ingredientsRequestDto) {
+    public String updateIngredient(@PathVariable int ingrId, @RequestBody IngredientsRequestDto ingredientsRequestDto) {
         Ingredients ingredient = ingredientsService.findById(ingrId);
         ingredientsService.update(ingredient, ingredientsRequestDto);
 
@@ -80,7 +80,7 @@ public String gainPower(@RequestParam("adminid") String id, @RequestParam("admin
 
     //재료삭제
     @DeleteMapping("adminIngr/delete/{ingrId}")
-    public String deleteIngrByID(@PathVariable String ingrId){
+    public String deleteIngrByID(@PathVariable int ingrId){
         ingredientsService.deleteIngredientsByIngrId(ingrId);
 
         return "adminIngr";

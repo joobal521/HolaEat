@@ -37,7 +37,7 @@
                 <button class="editBtn" data-id="${ingrList.ingrId}">수정하기</button>
                 <button class="updateBtn" data-id="${ingrList.ingrId}" style="display: none;">수정완료</button>
                 <button class="cancelBtn" data-id="${ingrList.ingrId}" style="display: none;">수정취소</button>
-                <input type="file" id="ingrImg" name="ingrImg" accept="image/png, image/jpg, image/jpeg, image.gif">
+                <input type="file" id="editImg" name="ingrImg" accept="image/png, image/jpg, image/jpeg, image.gif">
                 <button class="imgUpdate" data-id="${ingrList.ingrImg}" style="display: none;">사진업로드</button>
             </td>
             <td>
@@ -62,8 +62,8 @@
                 <label for="allergy">알러지:</label>
                 <input type="checkbox" id="allergy" name="allergy"><br><br>
 
-                <label for="ingrImg">사진:</label>
-                <input type="file" id="addImg" name="addImg" accept="image/png, image/jpg, image/jpeg, image.gif">
+                <label for="addImg">사진:</label>
+                <input type="file" id="addImg" name="ingrImg" accept="image/png, image/jpg, image/jpeg, image/gif">
                 <input type="submit" value="추가완료">
             </form>
         </div>
@@ -96,6 +96,8 @@
             var ingrName = row.find(".editIngrName").val();
             var allergy = row.find(".editAllergy").prop("checked");
             var month = row.find(".editMonth").prop("checked");
+
+
 
             // TODO: 변경된 데이터를 백엔드로 보내고 처리하는 로직을 추가
             $.ajax({
@@ -170,20 +172,20 @@
         $("#addForm").submit(function(event) {
             event.preventDefault();
 
-            var ingrName = $("#ingrName").val();
-            var month = $("#month").prop("checked");
-            var allergy = $("#allergy").prop("checked");
+            var formData = new FormData();
+            formData.append("ingrName", $("#ingrName").val());
+            formData.append("month", $("#month").prop("checked"));
+            formData.append("allergy", $("#allergy").prop("checked"));
+            formData.append("ingrImg", $("#addImg")[0].files[0]);
 
-            // TODO: Send the data to the backend using AJAX
+
+            // Send the data to the backend using AJAX
             $.ajax({
                 url: "adminIngr/create",
                 method: "POST",
-                contentType: "application/json",
-                data: JSON.stringify({
-                    ingrName: ingrName,
-                    month: month,
-                    allergy: allergy
-                }),
+                contentType: false, // Set to false when using FormData
+                processData: false, // Set to false when using FormData
+                data: formData,
                 success: function(response) {
                     alert("추가 완료");
                     $("#addModal").css("display", "none");
@@ -192,8 +194,10 @@
                 error: function() {
                     alert("추가 실패");
                 }
-            });
+
         });
+
+    });
     });
 </script>
 </body>

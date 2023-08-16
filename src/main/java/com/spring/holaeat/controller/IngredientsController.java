@@ -47,7 +47,7 @@ public class IngredientsController {
         for (Ingredients ingredients : ingredientsList) {
             if (ingredients.getIngrImg() != null) {
                 String base64Image = ImageParsor.parseBlobToBase64(ingredients.getIngrImg());
-                imageMap.put(ingredients.getIngrId(), base64Image);
+                imageMap.put(String.valueOf(ingredients.getIngrId()), base64Image);
             }
         }
 
@@ -63,9 +63,11 @@ public class IngredientsController {
             monthFoods.addAll(foods);
         }
 
+
+
         model.addAttribute("ingredientsList", ingredientsList);//식재료리스트
         model.addAttribute("monthFoodIngrList", monthFoodIngrList);//
-        model.addAttribute("ingrImg",imageMap);
+        model.addAttribute("blob",imageMap);
         model.addAttribute("monthFoods", monthFoods);
 
         return "ingredients"; // ingredients.jsp
@@ -77,7 +79,7 @@ public class IngredientsController {
     public String savePreferredIngredient(@RequestBody IngredientsRequestDto requestDto, HttpSession session) {
         String userId = (String) session.getAttribute("log");
         if (userId != null) {
-            String ingrId = ingredientsService.findIngrIdByName(requestDto.getIngrName());
+            int ingrId = Integer.parseInt(ingredientsService.findIngrIdByName(requestDto.getIngrName()));
             ingredientsService.savePreferredIngredient(userId, ingrId);
             return "success";
         } else {
