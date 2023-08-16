@@ -11,10 +11,10 @@ import lombok.Setter;
 @NoArgsConstructor
 public class ReviewCommentRequestDto {
 
-    private String commentId;
+    private long commentId;
     private long reviewNo;
     private String userId;
     private String content;
-    private int like;
+
 
 }

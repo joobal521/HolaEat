@@ -51,7 +51,7 @@
 <%--                    </c:when>--%>
 
                     <button type="button" id="update" name="update" onclick="redirectToReviewUpdate(reviewNo)">수정</button>
-                    <button type="button" id="delete" name="delete" onclick="CheckValueDelete(document.getElementById('review-detail'), ${review.reviewNo})">삭제</button>
+                    <button type="button" id="delete" name="delete" onclick="CheckValueDelete(document.getElementById('review_detail'), ${review.reviewNo})">삭제</button>
 
                 </form>
             </div>
@@ -97,5 +97,6 @@
 </section>
 </body>
 <script src="script/review.js"></script>
+<script src="script/comment.js"></script>
 <c:import url="footer.jsp"/>
 </html>

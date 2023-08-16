@@ -12,9 +12,10 @@ function addComment() {
 
     $.ajax({
         method: "POST",
-        url: "/comment",
+        url: "/comment/" + reviewNo,
         data: JSON.stringify(requestData),
         contentType: "application/json",
+        dataType: "json",
     }).done(response => {
         console.log(response);
 
