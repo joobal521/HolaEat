@@ -1,7 +1,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>재료 관리</title>
 </head>
 <body>
@@ -37,7 +39,7 @@
                 <button class="editBtn" data-id="${ingrList.ingrId}">수정하기</button>
                 <button class="updateBtn" data-id="${ingrList.ingrId}" style="display: none;">수정완료</button>
                 <button class="cancelBtn" data-id="${ingrList.ingrId}" style="display: none;">수정취소</button>
-                <input type="file" id="editImg" name="ingrImg" accept="image/png, image/jpg, image/jpeg, image.gif">
+                <input type="file" id="editImg-${ingrList.ingrId}" name="ingrImg" class="imgBtn" style="display: none;" accept="image/png, image/jpg, image/jpeg, image/gif">
                 <button class="imgUpdate" data-id="${ingrList.ingrImg}" style="display: none;">사진업로드</button>
             </td>
             <td>
@@ -87,8 +89,9 @@
 
             // 수정/취소 버튼 토글
             $(this).hide();
-            row.find(".updateBtn, .cancelBtn").show();
+            row.find(".updateBtn, .cancelBtn,.imgBtn").show();
         });
+
 
         $(".updateBtn").click(function() {
             var row = $(this).closest("tr");
@@ -96,19 +99,24 @@
             var ingrName = row.find(".editIngrName").val();
             var allergy = row.find(".editAllergy").prop("checked");
             var month = row.find(".editMonth").prop("checked");
+            var imageFile = $("#editImg-" + ingrId)[0].files[0]; // Get the selected image file
 
+            // Create FormData object and append the data
+            var formData = new FormData();
+            formData.append("ingrName", ingrName);
+            formData.append("allergy", allergy);
+            formData.append("month", month);
+            if (imageFile != null) {
+                formData.append("ingrImg", imageFile);
+            }
 
-
-            // TODO: 변경된 데이터를 백엔드로 보내고 처리하는 로직을 추가
+            // Send the data to the backend using AJAX
             $.ajax({
                 url: "adminIngr/" + ingrId,
                 method: "PUT",
-                contentType: "application/json",
-                data: JSON.stringify({
-                    ingrName: ingrName,
-                    allergy: allergy,
-                    month: month
-                }),
+                contentType: false,
+                processData: false,
+                data: formData,
                 success: function(response) {
                     $(".section").html(response);
                 },
@@ -116,8 +124,9 @@
                     alert("데이터 업데이트에 실패했습니다.");
                 }
             });
-
         });
+
+
 
 
 
@@ -134,7 +143,9 @@
             // 수정/취소 버튼 토글
             $(this).hide();
             row.find(".editBtn").show();
+            row.find(".updateBtn, .imgBtn").hide(); // Hide update and image upload buttons
         });
+
 
         $(".removeBtn").click(function() {
             var ingrId = $(this).data("id");
