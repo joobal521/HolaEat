@@ -20,7 +20,6 @@ import java.util.List;
 public class AdminController {
     private final AdminRepository adminRepository;
     private final IngredientsService ingredientsService;
-
     private final MenuService menuService;
 
 
