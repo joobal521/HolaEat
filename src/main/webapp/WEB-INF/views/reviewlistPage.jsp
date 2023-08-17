@@ -10,18 +10,15 @@
 <html>
 <head>
     <title>reviewlist</title>
-    <c:set var="path" value="${pageContext.request.contextPath}"/>
-    <link rel="stylesheet" type="text/css" href="../style/grid.css">
-    <link rel="stylesheet" type="text/css" href="../style/review.css">
+    <link rel="stylesheet" type="text/css" href="/style/review.css">
+
     <script src="https://kit.fontawesome.com/5d67eb2efc.js" crossorigin="anonymous"></script>
-
-
 </head>
 <c:import url="header.jsp"/>
 <body>
-<div class="wrapper">
+<div class="review-section">
     <div>게시글 목록</div>
-    pageNumber 확인용 : ${pageNumber}
+  pageNumber 확인용 : ${pageNumber}
 
     <div>
         <c:choose>
@@ -46,11 +43,11 @@
 
                         <%--이미지 출력--%>
                     <div class="review_img">
-                    <c:set var="imageBase64" value="${imageMapPage[review.reviewNo]}"></c:set>
-                    <c:if test="${not empty imageBase64}">
-                        <img src="data:image/jpeg;base64,${imageBase64}" id="img" name="img" alt="Review Image">
-                    </c:if>
-                        </div>
+                        <c:set var="imageBase64" value="${imageMapPage[review.reviewNo]}"></c:set>
+                        <c:if test="${not empty imageBase64}">
+                            <img src="data:image/jpeg;base64,${imageBase64}" id="img" name="img" alt="Review Image">
+                        </c:if>
+                    </div>
                     <div class="review_title">제목 : ${review.title}</div>
                     <div class="review_like"><i class="fa-regular fa-heart"></i></div>
                 </div>
@@ -76,7 +73,7 @@
         </div>
 
         <div class="search_box">
-            <form id="searchForm"  method="get" action="/reviewlist/1">
+            <form id="searchForm" method="get" action="/reviewlist/1">
                 <div class="searchTag">
                     <select title="검색 유형 선택" id="searchType" name="searchType">
                         <option name="all" value="all">전체 검색</option>
@@ -92,7 +89,7 @@
 
 
     </div>
-
+</div>
 </body>
 <script src="script/review.js"></script>
 

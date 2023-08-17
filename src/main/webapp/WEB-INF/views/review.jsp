@@ -3,9 +3,8 @@
 <html>
 <head>
     <title>Title</title>
-    <c:set var="path" value="${pageContext.request.contextPath}"/>
-    <link rel="stylesheet" type="text/css" href="../style/grid.css">
-    <link rel="stylesheet" type="text/css" href="../style/review.css">
+<%--    <c:set var="path" value="${pageContext.request.contextPath}"/>--%>
+    <link rel="stylesheet" type="text/css" href="/style/review.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 
 
@@ -18,14 +17,14 @@
 </head>
 <c:import url="header.jsp"/>
 <body>
-<section id = "review-section">
+<div class="review-section">
     <h2>리뷰 게시판 상세</h2>
         <h2>게시글</h2>
         <c:if test="${review!=null}">
             <div id="review-contents">
                 <form id="review_detail" enctype="multipart/form-data">
                     <div class="review_detail_no">
-                        <label for="title">No.</label>
+                        <label for="reviewNo">No.</label>
                         <input type="text" id="reviewNo" name="reviewNo" value="${review.reviewNo}" readonly>
                     </div>
                 <div class="review_detail_title">
@@ -94,7 +93,7 @@
     </div>
 
 
-</section>
+</div>
 </body>
 <script src="script/review.js"></script>
 <script src="script/comment.js"></script>
