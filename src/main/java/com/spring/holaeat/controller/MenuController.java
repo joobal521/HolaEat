@@ -20,7 +20,7 @@ public class MenuController {
 
     @GetMapping("/generate")
     public ResponseEntity<List<Menu>> generateMenu() {
-        List<Menu> generatedMenus = menuService.generateMenuWithFoodNames();
+        List<Menu> generatedMenus = menuService.generateMenuWithFoodNamesAndWeights(); // 변경된 메서드 호출
         return ResponseEntity.ok(generatedMenus);
     }
 
