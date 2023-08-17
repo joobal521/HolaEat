@@ -16,4 +16,11 @@ public class FoodResponseDto {
     private boolean balanced;
     private boolean sideDish;
     private byte[] foodImg;
+    private Double kcal;
+    private int carb;
+    private int protein;
+    private int fat;
+    private int sugars;
+    private int natrium;
+
 }

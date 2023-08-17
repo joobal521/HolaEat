@@ -13,6 +13,8 @@ public class MenuResponseDto {
     private String food3;
     private String food4;
     private String food5;
-    private String main1;
+    private String main;
     private String main2;
+
+
 }
