@@ -19,18 +19,18 @@
     <div class="wrap">
         <div class="container">
          <div id="health-box">
-        <c:forEach items="${reviewlistPage}" var="review" varStatus="loop">
-            <a href="<c:url value='/review/${review.reviewNo}'/>">
-                <div id=review>
+        <c:forEach items="${healthInfo}" var="health" varStatus="loop">
+            <a href="<c:url value='/health/${health.healthNo}'/>">
+                <div id="health">
                     <div class="user_profile">
                         <ul>
-                            <li class="healthprofile">NO. ${review.reviewNo}</li>
+                            <li class="healthprofile">NO. ${health.healthNo}</li>
                             <li class="admin">작성자 : 관리자</li>
                         </ul>
                     </div>
 
                         <%--이미지 출력--%>
-            <div class="review_img">
+            <div class="health_img">
                 <c:set var="imageBase64" value="${imageMapPage[review.reviewNo]}"></c:set>
                 <c:if test="${not empty imageBase64}">
                     <img src="data:image/jpeg;base64,${imageBase64}" id="img" name="img" alt="Review Image">

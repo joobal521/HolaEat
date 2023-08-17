@@ -3,6 +3,7 @@ package com.spring.holaeat.controller;
 import com.spring.holaeat.domain.health.Health;
 import com.spring.holaeat.domain.health.HealthRepository;
 import com.spring.holaeat.service.HealthService;
+import com.spring.holaeat.util.ImageParsor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -24,12 +25,19 @@ public class healthListController {
 
 
     //게시글 하나 조회
-//    @GetMapping("health/{no}")
-//    public Health getHealthNo(Model model, @PathVariable long healthNo){
-//
-//        return boardRepository.findByNo(no);
-//
-//    }
+    @GetMapping("health/{no}")
+    public String getHealthNo(Model model, @PathVariable long healthNo){
+
+        Health health=healthRepository.findByHealthNo(healthNo);
+        model.addAttribute("health",health);
+
+        if(health.getImg()==null)
+            return "health";
+
+        model.addAttribute("blob", ImageParsor.parseBlobToBase64(health.getImg()));
+        return "health";
+
+    }
 
 
     //게시글 전체 조회 페이징
