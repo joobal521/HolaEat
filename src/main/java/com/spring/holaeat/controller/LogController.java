@@ -46,7 +46,7 @@ public class LogController {
                     session.setAttribute("profileImg", profileImg.getProfileImg());
                     System.out.println(profileImg);
                 }else{
-                    System.out.println("안돼용");
+                    System.out.println("안되긴 뭐가 안돼용");
                 }
 
 

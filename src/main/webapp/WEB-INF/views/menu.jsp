@@ -20,8 +20,7 @@
     <link rel="stylesheet" type="text/css" href="style/form.css">
     <link rel="stylesheet" type="text/css" href="style/menu.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-
-</head>
+   </head>
 <c:import url="header.jsp"/>
 <body>
 <section>
