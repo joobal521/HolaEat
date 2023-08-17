@@ -23,15 +23,15 @@ public class PhotoController {
     private final HealthService healthService;
     private final PhotoService photoService;
 
-    @PostMapping("upload-files")
-    @ResponseStatus(HttpStatus.CREATED)
-    public Long create(
-            @RequestPart(value="image", required=false) List<MultipartFile> files,
-            @RequestPart(value = "healthBoardDto") HealthRequestDto healthDto
-    ) throws Exception {
-
-        return healthService.create(healthDto, files);
-    }
+//    @PostMapping("upload-files")
+//    @ResponseStatus(HttpStatus.CREATED)
+//    public Long create(
+//            @RequestPart(value="image", required=false) List<MultipartFile> files,
+//            @RequestPart(value = "healthBoardDto") HealthRequestDto healthDto
+//    ) throws Exception {
+//
+//        return healthService.create(healthDto, files);
+//    }
 
 
 //    //썸네일 용 이미지

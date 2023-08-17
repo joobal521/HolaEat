@@ -9,6 +9,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,32 +24,43 @@ public class Health extends Timestamp {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long healthNo;
 
-   @ManyToOne(cascade = CascadeType.MERGE, targetEntity = Admin.class)
-    @JoinColumn(name = "id", updatable = false)
-    @JsonBackReference
-    private String id;
-
     @Column(nullable = false)
     private String title;
 
     @Column(length = 4000)
     private String content;
 
-    @OneToMany(
-            mappedBy = "health",
-            cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
-            orphanRemoval = true
-    )
+    @Column(columnDefinition = "LONGBLOB")
+    private byte[] img;
 
-    private List<Photo> photo= new ArrayList<>();
+
+
+
+
+    //다중 이미지 업로드
+
+//    @OneToMany(
+//            mappedBy = "health",
+//            cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+//            orphanRemoval = true
+//    )
+//
+//    private List<Photo> photo= new ArrayList<>();
 
 
 
 
     public Health(HealthRequestDto healthDto){
-        this.id=healthDto.getId();
-     this.title=healthDto.getTitle();
-     this.content=healthDto.getContent();
+        this.title=healthDto.getTitle();
+        this.content=healthDto.getContent();
+
+        if (healthDto.getImg() != null) {
+            try {
+                this.img = healthDto.getImg().getBytes();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
 
  }
 
@@ -65,15 +77,15 @@ public void update(String title, String content){
 }
 
 //healthBoard에서 파일 처리 위함
-    public void addPhoto(Photo photo){
-     this.photo.add(photo);
-     //게시글에 파일이 저장 되어 있지 않은 경우
-        if(photo.getHealth()!=this) {
-            //파일 저장
-            photo.setHealth(this);
-        }
-
-    }
+//    public void addPhoto(Photo photo){
+//     this.photo.add(photo);
+//     //게시글에 파일이 저장 되어 있지 않은 경우
+//        if(photo.getHealth()!=this) {
+//            //파일 저장
+//            photo.setHealth(this);
+//        }
+//
+//    }
 
 
 

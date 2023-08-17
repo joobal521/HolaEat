@@ -1,0 +1,43 @@
+/* Mobile ver. */
+@media (min-width:360px) {
+    #wrap {
+        width: 100%;
+        background-color: #F7F7F7;
+        padding: 20px;
+        min-width: 360px;
+    }
+
+    .section {
+        padding-right: 30px;
+        margin-top: 30px;
+    }
+
+    .text_title {
+        padding-top: 20px;
+        margin-left: 10px;
+        font-size: 1.8rem;
+    }
+
+    .text {
+        /* width: 80%; */
+        height: 500px;
+        background-color: #fff;
+        overflow: scroll;
+        margin: 30px 5px;
+        padding: 30px;
+        font-size: 0.7rem;
+        font-weight: 400;
+        font-family: 'Noto Sans KR';
+    }
+
+    .title {
+        font-weight: 600;
+    }
+}
+
+/* PC ver. */
+@media (min-width:1024px) {
+    .section{
+        margin-top: 30px;
+    }
+}

@@ -2,6 +2,7 @@ package com.spring.holaeat.controller;
 
 import com.spring.holaeat.domain.admin.Admin;
 import com.spring.holaeat.domain.admin.AdminRepository;
+import com.spring.holaeat.domain.health.Health;
 import com.spring.holaeat.domain.health.HealthFileVo;
 import com.spring.holaeat.domain.health.HealthRepository;
 import com.spring.holaeat.domain.health.HealthRequestDto;
@@ -11,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.WebRequest;
 
 import java.util.Map;
 
@@ -28,21 +30,16 @@ public class HealthController {
 
 
 
-    @PostMapping("info-write")
-    @ResponseStatus(HttpStatus.CREATED)
-    public Map boardCreate(@RequestBody HealthRequestDto healthDto, HealthFileVo healthFileVo)throws Exception{
+//관리자 글등록
+    @PostMapping(value = "health-write", consumes = "multipart/form-data")
+    public Map healthBoard(@ModelAttribute HealthRequestDto healthDto)throws Exception{
         JSONObject response =new JSONObject();
 
         try {
-            if (healthDto.getId() != null) {
-            //admin id로 조회하는 메소드
-            adminService.getAdminById(healthFileVo.getId());
-            healthService.create(healthDto, healthFileVo.getFile());
+                Health health=new Health(healthDto);
+                healthRepository.save(health);
             response.put("result", true);
-        } else {
-            response.put("result", false);
-            response.put("message", "Invalid admin ID");
-        }
+
         } catch (IllegalArgumentException e) {
             response.put("result", false);
         }

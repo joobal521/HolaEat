@@ -51,6 +51,12 @@ public class UserService {
           return user != null;
      }
 
+     //이메이 중복체크
+     public  boolean duplCheckUserEmail(String userEamil) {
+          Optional<User> user = userRepository.findByUserEmail(userEamil);
+          return  user.isPresent();
+     }
+
      //회원가입
      public User createUser(UserRequestDto userDto){
           User user=new User(userDto);

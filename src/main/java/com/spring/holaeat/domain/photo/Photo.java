@@ -39,18 +39,19 @@ public class Photo {
     }
 
     //health정보 저장
-    public void setHealth(Health health){
-        this.health=health;
-
-        //게시글에 현재 파일이 존재하지 않는다면
-        if(!health.getPhoto().contains(this)){
-            //파일 추가
-            health.getPhoto().add(this);
-        }
+//    public void setHealth(Health health){
+//        this.health=health;
+//
+//        //게시글에 현재 파일이 존재하지 않는다면
+//        if(!health.getPhoto().contains(this)){
+//            //파일 추가
+//            health.getPhoto().add(this);
+//        }
+//    }
     }
 
 
 
 
 
-}
+
