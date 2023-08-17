@@ -1,0 +1,28 @@
+.selected-prefer button, .selected-dislike button {
+    margin-left: 8px; /* 버튼과 재료 사이의 간격 조정 */
+    background-color: transparent;
+    border: none;
+    color: red; /* 'X' 버튼의 색상 설정 */
+    cursor: pointer;
+}
+
+.category button.selected {
+    background-color: darkcyan;
+}
+
+.dislike_title, .prefer_title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.store-container1, .store-container2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+#generatedMenus{
+    height: 30%;
+    overflow: scroll;
+}

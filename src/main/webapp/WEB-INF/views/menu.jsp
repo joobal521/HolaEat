@@ -18,32 +18,9 @@
     <title>Title</title>
     <c:set var="path" value="${pageContext.request.contextPath}"/>
     <link rel="stylesheet" type="text/css" href="style/form.css">
+    <link rel="stylesheet" type="text/css" href="style/menu.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-    <style>
-        .selected-prefer button, .selected-dislike button {
-            margin-left: 8px; /* 버튼과 재료 사이의 간격 조정 */
-            background-color: transparent;
-            border: none;
-            color: red; /* 'X' 버튼의 색상 설정 */
-            cursor: pointer;
-        }
 
-        .category button.selected {
-            background-color: darkcyan;
-        }
-
-        .dislike_title, .prefer_title {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-evenly;
-        }
-
-        .store-container1, .store-container2 {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-around;
-        }
-    </style>
 </head>
 <c:import url="header.jsp"/>
 <body>
@@ -107,6 +84,43 @@
 
         <div class="json_wrap">
 
+
+            <%--            <div class="selected-prefer">--%>
+            <%--                <h2>선택된 재료</h2>--%>
+            <%--                <input type="text" id="selectedIngredientsList" value="${userPrefer}">--%>
+            <%--            </div>--%>
+
+            <%--            <button id="savePreferButton">저장</button>--%>
+
+
+            <%--            <button id="saveDislikeButton">저장</button>--%>
+
+            <%--            <div class="selected-dislike">--%>
+            <%--                <h2>선택된 재료</h2>--%>
+            <%--                &lt;%&ndash;                <ul id="selectedUnIngredientsList"></ul>&ndash;%&gt;--%>
+            <%--                <input type="text" id="selectedUnIngredientsList" value="${userDislike}">--%>
+            <%--            </div>--%>
+
+            <input type="button" id="save_btn" name="save_btn" value="저장">
+            <input type="button" id="menu_btn" name="menu_btn" value="식단 산출" onclick="fetchAndDisplayMenu()">
+            <hr>
+
+
+            <%--        카테고리    --%>
+            <div class="category_title">
+                <h2>어떤 메뉴를 드시고 싶으신가요?</h2>
+                <div class="category">
+                    <select name="national" id="national" onchange="fetchAndDisplayAllMenus(this.value)">
+                        <option value="">선택하세요</option>
+                        <option class="korean" value="한식">한식</option>
+                        <option class="chinese" value="중식">중식</option>
+                        <option class="japanese" value="일식">일식</option>
+                        <option class="western" value="양식">양식</option>
+                        <option class="salad" value="샐러드">샐러드</option>
+                    </select>
+                </div>
+            </div>
+
             <div class="prefer">
                 <h2>선호하는 재료</h2>
                 <select name="prefer" id="prefer">
@@ -139,14 +153,6 @@
                     <option value="연근">연근</option>
                 </select>
             </div>
-
-            <div class="selected-prefer">
-                <h2>선택된 재료</h2>
-                <input type="text" id="selectedIngredientsList" value="${userPrefer}">
-            </div>
-
-            <%--            <button id="savePreferButton">저장</button>--%>
-
 
             <div class="dislike">
                 <h2>선호하지 않는 재료</h2>
@@ -181,35 +187,6 @@
                 </select>
             </div>
 
-            <%--            <button id="saveDislikeButton">저장</button>--%>
-
-            <div class="selected-dislike">
-                <h2>선택된 재료</h2>
-                <%--                <ul id="selectedUnIngredientsList"></ul>--%>
-                <input type="text" id="selectedUnIngredientsList" value="${userDislike}">
-            </div>
-
-            <input type="button" id="save_btn" name="save_btn" value="저장">
-            <input type="button" id="menu_btn" name="menu_btn" value="식단 산출" onclick="fetchAndDisplayMenu()">
-            <hr>
-
-
-            <%--        카테고리    --%>
-            <div class="category_title">
-                <h2>어떤 메뉴를 드시고 싶으신가요?</h2>
-                <div class="category">
-                    <select name="national" id="national" onchange="fetchAndDisplayAllMenus(this.value)">
-                        <option value="">선택하세요</option>
-                        <option class="korean" value="한식">한식</option>
-                        <option class="chinese" value="중식">중식</option>
-                        <option class="japanese" value="일식">일식</option>
-                        <option class="western" value="양식">양식</option>
-                        <option class="salad" value="샐러드">샐러드</option>
-                    </select>
-                </div>
-            </div>
-
-
             <div class="personal_menu">
                 <h2>${userName}님만을 위한 맞춤식단이 여기 있습니다!</h2>
                 <div id="generatedMenus"></div>
@@ -220,19 +197,19 @@
         </div>
 
 
-            <%--            <div class="btn-container">--%>
-            <%--                <a class="btn" href="/health?national=all">All</a>--%>
-            <%--                <a class="btn" href="/health?national=한식">한식</a>--%>
-            <%--                <a class="btn" href="/health?national=양식">양식</a>--%>
-            <%--                <a class="btn" href="/health?national=일식">일식</a>--%>
-            <%--                <a class="btn" href="/health?national=중식">중식</a>--%>
-            <%--                <a class="btn" href="/health?national=샐러드">샐러드</a>--%>
-            <%--            </div>--%>
+        <%--            <div class="btn-container">--%>
+        <%--            <%—                <a class="btn" href="/health?national=all">All</a>—%>--%>
+        <%--            <%—                <a class="btn" href="/health?national=한식">한식</a>—%>--%>
+        <%--            <%—                <a class="btn" href="/health?national=양식">양식</a>—%>--%>
+        <%--            <%—                <a class="btn" href="/health?national=일식">일식</a>—%>--%>
+        <%--            <%—                <a class="btn" href="/health?national=중식">중식</a>—%>--%>
+        <%--            <%—                <a class="btn" href="/health?national=샐러드">샐러드</a>—%>--%>
+        <%--            <%—            </div>—%>--%>
 
 
 </section>
 <script src="script/cal.js"></script>
-<%--<script src="resources/js/ingredients.js"></script>--%>
+<%--<%—<script src="resources/js/ingredients.js"></script>—%>--%>
 
 </body>
 <c:import url="footer.jsp"/>

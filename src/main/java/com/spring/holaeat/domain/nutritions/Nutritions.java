@@ -3,13 +3,16 @@ package com.spring.holaeat.domain.nutritions;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @NoArgsConstructor
 @Getter
+@Setter
 @Entity
 @Table(name="nutritions")
 public class Nutritions {

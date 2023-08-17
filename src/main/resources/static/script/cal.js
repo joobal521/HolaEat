@@ -1,4 +1,4 @@
-$$(document).ready(function () {
+$(document).ready(function () {
     $('#save_btn').click(function () {
         var gender = $('input[name="gender"]:checked').val();
         var age = $('#age').val();
@@ -6,6 +6,8 @@ $$(document).ready(function () {
         var weight = $('#weight').val();
         var allergy = $('#allergy').val();
         var recCalories = $('#recCalories').val();
+        var selectedPrefer = $('#prefer').val();
+        var selectedDislike = $('#dislike').val();
 
         var formData = {
             gender: gender,
@@ -13,12 +15,14 @@ $$(document).ready(function () {
             height: height,
             weight: weight,
             allergy: allergy,
-            recCalories: recCalories
+            recCalories: recCalories,
+            prefer: selectedPrefer, // 추가된 부분: prefer 값을 formData에 추가
+            dislike: selectedDislike // 추가된 부분: dislike 값을 formData에 추
         };
 
         $.ajax({
             type: "POST",
-            url: "/saveCalories", // 해당 URL에 맞게 수정
+            url: "/saveDetails",
             data: formData,
             success: function (data) {
                 // 서버 응답 처리
@@ -30,8 +34,7 @@ $$(document).ready(function () {
                 $('#allergy').val(data.allergy);
                 $('#recCalories').val(data.recCalories);
 
-                alert("저장에 성공하였습니다.")
-
+                alert("저장에 성공하였습니다.");
             },
             error: function (error) {
                 console.error("저장 에러:", error);
@@ -67,45 +70,98 @@ function calculateCalories() {
     // 결과를 필드에 채움
     document.getElementById("recCalories").value = baseCalories.toFixed(2); // 소수점 2자리까지 표시
 
-
 }
-
-
 function fetchAndDisplayMenu(selectedNational) {
-    $.get("/menus/generate", { national: selectedNational }, function(data) {
-        var generatedMenus = data; // 서버 응답 데이터
-        var generatedMenusDiv = document.getElementById("generatedMenus");
-        var userRecCalories = parseInt($('#recCalories').val());
+    var userRecCalories = parseInt($('#recCalories').val());
 
-        // 결과를 생성하여 웹 페이지에 표시
+    $.get("/menus/generate", { national: selectedNational }, function(data) {
+        var generatedMenus = data;
+        var generatedMenusDiv = document.getElementById("generatedMenus");
+
         var resultHtml = "<h2>산출된 식단</h2><ul>";
+        var totalCalories = 0;
+
+        var selectedPrefer = $('#prefer').val();
+        var selectedDislike = $('#dislike').val();
+
         generatedMenus.forEach(function(menu, index) {
             if (index !== 0) {
-                resultHtml += "<hr>"; // 첫 번째 메뉴 이후에만 수평선 추가
+                resultHtml += "<hr>";
             }
 
-            var totalCalories = menu.food1Weight + menu.food2Weight + menu.food3Weight + menu.food4Weight + menu.food5Weight;
-            if (totalCalories <= userRecCalories) {
+            var menuTotalWeight = menu.food1Weight + menu.food2Weight + menu.food3Weight + menu.food4Weight + menu.food5Weight;
+
+
+            // "선호하는 재료"와 "선호하지 않는 재료"를 모두 검사하여 필터링
+            if ((selectedPrefer === "" || menu.main === selectedPrefer || menu.main2 === selectedPrefer) &&
+                (selectedDislike === "" || !menu.main.includes(selectedDislike) && !menu.main2.includes(selectedDislike)) &&
+                menuTotalWeight <= userRecCalories) {
+
+                let totalCalories = menu.food1Kcal + menu.food2Kcal + menu.food3Kcal + menu.food4Kcal + menu.food5Kcal;
+                let totalCarbs = menu.food1Carb + menu.food2Carb + menu.food3Carb + menu.food4Carb + menu.food5Carb;
+                let totalProteins = menu.food1Protein + menu.food2Protein + menu.food3Protein + menu.food4Protein + menu.food5Protein;
+                let totalFats = menu.food1Fat + menu.food2Fat + menu.food3Fat + menu.food4Fat + menu.food5Fat;
+
                 resultHtml += "<li>" +
-                    "음식1: " + menu.food1 + " (" + menu.food1Weight + "Kcal)</br>" +
-                    "음식2: " + menu.food2 + " (" + menu.food2Weight + "Kcal)</br>" +
-                    "음식3: " + menu.food3 + " (" + menu.food3Weight + "Kcal)</br>" +
-                    "음식4: " + menu.food4 + " (" + menu.food4Weight + "Kcal)</br>" +
-                    "음식5: " + menu.food5 + " (" + menu.food5Weight + "Kcal)</br>" +
-                    "주재료1: " + menu.main1 + "</br>" +
+                    "음식1: " + menu.food1 + " (" + menu.food1Weight + "g)  </br>" +
+                    "칼로리: " + menu.food1Kcal + "Kcal </br>" +
+                    "탄수화물: " + menu.food1Carb + "g </br>" +
+                    "단백질: " + menu.food1Protein + "g </br>" +
+                    "지방: " + menu.food1Fat + "g </br>" +
+
+
+                    "음식2: " + menu.food2 + " (" + menu.food2Weight + "g) </br>" +
+                    "칼로리: " + menu.food2Kcal + "Kcal </br>" +
+                    "탄수화물: " + menu.food2Carb + "g </br>" +
+                    "단백질: " + menu.food2Protein + "g </br>" +
+                    "지방: " + menu.food2Fat + "g </br>" +
+
+
+                    "음식3: " + menu.food3 + " (" + menu.food3Weight + "g)</br>" +
+                    "칼로리: " + menu.food3Kcal + "Kcal </br>" +
+                    "탄수화물: " + menu.food3Carb + "g </br>" +
+                    "단백질: " + menu.food3Protein + "g </br>" +
+                    "지방: " + menu.food3Fat + "g </br>" +
+
+
+                    "음식4: " + menu.food4 + " (" + menu.food4Weight + "g) </br>" +
+                    "칼로리: " + menu.food4Kcal + "Kcal </br>" +
+                    "탄수화물: " + menu.food4Carb + "g </br>" +
+                    "단백질: " + menu.food4Protein + "g </br>" +
+                    "지방: " + menu.food4Fat + "g </br>" +
+
+
+                    "음식5: " + menu.food5 + " (" + menu.food5Weight + "g) </br>" +
+                    "칼로리: " + menu.food5Kcal + "Kcal </br>" +
+                    "탄수화물: " + menu.food5Carb + "g </br>" +
+                    "단백질: " + menu.food5Protein + "g </br>" +
+                    "지방: " + menu.food5Fat +"g </br>" +
+
+                    "주재료1: " + menu.main + "</br>" +
                     "주재료2: " + menu.main2 + "</br>" +
+                    "총 무게: " + menuTotalWeight + "g" + "</br>" +
                     "총 칼로리: " + totalCalories + "Kcal" +
-                    "</li></br>";
+                    "총 탄수화물: " + totalCarbs + "g" +
+                    "총 단백질: " + totalProteins + "g" +
+                    "총 지방: " + totalFats + "g" +
+
+                    "</hr></li></br>";
+
             }
         });
-        resultHtml += "</ul>";
 
+        resultHtml += "</ul>";
         generatedMenusDiv.innerHTML = resultHtml;
     });
 }
 
 
+
+
+
 function fetchAndDisplayAllMenus(selectedValue) {
+    var userRecCalories = parseInt($('#recCalories').val());
+
     var menuIdMapping = {
         "한식": 1,
         "중식": 2,
@@ -116,12 +172,13 @@ function fetchAndDisplayAllMenus(selectedValue) {
 
     var menuId = menuIdMapping[selectedValue];
 
+    var selectedPrefer = $('#prefer').val(); // 선택된 "선호하는 재료"의 value 가져오기
+    var selectedDislike = $('#dislike').val(); // 선택된 "선호하지 않는 재료"의 value 가져오기
+
     $.get("/menus/generate", function(data) {
         var generatedMenus = data;
         var generatedMenusDiv = document.getElementById("generatedMenus");
         var resultHtml = "<h2>모든 식단</h2><ul>";
-        var userRecCalories = parseInt($('#recCalories').val());
-
 
         generatedMenus.forEach(function(menu, index) {
             if (index !== 0) {
@@ -129,19 +186,66 @@ function fetchAndDisplayAllMenus(selectedValue) {
             }
 
             if (menu.menuId === menuId) {
-                var totalCalories = menu.food1Weight + menu.food2Weight + menu.food3Weight + menu.food4Weight + menu.food5Weight;
+                var totalWeight = menu.food1Weight + menu.food2Weight + menu.food3Weight + menu.food4Weight + menu.food5Weight;
 
-                if (totalCalories <= userRecCalories) { // 추가된 조건문
+                // "선호하는 재료"와 "선호하지 않는 재료"를 모두 검사하여 필터링
+                if ((selectedPrefer === "" || menu.main === selectedPrefer || menu.main2 === selectedPrefer) &&
+                    (selectedDislike === "" || !menu.main.includes(selectedDislike) && !menu.main2.includes(selectedDislike)) &&
+                    totalWeight <= userRecCalories) {
+                    let totalCalories = menu.food1Kcal + menu.food2Kcal + menu.food3Kcal + menu.food4Kcal + menu.food5Kcal;
+                    let totalCarbs = menu.food1Carb + menu.food2Carb + menu.food3Carb + menu.food4Carb + menu.food5Carb;
+                    let totalProteins = menu.food1Protein + menu.food2Protein + menu.food3Protein + menu.food4Protein + menu.food5Protein;
+                    let totalFats = menu.food1Fat + menu.food2Fat + menu.food3Fat + menu.food4Fat + menu.food5Fat;
+
                     resultHtml += "<li>" +
-                        "음식1: " + menu.food1 + " (" + menu.food1Weight + "Kcal)</br>" +
-                        "음식2: " + menu.food2 + " (" + menu.food2Weight + "Kcal)</br>" +
-                        "음식3: " + menu.food3 + " (" + menu.food3Weight + "Kcal)</br>" +
-                        "음식4: " + menu.food4 + " (" + menu.food4Weight + "Kcal)</br>" +
-                        "음식5: " + menu.food5 + " (" + menu.food5Weight + "Kcal)</br>" +
-                        "주재료1: " + menu.main1 + "</br>" +
+                        "음식1: " + menu.food1 + " (" + menu.food1Weight + "g)  </br>" +
+                        "칼로리: " + menu.food1Kcal + "Kcal </br>" +
+                        "탄수화물: " + menu.food1Carb + "g </br>" +
+                        "단백질: " + menu.food1Protein + "g </br>" +
+                        "지방: " + menu.food1Fat + "g </br>" +
+
+
+                        "음식2: " + menu.food2 + " (" + menu.food2Weight + "g) </br>" +
+                        "칼로리: " + menu.food2Kcal + "Kcal </br>" +
+                        "탄수화물: " + menu.food2Carb + "g </br>" +
+                        "단백질: " + menu.food2Protein + "g </br>" +
+                        "지방: " + menu.food2Fat + "g </br>" +
+
+
+                        "음식3: " + menu.food3 + " (" + menu.food3Weight + "g)</br>" +
+                        "칼로리: " + menu.food3Kcal + "Kcal </br>" +
+                        "탄수화물: " + menu.food3Carb + "g </br>" +
+                        "단백질: " + menu.food3Protein + "g </br>" +
+                        "지방: " + menu.food3Fat + "g </br>" +
+
+
+                        "음식4: " + menu.food4 + " (" + menu.food4Weight + "g) </br>" +
+                        "칼로리: " + menu.food4Kcal + "Kcal </br>" +
+                        "탄수화물: " + menu.food4Carb + "g </br>" +
+                        "단백질: " + menu.food4Protein + "g </br>" +
+                        "지방: " + menu.food4Fat + "g </br>" +
+
+
+                        "음식5: " + menu.food5 + " (" + menu.food5Weight + "g) </br>" +
+                        "칼로리: " + menu.food5Kcal + "Kcal </br>" +
+                        "탄수화물: " + menu.food5Carb + "g </br>" +
+                        "단백질: " + menu.food5Protein + "g </br>" +
+                        "지방: " + menu.food5Fat +"g </br>" +
+
+                        "주재료1: " + menu.main + "</br>" +
                         "주재료2: " + menu.main2 + "</br>" +
+                        "총 무게: " + totalWeight + "g" + "</br>" +
                         "총 칼로리: " + totalCalories + "Kcal" +
-                        "</li>" + "</br>";
+                        "총 탄수화물: " + totalCarbs + "g" +
+                        "총 단백질: " + totalProteins + "g" +
+                        "총 지방: " + totalFats + "g" +
+
+                        "</li></br>";
+
+                    // resultHtml += "<li>" +
+                    //
+                    //     "</li>" + "</br>";
+
                 }
             }
 
@@ -151,3 +255,5 @@ function fetchAndDisplayAllMenus(selectedValue) {
         generatedMenusDiv.innerHTML = resultHtml;
     });
 }
+
+
