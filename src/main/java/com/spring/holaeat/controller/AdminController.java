@@ -2,9 +2,10 @@ package com.spring.holaeat.controller;
 
 import com.spring.holaeat.domain.admin.Admin;
 import com.spring.holaeat.domain.admin.AdminRepository;
+import com.spring.holaeat.domain.food.Food;
 import com.spring.holaeat.domain.ingredients.Ingredients;
 import com.spring.holaeat.domain.ingredients.IngredientsRequestDto;
-import com.spring.holaeat.domain.menu.Menu;
+import com.spring.holaeat.service.FoodService;
 import com.spring.holaeat.service.IngredientsService;
 import com.spring.holaeat.service.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,12 +24,15 @@ public class AdminController {
     private final IngredientsService ingredientsService;
     private final MenuService menuService;
 
+    private final FoodService foodService;
+
 
     @Autowired
-    public AdminController(AdminRepository adminRepository, IngredientsService ingredientsService, IngredientsRequestDto ingredientsRequestDto, MenuService menuService) {
+    public AdminController(AdminRepository adminRepository, IngredientsService ingredientsService, IngredientsRequestDto ingredientsRequestDto, MenuService menuService, FoodService foodService) {
         this.adminRepository = adminRepository;
         this.ingredientsService = ingredientsService;
         this.menuService = menuService;
+        this.foodService = foodService;
     }
 
     //관리자 로그인
@@ -77,10 +81,13 @@ public String gainPower(@RequestParam("adminid") String id, @RequestParam("admin
     @PutMapping(value = "adminIngr/{ingrId}", consumes = "multipart/form-data")
     public String updateIngredient(@PathVariable int ingrId, @ModelAttribute IngredientsRequestDto ingredientsRequestDto) {
         Ingredients ingredient = ingredientsService.findById(ingrId);
-//        if(ingredientsRequestDto.getIngrImg()==null){
-//
-//        }
+
         ingredientsService.update(ingredient, ingredientsRequestDto);
+
+        if(ingredientsRequestDto.getIngrImg()==null){
+            byte[] img = ingredient.getIngrImg();
+            ingredientsService.remainImg(ingredient,img);
+        }
 
         return "adminIngr";
     }
@@ -94,13 +101,23 @@ public String gainPower(@RequestParam("adminid") String id, @RequestParam("admin
     }
 
 ////메뉴관리
-//    @GetMapping("adminMenu")
-//    public String getAllMenu(Model model){
-//
-//
-//
-//        return "adminMenu";
-//    }
+    @GetMapping("adminMenu")
+    public String getAllMenu(Model model){
+
+            List<Food> list = foodService.getAllFood();
+            model.addAttribute("foodList",list);
+
+
+
+        return "adminMenu";
+    }
+
+    @Transactional
+    @PutMapping("adminMenu/{foodId}")
+    public String updateFood(@PathVariable String foodId){
+
+        return "adminMenu";
+    }
 //
 //    //후기게시판관리
 //    @GetMapping("adminReview")

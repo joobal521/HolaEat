@@ -53,6 +53,9 @@ public class Ingredients {
     }
 
 
+    public void remainImg(byte[] img){
+        this.ingrImg = img;
+    }
     public void update(IngredientsRequestDto ingredientsRequestDto) {
         this.allergy = ingredientsRequestDto.getAllergy();
         this.ingrName = ingredientsRequestDto.getIngrName();

@@ -20,4 +20,8 @@ public class FoodService {
     public byte[] getFoodImgByFoodId(String foodId){
         return foodRepository.getFoodImgByFoodId(foodId);
     }
+
+    public List<Food> getAllFood(){
+        return foodRepository.findAll();
+    }
 }
