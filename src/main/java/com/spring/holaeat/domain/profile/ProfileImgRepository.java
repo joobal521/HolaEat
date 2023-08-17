@@ -9,7 +9,7 @@ public interface ProfileImgRepository extends JpaRepository<ProfileImg, Long> {
    // ProfileImg findByProfileNo(Long profileNo);
 
     //유저별 이미지를 찾아야한다
-    ProfileImg findByUser(User user);
+    ProfileImg findByUserId(String userId);
 
 
 
