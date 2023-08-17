@@ -97,10 +97,14 @@ agreeChkAll.addEventListener('change', (e) => {
 function chkId() {
     var id = $('#userId').val();
 
+    if(id===""){
+        alert("사용 불가능한 아이디입니다.")
+    }else {
 
-    const data = {
-        userId: id,
-    };
+
+        const data = {
+            userId: id,
+        };
         $.ajax({
             method: 'POST',
             url: 'api/v1/users/userIdDupl',
@@ -108,21 +112,21 @@ function chkId() {
             contentType: "application/json; charset=utf-8",
             dataType: "json",
 
-        }).done(function(data){
-                if (data.result === true) {
-                    isIdChecked = true;
-                    alert("사용 가능한 아이디입니다.")
-                    //$('#chkMsgEmail').html('사용 가능한 아이디입니다.').css('color', 'navy');
-                } else {
-                    alert("이미 사용중인 아이디입니다.")
-                   // $('#chkMsgEmail').html('이미 사용중인 아이디입니다.').css('color', 'red');
-                }
+        }).done(function (data) {
+            if (data.result === true) {
+                isIdChecked = true;
+                alert("사용 가능한 아이디입니다.")
+                //$('#chkMsgEmail').html('사용 가능한 아이디입니다.').css('color', 'navy');
+            } else {
+                alert("이미 사용중인 아이디입니다.")
+                // $('#chkMsgEmail').html('이미 사용중인 아이디입니다.').css('color', 'red');
+            }
 
-        }).fail(function (error){
+        }).fail(function (error) {
             alert("아이디 중복 검사 실패입니다: " + error.responseJSON.message);
         });
 
-
+    }
 
 }
 
