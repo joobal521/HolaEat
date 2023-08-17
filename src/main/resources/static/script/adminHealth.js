@@ -1,7 +1,7 @@
 function checkValue(htmlForm) {
     const title = htmlForm.title.value;
     const content = htmlForm.content.value;
-    const profileImg = htmlForm.userProfileImg.files[0];
+    const img = htmlForm.img.files[0];
 
     if (title.trim() === "") {
         console.log("Title is required.");
@@ -11,30 +11,42 @@ function checkValue(htmlForm) {
     let check = true;
     let title_space = /[ ]/; /* 공백 */
     console.log(title);
+    console.log(content);
 
     if (check) {
-        const data = {
-            userId: id,
-            userPassword: password,
+        var form = new FormData();
+        form.append("title", title);
+        form.append("content", content);
+        const imgElement = document.getElementById('img');
+        const imgFile = imgElement.files[0]; // 이미지 파일 가져오기
 
+
+        if (imgFile) {
+            imgElement.src = URL.createObjectURL(imgFile);
+
+            // 이미지 파일을 FormData에 추가
+            form.append("img", imgFile);
+        } else {
+            imgElement.src = ''; // 이미지 없을 때 빈 상태로 설정
+        }
+
+        var settings = {
+            "url": "api/v1/health/health-write",
+            "method": "POST",
+            "timeout": 0,
+            "processData": false,
+            "mimeType": "multipart/form-data",
+            "contentType": false,
+            "data": form
         };
-        $.ajax({
-            method: "DELETE",
-            url: "api/v1/users/leave",
-            data: JSON.stringify(data),
-            contentType: "application/json; charset=utf-8",
-            dataType: "json"
-        }).done(function(data){
-            console.log(data);
-            if (data.result === true) {
-                location.href = "../../../webapp";
-                sessionStorage.removeItem("log");
-            } else {
-                alert("회원탈퇴 실패. 비밀번호가 올바르지 않습니다.");
-            }
-        }).fail(function (error){
-            alert("회원탈퇴 실패입니다: " + error.responseJSON.message);
 
+        $.ajax(settings).done(function (response) {
+            console.log(response);
+            if(response.result===true){
+                alert("글등록 성공")
+            }else {
+                alert("글등록 실패")
+            }
 
         });
     }

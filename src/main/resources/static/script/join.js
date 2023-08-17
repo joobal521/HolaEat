@@ -107,7 +107,7 @@ function chkId() {
         };
         $.ajax({
             method: 'POST',
-            url: 'api/v1/users/userIdDupl',
+            url: 'api/v1/users/userId-check',
             data: JSON.stringify(data),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
@@ -124,6 +124,43 @@ function chkId() {
 
         }).fail(function (error) {
             alert("아이디 중복 검사 실패입니다: " + error.responseJSON.message);
+        });
+
+    }
+
+}
+
+//이메일 중복검사
+function chkEmail() {
+    var email = $('#userEmail').val();
+
+    if(email===""){
+        alert("사용 불가능한 이메일입니다.")
+    }else {
+
+
+        const data = {
+            userEmail: email,
+        };
+        $.ajax({
+            method: 'POST',
+            url: 'api/v1/users/userEmail-check',
+            data: JSON.stringify(data),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+
+        }).done(function (data) {
+            if (data.result === true) {
+                isIdChecked = true;
+                alert("사용 가능한 이메일입니다.")
+                //$('#chkMsgEmail').html('사용 가능한 아이디입니다.').css('color', 'navy');
+            } else {
+                alert("이미 사용중인 이메일입니다.")
+                // $('#chkMsgEmail').html('이미 사용중인 아이디입니다.').css('color', 'red');
+            }
+
+        }).fail(function (error) {
+            alert("이메일 중복 검사 실패입니다: " + error.responseJSON.message);
         });
 
     }

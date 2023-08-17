@@ -73,10 +73,27 @@ public class UserController {
     }
 
 //아이디 중복체크
-    @PostMapping("userIdDupl")
+    @PostMapping("userId-check")
     public Map checkUserId(@RequestBody  Map<String, String> requestData) {
         String userId=requestData.get("userId");
         boolean dupl = userService.duplCheckUserId(userId);
+        JSONObject response =new JSONObject();
+
+
+        if(!dupl){
+            response.put("result", true);
+
+        }else {
+            response.put("result", false);
+        }
+        return response.toMap();
+    }
+
+    //이메일 중복체크
+    @PostMapping("userEmail-check")
+    public Map checkUserEmail(@RequestBody  Map<String, String> requestData) {
+        String userEmail=requestData.get("userEmail");
+        boolean dupl=userService.duplCheckUserEmail(userEmail);
         JSONObject response =new JSONObject();
 
 

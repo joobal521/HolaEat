@@ -75,5 +75,11 @@ public class MainController {
     @GetMapping("update")
     public String update(){return "updateForm";}
 
+    @GetMapping("term")
+    public String term(){return"term";}
+
+    @GetMapping("term2")
+    public String term2(){return "term2";}
+
 
 }
