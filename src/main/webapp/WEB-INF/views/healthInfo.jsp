@@ -31,12 +31,12 @@
 
                         <%--이미지 출력--%>
             <div class="health_img">
-                <c:set var="imageBase64" value="${imageMapPage[review.reviewNo]}"></c:set>
+                <c:set var="imageBase64" value="${imageMapPage[health.healthNo]}"></c:set>
                 <c:if test="${not empty imageBase64}">
                     <img src="data:image/jpeg;base64,${imageBase64}" id="img" name="img" alt="Review Image">
                 </c:if>
             </div>
-            <div class="review_title">제목 : ${review.title}</div>
+            <div class="review_title">제목 : ${health.title}</div>
             <div class="review_like"><i class="fa-regular fa-heart"></i></div>
         </div>
         </a>
