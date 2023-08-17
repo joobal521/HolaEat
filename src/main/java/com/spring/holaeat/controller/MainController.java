@@ -70,7 +70,7 @@ public class MainController {
     }
 
     @GetMapping("health")
-    public String health() {return "health";}
+    public String health() {return "healthInfo";}
 
     @GetMapping("update")
     public String update(){return "updateForm";}

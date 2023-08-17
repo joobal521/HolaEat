@@ -1,4 +1,4 @@
-package com.spring.holaeat.domain.Email;
+package com.spring.holaeat.domain.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

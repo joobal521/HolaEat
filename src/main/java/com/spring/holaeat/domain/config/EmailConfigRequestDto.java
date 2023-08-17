@@ -1,4 +1,4 @@
-package com.spring.holaeat.domain.Email;
+package com.spring.holaeat.domain.config;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

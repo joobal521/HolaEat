@@ -23,7 +23,7 @@ public class PhotoController {
     private final HealthService healthService;
     private final PhotoService photoService;
 
-    @PostMapping("")
+    @PostMapping("upload-files")
     @ResponseStatus(HttpStatus.CREATED)
     public Long create(
             @RequestPart(value="image", required=false) List<MultipartFile> files,

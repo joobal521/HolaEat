@@ -13,7 +13,7 @@ public class HealthRequestDto {
     private  long healthNo;
     private String title; //제목
     private String content;//내용
-    private Admin admin;
+    private String id;
   //  private MultipartFile img;
 
 }

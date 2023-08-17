@@ -1,4 +1,4 @@
-package com.spring.holaeat.domain;
+package com.spring.holaeat.domain.config;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.data.redis.RedisProperties;

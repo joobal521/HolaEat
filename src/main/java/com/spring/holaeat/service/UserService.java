@@ -86,7 +86,7 @@ public class UserService {
 
      public void sendCodeToEmail(String toEmail) {
           this.checkDuplicatedEmail(toEmail);
-          String title = "Travel with me 이메일 인증 번호";
+          String title = "holaEat 이메일 인증 번호";
           String authCode = this.createCode();
           mailService.sendEmail(toEmail, title, authCode);
           // 이메일 인증 요청 시 인증 번호 Redis에 저장 ( key = "AuthCode " + Email / value = AuthCode )
@@ -94,6 +94,7 @@ public class UserService {
                   authCode, Duration.ofMillis(this.authCodeExpirationMillis));
      }
 
+     //이메일 중복확인
      private void checkDuplicatedEmail(String email) {
           Optional<User> user = userRepository.findByUserEmail(email);
           if (user.isPresent()) {
@@ -117,13 +118,14 @@ public class UserService {
           }
      }
 
-//     public EmailVerificationResult verifiedCode(String email, String authCode) {
-//          this.checkDuplicatedEmail(email);
-//          String redisAuthCode = redisService.getValues(AUTH_CODE_PREFIX + email);
-//          boolean authResult = redisService.checkExistsValue(redisAuthCode) && redisAuthCode.equals(authCode);
-//
-//          return EmailVerificationResult.of(authResult);
-//     }
+     public void verifiedCode(String email, String authCode) {
+          this.checkDuplicatedEmail(email);
+          String redisAuthCode = redisService.getValues(AUTH_CODE_PREFIX + email);
+          boolean authResult = redisService.checkExistsValue(redisAuthCode) && redisAuthCode.equals(authCode);
+          if (!authResult) {
+               throw new BusinessLogicException(ExceptionCode.AUTH_CODE_IS_NOT_SAME);
+          }
+     }
 
 
 

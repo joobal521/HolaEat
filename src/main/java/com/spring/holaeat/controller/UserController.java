@@ -10,6 +10,7 @@ import com.spring.holaeat.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.json.JSONObject;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -166,10 +167,17 @@ public class UserController {
     }
 
     //이메일 인증
-    @PostMapping("/emails/verification-requests")
-    public Map sendMessage(@RequestBody  Map<String, String> requestData) {
+
+//    @PostMapping("/emails/verification-requests")
+//    public ResponseEntity sendMessage(@RequestParam("email") @Valid @CustomEmail String email) {
+//        userService.sendCodeToEmail(email);
+//
+//        return new ResponseEntity<>(HttpStatus.OK);
+//    }
+    @PostMapping("verification-email")
+    public Map sendMessage(@RequestBody  User user) {
         JSONObject response = new JSONObject();
-        String userEmail = requestData.get("userEmail");
+        String userEmail = user.getUserEmail();
 
         try {
             userService.sendCodeToEmail(userEmail);
@@ -183,13 +191,12 @@ public class UserController {
         return response.toMap();
     }
 
-//    @GetMapping("/emails/verifications")
-//    public Map verificationEmail(@RequestParam("email") @Valid @CustomEmail String email,
+//    @GetMapping("verifications")
+//    public ResponseEntity verificationEmail(@RequestParam("email") @Valid @CustomEmail String email,
 //                                            @RequestParam("code") String authCode) {
-//        JSONObject response = new JSONObject();
-//        EmailVerificationResult response = userService.verifiedCode(email, authCode);
+//        userService.verifiedCode(email, authCode);
 //
-//        return  response.toMap();
+//        return new ResponseEntity<>(HttpStatus.OK);
 //    }
 
 
