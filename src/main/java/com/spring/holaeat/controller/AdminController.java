@@ -9,6 +9,7 @@ import com.spring.holaeat.service.IngredientsService;
 import com.spring.holaeat.service.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -71,9 +72,14 @@ public String gainPower(@RequestParam("adminid") String id, @RequestParam("admin
 //
 //        return "adminIngr";
 //    }
+
+    @Transactional
     @PutMapping(value = "adminIngr/{ingrId}", consumes = "multipart/form-data")
     public String updateIngredient(@PathVariable int ingrId, @ModelAttribute IngredientsRequestDto ingredientsRequestDto) {
         Ingredients ingredient = ingredientsService.findById(ingrId);
+//        if(ingredientsRequestDto.getIngrImg()==null){
+//
+//        }
         ingredientsService.update(ingredient, ingredientsRequestDto);
 
         return "adminIngr";
