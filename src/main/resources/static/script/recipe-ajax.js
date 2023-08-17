@@ -42,7 +42,7 @@ function loadRecipe(btn, modal) {
     var foodId = btn.getAttribute("data-foodid");
     var $recipeContent = modal.querySelector(".recipe-content");
     // var ingrid = document.getElementById('ingrId-modal').value;
-    console.log("wTF")
+    
     $.ajax({
         url: "getRecipe/" + foodId,
         type: "GET",

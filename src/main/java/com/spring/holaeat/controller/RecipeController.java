@@ -42,10 +42,8 @@ public class RecipeController {
         }
 
         System.out.println("foodID:"+foodId);
-
-
-        List<Nutritions> nutrition = nutritionsService.getNutritions();
-        model.addAttribute("nutritions",nutrition);
+//        List<Nutritions> nutritions = nutritionsService.getNutritions(foodId);
+//        model.addAttribute("nutrition",nutritions);
 
         return "getRecipe"; // 해당 레시피 정보를 보여줄 JSP 파일의 이름
     }

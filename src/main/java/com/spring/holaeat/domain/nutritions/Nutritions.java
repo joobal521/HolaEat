@@ -14,23 +14,15 @@ import javax.persistence.*;
 
 public class Nutritions {
 
-    @NaturalId
-    private String foodId; // This field is the primary key
-
+    @Id
+    private long nutrId;
+    private String foodId;
     private int kcal;
     private int carb;
     private int protein;
     private int fat;
     private int sugars;
     private int natrium;
-    @Id
-    private Long id;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
-    public Long getId() {
-        return id;
-    }
 }

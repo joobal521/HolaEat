@@ -25,4 +25,6 @@ public interface FoodRepository extends JpaRepository<Food,String> {
 
     @Query(nativeQuery = true, value = "SELECT food_img from food where food_id = ?1")
     byte[] getFoodImgByFoodId(String foodId);
+
+    List<Food> findAll();
 }
