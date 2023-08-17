@@ -72,9 +72,6 @@ function calculateCalories() {
 
 
 }
-
-
-
 function fetchAndDisplayMenu(selectedNational) {
     var userRecCalories = parseInt($('#recCalories').val());
 
@@ -86,6 +83,9 @@ function fetchAndDisplayMenu(selectedNational) {
         var resultHtml = "<h2>산출된 식단</h2><ul>";
         var totalCalories = 0; // totalCalories 변수를 루프 외부에서 정의
 
+        var selectedPrefer = $('#prefer').val(); // 선택된 "선호하는 재료"의 value 가져오기
+        var selectedDislike = $('#dislike').val(); // 선택된 "선호하지 않는 재료"의 value 가져오기
+
         generatedMenus.forEach(function(menu, index) {
 
             if (index !== 0) {
@@ -93,7 +93,12 @@ function fetchAndDisplayMenu(selectedNational) {
             }
 
             var menuTotalCalories = menu.food1Weight + menu.food2Weight + menu.food3Weight + menu.food4Weight + menu.food5Weight;
-            if (menuTotalCalories <= userRecCalories) {
+
+
+            // "선호하는 재료"와 "선호하지 않는 재료"를 모두 검사하여 필터링
+            if ((selectedPrefer === "" || menu.main === selectedPrefer || menu.main2 === selectedPrefer) &&
+                (selectedDislike === "" || (!menu.main.includes(selectedDislike) && !menu.main2.includes(selectedDislike))) &&
+                menuTotalCalories <= userRecCalories) {
                 resultHtml += "<li>" +
                     "음식1: " + menu.food1 + " (" + menu.food1Weight + "Kcal)</br>" +
                     "음식2: " + menu.food2 + " (" + menu.food2Weight + "Kcal)</br>" +
@@ -110,13 +115,11 @@ function fetchAndDisplayMenu(selectedNational) {
 
         resultHtml += "</ul>";
         generatedMenusDiv.innerHTML = resultHtml;
-
-        // 총 칼로리를 표시
-        // var totalCaloriesDiv = document.getElementById("totalCalories");
-        // totalCaloriesDiv.innerHTML = "총 칼로리: " + totalCalories + "Kcal";
-    //     오류 메시지 발생해서 일단 주석처리
     });
 }
+
+
+
 
 
 function fetchAndDisplayAllMenus(selectedValue) {
@@ -132,6 +135,8 @@ function fetchAndDisplayAllMenus(selectedValue) {
 
     var menuId = menuIdMapping[selectedValue];
 
+    var selectedPrefer = $('#prefer').val(); // 선택된 "선호하는 재료"의 value 가져오기
+    var selectedDislike = $('#dislike').val(); // 선택된 "선호하지 않는 재료"의 value 가져오기
 
     $.get("/menus/generate", function(data) {
         var generatedMenus = data;
@@ -146,7 +151,10 @@ function fetchAndDisplayAllMenus(selectedValue) {
             if (menu.menuId === menuId) {
                 var totalCalories = menu.food1Weight + menu.food2Weight + menu.food3Weight + menu.food4Weight + menu.food5Weight;
 
-                if (totalCalories <= userRecCalories) { // 추가된 조건문
+                // "선호하는 재료"와 "선호하지 않는 재료"를 모두 검사하여 필터링
+                if ((selectedPrefer === "" || menu.main === selectedPrefer || menu.main2 === selectedPrefer) &&
+                    (selectedDislike === "" || !menu.main.includes(selectedDislike) && !menu.main2.includes(selectedDislike)) &&
+                    totalCalories <= userRecCalories) {
                     resultHtml += "<li>" +
                         "음식1: " + menu.food1 + " (" + menu.food1Weight + "Kcal)</br>" +
                         "음식2: " + menu.food2 + " (" + menu.food2Weight + "Kcal)</br>" +
@@ -166,4 +174,5 @@ function fetchAndDisplayAllMenus(selectedValue) {
         generatedMenusDiv.innerHTML = resultHtml;
     });
 }
+
 

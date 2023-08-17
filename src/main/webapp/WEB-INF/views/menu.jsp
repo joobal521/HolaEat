@@ -140,10 +140,10 @@
                 </select>
             </div>
 
-            <div class="selected-prefer">
-                <h2>선택된 재료</h2>
-                <input type="text" id="selectedIngredientsList" value="${userPrefer}">
-            </div>
+<%--            <div class="selected-prefer">--%>
+<%--                <h2>선택된 재료</h2>--%>
+<%--                <input type="text" id="selectedIngredientsList" value="${userPrefer}">--%>
+<%--            </div>--%>
 
             <%--            <button id="savePreferButton">저장</button>--%>
 
@@ -183,11 +183,11 @@
 
             <%--            <button id="saveDislikeButton">저장</button>--%>
 
-            <div class="selected-dislike">
-                <h2>선택된 재료</h2>
-                <%--                <ul id="selectedUnIngredientsList"></ul>--%>
-                <input type="text" id="selectedUnIngredientsList" value="${userDislike}">
-            </div>
+<%--            <div class="selected-dislike">--%>
+<%--                <h2>선택된 재료</h2>--%>
+<%--                &lt;%&ndash;                <ul id="selectedUnIngredientsList"></ul>&ndash;%&gt;--%>
+<%--                <input type="text" id="selectedUnIngredientsList" value="${userDislike}">--%>
+<%--            </div>--%>
 
             <input type="button" id="save_btn" name="save_btn" value="저장">
             <input type="button" id="menu_btn" name="menu_btn" value="식단 산출" onclick="fetchAndDisplayMenu()">
