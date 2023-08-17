@@ -14,7 +14,6 @@ import javax.persistence.*;
 
 public class Nutritions {
 
-
     @NaturalId
     private String foodId; // This field is the primary key
 

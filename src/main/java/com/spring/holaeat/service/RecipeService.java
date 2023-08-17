@@ -30,4 +30,8 @@ public class RecipeService {
         }
         return recipe;
     }
+
+    public List<Recipe> getRecipes(){
+        return recipeRepository.findAll();
+    }
 }

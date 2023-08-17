@@ -97,13 +97,13 @@ public String gainPower(@RequestParam("adminid") String id, @RequestParam("admin
     }
 
 ////메뉴관리
-//    @GetMapping("adminMenu")
-//    public String getAllMenu(Model model){
-//
-//
-//
-//        return "adminMenu";
-//    }
+    @GetMapping("adminMenu")
+    public String getAllMenu(Model model){
+
+
+
+        return "adminMenu";
+    }
 //
 //    //후기게시판관리
 //    @GetMapping("adminReview")

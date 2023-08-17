@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -43,11 +44,12 @@ public class RecipeController {
         System.out.println("foodID:"+foodId);
 
 
-        List<Nutritions> nutrition = nutritionsService.findByFoodId(foodId);
+        List<Nutritions> nutrition = nutritionsService.getNutritions();
         model.addAttribute("nutritions",nutrition);
 
         return "getRecipe"; // 해당 레시피 정보를 보여줄 JSP 파일의 이름
     }
+
 
 
 

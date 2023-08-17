@@ -13,6 +13,7 @@ public interface RecipeRepository extends JpaRepository<Recipe,String> {
     @Query(nativeQuery = true,value = "SELECT * FROM recipe WHERE food_id = ?1")
     public List<Recipe> findStepsByFoodId(String foodId);
 
+    List<Recipe> findAll();
 
 
 }

@@ -21,4 +21,8 @@ public class NutritionsService {
         System.out.println("service foodID: " +foodId);
         return nutritionsRepository.findAllByFoodId(foodId);
     }
+
+    public List<Nutritions> getNutritions(){
+        return nutritionsRepository.findAll();
+    }
 }
