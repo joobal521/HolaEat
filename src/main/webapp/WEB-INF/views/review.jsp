@@ -84,13 +84,14 @@
         <div id="comment-container">
 <%--            <c:if test="${not empty reviewComment}">--%>
 <%--                <c:forEach var="li" items="${reviewComment}">--%>
-                    <div class="comment-item">
+                    <form class="comment-item">
 <%--                        <p>ID : ${li.userId}</p>--%>
 <%--                        <br>--%>
 <%--                        <p>${li.content}</p>--%>
 <%--                        <br>--%>
 <%--                        <p>${li.getCreatedAt()}</p>--%>
-                    </div>
+
+                    </form>
 <%--                </c:forEach>--%>
 <%--            </c:if>--%>
         </div>

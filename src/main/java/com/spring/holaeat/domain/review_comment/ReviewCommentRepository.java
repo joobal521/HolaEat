@@ -12,4 +12,6 @@ public interface ReviewCommentRepository extends JpaRepository<ReviewComment, Lo
 
     public List<ReviewComment> findAllByReviewNo(long reviewNo);
 
+    public List<ReviewComment> findAllByCommentId(long commentId);
+
 }

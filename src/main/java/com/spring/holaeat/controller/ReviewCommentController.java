@@ -8,10 +8,10 @@ import com.spring.holaeat.service.ReviewCommentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 //
 
@@ -67,8 +67,8 @@ public class ReviewCommentController {
     }
 
 
-
 //수정
+
 
 //    @PutMapping(value = "/{commentId}/update", consumes = {"multipart/form-data"})
 //    public Response update(@PathVariable String commentId, WebRequest request, @ModelAttribute ReviewCommentRequestDto reviewCommentRequestDto, Model model) {
@@ -96,7 +96,8 @@ public class ReviewCommentController {
 
 
 ////삭제
-//
+
+
 //    @DeleteMapping("/reviewComment/{commentId}/delete")
 //    public Response delete(@PathVariable("commentId") String commentId, WebRequest request, @ModelAttribute ReviewCommentRequestDto reviewCommentRequestDto) {
 //        String log = (String) request.getAttribute("log", WebRequest.SCOPE_SESSION);
@@ -122,6 +123,25 @@ public class ReviewCommentController {
 //
 //    }
 
+    @DeleteMapping("/comment/{commentId}/delete")
+    public ResponseEntity<Response> deleteComment(@PathVariable("commentId") long commentId, WebRequest request) {
+        String log = (String) request.getAttribute("log", WebRequest.SCOPE_SESSION);
+
+        if (log != null) {
+            // 로그인한 사용자와 댓글 작성자가 동일한 경우에만 삭제 가능하도록 처리
+            ReviewComment comment = reviewCommentRepository.findById(commentId)
+                    .orElseThrow(() -> new EntityNotFoundException("Comment not found"));
+
+            if (comment.getUserId().equals(log)) {
+                reviewCommentService.delete(commentId);
+                return ResponseEntity.ok(new Response("delete", "success"));
+            } else {
+                return ResponseEntity.status(HttpStatus.FORBIDDEN).body(new Response("delete", "작성자만 삭제할 수 있습니다."));
+            }
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+    }
 
 
 
