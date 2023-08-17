@@ -220,19 +220,19 @@
         </div>
 
 
-            <%--            <div class="btn-container">--%>
-            <%--                <a class="btn" href="/health?national=all">All</a>--%>
-            <%--                <a class="btn" href="/health?national=한식">한식</a>--%>
-            <%--                <a class="btn" href="/health?national=양식">양식</a>--%>
-            <%--                <a class="btn" href="/health?national=일식">일식</a>--%>
-            <%--                <a class="btn" href="/health?national=중식">중식</a>--%>
-            <%--                <a class="btn" href="/health?national=샐러드">샐러드</a>--%>
-            <%--            </div>--%>
+        <%--            <div class="btn-container">--%>
+<%--            <%—                <a class="btn" href="/health?national=all">All</a>—%>--%>
+<%--            <%—                <a class="btn" href="/health?national=한식">한식</a>—%>--%>
+<%--            <%—                <a class="btn" href="/health?national=양식">양식</a>—%>--%>
+<%--            <%—                <a class="btn" href="/health?national=일식">일식</a>—%>--%>
+<%--            <%—                <a class="btn" href="/health?national=중식">중식</a>—%>--%>
+<%--            <%—                <a class="btn" href="/health?national=샐러드">샐러드</a>—%>--%>
+<%--            <%—            </div>—%>--%>
 
 
 </section>
 <script src="script/cal.js"></script>
-<%--<script src="resources/js/ingredients.js"></script>--%>
+<%--<%—<script src="resources/js/ingredients.js"></script>—%>--%>
 
 </body>
 <c:import url="footer.jsp"/>

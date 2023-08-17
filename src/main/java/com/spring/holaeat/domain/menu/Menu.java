@@ -38,8 +38,8 @@ public class Menu {
     @Column(name = "food5")
     private String food5;
 
-    @Column(name = "main1")
-    private String main1;
+    @Column(name = "main")
+    private String main;
 
     @Column(name = "main2")
     private String main2;

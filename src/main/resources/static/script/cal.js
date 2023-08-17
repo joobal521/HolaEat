@@ -1,4 +1,4 @@
-$$(document).ready(function () {
+$(document).ready(function () {
     $('#save_btn').click(function () {
         var gender = $('input[name="gender"]:checked').val();
         var age = $('#age').val();
@@ -6,6 +6,8 @@ $$(document).ready(function () {
         var weight = $('#weight').val();
         var allergy = $('#allergy').val();
         var recCalories = $('#recCalories').val();
+        var selectedPrefer = $('#prefer').val();
+        var selectedDislike = $('#dislike').val();
 
         var formData = {
             gender: gender,
@@ -13,12 +15,14 @@ $$(document).ready(function () {
             height: height,
             weight: weight,
             allergy: allergy,
-            recCalories: recCalories
+            recCalories: recCalories,
+            prefer: selectedPrefer, // 추가된 부분: prefer 값을 formData에 추가
+            dislike: selectedDislike // 추가된 부분: dislike 값을 formData에 추
         };
 
         $.ajax({
             type: "POST",
-            url: "/saveCalories", // 해당 URL에 맞게 수정
+            url: "/saveDetails",
             data: formData,
             success: function (data) {
                 // 서버 응답 처리
@@ -30,8 +34,7 @@ $$(document).ready(function () {
                 $('#allergy').val(data.allergy);
                 $('#recCalories').val(data.recCalories);
 
-                alert("저장에 성공하였습니다.")
-
+                alert("저장에 성공하였습니다.");
             },
             error: function (error) {
                 console.error("저장 에러:", error);
@@ -71,6 +74,7 @@ function calculateCalories() {
 }
 
 
+
 function fetchAndDisplayMenu(selectedNational) {
     $.get("/menus/generate", { national: selectedNational }, function(data) {
         var generatedMenus = data; // 서버 응답 데이터
@@ -80,7 +84,8 @@ function fetchAndDisplayMenu(selectedNational) {
         // 결과를 생성하여 웹 페이지에 표시
         var resultHtml = "<h2>산출된 식단</h2><ul>";
         generatedMenus.forEach(function(menu, index) {
-            if (index !== 0) {
+
+                if (index !== 0) {
                 resultHtml += "<hr>"; // 첫 번째 메뉴 이후에만 수평선 추가
             }
 
@@ -98,9 +103,15 @@ function fetchAndDisplayMenu(selectedNational) {
                     "</li></br>";
             }
         });
+            // 음식 칼로리를 더함
+
         resultHtml += "</ul>";
 
         generatedMenusDiv.innerHTML = resultHtml;
+
+        // 총 칼로리를 표시
+        var totalCaloriesDiv = document.getElementById("totalCalories");
+        totalCaloriesDiv.innerHTML = "총 칼로리: " + totalCalories + "Kcal";
     });
 }
 
@@ -116,12 +127,12 @@ function fetchAndDisplayAllMenus(selectedValue) {
 
     var menuId = menuIdMapping[selectedValue];
 
+
     $.get("/menus/generate", function(data) {
         var generatedMenus = data;
         var generatedMenusDiv = document.getElementById("generatedMenus");
         var resultHtml = "<h2>모든 식단</h2><ul>";
         var userRecCalories = parseInt($('#recCalories').val());
-
 
         generatedMenus.forEach(function(menu, index) {
             if (index !== 0) {
@@ -151,3 +162,4 @@ function fetchAndDisplayAllMenus(selectedValue) {
         generatedMenusDiv.innerHTML = resultHtml;
     });
 }
+
