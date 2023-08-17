@@ -207,21 +207,22 @@ public class UserController {
         return response.toMap();
     }
 
-    @GetMapping("verifications")
-    public Map verificationEmail(@RequestParam("email") String email,
-                                            @RequestParam("code") String authCode) {
-        JSONObject response = new JSONObject();
-        try {
-            userService.verifiedCode(email, authCode);
-            response.put("result", true);
-
-        }catch (Exception e){
-            response.put("result", false);
-            response.put("message", "인증코드 확인 실패");
-        }
-
-        return response.toMap();
-    }
+    //이메일 인증 확인
+//    @GetMapping("verifications")
+//    public Map verificationEmail(@RequestParam("email") String email,
+//                                            @RequestParam("code") String authCode) {
+//        JSONObject response = new JSONObject();
+//        try {
+//            userService.verifiedCode(email, authCode);
+//            response.put("result", true);
+//
+//        }catch (Exception e){
+//            response.put("result", false);
+//            response.put("message", "인증코드 확인 실패");
+//        }
+//
+//        return response.toMap();
+//    }
 
 
 
