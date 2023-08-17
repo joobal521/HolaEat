@@ -33,6 +33,7 @@ var regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*
 let pwdChk = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[$@$!%*#?&])/; /* 영문 + 숫자 + 특수문자 */
 let pwd_space = /[ ]/; /* 공백 */
 let isIdChecked = false; //아이디 중복
+let isEmailChecked=false;//이메일 중복
 let isToKenChecked = false;
 
 $(function() {
@@ -151,7 +152,7 @@ function chkEmail() {
 
         }).done(function (data) {
             if (data.result === true) {
-                isIdChecked = true;
+                isEmailChecked = true;
                 alert("사용 가능한 이메일입니다.")
                 //$('#chkMsgEmail').html('사용 가능한 아이디입니다.').css('color', 'navy');
             } else {
@@ -173,7 +174,9 @@ function chkEmail() {
 function emailAuthentication() {
 
         var email = $('#userEmail').val();
-        $("#email_ch").prop('disabled', true);
+        $("#email-ch").prop('disabled', true);
+
+        console.log(email);
 
         const data = {
             userEmail: email,
@@ -181,7 +184,7 @@ function emailAuthentication() {
 
         $.ajax({
             type: "POST",
-            url: "api/v1/users/emailCheck",
+            url: "api/v1/users/verification-email",
             data: JSON.stringify(data),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
@@ -294,7 +297,7 @@ function checkValue(htmlForm) {
     }
 
 
-    if (check && isIdChecked) {
+    if (check && isIdChecked && isEmailChecked) {
 
         const data = {
             userId: id,
@@ -327,6 +330,8 @@ function checkValue(htmlForm) {
 
     } else if (!isIdChecked) {
         alert("아이디 중복 확인을 해주세요.");
+    }else if(!isEmailChecked){
+        alert("이메일 중복 확인을 해주세요")
     }
 
 }

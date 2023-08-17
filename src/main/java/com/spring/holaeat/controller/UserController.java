@@ -10,13 +10,9 @@ import com.spring.holaeat.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.json.JSONObject;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
-import java.awt.*;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
@@ -191,8 +187,9 @@ public class UserController {
 //        return new ResponseEntity<>(HttpStatus.OK);
 //    }
     @PostMapping("verification-email")
-    public Map sendMessage(@RequestParam("email")String email) {
+    public Map sendMessage(@RequestBody  Map<String, String> requestData) {
         JSONObject response = new JSONObject();
+        String email = requestData.get("userEmail");
         System.out.println("이메일"+email);
 
         try {
