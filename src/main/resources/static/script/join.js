@@ -175,13 +175,15 @@ function emailAuthentication() {
         var email = $('#userEmail').val();
         $("#email_ch").prop('disabled', true);
 
+        console.log(email);
+
         const data = {
             userEmail: email,
         };
 
         $.ajax({
             type: "POST",
-            url: "api/v1/users/emailCheck",
+            url: "api/v1/users/verification-email",
             data: JSON.stringify(data),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
