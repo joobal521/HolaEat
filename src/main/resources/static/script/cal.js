@@ -76,47 +76,52 @@ function calculateCalories() {
 
 
 function fetchAndDisplayMenu(selectedNational) {
+    var userRecCalories = parseInt($('#recCalories').val());
+
     $.get("/menus/generate", { national: selectedNational }, function(data) {
         var generatedMenus = data; // 서버 응답 데이터
         var generatedMenusDiv = document.getElementById("generatedMenus");
-        var userRecCalories = parseInt($('#recCalories').val());
 
         // 결과를 생성하여 웹 페이지에 표시
         var resultHtml = "<h2>산출된 식단</h2><ul>";
+        var totalCalories = 0; // totalCalories 변수를 루프 외부에서 정의
+
         generatedMenus.forEach(function(menu, index) {
 
-                if (index !== 0) {
+            if (index !== 0) {
                 resultHtml += "<hr>"; // 첫 번째 메뉴 이후에만 수평선 추가
             }
 
-            var totalCalories = menu.food1Weight + menu.food2Weight + menu.food3Weight + menu.food4Weight + menu.food5Weight;
-            if (totalCalories <= userRecCalories) {
+            var menuTotalCalories = menu.food1Weight + menu.food2Weight + menu.food3Weight + menu.food4Weight + menu.food5Weight;
+            if (menuTotalCalories <= userRecCalories) {
                 resultHtml += "<li>" +
                     "음식1: " + menu.food1 + " (" + menu.food1Weight + "Kcal)</br>" +
                     "음식2: " + menu.food2 + " (" + menu.food2Weight + "Kcal)</br>" +
                     "음식3: " + menu.food3 + " (" + menu.food3Weight + "Kcal)</br>" +
                     "음식4: " + menu.food4 + " (" + menu.food4Weight + "Kcal)</br>" +
                     "음식5: " + menu.food5 + " (" + menu.food5Weight + "Kcal)</br>" +
-                    "주재료1: " + menu.main1 + "</br>" +
+                    "주재료1: " + menu.main + "</br>" +
                     "주재료2: " + menu.main2 + "</br>" +
-                    "총 칼로리: " + totalCalories + "Kcal" +
+                    "총 칼로리: " + menuTotalCalories + "Kcal" +
                     "</li></br>";
+                totalCalories += menuTotalCalories; // 루프 내에서 총 칼로리를 누적
             }
         });
-            // 음식 칼로리를 더함
 
         resultHtml += "</ul>";
-
         generatedMenusDiv.innerHTML = resultHtml;
 
         // 총 칼로리를 표시
-        var totalCaloriesDiv = document.getElementById("totalCalories");
-        totalCaloriesDiv.innerHTML = "총 칼로리: " + totalCalories + "Kcal";
+        // var totalCaloriesDiv = document.getElementById("totalCalories");
+        // totalCaloriesDiv.innerHTML = "총 칼로리: " + totalCalories + "Kcal";
+    //     오류 메시지 발생해서 일단 주석처리
     });
 }
 
 
 function fetchAndDisplayAllMenus(selectedValue) {
+    var userRecCalories = parseInt($('#recCalories').val());
+
     var menuIdMapping = {
         "한식": 1,
         "중식": 2,
@@ -132,7 +137,6 @@ function fetchAndDisplayAllMenus(selectedValue) {
         var generatedMenus = data;
         var generatedMenusDiv = document.getElementById("generatedMenus");
         var resultHtml = "<h2>모든 식단</h2><ul>";
-        var userRecCalories = parseInt($('#recCalories').val());
 
         generatedMenus.forEach(function(menu, index) {
             if (index !== 0) {
@@ -149,7 +153,7 @@ function fetchAndDisplayAllMenus(selectedValue) {
                         "음식3: " + menu.food3 + " (" + menu.food3Weight + "Kcal)</br>" +
                         "음식4: " + menu.food4 + " (" + menu.food4Weight + "Kcal)</br>" +
                         "음식5: " + menu.food5 + " (" + menu.food5Weight + "Kcal)</br>" +
-                        "주재료1: " + menu.main1 + "</br>" +
+                        "주재료1: " + menu.main + "</br>" +
                         "주재료2: " + menu.main2 + "</br>" +
                         "총 칼로리: " + totalCalories + "Kcal" +
                         "</li>" + "</br>";
