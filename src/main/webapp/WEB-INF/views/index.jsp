@@ -11,30 +11,35 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+            crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-
+    <%--    차트--%>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
     <style>
         .carousel-inner > .item > img,
         .carousel-inner > .item > a > img {
             width: 50%;
             margin: auto;
         }
-        div, h5, p, button, span{
+
+        div, h5, p, button, span {
             background-color: unset;
         }
 
-        #carouselExampleCaptions{
+        #carouselExampleCaptions {
             padding: 10% 20%;
         }
 
-        canvas {
+        #roullet {
             transition: 2s;
             border-radius: 300px;
         }
 
-        .roullet>button {
+        .roullet > button {
             background: #febf00;
             margin-top: 1rem;
             padding: .8rem 1.8rem;
@@ -46,7 +51,7 @@
             cursor: pointer;
         }
 
-        .roullet>button:active {
+        .roullet > button:active {
             background: #444;
             color: #f9f9f9;
         }
@@ -79,39 +84,59 @@
 <section>
     <div class="container">
         <c:choose>
-<%--            로그인 시 --%>
+            <%--            로그인 시 --%>
             <c:when test="${not empty log}">
                 <p>회원 로그인 메인 페이지 입니다</p>
                 <div class="form_wrap" style="border: solid 1px black">
-                <form action="" method="">
-                    <ul>
-                        <li>
-                            <h2>선호 메뉴</h2>
-                            <div class="favorite_menu">
-<%--                                <input type="button" value="한식">--%>
-<%--                                <input type="button" value="중식">--%>
-<%--                                <input type="button" value="일식">--%>
-<%--                                <input type="button" value="양식">--%>
-<%--                                <input type="button" value="샐러드">--%>
-<%--                                <button>한식</button>--%>
-<%--                                <button>중식</button>--%>
-<%--                                <button>일식</button>--%>
-<%--                                <button>양식</button>--%>
-<%--                                <button>샐러드</button>--%>
+                    <canvas id="pie-chart" width="200" height="200" style="width:200px; height: 200px;"></canvas>
+                    <script>
+                        new Chart(document.getElementById("pie-chart"), {
+                            type   : 'pie',
+                            data   : {
+                                labels  : ["균형잡힌 식사", "운동 식이조절", "다이어트", "비건", "기타"],
+                                datasets: [{
+                                    label          : "Population (millions)",
+                                    backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
+                                    data           : [2478, 5267, 734, 784, 433]
+                                }]
+                            },
+                            options: {
+                                title: {
+                                    display: true,
+                                    text   : 'Holaeat을 이용하는 이유는?'
+                                }
+                            }
+                        });
+                    </script>
+                    <form action="" method="">
+                        <ul>
+                            <li>
+                                <h2>선호 메뉴</h2>
+                                <div class="favorite_menu">
+                                        <%--                                <input type="button" value="한식">--%>
+                                        <%--                                <input type="button" value="중식">--%>
+                                        <%--                                <input type="button" value="일식">--%>
+                                        <%--                                <input type="button" value="양식">--%>
+                                        <%--                                <input type="button" value="샐러드">--%>
+                                        <%--                                <button>한식</button>--%>
+                                        <%--                                <button>중식</button>--%>
+                                        <%--                                <button>일식</button>--%>
+                                        <%--                                <button>양식</button>--%>
+                                        <%--                                <button>샐러드</button>--%>
 
-                            </div>
-                        </li>
-                        <li>
-                            <h2>좋아하는 재료</h2>
-                        </li>
-                        <li>
-                            <h2>싫어하는 재료</h2>
-                        </li>
-                    </ul>
-                </form>
+                                </div>
+                            </li>
+                            <li>
+                                <h2>좋아하는 재료</h2>
+                            </li>
+                            <li>
+                                <h2>싫어하는 재료</h2>
+                            </li>
+                        </ul>
+                    </form>
                 </div>
             </c:when>
-<%--            비 로그인 시--%>
+            <%--            비 로그인 시--%>
             <c:otherwise>
                 <%--        캐러셀 BootStrap --%>
                 <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
@@ -138,32 +163,36 @@
                             </div>
                         </div>
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                            data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Previous</span>
                     </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next" style="background-color: unset">
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                            data-bs-slide="next" style="background-color: unset">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Next</span>
                     </button>
                 </div>
                 <%--        캐러셀 BootStrap 끝 --%>
+
                 <div class="login_2">
                     <button><a href="login">로그인 후 맞춤식단 검색하기</a></button>
                 </div>
+        <%--        랜덤 룰렛 시작--%>
+        <div class="roullet">
+            <canvas id="roullet" width="380" height='380'></canvas>
+            <button onclick="rotate()">룰렛 돌리기</button>
+        </div>
+
+        <%--        랜덤 룰렛 끝--%>
+    </div>
             </c:otherwise>
         </c:choose>
 
-<%--        랜덤 룰렛 시작--%>
-    <div class="roullet">
-        <canvas width="380" height='380'></canvas>
-        <button onclick="rotate()">룰렛 돌리기</button>
-    </div>
-
-<%--        랜덤 룰렛 끝--%>
-    </div>
 </section>
 <script src="script/rotate.js"></script>
+
 </body>
 <c:import url="footer.jsp"/>
 </html>

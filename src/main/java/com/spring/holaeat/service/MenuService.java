@@ -23,7 +23,6 @@ public class MenuService {
         List<Menu> generatedMenuList = new ArrayList<>();
 
         for (Object[] row : result) {
-            System.out.println("Row length: " + row.length);
 
             Menu menu = (Menu) row[0];
             String food1Name = (String) row[1];

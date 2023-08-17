@@ -10,20 +10,20 @@ $(document).ready(function () {
         var selectedDislike = $('#dislike').val();
 
         var formData = {
-            gender: gender,
-            age: age,
-            height: height,
-            weight: weight,
-            allergy: allergy,
+            gender     : gender,
+            age        : age,
+            height     : height,
+            weight     : weight,
+            allergy    : allergy,
             recCalories: recCalories,
-            prefer: selectedPrefer, // 추가된 부분: prefer 값을 formData에 추가
-            dislike: selectedDislike // 추가된 부분: dislike 값을 formData에 추
+            prefer     : selectedPrefer, // 추가된 부분: prefer 값을 formData에 추가
+            dislike    : selectedDislike // 추가된 부분: dislike 값을 formData에 추
         };
 
         $.ajax({
-            type: "POST",
-            url: "/saveDetails",
-            data: formData,
+            type   : "POST",
+            url    : "/saveDetails",
+            data   : formData,
             success: function (data) {
                 // 서버 응답 처리
                 console.log("저장 성공:", data);
@@ -36,7 +36,7 @@ $(document).ready(function () {
 
                 alert("저장에 성공하였습니다.");
             },
-            error: function (error) {
+            error  : function (error) {
                 console.error("저장 에러:", error);
                 // 에러 처리
             }
@@ -71,10 +71,11 @@ function calculateCalories() {
     document.getElementById("recCalories").value = baseCalories.toFixed(2); // 소수점 2자리까지 표시
 
 }
+
 function fetchAndDisplayMenu(selectedNational) {
     var userRecCalories = parseInt($('#recCalories').val());
 
-    $.get("/menus/generate", { national: selectedNational }, function(data) {
+    $.get("/menus/generate", {national: selectedNational}, function (data) {
         var generatedMenus = data;
         var generatedMenusDiv = document.getElementById("generatedMenus");
 
@@ -84,7 +85,7 @@ function fetchAndDisplayMenu(selectedNational) {
         var selectedPrefer = $('#prefer').val();
         var selectedDislike = $('#dislike').val();
 
-        generatedMenus.forEach(function(menu, index) {
+        generatedMenus.forEach(function (menu, index) {
             if (index !== 0) {
                 resultHtml += "<hr>";
             }
@@ -135,7 +136,7 @@ function fetchAndDisplayMenu(selectedNational) {
                     "칼로리: " + menu.food5Kcal + "Kcal </br>" +
                     "탄수화물: " + menu.food5Carb + "g </br>" +
                     "단백질: " + menu.food5Protein + "g </br>" +
-                    "지방: " + menu.food5Fat +"g </br>" +
+                    "지방: " + menu.food5Fat + "g </br>" +
 
                     "주재료1: " + menu.main + "</br>" +
                     "주재료2: " + menu.main2 + "</br>" +
@@ -146,6 +147,27 @@ function fetchAndDisplayMenu(selectedNational) {
                     "총 지방: " + totalFats + "g" +
 
                     "</hr></li></br>";
+                // new Chart(document.getElementById("bar-chart"), {
+                //     type   : 'bar',
+                //     data   : {
+                //         labels  : ["탄수화물", "단백질", "지방"],
+                //         datasets: [
+                //             {
+                //                 label          : "Population (millions)",
+                //                 backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f"],
+                //                 data           : [totalCarbs, totalProteins, totalFats]
+                //             }
+                //         ]
+                //     },
+                //     options: {
+                //         legend: {display: false},
+                //         title : {
+                //             display: true,
+                //             text   : 'Predicted world population (millions) in 2050'
+                //         }
+                //     }
+                // });
+                //
 
             }
         });
@@ -156,17 +178,14 @@ function fetchAndDisplayMenu(selectedNational) {
 }
 
 
-
-
-
 function fetchAndDisplayAllMenus(selectedValue) {
     var userRecCalories = parseInt($('#recCalories').val());
 
     var menuIdMapping = {
-        "한식": 1,
-        "중식": 2,
-        "일식": 3,
-        "양식": 4,
+        "한식" : 1,
+        "중식" : 2,
+        "일식" : 3,
+        "양식" : 4,
         "샐러드": 5
     };
 
@@ -175,12 +194,12 @@ function fetchAndDisplayAllMenus(selectedValue) {
     var selectedPrefer = $('#prefer').val(); // 선택된 "선호하는 재료"의 value 가져오기
     var selectedDislike = $('#dislike').val(); // 선택된 "선호하지 않는 재료"의 value 가져오기
 
-    $.get("/menus/generate", function(data) {
+    $.get("/menus/generate", function (data) {
         var generatedMenus = data;
         var generatedMenusDiv = document.getElementById("generatedMenus");
         var resultHtml = "<h2>모든 식단</h2><ul>";
 
-        generatedMenus.forEach(function(menu, index) {
+        generatedMenus.forEach(function (menu, index) {
             if (index !== 0) {
                 resultHtml += "<hr>";
             }
@@ -230,7 +249,7 @@ function fetchAndDisplayAllMenus(selectedValue) {
                         "칼로리: " + menu.food5Kcal + "Kcal </br>" +
                         "탄수화물: " + menu.food5Carb + "g </br>" +
                         "단백질: " + menu.food5Protein + "g </br>" +
-                        "지방: " + menu.food5Fat +"g </br>" +
+                        "지방: " + menu.food5Fat + "g </br>" +
 
                         "주재료1: " + menu.main + "</br>" +
                         "주재료2: " + menu.main2 + "</br>" +
@@ -240,11 +259,13 @@ function fetchAndDisplayAllMenus(selectedValue) {
                         "총 단백질: " + totalProteins + "g" +
                         "총 지방: " + totalFats + "g" +
 
-                        "</li></br>";
+                        "</hr></li></br>";
 
-                    // resultHtml += "<li>" +
-                    //
-                    //     "</li>" + "</br>";
+                    resultHtml += "<li>" +
+
+                        "</li>" + "</br>";
+
+
 
                 }
             }
@@ -256,4 +277,6 @@ function fetchAndDisplayAllMenus(selectedValue) {
     });
 }
 
+
+// 차트
 
