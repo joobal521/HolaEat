@@ -83,8 +83,6 @@ public class ReviewListController {
         } else {
             reviewPage = reviewRepository.findAllByOrderByReviewNoDesc(adjustedPageable);
         }
-        
-
 
         model.addAttribute("reviewlistPage", reviewPage); // reviewPage를 모델에 추가
 
