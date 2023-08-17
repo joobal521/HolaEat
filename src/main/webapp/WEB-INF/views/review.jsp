@@ -3,9 +3,8 @@
 <html>
 <head>
     <title>Title</title>
-    <c:set var="path" value="${pageContext.request.contextPath}"/>
-    <link rel="stylesheet" type="text/css" href="../style/grid.css">
-    <link rel="stylesheet" type="text/css" href="../style/review.css">
+<%--    <c:set var="path" value="${pageContext.request.contextPath}"/>--%>
+    <link rel="stylesheet" type="text/css" href="/style/review.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 
 
@@ -18,14 +17,14 @@
 </head>
 <c:import url="header.jsp"/>
 <body>
-<section id = "review-section">
+<div class="review-section">
     <h2>리뷰 게시판 상세</h2>
         <h2>게시글</h2>
         <c:if test="${review!=null}">
             <div id="review-contents">
                 <form id="review_detail" enctype="multipart/form-data">
                     <div class="review_detail_no">
-                        <label for="title">No.</label>
+                        <label for="reviewNo">No.</label>
                         <input type="text" id="reviewNo" name="reviewNo" value="${review.reviewNo}" readonly>
                     </div>
                 <div class="review_detail_title">
@@ -51,7 +50,7 @@
 <%--                    </c:when>--%>
 
                     <button type="button" id="update" name="update" onclick="redirectToReviewUpdate(reviewNo)">수정</button>
-                    <button type="button" id="delete" name="delete" onclick="CheckValueDelete(document.getElementById('review-detail'), ${review.reviewNo})">삭제</button>
+                    <button type="button" id="delete" name="delete" onclick="CheckValueDelete(document.getElementById('review_detail'), ${review.reviewNo})">삭제</button>
 
                 </form>
             </div>
@@ -80,13 +79,13 @@
         </div>
         <!-- 댓글 출력할 공간 -->
         <div id="comment-container">
-            <c:if test="${not empty commentList}">
-                <c:forEach var="li" items="${commentList}">
+            <c:if test="${not empty reviewComment}">
+                <c:forEach var="li" items="${reviewComment}">
                     <div class="comment-item">
                         <p>${li.userId}</p>
                         <br>
                         <p>${li.content}</p>
-                        <p>${li.createdAt}</p>
+<%--                        <p>${li.createdAt}</p>--%>
                     </div>
                 </c:forEach>
             </c:if>
@@ -94,8 +93,9 @@
     </div>
 
 
-</section>
+</div>
 </body>
 <script src="script/review.js"></script>
+<script src="script/comment.js"></script>
 <c:import url="footer.jsp"/>
 </html>

@@ -3,6 +3,7 @@
 
 </head>
 <body>
+<section>
     <h1>건강정보 관리</h1>
     <form  enctype="multipart/form-data">
         <input type="text" name="title" id="title">
@@ -10,7 +11,6 @@
         <input type="file" id="file" name="multi_file"  accept="image/png, image/jpg, image/jpeg, image.gif" multiple/>
         <button type="button" id="btn-health" class="btn" onclick="checkValue(form)">등록</button>
     </form>
-
-
+</section>
 
 </body>

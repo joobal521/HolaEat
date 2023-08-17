@@ -23,10 +23,10 @@ public class Health extends Timestamp {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long healthNo;
 
-    @ManyToOne(cascade = CascadeType.MERGE, targetEntity = Admin.class)
-    @JoinColumn(name = "Id", updatable = false)
+   @ManyToOne(cascade = CascadeType.MERGE, targetEntity = Admin.class)
+    @JoinColumn(name = "id", updatable = false)
     @JsonBackReference
-    private Admin admin;
+    private String id;
 
     @Column(nullable = false)
     private String title;
@@ -46,7 +46,7 @@ public class Health extends Timestamp {
 
 
     public Health(HealthRequestDto healthDto){
-        this.admin=healthDto.getAdmin();
+        this.id=healthDto.getId();
      this.title=healthDto.getTitle();
      this.content=healthDto.getContent();
 

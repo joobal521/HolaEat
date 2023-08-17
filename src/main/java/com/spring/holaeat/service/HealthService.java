@@ -33,6 +33,7 @@ public class HealthService {
         return health;
 
     }
+
     @Transactional
     public Long create(
             HealthRequestDto healthDto,

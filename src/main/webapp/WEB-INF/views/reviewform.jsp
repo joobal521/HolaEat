@@ -3,30 +3,33 @@
 <html>
 <head>
     <title>reviewform</title>
-    <c:set var="path" value="${pageContext.request.contextPath}"/>
-    <link rel="stylesheet" type="text/css" href="style/form.css">
-    <link rel="stylesheet" type="text/css" href="style/review.css">
+<%--    <c:set var="path" value="${pageContext.request.contextPath}"/>--%>
+    <link rel="stylesheet" type="text/css" href="/style/review.css">
+<%--    <link rel="stylesheet" type="text/css" href="../style/review.css">--%>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+
+
 </head>
 <c:import url="header.jsp"/>
 <body>
-<section>
+<div class="review-section">
     <div class="wrapper">
         <div>게시글 작성</div>
 
-        <div id="reviewform-container">
-            <form id="reviewform" enctype="multipart/form-data">
-                <div class="reviewform-title">
+        <div id="reviewWrite-box">
+            <form id="reviewWrite" enctype="multipart/form-data">
+                <div class="reviewWrite-title">
                     <label for="title">제목</label>
                     <input type="text" id="title" name="title">
                     <p class="error" id="error-title">제목을 입력해주세요.</p>
                 </div>
-                <div class="reviewform-content">
+                <div class="reviewWrite-content">
                     <label for="content">내용</label>
                     <textarea id="content" name="content"></textarea>
                 </div>
-                <div class="reviewform-img">
+                <div class="reviewWrite-img">
                     <input type="file" id="img" name="img" accept="image/png, image/jpg, image/jpeg, image.gif">
                 </div>
                 <%--            <div class="img-container">--%>
@@ -37,13 +40,13 @@
                 <%--                </div>--%>
 
                 <%--            </div>--%>
-                <div class="reviewform-btn">
+                <div class="reviewWrite-btn">
                     <button type="button" id="submit" name="submit" onclick="checkValueWrite(form)">등록</button>
                 </div>
             </form>
         </div>
     </div>
-</section>
+</div>
 <script src="script/review.js"></script>
 </body>
 <c:import url="footer.jsp"/>

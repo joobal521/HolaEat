@@ -6,6 +6,8 @@ import com.spring.holaeat.domain.review.Review;
 import com.spring.holaeat.domain.review.ReviewRepository;
 import com.spring.holaeat.domain.review.ReviewRequestDto;
 import com.spring.holaeat.domain.review.ReviewResponseDto;
+import com.spring.holaeat.domain.review_comment.ReviewComment;
+import com.spring.holaeat.domain.review_comment.ReviewCommentRepository;
 import com.spring.holaeat.service.ReviewService;
 import com.spring.holaeat.util.ImageParsor;
 import lombok.RequiredArgsConstructor;
@@ -32,6 +34,8 @@ public class ReviewListController {
 
     private final ReviewService reviewService;
     private final ReviewRepository reviewRepository;
+    private final ReviewCommentRepository reviewCommentRepository;
+
 
 //    @GetMapping("/reviewlist")
 //    public String getReviewAll(Model model) {
@@ -79,8 +83,6 @@ public class ReviewListController {
         } else {
             reviewPage = reviewRepository.findAllByOrderByReviewNoDesc(adjustedPageable);
         }
-        
-
 
         model.addAttribute("reviewlistPage", reviewPage); // reviewPage를 모델에 추가
 
@@ -112,6 +114,10 @@ public class ReviewListController {
         Review review = reviewService.findByReviewNo(reviewNo);
         model.addAttribute("review", review);
 
+        List<ReviewComment>  reviewComment = reviewCommentRepository.findAllByReviewNo(reviewNo);
+        model.addAttribute("reviewComment", reviewComment);
+
+
         if(review.getImg()==null)
             return "review";
 
@@ -119,5 +125,10 @@ public class ReviewListController {
         return "review";
 
     }
+
+
+
+
+
 
 }

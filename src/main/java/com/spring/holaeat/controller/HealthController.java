@@ -28,17 +28,15 @@ public class HealthController {
 
 
 
-    @PostMapping("write")
+    @PostMapping("info-write")
     @ResponseStatus(HttpStatus.CREATED)
     public Map boardCreate(@RequestBody HealthRequestDto healthDto, HealthFileVo healthFileVo)throws Exception{
         JSONObject response =new JSONObject();
 
-
         try {
-            if (healthFileVo.getId() != null) {
+            if (healthDto.getId() != null) {
             //admin id로 조회하는 메소드
-            Admin admin =adminService.getAdminById(healthFileVo.getId());
-                System.out.println(admin);
+            adminService.getAdminById(healthFileVo.getId());
             healthService.create(healthDto, healthFileVo.getFile());
             response.put("result", true);
         } else {

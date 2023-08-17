@@ -5,7 +5,7 @@ import lombok.Getter;
 @Getter
 public class HealthListResponseDto {
     private Long healthNo;
-    private String admin;
+    private String id;
     private String title;
     private Long thumbnailId;  // 썸네일 id
 
@@ -13,7 +13,7 @@ public class HealthListResponseDto {
 
     public HealthListResponseDto(Health entity) {
         this.healthNo = entity.getHealthNo();
-        this.admin = entity.getAdmin().getId();
+        this.id = entity.getId();
         this.title = entity.getTitle();
 
         if(!entity.getPhoto().isEmpty())  // 첨부파일 존재 o

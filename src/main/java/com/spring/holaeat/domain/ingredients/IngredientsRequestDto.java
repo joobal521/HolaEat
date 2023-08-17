@@ -16,17 +16,6 @@ public class IngredientsRequestDto {
     private Boolean allergy;
     private Boolean month;
 //    private byte[] ingrImg;
-
     private MultipartFile ingrImg;
-
-    public MultipartFile getIngrImg() {
-        return ingrImg;
-    }
-
-    public void setIngrImg(MultipartFile ingrImg) {
-        this.ingrImg = ingrImg;
-    }
-
-
 
 }

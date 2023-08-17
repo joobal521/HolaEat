@@ -5,8 +5,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface ReviewCommentRepository extends JpaRepository<ReviewComment, String> {
+public interface ReviewCommentRepository extends JpaRepository<ReviewComment, Long> {
 
     public List<ReviewComment> findAll();
+
+
+    public List<ReviewComment> findAllByReviewNo(long reviewNo);
 
 }
