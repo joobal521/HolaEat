@@ -174,7 +174,7 @@ function chkEmail() {
 function emailAuthentication() {
 
         var email = $('#userEmail').val();
-        $("#email-ch").prop('disabled', true);
+        $("#code-ch").prop('disabled', true);
 
         console.log(email);
 
@@ -190,6 +190,7 @@ function emailAuthentication() {
             dataType: "json",
 
             }).done(function(data){
+                console.log(data);
                 if (data.result === true) {
                     $("#code_ch").prop('disabled', false);
                     alert("인증번호를 확인을 해주세요.");
