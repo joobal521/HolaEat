@@ -6,6 +6,9 @@ import com.spring.holaeat.domain.health.Health;
 import com.spring.holaeat.domain.health.HealthFileVo;
 import com.spring.holaeat.domain.health.HealthRepository;
 import com.spring.holaeat.domain.health.HealthRequestDto;
+import com.spring.holaeat.domain.review.Review;
+import com.spring.holaeat.domain.review.ReviewRequestDto;
+import com.spring.holaeat.payload.Response;
 import com.spring.holaeat.service.AdminService;
 import com.spring.holaeat.service.HealthService;
 import lombok.RequiredArgsConstructor;
@@ -30,7 +33,7 @@ public class HealthController {
 
 
 
-//관리자 글등록
+   //관리자 글등록
     @PostMapping(value = "health-write", consumes = "multipart/form-data")
     public Map healthBoard(@ModelAttribute HealthRequestDto healthDto)throws Exception{
         JSONObject response =new JSONObject();
@@ -38,13 +41,32 @@ public class HealthController {
         try {
                 Health health=new Health(healthDto);
                 healthRepository.save(health);
-            response.put("result", true);
+                response.put("result", true);
 
         } catch (IllegalArgumentException e) {
             response.put("result", false);
         }
         return response.toMap();
     }
+
+    //관리자 글 삭제
+    @DeleteMapping("/{healthNo}/delete")
+    public Response delete(@PathVariable("healthNo") long healthNo, @ModelAttribute HealthRequestDto healthDto) {
+
+
+        Health health = healthRepository.findById(healthNo).orElseThrow(
+                () -> new IllegalArgumentException("게시글이 존재하지 않습니다.")
+        );
+
+
+        healthService.healthBoardDelete(healthNo);
+        System.out.println("게시글 삭제");
+
+
+        return new Response("delete", "success");
+
+    }
+
 
     //개별조회
 //    @GetMapping("/health/{healthNo}")

@@ -9,7 +9,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>healthInfo</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 </head>
 <c:import url="header.jsp"/>
@@ -18,21 +18,30 @@
 <section>
     <div class="wrap">
         <div class="container">
-<%--            <div id="health-box">--%>
-<%--                <c:forEach items="${health}" var="health" varStatus="loop">--%>
-<%--                    <a href="<c:url value='/review/${review.reviewNo}'/>">--%>
-<%--                        <div id = review >--%>
-<%--                            <div>NO. ${health.healthNo}</div>--%>
-<%--                            <div>작성자 : ${review.userId}</div>--%>
-<%--                            <div>제목 : ${review.title}</div>--%>
-<%--                            <c:if test="${imageMap[review.reviewNo] != null}">--%>
-<%--                                <img src="data:image/png;base64,${imageMap[review.reviewNo]}" id="img" name="img" alt="Review Image">--%>
-<%--                            </c:if>--%>
-<%--                                &lt;%&ndash;                <img src="data:image/png;base64,${blobs[loop.index]}" id="img" name="img" alt="Review Image">&ndash;%&gt;--%>
-<%--                        </div>--%>
-<%--                    </a>--%>
-<%--                </c:forEach>--%>
-<%--            </div>--%>
+         <div id="health-box">
+        <c:forEach items="${reviewlistPage}" var="review" varStatus="loop">
+            <a href="<c:url value='/review/${review.reviewNo}'/>">
+                <div id=review>
+                    <div class="user_profile">
+                        <ul>
+                            <li class="healthprofile">NO. ${review.reviewNo}</li>
+                            <li class="admin">작성자 : 관리자</li>
+                        </ul>
+                    </div>
+
+                        <%--이미지 출력--%>
+            <div class="review_img">
+                <c:set var="imageBase64" value="${imageMapPage[review.reviewNo]}"></c:set>
+                <c:if test="${not empty imageBase64}">
+                    <img src="data:image/jpeg;base64,${imageBase64}" id="img" name="img" alt="Review Image">
+                </c:if>
+            </div>
+            <div class="review_title">제목 : ${review.title}</div>
+            <div class="review_like"><i class="fa-regular fa-heart"></i></div>
+        </div>
+        </a>
+        </c:forEach>
+    </div>
             <div class="con_1">
                 <h2>음식이 싱거울 땐, 소금을 넣어라.</h2>
                 <p>내용 1</p>

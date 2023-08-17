@@ -42,10 +42,12 @@ function checkValue(htmlForm) {
 
         $.ajax(settings).done(function (response) {
             console.log(response);
-            if(response.result===true){
-                alert("글등록 성공")
-            }else {
-                alert("글등록 실패")
+            if(response.result === "") {
+                alert("글 등록 실패");
+
+            } else {
+                alert("글 등록 성공");
+                // location.href=""
             }
 
         });

@@ -42,7 +42,7 @@
                     </div>
 
                         <%--이미지 출력--%>
-                    <div class="review_img">
+                    <div class="health_img">
                         <c:set var="imageBase64" value="${imageMapPage[review.reviewNo]}"></c:set>
                         <c:if test="${not empty imageBase64}">
                             <img src="data:image/jpeg;base64,${imageBase64}" id="img" name="img" alt="Review Image">
