@@ -77,10 +77,13 @@ public String gainPower(@RequestParam("adminid") String id, @RequestParam("admin
     @PutMapping(value = "adminIngr/{ingrId}", consumes = "multipart/form-data")
     public String updateIngredient(@PathVariable int ingrId, @ModelAttribute IngredientsRequestDto ingredientsRequestDto) {
         Ingredients ingredient = ingredientsService.findById(ingrId);
-//        if(ingredientsRequestDto.getIngrImg()==null){
-//
-//        }
+
         ingredientsService.update(ingredient, ingredientsRequestDto);
+
+        if(ingredientsRequestDto.getIngrImg()==null){
+            byte[] img = ingredient.getIngrImg();
+            ingredientsService.remainImg(ingredient,img);
+        }
 
         return "adminIngr";
     }

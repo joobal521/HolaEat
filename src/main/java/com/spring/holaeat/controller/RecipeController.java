@@ -43,8 +43,8 @@ public class RecipeController {
         System.out.println("foodID:"+foodId);
 
 
-//        List<Nutritions> nutrition = nutritionsService.findByFoodId(foodId);
-//        model.addAttribute("nutritions",nutrition);
+        List<Nutritions> nutrition = nutritionsService.findByFoodId(foodId);
+        model.addAttribute("nutritions",nutrition);
 
         return "getRecipe"; // 해당 레시피 정보를 보여줄 JSP 파일의 이름
     }

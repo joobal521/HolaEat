@@ -51,7 +51,7 @@
 </table>
 <div>
     <input type="button" id="addBtn" value="추가하기">
-    <div id="addModal" class="modal">
+    <div id="addModal" class="modal" style="display: none">
         <div class="modal-content">
             <span class="close">&times;</span>
             <form id="addForm">

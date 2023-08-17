@@ -19,15 +19,32 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+// function loadRecipe(btn, modal) {
+//     var foodId = btn.getAttribute("data-foodid");
+//     var $recipeContent = modal.querySelector(".recipe-content");
+//
+//     // var ingrid = document.getElementById('ingrId-modal').value;
+//     console.log("cyka")
+//     console.log(foodId + "foodid");
+//     // console.log(ingrid + "ingrid");
+//     $.ajax({
+//         url: "getRecipe/" + foodId,
+//         type: "GET",
+//         dataType: "html",
+//         success: function (response) {
+//             $recipeContent.innerHTML = response; // Add recipe information to the modal content
+//         }
+//     });
+// }
+
+// script/recipe-ajax.js
 function loadRecipe(btn, modal) {
     var foodId = btn.getAttribute("data-foodid");
     var $recipeContent = modal.querySelector(".recipe-content");
-    var ingrid = document.getElementById('ingrId-modal').value;
-
-    console.log(foodId + "foodid");
-    console.log(ingrid + "ingrid");
+    // var ingrid = document.getElementById('ingrId-modal').value;
+    console.log("wTF")
     $.ajax({
-        url: "getRecipe/" + foodId + "?" + ingrid,
+        url: "getRecipe/" + foodId,
         type: "GET",
         dataType: "html",
         success: function (response) {
@@ -35,4 +52,3 @@ function loadRecipe(btn, modal) {
         }
     });
 }
-

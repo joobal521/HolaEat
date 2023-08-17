@@ -5,6 +5,8 @@
     <c:if test="${not empty blob }">
         <div id="image-container">
             <img src="data:image/png;base64,${blob}" id="ingrImg" name="ingrIm"  alt="ingr Img">
+            <img src="data:image/jpeg;base64,${blob}" id="img" name="img" alt="Ingredient Image">
+
         </div>
     </c:if>
         <h1>레시피</h1>

@@ -3,19 +3,20 @@ package com.spring.holaeat.domain.nutritions;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
+import org.hibernate.annotations.NaturalId;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @NoArgsConstructor
 @Getter
+@Table(name = "nutritions")
 @Entity
-@Table(name="nutritions")
+
 public class Nutritions {
 
-    @Id
-    private String foodId;
+
+    @NaturalId
+    private String foodId; // This field is the primary key
 
     private int kcal;
     private int carb;
@@ -23,9 +24,8 @@ public class Nutritions {
     private int fat;
     private int sugars;
     private int natrium;
-    @javax.persistence.Id
+    @Id
     private Long id;
-
 
     public void setId(Long id) {
         this.id = id;

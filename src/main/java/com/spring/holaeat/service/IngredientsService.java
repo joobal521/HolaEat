@@ -74,6 +74,11 @@ public class IngredientsService {
         dislikeRepository.save(dislike);
     }
 
+    public void remainImg(Ingredients ingredients, byte[] img){
+        ingredients.remainImg(img);
+        ingredientsRepository.save(ingredients);
+    }
+
 //    public String generateIngrId() {
 //        String CHARACTERS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 //        int ID_LENGTH = 10;
