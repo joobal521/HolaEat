@@ -45,6 +45,28 @@ public class Food {
     private int natrium;
 
 
+    public void remainImg(byte[] img){
+        this.foodImg = img;
+    }
+
+    public void update(FoodRequestDto foodRequestDto){
+        this.foodNational = foodRequestDto.getFoodNational();
+        this.foodGroup = foodRequestDto.getFoodGroup();
+        this.foodName = foodRequestDto.getFoodName();
+        this.foodWeight = foodRequestDto.getFoodWeight();
+        this.vegan = foodRequestDto.isVegan();
+        this.allergyInfo = foodRequestDto.isAllergyInfo();
+        this.weightControl = foodRequestDto.isWeightControl();
+        this.balanced = foodRequestDto.isBalanced();
+        this.sideDish = foodRequestDto.isSideDish();
+        this.carb =foodRequestDto.getCarb();
+        this.protein = foodRequestDto.getProtein();
+        this.fat = foodRequestDto.getFat();
+        this.natrium = foodRequestDto.getNatrium();
+        this.sugars = foodRequestDto.getSugars();
+        this.kcal = foodRequestDto.getKcal();
+
+    }
 
     public Food(String foodId, String foodNational, String foodGroup, String foodName, int foodWeight, boolean allergyInfo, boolean vegan, boolean weightControl, boolean balanced, boolean sideDish, byte[] foodImg, Double kcal, Integer carb, Integer protein, Integer fat, Integer sugars, Integer natrium) {
         this.foodId = foodId;

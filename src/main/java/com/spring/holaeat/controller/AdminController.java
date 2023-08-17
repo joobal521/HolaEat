@@ -3,6 +3,7 @@ package com.spring.holaeat.controller;
 import com.spring.holaeat.domain.admin.Admin;
 import com.spring.holaeat.domain.admin.AdminRepository;
 import com.spring.holaeat.domain.food.Food;
+import com.spring.holaeat.domain.food.FoodRequestDto;
 import com.spring.holaeat.domain.ingredients.Ingredients;
 import com.spring.holaeat.domain.ingredients.IngredientsRequestDto;
 import com.spring.holaeat.service.FoodService;
@@ -114,10 +115,19 @@ public String gainPower(@RequestParam("adminid") String id, @RequestParam("admin
 
     @Transactional
     @PutMapping("adminMenu/{foodId}")
-    public String updateFood(@PathVariable String foodId){
+    public String updateFood(@PathVariable String foodId, @ModelAttribute FoodRequestDto foodRequestDto){
 
+        Food food = foodService.findFoodByFoodId(foodId);
+
+        foodService.update(food,foodRequestDto);
+
+        if(foodRequestDto.getFoodImg()==null){
+            byte[] img = food.getFoodImg();
+            foodService.remainImg(food,img);
+        }
         return "adminMenu";
     }
+
 //
 //    //후기게시판관리
 //    @GetMapping("adminReview")

@@ -1,7 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <head>
-
 </head>
 <body>
 
@@ -20,6 +19,11 @@
                 <th>비건</th>
                 <th>균형식</th>
                 <th>반찬</th>
+                <th>탄수화물(g)</th>
+                <th>단백질(g)</th>
+                <th>지방(g)</th>
+                <th>당류(g)</th>
+                <th>나트륨(mg)</th>
                 <th>수정</th>
                 <th>삭제</th>
             </tr>
@@ -34,6 +38,11 @@
                     <td class="vegan">${food.vegan ? '예' : '아니오'}</td>
                     <td class="balanced">${food.balanced ? '예' : '아니오'}</td>
                     <td class="sideDish">${food.sideDish ? '예' : '아니오'}</td>
+                    <td class="carb">${food.carb}</td>
+                    <td class="protein">${food.protein}</td>
+                    <td class="fat">${food.fat}</td>
+                    <td class="sugars">${food.sugars}</td>
+                    <td class="natrium">${food.natrium}</td>
                     <td>
                         <button class="editBtn" data-id="${food.foodId}">수정하기</button>
                         <button class="updateBtn" data-id="${food.foodId}" style="display: none;">수정완료</button>
@@ -73,9 +82,23 @@
                         <label for="sideDish">반찬:</label>
                         <input type="checkbox" id="sideDish" name="sideDish"><br><br>
 
+                        <label for="carb">탄수화물(g):</label>
+                        <input type="number" id="carb" name="carb" required><br><br>
+
+                        <label for="protein">단백질(g):</label>
+                        <input type="number" id="protein" name="protein" required><br><br>
+
+                        <label for="fat">지방(g):</label>
+                        <input type="number" id="fat" name="fat" required><br><br>
+
+                        <label for="sugars">당류(g):</label>
+                        <input type="number" id="sugars" name="sugars" required><br><br>
+
+                        <label for="natrium">나트륨(mg):</label>
+                        <input type="number" id="natrium" name="natrium" required><br><br>
+
                         <label for="foodImg">사진:</label>
-                        <input type="file" id="foodImg" name="foodImg"
-                               accept="image/png, image/jpg, image/jpeg, image/gif">
+                        <input type="file" id="foodImg" name="foodImg" accept="image/png, image/jpg, image/jpeg, image/gif">
                         <input type="submit" value="추가완료">
                     </form>
                 </div>
@@ -96,8 +119,17 @@
             var veganCell = row.find(".vegan");
             var balancedCell = row.find(".balanced");
             var sideDishCell = row.find(".sideDish");
+            var carbCell = row.find(".carb");
+            var proteinCell = row.find(".protein");
+            var fatCell = row.find(".fat");
+            var sugarsCell = row.find(".sugars");
+            var natriumCell = row.find(".natrium");
 
-            // 현재 데이터를 input 요소로 변경
+            carbCell.html("<input type='number' class='editCarb' value='" + carbCell.text() + "'>");
+            proteinCell.html("<input type='number' class='editProtein' value='" + proteinCell.text() + "'>");
+            fatCell.html("<input type='number' class='editFat' value='" + fatCell.text() + "'>");
+            sugarsCell.html("<input type='number' class='editSugars' value='" + sugarsCell.text() + "'>");
+            natriumCell.html("<input type='number' class='editNatrium' value='" + natriumCell.text() + "'>");
             foodNameCell.html("<input type='text' class='editFoodName' value='" + foodNameCell.text() + "'>");
             allergyInfoCell.html("<input type='checkbox' class='editAllergyInfo' " + (allergyInfoCell.text() === "예" ? "checked" : "") + ">");
             weightControlCell.html("<input type='checkbox' class='editWeightControl' " + (weightControlCell.text() === "예" ? "checked" : "") + ">");
@@ -120,9 +152,13 @@
             var vegan = row.find(".editVegan").prop("checked");
             var balanced = row.find(".editBalanced").prop("checked");
             var sideDish = row.find(".editSideDish").prop("checked");
-            var imageFile = $("#editImg-" + ingrId)[0].files[0]; // Get the selected image file
+            var carb = row.find(".editCarb").val();
+            var protein = row.find(".editProtein").val();
+            var fat = row.find(".editFat").val();
+            var sugars = row.find(".editSugars").val();
+            var natrium = row.find(".editNatrium").val();
+            var imageFile = $("#editImg-" + foodId)[0].files[0];
 
-            // Create FormData object and append the data
             var formData = new FormData();
             formData.append("foodName", foodName);
             formData.append("allergyInfo", allergyInfo);
@@ -130,6 +166,11 @@
             formData.append("vegan", vegan);
             formData.append("balanced", balanced);
             formData.append("sideDish", sideDish);
+            formData.append("carb", carb);
+            formData.append("protein", protein);
+            formData.append("fat", fat);
+            formData.append("sugars", sugars);
+            formData.append("natrium", natrium);
             if (imageFile != null) {
                 formData.append("ingrImg", imageFile);
             }
@@ -150,90 +191,94 @@
             });
         });
 
+        $(".cancelBtn").click(function() {
+            var row = $(this).closest("tr");
+            var foodId = $(this).data("id");
+            var foodName = row.find(".editFoodName").val();
+            var allergyInfo = row.find(".editAllergyInfo").prop("checked");
+            var weightControl = row.find(".editWeightControl").prop("checked");
+            var vegan = row.find(".editVegan").prop("checked");
+            var balanced = row.find(".editBalanced").prop("checked");
+            var sideDish = row.find(".editSideDish").prop("checked");
+
+            row.find(".foodName").text(foodName);
+            row.find(".allergyInfo").text(allergyInfo ? '예' : '아니오');
+            row.find(".weightControl").text(weightControl ? '예' : '아니오');
+            row.find(".vegan").text(vegan ? '예' : '아니오');
+            row.find(".balanced").text(balanced ? '예' : '아니오');
+            row.find(".sideDish").text(sideDish ? '예' : '아니오');
+
+            // 수정/취소 버튼 토글
+            $(this).hide();
+            row.find(".editBtn").show();
+            row.find(".updateBtn, .imgBtn").hide(); // Hide update and image upload buttons
+        });
 
 
+        $(".removeBtn").click(function() {
+            var foodId = $(this).data("id");
 
+            $.ajax({
+                url: "adminMenu/delete/" + foodId,
+                method: "DELETE",
+                success: function(response) {
+                    // Handle success if needed
+                    alert("삭제하기: " + foodId);
+                },
+                error: function() {
+                    alert("삭제에 실패했습니다.");
+                }
+            });
+        });
 
-    //     $(".cancelBtn").click(function() {
-    //         var row = $(this).closest("tr");
-    //         var foodName = row.find(".editFoodName").val();
-    //         var allergyInfo = row.find(".editAllergyInfo").prop("checked");
-    //         var month = row.find(".editMonth").prop("checked");
-    //
-    //         row.find(".ingrName").text(ingrName);
-    //         row.find(".allergy").text(allergy ? '예' : '아니오');
-    //         row.find(".month").text(month ? '예' : '아니오');
-    //
-    //         // 수정/취소 버튼 토글
-    //         $(this).hide();
-    //         row.find(".editBtn").show();
-    //         row.find(".updateBtn, .imgBtn").hide(); // Hide update and image upload buttons
-    //     });
-    //
-    //
-    //     $(".removeBtn").click(function() {
-    //         var ingrId = $(this).data("id");
-    //
-    //         $.ajax({
-    //             url: "adminIngr/delete/" + ingrId,
-    //             method: "DELETE",
-    //             success: function(response) {
-    //                 // Handle success if needed
-    //                 alert("삭제하기: " + ingrId);
-    //             },
-    //             error: function() {
-    //                 alert("삭제에 실패했습니다.");
-    //             }
-    //         });
-    //     });
-    //
-    //
-    //
-    //     $("#addBtn").click(function() {
-    //         $("#addModal").css("display", "block");
-    //     });
-    //
-    //     $(".close").click(function() {
-    //         $("#addModal").css("display", "none");
-    //     });
-    //
-    //     $(window).click(function(event) {
-    //         if (event.target == document.getElementById("addModal")) {
-    //             $("#addModal").css("display", "none");
-    //         }
-    //     });
-    //
-    //     // Handle the form submission
-    //     $("#addForm").submit(function(event) {
-    //         event.preventDefault();
-    //
-    //         var formData = new FormData();
-    //         formData.append("ingrName", $("#ingrName").val());
-    //         formData.append("month", $("#month").prop("checked"));
-    //         formData.append("allergy", $("#allergy").prop("checked"));
-    //         formData.append("ingrImg", $("#addImg")[0].files[0]);
-    //
-    //
-    //         // Send the data to the backend using AJAX
-    //         $.ajax({
-    //             url: "adminIngr/create",
-    //             method: "POST",
-    //             contentType: false, // Set to false when using FormData
-    //             processData: false, // Set to false when using FormData
-    //             data: formData,
-    //             success: function(response) {
-    //                 alert("추가 완료");
-    //                 $("#addModal").css("display", "none");
-    //                 // TODO: Update the ingredient list if needed
-    //             },
-    //             error: function() {
-    //                 alert("추가 실패");
-    //             }
-    //
-    //         });
-    //
-    //     });
-    });
+        $("#addBtn").click(function() {
+            $("#addModal").css("display", "block");
+        });
+
+        $(".close").click(function() {
+            $("#addModal").css("display", "none");
+        });
+
+        $(window).click(function(event) {
+            if (event.target == document.getElementById("addModal")) {
+                $("#addModal").css("display", "none");
+            }
+        });
+
+        // Handle the form submission
+        $("#addForm").submit(function(event) {
+            event.preventDefault();
+
+            var formData = new FormData();
+            formData.append("foodName", $("#foodName").val());
+            formData.append("allergyInfo", $("#allergy").prop("checked"));
+            formData.append("weightControl", $("#weightControl").prop("checked"));
+            formData.append("vegan", $("#vegan").prop("checked"));
+            formData.append("balanced", $("#balanced").prop("checked"));
+            formData.append("sideDish", $("#sideDish").prop("checked"));
+            formData.append("carb", $("#carb").val());
+            formData.append("protein", $("#protein").val());
+            formData.append("fat", $("#fat").val());
+            formData.append("sugars", $("#sugars").val());
+            formData.append("natrium", $("#natrium").val());
+            formData.append("foodImg", $("#foodImg")[0].files[0]);
+
+            $.ajax({
+                url: "adminMenu/create",
+                method: "POST",
+                contentType: false, // Set to false when using FormData
+                processData: false, // Set to false when using FormData
+                data: formData,
+                success: function(response) {
+                    alert("추가 완료");
+                    $("#addModal").css("display", "none");
+                    // TODO: Update the menu list if needed
+                },
+                error: function() {
+                    alert("추가 실패");
+                }
+            });
+        });
+        });
 </script>
-
 </body>
