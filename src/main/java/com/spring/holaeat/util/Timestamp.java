@@ -10,7 +10,6 @@ import javax.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
 
 @EntityListeners(AuditingEntityListener.class)
-
 @MappedSuperclass
 public class Timestamp {
     @CreatedDate
@@ -18,6 +17,7 @@ public class Timestamp {
 
     @LastModifiedDate
     private LocalDateTime modifiedAt;
+
 
 
 }
