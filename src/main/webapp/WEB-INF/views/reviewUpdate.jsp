@@ -12,9 +12,8 @@
 <html>
 <head>
     <title>Title</title>
-    <c:set var="path" value="${pageContext.request.contextPath}"/>
-    <link rel="stylesheet" type="text/css" href="style/form.css">
-    <link rel="stylesheet" type="text/css" href="style/review.css">
+<%--    <c:set var="path" value="${pageContext.request.contextPath}"/>--%>
+    <link rel="stylesheet" type="text/css" href="/style/review.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 
     <style>
@@ -22,11 +21,14 @@
             width: 100px;
             height: 100px;
         }
+
+
+
     </style>
 </head>
 <c:import url="header.jsp"/>
 <body>
-<section id="review-section">
+<div class="review-section">
     <h2>리뷰 게시판 수정</h2>
 
     <c:if test="${review!=null}">
@@ -67,7 +69,7 @@
         </div>
     </c:if>
 
-</section>
+</div>
 
 
 </body>
