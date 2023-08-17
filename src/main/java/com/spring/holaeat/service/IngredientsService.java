@@ -41,7 +41,6 @@ public class IngredientsService {
 
     @Transactional
     public void update(Ingredients ingredient, IngredientsRequestDto ingredientsRequestDto){
-
         ingredient.update(ingredientsRequestDto);
         ingredientsRepository.save(ingredient);
     }

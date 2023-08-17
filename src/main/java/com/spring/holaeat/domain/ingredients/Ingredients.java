@@ -58,7 +58,16 @@ public class Ingredients {
         this.ingrName = ingredientsRequestDto.getIngrName();
         this.month = ingredientsRequestDto.getMonth();
 
-
+        if (ingredientsRequestDto.getIngrImg() != null) {
+            try {
+                this.ingrImg = ingredientsRequestDto.getIngrImg().getBytes();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }else{
+            this.ingrImg=null;
+        }
     }
+
 
 }
