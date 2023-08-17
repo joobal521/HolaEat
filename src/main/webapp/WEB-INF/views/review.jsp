@@ -14,6 +14,9 @@
             height: 500px;
         }
     </style>
+    <c:if test="${not empty log}">
+        <input type="hidden" id="logVal" value="${log}">
+    </c:if>
 </head>
 <c:import url="header.jsp"/>
 <body>
@@ -79,16 +82,17 @@
         </div>
         <!-- 댓글 출력할 공간 -->
         <div id="comment-container">
-            <c:if test="${not empty reviewComment}">
-                <c:forEach var="li" items="${reviewComment}">
+<%--            <c:if test="${not empty reviewComment}">--%>
+<%--                <c:forEach var="li" items="${reviewComment}">--%>
                     <div class="comment-item">
-                        <p>${li.userId}</p>
-                        <br>
-                        <p>${li.content}</p>
-<%--                        <p>${li.createdAt}</p>--%>
+<%--                        <p>ID : ${li.userId}</p>--%>
+<%--                        <br>--%>
+<%--                        <p>${li.content}</p>--%>
+<%--                        <br>--%>
+<%--                        <p>${li.getCreatedAt()}</p>--%>
                     </div>
-                </c:forEach>
-            </c:if>
+<%--                </c:forEach>--%>
+<%--            </c:if>--%>
         </div>
     </div>
 

@@ -1,5 +1,6 @@
 package com.spring.holaeat.domain.review_comment;
 
+import com.spring.holaeat.domain.review.Review;
 import com.spring.holaeat.domain.review.ReviewRequestDto;
 import com.spring.holaeat.util.Timestamp;
 import lombok.Getter;
@@ -28,8 +29,10 @@ public class ReviewComment extends Timestamp {
     @Column(length = 255)
     private String content;
 
-
-
+    //추가
+//    @ManyToOne
+//    @JoinColumn(name = "review_no")
+//    private Review review;
 
 
 
@@ -39,11 +42,12 @@ public class ReviewComment extends Timestamp {
         this.reviewNo = reviewCommentRequestDto.getReviewNo();
         this.userId = reviewCommentRequestDto.getUserId();
         this.content = reviewCommentRequestDto.getContent();
-
     }
 
 
     public void update(ReviewCommentRequestDto reviewCommentRequestDto) {
         this.content = reviewCommentRequestDto.getContent();
     }
+
+
 }

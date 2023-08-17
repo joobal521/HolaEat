@@ -1,11 +1,13 @@
 package com.spring.holaeat.domain.review;
 
+import com.spring.holaeat.domain.review_comment.ReviewComment;
 import com.spring.holaeat.util.Timestamp;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.IOException;
+import java.util.List;
 
 
 @NoArgsConstructor
@@ -31,6 +33,10 @@ public class Review extends Timestamp {
 
     @Column(columnDefinition = "LONGBLOB")
     private byte[] img;
+
+//추가
+//    @OneToMany(mappedBy = "review", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<ReviewComment> comments;
 
 
     public Review(ReviewRequestDto reviewRequestDto) {

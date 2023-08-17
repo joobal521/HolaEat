@@ -5,6 +5,7 @@ import com.spring.holaeat.domain.review.Review;
 import com.spring.holaeat.domain.review.ReviewRepository;
 import com.spring.holaeat.domain.review.ReviewRequestDto;
 import com.spring.holaeat.payload.Response;
+import com.spring.holaeat.service.ReviewCommentService;
 import com.spring.holaeat.service.ReviewService;
 import com.spring.holaeat.util.ImageParsor;
 import lombok.RequiredArgsConstructor;
@@ -30,6 +31,7 @@ import java.util.Map;
 public class ReviewController {
 
     private final ReviewService reviewService;
+    private final ReviewCommentService reviewCommentService;
     private final ReviewRepository reviewRepository;
 
     //게시글 작성
@@ -125,6 +127,37 @@ public class ReviewController {
         return new Response("delete", "success");
 
     }
+
+//    //댓글삭제 추가?
+
+//    @DeleteMapping("/{reviewNo}/delete")
+//    public Response delete(@PathVariable("reviewNo") long reviewNo
+//           ,@RequestParam(required = false) Long commentId, WebRequest request, @ModelAttribute ReviewRequestDto reviewRequestDto) {
+//        String log = (String) request.getAttribute("log", WebRequest.SCOPE_SESSION);
+//
+//        if (log == null) {
+//            return new Response("delete", "로그인 상태에서만 가능합니다.");
+//        }
+//
+//        Review review = reviewRepository.findById(reviewNo).orElseThrow(
+//                () -> new IllegalArgumentException("게시글이 존재하지 않습니다.")
+//        );
+//
+//
+//        if (!review.getUserId().equals(log)) {
+//            return new Response("delete", "작성자만 삭제할 수 있습니다.");
+//        }
+//        if (commentId != null) {
+//            reviewCommentService.delete(commentId);
+//        }
+//        reviewService.delete(reviewNo);
+//        System.out.println("게시글 삭제");
+//
+//
+//        return new Response("delete", "success");
+//
+//    }
+
 
 
 }
