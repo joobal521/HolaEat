@@ -40,22 +40,31 @@ function loadComments(reviewNo) {
         commentContainer.empty();
 
         comments.forEach(function (comment) {
-            drawComments(comment.userId, comment.content); // 댓글 데이터로 화면에 표시
+            drawComments(comment.userId, comment.content, comment.commentId); // 댓글 데이터로 화면에 표시
         });
     });
 }
 
-function drawComments(userId, content) {
+function drawComments( userId, content, commentId) {
     const commentContainer = $('#comment-container');
     console.log("userId 출력확인2 : " + userId);
-    const newComment = `
-        <div class="comment-item">
 
-            <p>ID 확인용 : ${userId}</p>
+
+    console.log("commentId : " + commentId);
+    const newComment = `
+        <form class="comment-item">
+
+            <input type="text" value="ID 확인용 : ${userId}" />
             <br>
-            <p>${content}</p>
+            <input type="text" value="${content}" />
             <br>
-        </div>
+
+ <button id="commentUpdateBtn" onclick="" class="commentUpdateBtn">수정</button>
+    <button id="commentDeleteBtn" onclick="" class="commentDeleteBtn">삭제</button>
+ 
+<!--    <button id="commentDeleteBtn" onclick="deleteComments()" class="commentDeleteBtn">삭제</button>-->
+                   <br>
+        </form>
     `;
     commentContainer.prepend(newComment);
 }
@@ -64,3 +73,31 @@ $(document).ready(function () {
     const reviewNo = $('#reviewNo').val();
     loadComments(reviewNo);
 });
+
+
+
+//댓글 삭제
+// function deleteComments() {
+//     $.ajax({
+//         type: "DELETE",
+//         url: `/comment/${commentId}/delete`,
+//         dataType: "json",
+//         success: function(response) {
+//             // Handle the response from the server
+//             if (response.message === "success") {
+//                 const reviewNo = $('#reviewNo').val(); // Get reviewNo value
+//                 loadComments(reviewNo);
+//             } else {
+//                 alert(response.message);
+//             }
+//         },
+//         error: function(error) {
+//             // Handle errors
+//             console.error(error);
+//         }
+//     });
+
+//}
+
+
+
