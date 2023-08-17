@@ -23,6 +23,7 @@ public class ReviewCommentService {
     //삭제
     @Transactional
     public void delete(long commentId){
+        System.out.println("서비스 commentID" +commentId );
         reviewCommentRepository.deleteById(commentId);
 
 

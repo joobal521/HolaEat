@@ -60,7 +60,7 @@ function drawComments( userId, content, commentId) {
             <br>
 
  <button id="commentUpdateBtn" onclick="" class="commentUpdateBtn">수정</button>
-    <button id="commentDeleteBtn" onclick="" class="commentDeleteBtn">삭제</button>
+    <button id="commentDeleteBtn" onclick="deleteComments(${commentId})" class="commentDeleteBtn">삭제</button>
  
 <!--    <button id="commentDeleteBtn" onclick="deleteComments()" class="commentDeleteBtn">삭제</button>-->
                    <br>
@@ -77,27 +77,27 @@ $(document).ready(function () {
 
 
 //댓글 삭제
-// function deleteComments() {
-//     $.ajax({
-//         type: "DELETE",
-//         url: `/comment/${commentId}/delete`,
-//         dataType: "json",
-//         success: function(response) {
-//             // Handle the response from the server
-//             if (response.message === "success") {
-//                 const reviewNo = $('#reviewNo').val(); // Get reviewNo value
-//                 loadComments(reviewNo);
-//             } else {
-//                 alert(response.message);
-//             }
-//         },
-//         error: function(error) {
-//             // Handle errors
-//             console.error(error);
-//         }
-//     });
+function deleteComments(commentId) {
+    $.ajax({
+        type: "DELETE",
+        url: `/comment/${commentId}/delete`,
+        dataType: "json",
+        success: function(response) {
+            // Handle the response from the server
+            if (response.message === "success") {
+                const reviewNo = $('#reviewNo').val(); // Get reviewNo value
+                loadComments(reviewNo);
+            } else {
+                alert(response.message);
+            }
+        },
+        error: function(error) {
+            // Handle errors
+            console.error(error);
+        }
+    });
 
-//}
+}
 
 
 

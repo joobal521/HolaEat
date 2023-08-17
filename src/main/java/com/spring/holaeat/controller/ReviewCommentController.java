@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 
 import javax.persistence.EntityNotFoundException;
+import javax.transaction.Transactional;
 import java.util.List;
 //
 
@@ -94,45 +95,19 @@ public class ReviewCommentController {
 //        return new Response("update", "success");
 //    }
 
-
-////삭제
-
-
-//    @DeleteMapping("/reviewComment/{commentId}/delete")
-//    public Response delete(@PathVariable("commentId") String commentId, WebRequest request, @ModelAttribute ReviewCommentRequestDto reviewCommentRequestDto) {
-//        String log = (String) request.getAttribute("log", WebRequest.SCOPE_SESSION);
-//
-//        if (log == null) {
-//            return new Response("delete", "로그인 상태에서만 가능합니다.");
-//        }
-//
-//        ReviewComment reviewComment = reviewCommentRepository.findById(commentId).orElseThrow(
-//                () -> new IllegalArgumentException("게시글이 존재하지 않습니다.")
-//        );
-//
-//
-//        if (!reviewComment.getUserId().equals(log)) {
-//            return new Response("delete", "작성자만 삭제할 수 있습니다.");
-//        }
-//
-//        reviewCommentService.delete(commentId);
-//        System.out.println("게시글 삭제");
-//
-//
-//        return new Response("delete", "success");
-//
-//    }
-
+//삭제
     @DeleteMapping("/comment/{commentId}/delete")
+    @Transactional
     public ResponseEntity<Response> deleteComment(@PathVariable("commentId") long commentId, WebRequest request) {
         String log = (String) request.getAttribute("log", WebRequest.SCOPE_SESSION);
+        System.out.println("컨트롤러 로그인확인전 commentID" +commentId );
 
         if (log != null) {
             // 로그인한 사용자와 댓글 작성자가 동일한 경우에만 삭제 가능하도록 처리
             ReviewComment comment = reviewCommentRepository.findById(commentId)
                     .orElseThrow(() -> new EntityNotFoundException("Comment not found"));
-
             if (comment.getUserId().equals(log)) {
+                System.out.println("컨트롤러 로그인시 commentID" +commentId );
                 reviewCommentService.delete(commentId);
                 return ResponseEntity.ok(new Response("delete", "success"));
             } else {
