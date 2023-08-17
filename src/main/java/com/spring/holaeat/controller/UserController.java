@@ -184,20 +184,19 @@ public class UserController {
     }
 
     //이메일 인증
-
-//    @PostMapping("/emails/verification-requests")
-//    public ResponseEntity sendMessage(@RequestParam("email") @Valid @CustomEmail String email) {
+//    @PostMapping("verification-requests")
+//    public ResponseEntity sendMessage(@RequestParam("email") String email) {
 //        userService.sendCodeToEmail(email);
 //
 //        return new ResponseEntity<>(HttpStatus.OK);
 //    }
     @PostMapping("verification-email")
-    public Map sendMessage(@RequestBody  User user) {
+    public Map sendMessage(@RequestParam("email")String email) {
         JSONObject response = new JSONObject();
-        String userEmail = user.getUserEmail();
+        System.out.println("이메일"+email);
 
         try {
-            userService.sendCodeToEmail(userEmail);
+            userService.sendCodeToEmail(email);
             response.put("result", true);
         }catch (Exception e){
             e.printStackTrace();
@@ -208,13 +207,21 @@ public class UserController {
         return response.toMap();
     }
 
-//    @GetMapping("verifications")
-//    public ResponseEntity verificationEmail(@RequestParam("email") @Valid @CustomEmail String email,
-//                                            @RequestParam("code") String authCode) {
-//        userService.verifiedCode(email, authCode);
-//
-//        return new ResponseEntity<>(HttpStatus.OK);
-//    }
+    @GetMapping("verifications")
+    public Map verificationEmail(@RequestParam("email") String email,
+                                            @RequestParam("code") String authCode) {
+        JSONObject response = new JSONObject();
+        try {
+            userService.verifiedCode(email, authCode);
+            response.put("result", true);
+
+        }catch (Exception e){
+            response.put("result", false);
+            response.put("message", "인증코드 확인 실패");
+        }
+
+        return response.toMap();
+    }
 
 
 

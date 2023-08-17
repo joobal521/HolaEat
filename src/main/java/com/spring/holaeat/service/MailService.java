@@ -21,15 +21,17 @@ public class MailService {
                           String text) {
         SimpleMailMessage emailForm = createEmailForm(toEmail, title, text);
         try {
+            System.out.println("emailForm: "+emailForm);
             emailSender.send(emailForm);
         } catch (RuntimeException e) {
+            e.printStackTrace();
             log.debug("MailService.sendEmail exception occur toEmail: {}, " +
                     "title: {}, text: {}", toEmail, title, text);
             throw new BusinessLogicException(ExceptionCode.UNABLE_TO_SEND_EMAIL);
         }
     }
 
-    // 발신할 이메일 데이터 세팅
+    // 발신할 이메일 데이터
     private SimpleMailMessage createEmailForm(String toEmail,
                                               String title,
                                               String text) {
@@ -37,6 +39,7 @@ public class MailService {
         message.setTo(toEmail);
         message.setSubject(title);
         message.setText(text);
+        System.out.println("메시지: "+message);
 
         return message;
     }
