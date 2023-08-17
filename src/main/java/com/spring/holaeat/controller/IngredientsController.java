@@ -88,7 +88,7 @@ public class IngredientsController {
         }
 
         for(FoodIngr showfoodIngr : foodIngr){
-            monthFood.addAll(foodService.findFoodByFoodId(showfoodIngr.getFoodId()));
+            monthFood.addAll(foodService.findFoodListByFoodId(showfoodIngr.getFoodId()));
         }
 
         model.addAttribute("ingrOfMonth",monthIngr);

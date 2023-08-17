@@ -8,7 +8,11 @@ import java.util.List;
 public interface FoodRepository extends JpaRepository<Food,String> {
 
     @Query(nativeQuery = true,value = "SELECT * FROM food WHERE food_id = ?1")
-    public List<Food> findFoodByFoodId(String foodId);
+    Food findFoodByFoodId(String foodId);
+
+    @Query(nativeQuery = true,value = "SELECT * FROM food WHERE food_id = ?1")
+    List<Food> findFoodListByFoodId(String foodId);
+
 
     @Query(nativeQuery = true, value = "SELECT food_name FROM food")
     List<String> getAllFoodNames();
