@@ -141,12 +141,12 @@ public String gainPower(@RequestParam("adminid") String id, @RequestParam("admin
         return "adminReview";
     }
 
-//    @DeleteMapping("adminReview/delete/{reviewNo}")
-//    public String deleteReview(@PathVariable long reviewNo){
-//        reviewService.deleteByReviewNo(reviewNo);
-//
-//        return "adminReview";
-//    }
+    @DeleteMapping("adminReview/delete/{reviewNo}")
+    public String deleteReview(@PathVariable long reviewNo){
+        reviewService.delete(reviewNo);
+
+        return "adminReview";
+    }
 
 //
 //    //유저관리
