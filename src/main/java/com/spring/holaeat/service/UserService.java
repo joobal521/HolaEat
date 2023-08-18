@@ -130,14 +130,14 @@ public class UserService {
 
 
 
-    public void verifiedCode(String email, String authCode) {
-          this.checkDuplicatedEmail(email);
-          String redisAuthCode = redisService.getValues(AUTH_CODE_PREFIX + email);
-          boolean authResult = redisService.checkExistsValue(redisAuthCode) && redisAuthCode.equals(authCode);
-          if (!authResult) {
-               throw new BusinessLogicException(ExceptionCode.AUTH_CODE_IS_NOT_SAME);
-          }
-     }
+//    public void verifiedCode(String email, String authCode) {
+//          this.checkDuplicatedEmail(email);
+//          String redisAuthCode = redisService.getValues(AUTH_CODE_PREFIX + email);
+//          boolean authResult = redisService.checkExistsValue(redisAuthCode) && redisAuthCode.equals(authCode);
+//          if (!authResult) {
+//               throw new BusinessLogicException(ExceptionCode.AUTH_CODE_IS_NOT_SAME);
+//          }
+//     }
 
 
 

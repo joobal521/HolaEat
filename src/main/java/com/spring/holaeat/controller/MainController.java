@@ -43,6 +43,9 @@ public class MainController {
     @GetMapping(value = "mypage")
     public String myPage() {return "myPage";}
 
+    @GetMapping(value = "myinfo")
+    public String myInfo(){return "myInfo";}
+
     @GetMapping(value = "gainpower")
     public String admin_login() {return "gainpower";}
 

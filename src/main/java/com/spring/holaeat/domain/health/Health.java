@@ -64,6 +64,12 @@ public class Health extends Timestamp {
 
  }
 
+ //게시글 수정시 기본 이미지 담기
+
+    public void remainFile(byte[] file) {
+        this.file = file;
+    }
+
 //    @Builder
 //    public HealthBoard(Admin admin, String title, String content) {
 //        this.admin = admin;
@@ -71,9 +77,20 @@ public class Health extends Timestamp {
 //        this.content = content;
 //    }
 
-public void update(String title, String content){
+
+    //수정
+public void update(HealthRequestDto healthDto){
      this.title=title;
      this.content=content;
+    if (healthDto.getFile() != null) {
+        try {
+            this.file = healthDto.getFile().getBytes();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    } else {
+        this.file = null;
+    }
 }
 
 //healthBoard에서 파일 처리 위함

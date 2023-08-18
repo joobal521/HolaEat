@@ -5,6 +5,7 @@ import com.spring.holaeat.domain.health.HealthRepository;
 import com.spring.holaeat.domain.health.HealthRequestDto;
 import com.spring.holaeat.domain.photo.Photo;
 import com.spring.holaeat.domain.photo.PhotoRepository;
+import com.spring.holaeat.domain.review.Review;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -21,10 +22,10 @@ public class HealthService {
     private final FileHandler fileHandler;
 
     //전체 조회
-    public List<Health> findAllByOrderByHealthNoDesc(){
-        List<Health> list= healthRepository.findAllByOrderByHealthNoDesc();
-        return list;
-    }
+//    public List<Health> findAllByOrderByHealthNoDesc(){
+//        List<Health> list= healthRepository.findAllByOrderByHealthNoDesc();
+//        return list;
+//    }
 
     public Health getHealthByHealthNo(long healthNo){
         Health health=healthRepository.findById(healthNo).orElseThrow(
@@ -32,6 +33,20 @@ public class HealthService {
         );
         return health;
 
+    }
+
+    //수정
+    public void updateHealth(Health health, HealthRequestDto healthDto){
+        health.update(healthDto);
+        healthRepository.save(health);
+    }
+
+
+    //이미지 수정시
+    @Transactional
+    public void remainImage(Health health, byte[] file){
+        health.remainFile(file);
+        healthRepository.save(health);
     }
 
     //삭제

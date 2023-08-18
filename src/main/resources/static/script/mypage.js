@@ -1,4 +1,3 @@
-// mypage.js
 
 function updateImg(htmlForm) {
     const profileImg = htmlForm.userProfileImg.files[0];
