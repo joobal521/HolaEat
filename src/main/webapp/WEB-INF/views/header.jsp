@@ -33,6 +33,7 @@
             <div class="user_nav">
                 <c:choose>
                     <c:when test="${not empty log }">
+
                         <form action="logout" method="POST">
                             <input type="submit" id="logout" name="logout" value="로그아웃">
                         </form>
@@ -55,17 +56,20 @@
             </div>
         </div>
         <div class="nav">
-            <a href="ingredients">이달의 식재료</a>
+            <ul class="menu align-center expanded text-center SMN_effect-2">
+                <li><a href="ingredients">이달의 식재료</a></li>
+
             <c:choose>
                 <c:when test="${not empty log }">
-                    <a href="menu">맞춤식단</a>
+                    <li><a href="menu">맞춤식단</a></li>
                 </c:when>
                 <c:otherwise>
-                    <a href="login">맞춤식단</a>
+                    <li><a href="login">맞춤식단</a></li>
                 </c:otherwise>
             </c:choose>
-            <a href="reviewlist/1">이용후기</a>
-            <a href="health">건강정보</a>
+            <li><a href="reviewlist/1">이용후기</a></li>
+            <li><a href="health">건강정보</a></li>
+            </ul>
         </div>
     </div>
 </header>
