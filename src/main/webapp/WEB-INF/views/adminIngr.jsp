@@ -9,14 +9,6 @@
 <body>
 <h1>재료 관리</h1>
 
-<button id="sortButton">정렬</button>
-<select id="sortSelect">
-    <option value="ingrId">재료 ID</option>
-    <option value="ingrName">재료 이름</option>
-    <option value="allergy">알러지</option>
-    <option value="month">이달의 재료</option>
-</select>
-
 <table>
     <thead>
     <tr>

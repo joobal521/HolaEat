@@ -1,0 +1,30 @@
+.wrap {
+    display: grid;
+    grid-template-columns: 20% 80%;
+}
+
+.aside ul, .aside li, .aside a {
+    display: inline-block;
+    width: 100%;
+}
+.aside a {
+    background: red;
+    height: 60px;
+    text-align: center;
+    line-height: 60px;
+}
+
+
+/*회원 탈퇴*/
+.input-leave{
+    padding: 10px;
+    border-radius: 4px;
+
+}
+
+/*경고 문구*/
+.error{
+    display: none;
+    color:red;
+    font-size: 0.8em;
+}

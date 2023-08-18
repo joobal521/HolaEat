@@ -25,17 +25,17 @@ public class healthListController {
 
 
     //게시글 하나 조회
-    @GetMapping("health/{no}")
+    @GetMapping("/health/{no}")
     public String getHealthNo(Model model, @PathVariable long healthNo){
 
         Health health=healthRepository.findByHealthNo(healthNo);
         model.addAttribute("health",health);
 
         if(health.getFile()==null)
-            return "health";
+            return "healthPage";
 
         model.addAttribute("blob", ImageParsor.parseBlobToBase64(health.getFile()));
-        return "health";
+        return "healthPage";
 
     }
 

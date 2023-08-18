@@ -56,9 +56,9 @@ function calculateCalories() {
 
     var baseCalories = 0;
     if (gender === "male") {
-        baseCalories = 10 * weight + 6.25 * height - 5 * age + 5;
+        baseCalories = (10 * weight + 6.25 * height - 5 * age + 5)*1.2;
     } else if (gender === "female") {
-        baseCalories = 10 * weight + 6.25 * height - 5 * age - 161;
+        baseCalories = (10 * weight + 6.25 * height - 5 * age - 161)*1.2;
     }
 
     // 알레르기에 따른 보정 값 추가

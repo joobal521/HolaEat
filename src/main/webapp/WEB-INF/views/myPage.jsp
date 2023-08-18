@@ -4,37 +4,69 @@
 <head>
     <title>마이페이지</title>
     <c:set var="path" value="${pageContext.request.contextPath}"/>
+    <link rel="stylesheet" type="text/css" href="style/myPage.css">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
 </head>
 <c:import url="header.jsp"/>
 
 <body>
-<section>
-   <h1>마이페이지</h1>
-    <c:if test="${empty log}">
-        <c:url var="login" value="/login"></c:url>
-        <c:redirect url="${login}"></c:redirect>
-    </c:if>
-    <c:choose>
-        <c:when test="${empty profileImg}">
-            <img src="img/belle2.jpg" width="200px"><br/>
-        </c:when>
-        <c:otherwise>
-            <img src="data:image/png;base64,${ImageParsor.parseBlobToBase64(profileImg)}" style=" max-width: 50%;  height: auto;"> <br />
-        </c:otherwise>
-    </c:choose>
-    <div class="card">
-        <form enctype="multipart/form-data">
-            <input type="file" name="userProfileImg" accept="image/png, image/jpg, image/jpeg, image.gif">
-            <input type="hidden" name="userId" id="userId" value="${sessionScope.log}">
-            <button type="button" class="profile-btn" onclick="updateImg(form)">프로필 사진 변경</button>
-        </form>
-    </div>
-    <button type="button" id="update-btn" class="my-btn" onclick="location.href='update';">회원정보수정</button>
-    <button type="button" id="leave-btn" class="my-btn" onclick="location.href='leave';" >회원탈퇴</button>
 
-</section>
-<script src="script/mypage.js"></script>
+  <section class="wrap">
+    <section class="aside">
+        <ul>
+            <li>
+                <a href="myinfo" class="menu-link">나의 정보</a>
+            </li>
+            <li>
+                <a href="update" class="menu-link">회원 정보 수정</a>
+            </li>
+            <li>
+                <a href="" class="menu-link">나의 식단 보기</a>
+            </li>
+            <li>
+                <a href="leave" class="menu-link">회원 탈퇴</a>
+            </li>
+        </ul>
+    </section>
+      <section class="section">
+
+      </section>
+  </section>
+  <script>
+      $(document).ready(function() {
+          $("a.menu-link").click(function(event) {
+              event.preventDefault(); // 기본 링크 동작 방지
+
+              var pageUrl = $(this).attr("href"); // 클릭한 링크의 URL
+              var pageTitle = $(this).text(); // 클릭한 링크의 텍스트를 페이지 제목으로 사용
+              // AJAX 요청
+              $.ajax({
+                  url: pageUrl,
+                  success: function(response) {
+                      $(".section").html(response); // .section에 응답 페이지 삽입
+                      // 브라우저 주소 표시줄 업데이트
+                      history.pushState(null, pageTitle, pageUrl);
+                  },
+                  error: function() {
+                      alert("페이지 로드에 실패했습니다.");
+                  }
+              });
+          });
+      });
+
+      // 브라우저 뒤로가기/앞으로 가기 시 이벤트 처리
+      window.onpopstate = function(event) {
+          if (event.state) {
+              $(".section").html(event.state.content);
+              document.title = event.state.pageTitle;
+          }
+      };
+  </script>
+
+<script src="script/admin.js"></script>
+
 </body>
 <c:import url="footer.jsp"/>
 </html>

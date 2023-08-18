@@ -19,9 +19,10 @@ public class ReviewService {
 
     //검색
 
+   public List<Review> getAllReview(){
+       return reviewRepository.findAll();
 
-
-
+   }
 
     //페이징처리추가(8/14)
     public Page<Review> getReviewList(Pageable pageable){

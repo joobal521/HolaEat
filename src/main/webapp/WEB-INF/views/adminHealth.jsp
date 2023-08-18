@@ -35,8 +35,8 @@
                                 <img src="data:image/jpeg;base64,${imageBase64}" id="img" name="img" alt="Review Image">
                             </c:if>
                         </div>
-                        <div class="review_title">제목 : ${health.title}</div>
-                        <div class="review_like"><i class="fa-regular fa-heart"></i></div>
+                        <div class="health_title">제목 : ${health.title}</div>
+                        <div class="health_like"><i class="fa-regular fa-heart"></i></div>
                     </div>
                 </a>
             </c:forEach>

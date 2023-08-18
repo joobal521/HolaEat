@@ -30,8 +30,6 @@
                             <input type="hidden" id="ingrId-modal" value="${ingrMonth.ingrId}">
                             <div class="ingr-modal">
                                 <div class="ingr-modal-content">
-                                    <h2>${monthList.foodName}</h2>
-                                    <span>${monthList.foodGroup}</span>
                                     <div class="recipe-content" id="recipe-content${roll.index}">
                                         <!--ajax-->
                                     </div>
@@ -44,7 +42,36 @@
         </div>
     </c:forEach>
 </section>
-
+<%--<section>--%>
+<%--    <c:forEach items="${ingrOfMonth}" var="ingrMonth">--%>
+<%--        <div class="ingr-container">--%>
+<%--            <div>--%>
+<%--                <h1>${ingrMonth.ingrName}</h1>--%>
+<%--            </div>--%>
+<%--            <c:set var="ingrImg" value="${blob[ingrMonth.ingrId]}"></c:set>--%>
+<%--            <c:if test="${not empty ingrImg}">--%>
+<%--                <img src="data:image/jpeg;base64,${ingrImg}" id="img" name="img" alt="Ingredient Image">--%>
+<%--            </c:if>--%>
+<%--            <div>--%>
+<%--                <c:set var="uniqueFoodNames" value="" scope="page"></c:set>--%>
+<%--                <c:forEach items="${foodIngrList}" var="foodList">--%>
+<%--                    <c:if test="${foodList.ingrId == ingrMonth.ingrId && not uniqueFoodNames.contains(foodList.foodName)}">--%>
+<%--                        <input type="button" class="foodbtn" value="${foodList.foodName}" data-foodid="${foodList.foodId}">--%>
+<%--                        <input type="hidden" id="ingrId-modal" value="${ingrMonth.ingrId}">--%>
+<%--                        <div class="ingr-modal">--%>
+<%--                            <div class="ingr-modal-content">--%>
+<%--                                <div class="recipe-content">--%>
+<%--                                    <!--ajax-->--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                        <c:set var="uniqueFoodNames" value="${uniqueFoodNames},${foodList.foodName}" scope="page"></c:set>--%>
+<%--                    </c:if>--%>
+<%--                </c:forEach>--%>
+<%--            </div>--%>
+<%--        </div>--%>
+<%--    </c:forEach>--%>
+<%--</section>--%>
 </body>
 <c:import url="footer.jsp"/>
 </html>

@@ -7,14 +7,14 @@ import java.util.List;
 
 public interface HealthRepository extends JpaRepository<Health, Long> {
 
-    public List<Health> findAllByTitleLike(String pattern, Pageable pageable);
+     public List<Health> findAllByTitleLike(String pattern, Pageable pageable);
 
 
     //Select * from boards where no=?
     Health findByHealthNo(long no);
 
     //내림차순
-    List<Health> findAllByOrderByHealthNoDesc();
+   public List<Health> findAllByOrderByHealthNoDesc(Pageable adjustedPageable);
 
 
 

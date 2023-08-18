@@ -43,6 +43,9 @@ public class MainController {
     @GetMapping(value = "mypage")
     public String myPage() {return "myPage";}
 
+    @GetMapping(value = "myinfo")
+    public String myInfo(){return "myInfo";}
+
     @GetMapping(value = "gainpower")
     public String admin_login() {return "gainpower";}
 
@@ -57,9 +60,6 @@ public class MainController {
 
     @GetMapping(value = "adminUser")
     public String adminUser() {return "adminUser";}
-
-    @GetMapping(value = "adminReview")
-    public String adminReview() {return "adminReview";}
 
     @GetMapping(value = "/reviewUpdate")
     public String reviewUpdate(@RequestParam("reviewNo") long reviewNo, Model model) {

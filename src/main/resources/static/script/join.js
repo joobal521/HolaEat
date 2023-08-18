@@ -34,7 +34,7 @@ let pwdChk = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[$@$!%*#?&])/; /* 영문 + 숫자 + �
 let pwd_space = /[ ]/; /* 공백 */
 let isIdChecked = false; //아이디 중복
 let isEmailChecked=false;//이메일 중복
-let isToKenChecked = false;
+let isToKenChecked = false; //이메일 인증
 
 $(function() {
     /*이메일 유효성*/
@@ -99,7 +99,8 @@ function chkId() {
     var id = $('#userId').val();
 
     if(id===""){
-        alert("사용 불가능한 아이디입니다.")
+        swal('사용 불가능한 아이디','아이디를 다시 입력해주세요.','error')
+        //alert("사용 불가능한 아이디입니다.")
     }else {
 
 
@@ -117,11 +118,12 @@ function chkId() {
             console.log(data);
             if (data.result === true) {
                 isIdChecked = true;
-                swal('사용 가능한 아이디입니다','츄라이~','success')
+                swal('사용 가능한 아이디','츄라이~','success')
                 //alert("사용 가능한 아이디입니다.")
                 //$('#chkMsgEmail').html('사용 가능한 아이디입니다.').css('color', 'navy');
             } else {
-                alert("이미 사용중인 아이디입니다.")
+                swal('이미 사용 중인 아이디','다른 아이디를 입력해주세요.','warning')
+                //alert("이미 사용 중인 아이디입니다.")
                 // $('#chkMsgEmail').html('이미 사용중인 아이디입니다.').css('color', 'red');
             }
 
@@ -138,7 +140,8 @@ function chkEmail() {
     var email = $('#userEmail').val();
 
     if(email===""){
-        alert("사용 불가능한 이메일입니다.")
+        swal('사용 불가능한 이메일','이메일을 다시 입력해주세요.','error')
+        //alert("사용 불가능한 이메일입니다.")
     }else {
 
 
@@ -155,10 +158,12 @@ function chkEmail() {
         }).done(function (data) {
             if (data.result === true) {
                 isEmailChecked = true;
-                alert("사용 가능한 이메일입니다.")
+                swal('사용 가능한 이메일','츄라이~','success')
+                //alert("사용 가능한 이메일입니다.")
                 //$('#chkMsgEmail').html('사용 가능한 아이디입니다.').css('color', 'navy');
             } else {
-                alert("이미 사용중인 이메일입니다.")
+                swal('이미 사용 중인 이메일','다른 이메일을 입력해주세요.','warning')
+                //alert("이미 사용 중인 이메일입니다.")
                 // $('#chkMsgEmail').html('이미 사용중인 아이디입니다.').css('color', 'red');
             }
 
@@ -173,69 +178,77 @@ function chkEmail() {
 
 let code;
 
-/* 이메일 인증번호 전송 */
+/* 이메일 인증 번호 전송 */
 function emailAuthentication() {
 
-        var email = $('#userEmail').val();
-        $("#code-ch").prop('disabled', true);
+     if(isEmailChecked) { //이메일 중복 확인 먼저
+         var email = $('#userEmail').val();
+         $("#code-ch").prop('disabled', true);
 
-        console.log(email);
+         console.log(email);
 
-        const data = {
-            userEmail: email,
-        };
+         const data = {
+             userEmail: email,
+         };
 
-        $.ajax({
-            type: "POST",
-            url: "api/v1/users/verification-email",
-            data: JSON.stringify(data),
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
+         $.ajax({
+             type: "POST",
+             url: "api/v1/users/verification-email",
+             data: JSON.stringify(data),
+             contentType: "application/json; charset=utf-8",
+             dataType: "json",
 
-            }).done(function(data){
-                console.log(data);
-                if (data !== null) {
-                    $("#code-ch").prop('disabled', false);
-                    code=data;
-                    console.log(code);
-                    alert("인증번호를 확인을 해주세요.");
-                    console.log("이메일 확인 코드가 발송되었습니다.");
-                    //console.log("확인 코드: " + response.verification_code);
-                    //console.log("확인 코드 유효 시간: " + response.verification_duration + "분");
-                } else {
-                    console.log("이메일 확인 코드 발송에 실패하였습니다.");
-                }
-        }).fail(function (error){
-            alert("이메일 인증 보내기 실패입니다: " + error.responseJSON.message);
-        });
+         }).done(function (data) {
+             console.log(data);
+             if (data !== null) {
+                 $("#code-ch").prop('disabled', false);
+                 code = data;
+                 console.log(code);
+                 alert("인증 번호를 확인해 주세요.");
+                 console.log("이메일 확인 코드가 발송되었습니다.");
+                 //console.log("확인 코드: " + response.verification_code);
+                 //console.log("확인 코드 유효 시간: " + response.verification_duration + "분");
+             } else {
+                 console.log("이메일 확인 코드 발송에 실패하였습니다.");
+             }
+         }).fail(function (error) {
+             alert("이메일 인증 보내기 실패입니다: " + error.responseJSON.message);
+         });
+     }else {
+         alert("이메일 중복을 확인해 주세요.")
+     }
 
 }
 
 
-/* 인증번호 확인*/
+/* 인증 번호 확인*/
 function authCodeCheck() {
 
-    var inputCode = $('#input-code').val();
-    var codeAsNumber = parseInt(code, 10); // 10진수로 파싱
-    var inputCodeAsNumber = parseInt(inputCode, 10);
+    if(isEmailChecked) { //이메일 중복 확인 먼저
+        var inputCode = $('#input-code').val();
+        var codeAsNumber = parseInt(code, 10); // 10진수로 파싱
+        var inputCodeAsNumber = parseInt(inputCode, 10);
 
         console.log(inputCodeAsNumber);
         console.log(codeAsNumber);
-                if (inputCodeAsNumber ===  codeAsNumber){
-                    console.log(codeAsNumber);
-                    console.log("인증 번호 일치");
-                    alert("인증 되었습니다.");
-                    $("#input-code").prop('disabled', true);
-                    $("#code-ch").prop('disabled', true);
-                    isToKenChecked = true;
-                }else{
-                    alert("인증 코드가 맞지 않습니다.")
-                }
+        if (inputCodeAsNumber === codeAsNumber) {
+            console.log("인증 번호 일치");
+            alert("인증 되었습니다.");
+            $("#input-code").prop('disabled', true);
+            $("#code-ch").prop('disabled', true);
+            isToKenChecked = true;
+        } else {
+            alert("인증 코드가 맞지 않습니다.")
+        }
 
-                // if (data.result === "The token code has expired.") {
-                //     alert('다시 인증번호를 입력받아주세요');
-                // }
-
+        // if (data.result === "The token code has expired.") {
+        //     alert('다시 인증번호를 입력받아주세요');
+        // }
+    }else {
+        $("#input-code").prop('disabled', true);
+        $("#code-ch").prop('disabled', true);
+        alert("이메일 중복을 확인해 주세요.")
+    }
 
 }
 
@@ -301,7 +314,7 @@ function checkValue(htmlForm) {
     }
 
 
-    if (check && isIdChecked && isEmailChecked) {
+    if (check && isIdChecked && isEmailChecked &&isToKenChecked) {
 
         const data = {
             userId: id,
@@ -332,10 +345,14 @@ function checkValue(htmlForm) {
 
 
 
-    } else if (!isIdChecked) {
-        alert("아이디 중복 확인을 해주세요.");
+    }else if (!isIdChecked) {
+        alert("아이디 중복 확인해 주세요.");
     }else if(!isEmailChecked){
-        alert("이메일 중복 확인을 해주세요")
+        alert("이메일 중복 확인해 주세요")
+    }else if(!isToKenChecked){
+        alert("이메일 인증을 해주세요.")
+
     }
+
 
 }

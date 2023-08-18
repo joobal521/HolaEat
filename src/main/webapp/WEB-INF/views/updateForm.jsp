@@ -14,7 +14,6 @@
     <link rel="stylesheet" type="text/css" href="style/joinForm.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 </head>
-<c:import url="header.jsp"/>
 <body>
 <section>
     <div class="form_wrap">
@@ -73,5 +72,4 @@
 
 
 </body>
-<c:import url="footer.jsp"/>
 </html>
