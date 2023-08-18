@@ -30,7 +30,9 @@ function addComment() {
     });
 }
 
-// 페이지 로드 시 댓글 데이터를 가져와 화면에 표시
+
+
+// // 페이지 로드 시 댓글 데이터를 가져와 화면에 표시
 function loadComments(reviewNo) {
     $.get(`/comment/${reviewNo}`, function (comments) {
         const commentContainer = $('#comment-container');
@@ -42,61 +44,111 @@ function loadComments(reviewNo) {
     });
 }
 
-//댓글 출력
-
+// 댓글 출력 함수
 function drawComments(userId, content, commentId) {
-    const commentContainer = $('#comment-container');
-    console.log("userId 출력확인2 : " + userId);
-
     const log = $('#logVal').val();
+    const isUserAuthor = userId === log;
 
-    console.log("commentId : " + commentId);
-    const newComment = `
+    const displayState = `
         <form class="comment-item" id="comment-item-${commentId}">
-            <input type="text" id="comment-id" value="ID 확인용 : ${userId}" readonly/>
+            <input type="text" value="ID 확인용: ${userId}" readonly />
             <br>
-            <textarea id="comment-content-${commentId}" readonly>${content}</textarea>
+            <textarea readonly>${content}</textarea>
             <br>
             <div class="comment-btn">
-                <c:choose>
-                    <c:when test="${userId == log}">
-                        <button id="commentUpdateBtn-${commentId}" onclick="updateComments(${commentId})" class="commentUpdateBtn">수정</button>
-                        <button id="commentDeleteBtn-${commentId}" onclick="deleteComments(${commentId})" class="commentDeleteBtn">삭제</button>
-                    </c:when>
-                    <c:otherwise>
-                        <div></div>
-                    </c:otherwise>
-                </c:choose>
+                ${isUserAuthor ? `<button class="commentEditBtn" onclick="showEditPage(${commentId}, '${content}')">수정</button>` : ''}
+                ${isUserAuthor ? `<button class="commentDeleteBtn" onclick="deleteComment(${commentId})">삭제</button>` : ''}
             </div>
         </form>
     `;
-    commentContainer.prepend(newComment);
+
+    const commentContainer = $('#comment-container');
+    commentContainer.prepend(displayState);
 }
 
-// 수정
+// 수정 페이지 표시
+function showEditPage(commentId, content) {
+    const commentItem = $(`#comment-item-${commentId}`);
+    const contentTextarea = commentItem.find('textarea');
+    const editButton = commentItem.find('.commentEditBtn');
+    const deleteButton = commentItem.find('.commentDeleteBtn');
+
+
+    const editPage = `
+        <div class="edit-page" id="edit-page-${commentId}">
+            <textarea>${content}</textarea>
+            <br>
+            <button class="saveBtn" onclick="updateComments(${commentId})">저장</button>
+            <button class="cancelBtn" onclick="cancelEditPage(${commentId}, '${content}')">취소</button>
+            <button class="deleteBtn" onclick="deleteComment(${commentId})">삭제</button>
+        </div>
+    `;
+
+    // Hide display state, show edit page
+    contentTextarea.hide();
+    editButton.hide();
+    deleteButton.hide();
+    commentItem.append(editPage);
+}
+
+// 수정 페이지 취소
+function cancelEditPage(commentId, content) {
+    const commentItem = $(`#comment-item-${commentId}`);
+    const contentTextarea = commentItem.find('textarea');
+    const editButton = commentItem.find('.commentEditBtn');
+    const deleteButton = commentItem.find('.commentDeleteBtn');
+    const editPage = $(`#edit-page-${commentId}`);
+
+    contentTextarea.show();
+    editButton.show();
+    deleteButton.show();
+    editPage.remove();
+}
+
+// 댓글 수정
 function updateComments(commentId) {
     const commentItem = $(`#comment-item-${commentId}`);
     const contentTextarea = commentItem.find('textarea');
     const newContent = contentTextarea.val();
 
+    const formData = new FormData();
+    formData.append('content', newContent);
 
-    if (contentTextarea.prop('readonly')) {
-        contentTextarea.prop('readonly', false);
-        const updateButton = commentItem.find('.commentUpdateBtn');
-        updateButton.text('저장');
-    } else {
-        const formData = new FormData();
-        formData.append('content', newContent);
+    $.ajax({
+        type: 'PUT',
+        url: `/comment/${commentId}/update`,
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (response) {
+            if (response.message === 'success') {
+                const reviewNo = $('#reviewNo').val();
+                loadComments(reviewNo);
+            } else {
+                alert(response.message);
+            }
+        },
+        error: function (error) {
+            console.error(error);
+        }
+    });
+}
 
 
+$(document).ready(function () {
+    const reviewNo = $('#reviewNo').val();
+    loadComments(reviewNo);
+});
+
+
+// 댓글 삭제
+function deleteComment(commentId) {
+    if (confirm('정말로 삭제하시겠습니까?')) {
         $.ajax({
-            type: "PUT",
-            url: `/comment/${commentId}/update`,
-            data: formData, // Use FormData
-            processData: false,
-            contentType: false,
+            type: 'DELETE',
+            url: `/comment/${commentId}/delete`,
             success: function (response) {
-                if (response.message === "success") {
+                if (response.message === 'success') {
                     const reviewNo = $('#reviewNo').val();
                     loadComments(reviewNo);
                 } else {
@@ -107,41 +159,20 @@ function updateComments(commentId) {
                 console.error(error);
             }
         });
-
-        contentTextarea.prop('readonly', true);
-        const updateButton = commentItem.find('.commentUpdateBtn');
-        updateButton.text('수정');
     }
 }
 
-$(document).ready(function () {
-    const reviewNo = $('#reviewNo').val();
-    loadComments(reviewNo);
-});
-
-
-//댓글 삭제
-function deleteComments(commentId) {
-    $.ajax({
-        type: "DELETE", url: `/comment/${commentId}/delete`, dataType: "json", success: function (response) {
-            if (response.message === "success") {
-                const reviewNo = $('#reviewNo').val();
-                loadComments(reviewNo);
-            } else {
-                alert(response.message);
-            }
-        }, error: function (error) {
-            // Handle errors
-            console.error(error);
-        }
-    });
-
-
-}
 
 
 /*댓글 등록 취소 */
 function delComment() {
     $('#msg-box').val('');
 }
+
+
+
+
+
+
+
 

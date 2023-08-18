@@ -107,6 +107,9 @@ public class ReviewController {
     public Response delete(@PathVariable("reviewNo") long reviewNo, WebRequest request, @ModelAttribute ReviewRequestDto reviewRequestDto) {
         String log = (String) request.getAttribute("log", WebRequest.SCOPE_SESSION);
 
+        reviewCommentService.deleteByReviewNo(reviewNo);
+
+
         if (log == null) {
             return new Response("delete", "로그인 상태에서만 가능합니다.");
         }
