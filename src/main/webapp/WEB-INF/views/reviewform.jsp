@@ -18,19 +18,23 @@
     <div class="wrapper">
         <div>게시글 작성</div>
 
-        <div id="reviewWrite-box">
-            <form id="reviewWrite" enctype="multipart/form-data">
-                <div class="reviewWrite-title">
+        <div id="review-contents">
+            <form id="review-write" enctype="multipart/form-data">
+                <div class="review_write_title">
                     <label for="title">제목</label>
                     <input type="text" id="title" name="title">
                     <p class="error" id="error-title">제목을 입력해주세요.</p>
                 </div>
-                <div class="reviewWrite-content">
+                <div class="review_write-content">
                     <label for="content">내용</label>
                     <textarea id="content" name="content"></textarea>
                 </div>
-                <div class="reviewWrite-img">
-                    <input type="file" id="img" name="img" accept="image/png, image/jpg, image/jpeg, image.gif">
+                <div id="img-container">
+                    <label for="file">이미지</label>
+                    <input type="file" id="file" name="file" accept="image/png, image/jpg, image/jpeg, image.gif">
+                    <div class="write_select_img">
+                        <img src="" id="img" name="img"  alt="Review Image">
+                    </div>
                 </div>
                 <%--            <div class="img-container">--%>
                 <%--                <label for="file">이미지</label>--%>
@@ -40,7 +44,7 @@
                 <%--                </div>--%>
 
                 <%--            </div>--%>
-                <div class="reviewWrite-btn">
+                <div class="review-write-btn">
                     <button type="button" id="submit" name="submit" onclick="checkValueWrite(form)">등록</button>
                 </div>
             </form>

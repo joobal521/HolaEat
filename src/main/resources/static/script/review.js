@@ -22,7 +22,7 @@ $('#title').on('change', e => {
 function checkValueWrite(htmlForm) {
     const title = htmlForm.title.value;
     const content = htmlForm.content.value;
-    const imgFile = htmlForm.img.files[0];
+    const imgElement = htmlForm.file; // 이미지 파일 입력 필드
 
     if (title.trim() === "") {
         console.log("Title is required.");
@@ -38,20 +38,12 @@ function checkValueWrite(htmlForm) {
         form.append("title", title);
         form.append("content", content);
 
-        const imgElement = document.getElementById('img');
-        const imgFile = imgElement.files[0]; // 이미지 파일 가져오기
-
-        console.log(title);
-        console.log(content);
-        console.log(imgFile);
-        alert("title" + title + "content" + content + "img" + imgFile)
-        if (imgFile) {
-            imgElement.src = URL.createObjectURL(imgFile);
-
-            // 이미지 파일을 FormData에 추가
+        if (imgElement && imgElement.files && imgElement.files[0]) {
+            const imgFile = imgElement.files[0];
             form.append("img", imgFile);
-        } else {
-            imgElement.src = ''; // 이미지 없을 때 빈 상태로 설정
+
+            const imgPreview = document.getElementById('img');
+            imgPreview.src = URL.createObjectURL(imgFile);
         }
 
         var settings = {
@@ -72,12 +64,15 @@ function checkValueWrite(htmlForm) {
     }
 }
 
+
 //게시글 수정
 
 
 function CheckValueUpdate(htmlForm, reviewNo) {
     const title = htmlForm.title.value;
     const content = htmlForm.content.value;
+    const imgCheck = htmlForm.imgCheck.value;
+    console.log("imgCheck 확인용"+imgCheck);
 
     let imgFile = null;
 
@@ -85,7 +80,9 @@ function CheckValueUpdate(htmlForm, reviewNo) {
         imgFile = htmlForm.file.files[0];
     }
 
-    if (title.trim() === "" && content.trim() === "") {
+    console.log("imgFile 확인용"+imgFile);
+
+    if (title.trim() === "" && content.trim() === "" && imgFile === imgCheck) {
         alert("수정할 내용이 없습니다.");
         return;
     }
@@ -130,31 +127,12 @@ function loadthumb() {
 }
 
 //게시글 삭제
+
 function CheckValueDelete(htmlForm, reviewNo) {
+    const confirmed = window.confirm("정말 삭제하시겠습니까?");
 
-    const title = htmlForm.title.value;
-    const content = htmlForm.content.value;
-
-    let check = true;
-    let imgFile = null;
-
-    if (htmlForm.img && htmlForm.img.files && htmlForm.img.files[0]) {
-        imgFile = htmlForm.img.files[0];
-    }
-
-    if (check) {
-
-        console.log("title " + title);
-        console.log("content : " + content);
-        console.log("imgFile : " + imgFile);
-
+    if (confirmed) {
         var form = new FormData();
-        form.append("title", title);
-        form.append("content", content);
-
-        if (imgFile) {
-            form.append("img", imgFile);
-        }
 
         var settings = {
             "url": "/" + reviewNo + "/delete",
@@ -170,48 +148,10 @@ function CheckValueDelete(htmlForm, reviewNo) {
             console.log(response);
             location.href = "reviewlist/1";
         });
-
     }
-
 }
 
 
-// function redirectToReviewUpdate(reviewNum, logUser) {
-//     var reviewUserIdElement = document.getElementById("userId");
-//     var reviewUserId = reviewUserIdElement.value;
-//     console.log(reviewUserId);
-//     var reviewNoElement = document.getElementById("reviewNo");
-//     var reviewNo = reviewNoElement.value;
-//     console.log(reviewNo);
-//
-//     const loggedInUser = log;
-//     console.log(loggedInUser);
-//
-//     // 로그인한 사용자와 게시글 작성자 비교
-//     if (loggedInUser === reviewUserId) {
-//         // 작성자와 로그인한 사용자가 동일한 경우 수정 페이지로 이동
-//         window.location.href = "../reviewUpdate?reviewNo=" + reviewNo;
-//     } else {
-//         alert("작성자만 수정할 수 있습니다.");
-//     }
-// }
-
-
-// function redirectToReviewUpdate() {
-//     var reviewNoElement = document.getElementById("reviewNo");
-//     var reviewNo = reviewNoElement.value;
-//
-// // 로그인한 사용자와 게시글 작성자 비교
-//     if (loggedInUser === "${review.userId}") {
-//         // 작성자와 로그인한 사용자가 동일한 경우 수정 페이지로 이동
-//         window.location.href = "../reviewUpdate?reviewNo=" + reviewNo;
-//     } else {
-//         alert("작성자만 수정할 수 있습니다.");
-//     }
-//
-//
-//
-// }
 
 
 
@@ -233,4 +173,7 @@ function goBack() {
     document.documentElement.style.overflow = 'auto';
 }
 
-
+//목록으로 되돌아가기
+function goBackToList() {
+    location.href = "reviewlist/1";
+}

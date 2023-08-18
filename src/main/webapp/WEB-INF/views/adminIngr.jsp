@@ -22,8 +22,8 @@
     <tr>
         <th>재료 ID</th>
         <th>재료 이름</th>
-        <th>알러지</th>
-        <th>이달의 재료</th>
+        <th><button id="filterToggleAllergy">알러지</button></th>
+        <th><button id="filterToggleMonth">이달의 재료</button></th>
         <th>수정</th>
         <th>삭제</th>
     </tr>
@@ -209,6 +209,35 @@
         });
 
     });
+    });
+
+    $(document).ready(function() {
+        $("#filterToggleAllergy").click(function() {
+            toggleFilter(".allergy", "예", $(this));
+        });
+
+        $("#filterToggleMonth").click(function() {
+            toggleFilter(".month", "예", $(this));
+        });
+
+
+        function toggleFilter(columnClass, targetValue, buttonElement) {
+            var isActive = buttonElement.hasClass("active");
+
+            $(".admin-ingrList tr").each(function() {
+                var cell = $(this).find(columnClass);
+                var cellValue = cell.text();
+
+                if (isActive && cellValue !== targetValue) {
+                    $(this).hide();
+                } else {
+                    $(this).show();
+                }
+            });
+
+            buttonElement.toggleClass("active");
+        }
+
     });
 </script>
 </body>
