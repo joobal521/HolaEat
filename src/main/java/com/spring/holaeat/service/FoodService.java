@@ -74,4 +74,8 @@ public class FoodService {
     public List<Food> getAllFood(){
         return foodRepository.findAll();
     }
+
+    public void deleteFoodByFoodId(String foodId){
+        foodRepository.deleteById(foodId);
+    }
 }

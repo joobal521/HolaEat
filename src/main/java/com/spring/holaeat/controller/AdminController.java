@@ -123,6 +123,12 @@ public String gainPower(@RequestParam("adminid") String id, @RequestParam("admin
         return "adminMenu";
     }
 
+    @DeleteMapping("adminMenu/delete/{foodId}")
+    public String deleteFood(@PathVariable String foodId){
+        foodService.deleteFoodByFoodId(foodId);
+
+        return "adminMenu";
+    }
 
 //    //후기게시판관리
 //    @GetMapping("adminReview")
