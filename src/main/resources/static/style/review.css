@@ -201,7 +201,8 @@
 /* reivew 수정,삭제 버튼 , reviewUpdate 수정 버튼, reviewform 등록 버튼*/
 #update,
 #delete,
-#submit {
+#submit,
+#backToList{
     margin: 10px auto;
     display: inline-block;
     padding: 10px 20px;
@@ -216,6 +217,10 @@
     background-color: #dec3f3;
     margin-right: 20px;
 }
+#delete{
+    margin-right: 20px;
+}
+
 
 /* 댓글 부분 */
 .comment-section {

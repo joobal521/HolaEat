@@ -69,6 +69,25 @@ public class ReviewCommentController {
 
 
 //수정
+@PutMapping(value = "/comment/{commentId}/update", consumes = {"multipart/form-data"})
+@Transactional
+public Response update(@PathVariable Long commentId, WebRequest request, @ModelAttribute ReviewCommentRequestDto reviewCommentRequestDto) {
+    String log = (String) request.getAttribute("log", WebRequest.SCOPE_SESSION);
+    if (log == null) {
+        return new Response("update", "로그인 상태에서만 가능합니다.");
+    }
+    ReviewComment reviewComment = reviewCommentRepository.findById(commentId).orElseThrow(
+            () -> new IllegalArgumentException("댓글이 존재하지 않습니다.")
+    );
+
+    if (!reviewComment.getUserId().equals(log)) {
+        return new Response("update", "작성자만 수정할 수 있습니다.");
+    }
+
+    reviewCommentService.update(reviewComment, reviewCommentRequestDto);
+
+    return new Response("update", "success");
+}
 
 
 //    @PutMapping(value = "/{commentId}/update", consumes = {"multipart/form-data"})
