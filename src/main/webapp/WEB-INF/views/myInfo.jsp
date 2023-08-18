@@ -24,12 +24,22 @@
     <img src="data:image/png;base64,${ImageParsor.parseBlobToBase64(profileImg)}" style=" max-width: 50%;  height: auto;"> <br />
   </c:otherwise>
 </c:choose>
+<div class="container">
 <div class="card">
   <form enctype="multipart/form-data">
     <input type="file" name="userProfileImg" accept="image/png, image/jpg, image/jpeg, image.gif">
     <input type="hidden" name="userId" id="userId" value="${sessionScope.log}">
     <button type="button" class="profile-btn" onclick="updateImg(form)">프로필 사진 변경</button>
   </form>
+  <div class="my-info">
+    <ul>
+      <li><Span>아이디 : </Span>${sessionScope.log}</li>
+      <li><span>이름 : </span>${sessionScope.userName}</li>
+      <li><span>이메일 : </span>${sessionScope.userEmail}</li>
+    </ul>
+  </div>
+</div>
+
 </div>
 
 </body>

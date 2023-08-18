@@ -16,6 +16,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.time.Duration;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Random;
 
@@ -45,6 +46,13 @@ public class UserService {
           return user;
 
      }
+     //이메일로 조회
+     public User getUserByEmail(String userEmail){
+          User user=userRepository.findByUserEmail(userEmail).orElseThrow(
+                  ()->new IllegalArgumentException("존재하지 않는 이메일입니다.")
+          );
+          return user;
+     }
 
      //아이디 중복체크
      public boolean duplCheckUserId(String userId) {
@@ -52,11 +60,33 @@ public class UserService {
           return user != null;
      }
 
-     //이메이 중복체크
+     //이메일 중복체크
      public  boolean duplCheckUserEmail(String userEamil) {
           Optional<User> user = userRepository.findByUserEmail(userEamil);
           return  user.isPresent();
      }
+
+
+     //비밀번호 조회
+     public User findByUserPassword(String userPassword) {
+          System.out.println(userRepository.findByUserPassword(userPassword));
+          return userRepository.findByUserPassword(userPassword);
+
+     }
+
+     //비밀번호 보내기
+     public String sendPassword(String toEmail, String userEmail) {
+          this.checkDuplicatedEmail(toEmail);
+          String title = "holaEat에서 비밀번호 보내드려요";
+          User user=this.getUserByEmail(userEmail);
+          String password= String.valueOf(this.findByUserPassword(user.getUserPassword()));
+          System.out.println("비밀번호"+password);
+          mailService.sendEmail(toEmail, title,password);
+
+          return password;
+     }
+
+
 
      //회원가입
      public User createUser(UserRequestDto userDto){

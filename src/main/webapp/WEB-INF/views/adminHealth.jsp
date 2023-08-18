@@ -10,40 +10,49 @@
 <html>
 <head>
     <title>admin-health</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 
 <body>
-<h1>건강 정보 글 관리 목록</h1>
-<div class="wrap">
-    <div class="container">
-        <button type="button" id="write-btn"> <a href="HealthForm">글쓰기</a></button>
-        <div id="health-box">
-            <c:forEach items="${healthInfo}" var="health" varStatus="loop">
-                <a href="<c:url value='/health/${health.healthNo}'/>">
-                    <div id="health">
-                        <div class="admin_profile">
-                            <ul>
-                                <li class="healthprofile">NO. ${health.healthNo}</li>
-                                <li class="admin">작성자 : 관리자</li>
-                            </ul>
-                        </div>
+<h1>건강 정보 글 관리</h1>
 
-                            <%--이미지 출력--%>
-                        <div class="health_img">
-                            <c:set var="imageBase64" value="${imageMapPage[health.healthNo]}"></c:set>
-                            <c:if test="${not empty imageBase64}">
-                                <img src="data:image/jpeg;base64,${imageBase64}" id="img" name="img" alt="Review Image">
-                            </c:if>
-                        </div>
-                        <div class="health_title">제목 : ${health.title}</div>
-                        <div class="health_like"><i class="fa-regular fa-heart"></i></div>
-                    </div>
-                </a>
-            </c:forEach>
+        <div class="admin-menu">
+            <button type="button" id="write-btn"> <a href="healthForm">글쓰기</a></button>
+            <table>
+                <thead>
+                <tr>
+                    <th>건강 정보 No</th>
+                    <th>건강 정보 제목</th>
+                    <th>내용</th>
+                    <th>파일</th>
+                    <th>수정</th>
+                    <th>삭제</th>
+                </tr>
+                </thead>
+                <tbody class="admin-healthList">
+                <c:forEach items="${healthList}" var="health">
+                    <tr>
+                        <td>${health.healthNo}</td>
+                        <td class="healthTitle">${health.title}</td>
+                        <td class="healthContent">${health.content}</td>
+                        <td><c:if test="${not empty imageBase64}">
+                            <img src="data:image/jpeg;base64,${imageBase64}" id="img" name="img" alt="health Image">
+                        </c:if></td>
+
+                        <td>
+                            <button class="updateBtn" data-id="${health.healthNo}" ><a href="healthUpdate">수정하기</a></button>
+                        </td>
+                        <td>
+                            <button class="removeBtn" data-id="${health.healthNo}" >삭제하기</button>
+                        </td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
+
         </div>
-    </div>
-</div>
-
+<script src="script/adminHealth.js"></script>
 </body>
 
 </html>

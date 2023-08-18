@@ -17,7 +17,6 @@
 <body>
 <div class="health-section">
     <h2>건강 정보 게시판 상세</h2>
-    <h2>게시글</h2>
     <c:if test="${health!=null}">
         <div id="health-contents">
             <form id="health-detail" enctype="multipart/form-data">
@@ -39,7 +38,7 @@
                         <%--                        <input type="text" id="content" name="content" value="${review.content}">--%>
                 </div>
                 <div id="image-container">
-                    <img src="data:image/png;base64,${blob}" id="img" name="img" alt="Health Image">
+                    <img src="data:image/png;base64,${blob}" id="img" name="img"  alt="Health Image" style=" max-width: 50%;  height: auto;">
 
                 </div>
 <%--                <c:if test="${health.userId == log}">--%>

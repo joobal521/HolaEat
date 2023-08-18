@@ -26,6 +26,12 @@ public class HealthService {
 //        List<Health> list= healthRepository.findAllByOrderByHealthNoDesc();
 //        return list;
 //    }
+//
+    //관리자 조회
+    public List<Health> getAllHealth(){
+        return healthRepository.findAll();
+
+    }
 
     public Health getHealthByHealthNo(long healthNo){
         Health health=healthRepository.findById(healthNo).orElseThrow(

@@ -5,12 +5,14 @@ import com.spring.holaeat.domain.profile.ProfileImgRequestDto;
 import com.spring.holaeat.domain.user.User;
 import com.spring.holaeat.domain.user.UserRequestDto;
 import com.spring.holaeat.domain.user.UserRepository;
+import com.spring.holaeat.payload.Response;
 import com.spring.holaeat.service.ProfileImgService;
 import com.spring.holaeat.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.json.JSONObject;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.WebRequest;
 
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
@@ -101,7 +103,7 @@ public class UserController {
         return response.toMap();
     }
 
-//회원탈퇴
+    //회원탈퇴
     @DeleteMapping("leave")
     public Map leave(@RequestBody  Map<String, String> requestData, HttpSession session){
         String userId = requestData.get("userId");
@@ -131,9 +133,17 @@ public class UserController {
 
     }
 
-    //회원정보 수정 PUT
+    //회원정보 수정
     @PutMapping("update")
-    public Map update(@RequestBody  Map<String, String> requestData){
+    public Map update(@RequestBody Map<String, String> requestData , WebRequest request){
+    JSONObject response = new JSONObject();
+        String log = (String) request.getAttribute("log", WebRequest.SCOPE_SESSION);
+
+        if (log == null) {
+            response.put("result", false);
+        }
+        System.out.println("로그인:"+log);
+
         String userId = requestData.get("userId");
         String userPassword = requestData.get("userPassword");
         String newPassword = requestData.get("newPassword");
@@ -143,29 +153,31 @@ public class UserController {
 
 
 
-        JSONObject response = new JSONObject();
-
         try {
             User user = userService.getUserById(userId);
+            if(user!=null && user.getUserId().equals(userId)) {
+                if (user.getUserPassword().equals(userPassword)) {
+                    if (newPassword.equals(newPasswordCh)) {
+                        UserRequestDto updatedUserDto = new UserRequestDto();
+                        updatedUserDto.setUserId(userId);
+                        updatedUserDto.setUserPassword(newPassword);
+                        updatedUserDto.setUserEmail(userEmail);
+                        updatedUserDto.setUserName(userName);
 
-            if (user != null && user.getUserPassword().equals(userPassword)) {
-                if (newPassword.equals(newPasswordCh)) {
-                    UserRequestDto updatedUserDto = new UserRequestDto();
-                    updatedUserDto.setUserId(userId);
-                    updatedUserDto.setUserPassword(newPassword);
-                    updatedUserDto.setUserEmail(userEmail);
-                    updatedUserDto.setUserName(userName);
+                        userService.updateUser(userId, updatedUserDto);
+                        response.put("result", true);
 
-                    userService.updateUser(userId, updatedUserDto);
-                    response.put("result", true);
-
+                    } else {
+                        response.put("result", false);
+                        response.put("message", "새 비밀번호와 확인 비밀번호가 일치하지 않습니다.");
+                    }
                 } else {
                     response.put("result", false);
-                    response.put("message", "새 비밀번호와 확인 비밀번호가 일치하지 않습니다.");
+                    response.put("message", "기존 비밀번호가 일치하지 않습니다.");
                 }
-            } else {
-                response.put("result", false);
-                response.put("message", "기존 비밀번호가 일치하지 않습니다.");
+            }else{
+                response.put("result",false);
+                System.out.println("회원이 아닌뎅?");
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -178,13 +190,17 @@ public class UserController {
         return response.toMap();
     }
 
-    //이메일 인증
+    //비밀번호 찾기
+
+
 //    @PostMapping("verification-requests")
 //    public ResponseEntity sendMessage(@RequestParam("email") String email) {
 //        userService.sendCodeToEmail(email);
 //
 //        return new ResponseEntity<>(HttpStatus.OK);
 //    }
+
+//이메일 인증
     @PostMapping("verification-email")
     public String sendMessage(@RequestBody  Map<String, String> requestData) {
         String email = requestData.get("userEmail");
@@ -202,6 +218,13 @@ public class UserController {
         return userService.sendCodeToEmail(email);
 
     }
+
+    //비밀번호 보내기
+//    @PostMapping("fine-password")
+//    public String sendPassword(@RequestBody Map<String, String> requestData){
+//
+//    }
+
 
     //이메일 인증 확인
 //    @GetMapping("verification")

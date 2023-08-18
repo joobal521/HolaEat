@@ -153,11 +153,12 @@ function checkValue() {
         }).done(function(data){
             console.log(data);
             if (data.result === true) {
-                alert("회원수정 완료")
-                location.href = "../../../webapp";
+                swal('회원 수정 완료 ','메인 홈으로 돌아갑니다~','success')
+                //alert("회원수정 완료")
+                location.href = "/";
             }else{
-                alert("기존 비밀번호가 일치하지 않습니다.")
-                location.href="update"
+                swal('회원 수정 실패 ','회원 정보 수정을 다시 시도 해주세요.','error')
+                //alert("기존 비밀번호가 일치하지 않습니다.")
             }
         }).fail(function (error){
             alert("회원수정 실패입니다: " + error.responseJSON.message);

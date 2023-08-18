@@ -16,6 +16,8 @@ public interface HealthRepository extends JpaRepository<Health, Long> {
     //내림차순
    public List<Health> findAllByOrderByHealthNoDesc(Pageable adjustedPageable);
 
+   public List<Health> findAll();
+
 
 
 }

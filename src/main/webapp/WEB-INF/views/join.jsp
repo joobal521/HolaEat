@@ -30,7 +30,7 @@
                                 value="중복 확인" onclick="chkId()">
                     </li>
 
-                    <p class="error" id="error-id">아이디는 필수정보입니다.</p>
+                    <p class="error" id="error-id">아이디는 필수정 보입니다.</p>
 
                     <li class="input-container">
                         <h2 class="form-title">비밀번호</h2>
@@ -39,7 +39,7 @@
 
                     <li class="input-container">
                     <p class="err">*특수문자는 '! @ # $ % ^ & +='만 사용 가능합니다.</p>
-                        <p class="error" id="error-password">비밀번호는 필수정보입니다.</p>
+                        <p class="error" id="error-password">비밀번호는 필수 정보입니다.</p>
                     <span class="err" id="chkNotice1" size="1"></span>
                    </li>
 
@@ -57,7 +57,7 @@
                                 value="중복 확인" onclick="chkEmail()">
                         <input type="button" class="email-btn"
                                                       id="email_ch" onclick="emailAuthentication()" value="인증 메일 보내기">
-                        <p class="error" id="error-email">이메일은 필수정보입니다.</p>
+                        <p class="error" id="error-email">이메일은 필수 정보입니다.</p>
                         <span class="err" id="chkEmail" size="1"></span>
                     </li>
 
@@ -70,27 +70,27 @@
                     <li class="input-container">
                         <h2 class="form-title">이름</h2>
                         <input type="text" class="input-box" id="userName" name="userName" placeholder="이름">
-                        <p class="error" id="error-name">이름은 필수정보입니다.</p>
+                        <p class="error" id="error-name">이름은 필수 정보입니다.</p>
                     </li>
 
                     <div class="label-wrapper">
-                        <label for="agree_all" class="title">이용약관 동의<span
+                        <label for="agree_all" class="title">이용 약관 동의<span
                                 class="required">(필수)</span></label>
                         <div class="agr">
                             <input type="checkbox" id="agree_all" name="agree_all"><span
-                                class="agr_text">전체동의</span>
+                                class="agr_text">전체 동의</span>
                         </div>
 
                         <div class="agr">
                             <input type="checkbox" id="user_check1"
                                                       name="user_check"><span class="agr_text"><a
-                                    href="term" class="term_title">이용약관</a> 동의<strong>(필수)</strong> </span>
+                                    href="term" class="term_title">이용 약관</a> 동의<strong>(필수)</strong> </span>
                         </div>
 
                         <div class="agr">
                             <input type="checkbox" id="user_check2"
                                                       name="user_check"><span class="agr_text"><a
-                                    href="term2" class="term_title">개인정보 처리방침</a> 동의<strong>(필수)</strong>
+                                    href="term2" class="term_title">개인 정보 처리 방침</a> 동의<strong>(필수)</strong>
 					</span>
                         </div>
 

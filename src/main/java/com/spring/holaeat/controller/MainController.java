@@ -52,11 +52,16 @@ public class MainController {
     @GetMapping(value = "admin")
     public String admin() {return "admin";}
 
-    @GetMapping(value = "adminHealth")
-    public String adminHealth() {return "adminHealth";}
-
-    @GetMapping(value = "HealthForm")
+    //건강 정보
+    @GetMapping(value = "healthForm")
     public String adminHealthFrom(){return "adminHealthForm";}
+
+    @GetMapping("health")
+    public String health() {return "healthList";}
+
+    @GetMapping(value = "healthUpdate")
+    public String healthUpdate(){
+        return "adminHealthUpdate";}
 
     @GetMapping(value = "adminUser")
     public String adminUser() {return "adminUser";}
@@ -72,8 +77,7 @@ public class MainController {
         return "reviewUpdate";
     }
 
-    @GetMapping("health")
-    public String health() {return "healthInfo";}
+
 
     @GetMapping("update")
     public String update(){return "updateForm";}

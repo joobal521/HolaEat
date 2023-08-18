@@ -16,11 +16,38 @@
 
 
 /*회원 탈퇴*/
+
+.form_wrap{
+    padding: 0 10%;
+}
+.form_container{
+    border: 1px solid black;
+    padding: 5%;
+}
+.leave_text{
+   text-align: center;
+}
+
+.leave-form{
+    display: flex;
+    justify-content: center;
+}
 .input-leave{
+    border: 1px solid black;
     padding: 10px;
     border-radius: 4px;
 
 }
+.input-userId{
+    margin-bottom: 20px;
+}
+
+.leave-btn{
+    margin-top: 30px;
+}
+
+
+
 
 /*경고 문구*/
 .error{

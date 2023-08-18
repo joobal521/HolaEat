@@ -3,14 +3,15 @@
 <html>
 <head>
     <title>admin-health</title>
+    <link rel="stylesheet" type="text/css" href="style/form.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
-
+<c:import url="header.jsp"/>
 <body>
-<section>
-    <h1>건강정보 글 등록</h1>
-    <div class="form_wrap">
 
+    <h1>건강 정보 글 등록</h1>
+    <div class="form_wrap">
     <form  enctype="multipart/form-data">
         <div class="form_container">
             <div class="title_box">
@@ -28,9 +29,11 @@
         </div>
     </form>
     </div>
-</section>
+
+
+
 <script src="script/adminHealth.js"></script>
 
 </body>
-
+<c:import url="footer.jsp"/>
 </html>

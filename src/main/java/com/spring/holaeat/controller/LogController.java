@@ -53,6 +53,7 @@ public class LogController {
 
                 session.setAttribute("log", user.getUserId());
                 session.setAttribute("userName", user.getUserName());
+                session.setAttribute("userEmail",user.getUserEmail());
 
 
                 if (userDetail != null) {
