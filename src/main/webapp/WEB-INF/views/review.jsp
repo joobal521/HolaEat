@@ -8,12 +8,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 
 
-    <style>
-        #img {
-            width: 500px;
-            height: 500px;
-        }
-    </style>
     <c:if test="${not empty log}">
         <input type="hidden" id="logVal" value="${log}">
     </c:if>
@@ -25,7 +19,7 @@
         <h2>게시글</h2>
         <c:if test="${review!=null}">
             <div id="review-contents">
-                <form id="review_detail" enctype="multipart/form-data">
+                <form id="review-detail" enctype="multipart/form-data">
                     <div class="review_detail_no">
                         <label for="reviewNo">No.</label>
                         <input type="text" id="reviewNo" name="reviewNo" value="${review.reviewNo}" readonly>
@@ -41,7 +35,8 @@
 
                 <div class="review_detail_content">
                     <label for="content">내용</label>
-                    <input type="text" id="content" name="content" value="${review.content}" readonly >
+                    <textarea id="content" name="content" readonly>${review.content}</textarea>
+<%--                        <input type="text" id="content" name="content" value="${review.content}">--%>
                 </div>
                 <div id="image-container">
                     <img src="data:image/png;base64,${blob}" id="img" name="img"  alt="Review Image">
@@ -51,10 +46,10 @@
 <%--                <input type="datetime" id="created_at" readonly value="${review.createdAt}"> --%>
 <%--                <input type="datetime" id="modified_at" readonly value="${review.modifiedAt}">--%>
 <%--                    </c:when>--%>
-
+            <c:if test="${review.userId == log}">
                     <button type="button" id="update" name="update" onclick="redirectToReviewUpdate(reviewNo)">수정</button>
                     <button type="button" id="delete" name="delete" onclick="CheckValueDelete(document.getElementById('review_detail'), ${review.reviewNo})">삭제</button>
-
+            </c:if>
                 </form>
             </div>
         </c:if>
@@ -77,6 +72,7 @@
                     </c:choose>></textarea>
                 <div class="commentBtn">
                     <input type="button" id="commentBtn" value="등록하기" onclick="addComment()">
+                    <input type="button" id="commentDelBtn" value="취소하기" onclick="delComment()">
                 </div>
             </form>
         </div>

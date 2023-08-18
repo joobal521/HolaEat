@@ -61,8 +61,8 @@
                     </li>
 
                     <li>
-                        <input class="code-check" id="email-ch" placeholder="인증번호 6자리를 입력해주세요!" maxlength="6">
-                    <input type="button" id="code_ch" onclick="authCodeCheck()"
+                        <input class="code-check" name="code" id="code" placeholder="인증번호 6자리를 입력해주세요!" maxlength="6">
+                    <input type="button" id="code-ch" onclick="authCodeCheck()"
                            value="인증">
                     </li>
 
