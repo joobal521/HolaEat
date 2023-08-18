@@ -56,19 +56,53 @@
             </div>
         </div>
         <div class="nav">
-            <ul class="menu align-center expanded text-center SMN_effect-2">
-                <li><a href="ingredients">이달의 식재료</a></li>
+            <ul class="menu align-center expanded text-center SMN_effect-5">
+
+                <li>
+                    <a href="ingredients">
+                        <span>이달의</br>식재료</span>
+                        <span>Mothnly Ingredients</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/">
+                        <span>홈페이지</span>
+                        <span>Home</span>
+                    </a>
+                </li>
+
 
             <c:choose>
                 <c:when test="${not empty log }">
-                    <li><a href="menu">맞춤식단</a></li>
+                    <li>
+                        <a href="menu">
+                            <span>맞춤식단</span>
+                            <span>Personal Menu</span>
+                        </a>
+                    </li>
                 </c:when>
                 <c:otherwise>
-                    <li><a href="login">맞춤식단</a></li>
+                    <li>
+                        <a href="login">
+                            <span>맞춤식단</span>
+                            <span>Personal Menu</span>
+                        </a>
+                    </li>
                 </c:otherwise>
             </c:choose>
-            <li><a href="reviewlist/1">이용후기</a></li>
-            <li><a href="health">건강정보</a></li>
+                <li>
+                    <a href="reviewlist/1">
+                        <span>이용후기</span>
+                            <span>Review</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="health">
+                        <span>건강정보</span>
+                        <span>Health Info</span>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
