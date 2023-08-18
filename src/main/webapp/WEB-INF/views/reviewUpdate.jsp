@@ -16,15 +16,6 @@
     <link rel="stylesheet" type="text/css" href="/style/review.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 
-    <style>
-        #img , #file{
-            width: 100px;
-            height: 100px;
-        }
-
-
-
-    </style>
 </head>
 <c:import url="header.jsp"/>
 <body>
@@ -34,21 +25,26 @@
     <c:if test="${review!=null}">
 
         <div id="review-contents">
-            <form id="review-detail" enctype="multipart/form-data">
-                <div>
+            <form id="review-update" enctype="multipart/form-data">
+                <div class="review_detail_no">
+                    <label for="reviewNo">No.</label>
                     <input type="text" id="reviewNo" name="reviewNo" value="${review.reviewNo}" readonly>
                 </div>
-                <div>
+                <div class="review_detail_title">
+                    <label for="title">제목</label>
                     <input type="text" id="title" name="title" value="${review.title}">
                 </div>
-                <div>
+                <div class="review_detail_userId">
+                    <label for="userId">작성자</label>
                     <input type="text" id="userId" name="userId" value="${review.userId}" readonly>
                 </div>
-                <div>
-                    <input type="text" id="content" name="content" value="${review.content}">
+                <div class="review_detail_content">
+                    <label for="content">내용</label>
+                    <textarea id="content" name="content">${review.content}</textarea>
+<%--                    <input type="text" id="content" name="content" value="${review.content}">--%>
                 </div>
 
-                <div class="img-container">
+                <div id="img-container">
                     <label for="file">이미지</label>
                     <input type="file" id="file" name="file" accept="image/*"/>
                     <div class="select_img">
@@ -57,13 +53,14 @@
 
                 </div>
 
-                <input type="datetime" id="created_at" name="created_at" readonly>
-                <input type="datetime" id="modified_at" name="modified_at" readonly>
+<%--                <input style="width: 100px" type="datetime" id="created_at" name="created_at" readonly>--%>
+<%--                <input style="width: 100px" type="datetime" id="modified_at" name="modified_at" readonly>--%>
 
+                <br/>
                 <button type="button" id="update" name="update" onclick="CheckValueUpdate(form, ${review.reviewNo})">
                     수정
                 </button>
-                <input type="button" class="cancel" id="cancel" value="수정 취소" onclick="goBack()">
+                <button type="button" class="cancel" id="cancel"  onclick="goBack()">수정 취소</button>
 
             </form>
         </div>
