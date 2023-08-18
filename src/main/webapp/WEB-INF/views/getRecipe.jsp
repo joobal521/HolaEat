@@ -13,19 +13,21 @@
         </div>
     </c:if>
         <div>
-            <h1>${food.foodName}</h1>
-            <h3>${food.foodGroup}</h3>
-            <h3>${food.foodNational}</h3>
+            <div>
+                <h1>${food.foodName}</h1>
+                <span>${food.foodGroup}</span>
+                <span>${food.foodNational}</span>
+            </div>
 
-            <h3>총 열량 : ${food.kcal}</h3>
-            <h3>탄수화물 : ${food.carb}</h3>
-            <h3>지방 : ${food.fat}</h3>
-            <h3>단백질 : ${food.protein}</h3>
-            <h3>당 : ${food.sugars}</h3>
-            <h3>나트륨 : ${food.natrium}</h3>
-        </div>
-        <div>
-            <canvas id="myChart"></canvas>
+            <div>
+                <h3>총 열량 : ${food.kcal}</h3>
+                <h3>탄수화물 : ${food.carb}</h3>
+                <h3>지방 : ${food.fat}</h3>
+                <h3>단백질 : ${food.protein}</h3>
+                <h3>당 : ${food.sugars}</h3>
+                <h3>나트륨 : ${food.natrium}</h3>
+            </div>
+
         </div>
         <div>
             <!-- 다이어그램을 표시할 캔버스 엘리먼트 -->

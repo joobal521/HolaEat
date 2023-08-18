@@ -11,10 +11,15 @@ import java.util.List;
 @RequiredArgsConstructor
 public class FoodIngrService {
     private final FoodIngrRepository foodIngrRepository;
-
-
-    public List<FoodIngr> findFoodIdByIngrId(String ingrId) {
-        List<FoodIngr> list = foodIngrRepository.findFoodIdByIngrId(ingrId);
+    public List<FoodIngr> findFoodIdByIngrId(int ingrId) {
+        String id = String.valueOf(ingrId);
+        List<FoodIngr> list = foodIngrRepository.findAllByIngrId(id);
+        for(FoodIngr fud : list){
+            System.out.println(fud.getFoodIngrId());
+            System.out.println(fud.getIngrId());
+            System.out.println(fud.getFoodId());
+            System.out.println("------");
+        }
         return list;
 
     }
