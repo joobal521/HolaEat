@@ -45,7 +45,7 @@ public class IngredientsController {
 
         //이달의 재료로 만들 수 있는 음식목록 뽑기
         for(Ingredients ingredients : monthIngr){
-            foodIngr.addAll(foodIngrService.findFoodIdByIngrId(String.valueOf(ingredients.getIngrId())));
+            foodIngr.addAll(foodIngrService.findFoodIdByIngrId(ingredients.getIngrId()));
 
             //재료 사진 가져오기
                String base64Image = ImageParsor.parseBlobToBase64(ingredients.getIngrImg());
