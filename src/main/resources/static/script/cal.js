@@ -79,7 +79,7 @@ function fetchAndDisplayMenu(selectedNational) {
         var generatedMenus = data;
         var generatedMenusDiv = document.getElementById("generatedMenus");
 
-        var resultHtml = "<h2>산출된 식단</h2><ul>";
+        var resultHtml = "<h2>회원님만을 위한 식단입니다</h2><ul>";
         var totalCalories = 0;
 
         var selectedPrefer = $('#prefer').val();
@@ -103,36 +103,36 @@ function fetchAndDisplayMenu(selectedNational) {
                 let totalProteins = menu.food1Protein + menu.food2Protein + menu.food3Protein + menu.food4Protein + menu.food5Protein;
                 let totalFats = menu.food1Fat + menu.food2Fat + menu.food3Fat + menu.food4Fat + menu.food5Fat;
 
-                resultHtml += "<li>" +
-                    "음식1: " + menu.food1 + " (" + menu.food1Weight + "g)  </br>" +
+                resultHtml += "<li>" + "식단정보<br>" +
+                    "메인메뉴1: " + menu.food1 + " (" + menu.food1Weight + "g)  </br>" +
                     "칼로리: " + menu.food1Kcal + "Kcal </br>" +
                     "탄수화물: " + menu.food1Carb + "g </br>" +
                     "단백질: " + menu.food1Protein + "g </br>" +
                     "지방: " + menu.food1Fat + "g </br>" +
 
 
-                    "음식2: " + menu.food2 + " (" + menu.food2Weight + "g) </br>" +
+                    "메인메뉴2: " + menu.food2 + " (" + menu.food2Weight + "g) </br>" +
                     "칼로리: " + menu.food2Kcal + "Kcal </br>" +
                     "탄수화물: " + menu.food2Carb + "g </br>" +
                     "단백질: " + menu.food2Protein + "g </br>" +
                     "지방: " + menu.food2Fat + "g </br>" +
 
 
-                    "음식3: " + menu.food3 + " (" + menu.food3Weight + "g)</br>" +
+                    "사이드1: " + menu.food3 + " (" + menu.food3Weight + "g)</br>" +
                     "칼로리: " + menu.food3Kcal + "Kcal </br>" +
                     "탄수화물: " + menu.food3Carb + "g </br>" +
                     "단백질: " + menu.food3Protein + "g </br>" +
                     "지방: " + menu.food3Fat + "g </br>" +
 
 
-                    "음식4: " + menu.food4 + " (" + menu.food4Weight + "g) </br>" +
+                    "사이드2: " + menu.food4 + " (" + menu.food4Weight + "g) </br>" +
                     "칼로리: " + menu.food4Kcal + "Kcal </br>" +
                     "탄수화물: " + menu.food4Carb + "g </br>" +
                     "단백질: " + menu.food4Protein + "g </br>" +
                     "지방: " + menu.food4Fat + "g </br>" +
 
 
-                    "음식5: " + menu.food5 + " (" + menu.food5Weight + "g) </br>" +
+                    "사이드3: " + menu.food5 + " (" + menu.food5Weight + "g) </br>" +
                     "칼로리: " + menu.food5Kcal + "Kcal </br>" +
                     "탄수화물: " + menu.food5Carb + "g </br>" +
                     "단백질: " + menu.food5Protein + "g </br>" +
@@ -146,7 +146,7 @@ function fetchAndDisplayMenu(selectedNational) {
                     "총 단백질: " + totalProteins + "g" +
                     "총 지방: " + totalFats + "g" +
 
-                    "</hr></li></br>";
+                    "</hr></li></br></br></br></hr>";
                 // new Chart(document.getElementById("bar-chart"), {
                 //     type   : 'bar',
                 //     data   : {
@@ -197,7 +197,7 @@ function fetchAndDisplayAllMenus(selectedValue) {
     $.get("/menus/generate", function (data) {
         var generatedMenus = data;
         var generatedMenusDiv = document.getElementById("generatedMenus");
-        var resultHtml = "<h2>모든 식단</h2><ul>";
+        var resultHtml = "<h2>회원님만을 위한 식단입니다</h2><ul>";
 
         generatedMenus.forEach(function (menu, index) {
             if (index !== 0) {
