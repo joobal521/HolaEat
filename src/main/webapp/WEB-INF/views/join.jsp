@@ -21,8 +21,8 @@
     <div class="form_wrap">
         <form enctype="multipart/form-data">
             <div class="form_container">
-                <ul>
-                    <li>
+                <ul class="form-box">
+                    <li class="input-container">
                         <h2 class="form-title">아이디</h2>
                         <input type="text" class="input-box" id="userId" name="userId" placeholder="아이디">
                         <input
@@ -32,24 +32,24 @@
 
                     <p class="error" id="error-id">아이디는 필수정보입니다.</p>
 
-                    <li>
+                    <li class="input-container">
                         <h2 class="form-title">비밀번호</h2>
                         <input type="password" class="input-box" id="userPassword" name="userPassword" placeholder="4-10자의 영문, 특수문자, 숫자 조합">
                     </li>
 
-                    <li>
+                    <li class="input-container">
                     <p class="err">*특수문자는 '! @ # $ % ^ & +='만 사용 가능합니다.</p>
                         <p class="error" id="error-password">비밀번호는 필수정보입니다.</p>
                     <span class="err" id="chkNotice1" size="1"></span>
                    </li>
 
-                <li>
+                <li class="input-container">
                     <h2 class="form-title">비밀번호 확인</h2>
                     <input type="password" class="input-box" id="userPasswordCh" name="userPasswordCh" placeholder="비밀번호 확인">
                     <span class="err" id="chkNotice2" size="1"></span>
                 </li>
 
-                    <li>
+                    <li class="input-container">
                         <h2 class="form-title">이메일</h2>
                         <input type="email" class="input-box" id="userEmail" name="userEmail"  placeholder="example@holaEat.com">
                         <input
@@ -61,13 +61,13 @@
                         <span class="err" id="chkEmail" size="1"></span>
                     </li>
 
-                    <li>
-                        <input class="code-check"  name="input-code" id="input-code" placeholder="인증번호 6자리를 입력해주세요!" maxlength="6">
-                    <input type="button" class="btn" id="code-ch" onclick="authCodeCheck()"
+                    <li class="input-container">
+                        <input class="input-box"  name="input-code" id="input-code" placeholder="인증번호 6자리를 입력해주세요!" maxlength="6">
+                    <input type="button" class="code-btn" id="code-ch" onclick="authCodeCheck()"
                            value="인증">
                     </li>
 
-                    <li>
+                    <li class="input-container">
                         <h2 class="form-title">이름</h2>
                         <input type="text" class="input-box" id="userName" name="userName" placeholder="이름">
                         <p class="error" id="error-name">이름은 필수정보입니다.</p>

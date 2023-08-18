@@ -1,5 +1,6 @@
 package com.spring.holaeat.controller;
 
+import com.spring.holaeat.domain.food.Food;
 import com.spring.holaeat.domain.nutritions.Nutritions;
 import com.spring.holaeat.domain.recipe.Recipe;
 import com.spring.holaeat.service.FoodService;
@@ -41,6 +42,8 @@ public class RecipeController {
             model.addAttribute("blob",blob);
         }
 
+        Food food = foodService.findFoodByFoodId(foodId);
+        model.addAttribute("food",food);
         System.out.println("foodID:"+foodId);
 //        List<Nutritions> nutritions = nutritionsService.getNutritions(foodId);
 //        model.addAttribute("nutrition",nutritions);

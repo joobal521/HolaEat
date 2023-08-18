@@ -1,10 +1,23 @@
 .form_wrap{
-    padding: 10%;
+    padding:10% 20%;
+}
+.form_wrap>form{
+    display: flex;
+    border: solid 1px black;
+    justify-content: center;
 }
 
 .form_container{
     border: 1px solid black;
     padding: 5%;
+}
+
+.form-box{
+    padding: 10px;
+}
+
+.input-container{
+    padding: 10px;
 }
 
 .input-box{
@@ -21,7 +34,7 @@ margin-top: 20px;
 .btn-dupl{
    padding: 5px;
     border-radius: 8px;
-    border: 3px solid aliceblue;
+    border: 1px solid aliceblue;
     background-color: aliceblue;
     color: #1e6b7b;
     margin-left: 10px;
@@ -33,10 +46,43 @@ margin-top: 20px;
 }
 
 .email-btn{
+    padding: 5px;
+    border-radius: 8px;
+    border: 1px solid aliceblue;
+    background-color: aliceblue;
+    color: #1e6b7b;
+cursor: pointer;
+}
 
+.email-btn:hover {
+    color: #1e6b7b;
+    background: aliceblue;
+}
+.code-btn{
+    padding: 5px;
+    border-radius: 8px;
+    border: 1px solid  aliceblue;
+    background-color: aliceblue;
+    color: #1e6b7b;
+    cursor: pointer;
+    margin-left: 10px ;
+
+}
+.code-btn:hover {
+    color: #1e6b7b;
+    background: aliceblue;
 }
 
 .join-btn{
+   padding: 10px 20px;
+    border: 0px;
+    box-sizing: border-box;
+    border-radius: 0.4rem;
+    font-size: 1.6rem;
+    font-weight: 700;
+    cursor: pointer;
+    background: linear-gradient(90deg, rgb(8, 204, 202) 0%, rgb(24, 231, 156) 100%);
+    color: rgb(255, 255, 255);
 
 
 }
@@ -47,10 +93,7 @@ margin-top: 20px;
 }
 
 
-.form_wrap>form{
-    display: flex;
-    border: solid 1px black;
-}
+
 
 /*경고 메시지*/
 .err{

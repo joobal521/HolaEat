@@ -12,36 +12,36 @@
     <title>leave</title>
     <c:set var="path" value="${pageContext.request.contextPath}"/>
     <link rel="stylesheet" type="text/css" href="style/form.css">
+    <link rel="stylesheet" type="text/css" href="style/myPage.css">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 </head>
-<c:import url="header.jsp"/>
 <body>
 <section id="delete-section">
-    <div class="delete">
+    <div class="form_wrap">
         <h2 class="delete_text"> "${sessionScope.userName}"님 정말떠나시나요?</h2>
         <form id="delete">
-            <div>
-                <input type="text" class="square" id="userId"
+            <div class="form_container">
+                <ul>
+            <li>
+                <input type="text" class="input-leave" id="userId"
                        name="userId" value="${sessionScope.log}" readonly>
-            </div>
-            <div>
-                <input type="password" class="square" id="userPassword"
+            </li>
+            <li>
+                <input type="password" class="input-leave" id="userPassword"
                        name="userPassword" placeholder="비밀번호">
-            </div>
-            <ul>
+            </li>
                 <li class="error" id="error-password">비밀번호를 입력해주세요.
-                <li>
-            </ul>
-            <button type="button" id="delete-btn"
-                    onclick="checkValue(form)">회원탈퇴</button>
-        </form>
+                </li>
 
-        <div class="back_box">
-            <a  href="myPage"><span class="back">마이페이지로 이동</span></a>
-        </div>
+                    <button type="button" id="delete-btn"
+                            onclick="checkValue(form)">회원탈퇴</button>
+                </ul>
+
+            </div>
+        </form>
     </div>
 </section>
 <script src="script/leave.js"></script>
 </body>
-<c:import url="footer.jsp"/>
 </html>

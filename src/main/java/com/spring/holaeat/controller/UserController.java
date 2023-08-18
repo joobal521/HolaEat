@@ -43,11 +43,10 @@ public class UserController {
 
         //회원가입
         userService.createUser(userDto);
-
         // 프로필 이미지 생성
 
-        ProfileImgRequestDto profileImgDto = new ProfileImgRequestDto();
-        profileImgService.createProfile(profileImgDto);
+//        ProfileImgRequestDto profileImgDto = new ProfileImgRequestDto();
+//        profileImgService.createProfile(profileImgDto);
 
         System.out.println("join success");
         response.put("result",true);
