@@ -64,20 +64,10 @@ public String gainPower(@RequestParam("adminid") String id, @RequestParam("admin
     @PostMapping(value="adminIngr/create",consumes = "multipart/form-data")
     public String addIngredient(@ModelAttribute IngredientsRequestDto ingredientsRequestDto) {
         ingredientsService.addIngredient(ingredientsRequestDto);
-
-
         return "adminIngr";
     }
 
     //재료정보수정
-//    @PutMapping(value = "adminIngr/{ingrId}", consumes = "multipart/form-data")
-//    public String updateIngredient(@PathVariable int ingrId, @RequestBody IngredientsRequestDto ingredientsRequestDto) {
-//        Ingredients ingredient = ingredientsService.findById(ingrId);
-//        ingredientsService.update(ingredient, ingredientsRequestDto);
-//
-//        return "adminIngr";
-//    }
-
     @Transactional
     @PutMapping(value = "adminIngr/{ingrId}", consumes = "multipart/form-data")
     public String updateIngredient(@PathVariable int ingrId, @ModelAttribute IngredientsRequestDto ingredientsRequestDto) {
@@ -101,18 +91,23 @@ public String gainPower(@RequestParam("adminid") String id, @RequestParam("admin
         return "adminIngr";
     }
 
-////메뉴관리
+//메뉴관리
     @GetMapping("adminMenu")
     public String getAllMenu(Model model){
-
             List<Food> list = foodService.getAllFood();
             model.addAttribute("foodList",list);
-
-
-
         return "adminMenu";
     }
 
+    //음식 추가
+    @PostMapping(value="adminMenu/create",consumes = "multipart/form-data")
+    public String addFood(@ModelAttribute FoodRequestDto foodRequestDto) {
+        foodService.addFood(foodRequestDto);
+        return "adminIngr";
+    }
+
+
+    //음식수정
     @Transactional
     @PutMapping("adminMenu/{foodId}")
     public String updateFood(@PathVariable String foodId, @ModelAttribute FoodRequestDto foodRequestDto){
@@ -128,7 +123,7 @@ public String gainPower(@RequestParam("adminid") String id, @RequestParam("admin
         return "adminMenu";
     }
 
-//
+
 //    //후기게시판관리
 //    @GetMapping("adminReview")
 //    public String getReview(Model model){

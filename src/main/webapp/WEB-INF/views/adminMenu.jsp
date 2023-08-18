@@ -33,6 +33,8 @@
                 <tr>
                     <td>${food.foodId}</td>
                     <td class="foodName">${food.foodName}</td>
+                    <td class="foodName">${food.foodGroup}</td>
+                    <td class="foodName">${food.foodNational}</td>
                     <td class="allergyInfo">${food.allergyInfo ? '예' : '아니오'}</td>
                     <td class="weightControl">${food.weightControl ? '예' : '아니오'}</td>
                     <td class="vegan">${food.vegan ? '예' : '아니오'}</td>

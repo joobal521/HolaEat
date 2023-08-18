@@ -87,4 +87,26 @@ public class Food {
         this.sugars = sugars;
         this.natrium = natrium;
     }
+
+    public Food(FoodRequestDto foodRequestDto){
+        this.foodId = foodRequestDto.getFoodId();
+        this.foodNational = foodRequestDto.getFoodNational();
+        this.foodGroup = foodRequestDto.getFoodGroup();
+        this.foodName = foodRequestDto.getFoodName();
+        this.foodWeight = foodRequestDto.getFoodWeight();
+        this.allergyInfo = foodRequestDto.isAllergyInfo();
+        this.vegan = foodRequestDto.isVegan();
+        this.weightControl = foodRequestDto.isWeightControl();
+        this.balanced = foodRequestDto.isBalanced();
+        this.sideDish = foodRequestDto.isSideDish();
+        this.foodImg = foodRequestDto.getFoodImg();
+        this.kcal = foodRequestDto.getKcal();
+        this.carb = foodRequestDto.getCarb();
+        this.protein = foodRequestDto.getProtein();
+        this.fat = foodRequestDto.getFat();
+        this.sugars = foodRequestDto.getSugars();
+        this.natrium = foodRequestDto.getNatrium();
+    }
+
+
 }

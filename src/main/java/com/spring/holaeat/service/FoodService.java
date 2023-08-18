@@ -28,6 +28,23 @@ public class FoodService {
         food.remainImg(img);
         foodRepository.save(food);
     }
+
+
+        public void addFood(FoodRequestDto foodRequestDto){
+//            String id = generateId();
+            Food food = new Food(
+//                    id,
+                    foodRequestDto); // Food 생성자 수정 필요
+            foodRepository.save(food);
+        }
+
+//        private String generateId() {
+//            // 데이터베이스에서 가장 큰 ID 값 조회 후 +1
+//            int maxId = foodRepository.findMaxId(); // foodRepository에서 해당 메소드를 구현해야 함
+//            return "F" + String.format("%04d", maxId + 1); // "F0055", "F0056", ...
+//        }
+
+
     public List<Food> findFoodListByFoodId(String foodId){
         return foodRepository.findFoodListByFoodId(foodId);
     }
