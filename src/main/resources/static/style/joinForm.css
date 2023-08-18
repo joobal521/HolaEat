@@ -25,10 +25,15 @@ margin-top: 20px;
     background-color: aliceblue;
     color: #1e6b7b;
     margin-left: 10px;
+    cursor: pointer;
 }
 .btn-dupl:hover {
     color: #1e6b7b;
     background: aliceblue;
+}
+
+.email-btn{
+
 }
 
 .join-btn{

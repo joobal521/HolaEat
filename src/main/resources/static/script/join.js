@@ -214,9 +214,11 @@ function emailAuthentication() {
 
 /* 인증번호 확인*/
 function authCodeCheck() {
-    if (isIdChecked) {
+
         var inputCode = $('#code').val();
+        console.log(inputCode);
                 if (inputCode === code) {
+                    console.log("인증 번호 일치");
                     alert("인증 되었습니다.");
                     $("#code").prop('disabled', true);
                     $("#code-ch").prop('disabled', true);
@@ -229,7 +231,7 @@ function authCodeCheck() {
                 //     alert('다시 인증번호를 입력받아주세요');
                 // }
 
-    }
+
 }
 
 
