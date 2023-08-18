@@ -61,9 +61,6 @@ public class MainController {
     @GetMapping(value = "adminUser")
     public String adminUser() {return "adminUser";}
 
-    @GetMapping(value = "adminReview")
-    public String adminReview() {return "adminReview";}
-
     @GetMapping(value = "/reviewUpdate")
     public String reviewUpdate(@RequestParam("reviewNo") long reviewNo, Model model) {
         Optional<Review> review = reviewRepository.findById(reviewNo);

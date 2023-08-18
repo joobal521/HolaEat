@@ -1,9 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<head>
-</head>
 <body>
-
 <div>
     <h1>메뉴관리</h1>
     <div class="admin-menu">
@@ -13,7 +10,7 @@
                 <th>음식 ID</th>
                 <th>음식 이름</th>
                 <th>식품군</th>
-                <th>음식종류(나라)</th>>
+                <th>음식종류(나라)</th>
                 <th><button id="filterToggleAllergy">알러지</button></th>
                 <th><button id="filterToggleWeightControl">체중조절식</button></th>
                 <th><button id="filterToggleVegan">비건</button></th>
@@ -27,8 +24,6 @@
                 <th>나트륨(mg)</th>
                 <th>수정</th>
                 <th>삭제</th>
-
-
             </tr>
             </thead>
             <tbody class="admin-foodList">
@@ -334,43 +329,7 @@
         });
         });
 
-    // $(document).ready(function() {
-    //     $("#filterToggleAllergy").click(function() {
-    //         toggleFilter(".allergyInfo", "예", $(this));
-    //     });
-    //
-    //     $("#filterToggleWeightControl").click(function() {
-    //         toggleFilter(".weightControl", "예", $(this));
-    //     });
-    //     $("#filterToggleVegan").click(function() {
-    //         toggleFilter(".vegan", "예", $(this));
-    //     });
-    //     $("#filterToggleBalanced").click(function() {
-    //         toggleFilter(".balanced", "예", $(this));
-    //     });
-    //     $("#filterToggleSideDish").click(function() {
-    //         toggleFilter(".sideDish", "예", $(this));
-    //     });
-    //
-    //
-    //     function toggleFilter(columnClass, targetValue, buttonElement) {
-    //         var isActive = buttonElement.hasClass("active");
-    //
-    //         $(".admin-foodList tr").each(function() {
-    //             var cell = $(this).find(columnClass);
-    //             var cellValue = cell.text();
-    //
-    //             if (isActive && cellValue !== targetValue) {
-    //                 $(this).hide();
-    //             } else {
-    //                 $(this).show();
-    //             }
-    //         });
-    //
-    //         buttonElement.toggleClass("active");
-    //     }
-    //
-    // });
+
     $(document).ready(function() {
         var filterStates = {
             ".allergyInfo": "all",
@@ -457,63 +416,6 @@
         //
         //     buttonElement.text(buttonText);
         // }
-
-        $(document).ready(function() {
-            var sortOrder = {
-                "kcal": "none",
-                "carb": "none",
-                "protein": "none",
-                "fat": "none",
-                "sugars": "none",
-                "natrium": "none"
-            };
-
-            $("#sortKcalAsc").click(function() {
-                sortTable("kcal", "asc");
-            });
-
-            $("#sortKcalDesc").click(function() {
-                sortTable("kcal", "desc");
-            });
-
-            $("#sortCarbAsc").click(function() {
-                sortTable("carb", "asc");
-            });
-
-            $("#sortCarbDesc").click(function() {
-                sortTable("carb", "desc");
-            });
-
-            // Add similar click handlers for other nutrients...
-
-            function sortTable(nutrient, order) {
-                var rows = $(".admin-foodList tr").get();
-
-                rows.sort(function(row1, row2) {
-                    var value1 = parseFloat($(row1).find("." + nutrient).text());
-                    var value2 = parseFloat($(row2).find("." + nutrient).text());
-
-                    if (order === "asc") {
-                        return value1 - value2;
-                    } else {
-                        return value2 - value1;
-                    }
-                });
-
-                $(".admin-foodList").empty();
-                $.each(rows, function(index, row) {
-                    $(".admin-foodList").append(row);
-                });
-
-                // Update sortOrder
-                for (var key in sortOrder) {
-                    if (sortOrder.hasOwnProperty(key)) {
-                        sortOrder[key] = "none";
-                    }
-                }
-                sortOrder[nutrient] = order;
-            }
-        });
 
     });
 

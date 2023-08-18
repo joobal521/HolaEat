@@ -29,8 +29,12 @@ public class ReviewCommentService {
 
     }
 
+    //댓글있는 게시글 삭제
+    @Transactional
+    public void deleteByReviewNo(long reviewNo){
+        reviewCommentRepository.deleteByReviewNo(reviewNo);
 
-
+    }
 
 
 //    public List<Comment> getCommentsByReviewNo(String reviewNo) {

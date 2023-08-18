@@ -39,3 +39,7 @@
 .gainpower-form {
 
 }
+
+table input[type="text"] {
+    width: 60px;
+}

@@ -1,3 +1,13 @@
+*{
+    list-style:none;
+    text-decoration: none;
+    padding: 0;
+    margin: 0;
+
+}
+body,header,footer{
+    background-color: #dce4cf;
+}
 /* header css*/
 .header_wrap{
     border: 1px solid black;
@@ -35,13 +45,6 @@
     align-items: center;
 }
 
-*{
-    list-style:none;
-    text-decoration: none;
-    padding: 0;
-    margin: 0;
-    background-color: #dce4cf;
-}
 
 section{
     min-height:200vh;
