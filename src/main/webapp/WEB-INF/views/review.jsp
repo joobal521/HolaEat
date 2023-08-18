@@ -70,7 +70,7 @@
                         </c:otherwise>
                     </c:choose>></textarea>
                 <div class="commentBtn">
-                    <c:if test="${review.userId == log}">
+                    <c:if test="${not empty log}">
                         <input type="button" id="commentBtn" value="등록하기" onclick="addComment()">
                         <input type="button" id="commentDelBtn" value="취소하기" onclick="delComment()">
                     </c:if>
