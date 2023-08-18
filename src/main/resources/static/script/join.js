@@ -217,7 +217,9 @@ function authCodeCheck() {
 
         var inputCode = $('#code').val();
         console.log(inputCode);
+        console.log(code);
                 if (inputCode === code) {
+                    console.log(code);
                     console.log("인증 번호 일치");
                     alert("인증 되었습니다.");
                     $("#code").prop('disabled', true);
