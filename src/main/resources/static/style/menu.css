@@ -28,5 +28,20 @@
 }
 
 #generatedMenus li{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
 
+#myform{
+    border: 1px solid #ffb9b9;
+    border-radius: 10px;
+}
+
+#myform, #myform>ul, #myform h2, #myform span, #myform li, #myform label, #myform div{
+    background-color: #ffb9b9;
+}
+
+.ing{
+    display: flex;
 }

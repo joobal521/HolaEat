@@ -104,76 +104,80 @@ function fetchAndDisplayMenu(selectedNational) {
                 let totalFats = menu.food1Fat + menu.food2Fat + menu.food3Fat + menu.food4Fat + menu.food5Fat;
 
                 resultHtml += "<li>" + "식단정보<br>" +
-                    "메인메뉴1: " + menu.food1 + " (" + menu.food1Weight + "g)  </br>" +
-                    "칼로리: " + menu.food1Kcal + "Kcal </br>" +
-                    "탄수화물: " + menu.food1Carb + "g </br>" +
-                    "단백질: " + menu.food1Protein + "g </br>" +
-                    "지방: " + menu.food1Fat + "g </br>" +
+                    "메인메뉴1: " + menu.food1 + " (" + menu.food1Weight + "g)  " +
+                    "<button class='toggle-btn'>Nutrition</button>" +
+                    "<div class='nutritional-info hidden'>" +
+                    "칼로리: " + menu.food1Kcal + "Kcal <br>" +
+                    "탄수화물: " + menu.food1Carb + "g <br>" +
+                    "단백질: " + menu.food1Protein + "g <br>" +
+                    "지방: " + menu.food1Fat + "g <br>" +
+                    "</div>";
 
 
-                    "메인메뉴2: " + menu.food2 + " (" + menu.food2Weight + "g) </br>" +
-                    "칼로리: " + menu.food2Kcal + "Kcal </br>" +
-                    "탄수화물: " + menu.food2Carb + "g </br>" +
-                    "단백질: " + menu.food2Protein + "g </br>" +
-                    "지방: " + menu.food2Fat + "g </br>" +
+                // 메인메뉴2 정보
+                resultHtml += "메인메뉴2: " + menu.food2 + " (" + menu.food2Weight + "g)  " +
+                    "<button class='toggle-btn'>Nutrition</button>" +
+                    "<div class='nutritional-info hidden'>" +
+                    "칼로리: " + menu.food2Kcal + "Kcal <br>" +
+                    "탄수화물: " + menu.food2Carb + "g <br>" +
+                    "단백질: " + menu.food2Protein + "g <br>" +
+                    "지방: " + menu.food2Fat + "g <br>" +
+                    "</div>";
 
+                // 사이드1 정보
+                resultHtml += "사이드1: " + menu.food3 + " (" + menu.food3Weight + "g)  " +
+                    "<button class='toggle-btn'>Nutrition</button>" +
+                    "<div class='nutritional-info hidden'>" +
+                    "칼로리: " + menu.food3Kcal + "Kcal <br>" +
+                    "탄수화물: " + menu.food3Carb + "g <br>" +
+                    "단백질: " + menu.food3Protein + "g <br>" +
+                    "지방: " + menu.food3Fat + "g <br>" +
+                    "</div>";
 
-                    "사이드1: " + menu.food3 + " (" + menu.food3Weight + "g)</br>" +
-                    "칼로리: " + menu.food3Kcal + "Kcal </br>" +
-                    "탄수화물: " + menu.food3Carb + "g </br>" +
-                    "단백질: " + menu.food3Protein + "g </br>" +
-                    "지방: " + menu.food3Fat + "g </br>" +
+                // 사이드2 정보
+                resultHtml += "사이드2: " + menu.food4 + " (" + menu.food4Weight + "g)  " +
+                    "<button class='toggle-btn'>Nutrition</button>" +
+                    "<div class='nutritional-info hidden'>" +
+                    "칼로리: " + menu.food4Kcal + "Kcal <br>" +
+                    "탄수화물: " + menu.food4Carb + "g <br>" +
+                    "단백질: " + menu.food4Protein + "g <br>" +
+                    "지방: " + menu.food4Fat + "g <br>" +
+                    "</div>";
 
+                // 사이드3 정보
+                resultHtml += "사이드3: " + menu.food5 + " (" + menu.food5Weight + "g)  " +
+                    "<button class='toggle-btn'>Nutrition</button>" +
+                    "<div class='nutritional-info hidden'>" +
+                    "칼로리: " + menu.food5Kcal + "Kcal <br>" +
+                    "탄수화물: " + menu.food5Carb + "g <br>" +
+                    "단백질: " + menu.food5Protein + "g <br>" +
+                    "지방: " + menu.food5Fat + "g <br>" +
+                    "</div>";
 
-                    "사이드2: " + menu.food4 + " (" + menu.food4Weight + "g) </br>" +
-                    "칼로리: " + menu.food4Kcal + "Kcal </br>" +
-                    "탄수화물: " + menu.food4Carb + "g </br>" +
-                    "단백질: " + menu.food4Protein + "g </br>" +
-                    "지방: " + menu.food4Fat + "g </br>" +
-
-
-                    "사이드3: " + menu.food5 + " (" + menu.food5Weight + "g) </br>" +
-                    "칼로리: " + menu.food5Kcal + "Kcal </br>" +
-                    "탄수화물: " + menu.food5Carb + "g </br>" +
-                    "단백질: " + menu.food5Protein + "g </br>" +
-                    "지방: " + menu.food5Fat + "g </br>" +
-
-                    "주재료1: " + menu.main + "</br>" +
-                    "주재료2: " + menu.main2 + "</br>" +
-                    "총 무게: " + menuTotalWeight + "g" + "</br>" +
+                resultHtml += "주재료1: " + menu.main + "<br>" +
+                    "주재료2: " + menu.main2 + "<br>" +
+                    "총 무게: " + menuTotalWeight + "g" + "<br>" +
                     "총 칼로리: " + totalCalories + "Kcal" +
                     "총 탄수화물: " + totalCarbs + "g" +
                     "총 단백질: " + totalProteins + "g" +
                     "총 지방: " + totalFats + "g" +
-
+                    "</li>";
                     "</hr></li></br></br></br></hr>";
-                // new Chart(document.getElementById("bar-chart"), {
-                //     type   : 'bar',
-                //     data   : {
-                //         labels  : ["탄수화물", "단백질", "지방"],
-                //         datasets: [
-                //             {
-                //                 label          : "Population (millions)",
-                //                 backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f"],
-                //                 data           : [totalCarbs, totalProteins, totalFats]
-                //             }
-                //         ]
-                //     },
-                //     options: {
-                //         legend: {display: false},
-                //         title : {
-                //             display: true,
-                //             text   : 'Predicted world population (millions) in 2050'
-                //         }
-                //     }
-                // });
-                //
+
 
             }
         });
 
         resultHtml += "</ul>";
         generatedMenusDiv.innerHTML = resultHtml;
+
+        var toggleButtons = document.querySelectorAll('.toggle-btn');
+        toggleButtons.forEach(function (button) {
+            button.addEventListener('click', function () {
+                var nutritionalInfo = this.nextElementSibling;
+                nutritionalInfo.classList.toggle('hidden'); // Toggle the 'hidden' class
+            });
+        });
     });
 }
 
@@ -277,6 +281,4 @@ function fetchAndDisplayAllMenus(selectedValue) {
     });
 }
 
-
-// 차트
 

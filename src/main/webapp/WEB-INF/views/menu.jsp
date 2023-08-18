@@ -81,7 +81,7 @@
                 </li>
             </ul>
             <input type="button" class="button" id="save_btn" name="save_btn" value="내 칼로리 정보 저장">
-            <input type="button" class="button" id="menu_btn" name="menu_btn" value="맞춤식단 출력" onclick="fetchAndDisplayMenu()">
+            <input type="button" class="button" id="menu_btn" name="menu_btn" value="메뉴보기" onclick="fetchAndDisplayMenu()">
             <hr>
             <div class="json_wrap">
 
@@ -117,7 +117,7 @@
                         </select>
                     </div>
                 </div>
-
+            </div>
                 <div class="prefer">
                     <h2>이 재료는 넣어주세요!</h2>
                     <select name="prefer" id="prefer">
@@ -184,27 +184,14 @@
                     </select>
                 </div>
 
-                <div class="personal_menu">
-                    <h2>${userName}님만을 위한 맞춤식단이 여기 있습니다!</h2>
-                    <div id="generatedMenus"></div>
-                    <div id="total_calories"></div>
-                </div>
 
-
-            </div>
         </form>
-        <%--    열량 계산기 끝 --%>
 
-
-        <%--            <div class="btn-container">--%>
-        <%--            <%—                <a class="btn" href="/health?national=all">All</a>—%>--%>
-        <%--            <%—                <a class="btn" href="/health?national=한식">한식</a>—%>--%>
-        <%--            <%—                <a class="btn" href="/health?national=양식">양식</a>—%>--%>
-        <%--            <%—                <a class="btn" href="/health?national=일식">일식</a>—%>--%>
-        <%--            <%—                <a class="btn" href="/health?national=중식">중식</a>—%>--%>
-        <%--            <%—                <a class="btn" href="/health?national=샐러드">샐러드</a>—%>--%>
-        <%--            <%—            </div>—%>--%>
-
+            <div class="personal_menu">
+                <h2>${userName}님만을 위한 맞춤식단이 여기 있습니다!</h2>
+                <div id="generatedMenus"></div>
+                <div id="total_calories"></div>
+            </div>
 
 </section>
 <script src="script/cal.js"></script>
