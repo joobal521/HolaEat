@@ -217,12 +217,12 @@ function authCodeCheck() {
     if (isIdChecked) {
         var inputCode = $('#code').val();
                 if (inputCode === code) {
-                    alert("인증되었습니다.");
+                    alert("인증 되었습니다.");
                     $("#code").prop('disabled', true);
                     $("#code-ch").prop('disabled', true);
                     isToKenChecked = true;
                 }else{
-                    alert("인증코드가 맞지 않습니다.")
+                    alert("인증 코드가 맞지 않습니다.")
                 }
 
                 // if (data.result === "The token code has expired.") {
