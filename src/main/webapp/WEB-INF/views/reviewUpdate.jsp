@@ -49,6 +49,8 @@
                     <input type="file" id="file" name="file" accept="image/*"/>
                     <div class="select_img">
                       <img src="data:image/png;base64,${ImageParsor.parseBlobToBase64(review.img)}" id="img" name="img"  alt="Review Image">
+                        <input type="hidden" id="imgCheck" name="imgCheck" value="${ImageParsor.parseBlobToBase64(review.img)}">
+
                     </div>
 
                 </div>

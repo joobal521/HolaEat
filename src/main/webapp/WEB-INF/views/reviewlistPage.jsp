@@ -20,6 +20,21 @@
     <div>게시글 목록</div>
   pageNumber 확인용 : ${pageNumber}
 
+    <div class="search_box">
+        <form id="searchForm" method="get" action="/reviewlist/1">
+            <div class="searchTag">
+                <select title="검색 유형 선택" id="searchType" name="searchType">
+                    <option name="all" value="all">전체 검색</option>
+                    <option name="title" value="title">제목</option>
+                    <option name="author" value="author">작성자</option>
+                </select>
+                <input type="text" name="keyword" id="keyword" placeholder="검색어를 입력해 주세요." title="검색창"/>
+                <button id="searchBtn" onclick="" class="searchBtn">검색
+                </button>
+            </div>
+        </form>
+    </div>
+
     <div>
         <c:choose>
             <c:when test="${empty log}">
@@ -72,20 +87,7 @@
 
         </div>
 
-        <div class="search_box">
-            <form id="searchForm" method="get" action="/reviewlist/1">
-                <div class="searchTag">
-                    <select title="검색 유형 선택" id="searchType" name="searchType">
-                        <option name="all" value="all">전체 검색</option>
-                        <option name="title" value="title">제목</option>
-                        <option name="author" value="author">작성자</option>
-                    </select>
-                    <input type="text" name="keyword" id="keyword" placeholder="검색어를 입력해 주세요." title="검색창"/>
-                    <button id="searchBtn" onclick="" class="searchBtn">검색
-                    </button>
-                </div>
-            </form>
-        </div>
+
 
 
     </div>

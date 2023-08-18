@@ -71,6 +71,8 @@ function checkValueWrite(htmlForm) {
 function CheckValueUpdate(htmlForm, reviewNo) {
     const title = htmlForm.title.value;
     const content = htmlForm.content.value;
+    const imgCheck = htmlForm.imgCheck.value;
+    console.log("imgCheck 확인용"+imgCheck);
 
     let imgFile = null;
 
@@ -78,7 +80,9 @@ function CheckValueUpdate(htmlForm, reviewNo) {
         imgFile = htmlForm.file.files[0];
     }
 
-    if (title.trim() === "" && content.trim() === "") {
+    console.log("imgFile 확인용"+imgFile);
+
+    if (title.trim() === "" && content.trim() === "" && imgFile === imgCheck) {
         alert("수정할 내용이 없습니다.");
         return;
     }
@@ -169,4 +173,7 @@ function goBack() {
     document.documentElement.style.overflow = 'auto';
 }
 
-
+//목록으로 되돌아가기
+function goBackToList() {
+    location.href = "reviewlist/1";
+}

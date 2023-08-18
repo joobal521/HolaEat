@@ -1,14 +1,11 @@
-
 function addComment() {
     const reviewNo = $('#reviewNo').val();
     const msgBoxValue = $('#msg-box').val();
     const userId = $('#logVal').val();
-    console.log("userId logval변환확인"+ userId)
+    console.log("userId logval변환확인" + userId)
 
     const requestData = {
-        reviewNo: reviewNo,
-        content: msgBoxValue,
-        userId: userId
+        reviewNo: reviewNo, content: msgBoxValue, userId: userId
     };
 
     $.ajax({
@@ -26,90 +23,96 @@ function addComment() {
             alert('댓글을 입력해주세요.');
         } else {
             console.log("userId 출력확인1 : " + userId);
-            loadComments(reviewNo); // Update comments without refreshing the page
+            loadComments(reviewNo);
             $('#msg-box').val('');
         }
 
     });
 }
 
-// 페이지 로드 시 댓글 데이터를 가져와 화면에 표시하는 함수
+// 페이지 로드 시 댓글 데이터를 가져와 화면에 표시
 function loadComments(reviewNo) {
     $.get(`/comment/${reviewNo}`, function (comments) {
         const commentContainer = $('#comment-container');
         commentContainer.empty();
 
         comments.forEach(function (comment) {
-            drawComments(comment.userId, comment.content, comment.commentId); // 댓글 데이터로 화면에 표시
+            drawComments(comment.userId, comment.content, comment.commentId);
         });
     });
 }
 
-function drawComments( userId, content, commentId) {
+//댓글 출력
+
+function drawComments(userId, content, commentId) {
     const commentContainer = $('#comment-container');
     console.log("userId 출력확인2 : " + userId);
 
-
+    const log = $('#logVal').val();
 
     console.log("commentId : " + commentId);
     const newComment = `
-        <form class="comment-item">
-
-            <input type="text" value="ID 확인용 : ${userId}"  readonly/>
+        <form class="comment-item" id="comment-item-${commentId}">
+            <input type="text" id="comment-id" value="ID 확인용 : ${userId}" readonly/>
             <br>
-            <input type="text" value="${content}" readonly/>
+            <textarea id="comment-content-${commentId}" readonly>${content}</textarea>
             <br>
-
- <button id="commentUpdateBtn" onclick="updateComments(${commentId})" class="commentUpdateBtn">수정</button>
-    <button id="commentDeleteBtn" onclick="deleteComments(${commentId})" class="commentDeleteBtn">삭제</button>
- 
-                   <br>
+            <div class="comment-btn">
+                <c:choose>
+                    <c:when test="${userId == log}">
+                        <button id="commentUpdateBtn-${commentId}" onclick="updateComments(${commentId})" class="commentUpdateBtn">수정</button>
+                        <button id="commentDeleteBtn-${commentId}" onclick="deleteComments(${commentId})" class="commentDeleteBtn">삭제</button>
+                    </c:when>
+                    <c:otherwise>
+                        <div></div>
+                    </c:otherwise>
+                </c:choose>
+            </div>
         </form>
     `;
     commentContainer.prepend(newComment);
 }
 
-// 수정 버튼 클릭 시 호출되는 함수
+// 수정
 function updateComments(commentId) {
     const commentItem = $(`#comment-item-${commentId}`);
-    const contentInput = commentItem.find('.content-input');
+    const contentTextarea = commentItem.find('textarea');
+    const newContent = contentTextarea.val();
 
-    contentInput.prop('readonly', false); // readonly 해제
-    contentInput.focus(); // 입력 필드에 포커스
-}
 
-// 수정된 내용을 저장하고 화면을 업데이트하는 함수
-function saveUpdatedComments(commentId) {
-    const commentItem = $(`#comment-item-${commentId}`);
-    const contentInput = commentItem.find('.content-input');
-    const newContent = contentInput.val();
+    if (contentTextarea.prop('readonly')) {
+        contentTextarea.prop('readonly', false);
+        const updateButton = commentItem.find('.commentUpdateBtn');
+        updateButton.text('저장');
+    } else {
+        const formData = new FormData();
+        formData.append('content', newContent);
 
-    //수정된 내용 업데이트
 
         $.ajax({
-        type: "PUT",
-        url: `/comment/${commentId}/update`,
-        dataType: "json",
-        success: function(response) {
-
-            if (response.message === "success") {
-                const reviewNo = $('#reviewNo').val(); // Get reviewNo value
-                loadComments(reviewNo);
-            } else {
-                alert(response.message);
+            type: "PUT",
+            url: `/comment/${commentId}/update`,
+            data: formData, // Use FormData
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                if (response.message === "success") {
+                    const reviewNo = $('#reviewNo').val();
+                    loadComments(reviewNo);
+                } else {
+                    alert(response.message);
+                }
+            },
+            error: function (error) {
+                console.error(error);
             }
-        },
-        error: function(error) {
-            console.error(error);
-        }
-    });
+        });
 
-    // 화면 업데이트
-    contentInput.prop('readonly', true); // 다시 readonly로 설정
-    contentInput.val(newContent); // 수정된 내용으로 값 설정
+        contentTextarea.prop('readonly', true);
+        const updateButton = commentItem.find('.commentUpdateBtn');
+        updateButton.text('수정');
+    }
 }
-
-
 
 $(document).ready(function () {
     const reviewNo = $('#reviewNo').val();
@@ -117,23 +120,17 @@ $(document).ready(function () {
 });
 
 
-
 //댓글 삭제
 function deleteComments(commentId) {
     $.ajax({
-        type: "DELETE",
-        url: `/comment/${commentId}/delete`,
-        dataType: "json",
-        success: function(response) {
-            // Handle the response from the server
+        type: "DELETE", url: `/comment/${commentId}/delete`, dataType: "json", success: function (response) {
             if (response.message === "success") {
-                const reviewNo = $('#reviewNo').val(); // Get reviewNo value
+                const reviewNo = $('#reviewNo').val();
                 loadComments(reviewNo);
             } else {
                 alert(response.message);
             }
-        },
-        error: function(error) {
+        }, error: function (error) {
             // Handle errors
             console.error(error);
         }
@@ -143,40 +140,8 @@ function deleteComments(commentId) {
 }
 
 
-//댓글수정
-// function updateComments(htmlForm,commentId){
-//     const content = htmlForm.content.value;
-//
-//     if (content.trim() === "") {
-//         alert("수정한 내용이 없습니다.");
-//         return;
-//     }
-//
-//     var form = new FormData();
-//     form.append("content", content);
-//
-//
-//     $.ajax({
-//         type: "PUT",
-//         url: `/comment/${commentId}/update`,
-//         dataType: "json",
-//         success: function(response) {
-//
-//             if (response.message === "success") {
-//                 const reviewNo = $('#reviewNo').val(); // Get reviewNo value
-//                 loadComments(reviewNo);
-//             } else {
-//                 alert(response.message);
-//             }
-//         },
-//         error: function(error) {
-//             console.error(error);
-//         }
-//     });
-// }
-
-
 /*댓글 등록 취소 */
 function delComment() {
-    $('#msg-box').val('');}
+    $('#msg-box').val('');
+}
 
