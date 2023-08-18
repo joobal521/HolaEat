@@ -70,6 +70,14 @@
                         <option value="4" ${userAllergy eq '4' ? 'selected' : ''}>견과류</option>
                     </select>
                 </li>
+                <li>
+                    <h2>식단종류</h2>
+                    <select name="menu_type" id="menu_type">
+                        <option value="1">일반균형식</option>
+                        <option value="2">체중조절식</option>
+                        <option value="3">비건</option>
+                    </select>
+                </li>
                 <input type="button" class="button" id="calculate" name="calculate" value="계산하기" onclick="calculateCalories()">
 
             </ul>
@@ -81,7 +89,6 @@
                 </li>
             </ul>
             <input type="button" class="button" id="save_btn" name="save_btn" value="내 칼로리 정보 저장">
-            <input type="button" class="button" id="menu_btn" name="menu_btn" value="메뉴보기" onclick="fetchAndDisplayMenu()">
             <hr>
             <div class="json_wrap">
 
@@ -117,7 +124,7 @@
                         </select>
                     </div>
                 </div>
-            </div>
+
                 <div class="prefer">
                     <h2>이 재료는 넣어주세요!</h2>
                     <select name="prefer" id="prefer">
@@ -183,8 +190,9 @@
                         <option value="연근">연근</option>
                     </select>
                 </div>
+                    <input type="button" class="button" id="menu_btn" name="menu_btn" value="메뉴보기" onclick="fetchAndDisplayMenu()">
 
-
+            </div>
         </form>
 
             <div class="personal_menu">
