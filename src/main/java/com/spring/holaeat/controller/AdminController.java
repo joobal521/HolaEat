@@ -7,10 +7,7 @@ import com.spring.holaeat.domain.food.FoodRequestDto;
 import com.spring.holaeat.domain.ingredients.Ingredients;
 import com.spring.holaeat.domain.ingredients.IngredientsRequestDto;
 import com.spring.holaeat.domain.review.Review;
-import com.spring.holaeat.service.FoodService;
-import com.spring.holaeat.service.IngredientsService;
-import com.spring.holaeat.service.MenuService;
-import com.spring.holaeat.service.ReviewService;
+import com.spring.holaeat.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,14 +24,16 @@ public class AdminController {
     private final IngredientsService ingredientsService;
     private final ReviewService reviewService;
 
+    private final ReviewCommentService reviewCommentService;
     private final FoodService foodService;
 
 
     @Autowired
-    public AdminController(AdminRepository adminRepository, IngredientsService ingredientsService, IngredientsRequestDto ingredientsRequestDto, MenuService menuService, ReviewService reviewService, FoodService foodService) {
+    public AdminController(AdminRepository adminRepository, IngredientsService ingredientsService, IngredientsRequestDto ingredientsRequestDto, MenuService menuService, ReviewService reviewService, ReviewCommentController reviewCommentController, ReviewCommentService reviewCommentService, FoodService foodService) {
         this.adminRepository = adminRepository;
         this.ingredientsService = ingredientsService;
         this.reviewService = reviewService;
+        this.reviewCommentService = reviewCommentService;
         this.foodService = foodService;
     }
 
@@ -143,6 +142,7 @@ public String gainPower(@RequestParam("adminid") String id, @RequestParam("admin
 
     @DeleteMapping("adminReview/delete/{reviewNo}")
     public String deleteReview(@PathVariable long reviewNo){
+        reviewCommentService.deleteByReviewNo(reviewNo);
         reviewService.delete(reviewNo);
 
         return "adminReview";

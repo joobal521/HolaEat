@@ -33,41 +33,6 @@ public class IngredientsController {
 
     }
 
-//    @GetMapping("/ingredients")
-//    public String getIngredients(Model model) {
-//        List<Ingredients> ingredientsList = ingredientsService.findByMonthEquals();
-//        List<FoodIngr> monthFoodIngrList = new ArrayList<>(); // 전체 foodIngrList를 담을 리스트
-//        List<Food> monthFoods = new ArrayList<>();
-//
-//        Map<String, String> imageMap = new HashMap<>();
-//
-//        for (Ingredients ingredients : ingredientsList) {
-//            if (ingredients.getIngrImg() != null) {
-//                String base64Image = ImageParsor.parseBlobToBase64(ingredients.getIngrImg());
-//                imageMap.put(String.valueOf(ingredients.getIngrId()), base64Image);
-//            }
-//        }
-//
-//        for (Ingredients ingredient : ingredientsList) {
-//            String ingrId = String.valueOf(ingredient.getIngrId());
-//            List<FoodIngr> foodIngrList = foodIngrService.findFoodIdByIngrId(ingrId);
-//            monthFoodIngrList.addAll(foodIngrList); // 현재 ingrId에 해당하는 foodIngrList를 전체 리스트에 추가
-//        }
-//
-//        for (FoodIngr foodIngr : monthFoodIngrList) {
-//            String foodId = String.valueOf(foodIngr.getFoodId());
-//            List<Food> foods = foodService.findFoodByFoodId(foodId);
-//            monthFoods.addAll(foods);
-//        }
-//
-//
-//        model.addAttribute("ingredientsList", ingredientsList);//식재료리스트
-//        model.addAttribute("monthFoodIngrList", monthFoodIngrList);//
-//        model.addAttribute("blob",imageMap);
-//        model.addAttribute("monthFoods", monthFoods);
-//
-//        return "ingredients"; // ingredients.jsp
-//    }
 
     @GetMapping("/ingredients")
     public String ingredientsOfMonth(Model model){

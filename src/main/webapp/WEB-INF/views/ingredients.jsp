@@ -30,8 +30,6 @@
                             <input type="hidden" id="ingrId-modal" value="${ingrMonth.ingrId}">
                             <div class="ingr-modal">
                                 <div class="ingr-modal-content">
-                                    <h2>${monthList.foodName}</h2>
-                                    <span>${monthList.foodGroup}</span>
                                     <div class="recipe-content" id="recipe-content${roll.index}">
                                         <!--ajax-->
                                     </div>
