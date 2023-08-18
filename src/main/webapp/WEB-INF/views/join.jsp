@@ -55,14 +55,14 @@
                         <input
                                 type="button" class="btn-dupl" id="emailDupl" name="emailDupl"
                                 value="중복 확인" onclick="chkEmail()">
-                        <input type="button" class="btn"
-                                                      id="email_ch" onclick="emailAuthentication()" value="인증메일 보내기">
+                        <input type="button" class="email-btn"
+                                                      id="email_ch" onclick="emailAuthentication()" value="인증 메일 보내기">
                         <p class="error" id="error-email">이메일은 필수정보입니다.</p>
                         <span class="err" id="chkEmail" size="1"></span>
                     </li>
 
                     <li>
-                        <input class="code-check"  name="code" id="code" placeholder="인증번호 6자리를 입력해주세요!" maxlength="6">
+                        <input class="code-check"  name="input-code" id="input-code" placeholder="인증번호 6자리를 입력해주세요!" maxlength="6">
                     <input type="button" class="btn" id="code-ch" onclick="authCodeCheck()"
                            value="인증">
                     </li>

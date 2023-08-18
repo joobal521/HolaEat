@@ -214,22 +214,29 @@ function emailAuthentication() {
 
 /* 인증번호 확인*/
 function authCodeCheck() {
-    if (isIdChecked) {
-        var inputCode = $('#code').val();
-                if (inputCode === code) {
-                    alert("인증되었습니다.");
-                    $("#code").prop('disabled', true);
+
+    var inputCode = $('#input-code').val();
+    var codeAsNumber = parseInt(code, 10); // 10진수로 파싱
+    var inputCodeAsNumber = parseInt(inputCode, 10);
+
+        console.log(inputCodeAsNumber);
+        console.log(codeAsNumber);
+                if (inputCodeAsNumber ===  codeAsNumber){
+                    console.log(codeAsNumber);
+                    console.log("인증 번호 일치");
+                    alert("인증 되었습니다.");
+                    $("#input-code").prop('disabled', true);
                     $("#code-ch").prop('disabled', true);
                     isToKenChecked = true;
                 }else{
-                    alert("인증코드가 맞지 않습니다.")
+                    alert("인증 코드가 맞지 않습니다.")
                 }
 
                 // if (data.result === "The token code has expired.") {
                 //     alert('다시 인증번호를 입력받아주세요');
                 // }
 
-    }
+
 }
 
 
