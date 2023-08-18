@@ -195,9 +195,9 @@ function emailAuthentication() {
             }).done(function(data){
                 console.log(data);
                 if (data !== null) {
+                    $("#code-ch").prop('disabled', false);
                     code=data;
                     console.log(code);
-                    $("#code_ch").prop('disabled', false);
                     alert("인증번호를 확인을 해주세요.");
                     console.log("이메일 확인 코드가 발송되었습니다.");
                     //console.log("확인 코드: " + response.verification_code);
@@ -219,7 +219,7 @@ function authCodeCheck() {
                 if (inputCode === code) {
                     alert("인증되었습니다.");
                     $("#code").prop('disabled', true);
-                    $("#code_ch").prop('disabled', true);
+                    $("#code-ch").prop('disabled', true);
                     isToKenChecked = true;
                 }else{
                     alert("인증코드가 맞지 않습니다.")
