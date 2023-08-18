@@ -215,11 +215,14 @@ function emailAuthentication() {
 /* 인증번호 확인*/
 function authCodeCheck() {
 
-        var inputCode = $('#input-code').val();
-        console.log(inputCode);
-        console.log(code);
-                if (inputCode === code) {
-                    console.log(code);
+    var inputCode = $('#input-code').val();
+    var codeAsNumber = parseInt(code, 10); // 10진수로 파싱
+    var inputCodeAsNumber = parseInt(inputCode, 10);
+
+        console.log(inputCodeAsNumber);
+        console.log(codeAsNumber);
+                if (inputCodeAsNumber ===  codeAsNumber){
+                    console.log(codeAsNumber);
                     console.log("인증 번호 일치");
                     alert("인증 되었습니다.");
                     $("#input-code").prop('disabled', true);
