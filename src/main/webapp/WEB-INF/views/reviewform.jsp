@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html>
 <head>
     <title>reviewform</title>
@@ -8,8 +9,6 @@
 <%--    <link rel="stylesheet" type="text/css" href="../style/review.css">--%>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-
-
 
 </head>
 <c:import url="header.jsp"/>
@@ -31,21 +30,15 @@
                 </div>
                 <div id="img-container">
                     <label for="file">이미지</label>
-                    <input type="file" id="file" name="file" accept="image/png, image/jpg, image/jpeg, image.gif">
+                    <input type="file" id="file" name="file" accept="image/*" onchange="writeThumbnail()">
                     <div class="write_select_img">
-                        <img src="" id="img" name="img"  alt="Review Image">
+                        <img src="" id="img" name="img" alt="Review Image">
                     </div>
                 </div>
-                <%--            <div class="img-container">--%>
-                <%--                <label for="file">이미지</label>--%>
-                <%--                <input type="file" id="file" name="file" accept="image/*"/>--%>
-                <%--                <div class="select_img">--%>
-                <%--                    <img src="data:image/png;base64,${ImageParsor.parseBlobToBase64(review.img)}" id="img" name="img"  alt="Review Image">--%>
-                <%--                </div>--%>
 
-                <%--            </div>--%>
                 <div class="review-write-btn">
                     <button type="button" id="submit" name="submit" onclick="checkValueWrite(form)">등록</button>
+                    <button type="button" id="cancel" name="cancel" onclick="goBack()">취소</button>
                 </div>
             </form>
         </div>

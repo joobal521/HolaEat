@@ -72,25 +72,94 @@
 
     <%--    페이징--%>
 
-    <div class="paging-container">
-        <div class="paging" id="paging">
+<%--    <div class="paging-container">--%>
+<%--        <div class="paging" id="paging">--%>
 
-            <ul class="pagination">
-                <li><a href="/reviewlist/1"><<</a></li>
+<%--            <ul class="pagination">--%>
+<%--                <li><a href="/reviewlist/1"><<</a></li>--%>
 
-                <li><a href="/reviewlist/1">1</a></li>
-                <c:forEach var="i" begin="2" end="${totalPages}" step="1">
-                    <li><a href="/reviewlist/${i}">${i}</a></li>
-                </c:forEach>
-                <li><a href="/reviewlist/${totalPages}"> >> </a></li>
-            </ul>
+<%--                <li><a href="/reviewlist/1">1</a></li>--%>
+<%--                <c:forEach var="i" begin="2" end="${totalPages}" step="1">--%>
+<%--                    <li><a href="/reviewlist/${i}">${i}</a></li>--%>
+<%--                </c:forEach>--%>
+<%--                <li><a href="/reviewlist/${totalPages}"> >> </a></li>--%>
+<%--            </ul>--%>
 
-        </div>
-
-
+<%--        </div>--%>
 
 
+<%--    <div class="paging" id="paging">--%>
+<%--        <ul class="pagination">--%>
+<%--            <li><a href="/reviewlist/1"><<</a></li>--%>
+<%--            <li><a href="/reviewlist/${pageNumber - 1}">< </a></li>--%>
+<%--            <c:choose>--%>
+<%--                <c:when test="${pageNumber <= 3}">--%>
+<%--                    <c:forEach var="i" begin="1" end="5" step="1">--%>
+<%--                        <li><a href="/reviewlist/${i}">${i}</a></li>--%>
+<%--                    </c:forEach>--%>
+<%--                </c:when>--%>
+<%--                <c:when test="${pageNumber > 3 && pageNumber <= totalPages - 2}">--%>
+<%--                    <c:forEach var="i" begin="${pageNumber - 2}" end="${pageNumber + 2}" step="1">--%>
+<%--                        <li><a href="/reviewlist/${i}">${i}</a></li>--%>
+<%--                    </c:forEach>--%>
+<%--                </c:when>--%>
+<%--                <c:otherwise>--%>
+<%--                    <c:forEach var="i" begin="${totalPages - 4}" end="${totalPages}" step="1">--%>
+<%--                        <li><a href="/reviewlist/${i}">${i}</a></li>--%>
+<%--                    </c:forEach>--%>
+<%--                </c:otherwise>--%>
+<%--            </c:choose>--%>
+<%--            <li><a href="/reviewlist/${pageNumber + 1}"> > </a></li>--%>
+<%--            <li><a href="/reviewlist/${totalPages}"> >></a></li>--%>
+<%--        </ul>--%>
+<%--    </div>--%>
+
+    <div class="paging" id="paging">
+        <ul class="pagination">
+            <c:choose>
+                <c:when test="${pageNumber > 1}">
+                    <li><a href="/reviewlist/1"> << </a></li>
+                    <li><a href="/reviewlist/${pageNumber - 1}"> < </a></li>
+                </c:when>
+                <c:otherwise>
+                    <li><span> << </span></li>
+                    <li><span> < </span></li>
+                </c:otherwise>
+            </c:choose>
+            <c:choose>
+                <c:when test="${pageNumber <= 3}">
+                    <c:forEach var="i" begin="1" end="5" step="1">
+                        <li><a href="/reviewlist/${i}">${i}</a></li>
+                    </c:forEach>
+                </c:when>
+                <c:when test="${pageNumber > 3 && pageNumber <= totalPages - 2}">
+                    <c:forEach var="i" begin="${pageNumber - 2}" end="${pageNumber + 2}" step="1">
+                        <li><a href="/reviewlist/${i}">${i}</a></li>
+                    </c:forEach>
+                </c:when>
+                <c:otherwise>
+                    <c:forEach var="i" begin="${totalPages - 4}" end="${totalPages}" step="1">
+                        <li><a href="/reviewlist/${i}">${i}</a></li>
+                    </c:forEach>
+                </c:otherwise>
+            </c:choose>
+            <c:choose>
+                <c:when test="${pageNumber < totalPages}">
+                    <li><a href="/reviewlist/${pageNumber + 1}"> > </a></li>
+                    <li><a href="/reviewlist/${totalPages}"> >> </a></li>
+                </c:when>
+                <c:otherwise>
+                    <li><span> > </span></li>
+                    <li><span> >> </span></li>
+                </c:otherwise>
+            </c:choose>
+        </ul>
     </div>
+
+
+
+
+</div>
 </div>
 </body>
 <script src="script/review.js"></script>
