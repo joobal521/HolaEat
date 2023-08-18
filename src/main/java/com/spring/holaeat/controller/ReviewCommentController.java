@@ -72,7 +72,8 @@ public class ReviewCommentController {
 
 
 //    @PutMapping(value = "/{commentId}/update", consumes = {"multipart/form-data"})
-//    public Response update(@PathVariable String commentId, WebRequest request, @ModelAttribute ReviewCommentRequestDto reviewCommentRequestDto, Model model) {
+//    @Transactional
+//    public Response update(@PathVariable String commentId, WebRequest request, @ModelAttribute ReviewCommentRequestDto reviewCommentRequestDto) {
 //        String log = (String) request.getAttribute("log", WebRequest.SCOPE_SESSION);
 //        if (log == null) {
 //            return new Response("update", "로그인 상태에서만 가능합니다.");
