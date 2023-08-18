@@ -34,6 +34,13 @@ public class HealthService {
 
     }
 
+    //삭제
+    @Transactional
+    public void healthBoardDelete(long healthNo){
+        //게시글 삭제
+        healthRepository.deleteById(healthNo);
+    }
+
     //이미지 여러개
 //    @Transactional
 //    public Long create(
@@ -58,12 +65,7 @@ public class HealthService {
 
 
 
-    //삭제
-    @Transactional
-    public void healthBoardDelete(long healthNo){
-        //게시글 삭제
-        healthRepository.deleteById(healthNo);
-    }
+
 
 
 

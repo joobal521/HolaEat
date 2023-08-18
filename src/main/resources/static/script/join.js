@@ -114,9 +114,11 @@ function chkId() {
             dataType: "json",
 
         }).done(function (data) {
+            console.log(data);
             if (data.result === true) {
                 isIdChecked = true;
-                alert("사용 가능한 아이디입니다.")
+                swal('사용 가능한 아이디입니다','츄라이~','success')
+                //alert("사용 가능한 아이디입니다.")
                 //$('#chkMsgEmail').html('사용 가능한 아이디입니다.').css('color', 'navy');
             } else {
                 alert("이미 사용중인 아이디입니다.")
@@ -168,7 +170,7 @@ function chkEmail() {
 
 }
 
-
+let code;
 
 /* 이메일 인증번호 전송 */
 function emailAuthentication() {
@@ -191,7 +193,9 @@ function emailAuthentication() {
 
             }).done(function(data){
                 console.log(data);
-                if (data.result === true) {
+                if (data !== null) {
+                    code=data;
+                    console.log(code);
                     $("#code_ch").prop('disabled', false);
                     alert("인증번호를 확인을 해주세요.");
                     console.log("이메일 확인 코드가 발송되었습니다.");
@@ -201,7 +205,7 @@ function emailAuthentication() {
                     console.log("이메일 확인 코드 발송에 실패하였습니다.");
                 }
         }).fail(function (error){
-            alert("이메일인증 보내기 실패입니다: " + error.responseJSON.message);
+            alert("이메일 인증 보내기 실패입니다: " + error.responseJSON.message);
         });
 
 }
@@ -211,28 +215,19 @@ function emailAuthentication() {
 function authCodeCheck() {
     if (isIdChecked) {
         var inputCode = $('#code').val();
-        $.ajax({
-            type: "POST",
-            url: "/CheckEmailAuthToken",
-            data: { input_code: inputCode },
-              }).done(function(data){
-                console.log(data);
-                if (data.result === "VERIFICATION_SENT") {
+                if (inputCode === code) {
                     alert("인증되었습니다.");
                     $("#code").prop('disabled', true);
                     $("#code_ch").prop('disabled', true);
                     isToKenChecked = true;
+                }else{
+                    alert("인증코드가 맞지 않습니다.")
                 }
-                if (data.result === "The token code is invalid.") {
-                    alert("인증코드가 맞지않습니다.");
-                }
-                if (data.result === "The token code has expired.") {
-                    alert('다시 인증번호를 입력받아주세요');
-                }
-        }).fail(function (error){
-            alert("이메일인증 보내기 실패입니다: " + error.responseJSON.message);
 
-        });
+                // if (data.result === "The token code has expired.") {
+                //     alert('다시 인증번호를 입력받아주세요');
+                // }
+
     }
 }
 

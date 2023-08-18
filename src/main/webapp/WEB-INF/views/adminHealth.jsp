@@ -18,7 +18,7 @@
         <textarea id="content" name="content"></textarea>
             </div>
             <div class="img_box">
-        <input type="file" id="img" name="img"  accept="image/png, image/jpg, image/jpeg, image.gif" multiple/>
+        <input type="file" id="file" name="file"  accept="image/png, image/jpg, image/jpeg, image.gif" multiple/>
             </div>
         <button type="button" id="btn-health" class="btn" onclick="checkValue(form)">등록</button>
         </div>

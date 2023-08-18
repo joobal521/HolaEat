@@ -13,6 +13,7 @@
     <c:set var="path" value="${pageContext.request.contextPath}"/>
     <link rel="stylesheet" type="text/css" href="style/joinForm.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <c:import url="header.jsp"/>
 <body>
@@ -22,18 +23,18 @@
             <div class="form_container">
                 <ul>
                     <li>
-                        <h2>아이디</h2>
-                        <input type="text" id="userId" name="userId" placeholder="아이디">
+                        <h2 class="form-title">아이디</h2>
+                        <input type="text" class="input-box" id="userId" name="userId" placeholder="아이디">
                         <input
-                                type="button" id="idDupl" name="idDupl"
+                                type="button" class="btn-dupl" id="idDupl" name="idDupl"
                                 value="중복 확인" onclick="chkId()">
                     </li>
 
                     <p class="error" id="error-id">아이디는 필수정보입니다.</p>
 
                     <li>
-                        <h2>비밀번호</h2>
-                        <input type="password" id="userPassword" name="userPassword" placeholder="4-10자의 영문, 특수문자, 숫자 조합">
+                        <h2 class="form-title">비밀번호</h2>
+                        <input type="password" class="input-box" id="userPassword" name="userPassword" placeholder="4-10자의 영문, 특수문자, 숫자 조합">
                     </li>
 
                     <li>
@@ -43,32 +44,32 @@
                    </li>
 
                 <li>
-                    <h2>비밀번호 확인</h2>
-                    <input type="password" id="userPasswordCh" name="userPasswordCh" placeholder="비밀번호 확인">
+                    <h2 class="form-title">비밀번호 확인</h2>
+                    <input type="password" class="input-box" id="userPasswordCh" name="userPasswordCh" placeholder="비밀번호 확인">
                     <span class="err" id="chkNotice2" size="1"></span>
                 </li>
 
                     <li>
-                        <h2>이메일</h2>
-                        <input type="email" id="userEmail" name="userEmail"  placeholder="example@holaEat.com">
+                        <h2 class="form-title">이메일</h2>
+                        <input type="email" class="input-box" id="userEmail" name="userEmail"  placeholder="example@holaEat.com">
                         <input
-                                type="button" id="emailDupl" name="emailDupl"
+                                type="button" class="btn-dupl" id="emailDupl" name="emailDupl"
                                 value="중복 확인" onclick="chkEmail()">
-                        <input type="button" class="square"
+                        <input type="button" class="btn"
                                                       id="email_ch" onclick="emailAuthentication()" value="인증메일 보내기">
                         <p class="error" id="error-email">이메일은 필수정보입니다.</p>
                         <span class="err" id="chkEmail" size="1"></span>
                     </li>
 
                     <li>
-                        <input class="code-check" name="code" id="code" placeholder="인증번호 6자리를 입력해주세요!" maxlength="6">
-                    <input type="button" id="code-ch" onclick="authCodeCheck()"
+                        <input class="code-check"  name="code" id="code" placeholder="인증번호 6자리를 입력해주세요!" maxlength="6">
+                    <input type="button" class="btn" id="code-ch" onclick="authCodeCheck()"
                            value="인증">
                     </li>
 
                     <li>
-                        <h2>이름</h2>
-                        <input type="text" id="userName" name="userName" placeholder="이름">
+                        <h2 class="form-title">이름</h2>
+                        <input type="text" class="input-box" id="userName" name="userName" placeholder="이름">
                         <p class="error" id="error-name">이름은 필수정보입니다.</p>
                     </li>
 
@@ -101,7 +102,7 @@
                     </div>
 
                     <li>
-                        <button type="button" id="submit" name="submit" onclick="checkValue(form)">회원가입</button>
+                        <button type="button" class="join-btn" id="submit" name="submit" onclick="checkValue(form)">회원가입</button>
                     </li>
                 </ul>
             </div>

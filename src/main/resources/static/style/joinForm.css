@@ -7,15 +7,47 @@
     padding: 5%;
 }
 
-input{
-    border: 1px solid black;
+.input-box{
+    padding: 10px;
+    border-radius: 4px;
 }
+/*전체 동의*/
+.label-wrapper{
+margin-top: 20px;
+}
+
+
+/*버튼 모음*/
+.btn-dupl{
+   padding: 5px;
+    border-radius: 8px;
+    border: 3px solid aliceblue;
+    background-color: aliceblue;
+    color: #1e6b7b;
+    margin-left: 10px;
+}
+.btn-dupl:hover {
+    color: #1e6b7b;
+    background: aliceblue;
+}
+
+.join-btn{
+
+
+}
+
+
+.form-title{
+   font-size: 1.2rem ;
+}
+
 
 .form_wrap>form{
     display: flex;
     border: solid 1px black;
 }
 
+/*경고 메시지*/
 .err{
     font-size: 0.8rem;
 }
@@ -25,3 +57,4 @@ input{
     color:red;
     font-size: 0.8em;
 }
+

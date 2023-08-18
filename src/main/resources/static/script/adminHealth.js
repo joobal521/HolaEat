@@ -1,7 +1,7 @@
 function checkValue(htmlForm) {
     const title = htmlForm.title.value;
     const content = htmlForm.content.value;
-    const img = htmlForm.img.files[0];
+    const imgFile = htmlForm.file.files[0];
 
     if (title.trim() === "") {
         console.log("Title is required.");
@@ -17,7 +17,7 @@ function checkValue(htmlForm) {
         var form = new FormData();
         form.append("title", title);
         form.append("content", content);
-        const imgElement = document.getElementById('img');
+        const imgElement = document.getElementById('file');
         const imgFile = imgElement.files[0]; // 이미지 파일 가져오기
 
 
@@ -25,7 +25,7 @@ function checkValue(htmlForm) {
             imgElement.src = URL.createObjectURL(imgFile);
 
             // 이미지 파일을 FormData에 추가
-            form.append("img", imgFile);
+            form.append("file", imgFile);
         } else {
             imgElement.src = ''; // 이미지 없을 때 빈 상태로 설정
         }

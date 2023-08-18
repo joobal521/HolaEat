@@ -27,8 +27,7 @@ public class HealthController {
 
     private final HealthService healthService;
     private final HealthRepository healthRepository;
-    private final AdminRepository adminRepository;
-    private final AdminService adminService;
+
 
 
 
@@ -48,6 +47,9 @@ public class HealthController {
         }
         return response.toMap();
     }
+    //관리자 글 수정
+    @PutMapping("/{healthNo}/")
+
 
     //관리자 글 삭제
     @DeleteMapping("/{healthNo}/delete")

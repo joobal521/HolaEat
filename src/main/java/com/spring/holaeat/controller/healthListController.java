@@ -31,10 +31,10 @@ public class healthListController {
         Health health=healthRepository.findByHealthNo(healthNo);
         model.addAttribute("health",health);
 
-        if(health.getImg()==null)
+        if(health.getFile()==null)
             return "health";
 
-        model.addAttribute("blob", ImageParsor.parseBlobToBase64(health.getImg()));
+        model.addAttribute("blob", ImageParsor.parseBlobToBase64(health.getFile()));
         return "health";
 
     }

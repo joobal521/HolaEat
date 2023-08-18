@@ -158,8 +158,8 @@ public class UserController {
                     updatedUserDto.setUserName(userName);
 
                     userService.updateUser(userId, updatedUserDto);
-
                     response.put("result", true);
+
                 } else {
                     response.put("result", false);
                     response.put("message", "새 비밀번호와 확인 비밀번호가 일치하지 않습니다.");
@@ -187,25 +187,25 @@ public class UserController {
 //        return new ResponseEntity<>(HttpStatus.OK);
 //    }
     @PostMapping("verification-email")
-    public Map sendMessage(@RequestBody  Map<String, String> requestData) {
-        JSONObject response = new JSONObject();
+    public String sendMessage(@RequestBody  Map<String, String> requestData) {
         String email = requestData.get("userEmail");
         System.out.println("이메일"+email);
 
         try {
-            userService.sendCodeToEmail(email);
-            response.put("result", true);
+            return userService.sendCodeToEmail(email);
+
         }catch (Exception e){
             e.printStackTrace();
-            response.put("result", false);
-            response.put("message", "인증코드 전송 실패");
+            System.out.println("인증번호 전송 실패");
 
         }
-        return response.toMap();
+
+        return userService.sendCodeToEmail(email);
+
     }
 
     //이메일 인증 확인
-//    @GetMapping("verifications")
+//    @GetMapping("verification")
 //    public Map verificationEmail(@RequestParam("email") String email,
 //                                            @RequestParam("code") String authCode) {
 //        JSONObject response = new JSONObject();

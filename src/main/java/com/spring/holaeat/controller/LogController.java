@@ -47,6 +47,7 @@ public class LogController {
                     System.out.println(profileImg);
                 }else{
                     System.out.println("안되긴 뭐가 안돼용");
+                    System.out.println("그럼 돼용?");
                 }
 
 

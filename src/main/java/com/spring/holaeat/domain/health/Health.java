@@ -31,7 +31,7 @@ public class Health extends Timestamp {
     private String content;
 
     @Column(columnDefinition = "LONGBLOB")
-    private byte[] img;
+    private byte[] file;
 
 
 
@@ -54,9 +54,9 @@ public class Health extends Timestamp {
         this.title=healthDto.getTitle();
         this.content=healthDto.getContent();
 
-        if (healthDto.getImg() != null) {
+        if (healthDto.getFile() != null) {
             try {
-                this.img = healthDto.getImg().getBytes();
+                this.file = healthDto.getFile().getBytes();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

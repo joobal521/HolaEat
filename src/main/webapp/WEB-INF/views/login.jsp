@@ -12,6 +12,7 @@
     <title>Title</title>
     <c:set var="path" value="${pageContext.request.contextPath}"/>
     <link rel="stylesheet" type="text/css" href="style/form.css">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <c:import url="header.jsp"/>
 <body>
@@ -46,7 +47,8 @@
 
         var loginFailed = <%= request.getAttribute("loginFailed") %>;
         if (loginFailed) {
-            alert("아이디 또는 비밀번호가 올바르지 않습니다.");
+            swal("로그인 실패!", "아이디 또는 비밀번호가 올바르지 않습니다!", "error");
+            //alert("아이디 또는 비밀번호가 올바르지 않습니다.");
         }
     </script>
 </section>
