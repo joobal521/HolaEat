@@ -62,7 +62,7 @@
                     </li>
 
                     <li>
-                        <input class="code-check"  name="code" id="code" placeholder="인증번호 6자리를 입력해주세요!" maxlength="6">
+                        <input class="code-check"  name="input-code" id="input-code" placeholder="인증번호 6자리를 입력해주세요!" maxlength="6">
                     <input type="button" class="btn" id="code-ch" onclick="authCodeCheck()"
                            value="인증">
                     </li>
