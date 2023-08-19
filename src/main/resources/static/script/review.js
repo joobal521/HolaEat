@@ -167,10 +167,14 @@ function redirectToReviewUpdate() {
 }
 
 function goBack() {
-    window.scrollTo(0, 0);
-    document.documentElement.style.overflow = 'hidden';
-    history.back();
-    document.documentElement.style.overflow = 'auto';
+    var confirmation = confirm("정말 취소하시겠습니까?");
+
+    if (confirmation) {
+        // window.scrollTo(0, 0);
+        // document.documentElement.style.overflow = 'hidden';
+        history.back();
+        // document.documentElement.style.overflow = 'auto';
+    }
 }
 
 //목록으로 되돌아가기
