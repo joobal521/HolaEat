@@ -61,7 +61,7 @@ public class ReviewListController {
     public String getBoardAll(@PathVariable int pageNumber,
                               @RequestParam(required = false, value = "keyword") String keyword,
                               @RequestParam(required = false, value = "searchType") String searchType,
-                              @PageableDefault(size = 6) Pageable pageable, Model model) {
+                              @PageableDefault(size = 8) Pageable pageable, Model model) {
 
         Map<Long, String> imageMap = new HashMap<>();
         List<Review> reviewPage = null;

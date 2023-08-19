@@ -6,7 +6,7 @@
 
 //썸네일 출력
 $('#file').change(e => {
-    // console.log("file is changed.");
+    console.log("file is changed.");
     loadthumb();
 });
 
@@ -182,15 +182,18 @@ function goBackToList() {
 function writeThumbnail() {
     const fileInput = document.getElementById('file');
     const imgElement = document.getElementById('img');
+    const imagePreview = document.getElementById('image-preview');
 
     const file = fileInput.files[0];
     if (file) {
         const reader = new FileReader();
         reader.onload = function (e) {
             imgElement.src = e.target.result;
+            imagePreview.style.display = 'block'; // 이미지 썸네일을 보여줌
         };
         reader.readAsDataURL(file);
     } else {
         imgElement.src = '';
+        imagePreview.style.display = 'none'; // 이미지 썸네일을 숨김
     }
 }

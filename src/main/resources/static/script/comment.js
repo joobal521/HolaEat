@@ -30,8 +30,6 @@ function addComment() {
     });
 }
 
-
-
 // // 페이지 로드 시 댓글 데이터를 가져와 화면에 표시
 function loadComments(reviewNo) {
     $.get(`/comment/${reviewNo}`, function (comments) {
@@ -44,7 +42,7 @@ function loadComments(reviewNo) {
     });
 }
 
-// 댓글 출력 함수
+// 댓글 출력
 function drawComments(userId, content, commentId) {
     const log = $('#logVal').val();
     const isUserAuthor = userId === log;
@@ -66,7 +64,6 @@ function drawComments(userId, content, commentId) {
     commentContainer.prepend(displayState);
 }
 
-// 수정 페이지 표시
 function showEditPage(commentId, content) {
     const commentItem = $(`#comment-item-${commentId}`);
     const contentTextarea = commentItem.find('textarea');
@@ -84,7 +81,6 @@ function showEditPage(commentId, content) {
         </div>
     `;
 
-    // Hide display state, show edit page
     contentTextarea.hide();
     editButton.hide();
     deleteButton.hide();
@@ -168,7 +164,6 @@ function deleteComment(commentId) {
 function delComment() {
     $('#msg-box').val('');
 }
-
 
 
 
