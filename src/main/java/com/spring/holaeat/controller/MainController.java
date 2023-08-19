@@ -31,6 +31,10 @@ public class MainController {
     public String findId(){return "findUser";}
 
     //비빌번호 찾기
+    @GetMapping(value="find-pwd")
+    public String findPwd(){return "findPassword";}
+    @GetMapping(value ="new-pwd")
+    public String newPwd(){return "newPassword";}
 
 
     @GetMapping(value ="leave")

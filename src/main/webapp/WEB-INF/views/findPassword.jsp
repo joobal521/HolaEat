@@ -12,6 +12,76 @@
     <title>비밀번호 찾기</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<style>
+    #find-section {
+    text-align: center;
+    margin-top: 50px;
+    }
+
+    .text_box {
+    margin-bottom: 20px;
+    }
+
+    .find_text {
+    font-size: 24px;
+    }
+
+    .comment {
+    font-size: 14px;
+    color: #777;
+    }
+
+    .email_box {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin: 0 auto;
+    max-width: 400px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .input-container {
+    margin-bottom: 15px;
+    }
+
+    .form-title {
+    font-size: 16px;
+    margin-bottom: 5px;
+    }
+
+    .input-box {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    }
+
+    .email-btn, .code-btn, .show-btn {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    }
+
+    .btn_box {
+    text-align: center;
+    margin-top: 20px;
+    }
+
+    /* 경고 메시지 및 오류 스타일 */
+    .error {
+    color: #ff0000;
+    font-size: 12px;
+    display: none;
+    }
+
+    .err {
+    font-size: 12px;
+    margin-left: 5px;
+    }
+</style>
 </head>
 <c:import url="header.jsp"/>
 <body>
@@ -38,13 +108,13 @@
                 </li>
             </div>
             <div class="btn_box">
-                <input type="button" id="next-btn" value="다음"
+                <input type="button" class="show-btn" id="next-btn" value="다음"
                        onclick="findPwd()">
             </div>
         </div>
     </form>
 </section>
-
+<script src="script/find2.js"></script>
 </body>
 <c:import url="footer.jsp"/>
 </html>

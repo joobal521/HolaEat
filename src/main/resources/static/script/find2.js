@@ -102,11 +102,12 @@ function authCodeCheck() {
 }
 
 function findPwd(){
-    if(isToKenChecked) {
-        location.href = "";
-    }else {
-
-    }
+   // if(isToKenChecked) {
+        location.href = "new-pwd";
+    // }else {
+    //     swal('비밀번호 찾기 실패','이메일 인증을 먼저 해주세요!','error')
+    //     //alert('이메일 인증을 먼저 해주세요!') // 경고 메시지 출력
+    // }
 }
 
 
