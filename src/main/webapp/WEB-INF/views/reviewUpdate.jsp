@@ -20,8 +20,8 @@
 <c:import url="header.jsp"/>
 <body>
 <div class="review-section">
-    <h2>리뷰 게시판 수정</h2>
-
+    <h2>REVIEW 수정</h2>
+    <div class="review-contents-all">
     <c:if test="${review!=null}">
 
         <div id="review-contents">
@@ -67,7 +67,7 @@
             </form>
         </div>
     </c:if>
-
+    </div>
 </div>
 
 

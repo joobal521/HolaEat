@@ -11,10 +11,9 @@
 <c:import url="header.jsp"/>
 <body>
 <div class="review-section">
-    <div class="wrapper">
-        <div id="review-contents">
-            <h2>게시글 작성</h2>
 
+        <div id="review-detail-contents">
+            <h2>게시글 작성</h2>
 
             <form id="review-write" enctype="multipart/form-data">
                 <table class="review-write-table">
@@ -46,7 +45,7 @@
 
 
         </div>
-    </div>
+
 </div>
 <script src="script/review.js"></script>
 </body>

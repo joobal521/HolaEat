@@ -26,6 +26,13 @@ function checkValueWrite(htmlForm) {
 
     if (title.trim() === "") {
         console.log("Title is required.");
+        alert("!제목을 입력해주세요.")
+        return; // 제목이 비어있을 경우 처리 중단
+    }
+
+    if (content.trim() === "") {
+        console.log("Title is required.");
+        alert("!내용을 입력해주세요.")
         return; // 제목이 비어있을 경우 처리 중단
     }
 
