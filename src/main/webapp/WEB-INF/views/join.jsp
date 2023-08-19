@@ -105,7 +105,7 @@
                                 value="중복 확인" onclick="chkId()">
                     </li>
 
-                    <p class="error" id="error-id">아이디는 필수정 보입니다.</p>
+                    <p class="error" id="error-id">아이디는 필수 정보입니다.</p>
 
                     <li class="input-container">
                         <h2 class="form-title">비밀번호</h2>
