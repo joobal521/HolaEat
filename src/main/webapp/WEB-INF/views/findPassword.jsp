@@ -38,8 +38,8 @@
                 </li>
             </div>
             <div class="btn_box">
-                <input type="button" id="find-btn" value="다음"
-                       onclick="checkValue()">
+                <input type="button" id="next-btn" value="다음"
+                       onclick="findPwd()">
             </div>
         </div>
     </form>
