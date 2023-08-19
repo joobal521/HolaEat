@@ -20,7 +20,6 @@
     /* 전체 컨테이너 스타일링 */
     .container {
       display: flex;
-      height: 100vh;
       background-color: #f7f7f7;
 
     }

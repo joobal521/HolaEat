@@ -32,6 +32,7 @@ function emailAuthentication() {
     $("#next-btn").prop('disabled', true);
 
 
+
     console.log(email);
 
     const data = {

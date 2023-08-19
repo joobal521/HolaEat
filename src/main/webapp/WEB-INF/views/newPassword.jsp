@@ -87,7 +87,7 @@
     <div class="text_box">
         <h2 class="find_text">새로운 비밀번호를 입력해주세요</h2>
     </div>
-    <form id=find>
+    <form id=find method="put" action="">
         <div class="pwd_box">
             <ul class="form-box">
             <li class="input-container">
