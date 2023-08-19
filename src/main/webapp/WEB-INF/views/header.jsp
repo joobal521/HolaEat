@@ -1,5 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
     <link rel="stylesheet" type="text/css" href="/style/grid.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
@@ -16,7 +15,7 @@
                 <%--                로고 옆 로그인 상태 표시--%>
                 <c:choose>
                     <c:when test="${not empty log }">
-                        <span>${userName}님 안녕하세요!</span>
+                        <span><a href="mypage">${userResponseDto.userName}</a>님 안녕하세요!</span>
                     </c:when>
                     <c:otherwise>
                     </c:otherwise>
