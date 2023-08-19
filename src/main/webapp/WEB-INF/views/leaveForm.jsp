@@ -72,7 +72,7 @@
 <body>
 <section id="leave-section">
     <div class="form_wrap">
-        <h2 class="leave_text"> "${sessionScope.userName}"님 정말 떠나시나요?</h2>
+        <h2 class="leave_text"> "${userResponseDto.userName}"님 정말 떠나시나요?</h2>
         <form class="leave-form" id="delete">
             <div class="form_container">
                 <ul>

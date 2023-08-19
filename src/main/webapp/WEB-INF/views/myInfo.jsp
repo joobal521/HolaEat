@@ -98,8 +98,8 @@
   <div class="my-info">
     <ul>
       <li><Span>아이디 : </Span>${sessionScope.log}</li>
-      <li><span>이름 : </span>${sessionScope.userName}</li>
-      <li><span>이메일 : </span>${sessionScope.userEmail}</li>
+      <li><span>이름 : </span>${userResponseDto.userName}</li>
+      <li><span>이메일 : </span>${userResponseDto.userEmail}</li>
 <%--      <li><h3>나의 건강 정보</h3></li>--%>
 <%--      <li><span>성별 :</span></li>--%>
 <%--      <li><span>나이 : </span></li>--%>
