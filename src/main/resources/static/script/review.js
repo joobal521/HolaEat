@@ -5,10 +5,14 @@
 // })
 
 //썸네일 출력
-$('#file').change(e => {
-    // console.log("file is changed.");
-    loadthumb();
-});
+// $('#file').change(e => {
+//     console.log("file is changed.");
+//     loadthumb();
+// });
+
+
+
+
 
 $('#title').on('change', e => {
     if ($('#title').val() !== "") {
@@ -26,6 +30,13 @@ function checkValueWrite(htmlForm) {
 
     if (title.trim() === "") {
         console.log("Title is required.");
+        alert("!제목을 입력해주세요.")
+        return; // 제목이 비어있을 경우 처리 중단
+    }
+
+    if (content.trim() === "") {
+        console.log("Title is required.");
+        alert("!내용을 입력해주세요.")
         return; // 제목이 비어있을 경우 처리 중단
     }
 
@@ -71,8 +82,8 @@ function checkValueWrite(htmlForm) {
 function CheckValueUpdate(htmlForm, reviewNo) {
     const title = htmlForm.title.value;
     const content = htmlForm.content.value;
-    const imgCheck = htmlForm.imgCheck.value;
-    console.log("imgCheck 확인용"+imgCheck);
+    const imgCheckUrl = htmlForm.imgCheck.value;
+    console.log("imgCheckUrl 확인용"+imgCheckUrl);
 
     let imgFile = null;
 
@@ -82,7 +93,7 @@ function CheckValueUpdate(htmlForm, reviewNo) {
 
     console.log("imgFile 확인용"+imgFile);
 
-    if (title.trim() === "" && content.trim() === "" && imgFile === imgCheck) {
+    if (title.trim() === "" && content.trim() === "" && imgFile !== imgCheckUrl) {
         alert("수정할 내용이 없습니다.");
         return;
     }
@@ -118,13 +129,13 @@ function CheckValueUpdate(htmlForm, reviewNo) {
 }
 
 //이미지 썸네일 로드, 이미지 파일을 선택하면 해당 이미지를 읽어들여 화면에 표시하는 역할
-function loadthumb() {
-    var reader = new FileReader;
-    reader.onload = function (data) {
-        $(".select_img img").attr("src", data.target.result).width(500);
-    }
-    reader.readAsDataURL($('#file').prop("files")[0]);
-}
+// function loadthumb() {
+//     var reader = new FileReader;
+//     reader.onload = function (data) {
+//         $(".select_img img").attr("src", data.target.result).width(500);
+//     }
+//     reader.readAsDataURL($('#file').prop("files")[0]);
+// }
 
 //게시글 삭제
 
@@ -167,13 +178,38 @@ function redirectToReviewUpdate() {
 }
 
 function goBack() {
-    window.scrollTo(0, 0);
-    document.documentElement.style.overflow = 'hidden';
-    history.back();
-    document.documentElement.style.overflow = 'auto';
+    var confirmation = confirm("수정 취소하시겠습니까?");
+
+    if (confirmation) {
+        // window.scrollTo(0, 0);
+        // document.documentElement.style.overflow = 'hidden';
+        history.back();
+        // document.documentElement.style.overflow = 'auto';
+    }
 }
 
 //목록으로 되돌아가기
 function goBackToList() {
     location.href = "reviewlist/1";
 }
+
+//글쓰기 썸네일
+function writeThumbnail() {
+    const fileInput = document.getElementById('file');
+    const imgElement = document.getElementById('img');
+    const imagePreview = document.getElementById('image-preview');
+
+    const file = fileInput.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            imgElement.src = e.target.result;
+            imagePreview.style.display = 'block'; // 이미지 썸네일을 보여줌
+        };
+        reader.readAsDataURL(file);
+    } else {
+        imgElement.src = '';
+        imagePreview.style.display = 'none'; // 이미지 썸네일을 숨김
+    }
+}
+

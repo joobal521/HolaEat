@@ -98,7 +98,7 @@
                 </li>
 
                 <li>
-                    <a href="health">
+                    <a href="health-list">
                         <span>건강정보</span>
                         <span>Health Info</span>
                     </a>

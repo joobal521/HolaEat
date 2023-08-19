@@ -1,14 +1,32 @@
 package com.spring.holaeat.domain.health;
 
 import lombok.Getter;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 @Getter
 public class HealthListResponseDto {
     private Long healthNo;
-    private String id;
+    //private String id;
     private String title;
-    private Long thumbnailId;  // 썸네일 id
+    private MultipartFile file;
+    //private Long thumbnailId;  // 썸네일 id
 
+
+//    public HealthListResponseDto(Health entity){
+//        this.healthNo=entity.getHealthNo();
+//        this.title=entity.getTitle();
+//        if(entity.getFile() !=null) {
+//
+//            try {
+//                this.file = entity.getFile()
+//            } catch (IOException e) {
+//                throw new RuntimeException(e);
+//            }
+//
+//        }
+//    }
 
 
 //    public HealthListResponseDto(Health entity) {

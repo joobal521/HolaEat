@@ -11,26 +11,27 @@
 <head>
     <title>healthPage</title>
     <c:set var="path" value="${pageContext.request.contextPath}"/>
+    <link rel="stylesheet" type="text/css" href="/style/health.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 </head>
 <c:import url="header.jsp"/>
 <body>
 <div class="health-section">
     <h2>건강 정보 게시판 상세</h2>
-    <h2>게시글</h2>
     <c:if test="${health!=null}">
         <div id="health-contents">
             <form id="health-detail" enctype="multipart/form-data">
                 <div class="health_detail_no">
-                    <label for="healthNo">No.</label>
+                    <span>No.</span>
                     <input type="text" id="healthNo" name="healthNo" value="${health.healthNo}" readonly>
                 </div>
-                <div class="review_detail_title">
+                <div class="health_detail_title">
                     <label for="title">제목</label>
                     <input type="text" id="title" name="title" value="${health.title}" readonly>
                 </div>
-                <div class="health_detail_admin">
-                    <li>작성자: 관리자</li>
+                <div class="health_detail_userId">
+                    <label for="admin">작성자</label>
+                    <input type="text" id="admin" name="admin" value="관리자" readonly>
                 </div>
 
                 <div class="health_detail_content">
@@ -39,8 +40,9 @@
                         <%--                        <input type="text" id="content" name="content" value="${review.content}">--%>
                 </div>
                 <div id="image-container">
-                    <img src="data:image/png;base64,${blob}" id="img" name="img" alt="Health Image">
-
+        <c:if test="${blob !=null}">
+                    <img src="data:image/png;base64,${blob}" id="img" name="img"  alt="Health Image" style=" max-width: 50%;  height: auto;">
+        </c:if>
                 </div>
 <%--                <c:if test="${health.userId == log}">--%>
 <%--                    <button type="button" id="update" name="update" onclick="redirectToReviewUpdate(reviewNo)">수정--%>
@@ -56,6 +58,6 @@
 
 </div>
 </body>
-
+<script src="script/health.js"></script>
 <c:import url="footer.jsp"/>
 </html>

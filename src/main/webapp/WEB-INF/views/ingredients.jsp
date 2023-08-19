@@ -14,14 +14,17 @@
 <section class="ingr-section">
     <c:forEach items="${ingrOfMonth}" var="ingrMonth">
         <div class="ingr-container">
-            <div>
+            <div class="ingr-name">
                 <h1>${ingrMonth.ingrName}</h1>
             </div>
-            <c:set var="ingrImg" value="${blob[ingrMonth.ingrId]}"></c:set>
-            <c:if test="${not empty ingrImg}">
-                <img src="data:image/jpeg;base64,${ingrImg}" id="img" name="img" alt="Ingredient Image">
-            </c:if>
-            <div>
+            <div class="ingr-img">
+                <c:set var="ingrImg" value="${blob[ingrMonth.ingrId]}"></c:set>
+                <c:if test="${not empty ingrImg}">
+                    <img src="data:image/jpeg;base64,${ingrImg}" id="img" name="img" alt="Ingredient Image">
+                </c:if>
+            </div>
+
+            <div class="ingrFood">
                 <c:forEach items="${foodIngrList}" var="foodList" varStatus="roll">
                     <c:forEach items="${monthFoodList}" var="monthList">
                         <c:if test="${foodList.foodId==monthList.foodId&&foodList.ingrId==ingrMonth.ingrId}">

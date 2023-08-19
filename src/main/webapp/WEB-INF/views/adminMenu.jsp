@@ -1,8 +1,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<style>
+    .hide-nutrition {
+        display: none;
+    }
+
+</style>
 <body>
 <div>
     <h1>메뉴관리</h1>
+    <button id="toggleNutrition" class="toggle-button">영양소 보기</button>
     <div class="admin-menu">
         <table>
             <thead>
@@ -16,12 +23,13 @@
                 <th><button id="filterToggleVegan">비건</button></th>
                 <th><button id="filterToggleBalanced">균형식</button></th>
                 <th><button id="filterToggleSideDish">반찬</button></th>
-                <th>총 열량(kcal)</th>
-                <th>탄수화물(g)</th>
-                <th>단백질(g)</th>
-                <th>지방(g)</th>
-                <th>당류(g)</th>
-                <th>나트륨(mg)</th>
+                <th class="nutrition-cell">총 열량(kcal)</th>
+                <th class="nutrition-cell">중량</th>
+                <th class="nutrition-cell">탄수화물(g)</th>
+                <th class="nutrition-cell">단백질(g)</th>
+                <th class="nutrition-cell">지방(g)</th>
+                <th class="nutrition-cell">당류(g)</th>
+                <th class="nutrition-cell">나트륨(mg)</th>
                 <th>수정</th>
                 <th>삭제</th>
             </tr>
@@ -38,12 +46,14 @@
                     <td class="vegan">${food.vegan ? '예' : '아니오'}</td>
                     <td class="balanced">${food.balanced ? '예' : '아니오'}</td>
                     <td class="sideDish">${food.sideDish ? '예' : '아니오'}</td>
-                    <td class="kcal">${food.kcal}</td>
-                    <td class="carb">${food.carb}</td>
-                    <td class="protein">${food.protein}</td>
-                    <td class="fat">${food.fat}</td>
-                    <td class="sugars">${food.sugars}</td>
-                    <td class="natrium">${food.natrium}</td>
+                    <td class="kcal nutrition-cell">${food.kcal}</td>
+                    <td class="kcal nutrition-cell">${food.foodWeight}</td>
+                    <td class="carb nutrition-cell">${food.carb}</td>
+                    <td class="protein nutrition-cell">${food.protein}</td>
+                    <td class="fat nutrition-cell">${food.fat}</td>
+                    <td class="sugars nutrition-cell">${food.sugars}</td>
+                    <td class="natrium nutrition-cell">${food.natrium}</td>
+
                     <td>
                         <button class="editBtn" data-id="${food.foodId}">수정하기</button>
                         <button class="updateBtn" data-id="${food.foodId}" style="display: none;">수정완료</button>
@@ -59,7 +69,7 @@
             </c:forEach>
             </tbody>
         </table>
-        <div>
+        <div class="admin-menu-add">
             <input type="button" id="addBtn" value="추가하기">
             <div id="addModal" class="modal" style="display: none">
                 <div class="modal-content">
@@ -91,6 +101,9 @@
 
                         <label for="kcal">총 열량(kcal):</label>
                         <input type="number" id="kcal" name="kcal" required><br><br>
+
+                        <label for="foodWeight">중량(g):</label>
+                        <input type="number" id="foodWeight" name="foodWeight" required><br><br>
 
                         <label for="carb">탄수화물(g):</label>
                         <input type="number" id="carb" name="carb" required><br><br>
@@ -132,6 +145,7 @@
             var balancedCell = row.find(".balanced");
             var sideDishCell = row.find(".sideDish");
             var kcalCell = row.find(".kcal");
+            var foodWeightCell = row.find(".foodWeight");
             var carbCell = row.find(".carb");
             var proteinCell = row.find(".protein");
             var fatCell = row.find(".fat");
@@ -139,6 +153,7 @@
             var natriumCell = row.find(".natrium");
 
             kcalCell.html("<input type='number' class='editKcal' value='" + kcalCell.text() + "'>");
+            kcalCell.html("<input type='number' class='editFoodWeight' value='" + kcalCell.text() + "'>");
             carbCell.html("<input type='number' class='editCarb' value='" + carbCell.text() + "'>");
             proteinCell.html("<input type='number' class='editProtein' value='" + proteinCell.text() + "'>");
             fatCell.html("<input type='number' class='editFat' value='" + fatCell.text() + "'>");
@@ -171,6 +186,7 @@
             var balanced = row.find(".editBalanced").prop("checked");
             var sideDish = row.find(".editSideDish").prop("checked");
             var kcal = row.find(".editKcal").val();
+            var foodWeight = row.find(".editFoodWeight").val();
             var carb = row.find(".editCarb").val();
             var protein = row.find(".editProtein").val();
             var fat = row.find(".editFat").val();
@@ -188,6 +204,7 @@
             formData.append("balanced", balanced);
             formData.append("sideDish", sideDish);
             formData.append("kcal", kcal);
+            formData.append("foodWeight", foodWeight);
             formData.append("carb", carb);
             formData.append("protein", protein);
             formData.append("fat", fat);
@@ -226,6 +243,7 @@
             var originalBalanced = row.find(".editBalanced").prop("checked");
             var originalSideDish = row.find(".editSideDish").prop("checked");
             var originalKcal = row.find(".editKcal").val();
+            var originalFoodWeight = row.find(".editFoodWeight").val();
             var originalCarb = row.find(".editCarb").val();
             var originalProtein = row.find(".editProtein").val();
             var originalFat = row.find(".editFat").val();
@@ -242,6 +260,7 @@
             row.find(".balanced").text(originalBalanced? '예' : '아니오');
             row.find(".sideDish").text( originalSideDish? '예' : '아니오');
             row.find(".kcal").text(originalKcal);
+            row.find(".foodWeight").text(originalFoodWeight);
             row.find(".carb").text(originalCarb);
             row.find(".protein").text(originalProtein);
             row.find(".fat").text(originalFat);
@@ -304,6 +323,7 @@
             formData.append("balanced", $("#balanced").prop("checked"));
             formData.append("sideDish", $("#sideDish").prop("checked"));
             formData.append("kcal", $("#kcal").val());
+            formData.append("foodWeight", $("#foodWeight").val());
             formData.append("carb", $("#carb").val());
             formData.append("protein", $("#protein").val());
             formData.append("fat", $("#fat").val());
@@ -402,24 +422,24 @@
             });
         }
 
-        // function updateButtonState(columnClass, buttonElement) {
-        //     var currentState = filterStates[columnClass];
-        //     var buttonText = "";
-        //
-        //     if (currentState === "all") {
-        //         buttonText = "예/아니오 모두 보기";
-        //     } else if (currentState === "yes") {
-        //         buttonText = "예 만 보기";
-        //     } else if (currentState === "no") {
-        //         buttonText = "아니오 만 보기";
-        //     }
-        //
-        //     buttonElement.text(buttonText);
-        // }
+
+
 
     });
 
+    $(document).ready(function() {
+        // Initial hiding of nutritional information
+        $(".nutrition-cell").addClass("hide-nutrition");
 
+        // Toggle button click event
+        $("#toggleNutrition").click(function() {
+            $(".nutrition-cell").toggleClass("hide-nutrition");
+
+            // Update button text
+            var buttonText = $(".nutrition-cell").hasClass("hide-nutrition") ? "영양소 보기" : "영양소 숨기기";
+            $(this).text(buttonText);
+        });
+    });
 
 </script>
 </body>

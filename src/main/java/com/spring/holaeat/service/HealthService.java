@@ -7,6 +7,7 @@ import com.spring.holaeat.domain.photo.Photo;
 import com.spring.holaeat.domain.photo.PhotoRepository;
 import com.spring.holaeat.domain.review.Review;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -22,10 +23,16 @@ public class HealthService {
     private final FileHandler fileHandler;
 
     //전체 조회
-//    public List<Health> findAllByOrderByHealthNoDesc(){
-//        List<Health> list= healthRepository.findAllByOrderByHealthNoDesc();
-//        return list;
-//    }
+    public List<Health> findAllByOrderByHealthNoDesc(Pageable adjustPasgeable){
+        List<Health> list= healthRepository.findAllByOrderByHealthNoDesc(adjustPasgeable);
+        return list;
+    }
+
+    //관리자 조회
+    public List<Health> getAllHealth(){
+        return healthRepository.findAll();
+
+    }
 
     public Health getHealthByHealthNo(long healthNo){
         Health health=healthRepository.findById(healthNo).orElseThrow(

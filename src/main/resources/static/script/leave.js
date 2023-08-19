@@ -41,7 +41,8 @@ function checkValue(htmlForm) {
                 location.href = "/";
                 sessionStorage.removeItem("log");
             } else {
-                alert("회원탈퇴 실패. 비밀번호가 올바르지 않습니다.");
+                swal('회원 탈퇴 실패','비밀번호가 올바르지 않습니다.','error')
+                //alert("회원탈퇴 실패. 비밀번호가 올바르지 않습니다.");
             }
         }).fail(function (error){
             alert("회원탈퇴 실패입니다: " + error.responseJSON.message);

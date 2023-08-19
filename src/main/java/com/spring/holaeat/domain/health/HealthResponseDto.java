@@ -5,7 +5,6 @@ import lombok.Getter;
 @Getter
 public class HealthResponseDto {
 private Long healthNo;
-
 private String title;
 private String content;
 

@@ -2,12 +2,48 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>마이페이지</title>
+    <title>myPage</title>
     <c:set var="path" value="${pageContext.request.contextPath}"/>
     <link rel="stylesheet" type="text/css" href="style/myPage.css">
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
 
+        .wrap {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .aside {
+            flex: 1;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+
+        .menu-link {
+            display: block;
+            margin-bottom: 10px;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .menu-link:hover {
+            color: #e74c3c;
+        }
+
+        .section {
+            flex: 3;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Add your own custom styles here */
+    </style>
 </head>
 <c:import url="header.jsp"/>
 

@@ -48,11 +48,11 @@ public class HealthController {
         return response.toMap();
     }
     //관리자 글 수정
-    @PutMapping("/{healthNo}/")
+   // @PutMapping("/{healthNo}/")
 
 
     //관리자 글 삭제
-    @DeleteMapping("/{healthNo}/delete")
+    @DeleteMapping("/delete/{healthNo}")
     public Response delete(@PathVariable("healthNo") long healthNo, @ModelAttribute HealthRequestDto healthDto) {
 
 

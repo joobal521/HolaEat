@@ -3,7 +3,6 @@
 <html>
 <head>
     <title>Title</title>
-    <%--    <c:set var="path" value="${pageContext.request.contextPath}"/>--%>
     <link rel="stylesheet" type="text/css" href="/style/review.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 
@@ -15,13 +14,13 @@
 <c:import url="header.jsp"/>
 <body>
 <div class="review-section">
-    <h2>리뷰 게시판 상세</h2>
-    <h2>게시글</h2>
+    <h2>REVIEW 상세</h2>
+    <div class="review-contents-all">
     <c:if test="${review!=null}">
         <div id="review-contents">
             <form id="review-detail" enctype="multipart/form-data">
                 <div class="review_detail_no">
-                    <label for="reviewNo">No.</label>
+                    <span>No.</span>
                     <input type="text" id="reviewNo" name="reviewNo" value="${review.reviewNo}" readonly>
                 </div>
                 <div class="review_detail_title">
@@ -39,9 +38,12 @@
                         <%--                        <input type="text" id="content" name="content" value="${review.content}">--%>
                 </div>
                 <div id="image-container">
-                    <img src="data:image/png;base64,${blob}" id="img" name="img" alt="Review Image">
 
+                    <c:if test="${blob !=null}">
+                        <img src="data:image/png;base64,${blob}" id="img" name="img" alt="Review Image">
+                   </c:if>
                 </div>
+
                 <c:if test="${review.userId == log}">
                     <button type="button" id="update" name="update" onclick="redirectToReviewUpdate(reviewNo)">수정
                     </button>
@@ -62,7 +64,8 @@
             <form method="POST" class="comment">
             <textarea cols="80" rows="10" id="msg-box" name="msg"
                     <c:choose>
-                        <c:when test="${empty log}">
+                        <c:when test="${empty log}" >
+                            onclick="redirectToLogin()"
                             placeholder="댓글을 작성하시려면 로그인을 해주세요." readonly
                         </c:when>
                         <c:otherwise>
@@ -84,11 +87,20 @@
             </form>
         </div>
     </div>
-
+    </div>
 
 </div>
 </body>
 <script src="script/review.js"></script>
 <script src="script/comment.js"></script>
+<script>
+    function redirectToLogin() {
+        const confirmation = confirm("로그인 하시겠습니까?");
+
+        if (confirmation) {
+            window.location.href = "/login";
+        }
+    }</script>
+
 <c:import url="footer.jsp"/>
 </html>

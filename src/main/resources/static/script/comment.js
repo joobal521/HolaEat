@@ -30,8 +30,6 @@ function addComment() {
     });
 }
 
-
-
 // // 페이지 로드 시 댓글 데이터를 가져와 화면에 표시
 function loadComments(reviewNo) {
     $.get(`/comment/${reviewNo}`, function (comments) {
@@ -44,19 +42,20 @@ function loadComments(reviewNo) {
     });
 }
 
-// 댓글 출력 함수
+// 댓글 출력
 function drawComments(userId, content, commentId) {
     const log = $('#logVal').val();
     const isUserAuthor = userId === log;
 
     const displayState = `
         <form class="comment-item" id="comment-item-${commentId}">
-            <input type="text" value="ID 확인용: ${userId}" readonly />
+            <input type="text" value="ID : ${userId}" readonly />
             <br>
             <textarea readonly>${content}</textarea>
+            
             <br>
             <div class="comment-btn">
-                ${isUserAuthor ? `<button class="commentEditBtn" onclick="showEditPage(${commentId}, '${content}')">수정</button>` : ''}
+                ${isUserAuthor ? `<button style="display: none;" class="commentEditBtn" onclick="showEditPage(${commentId}, '${content}')">수정</button>` : ''}
                 ${isUserAuthor ? `<button class="commentDeleteBtn" onclick="deleteComment(${commentId})">삭제</button>` : ''}
             </div>
         </form>
@@ -66,7 +65,6 @@ function drawComments(userId, content, commentId) {
     commentContainer.prepend(displayState);
 }
 
-// 수정 페이지 표시
 function showEditPage(commentId, content) {
     const commentItem = $(`#comment-item-${commentId}`);
     const contentTextarea = commentItem.find('textarea');
@@ -84,7 +82,6 @@ function showEditPage(commentId, content) {
         </div>
     `;
 
-    // Hide display state, show edit page
     contentTextarea.hide();
     editButton.hide();
     deleteButton.hide();
@@ -143,6 +140,7 @@ $(document).ready(function () {
 
 // 댓글 삭제
 function deleteComment(commentId) {
+    console.log("deleteComment() 호출됨, commentId:", commentId);
     if (confirm('정말로 삭제하시겠습니까?')) {
         $.ajax({
             type: 'DELETE',
@@ -151,9 +149,10 @@ function deleteComment(commentId) {
                 if (response.message === 'success') {
                     const reviewNo = $('#reviewNo').val();
                     loadComments(reviewNo);
-                } else {
-                    alert(response.message);
                 }
+                // else {
+                //     alert(response.message);
+                // }
             },
             error: function (error) {
                 console.error(error);
@@ -168,7 +167,6 @@ function deleteComment(commentId) {
 function delComment() {
     $('#msg-box').val('');
 }
-
 
 
 

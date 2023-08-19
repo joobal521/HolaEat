@@ -15,7 +15,7 @@
 }
 
 
-.admin-ingrList tr td{
+.admin-ingrList tr , .admin-foodList tr {
     height: 40px;
 }
 
@@ -42,4 +42,11 @@
 
 table input[type="text"] {
     width: 60px;
+}
+table {
+    text-align: center;
+}
+
+.hide-nutrition {
+    display: none;
 }

@@ -14,10 +14,99 @@
     <link rel="stylesheet" type="text/css" href="style/joinForm.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .form_wrap {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .form_container {
+            padding: 20px;
+        }
+
+        .form-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .input-container {
+            margin-bottom: 20px;
+        }
+
+        .input-box {
+            width: 70%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .btn-dupl,
+        .email-btn,
+        .code-btn,
+        .join-btn {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .email-btn{
+            margin-top: 10px;
+        }
+.btn_join{
+    display: flex;
+    justify-content: center;
+}
+
+        .join-btn{
+            margin-top: 30px;
+        }
+
+
+
+        .agr_text {
+            font-size: 14px;
+            vertical-align: middle;
+        }
+
+        .agr {
+            margin-bottom: 10px;
+        }
+
+        .required {
+            color: red;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+            display: none;
+        }
+
+
+        .label-wrapper {
+            margin-top: 20px;
+            padding: 10px;
+        }
+
+    </style>
 </head>
 <c:import url="header.jsp"/>
 <body>
-<section>
     <div class="form_wrap">
         <form enctype="multipart/form-data">
             <div class="form_container">
@@ -28,9 +117,9 @@
                         <input
                                 type="button" class="btn-dupl" id="idDupl" name="idDupl"
                                 value="중복 확인" onclick="chkId()">
+                        <p class="error" id="error-id">아이디는 필수 정보입니다.</p>
                     </li>
 
-                    <p class="error" id="error-id">아이디는 필수정보입니다.</p>
 
                     <li class="input-container">
                         <h2 class="form-title">비밀번호</h2>
@@ -39,7 +128,7 @@
 
                     <li class="input-container">
                     <p class="err">*특수문자는 '! @ # $ % ^ & +='만 사용 가능합니다.</p>
-                        <p class="error" id="error-password">비밀번호는 필수정보입니다.</p>
+                        <p class="error" id="error-password">비밀번호는 필수 정보입니다.</p>
                     <span class="err" id="chkNotice1" size="1"></span>
                    </li>
 
@@ -57,7 +146,7 @@
                                 value="중복 확인" onclick="chkEmail()">
                         <input type="button" class="email-btn"
                                                       id="email_ch" onclick="emailAuthentication()" value="인증 메일 보내기">
-                        <p class="error" id="error-email">이메일은 필수정보입니다.</p>
+                        <p class="error" id="error-email">이메일은 필수 정보입니다.</p>
                         <span class="err" id="chkEmail" size="1"></span>
                     </li>
 
@@ -70,27 +159,29 @@
                     <li class="input-container">
                         <h2 class="form-title">이름</h2>
                         <input type="text" class="input-box" id="userName" name="userName" placeholder="이름">
-                        <p class="error" id="error-name">이름은 필수정보입니다.</p>
+                        <p class="error" id="error-name">이름은 필수 정보입니다.</p>
                     </li>
 
                     <div class="label-wrapper">
-                        <label for="agree_all" class="title">이용약관 동의<span
+                        <li class="agr">
+                        <label for="agree_all" class="title">이용 약관 동의<span
                                 class="required">(필수)</span></label>
+                        </li>
                         <div class="agr">
                             <input type="checkbox" id="agree_all" name="agree_all"><span
-                                class="agr_text">전체동의</span>
+                                class="agr_text">전체 동의</span>
                         </div>
 
                         <div class="agr">
                             <input type="checkbox" id="user_check1"
                                                       name="user_check"><span class="agr_text"><a
-                                    href="term" class="term_title">이용약관</a> 동의<strong>(필수)</strong> </span>
+                                    href="term" class="term_title">이용 약관</a> 동의<strong>(필수)</strong> </span>
                         </div>
 
                         <div class="agr">
                             <input type="checkbox" id="user_check2"
                                                       name="user_check"><span class="agr_text"><a
-                                    href="term2" class="term_title">개인정보 처리방침</a> 동의<strong>(필수)</strong>
+                                    href="term2" class="term_title">개인 정보 처리 방침</a> 동의<strong>(필수)</strong>
 					</span>
                         </div>
 
@@ -101,14 +192,13 @@
                         </li>
                     </div>
 
-                    <li>
+                    <li class="btn_join">
                         <button type="button" class="join-btn" id="submit" name="submit" onclick="checkValue(form)">회원가입</button>
                     </li>
                 </ul>
             </div>
         </form>
     </div>
-</section>
 <script src="script/join.js"></script>
 </body>
 <c:import url="footer.jsp"/>

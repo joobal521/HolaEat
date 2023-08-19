@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RequiredArgsConstructor
 @Controller
@@ -25,30 +27,49 @@ public class healthListController {
 
 
     //게시글 하나 조회
-    @GetMapping("/health/{no}")
-    public String getHealthNo(Model model, @PathVariable long healthNo){
+    @GetMapping("/health/{healthNo}")
+    public String getHealthNo(Model model, @PathVariable long healthNo) {
 
-        Health health=healthRepository.findByHealthNo(healthNo);
-        model.addAttribute("health",health);
+        Health health = healthRepository.findByHealthNo(healthNo);
+        model.addAttribute("health", health);
 
-        if(health.getFile()==null)
-            return "healthPage";
+        if (health.getFile() == null)
+            return "health";
 
         model.addAttribute("blob", ImageParsor.parseBlobToBase64(health.getFile()));
-        return "healthPage";
+        return "health";
 
     }
 
 
     //게시글 전체 조회 페이징
-    @GetMapping("list/{pageNumber}")
-    public List<Health> getBoardAll(@PathVariable int pageNumber, @RequestParam(defaultValue = "") String keyword, @PageableDefault(size =3) Pageable pageable){
-        if(!keyword.equals((""))) {
-            String pattern = "%" + keyword + "%";
-            return healthRepository.findAllByTitleLike(pattern,pageable.withPage(pageNumber -1));
-        }else{
-            return healthRepository.findAll(pageable.withPage(pageNumber -1)).getContent();
-        }
-    }
+//    @GetMapping("health-list/{pageNumber}")
+//    public List<Health> getBoardAll(@PathVariable int pageNumber, @RequestParam(defaultValue = "") String keyword, @PageableDefault(size =3) Pageable pageable){
+//        if(!keyword.equals((""))) {
+//            String pattern = "%" + keyword + "%";
+//            return healthRepository.findAllByTitleLike(pattern,pageable.withPage(pageNumber -1));
+//        }else{
+//            return healthRepository.findAll(pageable.withPage(pageNumber -1)).getContent();
+//        }
+//    }
 
+    //전체 조회
+    @GetMapping("/health-list")
+    public String getHelthAll(Model model) {
+        List<Health> list = healthService.findAllByOrderByHealthNoDesc(Pageable.unpaged());
+        Map<Long, String> imageMap = new HashMap<>();
+
+        for (Health health : list) {
+            if (health.getFile() != null) {
+                String base64Image = ImageParsor.parseBlobToBase64(health.getFile());
+                imageMap.put(health.getHealthNo(), base64Image);
+            }
+        }
+
+        model.addAttribute("healthList", list);
+        model.addAttribute("imageMap", imageMap);
+        System.out.println("이게 되는겨?");
+        return "healthList";
+
+    }
 }

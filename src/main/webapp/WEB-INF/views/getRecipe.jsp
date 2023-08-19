@@ -29,10 +29,6 @@
             </div>
 
         </div>
-        <div>
-            <!-- 다이어그램을 표시할 캔버스 엘리먼트 -->
-            <canvas id="nutritionChart"></canvas>
-        </div>
         <h3>레시피</h3>
             <ul>
                 <c:forEach items="${recipe}" var="foodrecipe">

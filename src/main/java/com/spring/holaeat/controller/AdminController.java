@@ -4,6 +4,7 @@ import com.spring.holaeat.domain.admin.Admin;
 import com.spring.holaeat.domain.admin.AdminRepository;
 import com.spring.holaeat.domain.food.Food;
 import com.spring.holaeat.domain.food.FoodRequestDto;
+import com.spring.holaeat.domain.health.Health;
 import com.spring.holaeat.domain.ingredients.Ingredients;
 import com.spring.holaeat.domain.ingredients.IngredientsRequestDto;
 import com.spring.holaeat.domain.review.Review;
@@ -27,14 +28,17 @@ public class AdminController {
     private final ReviewCommentService reviewCommentService;
     private final FoodService foodService;
 
+    private final HealthService healthService;
+
 
     @Autowired
-    public AdminController(AdminRepository adminRepository, IngredientsService ingredientsService, IngredientsRequestDto ingredientsRequestDto, MenuService menuService, ReviewService reviewService, ReviewCommentController reviewCommentController, ReviewCommentService reviewCommentService, FoodService foodService) {
+    public AdminController(AdminRepository adminRepository, IngredientsService ingredientsService, IngredientsRequestDto ingredientsRequestDto, MenuService menuService, ReviewService reviewService, ReviewCommentController reviewCommentController, ReviewCommentService reviewCommentService, FoodService foodService, HealthService healthService) {
         this.adminRepository = adminRepository;
         this.ingredientsService = ingredientsService;
         this.reviewService = reviewService;
         this.reviewCommentService = reviewCommentService;
         this.foodService = foodService;
+        this.healthService=healthService;
     }
 
     //관리자 로그인
@@ -156,12 +160,13 @@ public String gainPower(@RequestParam("adminid") String id, @RequestParam("admin
 //        return "adminUser";
 //    }
 //
-//    //건강정보관리
-//    @GetMapping("adminHealth")
-//    public String gethealth(Model mode){
-//
-//        return "adminHealth";
-//    }
+    //건강정보관리
+    @GetMapping("adminHealth")
+    public String gethealth(Model model){
+        List<Health> healthList=healthService.getAllHealth();
+        model.addAttribute("healthList",healthList);
+        return "adminHealth";
+    }
 
 
 }

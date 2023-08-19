@@ -99,7 +99,7 @@ function chkId() {
     var id = $('#userId').val();
 
     if(id===""){
-        swal('사용 불가능한 아이디','아이디를 다시 입력해주세요.','error')
+        swal('사용 불가능한 아이디','아이디를 다시 입력해 주세요.','error')
         //alert("사용 불가능한 아이디입니다.")
     }else {
 
@@ -140,7 +140,7 @@ function chkEmail() {
     var email = $('#userEmail').val();
 
     if(email===""){
-        swal('사용 불가능한 이메일','이메일을 다시 입력해주세요.','error')
+        swal('사용 불가능한 이메일','이메일을 다시 입력해 주세요.','error')
         //alert("사용 불가능한 이메일입니다.")
     }else {
 
@@ -204,18 +204,21 @@ function emailAuthentication() {
                  $("#code-ch").prop('disabled', false);
                  code = data;
                  console.log(code);
-                 alert("인증 번호를 확인해 주세요.");
+                 swal('인증 번호 전송 완료','인증 번호를 확인해 주세요.','success')
+                 //alert("인증 번호를 확인해 주세요.");
                  console.log("이메일 확인 코드가 발송되었습니다.");
                  //console.log("확인 코드: " + response.verification_code);
                  //console.log("확인 코드 유효 시간: " + response.verification_duration + "분");
              } else {
-                 console.log("이메일 확인 코드 발송에 실패하였습니다.");
+                 swal('인증 번호 전송 실패','이메일 전송을 다시 시도해 주세요.','error')
+                 //console.log("이메일 확인 코드 발송에 실패하였습니다.");
              }
          }).fail(function (error) {
              alert("이메일 인증 보내기 실패입니다: " + error.responseJSON.message);
          });
      }else {
-         alert("이메일 중복을 확인해 주세요.")
+         swal('인증 불가능 ','이메일 중복을 확인해 주세요.','warning')
+         //alert("이메일 중복을 확인해 주세요.")
      }
 
 }
@@ -233,12 +236,14 @@ function authCodeCheck() {
         console.log(codeAsNumber);
         if (inputCodeAsNumber === codeAsNumber) {
             console.log("인증 번호 일치");
-            alert("인증 되었습니다.");
+            swal('인증 성공','인증 되었습니다.','success')
+            //alert("인증 되었습니다.");
             $("#input-code").prop('disabled', true);
             $("#code-ch").prop('disabled', true);
             isToKenChecked = true;
         } else {
-            alert("인증 코드가 맞지 않습니다.")
+            swal('인증 실패','인증 코드가 맞지 않습니다.','error')
+           // alert("인증 코드가 맞지 않습니다.")
         }
 
         // if (data.result === "The token code has expired.") {
@@ -247,7 +252,8 @@ function authCodeCheck() {
     }else {
         $("#input-code").prop('disabled', true);
         $("#code-ch").prop('disabled', true);
-        alert("이메일 중복을 확인해 주세요.")
+        swal('인증 불가능 ','이메일 중복을 확인해 주세요.','warning')
+        //alert("이메일 중복을 확인해 주세요.")
     }
 
 }
@@ -309,7 +315,8 @@ function checkValue(htmlForm) {
     }
 
     if (!$('#user_check1').prop('checked') || !$('#user_check2').prop('checked')) { //체크박스 미체크시
-        alert("약관 동의를 체크해주세요.");
+        swal('회원 가입 불가능','약관 동의를 체크해 주세요.','warning')
+        //alert("약관 동의를 체크해주세요.");
         check = false;
     }
 
@@ -332,11 +339,13 @@ function checkValue(htmlForm) {
         }).done(function(data){
                 console.log(data);
                 if (data.result === true) {
-                    alert("회원가입 완료")
+                    swal('회원 가입 완료 ','holaEat의 가족이 되신 걸 축하합니다.','success')
+                    //alert("회원가입 완료")
                     location.href = "login";
                 }else{
-                    alert("회원가입 실패")
-                    location.href="join"
+                    swal('회원 가입 실패 ','회원 가입을 다시 시도 해주세요.','error')
+                    //alert("회원가입 실패")
+                    location.href="join";
                 }
             }).fail(function (error){
                 alert("회원가입 실패입니다: " + error.responseJSON.message);
@@ -346,11 +355,14 @@ function checkValue(htmlForm) {
 
 
     }else if (!isIdChecked) {
-        alert("아이디 중복 확인해 주세요.");
+        swal('회원 가입 불가능 ','아이디 중복을 확인해 주세요.','warning')
+        //alert("아이디 중복 확인해 주세요.");
     }else if(!isEmailChecked){
-        alert("이메일 중복 확인해 주세요")
+        swal('회원 가입 불가능 ','이메일 중복을 확인해 주세요.','warning')
+        //alert("이메일 중복 확인해 주세요")
     }else if(!isToKenChecked){
-        alert("이메일 인증을 해주세요.")
+        swal('회원 가입 불가능 ','이메일 인증을 먼저 해주세요.','warning')
+        //alert("이메일 인증을 해주세요.")
 
     }
 
