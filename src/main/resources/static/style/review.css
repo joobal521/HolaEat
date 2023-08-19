@@ -210,11 +210,6 @@
     line-height: inherit;
 }
 
-.review-contents-all{
-    width: 80%;
-    margin: auto;
-}
-
 
 /*review,reviewUpdate 공통 적용*/
 
@@ -285,6 +280,13 @@ form.comment {
 
 
 /**** review 페이지 (게시글 상세 페이지) ****/
+
+.review-contents-all{
+    width: 80%;
+    margin: auto;
+}
+
+
 
 .review-section {
     width: 90%;
@@ -447,6 +449,14 @@ border: none;
     cursor: pointer;
 }
 
+/*수정페이지 오류나서 추가*/
+
+#img-container img#img{
+    margin: 0 auto;
+    width: 60%;
+}
+
+
 /**** 글쓰기 페이지 ****/
 
 #review-detail-contents{
@@ -518,9 +528,3 @@ border: none;
     background-color: #7041c2;
 }
 
-/*수정페이지 오류나서 추가*/
-
-#img-container img#img{
-    margin: 0 auto;
-    width: 60%;
-}

@@ -22,7 +22,7 @@
         <div id="health-contents">
             <form id="health-detail" enctype="multipart/form-data">
                 <div class="health_detail_no">
-                    <label for="healthNo">No.</label>
+                    <span>No.</span>
                     <input type="text" id="healthNo" name="healthNo" value="${health.healthNo}" readonly>
                 </div>
                 <div class="health_detail_title">
@@ -40,8 +40,9 @@
                         <%--                        <input type="text" id="content" name="content" value="${review.content}">--%>
                 </div>
                 <div id="image-container">
+        <c:if test="${blob !=null}">
                     <img src="data:image/png;base64,${blob}" id="img" name="img"  alt="Health Image" style=" max-width: 50%;  height: auto;">
-
+        </c:if>
                 </div>
 <%--                <c:if test="${health.userId == log}">--%>
 <%--                    <button type="button" id="update" name="update" onclick="redirectToReviewUpdate(reviewNo)">수정--%>
