@@ -26,7 +26,7 @@
 <section>
     <div class="body_header">
         <h2> ${userName}님을 위한 식단이 준비되어 있습니다! </h2>
-        <h3>정확한 식단 제공을 위해, ${userName}님에 대해 더욱 자세히 알려주세요!</h3>
+        <h3 class="alert_h3">정확한 식단 제공을 위해, ${userName}님에 대해 더욱 자세히 알려주세요!</h3>
     </div>
     <div class="form_wrap">
         <%--        열량 계산 시작 --%>
@@ -191,6 +191,11 @@
                     </select>
                 </div>
                     <input type="button" class="button" id="menu_btn" name="menu_btn" value="메뉴보기" onclick="fetchAndDisplayMenu()">
+                    <li>
+                        <h3 class="mini_h3">열량 계산 기준</h3>
+                        <span class="mini">*알레르기가 있으시면 권장 칼로리가 10% 감소합니다.</span><br>
+                        <span class="mini">*체중조절식은 일반균형식 대비 500kcal 감소합니다.</span>
+                    </li>
 
             </div>
         </form>

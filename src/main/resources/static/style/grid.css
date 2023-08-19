@@ -66,9 +66,8 @@ html,body,header,footer{
 
 
 section{
-    min-height:200vh;
+    min-height: 100vh;
 }
-
 /*.container{*/
 /*    display: flex;*/
 /*    flex-direction: column;*/
@@ -222,4 +221,13 @@ a{
 
 #logout:hover, #login:hover, #admin:hover, #admin_login:hover, #my:hover, #join:hover{
     background-color: gainsboro;
+    cursor: pointer;
+}
+
+.mini_h3, .alert_h3{
+    color: black;
+}
+
+.mini{
+    color: darkred;
 }

@@ -192,7 +192,7 @@ hover effect 37
     position: relative;
     text-decoration: none;
     display:inline-block;
-
+    width: 100%;
 }
 
 /*======= Button 3 =======*/
@@ -312,3 +312,4 @@ body{
 .login_2 a{
     text-decoration: none;
 }
+

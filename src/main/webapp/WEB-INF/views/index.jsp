@@ -76,7 +76,6 @@
                         </select>
                     </li>
                     <input type="button" class="button" id="calculate" name="calculate" value="계산하기" onclick="calculateCalories()">
-                    <input type="button" class="button" id="save_btn" name="save_btn" value="내 칼로리 정보 저장">
 
                 </ul>
                 <ul>
@@ -84,10 +83,12 @@
                         <h2>필요 열량</h2>
                         <input type="text" class="btn6" id="recCalories" name="recCalories" value="${userRecCalories}">
                         <span>kcal</span>
+                        <input type="button" class="button" id="save_btn" name="save_btn" value="내 칼로리 정보 저장">
                     </li>
                     <li>
-                        <h3>열량 계산 기준</h3>
-                        <span class="mini">*알레르기</span>
+                        <h3 class="mini_h3">열량 계산 기준</h3>
+                        <span class="mini">*알레르기가 있으시면 권장 칼로리가 10% 감소합니다.</span><br>
+                        <span class="mini">*체중조절식은 일반균형식 대비 500kcal 감소합니다.</span>
                     </li>
                 </ul>
 
@@ -96,6 +97,34 @@
                         <a href="menu" class="btn3">
                             나에게 맞는 메뉴<br/>보러가기
                         </a>
+                <h2>당신의 선택은 옳았습니다.</h2>
+                <h2>이렇게 많은 회원들이 Holaeat과 함께합니다.</h2>
+                <canvas id="pie-chart"></canvas>
+                <script>
+                    new Chart(document.getElementById("pie-chart"), {
+                        type   : 'bar',
+                        data   : {
+                            labels  : ["균형잡힌 식사", "운동 식이조절", "다이어트", "비건", "기타"],
+                            datasets: [{
+                                label          : "단위(명)",
+                                backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
+                                data           : [942, 1241, 734, 784, 433]
+                            }]
+                        },
+                        options: {
+                            title: {
+                                display: true,
+                                text   : 'Holaeat을 이용하는 이유는?'
+                            }
+                        }
+                    });
+
+                    $(".hover").mouseleave(
+                        function () {
+                            $(this).removeClass("hover");
+                        }
+                    );
+                </script>
             </div>
         </c:when>
             <%--            비 로그인 시--%>
@@ -180,33 +209,7 @@
             </svg>
 <%--            끝--%>
             <div class="form_wrap">
-<%--                <h2>이렇게 많은 회원들이 Holaeat과 함께합니다.</h2>--%>
-<%--                <canvas id="pie-chart" ></canvas>--%>
-<%--                <script>--%>
-<%--                    new Chart(document.getElementById("pie-chart"), {--%>
-<%--                        type   : 'pie',--%>
-<%--                        data   : {--%>
-<%--                            labels  : ["균형잡힌 식사", "운동 식이조절", "다이어트", "비건", "기타"],--%>
-<%--                            datasets: [{--%>
-<%--                                label          : "Population (millions)",--%>
-<%--                                backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],--%>
-<%--                                data           : [2478, 5267, 734, 784, 433]--%>
-<%--                            }]--%>
-<%--                        },--%>
-<%--                        options: {--%>
-<%--                            title: {--%>
-<%--                                display: true,--%>
-<%--                                text   : 'Holaeat을 이용하는 이유는?'--%>
-<%--                            }--%>
-<%--                        }--%>
-<%--                    });--%>
 
-<%--                    $(".hover").mouseleave(--%>
-<%--                        function () {--%>
-<%--                            $(this).removeClass("hover");--%>
-<%--                        }--%>
-<%--                    );--%>
-<%--                </script>--%>
                     <%--        캐러셀 BootStrap --%>
         <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner" style="height: 50vh; overflow: unset;">
