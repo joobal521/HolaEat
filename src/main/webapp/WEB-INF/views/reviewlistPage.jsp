@@ -59,7 +59,7 @@
                     <a href="<c:url value='/review/${review.reviewNo}'/>">
                     <div class="user_profile">
                         <ul>
-                            <li class="reviewprofile">NO. ${review.reviewNo}</li>
+                            <li class="review-profile">NO. ${review.reviewNo}</li>
                             <li class="userId">작성자 : ${review.userId}</li>
                         </ul>
                     </div>
@@ -71,7 +71,7 @@
                             <img src="data:image/jpeg;base64,${imageBase64}" id="img" name="img" alt="Review Image">
                         </c:if>
                     </div>
-                    <div class="review_title">제목 : ${review.title}</div>
+                    <div id="review_title_check" class="review_title">제목 : ${review.title}</div>
                     <div class="review_like"><i class="fa-regular fa-heart"></i></div>
                     </a>
                 </div>
@@ -83,12 +83,15 @@
         <ul class="pagination">
             <c:choose>
                 <c:when test="${pageNumber > 1}">
-                    <li><a href="/reviewlist/1"> << </a></li>
-                    <li><a href="/reviewlist/${pageNumber - 1}"> < </a></li>
+                    <li ><a href="/reviewlist/1"><i class="fa-solid fa-backward-fast"></i></a></li>
+                    <li><a href="/reviewlist/${pageNumber - 1}"><i class="fa-solid fa-caret-left"></i></a></li>
+
+
                 </c:when>
                 <c:otherwise>
-                    <li><span> << </span></li>
-                    <li><span> < </span></li>
+                    <li><i class="fa-solid fa-backward-fast"></i></li>
+                    <li><i class="fa-solid fa-caret-left"></i></li>
+
                 </c:otherwise>
             </c:choose>
             <c:choose>
@@ -110,12 +113,12 @@
             </c:choose>
             <c:choose>
                 <c:when test="${pageNumber < totalPages}">
-                    <li><a href="/reviewlist/${pageNumber + 1}"> > </a></li>
-                    <li><a href="/reviewlist/${totalPages}"> >> </a></li>
+                    <li><a href="/reviewlist/${pageNumber + 1}"> <i class="fa-solid fa-caret-right"></i></a></li>
+                    <li><a href="/reviewlist/${totalPages}"> <i class="fa-solid fa-forward-fast"></i> </a></li>
                 </c:when>
                 <c:otherwise>
-                    <li><span> > </span></li>
-                    <li><span> >> </span></li>
+                    <li><i class="fa-solid fa-caret-right"></i></li>
+                    <li><i class="fa-solid fa-forward-fast"></i></li>
                 </c:otherwise>
             </c:choose>
         </ul>
