@@ -25,6 +25,11 @@ public class MainController {
     @GetMapping(value = "login")
     public String login() {return "login";}
 
+
+    //아이디 찾기
+    @GetMapping(value = "find-id")
+    public String findId(){return "findId";}
+
     @GetMapping(value ="leave")
     public String leave(){return "leaveForm";}
 
@@ -74,7 +79,6 @@ public class MainController {
         model.addAttribute("review", review.get());
         return "reviewUpdate";
     }
-
 
 
     @GetMapping("update")

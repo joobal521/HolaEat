@@ -12,9 +12,116 @@
     <title>update</title>
     <c:set var="path" value="${pageContext.request.contextPath}"/>
     <link rel="stylesheet" type="text/css" href="style/joinForm.css">
-    <link rel="stylesheet" type="text/css" href="style/myPage.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<style>
+    .form_wrap{
+        padding:5% 10%;
+    }
+
+    /* 폼 스타일링 */
+    .form_container {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    }
+
+    /* 입력 상자 스타일링 */
+    .input-container {
+    margin-bottom: 20px;
+    }
+
+    .input-box {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    }
+
+    /* 버튼 스타일링 */
+    #submit {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    }
+
+    #submit:hover {
+    background-color: #2980b9;
+    }
+
+    /* 에러 메시지 스타일링 */
+    .error {
+    color: #e74c3c;
+    font-size: 14px;
+    display: none;
+    margin-top: 5px;
+    }
+
+    /* 인증 코드 입력란 및 버튼 스타일링 */
+    .input-code {
+    width: 70%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    }
+
+    .code-btn {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+    }
+
+    .code-btn:hover {
+    background-color: #2980b9;
+    }
+
+    /* 중복 확인 버튼 스타일링 */
+    .btn-dupl {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-left: 5px;
+    }
+
+    .btn-dupl:hover {
+    background-color: #2980b9;
+    }
+
+    /* 이메일 버튼 스타일링 */
+    .email-btn {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-left: 5px;
+    }
+
+    .email-btn:hover {
+    background-color: #2980b9;
+    }
+
+    /* 오류 메시지 스타일링 */
+    .err {
+    color: #e74c3c;
+    font-size: 14px;
+    }
+
+</style>
+
 </head>
 <body>
 <section>
