@@ -33,38 +33,38 @@
                         <h2>성별</h2>
                         <label>
                             <input type="radio" id="male" name="gender"
-                                   value="male" ${userGender eq 'male' ? 'checked' : ''}>
+                                   value="male" ${userResponseDto.userGender eq 'male' ? 'checked' : ''}>
                             <span>남자</span>
                         </label>
                         <label>
                             <input type="radio" id="female" name="gender"
-                                   value="female" ${userGender eq 'female' ? 'checked' : ''}>
+                                   value="female" ${userResponseDto.userGender eq 'female' ? 'checked' : ''}>
                             <span>여자</span>
                         </label>
                     </li>
                     <li>
                         <h2>나이</h2>
-                        <input type="text" id="age" name="age" value="${userAge}">
+                        <input type="text" id="age" name="age" value="${userResponseDto.userAge}">
                         <span>세</span>
                     </li>
                     <li>
                         <h2>키</h2>
-                        <input type="text" id="height" name="height" value="${userHeight}">
+                        <input type="text" id="height" name="height" value="${userResponseDto.userHeight}">
                         <span>cm</span>
                     </li>
                     <li>
                         <h2>몸무게</h2>
-                        <input type="text" id="weight" name="weight" value="${userWeight}">
+                        <input type="text" id="weight" name="weight" value="${userResponseDto.userWeight}">
                         <span>kg</span>
                     </li>
                     <li>
                         <h2>알레르기</h2>
                         <select name="allergy" id="allergy">
                             <option value="0">없음</option>
-                            <option value="1" ${userAllergy eq '1' ? 'selected' : ''}>유제품</option>
-                            <option value="2" ${userAllergy eq '2' ? 'selected' : ''}>갑각류</option>
-                            <option value="3" ${userAllergy eq '3' ? 'selected' : ''}>과일류</option>
-                            <option value="4" ${userAllergy eq '4' ? 'selected' : ''}>견과류</option>
+                            <option value="1" ${userResponseDto.userAllergy eq '1' ? 'selected' : ''}>유제품</option>
+                            <option value="2" ${userResponseDto.userAllergy eq '2' ? 'selected' : ''}>갑각류</option>
+                            <option value="3" ${userResponseDto.userAllergy eq '3' ? 'selected' : ''}>과일류</option>
+                            <option value="4" ${userResponseDto.userAllergy eq '4' ? 'selected' : ''}>견과류</option>
                         </select>
                     </li>
                     <li>
@@ -81,7 +81,7 @@
                 <ul>
                     <li>
                         <h2>필요 열량</h2>
-                        <input type="text" class="btn6" id="recCalories" name="recCalories" value="${userRecCalories}">
+                        <input type="text" class="btn6" id="recCalories" name="recCalories" value="${userResponseDto.userRecCalories}">
                         <span>kcal</span>
                         <input type="button" class="button" id="save_btn" name="save_btn" value="내 칼로리 정보 저장">
                     </li>

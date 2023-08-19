@@ -226,8 +226,16 @@ a{
 
 .mini_h3, .alert_h3{
     color: black;
+    margin: 0;
 }
 
 .mini{
     color: darkred;
+}
+
+.logo{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
 }

@@ -4,6 +4,7 @@ import com.spring.holaeat.domain.profile.ProfileImg;
 import com.spring.holaeat.domain.profile.ProfileImgRepository;
 import com.spring.holaeat.domain.user.User;
 import com.spring.holaeat.domain.user.UserRepository;
+import com.spring.holaeat.domain.user.UserResponseDto;
 import com.spring.holaeat.domain.user_detail.UserDetail;
 import com.spring.holaeat.domain.user_detail.UserDetailRepository;
 import org.springframework.stereotype.Controller;
@@ -33,6 +34,7 @@ public class LogController {
         this.profileImgRepository=profileImgRepository;
     }
 
+    // LoginController.java
     @PostMapping("login")
     public String login(@RequestParam("userId") String userId, @RequestParam("userPassword") String userPassword, HttpSession session, Model model) {
         User user = userRepository.findByUserId(userId);
@@ -40,39 +42,22 @@ public class LogController {
         if (user != null) {
             if (user.getUserPassword().equals(userPassword)) {
                 UserDetail userDetail = userDetailRepository.findByUserId(userId);
-                ProfileImg profileImg=profileImgRepository.findByUserId(userId);
+                ProfileImg profileImg = profileImgRepository.findByUserId(userId);
 
-                if(profileImg!=null){
+                if (profileImg != null) {
                     session.setAttribute("profileImg", profileImg.getProfileImg());
                     System.out.println(profileImg);
-                }else{
+                } else {
                     System.out.println("안되긴 뭐가 안돼용");
                     System.out.println("그럼 돼용?");
                 }
 
+                UserResponseDto userResponseDto = new UserResponseDto(user, userDetail);
 
+                model.addAttribute("userResponseDto", userResponseDto);
                 session.setAttribute("log", user.getUserId());
-                session.setAttribute("userName", user.getUserName());
-                session.setAttribute("userEmail",user.getUserEmail());
+                session.setAttribute("userResponseDto", userResponseDto); // 세션에 UserResponseDto 저장
 
-
-                if (userDetail != null) {
-                    // 클라이언트단에 노출될 수 있는 유저정보만 모은 객체를 담기
-                    // UserResponseDto userResponseDto = new UserResponseDto(userDetail);
-                    // session.setAttribute("log", userResponseDto)
-                    session.setAttribute("userAge", userDetail.getAge());
-                    session.setAttribute("userHeight", userDetail.getHeight());
-                    session.setAttribute("userWeight", userDetail.getWeight());
-                    session.setAttribute("userRecCalories", userDetail.getRecCalories());
-                    session.setAttribute("userAllergy", userDetail.getAllergy());
-                    session.setAttribute("userGender", userDetail.getGender());
-                    if (userDetail.getPrefer() != null) {
-                        session.setAttribute("userPrefer", userDetail.getPrefer());
-                    }
-                    if (userDetail.getDislike() != null) {
-                        session.setAttribute("userDislike", userDetail.getDislike());
-                    }
-                }
                 return "redirect:/";
             } else {
                 model.addAttribute("loginFailed", true);
