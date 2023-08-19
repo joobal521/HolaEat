@@ -52,9 +52,10 @@ function drawComments(userId, content, commentId) {
             <input type="text" value="ID : ${userId}" readonly />
             <br>
             <textarea readonly>${content}</textarea>
+            
             <br>
             <div class="comment-btn">
-                ${isUserAuthor ? `<button style="display: none" class="commentEditBtn" onclick="showEditPage(${commentId}, '${content}')">수정</button>` : ''}
+                ${isUserAuthor ? `<button style="display: none;" class="commentEditBtn" onclick="showEditPage(${commentId}, '${content}')">수정</button>` : ''}
                 ${isUserAuthor ? `<button class="commentDeleteBtn" onclick="deleteComment(${commentId})">삭제</button>` : ''}
             </div>
         </form>

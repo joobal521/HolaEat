@@ -210,11 +210,6 @@
     line-height: inherit;
 }
 
-.review-contents-all{
-    width: 80%;
-    margin: auto;
-}
-
 
 /*review,reviewUpdate 공통 적용*/
 
@@ -253,7 +248,8 @@
     background-color: white;
 
 }
-.review_detail_no > #reviewNo {
+.review_detail_no > #reviewNo
+{
     border: none;
     padding: 0;
 }
@@ -264,7 +260,9 @@
     width: 80%;
     margin: auto;
 }
-#review-detail span{
+#review-detail span,
+#review-update span
+{
     margin-left: 30px;
 }
 
@@ -274,15 +272,21 @@ form.comment {
 
 
 #review-update label{
-    display: inline-block;
-    width: 7%;
-    /*padding: 10px;*/
-    color: black;
-    margin: 10px auto;
+    display: block;
+    text-align: start;
+    width: 80%;
+    margin: auto;
 }
 
 
 /**** review 페이지 (게시글 상세 페이지) ****/
+
+.review-contents-all{
+    width: 80%;
+    margin: auto;
+}
+
+
 
 .review-section {
     width: 90%;
@@ -444,6 +448,14 @@ border: none;
     border-radius: 4px;
     cursor: pointer;
 }
+
+/*수정페이지 오류나서 추가*/
+
+#img-container img#img{
+    margin: 0 auto;
+    width: 60%;
+}
+
 
 /**** 글쓰기 페이지 ****/
 

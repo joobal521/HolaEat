@@ -5,10 +5,14 @@
 // })
 
 //썸네일 출력
-$('#file').change(e => {
-    console.log("file is changed.");
-    loadthumb();
-});
+// $('#file').change(e => {
+//     console.log("file is changed.");
+//     loadthumb();
+// });
+
+
+
+
 
 $('#title').on('change', e => {
     if ($('#title').val() !== "") {
@@ -125,13 +129,13 @@ function CheckValueUpdate(htmlForm, reviewNo) {
 }
 
 //이미지 썸네일 로드, 이미지 파일을 선택하면 해당 이미지를 읽어들여 화면에 표시하는 역할
-function loadthumb() {
-    var reader = new FileReader;
-    reader.onload = function (data) {
-        $(".select_img img").attr("src", data.target.result).width(500);
-    }
-    reader.readAsDataURL($('#file').prop("files")[0]);
-}
+// function loadthumb() {
+//     var reader = new FileReader;
+//     reader.onload = function (data) {
+//         $(".select_img img").attr("src", data.target.result).width(500);
+//     }
+//     reader.readAsDataURL($('#file').prop("files")[0]);
+// }
 
 //게시글 삭제
 
@@ -174,7 +178,7 @@ function redirectToReviewUpdate() {
 }
 
 function goBack() {
-    var confirmation = confirm("정말 취소하시겠습니까?");
+    var confirmation = confirm("수정 취소하시겠습니까?");
 
     if (confirmation) {
         // window.scrollTo(0, 0);
@@ -208,3 +212,4 @@ function writeThumbnail() {
         imagePreview.style.display = 'none'; // 이미지 썸네일을 숨김
     }
 }
+
