@@ -27,7 +27,7 @@
         <div id="review-contents">
             <form id="review-update" enctype="multipart/form-data">
                 <div class="review_detail_no">
-                    <label for="reviewNo">No.</label>
+                    <span>No.</span>
                     <input type="text" id="reviewNo" name="reviewNo" value="${review.reviewNo}" readonly>
                 </div>
                 <div class="review_detail_title">
@@ -77,6 +77,31 @@
 
 
 </body>
+<%--수정페이지에서 오류나서 추가--%>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('file').addEventListener('change', function() {
+            var imgElement = document.getElementById('img');
+            var imgCheckInput = document.getElementById('imgCheck');
+
+            if (this.files && this.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    imgElement.src = e.target.result;
+                    imgElement.style.display = 'block';
+                    imgCheckInput.value = e.target.result;
+                };
+
+                reader.readAsDataURL(this.files[0]);
+            } else {
+                imgElement.style.display = 'none';
+                imgCheckInput.value = '';
+            }
+        });
+    });
+</script>
+
 <script src="script/review.js"></script>
 
 <c:import url="footer.jsp"/>

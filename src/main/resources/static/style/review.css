@@ -253,7 +253,8 @@
     background-color: white;
 
 }
-.review_detail_no > #reviewNo {
+.review_detail_no > #reviewNo
+{
     border: none;
     padding: 0;
 }
@@ -264,7 +265,9 @@
     width: 80%;
     margin: auto;
 }
-#review-detail span{
+#review-detail span,
+#review-update span
+{
     margin-left: 30px;
 }
 
@@ -274,11 +277,10 @@ form.comment {
 
 
 #review-update label{
-    display: inline-block;
-    width: 7%;
-    /*padding: 10px;*/
-    color: black;
-    margin: 10px auto;
+    display: block;
+    text-align: start;
+    width: 80%;
+    margin: auto;
 }
 
 
