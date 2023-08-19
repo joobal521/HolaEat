@@ -204,25 +204,31 @@ public class UserController {
     }
 
     //비밀번호 찾기
-//@PostMapping(value = "find-pwd")
-//public Map (@RequestBody Map<String, String> requestData){
-//    JSONObject response = new JSONObject();
-//    String newPassword = requestData.get("newPassword");
-//    String newPasswordCh = requestData.get("newPasswordCh");
-//
-//    try{
-//        UserRequestDto updatedUserDto = new UserRequestDto();
-//        updatedUserDto.setUserPassword(newPassword);
-//
-//    }catch (Exception e){
-//        e.printStackTrace();
-//        response.put("result", false);
-//        System.out.println("비밀번호 바꾸기 실패");
-//
-//    }
-//    return response.toMap();
-//
-//}
+@PutMapping( "find-pwd")
+public Map changePwd (@RequestBody Map<String, String> requestData,WebRequest request){
+    JSONObject response = new JSONObject();
+    String userEmail = (String)request.getAttribute("userEmail", WebRequest.SCOPE_SESSION);
+    String newPassword = requestData.get("newPassword");
+    String newPasswordCh = requestData.get("newPasswordCh");
+    System.out.println(userEmail+"님의 비밀번호를 바꿀~");
+
+    try{
+        UserRequestDto updatedUserDto = new UserRequestDto();
+        updatedUserDto.setUserPassword(newPassword);
+        userService.updateNewPwd(userEmail,updatedUserDto);
+        response.put("result", true);
+        response.put("message", "비밀번호가 성공적으로 변경되었습니다.");
+
+    }catch (Exception e){
+        e.printStackTrace();
+        response.put("result", false);
+        response.put("message", "비밀번호가 성공적으로 변경되었습니다.");
+        System.out.println("비밀번호 바꾸기 실패");
+
+    }
+    return response.toMap();
+
+}
 
     //비밀번호 찾기-이메일로 보내서
 //    @PostMapping("verification-requests")
@@ -234,11 +240,12 @@ public class UserController {
 
 //이메일 인증
     @PostMapping("verification-email")
-    public String sendMessage(@RequestBody  Map<String, String> requestData) {
+    public String sendMessage(@RequestBody  Map<String, String> requestData,HttpSession session) {
         String email = requestData.get("userEmail");
         System.out.println("이메일"+email);
 
         try {
+            session.setAttribute("userEmail", email);
             return userService.sendCodeToEmail(email);
 
         }catch (Exception e){
