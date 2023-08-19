@@ -81,7 +81,6 @@ public class UserService {
 
      //비밀번호 보내기
      public String sendPassword(String toEmail, String userEmail) {
-          this.checkDuplicatedEmail(toEmail);
           String title = "holaEat에서 비밀번호 보내드려요";
           User user=this.getUserByEmail(userEmail);
           String password= String.valueOf(this.findByUserPassword(user.getUserPassword()));
@@ -143,7 +142,6 @@ public class UserService {
 
 
      public String sendCodeToEmail(String toEmail) {
-          this.checkDuplicatedEmail(toEmail);
           String title = "holaEat 이메일 인증 번호";
           authCode = this.createCode();
           System.out.println("인증코드"+authCode);
@@ -154,14 +152,16 @@ public class UserService {
           return authCode;
      }
 
+
+
      //이메일 중복확인
-     private void checkDuplicatedEmail(String email) {
-          Optional<User> user = userRepository.findByUserEmail(email);
-          if (user.isPresent()) {
-               log.debug("MemberServiceImpl.checkDuplicatedEmail exception occur email: {}", email);
-               throw new BusinessLogicException(ExceptionCode.MEMBER_EXISTS);
-          }
-     }
+//     private void checkDuplicatedEmail(String email) {
+//          Optional<User> user = userRepository.findByUserEmail(email);
+//          if (user.isPresent()) {
+//               log.debug("MemberServiceImpl.checkDuplicatedEmail exception occur email: {}", email);
+//               throw new BusinessLogicException(ExceptionCode.MEMBER_EXISTS);
+//          }
+//     }
 
 
 

@@ -27,11 +27,21 @@ public class MainController {
 
 
     //아이디 찾기
-    @GetMapping(value = "find-id")
-    public String findId(){return "findId";}
+    @GetMapping(value = "find-user")
+    public String findId(){return "findUser";}
+
+    //비빌번호 찾기
+    @GetMapping(value="find-pwd")
+    public String findPwd(){return "findPassword";}
+    @GetMapping(value ="new-pwd")
+    public String newPwd(){return "newPassword";}
+
 
     @GetMapping(value ="leave")
     public String leave(){return "leaveForm";}
+
+    @GetMapping("update")
+    public String update(){return "updateForm";}
 
 //    @GetMapping(value = "ingredients")
 //    public String ingredients() {return "ingredients";}
@@ -81,8 +91,7 @@ public class MainController {
     }
 
 
-    @GetMapping("update")
-    public String update(){return "updateForm";}
+
 
     @GetMapping("term")
     public String term(){return"term";}

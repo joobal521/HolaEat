@@ -36,6 +36,7 @@ function emailAuthentication() {
 
         var email = $('#userEmail').val();
         $("#code-ch").prop('disabled', true);
+        //아이디 찾기-아이디 조회 하기 버튼
         $("#find-btn").prop('disabled', true);
 
 
@@ -72,7 +73,6 @@ function emailAuthentication() {
         });
 
 
-
 }
 
 
@@ -97,7 +97,10 @@ function authCodeCheck() {
             //alert("인증 되었습니다.");
             $("#input-code").prop('disabled', true);
             $("#code-ch").prop('disabled', true);
+            //아이디 찾기-아이디 조회 하기 버튼
+            $("#find-btn").prop('disabled', false);
             isToKenChecked = true;
+
         } else {
             swal('인증 실패','인증 코드가 맞지 않습니다.','error')
             //alert("인증 코드가 맞지 않습니다.")
@@ -110,17 +113,31 @@ function authCodeCheck() {
 
 $("#find-btn").click(function () {
 
-    if (isToKenChecked) { // isToKenChecked 가 true 이면
+
+  if (isToKenChecked) { // isToKenChecked 가 true 이면
     var userEmail = $("#userEmail").val();
     var userName = $("#userName").val();
 
+
+    if (userEmail === "") {
+        $('#error-email').show();
+        $('#userEmail').parent().css('border-color', 'red');
+
+     }
+
+    if (userName === "") {
+         $('#error-name').show();
+
+    }
+
     $.ajax({
         type: "POST",
-        url: "api/v1/users/findId", // 컨트롤러의 URL
+        url: "api/v1/users/find-user", // 컨트롤러의 URL
         data: {
             userEmail: userEmail,
             userName: userName
         },
+
         success: function (response) {
             $("#result").text("아이디: " + response);
         },
@@ -136,39 +153,6 @@ $("#find-btn").click(function () {
 });
 
 
-function checkValue(htmlForm) {
-    const email = htmlForm.userEmail.value;
-    const name=htmlForm.userName.value;
-
-    let check = true;
-    var regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
-
-
-
-    if (email === "") {
-        $('#error-email').show();
-        $('#userEmail').parent().css('border-color', 'red');
-        check = false;
-
-    }
-
-    if (!regExp.test(email)) {
-        check = false;
-
-    }
-
-    if (name === "") {
-        $('#error-name').show();
-        check = false;
-
-    }
-
-
-    if (check) {
-        htmlForm.submit();
-    }
-
-}
 
 
 

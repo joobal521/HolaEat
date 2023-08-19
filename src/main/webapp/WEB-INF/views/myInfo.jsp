@@ -21,10 +21,9 @@
     /* 전체 컨테이너 스타일링 */
     .container {
       display: flex;
-      justify-content: center;
-      align-items: center;
       height: 100vh;
       background-color: #f7f7f7;
+
     }
 
     /* 카드 스타일링 */
@@ -35,6 +34,7 @@
       padding: 20px;
       text-align: center;
       width: 300px;
+      margin-top: 30px;
     }
 
     /* 프로필 이미지 스타일링 */
@@ -102,6 +102,12 @@
       <li><Span>아이디 : </Span>${sessionScope.log}</li>
       <li><span>이름 : </span>${sessionScope.userName}</li>
       <li><span>이메일 : </span>${sessionScope.userEmail}</li>
+<%--      <li><h3>나의 건강 정보</h3></li>--%>
+<%--      <li><span>성별 :</span></li>--%>
+<%--      <li><span>나이 : </span></li>--%>
+<%--      <li><span>키 : </span></li>--%>
+<%--      <li><span>몸무게 : </span></li>--%>
+
     </ul>
   </div>
 </div>

@@ -13,7 +13,41 @@
     <link rel="stylesheet" type="text/css" href="/style/review.css">
 
     <script src="https://kit.fontawesome.com/5d67eb2efc.js" crossorigin="anonymous"></script>
+<%--<style>--%>
+<%--    .scroll {--%>
+<%--        background: none;--%>
+<%--        width: auto;--%>
+<%--        position: fixed;--%>
+<%--        bottom: 5%;--%>
+<%--        right: 5%;--%>
+<%--    }--%>
 
+
+<%--    .scroll button {--%>
+<%--        background: none;--%>
+<%--        border: 2px solid rgb(211, 207, 207);--%>
+<%--        width: 50px;--%>
+<%--        height: 50px;--%>
+<%--        border-radius: 30px;--%>
+<%--        outline: none;--%>
+<%--    }--%>
+
+<%--    .scroll button:active{--%>
+<%--        box-shadow: 1px 1px 0 rgb(0,0,0,0.5);--%>
+<%--        position: relative;--%>
+<%--        top:2px;--%>
+
+<%--    }--%>
+
+<%--    .scroll button:hover {--%>
+<%--        background: white;--%>
+<%--        color: rgb(146, 175, 205);--%>
+
+<%--        transition: 0.3s ease-in;--%>
+<%--        cursor: grab;--%>
+<%--    }--%>
+
+<%--</style>--%>
 
 </head>
 <c:import url="header.jsp"/>
@@ -123,11 +157,26 @@
             </c:choose>
         </ul>
     </div>
+<%--    <div class="scroll">--%>
+<%--        <button class="scrollTop" onclick="scrollToTop();"><i class="fa-solid fa-angle-up"></i></i></button>--%>
+<%--    </div>--%>
+
 
 </div>
-</div>
+
 </body>
 <script src="script/review.js"></script>
+
+<%--<script>--%>
+<%--    function scrollToTop() {--%>
+<%--        $("html, body").animate({--%>
+<%--            scrollTop : 0--%>
+<%--        }, "slow");--%>
+<%--    }--%>
+
+
+
+<%--</script>--%>
 
 <c:import url="footer.jsp"/>
 </html>

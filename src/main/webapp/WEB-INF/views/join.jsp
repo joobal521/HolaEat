@@ -45,7 +45,7 @@
         }
 
         .input-box {
-            width: 100%;
+            width: 70%;
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
@@ -63,6 +63,20 @@
             border-radius: 5px;
             cursor: pointer;
         }
+
+        .email-btn{
+            margin-top: 10px;
+        }
+.btn_join{
+    display: flex;
+    justify-content: center;
+}
+
+        .join-btn{
+            margin-top: 30px;
+        }
+
+
 
         .agr_text {
             font-size: 14px;
@@ -86,6 +100,7 @@
 
         .label-wrapper {
             margin-top: 20px;
+            padding: 10px;
         }
 
     </style>
@@ -103,9 +118,9 @@
                         <input
                                 type="button" class="btn-dupl" id="idDupl" name="idDupl"
                                 value="중복 확인" onclick="chkId()">
+                        <p class="error" id="error-id">아이디는 필수 정보입니다.</p>
                     </li>
 
-                    <p class="error" id="error-id">아이디는 필수정 보입니다.</p>
 
                     <li class="input-container">
                         <h2 class="form-title">비밀번호</h2>
@@ -149,8 +164,10 @@
                     </li>
 
                     <div class="label-wrapper">
+                        <li class="agr">
                         <label for="agree_all" class="title">이용 약관 동의<span
                                 class="required">(필수)</span></label>
+                        </li>
                         <div class="agr">
                             <input type="checkbox" id="agree_all" name="agree_all"><span
                                 class="agr_text">전체 동의</span>
@@ -176,7 +193,7 @@
                         </li>
                     </div>
 
-                    <li>
+                    <li class="btn_join">
                         <button type="button" class="join-btn" id="submit" name="submit" onclick="checkValue(form)">회원가입</button>
                     </li>
                 </ul>

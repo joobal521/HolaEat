@@ -20,14 +20,14 @@
 <c:import url="header.jsp"/>
 <body>
 <div class="review-section">
-    <h2>리뷰 게시판 수정</h2>
-
+    <h2>REVIEW 수정</h2>
+    <div class="review-contents-all">
     <c:if test="${review!=null}">
 
         <div id="review-contents">
             <form id="review-update" enctype="multipart/form-data">
                 <div class="review_detail_no">
-                    <label for="reviewNo">No.</label>
+                    <span>No.</span>
                     <input type="text" id="reviewNo" name="reviewNo" value="${review.reviewNo}" readonly>
                 </div>
                 <div class="review_detail_title">
@@ -46,13 +46,18 @@
 
                 <div id="img-container">
                     <label for="file">이미지</label>
-                    <input type="file" id="file" name="file" accept="image/*" onchange="writeThumbnail()"/>
-                    <div class="select_img" id="image-preview">
-                      <img src="data:image/png;base64,${ImageParsor.parseBlobToBase64(review.img)}" id="img" name="img"  alt="">
-                        <input type="hidden" id="imgCheck" name="imgCheck" value="${ImageParsor.parseBlobToBase64(review.img)}">
+                    <input type="file" id="file" name="file" accept="image/*" />
 
-                    </div>
+                    <c:choose>
+                        <c:when test="${blob != null}">
+                            <img src="data:image/png;base64,${ImageParsor.parseBlobToBase64(review.img)}" id="img" name="img" alt="">
+                        </c:when>
+                        <c:otherwise>
+                            <img src="" id="img" name="img" alt="" style="display: none;">
+                        </c:otherwise>
+                    </c:choose>
 
+                    <input type="hidden" id="imgCheck" name="imgCheck" value="${ImageParsor.parseBlobToBase64(review.img)}">
                 </div>
 
 <%--                <input style="width: 100px" type="datetime" id="created_at" name="created_at" readonly>--%>
@@ -67,11 +72,36 @@
             </form>
         </div>
     </c:if>
-
+    </div>
 </div>
 
 
 </body>
+<%--수정페이지에서 오류나서 추가--%>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('file').addEventListener('change', function() {
+            var imgElement = document.getElementById('img');
+            var imgCheckInput = document.getElementById('imgCheck');
+
+            if (this.files && this.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    imgElement.src = e.target.result;
+                    imgElement.style.display = 'block';
+                    imgCheckInput.value = e.target.result;
+                };
+
+                reader.readAsDataURL(this.files[0]);
+            } else {
+                imgElement.style.display = 'none';
+                imgCheckInput.value = '';
+            }
+        });
+    });
+</script>
+
 <script src="script/review.js"></script>
 
 <c:import url="footer.jsp"/>
