@@ -11,6 +11,7 @@
 <head>
     <title>healthPage</title>
     <c:set var="path" value="${pageContext.request.contextPath}"/>
+    <link rel="stylesheet" type="text/css" href="/style/health.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 </head>
 <c:import url="header.jsp"/>
@@ -24,12 +25,13 @@
                     <label for="healthNo">No.</label>
                     <input type="text" id="healthNo" name="healthNo" value="${health.healthNo}" readonly>
                 </div>
-                <div class="review_detail_title">
+                <div class="health_detail_title">
                     <label for="title">제목</label>
                     <input type="text" id="title" name="title" value="${health.title}" readonly>
                 </div>
-                <div class="health_detail_admin">
-                    <li>작성자: 관리자</li>
+                <div class="health_detail_userId">
+                    <label for="admin">작성자</label>
+                    <input type="text" id="admin" name="admin" value="관리자" readonly>
                 </div>
 
                 <div class="health_detail_content">

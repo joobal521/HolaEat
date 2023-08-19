@@ -14,6 +14,81 @@
     <link rel="stylesheet" type="text/css" href="style/joinForm.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .form_wrap {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .form_container {
+            padding: 20px;
+        }
+
+        .form-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .input-container {
+            margin-bottom: 20px;
+        }
+
+        .input-box {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .btn-dupl,
+        .email-btn,
+        .code-btn,
+        .join-btn {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .agr_text {
+            font-size: 14px;
+            vertical-align: middle;
+        }
+
+        .agr {
+            margin-bottom: 10px;
+        }
+
+        .required {
+            color: red;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+            display: none;
+        }
+
+
+        .label-wrapper {
+            margin-top: 20px;
+        }
+
+    </style>
 </head>
 <c:import url="header.jsp"/>
 <body>

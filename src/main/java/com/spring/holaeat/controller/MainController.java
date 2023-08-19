@@ -56,8 +56,6 @@ public class MainController {
     @GetMapping(value = "healthForm")
     public String adminHealthFrom(){return "adminHealthForm";}
 
-    @GetMapping("health")
-    public String health() {return "healthList";}
 
     @GetMapping(value = "healthUpdate")
     public String healthUpdate(){
