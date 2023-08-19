@@ -27,7 +27,7 @@ public class MainController {
 
 
     //아이디 찾기
-    @GetMapping(value = "find")
+    @GetMapping(value = "find-user")
     public String findId(){return "findUser";}
 
     @GetMapping(value ="leave")
