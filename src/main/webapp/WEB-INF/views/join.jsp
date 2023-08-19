@@ -24,7 +24,7 @@
 
         .form_wrap {
             max-width: 600px;
-            margin: 0 auto;
+            margin: 50px auto;
             padding: 20px;
             background-color: #f5f5f5;
             border-radius: 10px;
@@ -107,7 +107,6 @@
 </head>
 <c:import url="header.jsp"/>
 <body>
-<section>
     <div class="form_wrap">
         <form enctype="multipart/form-data">
             <div class="form_container">
@@ -200,7 +199,6 @@
             </div>
         </form>
     </div>
-</section>
 <script src="script/join.js"></script>
 </body>
 <c:import url="footer.jsp"/>

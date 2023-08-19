@@ -16,6 +16,7 @@
     #find-section {
     text-align: center;
     margin-top: 50px;
+    margin-bottom: 122px;
     }
 
     .text_box {
@@ -85,7 +86,7 @@
 </head>
 <c:import url="header.jsp"/>
 <body>
-<section id="find-section">
+<div id="find-section">
     <div class="text_box">
         <h2 class="find_text">비밀번호 찾기</h2>
         <p class="comment">비밀 번호 재설정을 위해 이메일을 입력해주세요.</p>
@@ -113,7 +114,7 @@
             </div>
         </div>
     </form>
-</section>
+</div>
 <script src="script/find2.js"></script>
 </body>
 <c:import url="footer.jsp"/>
