@@ -204,12 +204,12 @@ public class UserController {
     }
 
     //비밀번호 찾기
-@PostMapping(value = "find-pwd")
-public Map (@RequestBody Map<String, String> requestData){
-    JSONObject response = new JSONObject();
-    return response.toMap();
-
-}
+//@PostMapping(value = "find-pwd")
+//public Map (@RequestBody Map<String, String> requestData){
+//    JSONObject response = new JSONObject();
+//    return response.toMap();
+//
+//}
 
     //비밀번호 찾기-이메일로 보내서
 //    @PostMapping("verification-requests")
