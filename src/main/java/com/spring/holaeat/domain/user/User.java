@@ -44,12 +44,17 @@ public class User extends Timestamp {
 
     }
 
-    //기능 메소드
+    //회원 정보 수정 기능 메소드
     public void update(UserRequestDto userDto){
         this.userPassword=userDto.getUserPassword();
         this.userName=userDto.getUserName();
         this.userEmail=userDto.getUserEmail();
 
+    }
+
+    //비밀 번호 찾기 기능 메소드
+    public void updatePwd(UserRequestDto userDto){
+        this.userPassword=userDto.getUserPassword();
     }
 
 
