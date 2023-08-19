@@ -14,12 +14,12 @@ public class FoodIngrService {
     public List<FoodIngr> findFoodIdByIngrId(int ingrId) {
         String id = String.valueOf(ingrId);
         List<FoodIngr> list = foodIngrRepository.findAllByIngrId(id);
-        for(FoodIngr fud : list){
-            System.out.println(fud.getFoodIngrId());
-            System.out.println(fud.getIngrId());
-            System.out.println(fud.getFoodId());
-            System.out.println("------");
-        }
+//        for(FoodIngr fud : list){
+//            System.out.println(fud.getFoodIngrId());
+//            System.out.println(fud.getIngrId());
+//            System.out.println(fud.getFoodId());
+//            System.out.println("------");
+//        }
         return list;
 
     }
