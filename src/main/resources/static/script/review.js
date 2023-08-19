@@ -6,7 +6,7 @@
 
 //썸네일 출력
 $('#file').change(e => {
-    // console.log("file is changed.");
+    console.log("file is changed.");
     loadthumb();
 });
 
@@ -71,8 +71,8 @@ function checkValueWrite(htmlForm) {
 function CheckValueUpdate(htmlForm, reviewNo) {
     const title = htmlForm.title.value;
     const content = htmlForm.content.value;
-    const imgCheck = htmlForm.imgCheck.value;
-    console.log("imgCheck 확인용"+imgCheck);
+    const imgCheckUrl = htmlForm.imgCheck.value;
+    console.log("imgCheckUrl 확인용"+imgCheckUrl);
 
     let imgFile = null;
 
@@ -82,7 +82,7 @@ function CheckValueUpdate(htmlForm, reviewNo) {
 
     console.log("imgFile 확인용"+imgFile);
 
-    if (title.trim() === "" && content.trim() === "" && imgFile === imgCheck) {
+    if (title.trim() === "" && content.trim() === "" && imgFile !== imgCheckUrl) {
         alert("수정할 내용이 없습니다.");
         return;
     }
@@ -176,4 +176,24 @@ function goBack() {
 //목록으로 되돌아가기
 function goBackToList() {
     location.href = "reviewlist/1";
+}
+
+//글쓰기 썸네일
+function writeThumbnail() {
+    const fileInput = document.getElementById('file');
+    const imgElement = document.getElementById('img');
+    const imagePreview = document.getElementById('image-preview');
+
+    const file = fileInput.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            imgElement.src = e.target.result;
+            imagePreview.style.display = 'block'; // 이미지 썸네일을 보여줌
+        };
+        reader.readAsDataURL(file);
+    } else {
+        imgElement.src = '';
+        imagePreview.style.display = 'none'; // 이미지 썸네일을 숨김
+    }
 }
