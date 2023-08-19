@@ -45,7 +45,7 @@
         }
 
         .input-box {
-            width: 100%;
+            width: 80%;
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
@@ -63,6 +63,7 @@
             border-radius: 5px;
             cursor: pointer;
         }
+
 
         .agr_text {
             font-size: 14px;
@@ -86,6 +87,7 @@
 
         .label-wrapper {
             margin-top: 20px;
+            padding: 10px;
         }
 
     </style>
@@ -149,8 +151,10 @@
                     </li>
 
                     <div class="label-wrapper">
+                        <li class="agr">
                         <label for="agree_all" class="title">이용 약관 동의<span
                                 class="required">(필수)</span></label>
+                        </li>
                         <div class="agr">
                             <input type="checkbox" id="agree_all" name="agree_all"><span
                                 class="agr_text">전체 동의</span>

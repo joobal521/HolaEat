@@ -61,7 +61,7 @@ public class UserController {
 }
 
 //아이디 찾기
-    @PostMapping(value = "findId")
+    @PostMapping(value = "find-user")
     public ResponseEntity<String> findIdByEmailAndName(@RequestParam String userEmail, @RequestParam String userName) {
         User user = userService.findUserByEmailAndName(userEmail, userName);
         if (user != null) {
