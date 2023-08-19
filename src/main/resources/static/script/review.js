@@ -208,3 +208,25 @@ function writeThumbnail() {
         imagePreview.style.display = 'none'; // 이미지 썸네일을 숨김
     }
 }
+
+//수정페이지에서 오류나서 추가
+
+    document.getElementById('file').addEventListener('change', function() {
+    var imgElement = document.getElementById('img');
+    var imgCheckInput = document.getElementById('imgCheck');
+
+    if (this.files && this.files[0]) {
+    var reader = new FileReader();
+
+    reader.onload = function(e) {
+    imgElement.src = e.target.result;
+    imgElement.style.display = 'block'; // Show the image
+    imgCheckInput.value = e.target.result; // Update the hidden input value
+};
+
+    reader.readAsDataURL(this.files[0]);
+} else {
+    imgElement.style.display = 'none'; // Hide the image if no file is selected
+    imgCheckInput.value = ''; // Clear the hidden input value
+}
+});

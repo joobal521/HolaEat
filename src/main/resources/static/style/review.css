@@ -516,3 +516,9 @@ border: none;
     background-color: #7041c2;
 }
 
+/*수정페이지 오류나서 추가*/
+
+#img-container img#img{
+    margin: 0 auto;
+    width: 60%;
+}

@@ -46,13 +46,18 @@
 
                 <div id="img-container">
                     <label for="file">이미지</label>
-                    <input type="file" id="file" name="file" accept="image/*" onchange="writeThumbnail()"/>
-                    <div class="select_img" id="image-preview">
-                      <img src="data:image/png;base64,${ImageParsor.parseBlobToBase64(review.img)}" id="img" name="img"  alt="">
-                        <input type="hidden" id="imgCheck" name="imgCheck" value="${ImageParsor.parseBlobToBase64(review.img)}">
+                    <input type="file" id="file" name="file" accept="image/*" />
 
-                    </div>
+                    <c:choose>
+                        <c:when test="${blob != null}">
+                            <img src="data:image/png;base64,${ImageParsor.parseBlobToBase64(review.img)}" id="img" name="img" alt="">
+                        </c:when>
+                        <c:otherwise>
+                            <img src="" id="img" name="img" alt="" style="display: none;">
+                        </c:otherwise>
+                    </c:choose>
 
+                    <input type="hidden" id="imgCheck" name="imgCheck" value="${ImageParsor.parseBlobToBase64(review.img)}">
                 </div>
 
 <%--                <input style="width: 100px" type="datetime" id="created_at" name="created_at" readonly>--%>
