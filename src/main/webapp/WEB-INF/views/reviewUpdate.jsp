@@ -46,9 +46,9 @@
 
                 <div id="img-container">
                     <label for="file">이미지</label>
-                    <input type="file" id="file" name="file" accept="image/*"/>
-                    <div class="select_img">
-                      <img src="data:image/png;base64,${ImageParsor.parseBlobToBase64(review.img)}" id="img" name="img"  alt="Review Image">
+                    <input type="file" id="file" name="file" accept="image/*" onchange="writeThumbnail()"/>
+                    <div class="select_img" id="image-preview">
+                      <img src="data:image/png;base64,${ImageParsor.parseBlobToBase64(review.img)}" id="img" name="img"  alt="">
                         <input type="hidden" id="imgCheck" name="imgCheck" value="${ImageParsor.parseBlobToBase64(review.img)}">
 
                     </div>

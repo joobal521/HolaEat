@@ -15,11 +15,12 @@
 <body>
 <div class="review-section">
     <h2>리뷰 상세 게시판</h2>
+    <div style="border: 1px solid black;">
     <c:if test="${review!=null}">
         <div id="review-contents">
             <form id="review-detail" enctype="multipart/form-data">
                 <div class="review_detail_no">
-                    <label for="reviewNo">No.</label>
+                    <span>No.</span>
                     <input type="text" id="reviewNo" name="reviewNo" value="${review.reviewNo}" readonly>
                 </div>
                 <div class="review_detail_title">
@@ -37,9 +38,12 @@
                         <%--                        <input type="text" id="content" name="content" value="${review.content}">--%>
                 </div>
                 <div id="image-container">
-                    <img src="data:image/png;base64,${blob}" id="img" name="img" alt="Review Image">
 
+                    <c:if test="${blob !=null}">
+                        <img src="data:image/png;base64,${blob}" id="img" name="img" alt="Review Image">
+                   </c:if>
                 </div>
+
                 <c:if test="${review.userId == log}">
                     <button type="button" id="update" name="update" onclick="redirectToReviewUpdate(reviewNo)">수정
                     </button>
@@ -82,7 +86,7 @@
             </form>
         </div>
     </div>
-
+    </div>
 
 </div>
 </body>

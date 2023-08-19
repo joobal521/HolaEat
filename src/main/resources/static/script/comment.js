@@ -49,7 +49,7 @@ function drawComments(userId, content, commentId) {
 
     const displayState = `
         <form class="comment-item" id="comment-item-${commentId}">
-            <input type="text" value="ID 확인용: ${userId}" readonly />
+            <input type="text" value="ID : ${userId}" readonly />
             <br>
             <textarea readonly>${content}</textarea>
             <br>
