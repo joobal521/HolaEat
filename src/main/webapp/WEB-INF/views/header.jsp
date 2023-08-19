@@ -52,15 +52,15 @@
             <ul class="menu align-center expanded text-center SMN_effect-5">
 
                 <li>
-                    <a href="ingredients">
-                        <span>이달의</br>식재료</span>
-                        <span>Mothnly Ingredients</span>
-                    </a>
-                </li>
-                <li>
                     <a href="/">
                         <span>홈페이지</span>
                         <span>Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="ingredients">
+                        <span>이달의</br>식재료</span>
+                        <span>Mothnly Ingredients</span>
                     </a>
                 </li>
 
