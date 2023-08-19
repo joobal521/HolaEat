@@ -57,6 +57,6 @@
 
 </div>
 </body>
-
+<script src="script/health.js"></script>
 <c:import url="footer.jsp"/>
 </html>

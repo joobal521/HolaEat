@@ -46,6 +46,7 @@
         </div>
     </div>
 </section>
+
 </body>
 <c:import url="footer.jsp"/>
 
