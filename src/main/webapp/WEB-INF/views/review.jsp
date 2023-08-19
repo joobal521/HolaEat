@@ -14,8 +14,8 @@
 <c:import url="header.jsp"/>
 <body>
 <div class="review-section">
-    <h2>리뷰 상세 게시판</h2>
-    <div style="border: 1px solid black;">
+    <h2>REVIEW 상세</h2>
+    <div class="review-contents-all">
     <c:if test="${review!=null}">
         <div id="review-contents">
             <form id="review-detail" enctype="multipart/form-data">
@@ -64,7 +64,8 @@
             <form method="POST" class="comment">
             <textarea cols="80" rows="10" id="msg-box" name="msg"
                     <c:choose>
-                        <c:when test="${empty log}">
+                        <c:when test="${empty log}" >
+                            onclick="redirectToLogin()"
                             placeholder="댓글을 작성하시려면 로그인을 해주세요." readonly
                         </c:when>
                         <c:otherwise>
@@ -92,5 +93,14 @@
 </body>
 <script src="script/review.js"></script>
 <script src="script/comment.js"></script>
+<script>
+    function redirectToLogin() {
+        const confirmation = confirm("로그인 하시겠습니까?");
+
+        if (confirmation) {
+            window.location.href = "/login";
+        }
+    }</script>
+
 <c:import url="footer.jsp"/>
 </html>

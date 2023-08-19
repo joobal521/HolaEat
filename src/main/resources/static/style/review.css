@@ -1,9 +1,9 @@
 /*section css*/
 .review-section {
     width: 90%;
-    border: 1px solid black;
+    /*border: 1px solid black;*/
     margin: 20px auto;
-    background-color: aliceblue;
+    /*background-color: aliceblue;*/
 }
 
 
@@ -210,14 +210,17 @@
     line-height: inherit;
 }
 
+.review-contents-all{
+    width: 80%;
+    margin: auto;
+}
+
 
 /*review,reviewUpdate 공통 적용*/
 
 #review-contents {
-    width: 70%;
-    border: 1px solid black;
+    width: 100%;
     padding: 20px;
-    border-radius: 5px;
     background-color: white;
     text-align: center;
     margin: 0 auto;
@@ -227,7 +230,7 @@
 #review-detail input,
 #review-update input{
     display: inline-block;
-    width: 70%;
+    width: 80%;
     padding: 10px;
     color: black;
     height: 40px;
@@ -240,7 +243,7 @@
 #review-detail textarea,
 #review-update textarea{
     resize: none;
-    width: 70%;
+    width: 80%;
     padding: 10px;
     color: black;
     height: 300px;
@@ -258,7 +261,7 @@
 #review-detail label{
     display: block;
     text-align: start;
-    width: 70%;
+    width: 80%;
     margin: auto;
 }
 #review-detail span{
@@ -284,7 +287,7 @@ form.comment {
 .review-section {
     width: 90%;
     margin: 20px auto;
-    padding: 20px;
+    padding: 30px;
 }
 
 
@@ -323,16 +326,25 @@ form.comment {
     margin-right: 20px;
 }
 
+/*댓글 등록버튼*/
+.commentBtn {
+    width: 100%;
+    text-align: center;
+}
+
+/*댓글 수정,삭제버튼*/
+form.comment-item .comment-btn {
+    width: 100%;
+    text-align: right;
+}
+
 
 /* 댓글 부분 */
 .comment-section {
-    width: 70%;
-    margin: 20px auto;
-    padding: 20px;
+    width: 100%;
+    margin: auto;
+    padding: 50px;
     background-color: white;
-    border: 1px solid black;
-    border-radius: 4px;
-
 }
 
 
@@ -396,7 +408,7 @@ border: none;
 
 .comment-btn button {
     padding: 5px 10px;
-    margin-right: 10px;
+    margin-right: 3px;
     background-color: #c0bbc7;
     color: white;
     border: none;
@@ -433,7 +445,20 @@ border: none;
     cursor: pointer;
 }
 
-/* 글쓰기 페이지 */
+/**** 글쓰기 페이지 ****/
+
+#review-detail-contents{
+    width: 70%;
+    padding: 20px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+#review-detail-contents>h2 {
+    margin: 5px auto;
+    font-size: 30px;
+    padding: 10px;
+}
 
 .review-write-table {
     width: 100%;
@@ -444,6 +469,10 @@ border: none;
     padding: 10px;
     border: 1px solid rgb(160, 156, 156);
     text-align: center;
+}
+
+.review-write-table tr:first-child{
+    border-top:1px solid rgb(160, 156, 156);
 }
 
 .review-write-table label {
@@ -460,6 +489,7 @@ border: none;
 .review-write-table input[type="text"] {
     width: 100%;
     padding: 5px;
+    height: 40px;
 }
 .write_select_img {
     margin-top: 10px;

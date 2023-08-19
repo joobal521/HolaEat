@@ -54,7 +54,7 @@ function drawComments(userId, content, commentId) {
             <textarea readonly>${content}</textarea>
             <br>
             <div class="comment-btn">
-                ${isUserAuthor ? `<button class="commentEditBtn" onclick="showEditPage(${commentId}, '${content}')">수정</button>` : ''}
+                ${isUserAuthor ? `<button style="display: none" class="commentEditBtn" onclick="showEditPage(${commentId}, '${content}')">수정</button>` : ''}
                 ${isUserAuthor ? `<button class="commentDeleteBtn" onclick="deleteComment(${commentId})">삭제</button>` : ''}
             </div>
         </form>
@@ -139,6 +139,7 @@ $(document).ready(function () {
 
 // 댓글 삭제
 function deleteComment(commentId) {
+    console.log("deleteComment() 호출됨, commentId:", commentId);
     if (confirm('정말로 삭제하시겠습니까?')) {
         $.ajax({
             type: 'DELETE',
@@ -147,9 +148,10 @@ function deleteComment(commentId) {
                 if (response.message === 'success') {
                     const reviewNo = $('#reviewNo').val();
                     loadComments(reviewNo);
-                } else {
-                    alert(response.message);
                 }
+                // else {
+                //     alert(response.message);
+                // }
             },
             error: function (error) {
                 console.error(error);

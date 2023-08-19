@@ -34,6 +34,9 @@ public class Review extends Timestamp {
     @Column(columnDefinition = "LONGBLOB")
     private byte[] img;
 
+//    @Column
+//    private int reviewLike;
+
 //추가
 //    @OneToMany(mappedBy = "review", cascade = CascadeType.ALL, orphanRemoval = true)
 //    private List<ReviewComment> comments;
