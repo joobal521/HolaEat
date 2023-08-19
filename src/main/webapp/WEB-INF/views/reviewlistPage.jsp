@@ -13,12 +13,16 @@
     <link rel="stylesheet" type="text/css" href="/style/review.css">
 
     <script src="https://kit.fontawesome.com/5d67eb2efc.js" crossorigin="anonymous"></script>
+
+
 </head>
 <c:import url="header.jsp"/>
 <body>
 <div class="review-section">
-    <div>게시글 목록</div>
+    <h2>REVIEW</h2>
   pageNumber 확인용 : ${pageNumber}
+
+
 
     <div class="search_box">
         <form id="searchForm" method="get" action="/reviewlist/1">
@@ -35,7 +39,8 @@
         </form>
     </div>
 
-    <div>
+
+    <div class="list-write-btn">
         <c:choose>
             <c:when test="${empty log}">
                 <a href="login">글쓰기</a>
@@ -45,13 +50,16 @@
             </c:otherwise>
         </c:choose>
     </div>
+
+
     <div id="review-container">
         <c:forEach items="${reviewlistPage}" var="review" varStatus="loop">
-            <a href="<c:url value='/review/${review.reviewNo}'/>">
+
                 <div id=review>
+                    <a href="<c:url value='/review/${review.reviewNo}'/>">
                     <div class="user_profile">
                         <ul>
-                            <li class="reviewprofile">NO. ${review.reviewNo}</li>
+                            <li class="review-profile">NO. ${review.reviewNo}</li>
                             <li class="userId">작성자 : ${review.userId}</li>
                         </ul>
                     </div>
@@ -63,34 +71,60 @@
                             <img src="data:image/jpeg;base64,${imageBase64}" id="img" name="img" alt="Review Image">
                         </c:if>
                     </div>
-                    <div class="review_title">제목 : ${review.title}</div>
+                    <div id="review_title_check" class="review_title">제목 : ${review.title}</div>
                     <div class="review_like"><i class="fa-regular fa-heart"></i></div>
+                    </a>
                 </div>
-            </a>
+
         </c:forEach>
     </div>
 
-    <%--    페이징--%>
-
-    <div class="paging-container">
-        <div class="paging" id="paging">
-
-            <ul class="pagination">
-                <li><a href="/reviewlist/1"><<</a></li>
-
-                <li><a href="/reviewlist/1">1</a></li>
-                <c:forEach var="i" begin="2" end="${totalPages}" step="1">
-                    <li><a href="/reviewlist/${i}">${i}</a></li>
-                </c:forEach>
-                <li><a href="/reviewlist/${totalPages}"> >> </a></li>
-            </ul>
-
-        </div>
+    <div class="paging" id="paging">
+        <ul class="pagination">
+            <c:choose>
+                <c:when test="${pageNumber > 1}">
+                    <li ><a href="/reviewlist/1"><i class="fa-solid fa-backward-fast"></i></a></li>
+                    <li><a href="/reviewlist/${pageNumber - 1}"><i class="fa-solid fa-caret-left"></i></a></li>
 
 
+                </c:when>
+                <c:otherwise>
+                    <li><i class="fa-solid fa-backward-fast"></i></li>
+                    <li><i class="fa-solid fa-caret-left"></i></li>
 
-
+                </c:otherwise>
+            </c:choose>
+            <c:choose>
+                <c:when test="${pageNumber <= 3}">
+                    <c:forEach var="i" begin="1" end="5" step="1">
+                        <li><a href="/reviewlist/${i}">${i}</a></li>
+                    </c:forEach>
+                </c:when>
+                <c:when test="${pageNumber > 3 && pageNumber <= totalPages - 2}">
+                    <c:forEach var="i" begin="${pageNumber - 2}" end="${pageNumber + 2}" step="1">
+                        <li><a href="/reviewlist/${i}">${i}</a></li>
+                    </c:forEach>
+                </c:when>
+                <c:otherwise>
+                    <c:forEach var="i" begin="${totalPages - 4}" end="${totalPages}" step="1">
+                        <li><a href="/reviewlist/${i}">${i}</a></li>
+                    </c:forEach>
+                </c:otherwise>
+            </c:choose>
+            <c:choose>
+                <c:when test="${pageNumber < totalPages}">
+                    <li><a href="/reviewlist/${pageNumber + 1}"> <i class="fa-solid fa-caret-right"></i></a></li>
+                    <li><a href="/reviewlist/${totalPages}"> <i class="fa-solid fa-forward-fast"></i> </a></li>
+                </c:when>
+                <c:otherwise>
+                    <li><i class="fa-solid fa-caret-right"></i></li>
+                    <li><i class="fa-solid fa-forward-fast"></i></li>
+                </c:otherwise>
+            </c:choose>
+        </ul>
     </div>
+
+</div>
 </div>
 </body>
 <script src="script/review.js"></script>

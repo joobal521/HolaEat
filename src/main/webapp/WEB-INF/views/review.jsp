@@ -3,7 +3,6 @@
 <html>
 <head>
     <title>Title</title>
-    <%--    <c:set var="path" value="${pageContext.request.contextPath}"/>--%>
     <link rel="stylesheet" type="text/css" href="/style/review.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 
@@ -15,8 +14,7 @@
 <c:import url="header.jsp"/>
 <body>
 <div class="review-section">
-    <h2>리뷰 게시판 상세</h2>
-    <h2>게시글</h2>
+    <h2>리뷰 상세 게시판</h2>
     <c:if test="${review!=null}">
         <div id="review-contents">
             <form id="review-detail" enctype="multipart/form-data">
