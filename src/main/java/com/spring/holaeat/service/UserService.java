@@ -71,6 +71,18 @@ public class UserService {
           return  user.isPresent();
      }
 
+     //비밀번호 찾기(비밀번호 바꾸기)
+     @Transactional
+     public void updateNewPwd(String userId, UserRequestDto userDto) {
+          User user=getUserById(userId);
+          if (user != null) {
+               user.updatePwd(userDto);
+          } else {
+               throw new IllegalArgumentException("해당 사용자를 찾을 수 없습니다.");
+          }
+
+     }
+
 
      //비밀번호 조회
      public User findByUserPassword(String userPassword) {
@@ -141,6 +153,7 @@ public class UserService {
      }
 
 
+     //이메일 보내기
      public String sendCodeToEmail(String toEmail) {
           String title = "holaEat 이메일 인증 번호";
           authCode = this.createCode();

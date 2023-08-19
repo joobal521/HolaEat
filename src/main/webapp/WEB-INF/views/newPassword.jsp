@@ -83,7 +83,7 @@
 </head>
 <c:import url="header.jsp"/>
 <body>
-<section id="find-section">
+<div id="find-section">
     <div class="text_box">
         <h2 class="find_text">새로운 비밀번호를 입력해주세요</h2>
     </div>
@@ -115,7 +115,7 @@
             </ul>
         </div>
     </form>
-</section>
+</div>
 </body>
 <c:import url="footer.jsp"/>
 </html>
