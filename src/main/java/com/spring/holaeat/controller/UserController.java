@@ -207,6 +207,19 @@ public class UserController {
 //@PostMapping(value = "find-pwd")
 //public Map (@RequestBody Map<String, String> requestData){
 //    JSONObject response = new JSONObject();
+//    String newPassword = requestData.get("newPassword");
+//    String newPasswordCh = requestData.get("newPasswordCh");
+//
+//    try{
+//        UserRequestDto updatedUserDto = new UserRequestDto();
+//        updatedUserDto.setUserPassword(newPassword);
+//
+//    }catch (Exception e){
+//        e.printStackTrace();
+//        response.put("result", false);
+//        System.out.println("비밀번호 바꾸기 실패");
+//
+//    }
 //    return response.toMap();
 //
 //}

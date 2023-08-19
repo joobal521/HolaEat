@@ -73,8 +73,8 @@ public class UserService {
 
      //비밀번호 찾기(비밀번호 바꾸기)
      @Transactional
-     public void updateNewPwd(String userId, UserRequestDto userDto) {
-          User user=getUserById(userId);
+     public void updateNewPwd(String userEmail, UserRequestDto userDto) {
+          User user=getUserByEmail(userEmail);
           if (user != null) {
                user.updatePwd(userDto);
           } else {
