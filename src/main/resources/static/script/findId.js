@@ -97,6 +97,7 @@ function authCodeCheck() {
             //alert("인증 되었습니다.");
             $("#input-code").prop('disabled', true);
             $("#code-ch").prop('disabled', true);
+            $("#find-btn").prop('disabled', false);
             isToKenChecked = true;
         } else {
             swal('인증 실패','인증 코드가 맞지 않습니다.','error')
