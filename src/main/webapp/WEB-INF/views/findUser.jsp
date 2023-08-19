@@ -23,6 +23,7 @@
         .section-container {
             text-align: center;
             margin-top: 50px;
+            margin-bottom: 50px;
         }
 
         .find-title {
@@ -93,11 +94,9 @@
 </head>
 <c:import url="header.jsp"/>
 <body>
-<section class="section-container">
-
+<div class="section-container">
     <h2 class="find-title">아이디 찾기</h2>
     <form id=find>
-
 
         <div class="id_box">
             <li class="input-container">
@@ -129,7 +128,7 @@
         </div>
     </form>
 
-</section>
+</div>
 <script src="script/find.js"></script>
 </body>
 <c:import url="footer.jsp"/>

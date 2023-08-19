@@ -16,7 +16,6 @@
 <c:import url="header.jsp"/>
 
 <body>
-<section>
     <div class="wrap">
         <div class="container">
          <div id="health-box">
@@ -45,7 +44,6 @@
     </div>
         </div>
     </div>
-</section>
 
 </body>
 <c:import url="footer.jsp"/>
