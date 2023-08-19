@@ -6,6 +6,14 @@ $('#userEmail').on('change', e => {
     }
 });
 
+$('#userName').on('change', e => {
+    if ($('#userName').val() !== "") {
+        $('#error-name').hide();
+        $('#userName').parent().css('border-color', 'lightgrey');
+        $('#userName').parent().css('border-top', 'none');
+    }
+});
+
 //이메일 유효성 체크
 var regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
 $(function() {
@@ -70,6 +78,12 @@ function emailAuthentication() {
 
 /* 인증 번호 확인*/
 function authCodeCheck() {
+       var email = $('#userEmail').val();
+
+    if(email===""){
+        swal('이메일 입력 필수','이메일을 정확히 입력해 주세요.','error')
+        //alert("사용 불가능한 이메일입니다.")
+    }else {
 
         var inputCode = $('#input-code').val();
         var codeAsNumber = parseInt(code, 10); // 10진수로 파싱
@@ -79,26 +93,82 @@ function authCodeCheck() {
         console.log(codeAsNumber);
         if (inputCodeAsNumber === codeAsNumber) {
             console.log("인증 번호 일치");
-            swal('인증 성공','인증 되었습니다.','success')
+            swal('인증 성공', '인증 되었습니다.', 'success')
             //alert("인증 되었습니다.");
             $("#input-code").prop('disabled', true);
             $("#code-ch").prop('disabled', true);
             isToKenChecked = true;
         } else {
             swal('인증 실패','인증 코드가 맞지 않습니다.','error')
-            // alert("인증 코드가 맞지 않습니다.")
+            //alert("인증 코드가 맞지 않습니다.")
         }
-
+    }
 
 }
 
-const button = document.querySelector('#find-btn');
-button.addEventListener('click', () => {
-    if (isToKenChecked) { // isToKenChecked 가 true 이면
-        //아이디 조회 가능
 
-        window.location.href = "newPassword"; // 이동할 페이지 url
-    } else {
-        alert('이메일 인증을 먼저 해주세요!') // 경고 메시지 출력
+
+$("#find-btn").click(function () {
+
+    if (isToKenChecked) { // isToKenChecked 가 true 이면
+    var userEmail = $("#userEmail").val();
+    var userName = $("#userName").val();
+
+    $.ajax({
+        type: "POST",
+        url: "api/v1/users/findId", // 컨트롤러의 URL
+        data: {
+            userEmail: userEmail,
+            userName: userName
+        },
+        success: function (response) {
+            $("#result").text("아이디: " + response);
+        },
+        error: function (xhr, status, error) {
+            $("#result").text("아이디를 찾을 수 없습니다.");
+        }
+    });
+   }else {
+        swal('아이디 조회 실패','이메일 인증을 먼저 해주세요!','error')
+        //alert('이메일 인증을 먼저 해주세요!') // 경고 메시지 출력
     }
+
 });
+
+
+function checkValue(htmlForm) {
+    const email = htmlForm.userEmail.value;
+    const name=htmlForm.userName.value;
+
+    let check = true;
+    var regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
+
+
+
+    if (email === "") {
+        $('#error-email').show();
+        $('#userEmail').parent().css('border-color', 'red');
+        check = false;
+
+    }
+
+    if (!regExp.test(email)) {
+        check = false;
+
+    }
+
+    if (name === "") {
+        $('#error-name').show();
+        check = false;
+
+    }
+
+
+    if (check) {
+        htmlForm.submit();
+    }
+
+}
+
+
+

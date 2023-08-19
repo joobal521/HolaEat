@@ -11,14 +11,100 @@
 <head>
     <title>findId</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .section-container {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .find-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .id_box {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin: 0 auto;
+            max-width: 400px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .input-container {
+            margin-bottom: 15px;
+        }
+
+        .form-title {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .input-box {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .email-btn, .code-btn, .show-btn {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn_box {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+
+        /*아이디 조회*/
+        .show-id{
+            font-size: 12px;
+        }
+
+
+        /*경고 메시지*/
+        .error {
+            color: #ff0000;
+            font-size: 12px;
+            display: none;
+        }
+
+
+        .err {
+            font-size: 12px;
+            margin-left: 5px;
+        }
+    </style>
+
 </head>
 <c:import url="header.jsp"/>
 <body>
-<section>
-<h2>아이디 찾기</h2>
+<section class="section-container">
 
+    <h2 class="find-title">아이디 찾기</h2>
     <form id=find>
-        <div class="email_box">
+
+
+        <div class="id_box">
+            <li class="input-container">
+                <h2 class="form-title">이름</h2>
+                <input type="text" class="input-box" id="userName" name="userName" placeholder="이름">
+                <p class="error" id="error-name">이름은 필수 정보입니다.</p>
+            </li>
             <li class="input-container">
                 <h2 class="form-title">이메일</h2>
                 <input type="email" class="input-box" id="userEmail" name="userEmail"  placeholder="example@holaEat.com">
@@ -35,8 +121,11 @@
                 </li>
             </div>
             <div class="btn_box">
-                <input type="button" id="find-btn" value="아이디 조회 하기"
+                <input type="button" id="find-btn" class="show-btn" value="아이디 조회 하기"
                        onclick="checkValue(form)">
+            </div>
+            <div class="show_box">
+                <p class="show-id" id="result"></p>
             </div>
         </div>
     </form>

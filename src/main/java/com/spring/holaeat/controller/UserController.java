@@ -11,6 +11,8 @@ import com.spring.holaeat.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.json.JSONObject;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 
@@ -58,16 +60,27 @@ public class UserController {
 
 }
 
-//이미지 파일 변환
-
-    private byte[] getDefaultImageBytes() throws IOException {
-        try (InputStream is = getClass().getClassLoader().getResourceAsStream("static/img/belle.jpg")) {
-            if (is != null) {
-                return is.readAllBytes();
-            }
-            throw new IOException("기본 이미지 파일을 읽을 수 없습니다.");
+//아이디 찾기
+    @PostMapping(value = "findId")
+    public ResponseEntity<String> findIdByEmailAndName(@RequestParam String userEmail, @RequestParam String userName) {
+        User user = userService.findUserByEmailAndName(userEmail, userName);
+        if (user != null) {
+            return ResponseEntity.ok(user.getUserId());
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("아이디를 찾을 수 없습니다.");
         }
     }
+
+//이미지 파일 변환
+
+//    private byte[] getDefaultImageBytes() throws IOException {
+//        try (InputStream is = getClass().getClassLoader().getResourceAsStream("static/img/belle.jpg")) {
+//            if (is != null) {
+//                return is.readAllBytes();
+//            }
+//            throw new IOException("기본 이미지 파일을 읽을 수 없습니다.");
+//        }
+//    }
 
 //아이디 중복체크
     @PostMapping("userId-check")

@@ -54,6 +54,11 @@ public class UserService {
           return user;
      }
 
+     //이메일과 이름으로 아이디 찾기
+     public User findUserByEmailAndName(String userEmail, String userId) {
+          return userRepository.findByUserEmailAndUserName(userEmail, userId);
+     }
+
      //아이디 중복체크
      public boolean duplCheckUserId(String userId) {
           User user = userRepository.findByUserId(userId);
