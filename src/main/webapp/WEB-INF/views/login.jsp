@@ -88,15 +88,6 @@
             var userId = document.getElementById("id").value;
             var password = document.getElementById("password").value;
 
-            if (userId.trim() === "") {
-                alert("아이디를 입력하세요.");
-                return false; // 폼 제출 중단
-            }
-
-            if (password.trim() === "") {
-                alert("비밀번호를 입력하세요.");
-                return false; // 폼 제출 중단
-            }
 
             // 유효성 검증에 통과했을 경우
             return true; // 폼 제출 진행

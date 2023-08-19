@@ -1,11 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: user
-  Date: 2023-08-07
-  Time: 오후 3:37
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
     <link rel="stylesheet" type="text/css" href="/style/grid.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
@@ -37,19 +31,19 @@
                         <form action="logout" method="POST">
                             <input type="submit" id="logout" name="logout" value="로그아웃">
                         </form>
-                        <a href="mypage">내 정보</a>
+                        <a id="my" href="mypage">내 정보</a>
                             </c:when>
                     <c:otherwise>
-                        <a href="login">로그인</a>
-                        <a href="join">회원가입</a>
+                        <a id="login" href="login">로그인</a>
+                        <a id="join" href="join">회원가입</a>
                     </c:otherwise>
                 </c:choose>
                 <c:choose>
                     <c:when test="${not empty authority}">
-                        <a href="admin">관리자메뉴</a>
+                        <a id="admin" href="admin">관리자메뉴</a>
                     </c:when>
                     <c:otherwise>
-                        <a href="gainpower">관리자로그인(임시)</a>
+                        <a id="admin_login" href="gainpower">관리자로그인(임시)</a>
                     </c:otherwise>
                 </c:choose>
 
