@@ -226,6 +226,7 @@ a{
 
 .mini_h3, .alert_h3{
     color: black;
+    margin: 0;
 }
 
 .mini{
