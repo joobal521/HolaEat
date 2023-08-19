@@ -13,49 +13,48 @@
     <link rel="stylesheet" type="text/css" href="/style/review.css">
 
     <script src="https://kit.fontawesome.com/5d67eb2efc.js" crossorigin="anonymous"></script>
-<%--<style>--%>
-<%--    .scroll {--%>
-<%--        background: none;--%>
-<%--        width: auto;--%>
-<%--        position: fixed;--%>
-<%--        bottom: 5%;--%>
-<%--        right: 5%;--%>
-<%--    }--%>
+    <%--<style>--%>
+    <%--    .scroll {--%>
+    <%--        background: none;--%>
+    <%--        width: auto;--%>
+    <%--        position: fixed;--%>
+    <%--        bottom: 5%;--%>
+    <%--        right: 5%;--%>
+    <%--    }--%>
 
 
-<%--    .scroll button {--%>
-<%--        background: none;--%>
-<%--        border: 2px solid rgb(211, 207, 207);--%>
-<%--        width: 50px;--%>
-<%--        height: 50px;--%>
-<%--        border-radius: 30px;--%>
-<%--        outline: none;--%>
-<%--    }--%>
+    <%--    .scroll button {--%>
+    <%--        background: none;--%>
+    <%--        border: 2px solid rgb(211, 207, 207);--%>
+    <%--        width: 50px;--%>
+    <%--        height: 50px;--%>
+    <%--        border-radius: 30px;--%>
+    <%--        outline: none;--%>
+    <%--    }--%>
 
-<%--    .scroll button:active{--%>
-<%--        box-shadow: 1px 1px 0 rgb(0,0,0,0.5);--%>
-<%--        position: relative;--%>
-<%--        top:2px;--%>
+    <%--    .scroll button:active{--%>
+    <%--        box-shadow: 1px 1px 0 rgb(0,0,0,0.5);--%>
+    <%--        position: relative;--%>
+    <%--        top:2px;--%>
 
-<%--    }--%>
+    <%--    }--%>
 
-<%--    .scroll button:hover {--%>
-<%--        background: white;--%>
-<%--        color: rgb(146, 175, 205);--%>
+    <%--    .scroll button:hover {--%>
+    <%--        background: white;--%>
+    <%--        color: rgb(146, 175, 205);--%>
 
-<%--        transition: 0.3s ease-in;--%>
-<%--        cursor: grab;--%>
-<%--    }--%>
+    <%--        transition: 0.3s ease-in;--%>
+    <%--        cursor: grab;--%>
+    <%--    }--%>
 
-<%--</style>--%>
+    <%--</style>--%>
 
 </head>
 <c:import url="header.jsp"/>
 <body>
 <div class="review-section">
     <h2>REVIEW</h2>
-  pageNumber 확인용 : ${pageNumber}
-
+    pageNumber 확인용 : ${pageNumber}
 
 
     <div class="search_box">
@@ -89,8 +88,8 @@
     <div id="review-container">
         <c:forEach items="${reviewlistPage}" var="review" varStatus="loop">
 
-                <div id=review>
-                    <a href="<c:url value='/review/${review.reviewNo}'/>">
+            <div id=review>
+                <a href="<c:url value='/review/${review.reviewNo}'/>">
                     <div class="user_profile">
                         <ul>
                             <li class="review-profile">NO. ${review.reviewNo}</li>
@@ -107,8 +106,8 @@
                     </div>
                     <div id="review_title_check" class="review_title">제목 : ${review.title}</div>
                     <div class="review_like"><i class="fa-regular fa-heart"></i></div>
-                    </a>
-                </div>
+                </a>
+            </div>
 
         </c:forEach>
     </div>
@@ -117,7 +116,7 @@
         <ul class="pagination">
             <c:choose>
                 <c:when test="${pageNumber > 1}">
-                    <li ><a href="/reviewlist/1"><i class="fa-solid fa-backward-fast"></i></a></li>
+                    <li><a href="/reviewlist/1"><i class="fa-solid fa-backward-fast"></i></a></li>
                     <li><a href="/reviewlist/${pageNumber - 1}"><i class="fa-solid fa-caret-left"></i></a></li>
 
 
@@ -157,9 +156,9 @@
             </c:choose>
         </ul>
     </div>
-<%--    <div class="scroll">--%>
-<%--        <button class="scrollTop" onclick="scrollToTop();"><i class="fa-solid fa-angle-up"></i></i></button>--%>
-<%--    </div>--%>
+    <%--    <div class="scroll">--%>
+    <%--        <button class="scrollTop" onclick="scrollToTop();"><i class="fa-solid fa-angle-up"></i></i></button>--%>
+    <%--    </div>--%>
 
 
 </div>
@@ -173,7 +172,6 @@
 <%--            scrollTop : 0--%>
 <%--        }, "slow");--%>
 <%--    }--%>
-
 
 
 <%--</script>--%>
