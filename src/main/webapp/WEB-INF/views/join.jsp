@@ -45,7 +45,7 @@
         }
 
         .input-box {
-            width: 80%;
+            width: 70%;
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
@@ -63,6 +63,19 @@
             border-radius: 5px;
             cursor: pointer;
         }
+
+        .email-btn{
+            margin-top: 10px;
+        }
+.btn_join{
+    display: flex;
+    justify-content: center;
+}
+
+        .join-btn{
+            margin-top: 30px;
+        }
+
 
 
         .agr_text {
@@ -180,7 +193,7 @@
                         </li>
                     </div>
 
-                    <li>
+                    <li class="btn_join">
                         <button type="button" class="join-btn" id="submit" name="submit" onclick="checkValue(form)">회원가입</button>
                     </li>
                 </ul>
