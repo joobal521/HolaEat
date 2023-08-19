@@ -121,8 +121,7 @@
                 </li>
             </div>
             <div class="btn_box">
-                <input type="button" id="find-btn" class="show-btn" value="아이디 조회 하기"
-                       onclick="checkValue(form)">
+                <input type="button" id="find-btn" class="show-btn" value="아이디 조회 하기">
             </div>
             <div class="show_box">
                 <p class="show-id" id="result"></p>
@@ -131,7 +130,7 @@
     </form>
 
 </section>
-<script src="script/findId.js"></script>
+<script src="script/find.js"></script>
 </body>
 <c:import url="footer.jsp"/>
 </html>

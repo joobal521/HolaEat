@@ -27,8 +27,8 @@ public class MainController {
 
 
     //아이디 찾기
-    @GetMapping(value = "find-id")
-    public String findId(){return "findId";}
+    @GetMapping(value = "find")
+    public String findId(){return "findUser";}
 
     @GetMapping(value ="leave")
     public String leave(){return "leaveForm";}
