@@ -122,6 +122,7 @@
     /*폼 제목*/
     .form-title{
         font-size: 1.2rem ;
+        margin-bottom: 10px;
     }
 
     /* 오류 메시지 스타일링 */

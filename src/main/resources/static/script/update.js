@@ -254,7 +254,7 @@ function chkEmail() {
 
 
 
-    if (check &&isEmailChecked &&isToKenChecked) {
+    if (check &&isEmailChecked && isToKenChecked) {
 
         const data = {
             userId:id,
@@ -279,7 +279,7 @@ function chkEmail() {
                 //alert("회원수정 완료")
                 location.href = "/";
             }else{
-                swal('회원 수정 실패 ','회원 정보 수정을 다시 시도 해주세요.','error')
+                swal('회원 수정 실패 ','기존 비밀번호가 일치하지 않습니다.','error')
                 //alert("기존 비밀번호가 일치하지 않습니다.")
             }
         }).fail(function (error){
