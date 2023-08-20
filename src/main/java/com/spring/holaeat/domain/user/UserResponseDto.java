@@ -33,5 +33,26 @@ public class UserResponseDto {
             this.userDislike = userDetail.getDislike();
         }
 
+    private UserDetail userDetail; // UserDetail 정보를 저장할 필드
+
+    public UserResponseDto(User user) {
+        this.userId = user.getUserId();
+        this.userName = user.getUserName();
+        this.userEmail = user.getUserEmail();
+    }
+
+    public void setUserDetail(UserDetail userDetail) {
+        this.userDetail = userDetail;
+        if (userDetail != null) {
+            this.userAge = userDetail.getAge();
+            this.userHeight = userDetail.getHeight();
+            this.userWeight = userDetail.getWeight();
+            this.userRecCalories = userDetail.getRecCalories();
+            this.userAllergy = userDetail.getAllergy();
+            this.userGender = userDetail.getGender();
+            this.userPrefer = userDetail.getPrefer();
+            this.userDislike = userDetail.getDislike();
+        }
+    }
     // 필요한 게터 메서드들
 }

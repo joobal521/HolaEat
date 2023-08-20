@@ -217,7 +217,7 @@
                     <img src="img/menu_main.jpg" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block" style="background-color: unset;">
                         <h5>균형잡힌 식단이 중요합니다.</h5>
-                        <p>테스트!</p>
+                        <p>일반균형식</p>
                     </div>
                 </div>
                 <div class="carousel-item">

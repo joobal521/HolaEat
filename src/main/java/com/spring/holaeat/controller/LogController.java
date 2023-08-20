@@ -41,21 +41,19 @@ public class LogController {
 
         if (user != null) {
             if (user.getUserPassword().equals(userPassword)) {
-                UserDetail userDetail = userDetailRepository.findByUserId(userId);
-                ProfileImg profileImg = profileImgRepository.findByUserId(userId);
+                UserResponseDto userResponseDto = new UserResponseDto(user);
 
+                UserDetail userDetail = userDetailRepository.findByUserId(userId);
+                if (userDetail != null) {
+                    userResponseDto.setUserDetail(userDetail);
+                }
+
+                ProfileImg profileImg = profileImgRepository.findByUserId(userId);
                 if (profileImg != null) {
                     session.setAttribute("profileImg", profileImg.getProfileImg());
                     System.out.println(profileImg);
-                } else {
-                    System.out.println("안되긴 뭐가 안돼용");
-                    System.out.println("그럼 돼용?");
-                    System.out.println("왜애애옹!");
                 }
 
-                UserResponseDto userResponseDto = new UserResponseDto(user, userDetail);
-
-                model.addAttribute("userResponseDto", userResponseDto);
                 session.setAttribute("log", user.getUserId());
                 session.setAttribute("userResponseDto", userResponseDto); // 세션에 UserResponseDto 저장
 
@@ -69,6 +67,7 @@ public class LogController {
             return "login";
         }
     }
+
 
     @PostMapping("logout")
     public String logout(HttpSession session, WebRequest request, SessionStatus status) {
