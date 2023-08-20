@@ -75,20 +75,20 @@ public class MainController {
     public String adminHealthFrom(){return "adminHealthForm";}
 
 
-    @GetMapping(value = "healthUpdate")
-    public String healthUpdate(){
-        return "adminHealthUpdate";}
+//    @GetMapping(value = "healthUpdate")
+//    public String healthUpdate(){
+//        return "adminHealthUpdate";}
 
-//    @GetMapping(value = "/healthUpdate")
-//    public String healthUpdate(@RequestParam("healthNo") long healthNo, Model model) {
-//        Optional<Health> health  = healthRepository.findById(reviewNo);
-//
-//        if(review == null)
-//            return "reviewlistPage";
-//
-//        model.addAttribute("review", review.get());
-//        return "reviewUpdate";
-//    }
+    @GetMapping(value = "/healthUpdate")
+    public String healthUpdate(@RequestParam("healthNo") long healthNo, Model model) {
+        Optional<Health> health  = healthRepository.findById(healthNo);
+
+        if(health == null)
+            return "admin";
+
+        model.addAttribute("health", health.get());
+        return "adminHealthUpdate";
+    }
 
     @GetMapping(value = "adminUser")
     public String adminUser() {return "adminUser";}

@@ -3,7 +3,7 @@
 function checkValue(htmlForm) {
     const title = htmlForm.title.value;
     const content = htmlForm.content.value;
-    const imgFile = htmlForm.file.files[0];
+    const imgElement = htmlForm.file;
 
     if (title.trim() === "") {
         console.log("Title is required.");
@@ -28,17 +28,14 @@ function checkValue(htmlForm) {
         var form = new FormData();
         form.append("title", title);
         form.append("content", content);
-        const imgElement = document.getElementById('file');
-        const imgFile = imgElement.files[0]; // 이미지 파일 가져오기
 
 
-        if (imgFile) {
-            imgElement.src = URL.createObjectURL(imgFile);
+        if (imgElement && imgElement.files && imgElement.files[0]) {
+            const imgFile = imgElement.files[0];
+            form.append("img", imgFile);
 
-            // 이미지 파일을 FormData에 추가
-            form.append("file", imgFile);
-        } else {
-            imgElement.src = ''; // 이미지 없을 때 빈 상태로 설정
+            const imgPreview = document.getElementById('img');
+            imgPreview.src = URL.createObjectURL(imgFile);
         }
 
         var settings = {
@@ -117,6 +114,9 @@ function CheckValueUpdate(htmlForm, healthNo) {
             alert("글 수정 실패.");
         });
 }
+function redirectToHealthUpdate(healthNo) {
+    window.location.href = "healthUpdate?healthNo=" + healthNo;
+}
 
 
 //글 삭제
@@ -171,6 +171,7 @@ function writeThumbnail() {
     }
 }
 
+//최소
 function goBack() {
     var confirmation = confirm("취소 하시겠습니까?");
 

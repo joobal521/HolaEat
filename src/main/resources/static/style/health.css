@@ -34,6 +34,13 @@ body {
     margin: auto;
 }
 
+#health-update label{
+    display: block;
+    text-align: start;
+    width: 80%;
+    margin: auto;
+}
+
 .health_detail_no > #healthNo
 {
     border: none;
@@ -41,20 +48,22 @@ body {
 }
 
 
-#health-detail span
+#health-detail span,
+#health-update span
 {
     margin-left: 30px;
 }
 
 #health-detail input:focus,
-#health-detail textarea:focus
+#health-update textarea:focus
 {
     outline: none;
     cursor: default;
 }
 
 
-#health-detail input{
+#health-detail input,
+#health-update input{
     display: inline-block;
     width: 80%;
     padding: 10px;
@@ -66,7 +75,8 @@ body {
     background-color: white;
 }
 
-#health-detail textarea{
+#health-detail textarea,
+#health-update textarea{
     resize: none;
     width: 80%;
     padding: 10px;
@@ -90,7 +100,11 @@ body {
 }
 
 
-#backToList{
+
+
+#backToList,
+#update,
+#cancel{
     margin: 10px auto;
     display: inline-block;
     padding: 10px 20px;
@@ -99,6 +113,17 @@ body {
     border: none;
     border-radius: 4px;
     cursor: pointer;
+}
+
+.image-container {
+    margin-top: 10px;
+    text-align: center;
+}
+.img-container #img{
+    max-width: 100%;
+    max-height: 200px;
+    display: block;
+    margin: 10px auto;
 }
 
 /*#health-contents {*/

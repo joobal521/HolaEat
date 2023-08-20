@@ -81,7 +81,129 @@ $(function() {
     });
 });
 
-function checkValue() {
+//이메일 중복검사
+function chkEmail() {
+    var email = $('#userEmail').val();
+
+    if (email === "") {
+        swal('사용 불가능한 이메일', '이메일을 다시 입력해 주세요.', 'error')
+        //alert("사용 불가능한 이메일입니다.")
+    } else {
+
+
+        const data = {
+            userEmail: email,
+        };
+        $.ajax({
+            method: 'POST',
+            url: 'api/v1/users/userEmail-check',
+            data: JSON.stringify(data),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+
+        }).done(function (data) {
+            if (data.result === true) {
+                isEmailChecked = true;
+                swal('사용 가능한 이메일', '츄라이~', 'success')
+                //alert("사용 가능한 이메일입니다.")
+                //$('#chkMsgEmail').html('사용 가능한 아이디입니다.').css('color', 'navy');
+            } else {
+                swal('이미 사용 중인 이메일', '다른 이메일을 입력해주세요.', 'warning')
+                //alert("이미 사용 중인 이메일입니다.")
+                // $('#chkMsgEmail').html('이미 사용중인 아이디입니다.').css('color', 'red');
+            }
+
+        }).fail(function (error) {
+            alert("이메일 중복 검사 실패입니다: " + error.responseJSON.message);
+        });
+
+    }
+}
+
+    let code;
+
+    /* 이메일 인증 번호 전송 */
+    function emailAuthentication() {
+
+        if(isEmailChecked) { //이메일 중복 확인 먼저
+            var email = $('#userEmail').val();
+            $("#code-ch").prop('disabled', true);
+
+            console.log(email);
+
+            const data = {
+                userEmail: email,
+            };
+
+            $.ajax({
+                type: "POST",
+                url: "api/v1/users/verification-email",
+                data: JSON.stringify(data),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+
+            }).done(function (data) {
+                console.log(data);
+                if (data !== null) {
+                    $("#code-ch").prop('disabled', false);
+                    code = data;
+                    console.log(code);
+                    swal('인증 번호 전송 완료','인증 번호를 확인해 주세요.','success')
+                    //alert("인증 번호를 확인해 주세요.");
+                    console.log("이메일 확인 코드가 발송되었습니다.");
+                    //console.log("확인 코드: " + response.verification_code);
+                    //console.log("확인 코드 유효 시간: " + response.verification_duration + "분");
+                } else {
+                    swal('인증 번호 전송 실패','이메일 전송을 다시 시도해 주세요.','error')
+                    //console.log("이메일 확인 코드 발송에 실패하였습니다.");
+                }
+            }).fail(function (error) {
+                alert("이메일 인증 보내기 실패입니다: " + error.responseJSON.message);
+            });
+        }else {
+            swal('인증 불가능 ','이메일 중복을 확인해 주세요.','warning')
+            //alert("이메일 중복을 확인해 주세요.")
+        }
+
+    }
+
+
+    /* 인증 번호 확인*/
+    function authCodeCheck() {
+
+        if(isEmailChecked) { //이메일 중복 확인 먼저
+            var inputCode = $('#input-code').val();
+            var codeAsNumber = parseInt(code, 10); // 10진수로 파싱
+            var inputCodeAsNumber = parseInt(inputCode, 10);
+
+            console.log(inputCodeAsNumber);
+            console.log(codeAsNumber);
+            if (inputCodeAsNumber === codeAsNumber) {
+                console.log("인증 번호 일치");
+                swal('인증 성공','인증 되었습니다.','success')
+                //alert("인증 되었습니다.");
+                $("#input-code").prop('disabled', true);
+                $("#code-ch").prop('disabled', true);
+                isToKenChecked = true;
+            } else {
+                swal('인증 실패','인증 코드가 맞지 않습니다.','error')
+                // alert("인증 코드가 맞지 않습니다.")
+            }
+
+            // if (data.result === "The token code has expired.") {
+            //     alert('다시 인증번호를 입력받아주세요');
+            // }
+        }else {
+            $("#input-code").prop('disabled', true);
+            $("#code-ch").prop('disabled', true);
+            swal('인증 불가능 ','이메일 중복을 확인해 주세요.','warning')
+            //alert("이메일 중복을 확인해 주세요.")
+        }
+
+    }
+
+
+    function checkValue() {
     const id= $('#userId').val();
     const password = $('#userPassword').val();
     const newPassword = $('#newPassword').val();

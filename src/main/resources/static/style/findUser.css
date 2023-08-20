@@ -96,8 +96,8 @@ body {
 
 .show-id{
     margin-top: 10px;
-    font-size: 12px;
-    background: #4e9666;
+    font-size: 1rem;
+    background: darkseagreen;
 }
 
 .go-login {

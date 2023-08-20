@@ -50,14 +50,14 @@ public class HealthController {
     }
     //관리자 글 수정
     @PutMapping(value="/update/{healthNo}", consumes = {"multipart/form-data"})
-    public Response update(@PathVariable long healthNo, @ModelAttribute HealthRequestDto healthDto, Model model){
+    public Response update(@PathVariable long healthNo, @ModelAttribute HealthRequestDto healthDto){
         Health health=healthRepository.findById(healthNo).orElseThrow(
                 ()->new IllegalArgumentException("게시글이 존재하지 않습니다.")
         );
-        model.addAttribute("health", health);
-        if(healthDto.getFile() ==null){
+
+        if(healthDto.getImg() ==null){
             System.out.println("기존 사진 넣기");
-            byte[]img=health.getFile(); //원래 있는 이미지 빼놓기
+            byte[]img=health.getImg(); //원래 있는 이미지 빼놓기
             healthService.updateHealth(health,healthDto);
 
         }else {
