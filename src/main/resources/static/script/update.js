@@ -66,11 +66,11 @@ $(function() {
     $('#newPasswordCh').keyup(function () {
         if ($('#newPassword').val() !== $('#newPasswordCh').val()) {
             /* 비밀번호와 비밀번호 확인란의 값이 일치하지 않을 때 */
-            $('#chkNotice2').html('비밀번호가 일치하지 않습니다.<br><br>').css('color', 'red'); /* 비밀번호 양식 오류일시 color: red */
+            $('#chkNotice2').html('<br>비밀번호가 일치하지 않습니다.<br><br>').css('color', 'red'); /* 비밀번호 양식 오류일시 color: red */
 
         } else if ($('#newPassword').val() === $('#newPasswordCh').val()) {
             /* 모든 조건에 충족하고, 비밀번호와 비밀번호 확인란의 값이 일치할 때 */
-            $('#chkNotice2').html('비밀번호가 일치합니다. 사용 가능합니다.<br>').css('color', 'navy'); /* 일치시 color: darkblue */
+            $('#chkNotice2').html('<br>비밀번호가 일치합니다. 사용 가능합니다.<br>').css('color', 'navy'); /* 일치시 color: darkblue */
 
         }
 
