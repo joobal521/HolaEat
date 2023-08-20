@@ -136,10 +136,10 @@ function fetchAndDisplayMenu(selectedNational) {
                     "주재료1: " + menu.main + "<br>" +
                     "주재료2: " + menu.main2 + "<br>" +
                     "총 무게: " + menuTotalWeight + "g" + "<br>" +
-                    "총 칼로리: " + totalCalories + "Kcal" +
-                    "총 탄수화물: " + totalCarbs + "g" +
-                    "총 단백질: " + totalProteins + "g" +
-                    "총 지방: " + totalFats + "g" +
+                    "총 칼로리: " + totalCalories + "Kcal" + "<br>" +
+                    "총 탄수화물: " + totalCarbs + "g" + "<br>" +
+                    "총 단백질: " + totalProteins + "g" + "<br>" +
+                    "총 지방: " + totalFats + "g" + "<br>" +
                     "</li></hr></br></br></br></hr>";
             }
         });
