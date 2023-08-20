@@ -40,7 +40,7 @@ function checkValueWrite(htmlForm) {
         return; // 내용이 비어있을 경우 처리 중단
     }
 
-    if (!confirm("글을 등록하시겠습니까?")) {
+    if (!confirm("등록하시겠습니까?")) {
         return;
     }
 
@@ -124,12 +124,12 @@ function CheckValueUpdate(htmlForm, reviewNo) {
     $.ajax(settings)
         .done(function (response) {
             console.log(response);
-            alert("글이 수정되었습니다.");
+            alert("수정되었습니다.");
             location.href = "review/" + reviewNo;
         })
         .fail(function (jqXHR, textStatus, errorThrown) {
             console.error(jqXHR.responseText);
-            alert("글 수정을 실패하였습니다.");
+            alert("수정실패하였습니다.");
         });
 }
 
@@ -183,7 +183,7 @@ function redirectToReviewUpdate() {
 }
 
 function goBack() {
-    var confirmation = confirm("수정 취소하시겠습니까?");
+    var confirmation = confirm("취소하시겠습니까?");
 
     if (confirmation) {
         // window.scrollTo(0, 0);
