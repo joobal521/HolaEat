@@ -100,4 +100,8 @@ public class MainController {
     public String term2(){return "term2";}
 
 
+    @GetMapping(value = "makers")
+    public String makers() {return "makers";}
+
+
 }
