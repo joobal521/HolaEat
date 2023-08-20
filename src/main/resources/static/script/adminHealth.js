@@ -68,6 +68,56 @@ function checkValue(htmlForm) {
 
 }
 
+//글 수정
+function CheckValueUpdate(htmlForm, healthNo) {
+    const title = htmlForm.title.value;
+    const content = htmlForm.content.value;
+    const imgCheckUrl = htmlForm.imgCheck.value;
+    console.log("imgCheckUrl 확인용"+imgCheckUrl);
+
+    let imgFile = null;
+
+    if (htmlForm.file && htmlForm.file.files && htmlForm.file.files[0]) {
+        imgFile = htmlForm.file.files[0];
+    }
+
+    console.log("imgFile 확인용"+imgFile);
+
+    if (title.trim() === "" && content.trim() === "" && imgFile !== imgCheckUrl) {
+        alert("수정할 내용이 없습니다.");
+        return;
+    }
+
+    var form = new FormData();
+    form.append("title", title);
+    form.append("content", content);
+
+    if (imgFile) {
+        form.append("img", imgFile);
+    }
+
+    var settings = {
+        "url": "api/v1/health/update/"+healthNo,
+        "method": "PUT",
+        "timeout": 0,
+        "processData": false,
+        "mimeType": "multipart/form-data",
+        "contentType": false,
+        "data": form,
+    };
+
+    $.ajax(settings)
+        .done(function (response) {
+            console.log(response);
+            alert("글 수정 성공.");
+            location.href = "admin";
+        })
+        .fail(function (jqXHR, textStatus, errorThrown) {
+            console.error(jqXHR.responseText);
+            alert("글 수정 실패.");
+        });
+}
+
 
 //글 삭제
 $(document).ready(function() {

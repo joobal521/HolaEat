@@ -6,12 +6,10 @@ import com.spring.holaeat.service.HealthService;
 import com.spring.holaeat.util.ImageParsor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.HashMap;
 import java.util.List;
@@ -19,7 +17,7 @@ import java.util.Map;
 
 @RequiredArgsConstructor
 @Controller
-public class healthListController {
+public class HealthListController {
 
 
     private final HealthRepository healthRepository;

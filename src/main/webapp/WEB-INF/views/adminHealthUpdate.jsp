@@ -10,6 +10,8 @@
 <html>
 <head>
     <title>admin-health</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <c:import url="header.jsp"/>
 <body>
@@ -21,25 +23,34 @@
         <div id=health-contents">
             <form id="health-detail" enctype="multipart/form-data">
                 <div>
+                    <span>No.</span>
                     <input type="text" id="healthNo" name="healthNo" value="${health.healthNo}" readonly>
                 </div>
                 <div>
+                    <label for="title">제목</label>
                     <input type="text" id="title" name="title" value="${health.title}">
                 </div>
                 <div>
+                    <label for="admin">작성자</label>
                     <input type="text" id="admin" name="admin" value="관리자" readonly>
                 </div>
                 <div>
-                    <input type="text" id="content" name="content" value="${health.content}">
+                    <label for="content">내용</label>
+                    <textarea id="content" name="content">${health.content}</textarea>
                 </div>
 
                 <div class="img-container">
                     <label for="file">이미지</label>
                     <input type="file" id="file" name="file" accept="image/*"/>
-                    <div class="select_img">
-                        <img src="data:image/png;base64,${ImageParsor.parseBlobToBase64(health.img)}" id="img" name="img"  alt="Review Image">
-                    </div>
-
+                    <c:choose>
+                        <c:when test="${blob != null}">
+                            <img src="data:image/png;base64,${ImageParsor.parseBlobToBase64(review.img)}" id="img" name="img" alt="">
+                        </c:when>
+                        <c:otherwise>
+                            <img src="" id="img" name="img" alt="" style="display: none;">
+                        </c:otherwise>
+                    </c:choose>
+                    <input type="hidden" id="imgCheck" name="imgCheck" value="${ImageParsor.parseBlobToBase64(health.file)}">
                 </div>
 
                 <input type="datetime" id="created_at" name="created_at" readonly>
@@ -55,7 +66,30 @@
     </c:if>
 
 </section>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('file').addEventListener('change', function() {
+            var imgElement = document.getElementById('img');
+            var imgCheckInput = document.getElementById('imgCheck');
 
+            if (this.files && this.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    imgElement.src = e.target.result;
+                    imgElement.style.display = 'block';
+                    imgCheckInput.value = e.target.result;
+                };
+
+                reader.readAsDataURL(this.files[0]);
+            } else {
+                imgElement.style.display = 'none';
+                imgCheckInput.value = '';
+            }
+        });
+    });
+</script>
+<script src="script/adminHealth.js"></script>
 
 </body>
 <c:import url="footer.jsp"/>

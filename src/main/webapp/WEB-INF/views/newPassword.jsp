@@ -53,13 +53,18 @@
         border-radius: 5px;
     }
 
-    .sava-btn {
-        background-color: #007bff;
-        color: #fff;
+    .save-btn {
+        padding: 10px 40px;
+        background-color: #265037;
+        color:#DCE4CF;
         border: none;
-        padding: 8px 15px;
-        border-radius: 5px;
+        border-radius: 4px;
         cursor: pointer;
+        margin-top: 30px;
+    }
+    .save-btn:hover{
+        background-color: aliceblue;
+        color: #1e6b7b;
     }
 
     .btn_box {
@@ -85,7 +90,7 @@
 <body>
 <div id="find-section">
     <div class="text_box">
-        <h2 class="find_text">새로운 비밀번호를 입력해주세요</h2>
+        <h2 class="find_text">새로운 비밀번호를 입력해주세요.</h2>
     </div>
     <form id=find method="put" action="">
         <div class="pwd_box">
@@ -109,7 +114,7 @@
                 </li>
 
             <li class="btn_box">
-                <input type="button" class="sava-btn" id="find-btn" value="저장" onclick="checkValue(form)">
+                <input type="button" class="save-btn" id="find-btn" value="저장" onclick="checkValue(form)">
             </li>
             </ul>
         </div>

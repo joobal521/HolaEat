@@ -4,12 +4,10 @@
 }
 .form_wrap>form{
     display: flex;
-    border: solid 1px black;
     justify-content: center;
 }
 
 .form_container{
-    border: 1px solid black;
     padding: 5%;
 }
 
@@ -87,6 +85,11 @@ cursor: pointer;
 
 
 }
+.join-btn:hover{
+    background-color: aliceblue;
+    color: #1e6b7b;
+}
+
 
 /*폼 제목*/
 .form-title{

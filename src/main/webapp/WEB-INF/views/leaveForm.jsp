@@ -20,10 +20,6 @@
             padding: 0;
         }
 
-        #leave-section {
-            background-color: #f5f5f5;
-        }
-
 
         .leave_text {
             font-size: 24px;
