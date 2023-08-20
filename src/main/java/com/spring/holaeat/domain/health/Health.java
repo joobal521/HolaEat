@@ -31,7 +31,7 @@ public class Health extends Timestamp {
     private String content;
 
     @Column(columnDefinition = "LONGBLOB")
-    private byte[] file;
+    private byte[] img;
 
 
 
@@ -54,9 +54,9 @@ public class Health extends Timestamp {
         this.title=healthDto.getTitle();
         this.content=healthDto.getContent();
 
-        if (healthDto.getFile() != null) {
+        if (healthDto.getImg() != null) {
             try {
-                this.file = healthDto.getFile().getBytes();
+                this.img = healthDto.getImg().getBytes();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -66,8 +66,8 @@ public class Health extends Timestamp {
 
  //게시글 수정시 기본 이미지 담기
 
-    public void remainFile(byte[] file) {
-        this.file = file;
+    public void remainImg(byte[] file) {
+        this.img = img;
     }
 
 //    @Builder
@@ -80,16 +80,16 @@ public class Health extends Timestamp {
 
     //수정
 public void update(HealthRequestDto healthDto){
-     this.title=title;
-     this.content=content;
-    if (healthDto.getFile() != null) {
+     this.title=healthDto.getTitle();
+     this.content=healthDto.getContent();
+    if (healthDto.getImg() != null) {
         try {
-            this.file = healthDto.getFile().getBytes();
+            this.img = healthDto.getImg().getBytes();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     } else {
-        this.file = null;
+        this.img = null;
     }
 }
 

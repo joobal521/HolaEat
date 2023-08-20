@@ -11,22 +11,23 @@
 <head>
     <title>update</title>
     <c:set var="path" value="${pageContext.request.contextPath}"/>
-    <link rel="stylesheet" type="text/css" href="style/joinForm.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <style>
     .form_wrap{
-        padding:5% 10%;
+        max-width: 600px;
+        padding: 10px 0;
+        margin: 20px auto;
+        background-color: #f5f5f5;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
 
     /* 폼 스타일링 */
-    .form_container {
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    text-align: center;
+    .update_container {
+        margin: 10px;
+
     }
 
     /* 입력 상자 스타일링 */
@@ -35,24 +36,26 @@
     }
 
     .input-box {
-    width: 100%;
+    width: 70%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     }
 
-    /* 버튼 스타일링 */
+    /* 회원정보 수정 버튼 스타일링 */
     #submit {
-    background-color: #3498db;
-    color: #fff;
-    border: none;
-    padding: 8px 16px;
-    cursor: pointer;
-    border-radius: 5px;
+        padding: 10px 40px;
+        background-color: #265037;
+        color:#DCE4CF;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-top: 30px;
     }
 
     #submit:hover {
-    background-color: #2980b9;
+    background-color: aliceblue;
+        color: #1e6b7b;
     }
 
     /* 에러 메시지 스타일링 */
@@ -64,54 +67,61 @@
     }
 
     /* 인증 코드 입력란 및 버튼 스타일링 */
-    .input-code {
-    width: 70%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    }
-
     .code-btn {
-    background-color: #3498db;
-    color: #fff;
-    border: none;
-    padding: 6px 12px;
-    cursor: pointer;
-    border-radius: 5px;
+        padding: 10px 20px;
+        border-radius: 4px;
+        border: 1px solid  #265037;
+        background-color: white;
+        color: #265037;
+        cursor: pointer;
+        margin-left: 10px;
     }
 
     .code-btn:hover {
-    background-color: #2980b9;
+        color: #1e6b7b;
+        background: aliceblue;
     }
 
     /* 중복 확인 버튼 스타일링 */
     .btn-dupl {
-    background-color: #3498db;
-    color: #fff;
-    border: none;
-    padding: 6px 12px;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-left: 5px;
+        padding: 10px 20px;
+        border-radius: 4px;
+        border: 1px solid #265037;
+        background-color: white;
+        color: #265037;
+        margin-left: 10px;
+        cursor: pointer;
     }
 
     .btn-dupl:hover {
-    background-color: #2980b9;
+        color: #1e6b7b;
+        background: aliceblue;
     }
 
     /* 이메일 버튼 스타일링 */
     .email-btn {
-    background-color: #3498db;
-    color: #fff;
-    border: none;
-    padding: 6px 12px;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-left: 5px;
+        padding: 10px 20px;
+        border-radius: 4px;
+        border: 1px solid #265037;
+        background-color: white;
+        color: #265037;
+        cursor: pointer;
+        margin-top: 10px;
     }
 
     .email-btn:hover {
-    background-color: #2980b9;
+        color: #1e6b7b;
+        background: aliceblue;
+    }
+
+    .btn_update{
+        display: flex;
+        justify-content: center;
+    }
+
+    /*폼 제목*/
+    .form-title{
+        font-size: 1.2rem ;
     }
 
     /* 오류 메시지 스타일링 */
@@ -127,7 +137,7 @@
 <section>
     <div class="form_wrap">
         <form enctype="multipart/form-data">
-            <div class="form_container">
+            <div class="update_container">
                 <ul>
                     <li class="input-container">
                         <h2 class="form-title">아이디</h2>
@@ -180,7 +190,7 @@
                         <p class="error" id="error-name">이름은 필수 정보입니다.</p>
                     </li>
 
-                    <li>
+                    <li class="btn_update">
                         <button type="button" id="submit" name="submit" onclick="checkValue(form)">회원 정보 수정</button>
                     </li>
                 </ul>

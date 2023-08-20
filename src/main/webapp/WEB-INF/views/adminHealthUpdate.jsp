@@ -10,52 +10,86 @@
 <html>
 <head>
     <title>admin-health</title>
+    <link rel="stylesheet" type="text/css" href="/style/health.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <c:import url="header.jsp"/>
 <body>
-<section>
+<div class="health-section">
     <h2>건강 정보 게시판 수정</h2>
-
     <c:if test="${health!=null}">
-
-        <div id=health-contents">
-            <form id="health-detail" enctype="multipart/form-data">
-                <div>
+        <div id="health-contents">
+            <form id="health-update" enctype="multipart/form-data">
+                <div class="health_detail_no">
+                    <span>No.</span>
                     <input type="text" id="healthNo" name="healthNo" value="${health.healthNo}" readonly>
                 </div>
-                <div>
+                <div class="health_detail_title">
+                    <label for="title">제목</label>
                     <input type="text" id="title" name="title" value="${health.title}">
                 </div>
-                <div>
+                <div class="health_detail_userId">
+                    <label for="admin">작성자</label>
                     <input type="text" id="admin" name="admin" value="관리자" readonly>
                 </div>
-                <div>
-                    <input type="text" id="content" name="content" value="${health.content}">
+                <div class="health_detail_content">
+                    <label for="content">내용</label>
+                    <textarea id="content" name="content">${health.content}</textarea>
                 </div>
 
                 <div class="img-container">
                     <label for="file">이미지</label>
                     <input type="file" id="file" name="file" accept="image/*"/>
-                    <div class="select_img">
-                        <img src="data:image/png;base64,${ImageParsor.parseBlobToBase64(health.img)}" id="img" name="img"  alt="Review Image">
-                    </div>
 
+                    <c:choose>
+                        <c:when test="${blob != null}">
+                            <img src="data:image/png;base64,${ImageParsor.parseBlobToBase64(review.img)}" id="img" name="img" alt="">
+                        </c:when>
+                        <c:otherwise>
+                            <img src="" id="img" name="img" alt="" style="display: none;">
+                        </c:otherwise>
+                    </c:choose>
+                    <input type="hidden" id="imgCheck" name="imgCheck" value="${ImageParsor.parseBlobToBase64(health.file)}">
                 </div>
 
-                <input type="datetime" id="created_at" name="created_at" readonly>
-                <input type="datetime" id="modified_at" name="modified_at" readonly>
+<%--                <input type="datetime" id="created_at" name="created_at" readonly>--%>
+<%--                <input type="datetime" id="modified_at" name="modified_at" readonly>--%>
 
                 <button type="button" id="update" name="update" onclick="CheckValueUpdate(form, ${health.healthNo})">
                     수정
                 </button>
-                <input type="button" class="cancel" id="cancel" value="수정 취소" onclick="goBack()">
+                <button type="button" class="cancel" id="cancel"  onclick="goBack()">수정 취소</button>
 
             </form>
         </div>
     </c:if>
 
-</section>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('file').addEventListener('change', function() {
+            var imgElement = document.getElementById('img');
+            var imgCheckInput = document.getElementById('imgCheck');
 
+            if (this.files && this.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    imgElement.src = e.target.result;
+                    imgElement.style.display = 'block';
+                    imgCheckInput.value = e.target.result;
+                };
+
+                reader.readAsDataURL(this.files[0]);
+            } else {
+                imgElement.style.display = 'none';
+                imgCheckInput.value = '';
+            }
+        });
+    });
+</script>
+<script src="script/adminHealth.js"></script>
 
 </body>
 <c:import url="footer.jsp"/>

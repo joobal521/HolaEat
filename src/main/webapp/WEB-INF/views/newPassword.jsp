@@ -53,13 +53,18 @@
         border-radius: 5px;
     }
 
-    .sava-btn {
-        background-color: #007bff;
-        color: #fff;
+    .save-btn {
+        padding: 10px 40px;
+        background-color: #265037;
+        color:#DCE4CF;
         border: none;
-        padding: 8px 15px;
-        border-radius: 5px;
+        border-radius: 4px;
         cursor: pointer;
+        margin-top: 30px;
+    }
+    .save-btn:hover{
+        background-color: aliceblue;
+        color: #1e6b7b;
     }
 
     .btn_box {
@@ -85,14 +90,14 @@
 <body>
 <div id="find-section">
     <div class="text_box">
-        <h2 class="find_text">새로운 비밀번호를 입력해주세요</h2>
+        <h2 class="find_text">새로운 비밀번호를 입력해주세요.</h2>
     </div>
     <form id=find method="put" action="">
         <div class="pwd_box">
             <ul class="form-box">
             <li class="input-container">
             <h2 class="form-title">새 비밀번호</h2>
-            <input type="password" class="input-box" id="new_password"
+            <input type="password" class="input-box" id="newPassword"
                     name="new_password" placeholder="4-10자의 영문, 특수문자, 숫자 조합">
             </li>
             <li class="input-container">
@@ -104,18 +109,18 @@
                 <li class="input-container">
             <h2 class="form-title">새 비밀번호 확인</h2>
             <input type="password" class="input-box" name="user_password_ch"
-                    id="user_password_ch" placeholder="비밀번호 확인">
+                    id="newPasswordCh" placeholder="비밀번호 확인">
                     <span class="err" id="chkNotice2" size="1"></span>
                 </li>
 
             <li class="btn_box">
-                <input type="button" class="sava-btn" id="find-btn" value="저장"
-                       onclick="checkValue()">
+                <input type="button" class="save-btn" id="find-btn" value="저장" onclick="checkValue(form)">
             </li>
             </ul>
         </div>
     </form>
 </div>
+<script src="script/newPwd.js"></script>
 </body>
 <c:import url="footer.jsp"/>
 </html>

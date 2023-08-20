@@ -58,6 +58,7 @@
 .review_img #img {
     width: 100%;
     height: 100%;
+    object-fit: cover;
 }
 
 .user_profile {
@@ -120,8 +121,8 @@
 }
 
 .list-write-btn a:hover {
-    background-color: #7041c2;
-    color: white;
+    color: #1e6b7b;
+    background: aliceblue;
 }
 
 /* 검색창 */
@@ -158,6 +159,11 @@
     color:#DCE4CF;
 }
 
+
+.review-section .searchBtn:hover{
+    color: #1e6b7b;
+    background: aliceblue;
+}
 
 
 
@@ -198,7 +204,7 @@
 
 .paging li:hover {
     font-weight: bold;
-    background-color: #b89be8;
+    background-color: #265037;
     color: #fff;
     transition: 0.2s ease-in-out;
 }
@@ -212,6 +218,12 @@
 .paging li > a > i,.paging li>i {
     line-height: inherit;
 }
+
+/*.paging li > a.page-link.active {*/
+/*    font-weight: bold;*/
+/*    background-color: #265037;*/
+/*    color: #fff;*/
+/*}*/
 
 
 /*review,reviewUpdate 공통 적용*/
@@ -325,8 +337,18 @@ form.comment {
 }
 
 
+#update:hover,
+#delete:hover,
+#submit:hover,
+#backToList:hover {
+    color: #1e6b7b;
+    background: aliceblue;
+}
+
+
+
 #update {
-    background-color: #6da272;
+
     margin-right: 20px;
 }
 #delete{
@@ -375,6 +397,12 @@ form.comment-item .comment-btn {
     border-radius: 4px;
     cursor: pointer;
 }
+.comment-write input[type="button"]:hover{
+    color: #1e6b7b;
+    background: aliceblue;
+}
+
+
 
 /* 댓글 출력부분 */
 
@@ -416,8 +444,8 @@ border: none;
 .comment-btn button {
     padding: 5px 10px;
     margin-right: 3px;
-    background-color: #c0bbc7;
-    color:#DCE4CF;
+    background-color:  #265037;
+    color: #DCE4CF;
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -425,7 +453,8 @@ border: none;
 }
 
 .comment-btn button:hover {
-    background-color: #a09ea3;
+    color: #1e6b7b;
+    background: aliceblue;
 }
 
 /*** reviewUpdate 페이지 (게시글 수정 페이지) ***/
@@ -445,11 +474,16 @@ border: none;
     margin: 10px auto;
     display: inline-block;
     padding: 10px 20px;
-    background-color: #c0bbc7;
+    background-color:  #265037;
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+}
+
+#cancel:hover {
+    color: #1e6b7b;
+    background: aliceblue;
 }
 
 /*수정페이지 오류나서 추가*/
@@ -528,6 +562,7 @@ border: none;
 }
 
 .review-write-btn button:hover {
-    background-color: #4e9666;
+    color: #1e6b7b;
+    background: aliceblue;
 }
 

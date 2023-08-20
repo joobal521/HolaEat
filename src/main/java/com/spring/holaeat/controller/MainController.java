@@ -1,5 +1,7 @@
 package com.spring.holaeat.controller;
 
+import com.spring.holaeat.domain.health.Health;
+import com.spring.holaeat.domain.health.HealthRepository;
 import com.spring.holaeat.domain.review.Review;
 import com.spring.holaeat.domain.review.ReviewRepository;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +17,7 @@ import java.util.Optional;
 public class MainController {
 
     private final ReviewRepository reviewRepository;
+    private final HealthRepository healthRepository;
 
     @GetMapping(value = "/")
     public String index() {return "index";}
@@ -72,9 +75,20 @@ public class MainController {
     public String adminHealthFrom(){return "adminHealthForm";}
 
 
-    @GetMapping(value = "healthUpdate")
-    public String healthUpdate(){
-        return "adminHealthUpdate";}
+//    @GetMapping(value = "healthUpdate")
+//    public String healthUpdate(){
+//        return "adminHealthUpdate";}
+
+    @GetMapping(value = "/healthUpdate")
+    public String healthUpdate(@RequestParam("healthNo") long healthNo, Model model) {
+        Optional<Health> health  = healthRepository.findById(healthNo);
+
+        if(health == null)
+            return "admin";
+
+        model.addAttribute("health", health.get());
+        return "adminHealthUpdate";
+    }
 
     @GetMapping(value = "adminUser")
     public String adminUser() {return "adminUser";}
@@ -98,6 +112,10 @@ public class MainController {
 
     @GetMapping("term2")
     public String term2(){return "term2";}
+
+
+    @GetMapping(value = "makers")
+    public String makers() {return "makers";}
 
 
 }

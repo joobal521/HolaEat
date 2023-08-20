@@ -46,12 +46,11 @@ dependencies {
     //email
     implementation 'javax.mail:javax.mail-api:1.6.2'
     implementation group: 'com.sun.mail', name: 'javax.mail', version: '1.6.2'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-mail', version: '2.6.3'
 
     //spring-context-support
     implementation 'org.springframework:spring-context-support:5.3.9'
 
-    //이메일
-    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-mail', version: '2.6.3'
 
     //redis
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'

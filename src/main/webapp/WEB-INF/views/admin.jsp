@@ -62,9 +62,9 @@
             <li>
                 <a href="adminHealth" class="menu-link">건강 정보</a>
             </li>
-            <li>
-                <a href="adminUser" class="menu-link">유저 관리</a>
-            </li>
+<%--            <li>--%>
+<%--                <a href="adminUser" class="menu-link">유저 관리</a>--%>
+<%--            </li>--%>
         </ul>
     </section>
     <section class="section">

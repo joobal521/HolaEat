@@ -13,17 +13,19 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <style>
-    #find-section {
-    text-align: center;
+    .form_wrap {
+
     margin-top: 50px;
     margin-bottom: 122px;
     }
 
     .text_box {
+        text-align: center;
     margin-bottom: 20px;
     }
 
     .find_text {
+
     font-size: 24px;
     }
 
@@ -37,7 +39,7 @@
     border: 1px solid #ccc;
     padding: 20px;
     margin: 0 auto;
-    max-width: 400px;
+    max-width: 500px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     }
 
@@ -51,20 +53,46 @@
     }
 
     .input-box {
-    width: 100%;
+    width: 60%;
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 5px;
     }
 
-    .email-btn, .code-btn, .show-btn {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 8px 15px;
-    border-radius: 5px;
-    cursor: pointer;
+    /*버튼*/
+    .email-btn, .code-btn{
+        padding: 10px 20px;
+        border-radius: 4px;
+        border: 1px solid  #265037;
+        background-color: white;
+        color: #265037;
+        cursor: pointer;
+        margin-left: 10px;
     }
+    .email-btn:hover {
+        color: #1e6b7b;
+        background: aliceblue;
+    }
+    .code-btn:hover {
+        color: #1e6b7b;
+        background: aliceblue;
+    }
+
+    .show-btn{
+        padding: 10px 40px;
+        background-color: #265037;
+        color:#DCE4CF;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-top: 30px;
+    }
+
+    .show-btn:hover{
+        background-color: aliceblue;
+        color: #1e6b7b;
+    }
+
 
     .btn_box {
     text-align: center;
@@ -86,7 +114,7 @@
 </head>
 <c:import url="header.jsp"/>
 <body>
-<div id="find-section">
+<div class="form_wrap">
     <div class="text_box">
         <h2 class="find_text">비밀번호 찾기</h2>
         <p class="comment">비밀 번호 재설정을 위해 이메일을 입력해주세요.</p>

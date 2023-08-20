@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class RecipeController {
@@ -35,12 +37,10 @@ public class RecipeController {
     public String getRecipe(@PathVariable String foodId, Model model) {
         List<Recipe> recipe = recipeService.findStepsByFoodId(foodId);
         model.addAttribute("recipe", recipe);
+        Map<Integer,String> imageMap = new HashMap<>();
 
-        byte[] foodImg = foodService.getFoodImgByFoodId(foodId);
-        if(foodImg!=null) {
-            String blob = ImageParsor.parseBlobToBase64(foodImg);
-            model.addAttribute("blob",blob);
-        }
+        String foodImg = ImageParsor.parseBlobToBase64(foodService.getFoodImgByFoodId(foodId));
+        model.addAttribute("foodImg",foodImg);
 
         Food food = foodService.findFoodByFoodId(foodId);
         model.addAttribute("food",food);
