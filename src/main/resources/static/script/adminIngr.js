@@ -22,9 +22,8 @@ $(document).ready(function() {
         var ingrName = row.find(".editIngrName").val();
         var allergy = row.find(".editAllergy").prop("checked");
         var month = row.find(".editMonth").prop("checked");
-        var imageFile = $("#editImg-" + ingrId)[0].files[0]; // Get the selected image file
+        var imageFile = $("#editImg-" + ingrId)[0].files[0];
 
-        // Create FormData object and append the data
         var formData = new FormData();
         formData.append("ingrName", ingrName);
         formData.append("allergy", allergy);
@@ -33,7 +32,6 @@ $(document).ready(function() {
             formData.append("ingrImg", imageFile);
         }
 
-        // Send the data to the backend using AJAX
         $.ajax({
             url: "adminIngr/" + ingrId,
             method: "PUT",
@@ -52,9 +50,6 @@ $(document).ready(function() {
     });
 
 
-
-
-
     $(".cancelBtn").click(function() {
         var row = $(this).closest("tr");
         var ingrName = row.find(".editIngrName").val();
@@ -68,7 +63,7 @@ $(document).ready(function() {
         // 수정/취소 버튼 토글
         $(this).hide();
         row.find(".editBtn").show();
-        row.find(".updateBtn, .imgBtn").hide(); // Hide update and image upload buttons
+        row.find(".updateBtn, .imgBtn").hide();
     });
 
 
@@ -79,7 +74,7 @@ $(document).ready(function() {
             url: "adminIngr/delete/" + ingrId,
             method: "DELETE",
             success: function(response) {
-                // Handle success if needed
+
                 alert("삭제하기: " + ingrId);
                 window.location.href="admin"
             },
@@ -105,7 +100,6 @@ $(document).ready(function() {
         }
     });
 
-    // Handle the form submission
     $("#addForm").submit(function(event) {
         event.preventDefault();
 
@@ -116,12 +110,12 @@ $(document).ready(function() {
         formData.append("ingrImg", $("#addImg")[0].files[0]);
 
 
-        // Send the data to the backend using AJAX
+
         $.ajax({
             url: "adminIngr/create",
             method: "POST",
-            contentType: false, // Set to false when using FormData
-            processData: false, // Set to false when using FormData
+            contentType: false,
+            processData: false,
             data: formData,
             success: function(response) {
                 alert("추가 완료");
