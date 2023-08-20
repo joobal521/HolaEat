@@ -254,7 +254,7 @@ function chkEmail() {
 
 
 
-    if (check &&isEmailChecked && isToKenChecked) {
+    if (check) {
 
         const data = {
             userId:id,
@@ -275,8 +275,8 @@ function chkEmail() {
         }).done(function(data){
             console.log(data);
             if (data.result === true) {
-                swal('회원 수정 완료 ','메인 홈으로 돌아갑니다~','success')
-                //alert("회원수정 완료")
+                //swal('회원 수정 완료 ','메인 홈으로 돌아갑니다~','success')
+                alert("회원수정 완료")
                 location.href = "/";
             }else{
                 swal('회원 수정 실패 ','기존 비밀번호가 일치하지 않습니다.','error')
@@ -288,12 +288,6 @@ function chkEmail() {
         });
 
 
-
-    }else if(!isEmailChecked){
-        swal('회원 수정 불가능 ','이메일 중복을 확인해 주세요.','warning')
-
-    }else if(!isToKenChecked){
-        swal('회원 수정 불가능 ','이메일 인증을 먼저 해주세요.','warning')
     }
 
 }

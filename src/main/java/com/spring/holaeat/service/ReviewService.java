@@ -17,6 +17,12 @@ public class ReviewService {
 
     private final ReviewRepository reviewRepository;
 
+
+    //부모 테이블 삭제전 자식 테이블 삭제
+    @Transactional
+    public void deleteReviewsByUserId(String userId) {
+        reviewRepository.deleteByUserId(userId);
+    }
     //검색
 
    public List<Review> getAllReview(){

@@ -21,5 +21,9 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
 
     public List<Review> findAll();
 
+    // 해당 userId와 관련된 리뷰 레코드를 삭제하는 메서드 정의
+   public void deleteByUserId(String userId);
+
+
 
 }

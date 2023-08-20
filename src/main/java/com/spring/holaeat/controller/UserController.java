@@ -7,6 +7,7 @@ import com.spring.holaeat.domain.user.UserRequestDto;
 import com.spring.holaeat.domain.user.UserRepository;
 import com.spring.holaeat.payload.Response;
 import com.spring.holaeat.service.ProfileImgService;
+import com.spring.holaeat.service.ReviewService;
 import com.spring.holaeat.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -28,6 +29,7 @@ import java.util.Map;
 public class UserController {
 
     private final UserService userService;
+    private final ReviewService reviewService;
     private final UserRepository userRepository;
     private final ProfileImgService profileImgService;
 
@@ -131,6 +133,12 @@ public class UserController {
 
             if (user != null && user.getUserPassword().equals(userPassword)) {
 
+                // 먼저 외래 키로 연결된 자식 레코드를 삭제합니다.
+                // 예를 들어, 'Review' 테이블이 'user_id'라는 외래 키를 가지고 있다고 가정하겠습니다.
+                // 이 경우에는 해당 유저와 관련된 리뷰 레코드를 모두 삭제해야 합니다.
+                reviewService.deleteReviewsByUserId(userId);
+
+                // 자식 레코드들이 모두 삭제되었다면, 부모 레코드를 삭제합니다.
                 userService.deleteUserById(userId);
                 //profileImgService.deleteProfile(profileImg);
                 session.removeAttribute("log"); // 세션에서 log 속성 제거
