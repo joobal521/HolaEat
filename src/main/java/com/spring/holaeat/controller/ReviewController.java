@@ -131,37 +131,6 @@ public class ReviewController {
 
     }
 
-//    //댓글삭제 추가?
-
-//    @DeleteMapping("/{reviewNo}/delete")
-//    public Response delete(@PathVariable("reviewNo") long reviewNo
-//           ,@RequestParam(required = false) Long commentId, WebRequest request, @ModelAttribute ReviewRequestDto reviewRequestDto) {
-//        String log = (String) request.getAttribute("log", WebRequest.SCOPE_SESSION);
-//
-//        if (log == null) {
-//            return new Response("delete", "로그인 상태에서만 가능합니다.");
-//        }
-//
-//        Review review = reviewRepository.findById(reviewNo).orElseThrow(
-//                () -> new IllegalArgumentException("게시글이 존재하지 않습니다.")
-//        );
-//
-//
-//        if (!review.getUserId().equals(log)) {
-//            return new Response("delete", "작성자만 삭제할 수 있습니다.");
-//        }
-//        if (commentId != null) {
-//            reviewCommentService.delete(commentId);
-//        }
-//        reviewService.delete(reviewNo);
-//        System.out.println("게시글 삭제");
-//
-//
-//        return new Response("delete", "success");
-//
-//    }
-
-
 
 }
 
