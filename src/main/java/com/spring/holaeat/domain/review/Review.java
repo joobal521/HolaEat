@@ -46,6 +46,7 @@ public class Review extends Timestamp {
         this.title = reviewRequestDto.getTitle();
         this.content = reviewRequestDto.getContent();
         this.userId = reviewRequestDto.getUserId();
+//        this.reviewLike = reviewRequestDto.getReviewLike();
 
         if (reviewRequestDto.getImg() != null) {
             try {

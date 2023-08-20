@@ -8,11 +8,17 @@
     width: 100%;
 }
 .aside a {
-    background: red;
+    background: #f0f0f0;
     height: 60px;
     text-align: center;
     line-height: 60px;
 }
+
+.aside a.active {
+    background: #265037;
+    color: white;
+}
+
 
 
 .admin-ingrList tr , .admin-foodList tr {
@@ -50,3 +56,125 @@ table {
 .hide-nutrition {
     display: none;
 }
+
+h1 {
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+table, th, td {
+    border: 1px solid #ccc;
+}
+
+th, td {
+    padding: 8px;
+    text-align: center;
+}
+td.button-cell {
+    width: 120px;
+}
+
+th {
+    background-color: #f0f0f0;
+}
+
+button {
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+}
+
+th button {
+    background-color: #34965c;
+    color: #fff;
+    margin-right: 10px;
+}
+
+#addBtn , #toggleNutrition{
+    background-color: #28a745;
+    color: #fff;
+    margin-top: 10px;
+}
+#toggleNutrition{
+    margin: 10px;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal-content {
+    background-color: #fff;
+    width: 70%;
+    max-width: 400px;
+    margin: 100px auto;
+    padding: 20px;
+    border-radius: 5px;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+input[type="text"], input[type="checkbox"], input[type="file"] {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+input[type="submit"] {
+    background-color: #34965c;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+}
+
+.imgBtn, .imgUpdate {
+    width: 100%;
+    margin-top: 10px;
+    background-color: #265037;
+    color: #fff;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+}
+
+
+@media (max-width: 768px) {
+    table {
+        font-size: 12px;
+    }
+    td.button-cell {
+        width: auto;
+    }
+
+}
+

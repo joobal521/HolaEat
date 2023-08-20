@@ -16,6 +16,7 @@ public class ReviewRequestDto {
     private String content;
     private String userId;
     private MultipartFile img;
+//    private int reviewLike;
 
 
 

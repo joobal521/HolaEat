@@ -10,7 +10,7 @@
                 <th>후기글 이름</th>
                 <th>작성자</th>
                 <th>내용</th>
-                <th>좋아요</th>
+<%--                <th>좋아요</th>--%>
                 <th>삭제</th>
             </tr>
             </thead>
@@ -21,6 +21,7 @@
                     <td class="reviewTitle">${review.title}</td>
                     <td class="reviewUserId">${review.userId}</td>
                     <td class="reviewContent">${review.content}</td>
+<%--                    <td class="reviewContent">${review.reviewLike}</td>--%>
 
                     <td>
                         <button class="removeBtn" data-id="${review.reviewNo}">삭제하기</button>
