@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 @RequiredArgsConstructor
 public class MailService {
+
     private final JavaMailSender emailSender;
 
     public void sendEmail(String toEmail,
