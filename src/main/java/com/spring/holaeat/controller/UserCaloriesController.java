@@ -29,7 +29,7 @@ public class UserCaloriesController {
     }
 
 
-    @PutMapping(value = "/saveDetails")
+    @PostMapping(value = "/saveDetails")
     @ResponseBody
     public ResponseEntity<Map<String, Object>> saveDetails(@ModelAttribute UserDetailRequestDto userDetailDto, HttpSession session) {
         try {
