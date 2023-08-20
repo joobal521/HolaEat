@@ -51,6 +51,7 @@ public class LogController {
                     System.out.println("안되긴 뭐가 안돼용");
                     System.out.println("그럼 돼용?");
                     System.out.println("왜애애옹!");
+                    System.out.println("멍멍멍멍!");
                 }
 
                 UserResponseDto userResponseDto = new UserResponseDto(user, userDetail);

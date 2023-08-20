@@ -31,8 +31,8 @@ $('#userName').on('change', e => {
 var regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
 let pwdChk = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[$@$!%*#?&])/; /* 영문 + 숫자 + 특수문자 */
 let pwd_space = /[ ]/; /* 공백 */
-let isIdChecked = false;
-let isToKenChecked = false;
+let isEmailChecked=false;//이메일 중복
+let isToKenChecked = false;//이메일 인증
 
 $(function() {
     /*이메일 유효성*/
@@ -104,7 +104,7 @@ function chkEmail() {
         }).done(function (data) {
             if (data.result === true) {
                 isEmailChecked = true;
-                swal('사용 가능한 이메일', '츄라이~', 'success')
+                swal('사용 가능한 이메일', '입력하신 이메일을 사용해 주세요.', 'success')
                 //alert("사용 가능한 이메일입니다.")
                 //$('#chkMsgEmail').html('사용 가능한 아이디입니다.').css('color', 'navy');
             } else {
@@ -254,7 +254,7 @@ function chkEmail() {
 
 
 
-    if (check) {
+    if (check &&isEmailChecked &&isToKenChecked) {
 
         const data = {
             userId:id,
@@ -289,6 +289,11 @@ function chkEmail() {
 
 
 
+    }else if(!isEmailChecked){
+        swal('회원 수정 불가능 ','이메일 중복을 확인해 주세요.','warning')
+
+    }else if(!isToKenChecked){
+        swal('회원 수정 불가능 ','이메일 인증을 먼저 해주세요.','warning')
     }
 
 }
