@@ -26,7 +26,7 @@
 
 
 
-            <form id="myform" action="/saveCalories" method="POST">
+            <form id="myform" action="/saveCalories" method="PUT">
                 <h2>내 하루 권장 칼로리는?</h2>
                 <ul>
                     <li>

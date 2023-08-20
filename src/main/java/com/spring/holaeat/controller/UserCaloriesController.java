@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -28,7 +29,7 @@ public class UserCaloriesController {
     }
 
 
-    @PostMapping(value = "/saveDetails")
+    @PutMapping(value = "/saveDetails")
     @ResponseBody
     public ResponseEntity<Map<String, Object>> saveDetails(@ModelAttribute UserDetailRequestDto userDetailDto, HttpSession session) {
         try {

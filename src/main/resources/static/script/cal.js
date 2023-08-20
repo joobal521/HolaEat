@@ -1,4 +1,5 @@
 $(document).ready(function () {
+
     $('#save_btn').click(function () {
         var gender = $('input[name="gender"]:checked').val();
         var age = $('#age').val();
@@ -21,7 +22,7 @@ $(document).ready(function () {
         };
 
         $.ajax({
-            type   : "POST",
+            type   : "PUT",
             url    : "/saveDetails",
             data   : formData,
             success: function (data) {
@@ -63,7 +64,7 @@ function calculateCalories() {
 
     // 알레르기에 따른 보정 값 추가
 
-    if (allergy !== "") {
+    if (allergy !== "0") {
         baseCalories *= 0.9; // 알레르기가 있을 경우 열량을 90%로 조정
     }
 
