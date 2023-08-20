@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.Arrays;
 import java.util.List;
 
 @SessionAttributes("authority")
@@ -118,6 +119,8 @@ public String gainPower(@RequestParam("adminid") String id, @RequestParam("admin
     public String updateFood(@PathVariable String foodId, @ModelAttribute FoodRequestDto foodRequestDto){
 
         Food food = foodService.findFoodByFoodId(foodId);
+        System.out.println(foodRequestDto.getFoodName());
+        System.out.println(Arrays.toString(foodRequestDto.getFoodImg()));
 
         foodService.update(food,foodRequestDto);
 
@@ -125,7 +128,7 @@ public String gainPower(@RequestParam("adminid") String id, @RequestParam("admin
             byte[] img = food.getFoodImg();
             foodService.remainImg(food,img);
         }
-        return "adminMenu";
+        return "admin";
     }
 
     @DeleteMapping("adminMenu/delete/{foodId}")

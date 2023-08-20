@@ -6,10 +6,10 @@
 </head>
 <body>
     <div>
-    <c:if test="${not empty blob }">
+    <c:if test="${not empty foodImg }">
         <div id="image-container">
             <img src="data:image/png;base64,${blob}" id="ingrImg" name="ingrIm"  alt="ingr Img">
-            <img src="data:image/jpeg;base64,${blob}" id="img" name="img" alt="Ingredient Image">
+            <img src="data:image/jpeg;base64,${foodImg}" id="img" name="img" alt="Food Image">
         </div>
     </c:if>
         <div>
