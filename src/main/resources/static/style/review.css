@@ -120,7 +120,7 @@
 }
 
 .list-write-btn a:hover {
-    background-color: #7041c2;
+    background-color: #d1fde1;
     color: white;
 }
 
@@ -198,7 +198,7 @@
 
 .paging li:hover {
     font-weight: bold;
-    background-color: #b89be8;
+    background-color: #265037;
     color: #fff;
     transition: 0.2s ease-in-out;
 }

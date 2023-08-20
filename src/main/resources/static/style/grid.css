@@ -75,10 +75,48 @@ section{
 /*}*/
 
 /* footer css*/
-.footer_wrap{
-        border: 1px solid black;
-        text-align:center;
+
+.footer_wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
 }
+
+.footer-bottom ul,.footer-content ul{
+    margin:15px;
+    padding: 0;
+}
+
+.footer-content ul li {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.footer-content ul li a {
+    color: #333;
+}
+
+.footer-content ul li a:hover {
+    /*text-decoration: underline;*/
+    font-weight: bold;
+}
+
+.footer-content h3 {
+    margin-bottom: 10px;
+    font-size: 50px;
+    color: #265037;
+}
+
+.footer-bottom ul li {
+    margin-bottom: 5px;
+}
+
+.footer-bottom ul li:last-child {
+    font-size: 12px;
+}
+
 
 /* 버튼 css*/
 
