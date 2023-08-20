@@ -95,12 +95,12 @@ function checkValue() {
         }).done(function(data){
             console.log(data);
             if (data.result === true) {
-                swal('비밀번호 변경 완료 ','로그인으로 돌아갑니다~','success')
-                //alert("회원수정 완료")
+                //swal('비밀번호 변경 완료 ','로그인으로 돌아갑니다~','success')
+                alert("비밀번호 변경 완료")
                 location.href = "login";
             }else{
-                swal('비밀번호 변경 실패 ','비밀번호 변경을 다시 시도 해주세요.','error')
-                //alert("기존 비밀번호가 일치하지 않습니다.")
+                //swal('비밀번호 변경 실패 ','비밀번호 변경을 다시 시도 해주세요.','error')
+                alert("기존 비밀번호가 일치하지 않습니다.")
             }
         }).fail(function (error){
             alert("비밀번호 변경 실패입니다: " + error.responseJSON.message);

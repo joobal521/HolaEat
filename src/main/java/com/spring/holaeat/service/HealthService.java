@@ -52,8 +52,8 @@ public class HealthService {
 
     //이미지 수정시
     @Transactional
-    public void remainImage(Health health, byte[] file){
-        health.remainFile(file);
+    public void remainImage(Health health, byte[] img){
+        health.remainImg(img);
         healthRepository.save(health);
     }
 

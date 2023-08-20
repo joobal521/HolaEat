@@ -42,10 +42,10 @@
                         </c:if></td>
 
                         <td>
-                            <button class="updateBtn" data-id="${health.healthNo}" ><a href="healthUpdate">수정하기</a></button>
+                            <button type="button" class="updateBtn" data-id="${health.healthNo}"  onclick="redirectToHealthUpdate(${health.healthNo})" >수정</button>
                         </td>
                         <td>
-                            <button class="removeBtn" data-id="${health.healthNo}" >삭제하기</button>
+                            <button type="button" class="removeBtn" data-id="${health.healthNo}" >삭제</button>
                         </td>
                     </tr>
                 </c:forEach>

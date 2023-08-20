@@ -31,10 +31,10 @@ public class HealthListController {
         Health health = healthRepository.findByHealthNo(healthNo);
         model.addAttribute("health", health);
 
-        if (health.getFile() == null)
+        if (health.getImg() == null)
             return "health";
 
-        model.addAttribute("blob", ImageParsor.parseBlobToBase64(health.getFile()));
+        model.addAttribute("blob", ImageParsor.parseBlobToBase64(health.getImg()));
         return "health";
 
     }
@@ -58,8 +58,8 @@ public class HealthListController {
         Map<Long, String> imageMap = new HashMap<>();
 
         for (Health health : list) {
-            if (health.getFile() != null) {
-                String base64Image = ImageParsor.parseBlobToBase64(health.getFile());
+            if (health.getImg() != null) {
+                String base64Image = ImageParsor.parseBlobToBase64(health.getImg());
                 imageMap.put(health.getHealthNo(), base64Image);
             }
         }
