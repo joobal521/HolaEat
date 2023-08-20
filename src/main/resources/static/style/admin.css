@@ -14,11 +14,9 @@
     line-height: 60px;
 }
 
-
-/* Active link color */
 .aside a.active {
-    background: #265037; /* Change this to the color you want */
-    color: white; /* Change text color for better visibility */
+    background: #265037;
+    color: white;
 }
 
 

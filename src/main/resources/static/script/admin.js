@@ -24,10 +24,8 @@ $(document).ready(function() {
     $("a.menu-link").click(function(event) {
         event.preventDefault();
 
-        // Remove 'active' class from all links
         $("a.menu-link").removeClass("active");
 
-        // Add 'active' class to the clicked link
         $(this).addClass("active");
 
         var pageUrl = $(this).attr("href");
