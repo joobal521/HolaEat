@@ -310,14 +310,12 @@ $(document).ready(function() {
 });
 
 $(document).ready(function() {
-    // Initial hiding of nutritional information
+
     $(".nutrition-cell").addClass("hide-nutrition");
 
-    // Toggle button click event
     $("#toggleNutrition").click(function() {
         $(".nutrition-cell").toggleClass("hide-nutrition");
 
-        // Update button text
         var buttonText = $(".nutrition-cell").hasClass("hide-nutrition") ? "영양소 보기" : "영양소 숨기기";
         $(this).text(buttonText);
     });
