@@ -1,4 +1,24 @@
 $(document).ready(function () {
+
+    $('#age').val(sessionStorage.getItem("userAge"));
+    $('#height').val(sessionStorage.getItem("userHeight"));
+    $('#weight').val(sessionStorage.getItem("userWeight"));
+    $('#allergy').val(sessionStorage.getItem("userAllergy"));
+    $('#recCalories').val(sessionStorage.getItem("userRecCalories"));
+    $('#prefer').val(sessionStorage.getItem("userPrefer"));
+    $('#dislike').val(sessionStorage.getItem("userDislike"));
+
+    $('#logout').click(function () {
+        sessionStorage.removeItem("userAge");
+        sessionStorage.removeItem("userHeight");
+        sessionStorage.removeItem("userWeight");
+        sessionStorage.removeItem("userAllergy");
+        sessionStorage.removeItem("userRecCalories");
+        sessionStorage.removeItem("userPrefer");
+        sessionStorage.removeItem("userDislike");
+        window.location.href = "/";
+    });
+
     $('#save_btn').click(function () {
         var gender = $('input[name="gender"]:checked').val();
         var age = $('#age').val();
@@ -10,39 +30,49 @@ $(document).ready(function () {
         var selectedDislike = $('#dislike').val();
 
         var formData = {
-            gender     : gender,
-            age        : age,
-            height     : height,
-            weight     : weight,
-            allergy    : allergy,
+            gender: gender,
+            age: age,
+            height: height,
+            weight: weight,
+            allergy: allergy,
             recCalories: recCalories,
-            prefer     : selectedPrefer, // 추가된 부분: prefer 값을 formData에 추가
-            dislike    : selectedDislike // 추가된 부분: dislike 값을 formData에 추
+            prefer: selectedPrefer,
+            dislike: selectedDislike
         };
 
         $.ajax({
-            type   : "POST",
-            url    : "/saveDetails",
-            data   : formData,
+            type: "POST",
+            url: "/saveDetails",
+            data: formData,
             success: function (data) {
-                // 서버 응답 처리
                 console.log("저장 성공:", data);
-                // 필요한 업데이트 작업 수행
+
+                sessionStorage.setItem("userAge", data.age);
+                sessionStorage.setItem("userHeight", data.height);
+                sessionStorage.setItem("userWeight", data.weight);
+                sessionStorage.setItem("userAllergy", data.allergy);
+                sessionStorage.setItem("userRecCalories", data.recCalories);
+                sessionStorage.setItem("userPrefer", data.prefer);
+                sessionStorage.setItem("userDislike", data.dislike);
+
                 $('#age').val(data.age);
                 $('#height').val(data.height);
                 $('#weight').val(data.weight);
                 $('#allergy').val(data.allergy);
                 $('#recCalories').val(data.recCalories);
+                $('#prefer').val(data.prefer);
+                $('#dislike').val(data.dislike);
 
                 alert("저장에 성공하였습니다.");
             },
-            error  : function (error) {
+            error: function (error) {
                 console.error("저장 에러:", error);
-                // 에러 처리
             }
         });
     });
 });
+
+
 function calculateCalories() {
     // 필요한 변수들을 가져옴
     var gender = document.querySelector('input[name="gender"]:checked').value;
@@ -63,7 +93,7 @@ function calculateCalories() {
 
     // 알레르기에 따른 보정 값 추가
 
-    if (allergy !== "") {
+    if (allergy !== "0") {
         baseCalories *= 0.9; // 알레르기가 있을 경우 열량을 90%로 조정
     }
 

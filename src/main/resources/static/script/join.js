@@ -118,7 +118,7 @@ function chkId() {
             console.log(data);
             if (data.result === true) {
                 isIdChecked = true;
-                swal('사용 가능한 아이디','입력하신 아이디를 사용해 주세요.','success')
+                swal('사용 가능한 아이디','중복되지 않는 아이디','success')
                 //alert("사용 가능한 아이디입니다.")
                 //$('#chkMsgEmail').html('사용 가능한 아이디입니다.').css('color', 'navy');
             } else {
@@ -158,7 +158,7 @@ function chkEmail() {
         }).done(function (data) {
             if (data.result === true) {
                 isEmailChecked = true;
-                swal('사용 가능한 이메일','입력하신 이메일을 사용해 주세요.','success')
+                swal('사용 가능한 이메일','중복되지 않는 이메일','success')
                 //alert("사용 가능한 이메일입니다.")
                 //$('#chkMsgEmail').html('사용 가능한 아이디입니다.').css('color', 'navy');
             } else {

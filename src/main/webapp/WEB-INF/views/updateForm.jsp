@@ -169,7 +169,7 @@
 
                     <li class="input-container">
                         <h2 class="form-title">이메일</h2>
-                        <input type="email" class="input-box" id="userEmail" name="userEmail"  placeholder="example@holaEat.com">
+                        <input type="email" class="input-box" id="userEmail" name="userEmail"  value="${userResponseDto.userEmail}">
                         <input
                                 type="button" class="btn-dupl" id="emailDupl" name="emailDupl"
                                 value="중복 확인" onclick="chkEmail()">
@@ -187,7 +187,7 @@
 
                     <li class="input-container">
                         <h2 class="form-title">이름</h2>
-                        <input type="text" class="input-box" id="userName" name="userName" placeholder="이름">
+                        <input type="text" class="input-box" id="userName" name="userName" value="${userResponseDto.userName}">
                         <p class="error" id="error-name">이름은 필수 정보입니다.</p>
                     </li>
 
