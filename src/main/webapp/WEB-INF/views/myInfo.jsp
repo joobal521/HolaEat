@@ -21,6 +21,7 @@
     .container {
       display: flex;
       background-color: #f7f7f7;
+      justify-content: center
 
     }
 
@@ -45,17 +46,19 @@
 
     /* 프로필 버튼 스타일링 */
     .profile-btn {
-      background-color: #3498db;
-      color: #fff;
+      background-color: #265037;
+      color:#DCE4CF;
       border: none;
+      border-radius: 4px;
       padding: 8px 16px;
       cursor: pointer;
-      border-radius: 5px;
       margin-top: 10px;
+      margin-bottom: 20px;
     }
 
     .profile-btn:hover {
-      background-color: #2980b9;
+      background-color: aliceblue;
+      color: #1e6b7b;
     }
 
     /* 정보 목록 스타일링 */

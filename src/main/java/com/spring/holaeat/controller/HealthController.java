@@ -48,7 +48,19 @@ public class HealthController {
         return response.toMap();
     }
     //관리자 글 수정
-   // @PutMapping("/{healthNo}/")
+    @PutMapping(value="/update/{healthNo}")
+    public Response update(@PathVariable("healthNo")long healthNo,@ModelAttribute HealthRequestDto healthDto){
+        Health health=healthRepository.findById(healthNo).orElseThrow(
+                ()->new IllegalArgumentException("게시글이 존재하지 않습니다.")
+        );
+
+        if(healthDto.getFile() ==null){
+            System.out.println("기존 사진 넣기");
+        }
+
+
+        return new Response("update","success");
+    }
 
 
     //관리자 글 삭제

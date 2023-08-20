@@ -15,17 +15,17 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
    <style>
     .form_wrap {
-    text-align: center;
-    margin-top: 50px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        padding: 20px;
+        margin: 120px auto;
+        max-width: 400px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+
     }
 
     #form-login {
-    background-color: #fff;
-    border: 1px solid #ccc;
-    padding: 20px;
-    margin: 0 auto;
-    max-width: 400px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+
     }
 
     .form-title {
@@ -41,12 +41,17 @@
     margin-bottom: 15px;
     }
 
+    .btn_login{
+        display: flex;
+        justify-content: center;
+    }
+
     .submit-btn {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 8px 15px;
-    border-radius: 5px;
+        background-color: #265037;
+        color:#DCE4CF;
+        border: none;
+        border-radius: 4px;
+    padding: 10px 30px;
     cursor: pointer;
     }
 
@@ -70,11 +75,13 @@
 <body>
     <div class="form_wrap">
         <form id="form-login" action="login" method="POST">
-            <span><h2 class="form-title">아이디</h2></span>
+            <h2 class="form-title">아이디</h2>
             <input type="text" class="input-box" id="id" name="userId" placeholder="아이디">
-            <span><h2 class="form-title">비밀번호</h2></span>
+            <h2 class="form-title">비밀번호</h2>
             <input type="password" class="input-box" id="password" name="userPassword" placeholder="비밀번호">
+            <div class="btn_login">
             <input type="submit" class="submit-btn" id="submit" name="submit" value="로그인" onclick="validateForm()">
+            </div>
         </form>
         <div class="find">
             <p class="find-btn">

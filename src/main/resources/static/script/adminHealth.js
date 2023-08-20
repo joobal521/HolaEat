@@ -7,8 +7,16 @@ function checkValue(htmlForm) {
 
     if (title.trim() === "") {
         console.log("Title is required.");
+        alert("제목을 입력해 주세요.")
         return; // 제목이 비어있을 경우 처리 중단
     }
+
+    if (content.trim() === "") {
+        console.log("Content is required.");
+        alert("내용을 입력해 주세요.")
+        return; // 제목이 비어있을 경우 처리 중단
+    }
+
 
     let check = true;
     let title_space = /[ ]/; /* 공백 */
@@ -92,4 +100,35 @@ $(document).ready(function() {
 
     });
 })
+
+//글쓰기 썸네일
+function writeThumbnail() {
+    const fileInput = document.getElementById('file');
+    const imgElement = document.getElementById('img');
+    const imagePreview = document.getElementById('image-preview');
+
+    const file = fileInput.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            imgElement.src = e.target.result;
+            imagePreview.style.display = 'block'; // 이미지 썸네일을 보여줌
+        };
+        reader.readAsDataURL(file);
+    } else {
+        imgElement.src = '';
+        imagePreview.style.display = 'none'; // 이미지 썸네일을 숨김
+    }
+}
+
+function goBack() {
+    var confirmation = confirm("취소 하시겠습니까?");
+
+    if (confirmation) {
+        // window.scrollTo(0, 0);
+        // document.documentElement.style.overflow = 'hidden';
+        location.href="admin";
+        // document.documentElement.style.overflow = 'auto';
+    }
+}
 

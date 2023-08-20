@@ -22,15 +22,8 @@
 
         #leave-section {
             background-color: #f5f5f5;
-            padding: 20px;
         }
 
-        .form_wrap {
-            max-width: 600px;
-            margin: 0 auto;
-            border-radius: 10px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
 
         .leave_text {
             font-size: 24px;
@@ -42,31 +35,8 @@
             padding: 20px;
         }
 
-        .input-leave {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 14px;
-            margin-bottom: 10px;
-        }
 
-        .error {
-            color: red;
-            font-size: 14px;
-            display: none;
-        }
 
-        .leave-btn {
-            padding: 10px 20px;
-            background-color: #e74c3c;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        /* Add your own custom styles here */
     </style>
 </head>
 <body>
@@ -87,10 +57,10 @@
                 <li class="error" id="error-password">비밀번호를 입력해주세요.
                 </li>
 
-
+                    <li class="btn-leave">
                     <button type="button" class="leave-btn" id="delete-btn"
                             onclick="checkValue(form)">회원탈퇴</button>
-
+                    </li>
                 </ul>
 
             </div>

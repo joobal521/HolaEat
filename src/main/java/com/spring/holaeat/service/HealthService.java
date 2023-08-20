@@ -43,6 +43,7 @@ public class HealthService {
     }
 
     //수정
+    @Transactional
     public void updateHealth(Health health, HealthRequestDto healthDto){
         health.update(healthDto);
         healthRepository.save(health);

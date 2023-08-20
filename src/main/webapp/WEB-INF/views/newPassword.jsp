@@ -92,7 +92,7 @@
             <ul class="form-box">
             <li class="input-container">
             <h2 class="form-title">새 비밀번호</h2>
-            <input type="password" class="input-box" id="new_password"
+            <input type="password" class="input-box" id="newPassword"
                     name="new_password" placeholder="4-10자의 영문, 특수문자, 숫자 조합">
             </li>
             <li class="input-container">
@@ -104,18 +104,18 @@
                 <li class="input-container">
             <h2 class="form-title">새 비밀번호 확인</h2>
             <input type="password" class="input-box" name="user_password_ch"
-                    id="user_password_ch" placeholder="비밀번호 확인">
+                    id="newPasswordCh" placeholder="비밀번호 확인">
                     <span class="err" id="chkNotice2" size="1"></span>
                 </li>
 
             <li class="btn_box">
-                <input type="button" class="sava-btn" id="find-btn" value="저장"
-                       onclick="checkValue()">
+                <input type="button" class="sava-btn" id="find-btn" value="저장" onclick="checkValue(form)">
             </li>
             </ul>
         </div>
     </form>
 </div>
+<script src="script/newPwd.js"></script>
 </body>
 <c:import url="footer.jsp"/>
 </html>

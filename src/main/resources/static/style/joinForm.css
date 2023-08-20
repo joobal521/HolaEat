@@ -32,12 +32,13 @@ margin-top: 20px;
 
 
 /*버튼 모음*/
+/*중복확인*/
 .btn-dupl{
-   padding: 5px;
-    border-radius: 8px;
-    border: 1px solid aliceblue;
-    background-color: aliceblue;
-    color: #1e6b7b;
+   padding: 10px 20px;
+    border-radius: 4px;
+    border: 1px solid #265037;
+    background-color: white;
+    color: #265037;
     margin-left: 10px;
     cursor: pointer;
 }
@@ -47,12 +48,13 @@ margin-top: 20px;
 }
 
 .email-btn{
-    padding: 5px;
-    border-radius: 8px;
-    border: 1px solid aliceblue;
-    background-color: aliceblue;
-    color: #1e6b7b;
+    padding: 10px 20px;
+    border-radius: 4px;
+    border: 1px solid #265037;
+    background-color: white;
+    color: #265037;
 cursor: pointer;
+    margin-top: 10px;
 }
 
 .email-btn:hover {
@@ -60,13 +62,13 @@ cursor: pointer;
     background: aliceblue;
 }
 .code-btn{
-    padding: 5px;
-    border-radius: 8px;
-    border: 1px solid  aliceblue;
-    background-color: aliceblue;
-    color: #1e6b7b;
+    padding: 10px 20px;
+    border-radius: 4px;
+    border: 1px solid  #265037;
+    background-color: white;
+    color: #265037;
     cursor: pointer;
-    margin-left: 10px ;
+    margin-left: 10px;
 
 }
 .code-btn:hover {
@@ -75,20 +77,18 @@ cursor: pointer;
 }
 
 .join-btn{
-   padding: 10px 20px;
-    border: 0px;
-    box-sizing: border-box;
-    border-radius: 0.4rem;
-    font-size: 1.6rem;
-    font-weight: 700;
+   padding: 10px 40px;
+    background-color: #265037;
+    color:#DCE4CF;
+    border: none;
+    border-radius: 4px;
     cursor: pointer;
-    background: linear-gradient(90deg, rgb(8, 204, 202) 0%, rgb(24, 231, 156) 100%);
-    color: rgb(255, 255, 255);
+    margin-top: 30px;
 
 
 }
 
-
+/*폼 제목*/
 .form-title{
    font-size: 1.2rem ;
 }
