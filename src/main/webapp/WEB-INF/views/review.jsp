@@ -99,8 +99,10 @@
 
         if (confirmation) {
             window.location.href = "/login";
+
         }
-    }</script>
+    }
+</script>
 
 <c:import url="footer.jsp"/>
 </html>

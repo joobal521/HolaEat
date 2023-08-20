@@ -13,48 +13,48 @@
     <link rel="stylesheet" type="text/css" href="/style/review.css">
 
     <script src="https://kit.fontawesome.com/5d67eb2efc.js" crossorigin="anonymous"></script>
-    <%--<style>--%>
-    <%--    .scroll {--%>
-    <%--        background: none;--%>
-    <%--        width: auto;--%>
-    <%--        position: fixed;--%>
-    <%--        bottom: 5%;--%>
-    <%--        right: 5%;--%>
-    <%--    }--%>
+    <style>
+        .scroll {
+            background: none;
+            width: auto;
+            position: fixed;
+            bottom: 5%;
+            right: 5%;
+        }
 
 
-    <%--    .scroll button {--%>
-    <%--        background: none;--%>
-    <%--        border: 2px solid rgb(211, 207, 207);--%>
-    <%--        width: 50px;--%>
-    <%--        height: 50px;--%>
-    <%--        border-radius: 30px;--%>
-    <%--        outline: none;--%>
-    <%--    }--%>
+        .scroll button {
+            background: none;
+            border: 2px solid #265037;
+            width: 50px;
+            height: 50px;
+            border-radius: 30px;
+            outline: none;
+        }
 
-    <%--    .scroll button:active{--%>
-    <%--        box-shadow: 1px 1px 0 rgb(0,0,0,0.5);--%>
-    <%--        position: relative;--%>
-    <%--        top:2px;--%>
+        .scroll button:active{
+            box-shadow: 1px 1px 0 rgb(0,0,0,0.5);
+            position: relative;
+            top:2px;
 
-    <%--    }--%>
+        }
 
-    <%--    .scroll button:hover {--%>
-    <%--        background: white;--%>
-    <%--        color: rgb(146, 175, 205);--%>
+        .scroll button:hover {
+            background: white;
+            color: rgb(146, 175, 205);
 
-    <%--        transition: 0.3s ease-in;--%>
-    <%--        cursor: grab;--%>
-    <%--    }--%>
+            transition: 0.3s ease-in;
+            cursor: grab;
+        }
 
-    <%--</style>--%>
+    </style>
 
 </head>
 <c:import url="header.jsp"/>
 <body>
 <div class="review-section">
     <h2>REVIEW</h2>
-    pageNumber 확인용 : ${pageNumber}
+<%--    pageNumber 확인용 : ${}/${pageNumber}--%>
 
 
     <div class="search_box">
@@ -71,6 +71,7 @@
             </div>
         </form>
     </div>
+
 
 
     <div class="list-write-btn">
@@ -100,9 +101,14 @@
                         <%--이미지 출력--%>
                     <div class="review_img">
                         <c:set var="imageBase64" value="${imageMapPage[review.reviewNo]}"></c:set>
-                        <c:if test="${not empty imageBase64}">
+                        <c:choose>
+                        <c:when test="${not empty imageBase64}">
                             <img src="data:image/jpeg;base64,${imageBase64}" id="img" name="img" alt="Review Image">
-                        </c:if>
+                        </c:when>
+                            <c:otherwise>
+                                <img src="img/reviewlist_thumb.png" id="img" name="img" alt="Review Image">
+                            </c:otherwise>
+                        </c:choose>
                     </div>
                     <div id="review_title_check" class="review_title">제목 : ${review.title}</div>
                     <div class="review_like"><i class="fa-regular fa-heart"></i></div>
@@ -111,7 +117,6 @@
 
         </c:forEach>
     </div>
-
     <div class="paging" id="paging">
         <ul class="pagination">
             <c:choose>
@@ -130,17 +135,29 @@
             <c:choose>
                 <c:when test="${pageNumber <= 3}">
                     <c:forEach var="i" begin="1" end="5" step="1">
-                        <li><a href="/reviewlist/${i}">${i}</a></li>
+                        <li><a class="page-link" href="/reviewlist/${i}" style="
+                        <c:if test="${i==pageNumber}">
+                                background: #265037; color: white; font-weight: bold;
+                        </c:if>
+                                ">${i}</a></li>
                     </c:forEach>
                 </c:when>
                 <c:when test="${pageNumber > 3 && pageNumber <= totalPages - 2}">
                     <c:forEach var="i" begin="${pageNumber - 2}" end="${pageNumber + 2}" step="1">
-                        <li><a href="/reviewlist/${i}">${i}</a></li>
+                        <li><a class="page-link" href="/reviewlist/${i}" style="
+                        <c:if test="${i==pageNumber}">
+                                background: #265037; color: white; font-weight: bold;
+                        </c:if>
+                                ">${i}</a></li>
                     </c:forEach>
                 </c:when>
                 <c:otherwise>
                     <c:forEach var="i" begin="${totalPages - 4}" end="${totalPages}" step="1">
-                        <li><a href="/reviewlist/${i}">${i}</a></li>
+                        <li><a class="page-link" href="/reviewlist/${i}"style="
+                        <c:if test="${i==pageNumber}">
+                                background: #265037; color: white; font-weight: bold;
+                        </c:if>
+                                ">${i}</a></li>
                     </c:forEach>
                 </c:otherwise>
             </c:choose>
@@ -156,9 +173,11 @@
             </c:choose>
         </ul>
     </div>
-    <%--    <div class="scroll">--%>
-    <%--        <button class="scrollTop" onclick="scrollToTop();"><i class="fa-solid fa-angle-up"></i></i></button>--%>
-    <%--    </div>--%>
+
+
+        <div class="scroll">
+            <button class="scrollTop" onclick="scrollToTop();"><i class="fa-solid fa-angle-up"></i></button>
+        </div>
 
 
 </div>
@@ -166,15 +185,16 @@
 </body>
 <script src="script/review.js"></script>
 
-<%--<script>--%>
-<%--    function scrollToTop() {--%>
-<%--        $("html, body").animate({--%>
-<%--            scrollTop : 0--%>
-<%--        }, "slow");--%>
-<%--    }--%>
+<script>
+    function scrollToTop() {
+        $("html, body").animate({
+            scrollTop : 0
+        }, "slow");
+    }
 
 
-<%--</script>--%>
+</script>
+
 
 <c:import url="footer.jsp"/>
 </html>

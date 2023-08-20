@@ -37,8 +37,13 @@ function checkValueWrite(htmlForm) {
     if (content.trim() === "") {
         console.log("Title is required.");
         alert("!내용을 입력해주세요.")
-        return; // 제목이 비어있을 경우 처리 중단
+        return; // 내용이 비어있을 경우 처리 중단
     }
+
+    if (!confirm("글을 등록하시겠습니까?")) {
+        return;
+    }
+
 
     let check = true;
     let title_space = /[ ]/; /* 공백 */
@@ -119,12 +124,12 @@ function CheckValueUpdate(htmlForm, reviewNo) {
     $.ajax(settings)
         .done(function (response) {
             console.log(response);
-            alert("글 수정 성공.");
+            alert("글이 수정되었습니다.");
             location.href = "review/" + reviewNo;
         })
         .fail(function (jqXHR, textStatus, errorThrown) {
             console.error(jqXHR.responseText);
-            alert("글 수정 실패.");
+            alert("글 수정을 실패하였습니다.");
         });
 }
 
@@ -212,4 +217,6 @@ function writeThumbnail() {
         imagePreview.style.display = 'none'; // 이미지 썸네일을 숨김
     }
 }
+
+
 
