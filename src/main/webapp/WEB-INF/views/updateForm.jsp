@@ -169,21 +169,9 @@
 
                     <li class="input-container">
                         <h2 class="form-title">이메일</h2>
-                        <input type="email" class="input-box" id="userEmail" name="userEmail"  value="${userResponseDto.userEmail}">
-                        <input
-                                type="button" class="btn-dupl" id="emailDupl" name="emailDupl"
-                                value="중복 확인" onclick="chkEmail()">
-                        <input type="button" class="email-btn"
-                               id="email_ch" onclick="emailAuthentication()" value="인증 메일 보내기">
-                        <p class="error" id="error-email">이메일은 필수 정보입니다.</p>
-                        <span class="err" id="chkEmail" size="1"></span>
+                        <input type="email" class="input-box" id="userEmail" name="userEmail"  value="${userResponseDto.userEmail}" readonly>
                     </li>
 
-                    <li class="input-container">
-                        <input class="input-box"  name="input-code" id="input-code" placeholder="인증번호 6자리를 입력해주세요!" maxlength="6">
-                        <input type="button" class="code-btn" id="code-ch" onclick="authCodeCheck()"
-                               value="인증">
-                    </li>
 
                     <li class="input-container">
                         <h2 class="form-title">이름</h2>
