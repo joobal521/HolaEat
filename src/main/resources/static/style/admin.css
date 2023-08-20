@@ -96,12 +96,12 @@ th button {
     margin-right: 10px;
 }
 
-#addBtn , #toggleNutrition{
+#addBtn , #toggleNutrition,#write-btn{
     background-color: #28a745;
     color: #fff;
     margin-top: 10px;
 }
-#toggleNutrition{
+#toggleNutrition,#write-btn{
     margin: 10px;
 }
 
