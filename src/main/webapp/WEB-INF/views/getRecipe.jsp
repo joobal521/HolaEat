@@ -68,7 +68,8 @@
         var data = {
             labels: ['Carbohydrates', 'Fats', 'Proteins'],
             datasets: [{
-                data: [${food.carb}, ${food.fat}, ${food.protein}],
+                data: [35, 22, 55],
+                <%--data: [${food.carb}, ${food.fat}, ${food.protein}],--%>
                 backgroundColor: [
                     'rgb(255,62,102)',  // Carbohydrates color
                     'rgb(0,152,255)', // Fats color
