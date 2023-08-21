@@ -133,11 +133,11 @@ $(document).ready(function() {
 });
 
 $(document).ready(function() {
-    $("#filterToggleAllergy").click(function() {
+    $("#filterToggleAllergy").click(function () {
         toggleFilter(".allergy", "예", $(this));
     });
 
-    $("#filterToggleMonth").click(function() {
+    $("#filterToggleMonth").click(function () {
         toggleFilter(".month", "예", $(this));
     });
 
@@ -145,7 +145,7 @@ $(document).ready(function() {
     function toggleFilter(columnClass, targetValue, buttonElement) {
         var isActive = buttonElement.hasClass("active");
 
-        $(".admin-ingrList tr").each(function() {
+        $(".admin-ingrList tr").each(function () {
             var cell = $(this).find(columnClass);
             var cellValue = cell.text();
 
@@ -158,5 +158,4 @@ $(document).ready(function() {
 
         buttonElement.toggleClass("active");
     }
-
 });

@@ -23,7 +23,6 @@
                     <img src="data:image/jpeg;base64,${ingrImg}" id="img" name="img" alt="Ingredient Image">
                 </c:if>
             </div>
-
             <div class="ingrFood">
                 <div class="foodbtn-container">
                     <c:forEach items="${foodIngrList}" var="foodList" varStatus="roll">
