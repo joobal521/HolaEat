@@ -33,7 +33,7 @@
         <form id="myform" action="/saveCalories" method="POST">
             <ul>
                 <li>
-                    <h2>성별</h2>
+                     <h2>성별</h2>
                     <label>
                         <input type="radio" id="male" name="gender"
                                value="male" ${userResponseDto.userGender eq 'male' ? 'checked' : ''}>

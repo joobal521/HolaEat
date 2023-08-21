@@ -1,24 +1,5 @@
 $(document).ready(function () {
 
-    $('#age').val(sessionStorage.getItem("userAge"));
-    $('#height').val(sessionStorage.getItem("userHeight"));
-    $('#weight').val(sessionStorage.getItem("userWeight"));
-    $('#allergy').val(sessionStorage.getItem("userAllergy"));
-    $('#recCalories').val(sessionStorage.getItem("userRecCalories"));
-    $('#prefer').val(sessionStorage.getItem("userPrefer"));
-    $('#dislike').val(sessionStorage.getItem("userDislike"));
-
-    $('#logout').click(function () {
-        sessionStorage.removeItem("userAge");
-        sessionStorage.removeItem("userHeight");
-        sessionStorage.removeItem("userWeight");
-        sessionStorage.removeItem("userAllergy");
-        sessionStorage.removeItem("userRecCalories");
-        sessionStorage.removeItem("userPrefer");
-        sessionStorage.removeItem("userDislike");
-        window.location.href = "/";
-    });
-
     $('#save_btn').click(function () {
         var gender = $('input[name="gender"]:checked').val();
         var age = $('#age').val();
@@ -47,13 +28,6 @@ $(document).ready(function () {
             success: function (data) {
                 console.log("저장 성공:", data);
 
-                sessionStorage.setItem("userAge", data.age);
-                sessionStorage.setItem("userHeight", data.height);
-                sessionStorage.setItem("userWeight", data.weight);
-                sessionStorage.setItem("userAllergy", data.allergy);
-                sessionStorage.setItem("userRecCalories", data.recCalories);
-                sessionStorage.setItem("userPrefer", data.prefer);
-                sessionStorage.setItem("userDislike", data.dislike);
 
                 $('#age').val(data.age);
                 $('#height').val(data.height);
