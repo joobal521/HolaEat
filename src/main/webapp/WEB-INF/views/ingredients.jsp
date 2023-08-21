@@ -5,7 +5,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="script/recipe-ajax.js"></script>
     <link rel="stylesheet" type="text/css" href="style/ingredients.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
     <title>Title</title>
 </head>
 <c:import url="header.jsp"/>
@@ -23,7 +23,6 @@
                     <img src="data:image/jpeg;base64,${ingrImg}" id="img" name="img" alt="Ingredient Image">
                 </c:if>
             </div>
-
             <div class="ingrFood">
                 <div class="foodbtn-container">
                     <c:forEach items="${foodIngrList}" var="foodList" varStatus="roll">
