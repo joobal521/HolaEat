@@ -7,7 +7,11 @@ $(document).ready(function () {
 
         // 두 값이 모두 "<option value="">없음</option>"이 아닐 때에만 비교
         if (preferValue !== "" && dislikeValue !== "" && preferValue === dislikeValue) {
-            swal('선호하는 재료와 선호하지 않는 재료는 같을 수 없습니다.','다시 선택해 주세요.');
+            Swal.fire({
+                title: '선호하는 재료와 선호하지 않는 재료는 같을 수 없습니다.',
+                text: '다시 선택 해주세요.',
+                icon: 'error'
+            });
             $(this).val(""); // 선택을 초기화
         } else {
             fetchAndDisplayMenu(selectedNational);
@@ -72,8 +76,12 @@ function saveFormData(formData) {
         success: function (data) {
             console.log("저장 성공:", data);
             updateFields(data);
-            swal('저장 완료','저장에 성공하였습니다!');
-
+            Swal.fire({
+                title: '저장 완료',
+                text: '저장에 성공했습니다!',
+                icon: 'success'
+            });
+            $(this).val(""); // 선택을 초기화
 
         },
         error: function (error) {
@@ -320,40 +328,4 @@ function updateFields(data) {
     $('#userRecCalories').text(data.recCalories);
     $('#userPrefer').text(data.prefer);
     $('#userDislike').text(data.dislike);
-}
-const formSteps = document.querySelectorAll('.step');
-const nextBtns = document.querySelectorAll('#nextBtn');
-const calculateBtn = document.getElementById('calculate');
-
-let currentStep = 0;
-
-hideAllSteps();
-showCurrentStep();
-
-nextBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-        currentStep++;
-        if (currentStep < formSteps.length) {
-            hideAllSteps();
-            showCurrentStep();
-        }
-    });
-});
-
-calculateBtn.addEventListener('click', () => {
-    currentStep++;
-    if (currentStep < formSteps.length) {
-        hideAllSteps();
-        showCurrentStep();
-    }
-});
-
-function showCurrentStep() {
-    formSteps[currentStep].style.display = 'block';
-}
-
-function hideAllSteps() {
-    formSteps.forEach(step => {
-        step.style.display = 'none';
-    });
 }

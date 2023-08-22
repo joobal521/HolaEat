@@ -37,20 +37,31 @@ public class RecipeController {
     public String getRecipe(@PathVariable String foodId, Model model) {
         List<Recipe> recipe = recipeService.findStepsByFoodId(foodId);
         model.addAttribute("recipe", recipe);
-        Map<Integer,String> imageMap = new HashMap<>();
-
-        String foodImg = ImageParsor.parseBlobToBase64(foodService.getFoodImgByFoodId(foodId));
-        model.addAttribute("foodImg",foodImg);
 
         Food food = foodService.findFoodByFoodId(foodId);
-        model.addAttribute("food",food);
-        System.out.println("foodID:"+foodId);
+        model.addAttribute("food", food);
+
+        // 이미지 가져오는 메서드 호출
+        fetchAndSetFoodImage(foodId, model);
+
+        System.out.println("foodID:" + foodId);
 //        List<Nutritions> nutritions = nutritionsService.getNutritions(foodId);
 //        model.addAttribute("nutrition",nutritions);
 
         return "getRecipe"; // 해당 레시피 정보를 보여줄 JSP 파일의 이름
     }
 
+    private void fetchAndSetFoodImage(String foodId, Model model) {
+        try {
+            byte[] foodImage = foodService.getFoodImgByFoodId(foodId);
+
+            String foodImg = ImageParsor.parseBlobToBase64(foodImage);
+            model.addAttribute("foodImg", foodImg);
+        } catch (Exception e) {
+            // 이미지 가져오기 실패 시
+            model.addAttribute("foodImg", null); // 빈 이미지 혹은 오류 이미지 등을 설정
+        }
+    }
 
 
 

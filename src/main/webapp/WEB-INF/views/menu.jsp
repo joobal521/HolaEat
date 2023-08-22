@@ -78,36 +78,21 @@
                         <option value="3">비건</option>
                     </select>
                 </li>
-                <input type="button" class="button" id="calculate" name="calculate" value="계산하기" onclick="calculateCalories()">
+                <input type="button" class="button" id="calculate" name="calculate" value="계산하기"
+                       onclick="calculateCalories()">
 
             </ul>
             <ul>
                 <li>
                     <h2>필요 열량</h2>
-                    <input type="text" class="btn6" id="recCalories" name="recCalories" value="${userResponseDto.userRecCalories}">
+                    <input type="text" class="btn6" id="recCalories" name="recCalories"
+                           value="${userResponseDto.userRecCalories}">
                     <span>kcal</span>
                 </li>
             </ul>
             <input type="button" class="button" id="save_btn" name="save_btn" value="내 칼로리 정보 저장">
             <hr>
             <div class="json_wrap">
-
-
-                <%--            <div class="selected-prefer">--%>
-                <%--                <h2>선택된 재료</h2>--%>
-                <%--                <input type="text" id="selectedIngredientsList" value="${userPrefer}">--%>
-                <%--            </div>--%>
-
-                <%--            <button id="savePreferButton">저장</button>--%>
-
-
-                <%--            <button id="saveDislikeButton">저장</button>--%>
-
-                <%--            <div class="selected-dislike">--%>
-                <%--                <h2>선택된 재료</h2>--%>
-                <%--                &lt;%&ndash;                <ul id="selectedUnIngredientsList"></ul>&ndash;%&gt;--%>
-                <%--                <input type="text" id="selectedUnIngredientsList" value="${userDislike}">--%>
-                <%--            </div>--%>
 
                 <%--        카테고리    --%>
 
@@ -184,21 +169,25 @@
                         <option value="연근">연근</option>
                     </select>
                 </div>
-                    <input type="button" class="button" id="menu_btn" name="menu_btn" value="메뉴보기" onclick="fetchAndDisplayMenu()">
-                    <li>
-                        <h3 class="mini_h3">열량 계산 기준</h3>
-                        <span class="mini">*알레르기가 있으시면 권장 칼로리가 10% 감소합니다.</span><br>
-                        <span class="mini">*체중조절식은 일반균형식 대비 500kcal 감소합니다.</span>
-                    </li>
-
+                <input type="button" class="button" id="menu_btn" name="menu_btn" value="메뉴보기"
+                       onclick="fetchAndDisplayMenu()">
+                <li>
+                    <h3 class="mini_h3">열량 계산 기준</h3>
+                    <span class="mini">*알레르기가 있으시면 권장 칼로리가 10% 감소합니다.</span><br>
+                    <span class="mini">*체중조절식은 일반균형식 대비 500kcal 감소합니다.</span>
+                </li>
             </div>
         </form>
-
+        <div class="image-with-content">
+            <img class="food_img" src="img/table.jpg" alt="식단 이미지">
+            <div class="content">
             <div class="personal_menu">
                 <h2>${userResponseDto.userName}님만을 위한 맞춤식단이 여기 있습니다!</h2>
                 <div id="generatedMenus"></div>
                 <div id="total_calories"></div>
             </div>
+            </div>
+        </div>
 
 </section>
 <script src="script/cal.js"></script>
