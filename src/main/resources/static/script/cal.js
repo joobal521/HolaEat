@@ -117,7 +117,6 @@ function generateMenuInfo(menu, index) {
 
     return menuInfoHtml;
 }
-
 function fetchAndDisplayMenu(selectedNational) {
     var userRecCalories = parseInt($('#recCalories').val());
     var selectedAllergy = parseInt($('#allergy').val());
@@ -130,6 +129,8 @@ function fetchAndDisplayMenu(selectedNational) {
 
         var selectedPrefer = $('#prefer').val();
         var selectedDislike = $('#dislike').val();
+
+        var menuIndex = 1; // 식단 순번 초기화
 
         generatedMenus.forEach(function (menu, index) {
             if (index !== 0) {
@@ -149,9 +150,9 @@ function fetchAndDisplayMenu(selectedNational) {
                 var totalProteins = menu.food1Protein + menu.food2Protein + menu.food3Protein + menu.food4Protein + menu.food5Protein;
                 var totalFats = menu.food1Fat + menu.food2Fat + menu.food3Fat + menu.food4Fat + menu.food5Fat;
 
-                var menuInfoHtml = generateMenuInfo(menu, index);
+                var menuInfoHtml = generateMenuInfo(menu, menuIndex); // 식단 순번 추가
 
-                resultHtml += "<li>식단정보<br>" + menuInfoHtml + "<br>" +
+                resultHtml += "<li>" + menuIndex + "번 식단<br>식단정보<br>" + menuInfoHtml + "<br>" +
                     "주재료1: " + menu.main + "<br>" +
                     "주재료2: " + menu.main2 + "<br>" +
                     "총 무게: " + menuTotalWeight + "g" + "<br>" +
@@ -160,6 +161,8 @@ function fetchAndDisplayMenu(selectedNational) {
                     "총 단백질: " + totalProteins + "g" + "<br>" +
                     "총 지방: " + totalFats + "g" + "<br>" +
                     "</li></hr></br></br></br></hr>";
+
+                menuIndex++; // 다음 식단 순번 증가
             }
         });
 
@@ -185,8 +188,6 @@ function fetchAndDisplayAllMenus(selectedValue) {
     var userRecCalories = parseInt($('#recCalories').val());
     var selectedAllergy = parseInt($('#allergy').val());
 
-
-
     // 메뉴 카테고리와 ID 매핑
     var menuIdMapping = {
         "한식": 1,
@@ -204,6 +205,8 @@ function fetchAndDisplayAllMenus(selectedValue) {
         var generatedMenus = data;
         var generatedMenusDiv = document.getElementById("generatedMenus");
         var resultHtml = "<h2>회원님만을 위한 식단입니다</h2><ul>";
+
+        var menuIndex = 1; // 식단 순번 초기화
 
         generatedMenus.forEach(function (menu, index) {
             if (index !== 0) {
@@ -238,7 +241,8 @@ function fetchAndDisplayAllMenus(selectedValue) {
                     var totalProteins = menu.food1Protein + menu.food2Protein + menu.food3Protein + menu.food4Protein + menu.food5Protein;
                     var totalFats = menu.food1Fat + menu.food2Fat + menu.food3Fat + menu.food4Fat + menu.food5Fat;
 
-                    resultHtml += `<li>식단정보<br>${menuInfoHtml}<br>` +
+                    resultHtml += `<li>${menuIndex}번 식단<br>` + // 식단 순번 추가
+                        `식단정보<br>${menuInfoHtml}<br>` +
                         `주재료1: ${menu.main}<br>` +
                         `주재료2: ${menu.main2}<br>` +
                         `총 무게: ${menuTotalWeight}g<br>` +
@@ -247,6 +251,8 @@ function fetchAndDisplayAllMenus(selectedValue) {
                         `총 단백질: ${totalProteins}g<br>` +
                         `총 지방: ${totalFats}g<br>` +
                         `</li>`;
+
+                    menuIndex++; // 다음 식단 순번 증가
                 }
             }
         });
@@ -264,6 +270,7 @@ function fetchAndDisplayAllMenus(selectedValue) {
     });
 }
 
+
 // 업데이트된 데이터로 페이지의 필드 업데이트
 function updateFields(data) {
     $('#age').val(data.age);
@@ -273,4 +280,13 @@ function updateFields(data) {
     $('#recCalories').val(data.recCalories);
     $('#prefer').val(data.prefer);
     $('#dislike').val(data.dislike);
+
+    // 업데이트된 데이터를 JSP의 필드에도 반영
+    $('#userAge').text(data.age);
+    $('#userHeight').text(data.height);
+    $('#userWeight').text(data.weight);
+    $('#userAllergy').text(data.allergy);
+    $('#userRecCalories').text(data.recCalories);
+    $('#userPrefer').text(data.prefer);
+    $('#userDislike').text(data.dislike);
 }

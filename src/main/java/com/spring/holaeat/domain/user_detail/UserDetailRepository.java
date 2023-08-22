@@ -8,3 +8,4 @@ public interface UserDetailRepository extends JpaRepository<UserDetail, String> 
     UserDetail findByUserId(String userId);
 
 }
+
