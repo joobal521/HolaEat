@@ -39,16 +39,16 @@ $('#newPassword').keyup(function () { /* keyup: 사용자가 키보드를 누르
 $('#newPasswordCh').keyup(function () {
     if ($('#newPassword').val() !== $('#newPasswordCh').val()) {
         /* 비밀번호와 비밀번호 확인란의 값이 일치하지 않을 때 */
-        $('#chkNotice2').html('비밀번호가 일치하지 않습니다.<br><br>').css('color', 'red'); /* 비밀번호 양식 오류일시 color: red */
+        $('#chkNotice2').html('<br>비밀번호가 일치하지 않습니다.<br><br>').css('color', 'red'); /* 비밀번호 양식 오류일시 color: red */
 
     } else if ($('#newPassword').val() === $('#newPasswordCh').val()) {
         /* 모든 조건에 충족하고, 비밀번호와 비밀번호 확인란의 값이 일치할 때 */
-        $('#chkNotice2').html('비밀번호가 일치합니다. 사용 가능합니다.<br>').css('color', 'navy'); /* 일치시 color: darkblue */
+        $('#chkNotice2').html('<br>비밀번호가 일치합니다. 사용 가능합니다.<br>').css('color', 'navy'); /* 일치시 color: darkblue */
 
     }
 
     if (pwd_space.test($('#newPasswordCh').val())) {
-        $('#chkNotice2').html('비밀번호는 공백을 포함할 수 없습니다.<br>').css('color', 'red');
+        $('#chkNotice2').html('<br>비밀번호는 공백을 포함할 수 없습니다.<br>').css('color', 'red');
 
     }
 });
@@ -95,12 +95,25 @@ function checkValue() {
         }).done(function(data){
             console.log(data);
             if (data.result === true) {
-                //swal('비밀번호 변경 완료 ','로그인으로 돌아갑니다~','success')
-                alert("비밀번호 변경 완료")
-                location.href = "login";
+                Swal.fire({
+                    title: '비밀번호 변경 완료',
+                    text: '로그인 페이지로 돌아갑니다.',
+                    icon: 'success',
+                    showConfirmButton: true
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        location.href = "login"; // 메인 홈으로 이동
+                    }
+                });
+                //alert("비밀번호 변경 완료")
+
             }else{
-                //swal('비밀번호 변경 실패 ','비밀번호 변경을 다시 시도 해주세요.','error')
-                alert("기존 비밀번호가 일치하지 않습니다.")
+                Swal.fire({
+                    title: '비밀번호 변경 실패',
+                    text: '비밀번호 변경을 다시 시도 해주세요.',
+                    icon: 'error',
+                });
+                //alert("기존 비밀번호가 일치하지 않습니다.")
             }
         }).fail(function (error){
             alert("비밀번호 변경 실패입니다: " + error.responseJSON.message);

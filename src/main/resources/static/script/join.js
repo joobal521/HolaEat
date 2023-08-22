@@ -77,7 +77,7 @@ $(function() {
         }
 
         if (pwd_space.test($('#userPasswordCh').val())) {
-            $('#chkNotice2').html('비밀번호는 공백을 포함할 수 없습니다.<br>').css('color', 'red');
+            $('#chkNotice2').html('<br>비밀번호는 공백을 포함할 수 없습니다.<br>').css('color', 'red');
 
         }
     });
