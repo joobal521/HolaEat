@@ -45,19 +45,24 @@ public class LogController {
 
                 UserDetail userDetail = userDetailRepository.findByUserId(userId);
                 if (userDetail != null) {
+                    // 업데이트된 정보로 세션에 저장
                     userResponseDto.setUserDetail(userDetail);
+                    session.setAttribute("userResponseDto", userResponseDto);
+
+                    // 나머지 세션 정보 업데이트
+                    session.setAttribute("log", user.getUserId());
+
+                    ProfileImg profileImg = profileImgRepository.findByUserId(userId);
+                    if (profileImg != null) {
+                        session.setAttribute("profileImg", profileImg.getProfileImg());
+                        System.out.println(profileImg);
+                    }
+
+                    return "redirect:/";
+                } else {
+                    model.addAttribute("loginFailed", true);
+                    return "login";
                 }
-
-                ProfileImg profileImg = profileImgRepository.findByUserId(userId);
-                if (profileImg != null) {
-                    session.setAttribute("profileImg", profileImg.getProfileImg());
-                    System.out.println(profileImg);
-                }
-
-                session.setAttribute("log", user.getUserId());
-                session.setAttribute("userResponseDto", userResponseDto); // 세션에 UserResponseDto 저장
-
-                return "redirect:/";
             } else {
                 model.addAttribute("loginFailed", true);
                 return "login";
@@ -66,6 +71,7 @@ public class LogController {
             model.addAttribute("loginFailed", true);
             return "login";
         }
+
     }
 
 

@@ -1,76 +1,95 @@
 $(document).ready(function () {
 
-    $('#age').val(sessionStorage.getItem("userAge"));
-    $('#height').val(sessionStorage.getItem("userHeight"));
-    $('#weight').val(sessionStorage.getItem("userWeight"));
-    $('#allergy').val(sessionStorage.getItem("userAllergy"));
-    $('#recCalories').val(sessionStorage.getItem("userRecCalories"));
-    $('#prefer').val(sessionStorage.getItem("userPrefer"));
-    $('#dislike').val(sessionStorage.getItem("userDislike"));
+    // "선호하는 재료"와 "선호하지 않는 재료" 값이 같은지 확인하고, 같으면 선택을 막음
+    $('#prefer, #dislike').change(function () {
+        var preferValue = $('#prefer').val();
+        var dislikeValue = $('#dislike').val();
 
-    $('#logout').click(function () {
-        sessionStorage.removeItem("userAge");
-        sessionStorage.removeItem("userHeight");
-        sessionStorage.removeItem("userWeight");
-        sessionStorage.removeItem("userAllergy");
-        sessionStorage.removeItem("userRecCalories");
-        sessionStorage.removeItem("userPrefer");
-        sessionStorage.removeItem("userDislike");
-        window.location.href = "/";
+        // 두 값이 모두 "<option value="">없음</option>"이 아닐 때에만 비교
+        if (preferValue !== "" && dislikeValue !== "" && preferValue === dislikeValue) {
+            swal('선호하는 재료와 선호하지 않는 재료는 같을 수 없습니다.','다시 선택해 주세요.');
+            $(this).val(""); // 선택을 초기화
+        } else {
+            fetchAndDisplayMenu(selectedNational);
+        }
     });
+    $('#idx_save_btn').click(function () {
 
-    $('#save_btn').click(function () {
-        var gender = $('input[name="gender"]:checked').val();
-        var age = $('#age').val();
-        var height = $('#height').val();
-        var weight = $('#weight').val();
-        var allergy = $('#allergy').val();
-        var recCalories = $('#recCalories').val();
-        var selectedPrefer = $('#prefer').val();
-        var selectedDislike = $('#dislike').val();
+        var recCaloriesValue = $('#recCaloriesValue').text(); // 추출된 값
 
+        // 폼 데이터 수집
         var formData = {
-            gender: gender,
-            age: age,
-            height: height,
-            weight: weight,
-            allergy: allergy,
-            recCalories: recCalories,
-            prefer: selectedPrefer,
-            dislike: selectedDislike
+            gender: $('input[name="gender"]:checked').val(),
+            age: $('#age').val(),
+            height: $('#height').val(),
+            weight: $('#weight').val(),
+            allergy: $('#allergy').val(),
+            // recCalories: $('#recCalories').val()
+            recCalories: recCaloriesValue
+
+
         };
 
-        $.ajax({
-            type: "POST",
-            url: "/saveDetails",
-            data: formData,
-            success: function (data) {
-                console.log("저장 성공:", data);
+        // Ajax 통신
+        saveFormData(formData);
+    });
 
-                sessionStorage.setItem("userAge", data.age);
-                sessionStorage.setItem("userHeight", data.height);
-                sessionStorage.setItem("userWeight", data.weight);
-                sessionStorage.setItem("userAllergy", data.allergy);
-                sessionStorage.setItem("userRecCalories", data.recCalories);
-                sessionStorage.setItem("userPrefer", data.prefer);
-                sessionStorage.setItem("userDislike", data.dislike);
+    // 저장 버튼 클릭 이벤트 핸들러
+    $('#save_btn').click(function () {
+        // 폼 데이터 수집
+        var formData = {
+            gender: $('input[name="gender"]:checked').val(),
+            age: $('#age').val(),
+            height: $('#height').val(),
+            weight: $('#weight').val(),
+            allergy: $('#allergy').val(),
+            recCalories: $('#recCalories').val(),
+            prefer: $('#prefer').val(),
+            dislike: $('#dislike').val()
+        };
 
-                $('#age').val(data.age);
-                $('#height').val(data.height);
-                $('#weight').val(data.weight);
-                $('#allergy').val(data.allergy);
-                $('#recCalories').val(data.recCalories);
-                $('#prefer').val(data.prefer);
-                $('#dislike').val(data.dislike);
+        // Ajax 통신
+        saveFormData(formData);
+    });
 
-                alert("저장에 성공하였습니다.");
-            },
-            error: function (error) {
-                console.error("저장 에러:", error);
-            }
-        });
+    // "선호하는 재료"와 "선호하지 않는 재료" 필터링
+    $('#prefer, #dislike').change(function () {
+        fetchAndDisplayMenu(selectedNational);
+    });
+
+    // 메뉴 카테고리 변경 이벤트 핸들러
+    $('#menu_type').change(function () {
+        fetchAndDisplayAllMenus($(this).val());
     });
 });
+
+// 저장 함수
+function saveFormData(formData) {
+    $.ajax({
+        type: "POST",
+        url: "/saveDetails",
+        data: formData,
+        success: function (data) {
+            console.log("저장 성공:", data);
+            updateFields(data);
+            swal('저장 완료','저장에 성공하였습니다!');
+
+
+        },
+        error: function (error) {
+            console.error("저장 에러:", error);
+            console.log("gender:", formData.gender);
+            console.log("age:", formData.age);
+            console.log("height:", formData.height);
+            console.log("weight:", formData.weight);
+            console.log("allergy:", formData.allergy);
+            console.log("recCalories:", formData.recCalories);
+        }
+    });
+}
+
+
+
 
 
 function calculateCalories() {
@@ -129,9 +148,9 @@ function generateMenuInfo(menu, index) {
 
     return menuInfoHtml;
 }
-
 function fetchAndDisplayMenu(selectedNational) {
     var userRecCalories = parseInt($('#recCalories').val());
+    var selectedAllergy = parseInt($('#allergy').val());
 
     $.get("/menus/generate", {national: selectedNational}, function (data) {
         var generatedMenus = data;
@@ -142,6 +161,8 @@ function fetchAndDisplayMenu(selectedNational) {
         var selectedPrefer = $('#prefer').val();
         var selectedDislike = $('#dislike').val();
 
+        var menuIndex = 1; // 식단 순번 초기화
+
         generatedMenus.forEach(function (menu, index) {
             if (index !== 0) {
                 resultHtml += "<hr>";
@@ -149,20 +170,20 @@ function fetchAndDisplayMenu(selectedNational) {
 
             var menuTotalWeight = menu.food1Weight + menu.food2Weight + menu.food3Weight + menu.food4Weight + menu.food5Weight;
 
-            // "선호하는 재료"와 "선호하지 않는 재료"를 모두 검사하여 필터링
-            if ((selectedPrefer === "" || menu.main === selectedPrefer || menu.main2 === selectedPrefer) &&
+            // Check if the menu's allergy value matches the selected allergy option
+            if (menu.allergy !== selectedAllergy &&
+                (selectedPrefer === "" || menu.main === selectedPrefer || menu.main2 === selectedPrefer) &&
                 (selectedDislike === "" || !menu.main.includes(selectedDislike) && !menu.main2.includes(selectedDislike)) &&
                 menuTotalWeight <= userRecCalories) {
-
 
                 var totalCalories = menu.food1Kcal + menu.food2Kcal + menu.food3Kcal + menu.food4Kcal + menu.food5Kcal;
                 var totalCarbs = menu.food1Carb + menu.food2Carb + menu.food3Carb + menu.food4Carb + menu.food5Carb;
                 var totalProteins = menu.food1Protein + menu.food2Protein + menu.food3Protein + menu.food4Protein + menu.food5Protein;
                 var totalFats = menu.food1Fat + menu.food2Fat + menu.food3Fat + menu.food4Fat + menu.food5Fat;
 
-                var menuInfoHtml = generateMenuInfo(menu, index);
+                var menuInfoHtml = generateMenuInfo(menu, menuIndex); // 식단 순번 추가
 
-                resultHtml += "<li>식단정보<br>" + menuInfoHtml + "<br>" +
+                resultHtml += "<li>" + menuIndex + "번 식단<br>식단정보<br>" + menuInfoHtml + "<br>" +
                     "주재료1: " + menu.main + "<br>" +
                     "주재료2: " + menu.main2 + "<br>" +
                     "총 무게: " + menuTotalWeight + "g" + "<br>" +
@@ -171,6 +192,8 @@ function fetchAndDisplayMenu(selectedNational) {
                     "총 단백질: " + totalProteins + "g" + "<br>" +
                     "총 지방: " + totalFats + "g" + "<br>" +
                     "</li></hr></br></br></br></hr>";
+
+                menuIndex++; // 다음 식단 순번 증가
             }
         });
 
@@ -190,8 +213,11 @@ function fetchAndDisplayMenu(selectedNational) {
 
 
 
+
+
 function fetchAndDisplayAllMenus(selectedValue) {
     var userRecCalories = parseInt($('#recCalories').val());
+    var selectedAllergy = parseInt($('#allergy').val());
 
     // 메뉴 카테고리와 ID 매핑
     var menuIdMapping = {
@@ -211,6 +237,8 @@ function fetchAndDisplayAllMenus(selectedValue) {
         var generatedMenusDiv = document.getElementById("generatedMenus");
         var resultHtml = "<h2>회원님만을 위한 식단입니다</h2><ul>";
 
+        var menuIndex = 1; // 식단 순번 초기화
+
         generatedMenus.forEach(function (menu, index) {
             if (index !== 0) {
                 resultHtml += "<hr>";
@@ -220,7 +248,7 @@ function fetchAndDisplayAllMenus(selectedValue) {
                 var totalWeight = menu.food1Weight + menu.food2Weight + menu.food3Weight + menu.food4Weight + menu.food5Weight;
 
                 // "선호하는 재료"와 "선호하지 않는 재료"를 모두 검사하여 필터링
-                if ((selectedPrefer === "" || menu.main === selectedPrefer || menu.main2 === selectedPrefer) &&
+                if ((menu.allergy !== selectedAllergy && selectedPrefer === "" || menu.main === selectedPrefer || menu.main2 === selectedPrefer) &&
                     (selectedDislike === "" || !menu.main.includes(selectedDislike) && !menu.main2.includes(selectedDislike)) &&
                     totalWeight <= userRecCalories) {
 
@@ -244,7 +272,8 @@ function fetchAndDisplayAllMenus(selectedValue) {
                     var totalProteins = menu.food1Protein + menu.food2Protein + menu.food3Protein + menu.food4Protein + menu.food5Protein;
                     var totalFats = menu.food1Fat + menu.food2Fat + menu.food3Fat + menu.food4Fat + menu.food5Fat;
 
-                    resultHtml += `<li>식단정보<br>${menuInfoHtml}<br>` +
+                    resultHtml += `<li>${menuIndex}번 식단<br>` + // 식단 순번 추가
+                        `식단정보<br>${menuInfoHtml}<br>` +
                         `주재료1: ${menu.main}<br>` +
                         `주재료2: ${menu.main2}<br>` +
                         `총 무게: ${menuTotalWeight}g<br>` +
@@ -253,6 +282,8 @@ function fetchAndDisplayAllMenus(selectedValue) {
                         `총 단백질: ${totalProteins}g<br>` +
                         `총 지방: ${totalFats}g<br>` +
                         `</li>`;
+
+                    menuIndex++; // 다음 식단 순번 증가
                 }
             }
         });
@@ -270,3 +301,59 @@ function fetchAndDisplayAllMenus(selectedValue) {
     });
 }
 
+
+// 업데이트된 데이터로 페이지의 필드 업데이트
+function updateFields(data) {
+    $('#age').val(data.age);
+    $('#height').val(data.height);
+    $('#weight').val(data.weight);
+    $('#allergy').val(data.allergy);
+    $('#recCalories').val(data.recCalories);
+    $('#prefer').val(data.prefer);
+    $('#dislike').val(data.dislike);
+
+    // 업데이트된 데이터를 JSP의 필드에도 반영
+    $('#userAge').text(data.age);
+    $('#userHeight').text(data.height);
+    $('#userWeight').text(data.weight);
+    $('#userAllergy').text(data.allergy);
+    $('#userRecCalories').text(data.recCalories);
+    $('#userPrefer').text(data.prefer);
+    $('#userDislike').text(data.dislike);
+}
+const formSteps = document.querySelectorAll('.step');
+const nextBtns = document.querySelectorAll('#nextBtn');
+const calculateBtn = document.getElementById('calculate');
+
+let currentStep = 0;
+
+hideAllSteps();
+showCurrentStep();
+
+nextBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        currentStep++;
+        if (currentStep < formSteps.length) {
+            hideAllSteps();
+            showCurrentStep();
+        }
+    });
+});
+
+calculateBtn.addEventListener('click', () => {
+    currentStep++;
+    if (currentStep < formSteps.length) {
+        hideAllSteps();
+        showCurrentStep();
+    }
+});
+
+function showCurrentStep() {
+    formSteps[currentStep].style.display = 'block';
+}
+
+function hideAllSteps() {
+    formSteps.forEach(step => {
+        step.style.display = 'none';
+    });
+}
