@@ -141,6 +141,7 @@ public class UserController {
                 // 자식 레코드들이 모두 삭제되었다면, 부모 레코드를 삭제합니다.
                 userService.deleteUserById(userId);
                 //profileImgService.deleteProfile(profileImg);
+
                 session.removeAttribute("log"); // 세션에서 log 속성 제거
                 response.put("result", true);
             }else{
