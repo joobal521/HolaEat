@@ -1,50 +1,63 @@
 $(document).ready(function () {
 
-    $('#save_btn').click(function () {
-        var gender = $('input[name="gender"]:checked').val();
-        var age = $('#age').val();
-        var height = $('#height').val();
-        var weight = $('#weight').val();
-        var allergy = $('#allergy').val();
-        var recCalories = $('#recCalories').val();
-        var selectedPrefer = $('#prefer').val();
-        var selectedDislike = $('#dislike').val();
+    // "선호하는 재료"와 "선호하지 않는 재료" 값이 같은지 확인하고, 같으면 선택을 막음
+    $('#prefer, #dislike').change(function () {
+        var preferValue = $('#prefer').val();
+        var dislikeValue = $('#dislike').val();
 
+        if (preferValue === dislikeValue) {
+            alert("선호하는 재료와 선호하지 않는 재료는 같을 수 없습니다.");
+            $(this).val(""); // 선택을 초기화
+        } else {
+            fetchAndDisplayMenu(selectedNational);
+        }
+    });
+    // 저장 버튼 클릭 이벤트 핸들러
+    $('#save_btn').click(function () {
+        // 폼 데이터 수집
         var formData = {
-            gender: gender,
-            age: age,
-            height: height,
-            weight: weight,
-            allergy: allergy,
-            recCalories: recCalories,
-            prefer: selectedPrefer,
-            dislike: selectedDislike
+            gender: $('input[name="gender"]:checked').val(),
+            age: $('#age').val(),
+            height: $('#height').val(),
+            weight: $('#weight').val(),
+            allergy: $('#allergy').val(),
+            recCalories: $('#recCalories').val(),
+            prefer: $('#prefer').val(),
+            dislike: $('#dislike').val()
         };
 
-        $.ajax({
-            type: "POST",
-            url: "/saveDetails",
-            data: formData,
-            success: function (data) {
-                console.log("저장 성공:", data);
+        // Ajax 통신
+        saveFormData(formData);
+    });
 
+    // "선호하는 재료"와 "선호하지 않는 재료" 필터링
+    $('#prefer, #dislike').change(function () {
+        fetchAndDisplayMenu(selectedNational);
+    });
 
-                $('#age').val(data.age);
-                $('#height').val(data.height);
-                $('#weight').val(data.weight);
-                $('#allergy').val(data.allergy);
-                $('#recCalories').val(data.recCalories);
-                $('#prefer').val(data.prefer);
-                $('#dislike').val(data.dislike);
-
-                alert("저장에 성공하였습니다.");
-            },
-            error: function (error) {
-                console.error("저장 에러:", error);
-            }
-        });
+    // 메뉴 카테고리 변경 이벤트 핸들러
+    $('#menu_type').change(function () {
+        fetchAndDisplayAllMenus($(this).val());
     });
 });
+
+// 저장 함수
+function saveFormData(formData) {
+    $.ajax({
+        type: "POST",
+        url: "/saveDetails",
+        data: formData,
+        success: function (data) {
+            console.log("저장 성공:", data);
+            updateFields(data);
+            alert("저장에 성공하였습니다.");
+        },
+        error: function (error) {
+            console.error("저장 에러:", error);
+        }
+    });
+}
+
 
 
 function calculateCalories() {
@@ -106,6 +119,7 @@ function generateMenuInfo(menu, index) {
 
 function fetchAndDisplayMenu(selectedNational) {
     var userRecCalories = parseInt($('#recCalories').val());
+    var selectedAllergy = parseInt($('#allergy').val());
 
     $.get("/menus/generate", {national: selectedNational}, function (data) {
         var generatedMenus = data;
@@ -123,11 +137,11 @@ function fetchAndDisplayMenu(selectedNational) {
 
             var menuTotalWeight = menu.food1Weight + menu.food2Weight + menu.food3Weight + menu.food4Weight + menu.food5Weight;
 
-            // "선호하는 재료"와 "선호하지 않는 재료"를 모두 검사하여 필터링
-            if ((selectedPrefer === "" || menu.main === selectedPrefer || menu.main2 === selectedPrefer) &&
+            // Check if the menu's allergy value matches the selected allergy option
+            if (menu.allergy !== selectedAllergy &&
+                (selectedPrefer === "" || menu.main === selectedPrefer || menu.main2 === selectedPrefer) &&
                 (selectedDislike === "" || !menu.main.includes(selectedDislike) && !menu.main2.includes(selectedDislike)) &&
                 menuTotalWeight <= userRecCalories) {
-
 
                 var totalCalories = menu.food1Kcal + menu.food2Kcal + menu.food3Kcal + menu.food4Kcal + menu.food5Kcal;
                 var totalCarbs = menu.food1Carb + menu.food2Carb + menu.food3Carb + menu.food4Carb + menu.food5Carb;
@@ -164,8 +178,13 @@ function fetchAndDisplayMenu(selectedNational) {
 
 
 
+
+
 function fetchAndDisplayAllMenus(selectedValue) {
     var userRecCalories = parseInt($('#recCalories').val());
+    var selectedAllergy = parseInt($('#allergy').val());
+
+
 
     // 메뉴 카테고리와 ID 매핑
     var menuIdMapping = {
@@ -194,7 +213,7 @@ function fetchAndDisplayAllMenus(selectedValue) {
                 var totalWeight = menu.food1Weight + menu.food2Weight + menu.food3Weight + menu.food4Weight + menu.food5Weight;
 
                 // "선호하는 재료"와 "선호하지 않는 재료"를 모두 검사하여 필터링
-                if ((selectedPrefer === "" || menu.main === selectedPrefer || menu.main2 === selectedPrefer) &&
+                if ((menu.allergy !== selectedAllergy && selectedPrefer === "" || menu.main === selectedPrefer || menu.main2 === selectedPrefer) &&
                     (selectedDislike === "" || !menu.main.includes(selectedDislike) && !menu.main2.includes(selectedDislike)) &&
                     totalWeight <= userRecCalories) {
 
@@ -244,3 +263,13 @@ function fetchAndDisplayAllMenus(selectedValue) {
     });
 }
 
+// 업데이트된 데이터로 페이지의 필드 업데이트
+function updateFields(data) {
+    $('#age').val(data.age);
+    $('#height').val(data.height);
+    $('#weight').val(data.weight);
+    $('#allergy').val(data.allergy);
+    $('#recCalories').val(data.recCalories);
+    $('#prefer').val(data.prefer);
+    $('#dislike').val(data.dislike);
+}

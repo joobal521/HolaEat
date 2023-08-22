@@ -33,7 +33,7 @@
         <form id="myform" action="/saveCalories" method="POST">
             <ul>
                 <li>
-                     <h2>성별</h2>
+                    <h2>성별</h2>
                     <label>
                         <input type="radio" id="male" name="gender"
                                value="male" ${userResponseDto.userGender eq 'male' ? 'checked' : ''}>
@@ -128,7 +128,7 @@
                 <div class="prefer">
                     <h2>이 재료는 넣어주세요!</h2>
                     <select name="prefer" id="prefer">
-                        <option value="">없음</option>
+                        <option value="0">없음</option>
                         <option value="우유">우유</option>
                         <option value="메밀">메밀</option>
                         <option value="땅콩">땅콩</option>
@@ -161,7 +161,7 @@
                 <div class="dislike">
                     <h2>이 재료는 빼주세요!</h2>
                     <select name="dislike" id="dislike">
-                        <option value="">없음</option>
+                        <option value="00">없음</option>
                         <option value="우유">우유</option>
                         <option value="메밀">메밀</option>
                         <option value="땅콩">땅콩</option>
@@ -208,7 +208,6 @@
 
 </section>
 <script src="script/cal.js"></script>
-<%--<%—<script src="resources/js/ingredients.js"></script>—%>--%>
 
 </body>
 <c:import url="footer.jsp"/>
