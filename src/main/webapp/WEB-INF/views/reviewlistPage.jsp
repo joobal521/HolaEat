@@ -32,10 +32,10 @@
             outline: none;
         }
 
-        .scroll button:active{
-            box-shadow: 1px 1px 0 rgb(0,0,0,0.5);
+        .scroll button:active {
+            box-shadow: 1px 1px 0 rgb(0, 0, 0, 0.5);
             position: relative;
-            top:2px;
+            top: 2px;
 
         }
 
@@ -54,7 +54,7 @@
 <body>
 <div class="review-section">
     <h2>REVIEW</h2>
-<%--    pageNumber 확인용 : ${}/${pageNumber}--%>
+    <%--    pageNumber 확인용 : ${}/${pageNumber}--%>
 
 
     <div class="search_box">
@@ -71,7 +71,6 @@
             </div>
         </form>
     </div>
-
 
 
     <div class="list-write-btn">
@@ -102,17 +101,33 @@
                     <div class="review_img">
                         <c:set var="imageBase64" value="${imageMapPage[review.reviewNo]}"></c:set>
                         <c:choose>
-                        <c:when test="${not empty imageBase64}">
-                            <img src="data:image/jpeg;base64,${imageBase64}" id="img" name="img" alt="Review Image">
-                        </c:when>
+                            <c:when test="${not empty imageBase64}">
+                                <img src="data:image/jpeg;base64,${imageBase64}" id="img" name="img" alt="Review Image">
+                            </c:when>
                             <c:otherwise>
                                 <img src="img/reviewlist_thumb.png" id="img" name="img" alt="Review Image">
                             </c:otherwise>
                         </c:choose>
                     </div>
-                    <div id="review_title_check" class="review_title">제목 : ${review.title}</div>
-                    <div class="review_like"><i class="fa-regular fa-heart"></i></div>
                 </a>
+                <div id="review_title_check" class="review_title">제목 : ${review.title}</div>
+                <div class="review_like">
+
+                    <c:choose>
+                        <c:when test="${not empty log}">
+                            <button class="likeUp-btn" data-id="${review.reviewNo}" id="logVal" value="${log}">
+                                <i class="fa-regular fa-heart"></i>
+                            </button>
+                        </c:when>
+                        <c:otherwise>
+                            <button class="likeUp-logout" data-id="${review.reviewNo}"  >
+                                <i class="fa-regular fa-heart"></i>
+                            </button>
+                        </c:otherwise>
+                    </c:choose>
+
+                </div>
+
             </div>
 
         </c:forEach>
@@ -153,7 +168,7 @@
                 </c:when>
                 <c:otherwise>
                     <c:forEach var="i" begin="${totalPages - 4}" end="${totalPages}" step="1">
-                        <li><a class="page-link" href="/reviewlist/${i}"style="
+                        <li><a class="page-link" href="/reviewlist/${i}" style="
                         <c:if test="${i==pageNumber}">
                                 background: #265037; color: white; font-weight: bold;
                         </c:if>
@@ -175,9 +190,9 @@
     </div>
 
 
-        <div class="scroll">
-            <button class="scrollTop" onclick="scrollToTop();"><i class="fa-solid fa-angle-up"></i></button>
-        </div>
+    <div class="scroll">
+        <button class="scrollTop" onclick="scrollToTop();"><i class="fa-solid fa-angle-up"></i></button>
+    </div>
 
 
 </div>
@@ -188,9 +203,37 @@
 <script>
     function scrollToTop() {
         $("html, body").animate({
-            scrollTop : 0
+            scrollTop: 0
         }, "slow");
     }
+
+    // function likeUp(buttonElement) {
+    //     const reviewNo = $(buttonElement).data("id");
+    //     console.log(reviewNo);
+    //     console.log("1");
+    // }
+
+    $(".likeUp-btn").click(function () {
+        var reviewNo = $(this).data("id");
+        var userId = $("#logVal").val();
+
+        console.log(reviewNo);
+        console.log(userId);
+
+
+
+        // 좋아요 등록
+        $.ajax({
+            url: "/reviewlike/" + reviewNo,
+            method: "PUT",
+        })
+
+    })
+
+    //로그아웃 상태에서 좋아요 버튼 눌렀을때
+    $(".likeUp-logout").click(function (){
+        alert("로그인 후 이용가능합니다.");
+    })
 
 
 </script>

@@ -20,6 +20,17 @@ public class ReviewCommentService {
         reviewCommentRepository.save(reviewComment);
     }
 
+//수정(8/21)
+//    @Transactional
+//    public void update(Long postsId, Long id, reviewCommentDto.Request dto) {
+//        Comment comment = reviewCommentRepository.findByPostsIdAndId(postsId, id).orElseThrow(() ->
+//                new IllegalArgumentException("해당 댓글이 존재하지 않습니다. " + id));
+//
+//        comment.update(dto.getComment());
+//    }
+
+
+
     //삭제
     @Transactional
     public void delete(long commentId){
