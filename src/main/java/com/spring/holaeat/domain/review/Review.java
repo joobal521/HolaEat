@@ -4,6 +4,7 @@ import com.spring.holaeat.domain.review_comment.ReviewComment;
 import com.spring.holaeat.util.Timestamp;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import java.io.IOException;
@@ -34,8 +35,9 @@ public class Review extends Timestamp {
     @Column(columnDefinition = "LONGBLOB")
     private byte[] img;
 
-//    @Column
-//    private int reviewLike;
+    @ColumnDefault("0")
+    @Column
+    private int reviewLike;
 
 //추가
 //    @OneToMany(mappedBy = "review", cascade = CascadeType.ALL, orphanRemoval = true)
