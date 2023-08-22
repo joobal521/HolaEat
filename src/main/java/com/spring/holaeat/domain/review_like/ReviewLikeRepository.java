@@ -7,12 +7,16 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface ReviewLikeRepository extends JpaRepository<Review, Long> {
+public interface ReviewLikeRepository extends JpaRepository<ReviewLike, Long> {
 
 
 
+    public List<ReviewLike> findByUserIdAndReviewNo(String userId, long reviewNo);
 
-//    public List<Review> findByUserIdAndReviewNo(User userId, Review reviewNo);
-//
+    //엔티티 삭제
+    public void deleteByUserIdAndReviewNo(String userId, long reviewNo);
+    //
 //    public void updateCount(Review review, boolean check);
+
+
 }

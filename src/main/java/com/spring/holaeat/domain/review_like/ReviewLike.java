@@ -5,13 +5,15 @@ import com.spring.holaeat.domain.user.User;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 
 import static javax.persistence.FetchType.LAZY;
 
+
+@Setter
 @Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Table(name = "review_like")
 public class ReviewLike {
@@ -21,12 +23,26 @@ public class ReviewLike {
     @Column(name = "review_like_no")
     private Long reviewLikeNo;
 
-    @ManyToOne(fetch = LAZY)
+//    @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "user_id")
-    private User userId;
+    private String userId;
 
-    @ManyToOne(fetch = LAZY)
+//    @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "review_no")
-    private Review reviewNo;
+    private Long reviewNo;
+
+
+    // Public 생성자 추가
+    public ReviewLike() {
+    }
+
+    public void setReviewNo(long reviewNo) {
+        this.reviewNo = reviewNo;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
 
 }

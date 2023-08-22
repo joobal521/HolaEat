@@ -109,13 +109,13 @@
                             </c:otherwise>
                         </c:choose>
                     </div>
-                </a>
                 <div id="review_title_check" class="review_title">제목 : ${review.title}</div>
+                </a>
                 <div class="review_like">
 
                     <c:choose>
                         <c:when test="${not empty log}">
-                            <button class="likeUp-btn" data-id="${review.reviewNo}" id="logVal" value="${log}">
+                            <button class="likeUp-btn" data-id="${review.reviewNo}">
                                 <i class="fa-regular fa-heart"></i>
                             </button>
                         </c:when>
@@ -215,12 +215,8 @@
 
     $(".likeUp-btn").click(function () {
         var reviewNo = $(this).data("id");
-        var userId = $("#logVal").val();
 
         console.log(reviewNo);
-        console.log(userId);
-
-
 
         // 좋아요 등록
         $.ajax({
