@@ -14,6 +14,9 @@ public interface ReviewCommentRepository extends JpaRepository<ReviewComment, Lo
 
     public void deleteByReviewNo(long reviewNo);
 
+    // 해당 userId와 관련된 리뷰 레코드를 삭제하는 메서드 정의
+    public void deleteByUserId(String userId);
+
 //    public List<ReviewComment> findAllByCommentId(long commentId);
 
 }
