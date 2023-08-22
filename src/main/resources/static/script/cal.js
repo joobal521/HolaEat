@@ -5,8 +5,9 @@ $(document).ready(function () {
         var preferValue = $('#prefer').val();
         var dislikeValue = $('#dislike').val();
 
-        if (preferValue === dislikeValue) {
-            alert("선호하는 재료와 선호하지 않는 재료는 같을 수 없습니다.");
+        // 두 값이 모두 "<option value="">없음</option>"이 아닐 때에만 비교
+        if (preferValue !== "" && dislikeValue !== "" && preferValue === dislikeValue) {
+            swal('선호하는 재료와 선호하지 않는 재료는 같을 수 없습니다.','다시 선택해 주세요.');
             $(this).val(""); // 선택을 초기화
         } else {
             fetchAndDisplayMenu(selectedNational);
@@ -50,7 +51,7 @@ function saveFormData(formData) {
         success: function (data) {
             console.log("저장 성공:", data);
             updateFields(data);
-            alert("저장에 성공하였습니다.");
+            swal('저장 완료','저장에 성공하였습니다!');
         },
         error: function (error) {
             console.error("저장 에러:", error);

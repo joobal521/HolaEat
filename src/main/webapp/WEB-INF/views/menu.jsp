@@ -128,7 +128,7 @@
                 <div class="prefer">
                     <h2>이 재료는 넣어주세요!</h2>
                     <select name="prefer" id="prefer">
-                        <option value="0">없음</option>
+                        <option value="">없음</option>
                         <option value="우유">우유</option>
                         <option value="메밀">메밀</option>
                         <option value="땅콩">땅콩</option>
@@ -161,7 +161,7 @@
                 <div class="dislike">
                     <h2>이 재료는 빼주세요!</h2>
                     <select name="dislike" id="dislike">
-                        <option value="00">없음</option>
+                        <option value="">없음</option>
                         <option value="우유">우유</option>
                         <option value="메밀">메밀</option>
                         <option value="땅콩">땅콩</option>
