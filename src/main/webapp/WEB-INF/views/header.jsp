@@ -37,15 +37,6 @@
                         <a id="join" href="join">회원가입</a>
                     </c:otherwise>
                 </c:choose>
-                <c:choose>
-                    <c:when test="${not empty authority}">
-                        <a id="admin" href="admin">관리자메뉴</a>
-                    </c:when>
-                    <c:otherwise>
-                        <a id="admin_login" href="gainpower">관리자로그인(임시)</a>
-                    </c:otherwise>
-                </c:choose>
-
             </div>
         </div>
         <div class="nav">
