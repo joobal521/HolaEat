@@ -48,6 +48,14 @@ public class ReviewCommentService {
     }
 
 
+    //부모 테이블 삭제전 자식 테이블 삭제
+   @Transactional
+    public void deleteReviewCommentByUserId(String userId) {
+        reviewCommentRepository.deleteByUserId(userId);
+    }
+
+
+
 //    public List<Comment> getCommentsByReviewNo(String reviewNo) {
 //        return commentList;
 //    }

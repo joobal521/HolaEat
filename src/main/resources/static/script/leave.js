@@ -22,6 +22,7 @@ function checkValue(htmlForm) {
         $('#userPassword').focus();//포커스 이동시켜서 다시 입력하라고
         check = false;
     }
+    console.log(password);
 
     if (check === true) {
         const data = {
