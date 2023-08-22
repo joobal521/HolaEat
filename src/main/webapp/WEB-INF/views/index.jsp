@@ -25,11 +25,10 @@
         <c:when test="${not empty log}">
 
 
-
             <form id="myform" action="/saveCalories" method="POST">
                 <h2>내 하루 권장 칼로리는?</h2>
-                <ul>
-                    <li>
+                <ul id="formSteps">
+                    <li class="step" data-step="1">
                         <h2>성별</h2>
                         <label>
                             <input type="radio" id="male" name="gender"
@@ -41,23 +40,27 @@
                                    value="female" ${userResponseDto.userGender eq 'female' ? 'checked' : ''}>
                             <span>여자</span>
                         </label>
+                        <input type="button" class="button" id="nextBtn" value="다음">
                     </li>
-                    <li>
+                    <li class="step" data-step="2">
                         <h2>나이</h2>
                         <input type="text" id="age" name="age" value="${userResponseDto.userAge}">
                         <span>세</span>
+                        <input type="button" class="button" id="nextBtn" value="다음">
                     </li>
-                    <li>
+                    <li class="step" data-step="3">
                         <h2>키</h2>
                         <input type="text" id="height" name="height" value="${userResponseDto.userHeight}">
                         <span>cm</span>
+                        <input type="button" class="button" id="nextBtn" value="다음">
                     </li>
-                    <li>
+                    <li class="step" data-step="4">
                         <h2>몸무게</h2>
                         <input type="text" id="weight" name="weight" value="${userResponseDto.userWeight}">
                         <span>kg</span>
+                        <input type="button" class="button" id="nextBtn" value="다음">
                     </li>
-                    <li>
+                    <li class="step" data-step="5">
                         <h2>알레르기</h2>
                         <select name="allergy" id="allergy">
                             <option value="0">없음</option>
@@ -66,37 +69,34 @@
                             <option value="3" ${userResponseDto.userAllergy eq '3' ? 'selected' : ''}>과일류</option>
                             <option value="4" ${userResponseDto.userAllergy eq '4' ? 'selected' : ''}>견과류</option>
                         </select>
+                        <input type="button" class="button" id="nextBtn" value="다음">
                     </li>
-                    <li>
+                    <li class="step" data-step="6">
                         <h2>식단종류</h2>
                         <select name="menu_type" id="menu_type">
                             <option value="1">일반균형식</option>
                             <option value="2">체중조절식</option>
                             <option value="3">비건</option>
                         </select>
+                        <input type="button" class="button" id="calculate" name="calculate" value="계산하기">
                     </li>
-                    <input type="button" class="button" id="calculate" name="calculate" value="계산하기" onclick="calculateCalories()">
-
-                </ul>
-                <ul>
-                    <li>
+                    <li class="step" data-step="7">
                         <h2>필요 열량</h2>
-                        <input type="text" class="btn6" id="recCalories" name="recCalories" value="${userResponseDto.userRecCalories}">
-                        <span>kcal</span>
-                        <input type="button" class="button" id="save_btn" name="save_btn" value="내 칼로리 정보 저장">
-                    </li>
-                    <li>
-                        <h3 class="mini_h3">열량 계산 기준</h3>
-                        <span class="mini">*알레르기가 있으시면 권장 칼로리가 10% 감소합니다.</span><br>
-                        <span class="mini">*체중조절식은 일반균형식 대비 500kcal 감소합니다.</span>
+                        <p>당신이 하루에 필요한 열량은, <span id="recCaloriesValue" >${userResponseDto.userRecCalories}</span>kcal입니다.</p>
+                        <input type="button" class="button" id="idx_save_btn" name="idx_save_btn" value="내 칼로리 정보 저장">
+                        <p>
+                            <a href="menu" class="btn3">
+                                맞춤식단<br/>보러가기
+                            </a>
+                        </p>
                     </li>
                 </ul>
+            </form>
 
-                </form>
+
+<%--            맞춤식단 이동 --%>
             <div class="menu_btn">
-                        <a href="menu" class="btn3">
-                            나에게 맞는 메뉴<br/>보러가기
-                        </a>
+
                 <h2>당신의 선택은 옳았습니다.</h2>
                 <h2>이렇게 많은 회원들이 Holaeat과 함께합니다.</h2>
                 <canvas id="pie-chart"></canvas>
@@ -211,41 +211,41 @@
             <div class="form_wrap">
 
                     <%--        캐러셀 BootStrap --%>
-        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner" style="height: 50vh; overflow: unset;">
-                <div class="carousel-item active">
-                    <img src="img/menu_main.jpg" class="d-block w-100" alt="...">
-                    <div class="carousel-caption d-none d-md-block" style="background-color: unset;">
-                        <h5>균형잡힌 식단이 중요합니다.</h5>
-                        <p>일반균형식</p>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <img src="img/protein_main.jpg" class="d-block w-100" alt="...">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>몸을 만들고 계신가요?</h5>
-                        <p>탄수화물, 단백질, 지방은 우리 몸의 3대 영양소 입니다.</p>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <img src="img/vegan_main.jpg" class="d-block w-100" alt="...">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>당신의 선택을 생각합니다.</h5>
-                        <p>비건을 위한 식물성 식단</p>
-                    </div>
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
-                    data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
-                    data-bs-slide="next" style="background-color: unset">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
+<%--        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">--%>
+<%--            <div class="carousel-inner" style="height: 50vh; overflow: unset;">--%>
+<%--                <div class="carousel-item active">--%>
+<%--                    <img src="img/menu_main.jpg" class="d-block w-100" alt="...">--%>
+<%--                    <div class="carousel-caption d-none d-md-block" style="background-color: unset;">--%>
+<%--                        <h5>균형잡힌 식단이 중요합니다.</h5>--%>
+<%--                        <p>일반균형식</p>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--                <div class="carousel-item">--%>
+<%--                    <img src="img/protein_main.jpg" class="d-block w-100" alt="...">--%>
+<%--                    <div class="carousel-caption d-none d-md-block">--%>
+<%--                        <h5>몸을 만들고 계신가요?</h5>--%>
+<%--                        <p>탄수화물, 단백질, 지방은 우리 몸의 3대 영양소 입니다.</p>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--                <div class="carousel-item">--%>
+<%--                    <img src="img/vegan_main.jpg" class="d-block w-100" alt="...">--%>
+<%--                    <div class="carousel-caption d-none d-md-block">--%>
+<%--                        <h5>당신의 선택을 생각합니다.</h5>--%>
+<%--                        <p>비건을 위한 식물성 식단</p>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"--%>
+<%--                    data-bs-slide="prev">--%>
+<%--                <span class="carousel-control-prev-icon" aria-hidden="true"></span>--%>
+<%--                <span class="visually-hidden">Previous</span>--%>
+<%--            </button>--%>
+<%--            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"--%>
+<%--                    data-bs-slide="next" style="background-color: unset">--%>
+<%--                <span class="carousel-control-next-icon" aria-hidden="true"></span>--%>
+<%--                <span class="visually-hidden">Next</span>--%>
+<%--            </button>--%>
+<%--        </div>--%>
             <%--        캐러셀 BootStrap 끝 --%>
                 <%--                인덱싱 시작--%>
 

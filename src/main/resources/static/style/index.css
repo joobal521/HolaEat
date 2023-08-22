@@ -313,3 +313,26 @@ body{
     text-decoration: none;
 }
 
+
+
+
+/* 슬라이드 전체 폼 스타일 */
+.form_wrap {
+    width: 300px;
+    margin: 0 auto;
+}
+
+/* 각 질문 항목 슬라이드 스타일 */
+.question {
+    display: none;
+}
+
+/* 첫 번째 질문 항목은 보여주기 */
+.question:first-child {
+    display: block;
+}
+
+/* 버튼 스타일 */
+.next_button, .submit_button {
+    margin-top: 10px;
+}

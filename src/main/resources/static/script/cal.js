@@ -13,6 +13,27 @@ $(document).ready(function () {
             fetchAndDisplayMenu(selectedNational);
         }
     });
+    $('#idx_save_btn').click(function () {
+
+        var recCaloriesValue = $('#recCaloriesValue').text(); // 추출된 값
+
+        // 폼 데이터 수집
+        var formData = {
+            gender: $('input[name="gender"]:checked').val(),
+            age: $('#age').val(),
+            height: $('#height').val(),
+            weight: $('#weight').val(),
+            allergy: $('#allergy').val(),
+            // recCalories: $('#recCalories').val()
+            recCalories: recCaloriesValue
+
+
+        };
+
+        // Ajax 통신
+        saveFormData(formData);
+    });
+
     // 저장 버튼 클릭 이벤트 핸들러
     $('#save_btn').click(function () {
         // 폼 데이터 수집
@@ -52,12 +73,22 @@ function saveFormData(formData) {
             console.log("저장 성공:", data);
             updateFields(data);
             swal('저장 완료','저장에 성공하였습니다!');
+
+
         },
         error: function (error) {
             console.error("저장 에러:", error);
+            console.log("gender:", formData.gender);
+            console.log("age:", formData.age);
+            console.log("height:", formData.height);
+            console.log("weight:", formData.weight);
+            console.log("allergy:", formData.allergy);
+            console.log("recCalories:", formData.recCalories);
         }
     });
 }
+
+
 
 
 
@@ -289,4 +320,40 @@ function updateFields(data) {
     $('#userRecCalories').text(data.recCalories);
     $('#userPrefer').text(data.prefer);
     $('#userDislike').text(data.dislike);
+}
+const formSteps = document.querySelectorAll('.step');
+const nextBtns = document.querySelectorAll('#nextBtn');
+const calculateBtn = document.getElementById('calculate');
+
+let currentStep = 0;
+
+hideAllSteps();
+showCurrentStep();
+
+nextBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        currentStep++;
+        if (currentStep < formSteps.length) {
+            hideAllSteps();
+            showCurrentStep();
+        }
+    });
+});
+
+calculateBtn.addEventListener('click', () => {
+    currentStep++;
+    if (currentStep < formSteps.length) {
+        hideAllSteps();
+        showCurrentStep();
+    }
+});
+
+function showCurrentStep() {
+    formSteps[currentStep].style.display = 'block';
+}
+
+function hideAllSteps() {
+    formSteps.forEach(step => {
+        step.style.display = 'none';
+    });
 }
