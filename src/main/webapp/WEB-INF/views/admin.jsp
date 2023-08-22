@@ -48,6 +48,7 @@
     </c:when>
 </c:choose>
 <section class="wrap">
+
     <section class="aside">
         <ul>
             <li>
