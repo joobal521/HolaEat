@@ -20,7 +20,7 @@
         <h2>건강정보</h2>
 
         <div class="search_box">
-            <form id="searchForm" method="get" action="/healt-list/1">
+            <form id="searchForm" method="get" action="/health-list/1">
                 <div class="searchTag">
                     <select title="검색 유형 선택" id="searchType" name="searchType">
                         <option name="all" value="all">전체 검색</option>
@@ -48,7 +48,7 @@
 
                                 <%--이미지 출력--%>
                             <div class="health_img">
-                                <c:set var="imageBase64" value="${imageMap[health.healthNo]}"></c:set>
+                                <c:set var="imageBase64" value="${imageMapPage[health.healthNo]}"></c:set>
                                 <c:choose>
                                     <c:when test="${not empty imageBase64}">
                                         <img src="data:image/jpeg;base64,${imageBase64}" id="img" name="img" alt="Health Image">

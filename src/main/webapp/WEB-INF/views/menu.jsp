@@ -78,7 +78,7 @@
                         <option value="3">비건</option>
                     </select>
                 </li>
-                <input type="button" class="button" id="calculate" name="calculate" value="계산하기" onclick="calculateCalories()">
+                <input type="button"  id="calculate" name="calculate" value="계산하기" onclick="calculateCalories()">
 
             </ul>
             <ul>
@@ -134,14 +134,12 @@
                         <option value="땅콩">땅콩</option>
                         <option value="대두">대두</option>
                         <option value="밀">밀</option>
-                        <option value="고등어">고등어</option>
                         <option value="게">게</option>
                         <option value="새우">새우</option>
                         <option value="복숭아">복숭아</option>
                         <option value="토마토">토마토</option>
                         <option value="두부">두부</option>
                         <option value="깨">깨</option>
-                        <option value="쌀">쌀</option>
                         <option value="두유">두유</option>
                         <option value="감자">감자</option>
                         <option value="계란">계란</option>
@@ -152,7 +150,6 @@
                         <option value="수박">수박</option>
                         <option value="참외">참외</option>
                         <option value="케찹">케찹</option>
-                        <option value="소금">소금</option>
                         <option value="포도">포도</option>
                         <option value="연근">연근</option>
                     </select>
@@ -167,14 +164,12 @@
                         <option value="땅콩">땅콩</option>
                         <option value="대두">대두</option>
                         <option value="밀">밀</option>
-                        <option value="고등어">고등어</option>
                         <option value="게">게</option>
                         <option value="새우">새우</option>
                         <option value="복숭아">복숭아</option>
                         <option value="토마토">토마토</option>
                         <option value="두부">두부</option>
                         <option value="깨">깨</option>
-                        <option value="쌀">쌀</option>
                         <option value="두유">두유</option>
                         <option value="감자">감자</option>
                         <option value="계란">계란</option>
@@ -185,7 +180,6 @@
                         <option value="수박">수박</option>
                         <option value="참외">참외</option>
                         <option value="케찹">케찹</option>
-                        <option value="소금">소금</option>
                         <option value="포도">포도</option>
                         <option value="연근">연근</option>
                     </select>
@@ -208,7 +202,6 @@
 
 </section>
 <script src="script/cal.js"></script>
-<%--<%—<script src="resources/js/ingredients.js"></script>—%>--%>
 
 </body>
 <c:import url="footer.jsp"/>
