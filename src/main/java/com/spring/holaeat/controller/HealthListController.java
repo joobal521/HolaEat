@@ -46,7 +46,7 @@ public class HealthListController {
 
     //게시글 전체 조회 페이징
     @GetMapping("health-list/{pageNumber}")
-    public String getBoardAll(@PathVariable int pageNumber, @RequestParam(required = false, value = "keyword") String keyword, @RequestParam(required = false, value = "searchType") String searchType, @PageableDefault(size = 8) Pageable pageable, Model model){
+    public String getBoardAll(@PathVariable int pageNumber, @RequestParam(required = false, value = "keyword") String keyword, @RequestParam(required = false, value = "searchType") String searchType, @PageableDefault(size = 4) Pageable pageable, Model model){
         Map<Long, String> imageMap = new HashMap<>();
         List<Health> healthPage  = null;
 
@@ -74,7 +74,7 @@ public class HealthListController {
             }
         }
 
-        int totalLength = (int) healthRepository.count(); // 총 리뷰 수 가져오기
+        int totalLength = (int) healthRepository.count(); // 총 건강 정보 수 가져오기
         int totalPages = (int) Math.ceil((double) totalLength / pageable.getPageSize()); // 전체 페이지 수 계산
 
         System.out.println("totalLength :" + totalLength );

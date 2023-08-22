@@ -374,8 +374,8 @@ function checkValue(htmlForm) {
     }
 
 
-    if (check && isIdChecked && isEmailChecked &&isToKenChecked) {
-
+    if (check && isIdChecked ) {
+    //&& isEmailChecked &&isToKenChecked
         const data = {
             userId: id,
             userPassword: password,
@@ -431,22 +431,24 @@ function checkValue(htmlForm) {
             icon: 'warning'
         });
         //alert("아이디 중복 확인해 주세요.");
-    }else if(!isEmailChecked){
-        Swal.fire({
-            title: '회원 가입 실패',
-            text: '이메일 중복을 확인해 주세요.',
-            icon: 'warning'
-        });
-        //alert("이메일 중복 확인해 주세요")
-    }else if(!isToKenChecked){
-        Swal.fire({
-            title: '회원 가입 실패',
-            text: '이메일 인증을 먼저 해주세요.',
-            icon: 'warning'
-        });
-        //alert("이메일 인증을 해주세요.")
-
     }
+
+    // else if(!isEmailChecked){
+    //     Swal.fire({
+    //         title: '회원 가입 실패',
+    //         text: '이메일 중복을 확인해 주세요.',
+    //         icon: 'warning'
+    //     });
+    //     //alert("이메일 중복 확인해 주세요")
+    // }else if(!isToKenChecked){
+    //     Swal.fire({
+    //         title: '회원 가입 실패',
+    //         text: '이메일 인증을 먼저 해주세요.',
+    //         icon: 'warning'
+    //     });
+    //     //alert("이메일 인증을 해주세요.")
+    //
+    // }
 
 
 }

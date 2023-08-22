@@ -2,9 +2,12 @@ package com.spring.holaeat.controller;
 
 import com.spring.holaeat.domain.health.Health;
 import com.spring.holaeat.domain.health.HealthRepository;
+import com.spring.holaeat.domain.profile.ProfileImg;
+import com.spring.holaeat.domain.profile.ProfileImgRepository;
 import com.spring.holaeat.domain.review.Review;
 import com.spring.holaeat.domain.review.ReviewRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +21,7 @@ public class MainController {
 
     private final ReviewRepository reviewRepository;
     private final HealthRepository healthRepository;
+    private final ProfileImgRepository profileImgRepository;
 
     @GetMapping(value = "/")
     public String index() {return "index";}
@@ -61,8 +65,30 @@ public class MainController {
     @GetMapping(value = "mypage")
     public String myPage() {return "myPage";}
 
-    @GetMapping(value = "myinfo")
-    public String myInfo(){return "myInfo";}
+//    @GetMapping(value = "/myInfo")
+//    public String myInfo(@RequestParam(name = "profileNo", required = false) Long profileNo, Model model) {
+//        if (profileNo == null) {
+//            // 파라미터 값이 없는 경우 처리
+//            // 예: 오류 메시지를 보여주거나, 다른 페이지로 이동
+//            return "errorPage"; // 적절한 오류 페이지로 변경
+//        }
+//        Optional<ProfileImg> profileImgOptional = profileImgRepository.findById(profileNo);
+//
+//        if (!profileImgOptional.isPresent()) {
+//            // 해당 프로필 이미지를 찾지 못한 경우 처리
+//            // 예: 오류 메시지를 보여주거나, 다른 페이지로 이동
+//            return "errorPage"; // 적절한 오류 페이지로 변경
+//        }
+//
+//        ProfileImg profileImg = profileImgOptional.get();
+//        model.addAttribute("profile", profileImg);
+//        return "myInfo";
+//    }
+
+    @GetMapping(value = "myInfo")
+    public String myInfo(){
+        return "myInfo";
+    }
 
     @GetMapping(value = "gainpower")
     public String admin_login() {return "gainpower";}
@@ -75,9 +101,6 @@ public class MainController {
     public String adminHealthFrom(){return "adminHealthForm";}
 
 
-//    @GetMapping(value = "healthUpdate")
-//    public String healthUpdate(){
-//        return "adminHealthUpdate";}
 
     @GetMapping(value = "/healthUpdate")
     public String healthUpdate(@RequestParam("healthNo") long healthNo, Model model) {

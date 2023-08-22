@@ -1,6 +1,7 @@
 package com.spring.holaeat.controller;
 
 
+import com.spring.holaeat.domain.profile.ProfileImg;
 import com.spring.holaeat.domain.profile.ProfileImgRequestDto;
 import com.spring.holaeat.domain.user.User;
 import com.spring.holaeat.domain.user.UserRequestDto;
@@ -50,12 +51,14 @@ public class UserController {
 
     }catch (IllegalArgumentException e){
 
+
         //회원가입
         userService.createUser(userDto);
-        // 프로필 이미지 생성
 
-//        ProfileImgRequestDto profileImgDto = new ProfileImgRequestDto();
-//        profileImgService.createProfile(profileImgDto);
+        // 프로필 이미지 생성
+        ProfileImgRequestDto profileImgDto = new ProfileImgRequestDto();
+        profileImgService.createProfile(profileImgDto, userDto.getUserId()); // userId 전달
+
 
         System.out.println("join success");
         response.put("result",true);
@@ -141,6 +144,7 @@ public class UserController {
                 // 이 경우에는 해당 유저와 관련된 리뷰 레코드를 모두 삭제해야 합니다.
                 reviewCommentService.deleteReviewCommentByUserId(userId);
                 reviewService.deleteReviewsByUserId(userId);
+                profileImgService.deleteProfile(userId);
 
                 // 자식 레코드들이 모두 삭제되었다면, 부모 레코드를 삭제합니다.
                 userService.deleteUserById(userId);

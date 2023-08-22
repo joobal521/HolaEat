@@ -66,7 +66,7 @@ public class Health extends Timestamp {
 
  //게시글 수정시 기본 이미지 담기
 
-    public void remainImg(byte[] file) {
+    public void remainImg(byte[] img) {
         this.img = img;
     }
 

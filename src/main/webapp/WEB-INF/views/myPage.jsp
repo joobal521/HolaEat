@@ -13,14 +13,27 @@
         }
 
         .wrap {
-            display: flex;
-            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 20% 80%;
         }
 
-        .aside {
-            flex: 1;
-            background-color: #f5f5f5;
-            padding: 20px;
+        .aside ul, .aside li, .aside a {
+            display: inline-block;
+            width: 100%;
+        }
+        .aside a {
+            background: #f0f0f0;
+            height: 60px;
+            text-align: center;
+            line-height: 60px;
+        }
+        .aside a:hover{
+            color: #1e6b7b;
+        }
+
+        .aside a.active {
+            background: #265037;
+            color: white;
         }
 
         .menu-link {
@@ -37,7 +50,6 @@
         .section {
             flex: 3;
             padding: 20px;
-            background-color: #fff;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
@@ -52,7 +64,7 @@
     <section class="aside">
         <ul>
             <li>
-                <a href="myinfo" class="menu-link">나의 정보</a>
+                <a href="myInfo" class="menu-link">나의 정보</a>
             </li>
             <li>
                 <a href="update" class="menu-link">회원 정보 수정</a>
@@ -72,16 +84,19 @@
   <script>
       $(document).ready(function() {
           $("a.menu-link").click(function(event) {
-              event.preventDefault(); // 기본 링크 동작 방지
+              event.preventDefault();
 
-              var pageUrl = $(this).attr("href"); // 클릭한 링크의 URL
-              var pageTitle = $(this).text(); // 클릭한 링크의 텍스트를 페이지 제목으로 사용
-              // AJAX 요청
+              $("a.menu-link").removeClass("active");
+
+              $(this).addClass("active");
+
+              var pageUrl = $(this).attr("href");
+              var pageTitle = $(this).text();
+
               $.ajax({
                   url: pageUrl,
                   success: function(response) {
-                      $(".section").html(response); // .section에 응답 페이지 삽입
-                      // 브라우저 주소 표시줄 업데이트
+                      $(".section").html(response);
                       history.pushState(null, pageTitle, pageUrl);
                   },
                   error: function() {

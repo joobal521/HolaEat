@@ -8,10 +8,18 @@
     width: 100%;
 }
 .aside a {
-    background: #F2668B;
+    background: #f0f0f0;
     height: 60px;
     text-align: center;
     line-height: 60px;
+}
+.aside a:hover{
+    color: #1e6b7b;
+}
+
+.aside a.active {
+    background: #265037;
+    color: white;
 }
 
 

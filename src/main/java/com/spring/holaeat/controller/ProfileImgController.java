@@ -1,10 +1,13 @@
 package com.spring.holaeat.controller;
 
+import com.spring.holaeat.domain.health.Health;
 import com.spring.holaeat.domain.profile.ProfileImg;
 import com.spring.holaeat.domain.profile.ProfileImgRepository;
 import com.spring.holaeat.domain.profile.ProfileImgRequestDto;
 import com.spring.holaeat.domain.review.Review;
+import com.spring.holaeat.domain.review.ReviewRequestDto;
 import com.spring.holaeat.domain.user.User;
+import com.spring.holaeat.payload.Response;
 import com.spring.holaeat.service.ProfileImgService;
 import com.spring.holaeat.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -23,41 +27,51 @@ import java.util.Map;
 public class ProfileImgController {
 
     private final ProfileImgService profileImgService;
-   // private final UserService userService;
+    private final ProfileImgRepository profileImgRepository;
+
+    // private final UserService userService;
 
 
     @Autowired
-    public ProfileImgController(ProfileImgService profileImgService) {
+    public ProfileImgController(ProfileImgService profileImgService,ProfileImgRepository profileImgRepository) {
         this.profileImgService = profileImgService;
+        this.profileImgRepository=profileImgRepository;
     }
 
 
 
 
-    @PutMapping("profile")
-    public Map<String, Object> uploadProfile(
-            @RequestParam String userId,
-            @RequestParam MultipartFile profileImg) throws IOException {
+
+    @PutMapping(value = "/profile/{profileNo}", consumes = {"multipart/form-data"})
+    public Response uploadProfile(@PathVariable long profileNo,@ModelAttribute ProfileImgRequestDto profileImgDto,  WebRequest request) throws IOException {
         JSONObject response = new JSONObject();
+        String log = (String) request.getAttribute("log", WebRequest.SCOPE_SESSION);
 
-        try {
-            //userService.getUserById(userId);
+        if (log == null) {
+            return new Response("update", "로그인 상태에서만 가능합니다.");
 
-
-            ProfileImgRequestDto profileImgDto = new ProfileImgRequestDto();
-            profileImgDto.setProfileImg(profileImg);
-
-          //  profileImgService.uploadProfileImage(user, profileImgDto);
-
-            response.put("result", true);
-        } catch (Exception e) {
-            e.printStackTrace();
-            response.put("result", false);
-            response.put("message", "프로필 업로드 실패");
         }
+        System.out.println("아이디"+log);
 
-        return response.toMap();
+        ProfileImg profileImg=profileImgRepository.findById(profileNo).orElseThrow(
+                ()->new IllegalArgumentException("프로필 이미지가 존재하지 않습니다.")
+              );
+
+            if(!profileImg.getUserId().equals(log)){
+                return new Response("update", "회원이 아니에요.");
+
+            }
+
+            if (profileImgDto.getProfileImg() != null) {
+                profileImgService.uploadProfileImage(profileImg,profileImgDto);
+            } else {
+                System.out.println("null이면?");
+            }
+
+
+        return new Response("update","success");
     }
+
 }
 
 
