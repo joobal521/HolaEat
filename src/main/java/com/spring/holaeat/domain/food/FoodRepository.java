@@ -34,4 +34,7 @@ public interface FoodRepository extends JpaRepository<Food,String> {
 
     @Query(nativeQuery = true,value = "SELECT food_id from food")
     List<String> getAllFoodIds();
+
+    Food findByFoodName(String foodName);
+
 }
