@@ -221,11 +221,11 @@ function fetchAndDisplayMenu(selectedNational) {
                 var menuInfoHtml = generateMenuInfo(menu); // 식단 순번 추가
 
                 resultHtml += "<li draggable='true'>" + menuInfoHtml + "<br>"
-                    + `<span>총 칼로리: <span class='cals'>${totalCalories}</span>Kcal<br>`
+                    + `<div class='cals_wrap'>총 칼로리: <span class='cals'>${totalCalories}</span>Kcal<br>`
                     + "총 무게: " + menuTotalWeight + "g<br>"
                     + "총 탄수화물: " + totalCarbs + "g<br>"
                     + "총 단백질: " + totalProteins + "g<br>"
-                    + `총 지방: ${totalFats}g</span><br>`
+                    + `총 지방: ${totalFats}g</div><br>`
                     + `<canvas id="nut_chart"></canvas>`
                     + "</li><br>";
                 document.addEventListener("DOMContentLoaded", function () {
@@ -371,7 +371,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         menuList.addEventListener('dragend', function (e) {
             setTimeout(function () {
-                draggedItem.style.display = 'inline-block'; // 변경된 부분
+                draggedItem.style.display = 'flex'; // 변경된 부분
                 draggedItem = null;
             }, 0);
         });
@@ -473,7 +473,7 @@ function showNutritionalInfo(imageElement) {
     if (menuContainer) {
         const nutritionalInfoOverlay = menuContainer.querySelector('.nutritional-info-overlay');
         if (nutritionalInfoOverlay) {
-            nutritionalInfoOverlay.style.display = 'inline-block';
+            nutritionalInfoOverlay.style.display = 'flex';
 
             // 영양 성분 데이터를 가져오는 로직 (아래 코드는 예시이며, 실제 데이터에 맞게 수정 필요)
             const totalCarbs = 40;
@@ -526,3 +526,16 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+// 초기화 버튼 클릭 이벤트 핸들러
+$('#reset_btn').click(function () {
+    const generatedMenusDiv = document.getElementById("generatedMenus");
+    const selectedMenusDiv = document.getElementById("selectedMenus");
+
+    // #selectedMenus로 옮겨진 식단을 다시 #generatedMenus로 복원
+    while (selectedMenusDiv.firstChild) {
+        generatedMenusDiv.appendChild(selectedMenusDiv.firstChild);
+    }
+
+    // 칼로리 계산 함수 호출
+    calculateTotalCalories();
+});

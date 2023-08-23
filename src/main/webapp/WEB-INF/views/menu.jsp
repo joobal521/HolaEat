@@ -167,9 +167,8 @@
         </form>
         
         <div class="cat" style="display: flex; justify-content: space-evenly">
-            <h2>${userResponseDto.userName}님만을 위한 맞춤식단이 여기 있습니다!</h2>
+            <h2>어떤 메뉴를 드시고 싶으신가요?</h2>
             <div class="category_title">
-                <h2>어떤 메뉴를 드시고 싶으신가요?</h2>
                 <div class="category">
                     <select name="national" id="national" onchange="fetchAndDisplayAllMenus(this.value)">
                         <option value="">선택하세요</option>
@@ -179,6 +178,8 @@
                         <option class="western" value="양식">양식</option>
                         <option class="salad" value="샐러드">샐러드</option>
                     </select>
+                    <button id="reset_btn">모두 드래그 해제</button>
+
                 </div>
             </div>
         </div>
