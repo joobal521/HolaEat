@@ -30,6 +30,7 @@
                 <ul id="formSteps">
                     <li class="step" data-step="1">
                         <h3>성별을 선택하세요</h3>
+                        <div class="gender_box">
                         <label>
                             <input type="radio" id="male" name="gender"
                                    value="male" ${userResponseDto.userGender eq 'male' ? 'checked' : ''}>
@@ -40,28 +41,38 @@
                                    value="female" ${userResponseDto.userGender eq 'female' ? 'checked' : ''}>
                             <span>여자</span>
                         </label>
-                        <input type="button" class="button" id="nextBtn" value="다음">
+                        <input type="button" class="next-btn" id="nextBtn" value="다음">
+                        </div>
                     </li>
                     <li class="step" data-step="2">
+
                         <h3>나이를 입력하세요</h3>
+
                         <input type="text" id="age" name="age" value="${userResponseDto.userAge}">
                         <span>세</span>
+                        <div class="age_box">
                         <input type="button" class="button backBtn" value="이전">
-                        <input type="button" class="button" id="nextBtn" value="다음">
+                        <input type="button" class="next-btn" id="nextBtn" value="다음">
+                        </div>
                     </li>
                     <li class="step" data-step="3">
                         <h3>키(cm)를 입력하세요</h3>
+
                         <input type="text" id="height" name="height" value="${userResponseDto.userHeight}">
                         <span>cm</span>
+                        <div class="h_box">
                         <input type="button" class="button backBtn" value="이전">
-                        <input type="button" class="button" id="nextBtn" value="다음">
+                        <input type="button" class="next-btn" id="nextBtn" value="다음">
+                        </div>
                     </li>
                     <li class="step" data-step="4">
                         <h3>몸무게(kg)를 입력하세요</h3>
                         <input type="text" id="weight" name="weight" value="${userResponseDto.userWeight}">
                         <span>kg</span>
+                        <div class="w_box">
                         <input type="button" class="button backBtn" value="이전">
-                        <input type="button" class="button" id="nextBtn" value="다음">
+                        <input type="button" class="next-btn" id="nextBtn" value="다음">
+                        </div>
                     </li>
                     <li class="step" data-step="5">
                         <h3>거의 다 왔습니다!<br>알레르기가 있으신가요?</h3>
@@ -72,23 +83,27 @@
                             <option value="3" ${userResponseDto.userAllergy eq '3' ? 'selected' : ''}>과일류</option>
                             <option value="4" ${userResponseDto.userAllergy eq '4' ? 'selected' : ''}>견과류</option>
                         </select>
+                        <div class="a_box">
                         <input type="button" class="button backBtn" value="이전">
-                        <input type="button" class="button" id="nextBtn" value="다음">
+                        <input type="button" class="next-btn" id="nextBtn" value="다음">
+                        </div>
                     </li>
                     <li class="step" data-step="6">
                         <h3>드시고 싶은 식단의 종류를</br>선택하세요</h3>
+                        <div class="k_box">
                         <select name="menu_type" id="menu_type">
                             <option value="1">일반균형식</option>
                             <option value="2">체중조절식</option>
                             <option value="3">비건</option>
                         </select>
-                        <input type="button" class="button" id="calculate" name="calculate" value="계산하기">
+                        <input type="button" class="cal-btn" id="calculate" name="calculate" value="계산하기">
+                        </div>
                     </li>
                     <li class="step" data-step="7">
                         <h2>필요 열량</h2>
                         <p>당신이 하루에 필요한 열량은, <span id="recCaloriesValue" >${userResponseDto.userRecCalories}</span>kcal입니다.</p>
                         <p>${userResponseDto.userName}님에게 맞는 식단을 찾으러 가볼까요?</p>
-                        <input type="button" class="button" id="idx_save_btn" name="idx_save_btn" value="내 칼로리 정보 저장">
+                        <input type="button" class="save-btn" id="idx_save_btn" name="idx_save_btn" value="내 칼로리 정보 저장">
                         <p>
                             <a href="menu" class="btn3">
                                 맞춤식단<br/>보러가기
@@ -101,9 +116,10 @@
 </div>
 <%--            맞춤식단 이동 --%>
             <div class="menu_btn">
-
-                <h2>당신의 선택은 옳았습니다.</h2>
+                <div class="graph_t_box">
+                <h2 class="you-text">당신의 선택은 옳았습니다.</h2>
                 <h2>이렇게 많은 회원들이 Holaeat과 함께합니다.</h2>
+                </div>
                 <canvas id="pie-chart"></canvas>
                 <script>
                     new Chart(document.getElementById("pie-chart"), {
