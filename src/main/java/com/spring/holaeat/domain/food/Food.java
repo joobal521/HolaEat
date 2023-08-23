@@ -99,7 +99,6 @@ public class Food {
         this.weightControl = foodRequestDto.isWeightControl();
         this.balanced = foodRequestDto.isBalanced();
         this.sideDish = foodRequestDto.isSideDish();
-        this.foodImg = foodRequestDto.getFoodImg();
         this.kcal = foodRequestDto.getKcal();
         this.carb = foodRequestDto.getCarb();
         this.protein = foodRequestDto.getProtein();

@@ -5,6 +5,7 @@ import com.spring.holaeat.domain.review.ReviewRepository;
 import com.spring.holaeat.domain.review.ReviewRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -51,8 +52,10 @@ public class ReviewService {
        return review;
     }
 
-
-
+    public List<Review> getReviewsByPage(int page, int reviewsPerPage) {
+        Pageable pageable = PageRequest.of(page, reviewsPerPage);
+        return reviewRepository.findAllByOrderByReviewNoDesc(pageable);
+    }
     //수정
     @Transactional
     public void update(Review review, ReviewRequestDto reviewRequestDto){
@@ -76,7 +79,13 @@ public void delete(long reviewNo){
 }
 
 
+//좋아요 기능 repository > service
+    public void insert(long reviewNo){
 
+        reviewRepository.likeCountByReviewNo(reviewNo);
+        //기존 값 가져오기
+
+    }
 
 
 

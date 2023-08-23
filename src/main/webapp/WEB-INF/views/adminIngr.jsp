@@ -7,7 +7,8 @@
     <title>재료 관리</title>
 </head>
 <body>
-<h1>재료 관리</h1>
+
+<h1 class="admin-title">재료 관리</h1>
 
 <table>
     <thead>

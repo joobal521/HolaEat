@@ -56,9 +56,12 @@ public class HealthController {
         );
 
         if(healthDto.getImg() ==null){
+
             System.out.println("기존 사진 넣기");
             byte[]img=health.getImg(); //원래 있는 이미지 빼놓기
+            System.out.println("img"+img);
             healthService.updateHealth(health,healthDto);
+            healthService.remainImage(health,img);
 
         }else {
             healthService.updateHealth(health,healthDto);

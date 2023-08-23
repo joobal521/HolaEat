@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="com.spring.holaeat.util.ImageParsor" %>
 <html>
 <head>
     <title>admin-health</title>
@@ -44,13 +45,13 @@
 
                     <c:choose>
                         <c:when test="${blob != null}">
-                            <img src="data:image/png;base64,${ImageParsor.parseBlobToBase64(review.img)}" id="img" name="img" alt="">
+                            <img src="data:image/png;base64,${ImageParsor.parseBlobToBase64(health.img)}" id="img" name="img" alt="">
                         </c:when>
                         <c:otherwise>
                             <img src="" id="img" name="img" alt="" style="display: none;">
                         </c:otherwise>
                     </c:choose>
-                    <input type="hidden" id="imgCheck" name="imgCheck" value="${ImageParsor.parseBlobToBase64(health.file)}">
+                    <input type="hidden" id="imgCheck" name="imgCheck" value="${ImageParsor.parseBlobToBase64(health.img)}">
                 </div>
 
 <%--                <input type="datetime" id="created_at" name="created_at" readonly>--%>

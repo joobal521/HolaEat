@@ -1,31 +1,60 @@
-.form_wrap{
-    padding:10% 20%;
+body {
+    margin: 0;
+    padding: 0;
+}
 
+.form_wrap {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 .form_wrap>form{
     display: flex;
     justify-content: center;
 }
 
-.form_container{
-    padding: 5%;
+.form_container {
+    padding: 20px;
 }
+
 
 .form-box{
     padding: 10px;
 }
 
+
 .input-container{
     padding: 10px;
+    margin-bottom: 20px;
 }
 
 .input-box{
+    width: 70%;
     padding: 10px;
-    border-radius: 4px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
 }
 /*전체 동의*/
 .label-wrapper{
-margin-top: 20px;
+    margin-top: 20px;
+    padding: 10px;
+}
+
+.agr_text {
+    font-size: 14px;
+    vertical-align: middle;
+}
+
+.agr {
+    margin-bottom: 20px;
+}
+
+.required {
+    color: red;
 }
 
 
@@ -51,8 +80,8 @@ margin-top: 20px;
     border: 1px solid #265037;
     background-color: white;
     color: #265037;
-cursor: pointer;
-    margin-top: 10px;
+    cursor: pointer;
+    margin-top: 20px;
 }
 
 .email-btn:hover {
@@ -72,6 +101,12 @@ cursor: pointer;
 .code-btn:hover {
     color: #1e6b7b;
     background: aliceblue;
+}
+
+
+.btn_join{
+    display: flex;
+    justify-content: center;
 }
 
 .join-btn{
@@ -94,9 +129,8 @@ cursor: pointer;
 /*폼 제목*/
 .form-title{
    font-size: 1.2rem ;
+    margin-bottom: 10px;
 }
-
-
 
 
 /*경고 메시지*/

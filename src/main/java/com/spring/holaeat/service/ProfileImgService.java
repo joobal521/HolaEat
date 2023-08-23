@@ -28,30 +28,27 @@ public class ProfileImgService {
     }
 
     //프로필 자동 생성
-    public void createProfile(ProfileImgRequestDto profileImgDto){
-        ProfileImg profileImg=new ProfileImg(profileImgDto);
+    public void createProfile(ProfileImgRequestDto profileImgDto, String userId){
+        ProfileImg profileImg=new ProfileImg(profileImgDto, userId);
         profileImgRepository.save(profileImg);
 
     }
 
 
+    //부모 테이블 삭제전 자식 테이블 삭제
     //삭제
     @Transactional
-    public void deleteProfile(ProfileImg profileImg){
-        profileImgRepository.delete(profileImg);
+    public void deleteProfile(String userId){
+
+        profileImgRepository.deleteByUserId(userId);
     }
 
     //프로필 수정
-//    public void uploadProfileImage(User user, ProfileImgRequestDto profileImgDto) throws IOException {
-//
-//        ProfileImg profileImg = profileImgRepository.findByUser(user);
-//        if (profileImg == null) {
-//            profileImg = new ProfileImg(profileImgDto); // 프로필 이미지 생성
-//        } else {
-//            profileImg.update(profileImgDto); // 프로필 이미지 업데이트
-//        }
-//        profileImgRepository.save(profileImg);
-//    }
+    @Transactional
+    public void uploadProfileImage(ProfileImg profileImg, ProfileImgRequestDto profileImgDto) {
+        profileImg.update(profileImgDto);
+        profileImgRepository.save(profileImg);
+    }
 
 
 

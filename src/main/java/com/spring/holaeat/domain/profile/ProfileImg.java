@@ -23,8 +23,7 @@ public class ProfileImg extends Timestamp {
     private Long profileNo;
 
 
-
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "userId", nullable = false)
     private String userId;
 
     @Lob
@@ -33,27 +32,35 @@ public class ProfileImg extends Timestamp {
 
 
     // 기본 이미지 리소스 경로
-    private static final String DEFAULT_IMAGE_PATH = "classpath:static/img/belle.jpg";
+    private static final String DEFAULT_IMAGE_PATH = "static/img/belle.jpg";
 
 
 
 // 기본 이미지 URL 반환
-    public String getDefaultImageUrl() {
-        return DEFAULT_IMAGE_PATH;
-    }
+//    public String getDefaultImageUrl() {
+//        return DEFAULT_IMAGE_PATH;
+//    }
 
     // 생성자
-    public ProfileImg(ProfileImgRequestDto profileImgDto) {
+    public ProfileImg(ProfileImgRequestDto profileImgDto, String userId) {
         this.profileNo = profileImgDto.getProfileNo();
-        this.userId= profileImgDto.getUserId();
+        this.userId = userId;
+
         if (profileImgDto.getProfileImg() != null) {
             try {
                 this.profileImg = profileImgDto.getProfileImg().getBytes();
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        } else {
+            try {
+                this.profileImg = getDefaultImageBytes(); // 기본 이미지로 설정
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
+
 
     // 기능 메소드
     public void update(ProfileImgRequestDto profileImgDto) {
@@ -64,17 +71,13 @@ public class ProfileImg extends Timestamp {
                 throw new RuntimeException(e);
             }
         } else {
-            try {
-               this.profileImg = getImageBytes();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            System.out.println("기본 이미지");
+          this.profileImg=null;
         }
     }
 
-    private byte[] getImageBytes() throws IOException {
-        try (InputStream is = getClass().getClassLoader().getResourceAsStream("static/img/belle.jpg")) {
+    // 기본 이미지 바이트 배열 반환
+    private byte[] getDefaultImageBytes() throws IOException {
+        try (InputStream is = getClass().getClassLoader().getResourceAsStream(DEFAULT_IMAGE_PATH)) {
             if (is != null) {
                 return is.readAllBytes();
             }
@@ -82,7 +85,13 @@ public class ProfileImg extends Timestamp {
         }
     }
 
-
-
+    // 프로필 이미지 바이트 배열 반환
+    public byte[] getProfileImgBytes() {
+        return profileImg;
+    }
 }
+
+
+
+
 

@@ -70,7 +70,7 @@ function CheckValueUpdate(htmlForm, healthNo) {
     const title = htmlForm.title.value;
     const content = htmlForm.content.value;
     const imgCheckUrl = htmlForm.imgCheck.value;
-    console.log("imgCheckUrl 확인용"+imgCheckUrl);
+    console.log("imgCheckUrl 확인용" + imgCheckUrl);
 
     let imgFile = null;
 
@@ -78,9 +78,9 @@ function CheckValueUpdate(htmlForm, healthNo) {
         imgFile = htmlForm.file.files[0];
     }
 
-    console.log("imgFile 확인용"+imgFile);
+    console.log("imgFile 확인용" + imgFile);
 
-    if (title.trim() === "" && content.trim() === "" && imgFile !== imgCheckUrl) {
+    if (title.trim() === "" && content.trim() === "" && !imgFile) { // 이미지 수정 없을 때 추가된 부분
         alert("수정할 내용이 없습니다.");
         return;
     }
@@ -92,9 +92,10 @@ function CheckValueUpdate(htmlForm, healthNo) {
     if (imgFile) {
         form.append("img", imgFile);
     }
+   // form.append("imgCheck", imgCheckUrl); // 이미지 수정을 하지 않았어도 이전 이미지 정보 추가
 
     var settings = {
-        "url": "api/v1/health/update/"+healthNo,
+        "url": "api/v1/health/update/" + healthNo,
         "method": "PUT",
         "timeout": 0,
         "processData": false,

@@ -12,7 +12,7 @@
     <title>findId</title>
     <link rel="stylesheet" type="text/css" href="/style/findUser.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <style>
 
     </style>

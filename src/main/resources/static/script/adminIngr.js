@@ -5,6 +5,11 @@ $(document).ready(function() {
         var allergyCell = row.find(".allergy");
         var monthCell = row.find(".month");
 
+        console.log(row)
+        console.log(ingrNameCell.text()+"-------")
+        console.log(allergyCell.text())
+        console.log(monthCell.text())
+
         // 현재 데이터를 input 요소로 변경
         ingrNameCell.html("<input type='text' class='editIngrName' value='" + ingrNameCell.text() + "'>");
         allergyCell.html("<input type='checkbox' class='editAllergy' " + (allergyCell.text() === "예" ? "checked" : "") + ">");
@@ -41,7 +46,6 @@ $(document).ready(function() {
             success: function() {
                 // $(".section").html(response);
                 window.location.href="admin"
-
             },
             error: function() {
                 // alert("데이터 업데이트에 실패했습니다.");
@@ -84,8 +88,6 @@ $(document).ready(function() {
         });
     });
 
-
-
     $("#addBtn").click(function() {
         $("#addModal").css("display", "block");
     });
@@ -109,8 +111,6 @@ $(document).ready(function() {
         formData.append("allergy", $("#allergy").prop("checked"));
         formData.append("ingrImg", $("#addImg")[0].files[0]);
 
-
-
         $.ajax({
             url: "adminIngr/create",
             method: "POST",
@@ -120,7 +120,6 @@ $(document).ready(function() {
             success: function(response) {
                 alert("추가 완료");
                 $("#addModal").css("display", "none");
-                // TODO: Update the ingredient list if needed
                 window.location.href="admin"
             },
             error: function() {

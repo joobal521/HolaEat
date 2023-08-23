@@ -10,6 +10,9 @@ public interface ProfileImgRepository extends JpaRepository<ProfileImg, Long> {
 
     //유저별 이미지를 찾아야한다
     ProfileImg findByUserId(String userId);
+    public void deleteByUserId(String userId);
+
+
 
 
 

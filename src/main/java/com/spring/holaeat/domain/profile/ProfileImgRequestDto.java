@@ -14,6 +14,11 @@ public class ProfileImgRequestDto {
     private String userId;
     private MultipartFile profileImg;
 
+//    public ProfileImgRequestDto(Long profileNo, String userId, MultipartFile profileImg) {
+//        this.profileNo = profileNo;
+//        this.userId = userId;
+//        this.profileImg = profileImg;
+//    }
 
 
 }

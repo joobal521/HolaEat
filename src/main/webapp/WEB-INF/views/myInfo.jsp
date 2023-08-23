@@ -7,9 +7,11 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="com.spring.holaeat.util.ImageParsor" %>
 <html>
 <head>
     <title>myInfo</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
   <style>
     /* 스타일 초기화 */
     body, html {
@@ -20,7 +22,6 @@
     /* 전체 컨테이너 스타일링 */
     .container {
       display: flex;
-      background-color: #f7f7f7;
       justify-content: center
 
     }
@@ -80,23 +81,19 @@
 </head>
 <body>
 <div class="container">
+
 <div class="card">
-  <form enctype="multipart/form-data">
-    <c:if test="${empty log}">
-      <c:url var="login" value="/login"></c:url>
-      <c:redirect url="${login}"></c:redirect>
-    </c:if>
-    <c:choose>
-      <c:when test="${empty profileImg}">
-        <img src="img/belle2.jpg" width="200px"><br/>
-      </c:when>
-      <c:otherwise>
-        <img src="data:image/png;base64,${ImageParsor.parseBlobToBase64(profileImg)}" style=" max-width: 50%;  height: auto;"> <br />
-      </c:otherwise>
-    </c:choose>
+
+  <c:if test="${empty log}">
+    <c:url var="login" value="/login"></c:url>
+    <c:redirect url="${login}"></c:redirect>
+  </c:if>
+<%--  <img src="${profileImgUrl}" class="card-img" alt="프로필 이미지"><br/>--%>
+<img src="data:image/png;base64,${ImageParsor.parseBlobToBase64(profileImg)}" style="max-width: 50%; height: auto;"> <br/>
+  <form id="profileForm" enctype="multipart/form-data">
     <input type="file" name="userProfileImg" accept="image/png, image/jpg, image/jpeg, image.gif">
     <input type="hidden" name="userId" id="userId" value="${sessionScope.log}">
-    <button type="button" class="profile-btn" onclick="updateImg(form)">프로필 사진 변경</button>
+    <button type="button" class="profile-btn" onclick="updateImg(form, ${profileNo})">프로필 사진 변경</button>
   </form>
   <div class="my-info">
     <ul>
@@ -111,9 +108,10 @@
 
     </ul>
   </div>
-</div>
 
 </div>
 
+</div>
+<script src="script/myPage.js"></script>
 </body>
 </html>

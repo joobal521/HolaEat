@@ -12,7 +12,8 @@
     <title>update</title>
     <c:set var="path" value="${pageContext.request.contextPath}"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<%--    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>--%>
 
 <style>
     .form_wrap{
@@ -27,6 +28,8 @@
     /* 폼 스타일링 */
     .update_container {
         margin: 10px;
+        display: flex;
+        justify-content: center;
 
     }
 
@@ -36,7 +39,7 @@
     }
 
     .input-box {
-    width: 70%;
+    width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -180,7 +183,7 @@
                     </li>
 
                     <li class="btn_update">
-                        <button type="button" id="submit" name="submit" onclick="checkValue(form)">회원 정보 수정</button>
+                        <button type="button" id="submit" name="submit" onclick="checkValue(form)">회원정보 수정</button>
                     </li>
                 </ul>
             </div>

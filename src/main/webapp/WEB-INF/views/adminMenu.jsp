@@ -8,7 +8,7 @@
 </style>
 <body>
 <div>
-    <h1>메뉴관리</h1>
+    <h1 class="admin-title">메뉴관리</h1>
     <button id="toggleNutrition" class="toggle-button">영양소 보기</button>
     <div class="admin-menu">
         <table>

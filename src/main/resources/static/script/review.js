@@ -11,9 +11,6 @@
 // });
 
 
-
-
-
 $('#title').on('change', e => {
     if ($('#title').val() !== "") {
         $('#error-title').hide();
@@ -88,7 +85,7 @@ function CheckValueUpdate(htmlForm, reviewNo) {
     const title = htmlForm.title.value;
     const content = htmlForm.content.value;
     const imgCheckUrl = htmlForm.imgCheck.value;
-    console.log("imgCheckUrl 확인용"+imgCheckUrl);
+    console.log("imgCheckUrl 확인용" + imgCheckUrl);
 
     let imgFile = null;
 
@@ -96,7 +93,7 @@ function CheckValueUpdate(htmlForm, reviewNo) {
         imgFile = htmlForm.file.files[0];
     }
 
-    console.log("imgFile 확인용"+imgFile);
+    console.log("imgFile 확인용" + imgFile);
 
     if (title.trim() === "" && content.trim() === "" && imgFile !== imgCheckUrl) {
         alert("수정할 내용이 없습니다.");
@@ -168,16 +165,11 @@ function CheckValueDelete(htmlForm, reviewNo) {
 }
 
 
-
-
-
 function redirectToReviewUpdate() {
     var reviewNoElement = document.getElementById("reviewNo");
     var reviewNo = reviewNoElement.value;
 
     window.location.href = "../reviewUpdate?reviewNo=" + reviewNo;
-
-
 
 
 }

@@ -104,9 +104,10 @@ public class ReviewController {
 //삭제
 
     @DeleteMapping("/{reviewNo}/delete")
-    public Response delete(@PathVariable("reviewNo") long reviewNo, WebRequest request, @ModelAttribute ReviewRequestDto reviewRequestDto) {
+    public Response delete(@PathVariable("reviewNo") long reviewNo,
+                           WebRequest request,
+                           @ModelAttribute ReviewRequestDto reviewRequestDto) {
         String log = (String) request.getAttribute("log", WebRequest.SCOPE_SESSION);
-
         reviewCommentService.deleteByReviewNo(reviewNo);
 
 

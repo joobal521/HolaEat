@@ -22,6 +22,7 @@ function checkValue(htmlForm) {
         $('#userPassword').focus();//포커스 이동시켜서 다시 입력하라고
         check = false;
     }
+    console.log(password);
 
     if (check === true) {
         const data = {
@@ -38,10 +39,25 @@ function checkValue(htmlForm) {
         }).done(function(data){
             console.log(data);
             if (data.result === true) {
-                location.href = "/";
-                sessionStorage.removeItem("log");
+                Swal.fire({
+                    title: '회원 탈퇴 완료',
+                    text: '메인 홈으로 돌아갑니다.',
+                    icon: 'success',
+                    showConfirmButton: true
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        location.href = "/";
+                        sessionStorage.removeItem("log");
+                    }
+                });
+
             } else {
-                swal('회원 탈퇴 실패','비밀번호가 올바르지 않습니다.','error')
+                Swal.fire({
+                    title: '회원 탈퇴 실패',
+                    text: '비밀번호가 올바르지 않습니다.',
+                    icon: 'error',
+                });
+
                 //alert("회원탈퇴 실패. 비밀번호가 올바르지 않습니다.");
             }
         }).fail(function (error){

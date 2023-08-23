@@ -1,34 +1,34 @@
 
-function updateImg(htmlForm) {
+function updateImg(htmlForm, profileNo) {
     const profileImg = htmlForm.userProfileImg.files[0];
-    const id=htmlForm.userId.value;
+    const userId = htmlForm.userId.value;
 
-    console.log(id);
-    console.log(profileImg);
+    const form = new FormData();
+    form.append("profileImg", profileImg);
+    form.append("userId", userId); // userId 추가
 
-    const formData = new FormData();
-    formData.append("userId", $("#userId").val());
-    formData.append("profileImg", profileImg);
+    var settings = {
+        "url": "api/v1/my/profile/" + profileNo,
+        "method": "PUT",
+        "timeout": 0,
+        "processData": false,
+        "mimeType": "multipart/form-data",
+        "contentType": false,
+        "data": form,
+    };
 
-    $.ajax({
-        method: "PUT",
-        url: "api/v1/my/profile",
-        data: formData,
-        contentType: false,
-        processData: false,
-        enctype: "multipart/form-data",
-        dataType: "json",
-        success: function(data) {
-            console.log(data);
-            if (data.result === true) {
-                alert("프로필 업로드 완료");
-                // 이미지 데이터 업데이트
-                $("#userProfileImg").attr("src", "data:image/png;base64," + data.base64ImageData);
-            } else {
-                alert("프로필 업로드 실패");
-            }
-        },
-    }).fail(function(error) {
-        alert("프로필 이미지 수정 실패입니다: " + error.responseJSON.message);
-    });
+    $.ajax(settings)
+        .done(function (response) {
+            console.log(response);
+            alert("프로필 수정 성공.");
+            const newProfileImgUrl = URL.createObjectURL(profileImg);
+
+            const profileImgElement = document.querySelector(".card img");
+            profileImgElement.src = newProfileImgUrl;
+            localStorage.setItem("profileImgUrl", newProfileImgUrl);
+        })
+        .fail(function (jqXHR, textStatus, errorThrown) {
+            console.error(jqXHR.responseText);
+            alert("프로필 수정 실패.");
+        });
 }
