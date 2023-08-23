@@ -316,13 +316,43 @@ function writeThumbnail() {
 function goToLogin(){
     Swal.fire({
         title: '로그인 후 이용가능합니다.',
-        text: '로그인 페이지로 이동됩니다.',
+        text: '로그인 페이지로 이동하시겠습니까?',
         icon: 'warning',
+        showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
         confirmButtonColor: '#265037', // confrim 버튼 색깔 지정
         confirmButtonText: '확인', // confirm 버튼 텍스트 지정
+        cancelButtonText: '취소', // cancel 버튼 텍스트 지정
 
     }).then((result) => {
         if (result.isConfirmed) {
         location.href = "login";}
+    });
+}
+
+
+// 로그아웃 상태로 댓글창 클릭시 로그인페이지 여부 확인
+
+    function redirectToLogin() {
+    // const confirmation = confirm("로그인 하시겠습니까?");
+    //
+    // if (confirmation) {
+    //     window.location.href = "/login";
+    //
+    // }
+    //
+    //
+
+    Swal.fire({
+        title: '로그인 후 이용가능합니다.',
+        text: '로그인 페이지로 이동하시겠습니까?',
+        icon: 'warning',
+        showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
+        confirmButtonColor: '#265037', // confrim 버튼 색깔 지정
+        confirmButtonText: '확인', // confirm 버튼 텍스트 지정
+        cancelButtonText: '취소', // cancel 버튼 텍스트 지정
+
+    }).then((result) => {
+        if (result.isConfirmed) {
+            location.href = "/login";}
     });
 }

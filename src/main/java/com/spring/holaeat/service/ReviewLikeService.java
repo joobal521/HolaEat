@@ -50,4 +50,12 @@ public class ReviewLikeService {
     }
 
 
+    //좋아요있는 게시글 삭제
+    @javax.transaction.Transactional
+    public void deleteByReviewNo(long reviewNo){
+        reviewLikeRepository.deleteByReviewNo(reviewNo);
+
+    }
+
+
 }

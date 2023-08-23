@@ -204,6 +204,26 @@
                     </c:choose>
 
                 </div>
+<%--                <<div class="review_like">--%>
+<%--                <c:choose>--%>
+<%--                    <c:when test="${not empty log}">--%>
+<%--                        <c:set var="heart" value="빈하트" />--%>
+<%--                        <c:forEach items="${likedList}" var="like">--%>
+<%--                            <c:if test="${review.reviewNo == like.reviewNo}">--%>
+<%--                                <c:set var="heart" value="풀하트" />--%>
+<%--                            </c:if>--%>
+<%--                        </c:forEach>--%>
+<%--                        <button class="likeUp-btn" data-id="${review.reviewNo}">--%>
+<%--                            <span class="heart">${heart}</span>--%>
+<%--                        </button>--%>
+<%--                    </c:when>--%>
+<%--                    <c:otherwise>--%>
+<%--                        <button class="likeUp-logout" data-id="${review.reviewNo}">--%>
+<%--                            <div class="heart">로그아웃 하트</div>--%>
+<%--                        </button>--%>
+<%--                    </c:otherwise>--%>
+<%--                </c:choose>--%>
+<%--            </div>--%>
 
             </div>
 

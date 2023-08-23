@@ -6,6 +6,7 @@ import com.spring.holaeat.domain.review.ReviewRepository;
 import com.spring.holaeat.domain.review.ReviewRequestDto;
 import com.spring.holaeat.payload.Response;
 import com.spring.holaeat.service.ReviewCommentService;
+import com.spring.holaeat.service.ReviewLikeService;
 import com.spring.holaeat.service.ReviewService;
 import com.spring.holaeat.util.ImageParsor;
 import lombok.RequiredArgsConstructor;
@@ -32,7 +33,9 @@ public class ReviewController {
 
     private final ReviewService reviewService;
     private final ReviewCommentService reviewCommentService;
+    private final ReviewLikeService reviewLikeService;
     private final ReviewRepository reviewRepository;
+
 
     //게시글 작성
 
@@ -109,6 +112,7 @@ public class ReviewController {
                            @ModelAttribute ReviewRequestDto reviewRequestDto) {
         String log = (String) request.getAttribute("log", WebRequest.SCOPE_SESSION);
         reviewCommentService.deleteByReviewNo(reviewNo);
+        reviewLikeService.deleteByReviewNo(reviewNo);
 
 
         if (log == null) {

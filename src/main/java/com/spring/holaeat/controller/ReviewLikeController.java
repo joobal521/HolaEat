@@ -33,40 +33,6 @@ public class ReviewLikeController {
     }
 
 
-
-//    @Transactional
-//    @PutMapping(value = "/reviewlike/{reviewNo}")
-//    public void inputReviewLike(@PathVariable long reviewNo,WebRequest request) {
-//        String log = (String) request.getAttribute("log", WebRequest.SCOPE_SESSION);
-//
-//        System.out.println("컨트롤러 확인 " + reviewNo);
-//        System.out.println("컨트롤러 확인 " + log);
-//
-//        List<ReviewLike> list = reviewLikeService.checkReviewLike(log, reviewNo);
-//
-//        if(list!=null){
-//            reviewService.likeInsert(reviewNo);
-//            System.out.println(reviewNo + "- reviewNo(컨트롤러 insert)");
-//            //reviewlike 테이블 삭제
-//            reviewLikeRepository.deleteByUserIdAndReviewNo(log, reviewNo);
-//        }else{
-//            reviewService.likeDelete(reviewNo);
-//            System.out.println(reviewNo + "- reviewNo(컨트롤러 delete)");
-//            //reviewlike 테이블 추가
-//
-//            ReviewLike newLike = new ReviewLike();
-//            newLike.setReviewNo(reviewNo);
-//            System.out.println(reviewNo + "- setreviewNo(컨트롤러 delete)");
-//            newLike.setUserId(log);
-//            System.out.println(log + "- set log(컨트롤러 delete)");
-//            reviewLikeRepository.save(newLike);
-//            System.out.println(newLike + "- newLike(컨트롤러)");
-//
-//        }
-//
-//    }
-
-
         @PostMapping("/reviewlike/{reviewNo}")
         public ResponseEntity<String> likeReview(
                 @PathVariable long reviewNo, HttpSession session) {

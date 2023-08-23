@@ -129,6 +129,7 @@
 {
     color: #1e6b7b;
     background: aliceblue;
+    cursor : pointer;
 
 }
 
@@ -170,6 +171,7 @@
 .review-section .searchBtn:hover{
     color: #1e6b7b;
     background: aliceblue;
+    cursor : pointer;
 }
 
 
@@ -214,10 +216,12 @@
     background-color: #265037;
     color: #fff;
     transition: 0.2s ease-in-out;
+    cursor : pointer;
 }
 
 .paging li > a:hover {
     color: #ffffff;
+    cursor : pointer;
 }
 
 
@@ -351,6 +355,7 @@ form.comment {
 #backToList:hover {
     color: #1e6b7b;
     background: aliceblue;
+    cursor : pointer;
 }
 
 
@@ -408,6 +413,7 @@ form.comment-item .comment-btn {
 .comment-write input[type="button"]:hover{
     color: #1e6b7b;
     background: aliceblue;
+    cursor : pointer;
 }
 
 
@@ -463,6 +469,7 @@ border: none;
 .comment-btn button:hover {
     color: #1e6b7b;
     background: aliceblue;
+    cursor : pointer;
 }
 
 /*** reviewUpdate 페이지 (게시글 수정 페이지) ***/
@@ -492,6 +499,7 @@ border: none;
 #cancel:hover {
     color: #1e6b7b;
     background: aliceblue;
+    cursor : pointer;
 }
 
 /*수정페이지 오류나서 추가*/
@@ -572,6 +580,7 @@ border: none;
 .review-write-btn button:hover {
     color: #1e6b7b;
     background: aliceblue;
+    cursor : pointer;
 }
 
 /*좋아요 css*/

@@ -93,9 +93,28 @@
         });
     });
 
+    // $(".likeUp-btn").click(function () {
+    //     var reviewNo = $(this).data("id");
+    //     var heartText = $(this).find('.heart');
+    //
+    //     // 좋아요 등록 및 취소 처리
+    //     $.ajax({
+    //         url: "/reviewlike/" + reviewNo,
+    //         method: "POST",
+    //         success: function (data) {
+    //             if (data.includes("liked")) {
+    //                 heartText.text("풀하트"); // Liked, so change to filled heart
+    //             } else if (data.includes("unliked")) {
+    //                 heartText.text("빈하트"); // Unliked, so change to empty heart
+    //             }
+    //         }
+    //     });
+    // });
 
 
-        // $.ajax({
+
+
+    // $.ajax({
         //     url: "/reviewlike/" + reviewNo,
         //     method: "PUT",
         //     success: function (data) {

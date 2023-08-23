@@ -55,22 +55,4 @@ public class ReviewCommentService {
     }
 
 
-
-//    public List<Comment> getCommentsByReviewNo(String reviewNo) {
-//        return commentList;
-//    }
-//    public void addComment(Comment comment) {
-//    }
-//
-
-
-
-//    private final ReviewCommentRepository reviewCommentRepository;
-//    //수정
-//    @Transactional
-//    public void update(ReviewComment reviewComment, ReviewCommentRequestDto reviewCommentRequestDto){
-//
-//        reviewComment.update( reviewCommentRequestDto);
-//        reviewCommentRepository.save(reviewComment);
-//    }
 }

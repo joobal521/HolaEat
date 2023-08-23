@@ -16,14 +16,14 @@ public interface ReviewLikeRepository extends JpaRepository<ReviewLike, Long> {
 
     //엔티티 삭제
     public void deleteByUserIdAndReviewNo(String userId, long reviewNo);
-    //
-//    public void updateCount(Review review, boolean check);
-
 
 //엔티티 추가
     ReviewLike save(ReviewLike reviewLike);
 
+   // ReviewLike findByUserIdAndReviewNo(String userId, Long reviewNo);
 
-    ReviewLike findByUserIdAndReviewNo(String userId, Long reviewNo);
+
+    //좋아요 있는 게시글 삭제
+    public void deleteByReviewNo(long reviewNo);
 
 }
