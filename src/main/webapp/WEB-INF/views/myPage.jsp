@@ -82,40 +82,9 @@
       </section>
   </section>
   <script>
-      $(document).ready(function() {
-          $("a.menu-link").click(function(event) {
-              event.preventDefault();
-
-              $("a.menu-link").removeClass("active");
-
-              $(this).addClass("active");
-
-              var pageUrl = $(this).attr("href");
-              var pageTitle = $(this).text();
-
-              $.ajax({
-                  url: pageUrl,
-                  success: function(response) {
-                      $(".section").html(response);
-                      history.pushState(null, pageTitle, pageUrl);
-                  },
-                  error: function() {
-                      alert("페이지 로드에 실패했습니다.");
-                  }
-              });
-          });
-      });
-
-      // 브라우저 뒤로가기/앞으로 가기 시 이벤트 처리
-      window.onpopstate = function(event) {
-          if (event.state) {
-              $(".section").html(event.state.content);
-              document.title = event.state.pageTitle;
-          }
-      };
   </script>
 
-<script src="script/admin.js"></script>
+<script src="script/myPage.js"></script>
 
 </body>
 <c:import url="footer.jsp"/>
