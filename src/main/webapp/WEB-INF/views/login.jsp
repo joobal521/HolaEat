@@ -12,7 +12,7 @@
     <title>Title</title>
     <c:set var="path" value="${pageContext.request.contextPath}"/>
     <link rel="stylesheet" type="text/css" href="style/form.css">
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
    <style>
     .form_wrap {
         background-color: #fff;
@@ -95,6 +95,8 @@
             var userId = document.getElementById("id").value;
             var password = document.getElementById("password").value;
 
+            console.log(userId);
+            console.log(password);
 
             // 유효성 검증에 통과했을 경우
             return true; // 폼 제출 진행
@@ -102,7 +104,11 @@
 
         var loginFailed = <%= request.getAttribute("loginFailed") %>;
         if (loginFailed) {
-            swal("로그인 실패!", "아이디 또는 비밀번호가 올바르지 않습니다!", "error");
+            Swal.fire({
+                title: '로그인 실패',
+                text: '아이디 또는 비밀번호가 올바르지 않습니다.',
+                icon: 'error',
+            });
             //alert("아이디 또는 비밀번호가 올바르지 않습니다.");
         }
     </script>
