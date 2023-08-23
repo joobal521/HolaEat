@@ -237,6 +237,17 @@
         // 좋아요 등록 및 취소 처리
         $.ajax({
             url: "/reviewlike/" + reviewNo,
+            method: "POST",
+            success: function (data) {
+                if (data.success) {
+                    // 아이콘 클래스 변경
+                    $heartIcon.toggleClass('fa-solid').toggleClass('fa-regular');
+                }
+            }
+        });
+
+        $.ajax({
+            url: "/reviewlike/" + reviewNo,
             method: "PUT",
             success: function (data) {
                 if (data.success) {
@@ -245,6 +256,9 @@
                 }
             }
         });
+
+
+
     });
 
 

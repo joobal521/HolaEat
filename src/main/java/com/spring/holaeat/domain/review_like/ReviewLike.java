@@ -2,10 +2,7 @@ package com.spring.holaeat.domain.review_like;
 
 import com.spring.holaeat.domain.review.Review;
 import com.spring.holaeat.domain.user.User;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -14,6 +11,7 @@ import static javax.persistence.FetchType.LAZY;
 
 @Setter
 @Getter
+@NoArgsConstructor
 @Entity
 @Table(name = "review_like")
 public class ReviewLike {
@@ -31,9 +29,9 @@ public class ReviewLike {
     @JoinColumn(name = "review_no")
     private Long reviewNo;
 
-
-    // Public 생성자 추가
-    public ReviewLike() {
+    public ReviewLike(long reviewNo, String userId) {
+        this.reviewNo = reviewNo;
+        this.userId = userId;
     }
 
     public void setReviewNo(long reviewNo) {

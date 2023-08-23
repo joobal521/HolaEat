@@ -22,4 +22,7 @@ public interface ReviewLikeRepository extends JpaRepository<ReviewLike, Long> {
 //엔티티 추가
     ReviewLike save(ReviewLike reviewLike);
 
+
+    boolean existsByUserIdAndReviewNo(String userId, Long reviewNo);
+
 }

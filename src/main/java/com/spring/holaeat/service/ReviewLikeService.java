@@ -7,6 +7,7 @@ import com.spring.holaeat.domain.review_like.ReviewLikeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class ReviewLikeService {
 
 
     public List<ReviewLike> checkReviewLike(String userId, long reviewNo) {
-       return reviewLikeRepository.findByUserIdAndReviewNo(userId, reviewNo);
+        return reviewLikeRepository.findByUserIdAndReviewNo(userId, reviewNo);
     }
 
     //추가
@@ -28,14 +29,17 @@ public class ReviewLikeService {
         this.reviewLikeRepository = reviewLikeRepository;
     }
 
+    @Transactional
     public void likeReview(String userId, long reviewNo) {
-        ReviewLike reviewLike = new ReviewLike();
-        reviewLike.setUserId(userId);
-        reviewLike.setReviewNo(reviewNo);
+        List<ReviewLike> list = reviewLikeRepository.findByUserIdAndReviewNo(userId, reviewNo);
 
-        // Save the new like entry using the repository method
-        reviewLikeRepository.save(reviewLike);
+        if(list.size() == 0) {
+            ReviewLike reviewLike = new ReviewLike(reviewNo, userId);
+            reviewLikeRepository.save(reviewLike);
+            return;
+        }
 
+        reviewLikeRepository.delete(list.get(0));
     }
 
 }
