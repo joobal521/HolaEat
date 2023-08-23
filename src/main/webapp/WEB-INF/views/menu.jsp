@@ -33,7 +33,7 @@
         <form id="myform" action="/saveCalories" method="POST">
             <ul>
                 <li>
-                    <h2>성별</h2>
+                    <h2 class="title">성별</h2>
                     <label>
                         <input type="radio" id="male" name="gender"
                                value="male" ${userResponseDto.userGender eq 'male' ? 'checked' : ''}>
@@ -46,22 +46,22 @@
                     </label>
                 </li>
                 <li>
-                    <h2>나이</h2>
+                    <h2 class="title">나이</h2>
                     <input type="text" id="age" name="age" value="${userResponseDto.userAge}">
                     <span>세</span>
                 </li>
                 <li>
-                    <h2>키</h2>
+                    <h2 class="title">키</h2>
                     <input type="text" id="height" name="height" value="${userResponseDto.userHeight}">
                     <span>cm</span>
                 </li>
                 <li>
-                    <h2>몸무게</h2>
+                    <h2 class="title">몸무게</h2>
                     <input type="text" id="weight" name="weight" value="${userResponseDto.userWeight}">
                     <span>kg</span>
                 </li>
                 <li>
-                    <h2>알레르기</h2>
+                    <h2 class="title">알레르기</h2>
                     <select name="allergy" id="allergy">
                         <option value="0">없음</option>
                         <option value="1" ${userResponseDto.userAllergy eq '1' ? 'selected' : ''}>유제품</option>
@@ -71,33 +71,33 @@
                     </select>
                 </li>
                 <li>
-                    <h2>식단종류</h2>
+                    <h2 class="title">식단종류</h2>
                     <select name="menu_type" id="menu_type">
                         <option value="1">일반균형식</option>
                         <option value="2">체중조절식</option>
                         <option value="3">비건</option>
                     </select>
                 </li>
-                <input type="button" class="button" id="calculate" name="calculate" value="계산하기"
+                <input type="button" class="cal-btn" id="calculate" name="calculate" value="계산하기"
                        onclick="calculateCalories()">
 
             </ul>
             <ul>
                 <li>
-                    <h2>필요 열량</h2>
+                    <h2 class="title">필요 열량</h2>
                     <input type="text" class="btn6" id="recCalories" name="recCalories"
                            value="${userResponseDto.userRecCalories}">
                     <span>kcal</span>
                 </li>
             </ul>
-            <input type="button" class="button" id="save_btn" name="save_btn" value="내 칼로리 정보 저장">
+            <input type="button" class="save-btn" id="save_btn" name="save_btn" value="내 칼로리 정보 저장">
             <hr>
             <div class="json_wrap">
 
                 <%--        카테고리    --%>
 
                 <div class="category_title">
-                    <h2>어떤 메뉴를 드시고 싶으신가요?</h2>
+                    <h2 class="title">어떤 메뉴를 드시고 싶으신가요?</h2>
                     <div class="category">
                         <select name="national" id="national" onchange="fetchAndDisplayAllMenus(this.value)">
                             <option value="">선택하세요</option>
@@ -111,7 +111,7 @@
                 </div>
 
                 <div class="prefer">
-                    <h2>이 재료는 넣어주세요!</h2>
+                    <h2 class="title">이 재료는 넣어주세요!</h2>
                     <select name="prefer" id="prefer">
                         <option value="">없음</option>
                         <option value="우유">우유</option>
@@ -141,7 +141,7 @@
                 </div>
 
                 <div class="dislike">
-                    <h2>이 재료는 빼주세요!</h2>
+                    <h2 class="title">이 재료는 빼주세요!</h2>
                     <select name="dislike" id="dislike">
                         <option value="">없음</option>
                         <option value="우유">우유</option>
@@ -169,7 +169,7 @@
                         <option value="연근">연근</option>
                     </select>
                 </div>
-                <input type="button" class="button" id="menu_btn" name="menu_btn" value="모든 메뉴보기"
+                <input type="button" class="menu-btn" id="menu_btn" name="menu_btn" value="모든 메뉴보기"
                        onclick="fetchAndDisplayMenu()">
                 <li>
                     <h3 class="mini_h3">열량 계산 기준</h3>
