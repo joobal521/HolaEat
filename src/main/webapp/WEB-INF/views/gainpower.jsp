@@ -16,7 +16,11 @@
 </head>
 <body>
 <section class="gainpower">
-
+    <c:choose>
+        <c:when test="${not empty authority}">
+            <c:redirect url="admin" /> <!-- authority가 비어있을 경우 인덱스로 리다이렉션 -->
+        </c:when>
+    </c:choose>
     <div class="gain-power-container">
         <h1>AUTHORITY ACCESS</h1>
         <form class="gainpower-form" id="form" method="post" action="gainpower">

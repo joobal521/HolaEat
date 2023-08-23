@@ -2,6 +2,7 @@ package com.spring.holaeat.domain.food;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.Column;
 
@@ -19,13 +20,22 @@ public class FoodRequestDto {
     private boolean weightControl;
     private boolean balanced;
     private boolean sideDish;
-    private byte[] foodImg;
     private Double kcal;
     private int carb;
     private int protein;
     private int fat;
     private int sugars;
     private int natrium;
+
+    private MultipartFile foodImg;
+
+    public MultipartFile getFoodImg() {
+        return foodImg;
+    }
+
+    public void setFoodImg(MultipartFile foodImg) {
+        this.foodImg = foodImg;
+    }
 
 
 

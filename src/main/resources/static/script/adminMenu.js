@@ -1,10 +1,9 @@
 $(document).ready(function() {
-    $(".editBtn").click(function() {
+    $(".admin-menu").on("click", ".editBtn", function() {
         var row = $(this).closest("tr");
         var foodNameCell = row.find(".foodName");
         var foodGroupCell = row.find(".foodGroup");
         var foodNationalCell = row.find(".foodNational");
-
         var allergyInfoCell = row.find(".allergyInfo");
         var weightControlCell = row.find(".weightControl");
         var veganCell = row.find(".vegan");
@@ -84,7 +83,7 @@ $(document).ready(function() {
 
         console.log(imageFile)
         if (imageFile != null) {
-            formData.append("ingrImg", imageFile);
+            formData.append("foodImg", imageFile);
         }
 
         // Send the data to the backend using AJAX
@@ -221,7 +220,6 @@ $(document).ready(function() {
             success: function(response) {
                 alert("추가 완료");
                 $("#addModal").css("display", "none");
-                // TODO: Update the menu list if neede
                 window.location.href="admin"
             },
             error: function() {
@@ -229,10 +227,7 @@ $(document).ready(function() {
             }
         });
     });
-});
 
-
-$(document).ready(function() {
     var filterStates = {
         ".allergyInfo": "all",
         ".weightControl": "all",

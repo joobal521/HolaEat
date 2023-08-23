@@ -23,9 +23,6 @@
         <c:choose>
             <%--            로그인 시 --%>
         <c:when test="${not empty log}">
-
-
-
             <form id="myform" action="/saveCalories" method="POST">
                 <h2>내 하루 권장 칼로리는?</h2>
                 <ul>

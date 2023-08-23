@@ -3,6 +3,6 @@
 
 </head>
 <body>
-    <h1>유저 관리</h1>
+    <h1 class="admin-title">유저 관리</h1>
 
 </body>

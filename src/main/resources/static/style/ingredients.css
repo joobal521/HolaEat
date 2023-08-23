@@ -2,7 +2,7 @@
 .ingr-section {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-around;
     width: 80%;
     margin: 0 auto;
 }
@@ -17,6 +17,8 @@ body>h2{
     padding: 10px;
     box-sizing: border-box;
     position: relative;
+    background: white;
+    max-width: 300px;
 }
 
 .ingr-name h1 {
@@ -33,7 +35,7 @@ body>h2{
     overflow: hidden;
     border: 2px solid white;
     box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1), inset 10px 10px 10px rgba(0, 0, 0, 0.1);
-    margin: 0 auto;
+    margin: 10px auto;
 }
 
 .ingr-img img {
@@ -79,8 +81,8 @@ body>h2{
     background-color: #fff;
     padding: 20px;
     border-radius: 5px;
-    width: 70%;
-    max-width: 600px;
+    /*width: 70%;*/
+    /*max-width: 600px;*/
     position: relative;
     top: 50%;
     left: 50%;
@@ -98,6 +100,7 @@ body>h2{
     align-items: center;
     margin: 20px;
     display: block;
+
 }
 
 .recipe-img-container {
@@ -109,7 +112,7 @@ body>h2{
     display: flex;
     align-items: center;
     justify-content: center;
-    background: white;
+
 }
 
 .recipe-details {
@@ -126,7 +129,7 @@ body>h2{
     margin-bottom: 20px;
 }
 
-.recipe-list {
+.recipe-xlist {
     background-color: #fff;
     border-radius: 5px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);

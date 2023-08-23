@@ -4,6 +4,7 @@ import com.spring.holaeat.domain.ingredients.Ingredients;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
@@ -18,7 +19,6 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
 
     @Query(nativeQuery = true, value = "SELECT * FROM review WHERE title LIKE %?1% OR user_id LIKE %?1%")
     public List<Review> findAllByTitleLikeOrUserIdLike(String pattern,Pageable pageable);
-
     public List<Review> findAll();
 
 
