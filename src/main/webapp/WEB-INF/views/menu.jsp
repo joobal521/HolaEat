@@ -33,7 +33,7 @@
         <form id="myform" action="/saveCalories" method="POST">
             <ul>
                 <li>
-                    <h2 class="title">성별</h2>
+                    <h2>성별</h2>
                     <label>
                         <input type="radio" id="male" name="gender"
                                value="male" ${userResponseDto.userGender eq 'male' ? 'checked' : ''}>
@@ -46,22 +46,22 @@
                     </label>
                 </li>
                 <li>
-                    <h2 class="title">나이</h2>
+                    <h2>나이</h2>
                     <input type="text" id="age" name="age" value="${userResponseDto.userAge}">
                     <span>세</span>
                 </li>
                 <li>
-                    <h2 class="title">키</h2>
+                    <h2>키</h2>
                     <input type="text" id="height" name="height" value="${userResponseDto.userHeight}">
                     <span>cm</span>
                 </li>
                 <li>
-                    <h2 class="title">몸무게</h2>
+                    <h2>몸무게</h2>
                     <input type="text" id="weight" name="weight" value="${userResponseDto.userWeight}">
                     <span>kg</span>
                 </li>
                 <li>
-                    <h2 class="title">알레르기</h2>
+                    <h2>알레르기</h2>
                     <select name="allergy" id="allergy">
                         <option value="0">없음</option>
                         <option value="1" ${userResponseDto.userAllergy eq '1' ? 'selected' : ''}>유제품</option>
@@ -71,47 +71,33 @@
                     </select>
                 </li>
                 <li>
-                    <h2 class="title">식단종류</h2>
+                    <h2>식단종류</h2>
                     <select name="menu_type" id="menu_type">
                         <option value="1">일반균형식</option>
                         <option value="2">체중조절식</option>
                         <option value="3">비건</option>
                     </select>
                 </li>
-                <input type="button" class="cal-btn" id="calculate" name="calculate" value="계산하기"
+                <input type="button" class="button" id="calculate" name="calculate" value="계산하기"
                        onclick="calculateCalories()">
-
+            
             </ul>
             <ul>
                 <li>
-                    <h2 class="title">필요 열량</h2>
+                    <h2>하루 필요 열량</h2>
                     <input type="text" class="btn6" id="recCalories" name="recCalories"
                            value="${userResponseDto.userRecCalories}">
                     <span>kcal</span>
                 </li>
             </ul>
-            <input type="button" class="save-btn" id="save_btn" name="save_btn" value="내 칼로리 정보 저장">
+            <input type="button" class="button" id="save_btn" name="save_btn" value="내 칼로리 정보 저장">
             <hr>
             <div class="json_wrap">
-
+                
                 <%--        카테고리    --%>
-
-                <div class="category_title">
-                    <h2 class="title">어떤 메뉴를 드시고 싶으신가요?</h2>
-                    <div class="category">
-                        <select name="national" id="national" onchange="fetchAndDisplayAllMenus(this.value)">
-                            <option value="">선택하세요</option>
-                            <option class="korean" value="한식">한식</option>
-                            <option class="chinese" value="중식">중식</option>
-                            <option class="japanese" value="일식">일식</option>
-                            <option class="western" value="양식">양식</option>
-                            <option class="salad" value="샐러드">샐러드</option>
-                        </select>
-                    </div>
-                </div>
-
+                
                 <div class="prefer">
-                    <h2 class="title">이 재료는 넣어주세요!</h2>
+                    <h2>이 재료는 넣어주세요!</h2>
                     <select name="prefer" id="prefer">
                         <option value="">없음</option>
                         <option value="우유">우유</option>
@@ -139,9 +125,9 @@
                         <option value="연근">연근</option>
                     </select>
                 </div>
-
+                
                 <div class="dislike">
-                    <h2 class="title">이 재료는 빼주세요!</h2>
+                    <h2>이 재료는 빼주세요!</h2>
                     <select name="dislike" id="dislike">
                         <option value="">없음</option>
                         <option value="우유">우유</option>
@@ -169,36 +155,51 @@
                         <option value="연근">연근</option>
                     </select>
                 </div>
-                <input type="button" class="menu-btn" id="menu_btn" name="menu_btn" value="모든 메뉴보기"
+                <input type="button" class="button" id="menu_btn" name="menu_btn" value="모든 메뉴보기"
                        onclick="fetchAndDisplayMenu()">
                 <li>
                     <h3 class="mini_h3">열량 계산 기준</h3>
                     <span class="mini">*알레르기가 있으시면 권장 칼로리가 10% 감소합니다.</span><br>
-                    <span class="mini">*체중조절식은 일반균형식 대비 500kcal 감소합니다.</span>
+                    <span class="mini">*체중조절식은 일반균형식 대비 500kcal 감소합니다.</span><br>
+                    <span class="mini">*식단은 최대 3개까지 구성하실 수 있으며,<br>세 식단의 칼로리는 하루 필요 열량을 넘을 수 없습니다.</span>
                 </li>
             </div>
         </form>
-
-        <h2>${userResponseDto.userName}님만을 위한 맞춤식단이 여기 있습니다!</h2>
+        
+        <div class="cat" style="display: flex; justify-content: space-evenly">
+            <h2>${userResponseDto.userName}님만을 위한 맞춤식단이 여기 있습니다!</h2>
+            <div class="category_title">
+                <h2>어떤 메뉴를 드시고 싶으신가요?</h2>
+                <div class="category">
+                    <select name="national" id="national" onchange="fetchAndDisplayAllMenus(this.value)">
+                        <option value="">선택하세요</option>
+                        <option class="korean" value="한식">한식</option>
+                        <option class="chinese" value="중식">중식</option>
+                        <option class="japanese" value="일식">일식</option>
+                        <option class="western" value="양식">양식</option>
+                        <option class="salad" value="샐러드">샐러드</option>
+                    </select>
+                </div>
+            </div>
+        </div>
         <div class="personal_menu" style="display: flex">
             <div id="generatedMenus" class="menu_list" style="width: 50%; height: 500px;">
                 <!-- 이 부분에 동적으로 생성되는 식단 목록이 들어갈 예정입니다. -->
             </div>
             <div id="selectedMenus" class="menu_list" style="width: 50%;height: 500px; overflow: scroll">
                 <!-- 드래그해서 이동한 식단 목록이 여기에 들어갈 예정입니다. -->
-<%--                <div class="image-with-content">--%>
-<%--                    <img class="food_img" src="img/table.jpg" alt="식단 이미지">--%>
-<%--                    <div class="content">--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-                <img id="foodImage" src="" alt="Food Image">
-
+                <%--                <div class="image-with-content">--%>
+                <%--                    <img class="food_img" src="img/table.jpg" alt="식단 이미지">--%>
+                <%--                    <div class="content">--%>
+                <%--                    </div>--%>
+                <%--                </div>--%>
             </div>
-
+        
         </div>
     </div>
 </section>
 <script src="script/cal.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 
 </body>
 <c:import url="footer.jsp"/>
