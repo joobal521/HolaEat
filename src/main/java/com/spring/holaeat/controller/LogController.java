@@ -39,39 +39,29 @@ public class LogController {
     public String login(@RequestParam("userId") String userId, @RequestParam("userPassword") String userPassword, HttpSession session, Model model) {
         User user = userRepository.findByUserId(userId);
 
-        if (user != null) {
-            if (user.getUserPassword().equals(userPassword)) {
-                UserResponseDto userResponseDto = new UserResponseDto(user);
+        if (user != null && user.getUserPassword().equals(userPassword)) {
+            UserResponseDto userResponseDto = new UserResponseDto(user);
 
-                UserDetail userDetail = userDetailRepository.findByUserId(userId);
-                if (userDetail != null) {
-                    // 업데이트된 정보로 세션에 저장
-                    userResponseDto.setUserDetail(userDetail);
-                    session.setAttribute("userResponseDto", userResponseDto);
-
-                    // 나머지 세션 정보 업데이트
-                    session.setAttribute("log", user.getUserId());
-
-                    ProfileImg profileImg = profileImgRepository.findByUserId(userId);
-                    if (profileImg != null) {
-                        session.setAttribute("profileImg", profileImg.getProfileImg());
-                        System.out.println(profileImg);
-                    }
-
-                    return "redirect:/";
-                } else {
-                    model.addAttribute("loginFailed", true);
-                    return "login";
-                }
-            } else {
-                model.addAttribute("loginFailed", true);
-                return "login";
+            UserDetail userDetail = userDetailRepository.findByUserId(userId);
+            // userDetail이 null일 경우도 처리 가능하도록 변경
+            if (userDetail != null) {
+                userResponseDto.setUserDetail(userDetail);
             }
+
+            session.setAttribute("userResponseDto", userResponseDto);
+            session.setAttribute("log", user.getUserId());
+
+            ProfileImg profileImg = profileImgRepository.findByUserId(userId);
+            if (profileImg != null) {
+                session.setAttribute("profileImg", profileImg.getProfileImg());
+                System.out.println(profileImg);
+            }
+
+            return "redirect:/";
         } else {
             model.addAttribute("loginFailed", true);
             return "login";
         }
-
     }
 
 
