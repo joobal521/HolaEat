@@ -191,11 +191,12 @@
 <%--                    <div class="content">--%>
 <%--                    </div>--%>
 <%--                </div>--%>
+                <img id="foodImage" src="" alt="Food Image">
+
             </div>
 
         </div>
     </div>
-
 </section>
 <script src="script/cal.js"></script>
 

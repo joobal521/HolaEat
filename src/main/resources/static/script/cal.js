@@ -164,7 +164,8 @@ function calculateCalories() {
     document.getElementById("recCalories").value = baseCalories.toFixed(2); // 소수점 2자리까지 표시
 }
 
-async function generateMenuInfo(menu, index) {
+
+function generateMenuInfo(menu, index) {
     var menuInfoHtml = "";
 
     for (var i = 1; i <= 5; i++) {
@@ -175,48 +176,21 @@ async function generateMenuInfo(menu, index) {
         var foodProtein = menu['food' + i + 'Protein'];
         var foodFat = menu['food' + i + 'Fat'];
 
-        var foodImg = "";
-        if (foodName) {
-            foodImg = await fetchFoodImage(foodName); // 이미지 가져오기
-        }
 
-        console.log(foodName);
-
-        menuInfoHtml += `<div class="menu-item">
-            <div class="food-info">
-                <img src="${foodImg}" alt="${foodName}" class="food-img">
-                <div class="food-details">
-                    <span class="food-name">${foodName} (${foodWeight}g)</span>
-                    <button class="toggle-btn">Nutrition</button>
-                    <div class="nutritional-info hidden">
-                        칼로리: ${foodKcal}Kcal <br>
-                        탄수화물: ${foodCarb}g <br>
-                        단백질: ${foodProtein}g <br>
-                        지방: ${foodFat}g <br>
-                    </div>
-                </div>
-            </div>
-        </div>`;
+        menuInfoHtml += `${foodName} (${foodWeight}g)  ` +
+            `<button class='toggle-btn'>Nutrition</button>` +
+            `<img src="/food/image/${foodName}" alt="" style="width: 200px">`+
+            `<div class='nutritional-info hidden'>` +
+            `칼로리: ${foodKcal}Kcal <br>` +
+            `탄수화물: ${foodCarb}g <br>` +
+            `단백질: ${foodProtein}g <br>` +
+            `지방: ${foodFat}g <br>` +
+            `</div>`;
     }
 
     return menuInfoHtml;
 }
 
-async function fetchFoodImage(foodId) {
-    try {
-        var response = await fetch(`/food/image/${foodId}`);
-        if (response.ok) {
-            var blob = await response.blob();
-            var imageUrl = URL.createObjectURL(blob);
-            return imageUrl;
-        } else {
-            return "";
-        }
-    } catch (error) {
-        console.error("Error fetching food image:", error);
-        return "";
-    }
-}
 
 function fetchAndDisplayMenu(selectedNational) {
     var userRecCalories = parseInt($('#recCalories').val());
@@ -289,7 +263,6 @@ function fetchAndDisplayMenu(selectedNational) {
                 nutritionalInfo.classList.toggle('hidden'); // Toggle the 'hidden' class
             });
         });
-
     });
 }
 
@@ -481,11 +454,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         text: '최대 3개까지 선택할 수 있습니다.',
                         icon: 'warning'
                     });
-                }
-                if (selectedMenus.length > 2) {
-                    selectedMenus.forEach(function (item) {
-                        generatedMenus.appendChild(item);
-                    });
+                    return; // 드래그 앤 드롭 불가 조건이 충족되면 함수 종료
                 }
                 return; // 드래그 앤 드롭 불가 조건이 충족되면 함수 종료
             }
@@ -508,7 +477,24 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log("Total Calories:", totalCalories); // Output
         console.log("Total userRecCalories:", userRecCalories); // Output
 
+        // #selectedMenus에 있는 항목이 3개를 넘어갈 때 알림 띄우기
+        if (selectedMenus.length > 3) {
+            Swal.fire({
+                title: '식단 항목이 3개를 초과했습니다.',
+                text : '최대 3개까지 선택할 수 있습니다.',
+                icon : 'warning'
+            });
+            return; // 항목이 3개를 초과할 경우 함수 종료
+        }
 
+
+        // else if (selectedMenus.length === 3) {
+        //     Swal.fire({
+        //         title: '식단 선택을 완료하였습니다.',
+        //         text : '최대 3개까지 선택할 수 있습니다.',
+        //         icon : 'success'
+        //     });
+        // }
         if (totalCalories > userRecCalories) {
             Swal.fire({
                 title: '선택한 식단의 칼로리 합이 권장 칼로리를 초과합니다.',

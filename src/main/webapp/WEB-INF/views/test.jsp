@@ -9,7 +9,7 @@
 <body>
 
 <img src="data:image/jpeg;base64,${foodImageBase64}" alt="Food Image">
-
+<span id="a">ql</span>
 
 </body>
 <c:import url="footer.jsp"/>
