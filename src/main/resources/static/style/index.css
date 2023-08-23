@@ -336,3 +336,7 @@ body{
 .next_button, .submit_button {
     margin-top: 10px;
 }
+
+.login_txt{
+    font-size: 1.2rem;
+}

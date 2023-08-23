@@ -140,5 +140,10 @@ public class MainController {
     @GetMapping(value = "makers")
     public String makers() {return "makers";}
 
+    @GetMapping(value = "test")
+    public String test() {return "test";}
+
+
+
 
 }

@@ -44,6 +44,10 @@ public class Menu {
     @Column(name = "main2")
     private String main2;
 
+    @Lob
+    @Column(name = "food_img")
+    private byte[] foodImg; // 이미지를 바이트 배열로 저장
+
     @Transient // DB와 연결되지 않는 필드를 나타냄
     private int food1Weight;
 
@@ -234,4 +238,7 @@ public class Menu {
         this.food5Fat = food5Fat;
     }
 
+    public void setFoodImg(byte[] foodImg) {
+        this.foodImg = foodImg;
+    }
 }

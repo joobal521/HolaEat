@@ -24,12 +24,12 @@
             <%--            로그인 시 --%>
         <c:when test="${not empty log}">
 
-
+<div class="form_div">
             <form id="myform" action="/saveCalories" method="POST">
                 <h2>내 하루 권장 칼로리는?</h2>
                 <ul id="formSteps">
                     <li class="step" data-step="1">
-                        <h2>성별</h2>
+                        <h3>성별을 선택하세요</h3>
                         <label>
                             <input type="radio" id="male" name="gender"
                                    value="male" ${userResponseDto.userGender eq 'male' ? 'checked' : ''}>
@@ -43,25 +43,28 @@
                         <input type="button" class="button" id="nextBtn" value="다음">
                     </li>
                     <li class="step" data-step="2">
-                        <h2>나이</h2>
+                        <h3>나이를 입력하세요</h3>
                         <input type="text" id="age" name="age" value="${userResponseDto.userAge}">
                         <span>세</span>
+                        <input type="button" class="button backBtn" value="이전">
                         <input type="button" class="button" id="nextBtn" value="다음">
                     </li>
                     <li class="step" data-step="3">
-                        <h2>키</h2>
+                        <h3>키(cm)를 입력하세요</h3>
                         <input type="text" id="height" name="height" value="${userResponseDto.userHeight}">
                         <span>cm</span>
+                        <input type="button" class="button backBtn" value="이전">
                         <input type="button" class="button" id="nextBtn" value="다음">
                     </li>
                     <li class="step" data-step="4">
-                        <h2>몸무게</h2>
+                        <h3>몸무게(kg)를 입력하세요</h3>
                         <input type="text" id="weight" name="weight" value="${userResponseDto.userWeight}">
                         <span>kg</span>
+                        <input type="button" class="button backBtn" value="이전">
                         <input type="button" class="button" id="nextBtn" value="다음">
                     </li>
                     <li class="step" data-step="5">
-                        <h2>알레르기</h2>
+                        <h3>거의 다 왔습니다!<br>알레르기가 있으신가요?</h3>
                         <select name="allergy" id="allergy">
                             <option value="0">없음</option>
                             <option value="1" ${userResponseDto.userAllergy eq '1' ? 'selected' : ''}>유제품</option>
@@ -69,10 +72,11 @@
                             <option value="3" ${userResponseDto.userAllergy eq '3' ? 'selected' : ''}>과일류</option>
                             <option value="4" ${userResponseDto.userAllergy eq '4' ? 'selected' : ''}>견과류</option>
                         </select>
+                        <input type="button" class="button backBtn" value="이전">
                         <input type="button" class="button" id="nextBtn" value="다음">
                     </li>
                     <li class="step" data-step="6">
-                        <h2>식단종류</h2>
+                        <h3>드시고 싶은 식단의 종류를</br>선택하세요</h3>
                         <select name="menu_type" id="menu_type">
                             <option value="1">일반균형식</option>
                             <option value="2">체중조절식</option>
@@ -83,6 +87,7 @@
                     <li class="step" data-step="7">
                         <h2>필요 열량</h2>
                         <p>당신이 하루에 필요한 열량은, <span id="recCaloriesValue" >${userResponseDto.userRecCalories}</span>kcal입니다.</p>
+                        <p>${userResponseDto.userName}님에게 맞는 식단을 찾으러 가볼까요?</p>
                         <input type="button" class="button" id="idx_save_btn" name="idx_save_btn" value="내 칼로리 정보 저장">
                         <p>
                             <a href="menu" class="btn3">
@@ -93,7 +98,7 @@
                 </ul>
             </form>
 
-
+</div>
 <%--            맞춤식단 이동 --%>
             <div class="menu_btn">
 
@@ -252,7 +257,7 @@
                 <%--                인덱싱 끝--%>
 
         <div class="login_2">
-            <button><a href="login">로그인 후 맞춤식단 검색하기</a></button>
+            <button><a href="login" class="login_txt">로그인 후 맞춤식단</br>검색하기</a></button>
         </div>
             <%--        랜덤 룰렛 시작--%>
 <%--        <div class="roullet">--%>
@@ -269,6 +274,7 @@
 </body>
 <%--<script src="script/rotate.js"></script>--%>
 <script src="script/cal.js"></script>
+<script src="script/index.js"></script>
 
 <c:import url="footer.jsp"/>
 </html>
