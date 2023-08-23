@@ -17,9 +17,9 @@
 
 <body>
 <h1 class="admin-title">건강 정보 글 관리</h1>
-
+<button type="button" id="write-btn"> <a href="healthForm">글쓰기</a></button>
         <div class="admin-menu">
-            <button type="button" id="write-btn"> <a href="healthForm">글쓰기</a></button>
+
             <table>
                 <thead>
                 <tr>

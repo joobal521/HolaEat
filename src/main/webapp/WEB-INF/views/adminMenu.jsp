@@ -68,6 +68,13 @@
                 </tr>
             </c:forEach>
             </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="18" style="text-align: center;">
+                    <button id="loadMoreBtn" data-currentPage="${currentPage + 1}">더 보기</button>
+                </td>
+            </tr>
+            </tfoot>
         </table>
         <div class="admin-menu-add">
             <input type="button" id="addBtn" value="추가하기">

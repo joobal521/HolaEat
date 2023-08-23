@@ -39,6 +39,7 @@ public class FoodService {
 
 
 
+
     public String generateNewFoodId() {
         // 현재 데이터베이스에 저장되어 있는 모든 foodId를 가져옵니다.
         List<String> existingFoodIds = foodRepository.getAllFoodIds();
@@ -82,6 +83,10 @@ public class FoodService {
     public List<Food> getAllFood(){
         return foodRepository.findAll();
     }
+
+//    public List<Food> getFoodWithoutFoodImg() {
+//        return foodRepository.findFoodIdAndAllergyInfoAndBalancedAndFoodGroupAndFoodNameAndFoodNationalAndFoodWeightAndSideDishAndVeganAndWeightControlAndKcalAndCarbAndProteinAndFatAndSugarsAndNatrium();
+//    }
 
     public void deleteFoodByFoodId(String foodId){
         foodRepository.deleteById(foodId);

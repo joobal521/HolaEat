@@ -88,6 +88,7 @@ public class Food {
         this.natrium = natrium;
     }
 
+
     public Food(FoodRequestDto foodRequestDto){
         this.foodId = foodRequestDto.getFoodId();
         this.foodNational = foodRequestDto.getFoodNational();

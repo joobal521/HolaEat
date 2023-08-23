@@ -5,31 +5,65 @@
     <link rel="stylesheet" href="style/ingredients.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/Chart.min.js"></script>
     <style>
+        /*.food-wrap {*/
+        /*    display: flex;*/
+        /*}*/
+        /*.food-img-container {*/
+        /*    flex: 1;*/
+        /*    display: flex;*/
+        /*    justify-content: center;*/
+        /*    align-items: center;*/
+        /*    overflow: hidden;*/
+        /*    width: 400px;*/
+        /*    height: 400px;*/
+        /*    border-radius: 50%;*/
+        /*}*/
+        /*.food-info-container {*/
+        /*    flex: 1;*/
+        /*    background: #b9b9b9;*/
+        /*}*/
+        /*.food-img-container img {*/
+        /*    object-fit: cover;*/
+        /*    scale:50%;*/
+        /*}*/
+        /*.food-info-container {*/
+        /*    width: 400px;*/
+        /*    height: 300px;*/
+        /*    background: #b9b9b9;*/
+        /*}*/
         .food-wrap {
             display: flex;
         }
+
         .food-img-container {
             flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
+            position: relative;
             width: 400px;
-            height: 400px;
+            max-width: 100%; /* 이미지가 컨테이너보다 작을 때도 화면 너비에 맞춤 */
+            overflow: hidden;
             border-radius: 50%;
+        }
+
+        .food-img-container::before {
+            content: "";
+            display: block;
+            padding-top: 100%; /* 1:1 비율을 유지하려면 100%로 설정 */
+        }
+
+        .food-img-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
         .food-info-container {
             flex: 1;
             background: #b9b9b9;
-        }
-        .food-img-container img {
-            object-fit: cover;
-            scale:50%;
-        }
-        .food-info-container {
-            width: 400px;
-            height: 300px;
-            background: #b9b9b9;
+            height: 90%;
+            margin: auto;
+            border-radius: 5px;
         }
     </style>
 </head>

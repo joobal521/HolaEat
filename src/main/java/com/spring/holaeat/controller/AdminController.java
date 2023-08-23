@@ -103,9 +103,11 @@ public String gainPower(@RequestParam("adminid") String id, @RequestParam("admin
     @GetMapping("adminMenu")
     public String getAllMenu(Model model){
             List<Food> list = foodService.getAllFood();
+//            List<Food> list = foodService.getFoodWithoutFoodImg();
             model.addAttribute("foodList",list);
         return "adminMenu";
     }
+
 
     //음식 추가
     @PostMapping(value="adminMenu/create",consumes = "multipart/form-data")
@@ -174,7 +176,7 @@ public String gainPower(@RequestParam("adminid") String id, @RequestParam("admin
         int reviewsPerPage = 10;
         List<Review> reviewList = reviewService.getReviewsByPage(page, reviewsPerPage);
         model.addAttribute("reviewList", reviewList);
-        return "adminReview"; // Return a partial view
+        return "adminReview";
     }
 
 
