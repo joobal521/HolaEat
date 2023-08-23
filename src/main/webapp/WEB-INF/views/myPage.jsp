@@ -27,7 +27,7 @@
                 <a href="update" class="menu-link">회원 정보 수정</a>
             </li>
             <li>
-                <a href="" class="menu-link">나의 식단 보기</a>
+                <a href="myMenu" class="menu-link">나의 식단 보기</a>
             </li>
             <li>
                 <a href="leave" class="menu-link">회원 탈퇴</a>

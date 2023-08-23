@@ -539,3 +539,54 @@ $('#reset_btn').click(function () {
     // 칼로리 계산 함수 호출
     calculateTotalCalories();
 });
+
+// "식단 저장" 버튼을 클릭했을 때 실행되는 함수
+function saveSelectedMenus() {
+    // 선택한 메뉴 정보를 추출
+    const userId = getUserId(); // 사용자 ID를 어떻게 가져올지에 따라 수정 필요
+    const selectedMenuNos = getSelectedMenuNos(); // 선택한 메뉴 번호들을 어떻게 가져올지에 따라 수정 필요
+
+    // UserMenuRequestDto 객체 생성
+    const userMenuRequestDto = {
+        userId: userId,
+        selectedMenuNos: selectedMenuNos
+    };
+
+    // 서버로 POST 요청을 보냄
+    fetch('/menus/saveSelectedMenus', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(userMenuRequestDto)
+    })
+        .then(response => {
+            if (response.ok) {
+                return response.text();
+            } else {
+                throw new Error('Error saving selected menus.');
+            }
+        })
+        .then(responseText => {
+            // 서버 응답에 대한 처리 (예: 알림 메시지 표시)
+            console.log(responseText); // 성공 메시지 출력
+        })
+        .catch(error => {
+            console.error(error);
+            // 에러 처리 (예: 알림 메시지 표시)
+        });
+}
+
+// 사용자 ID를 가져오는 함수
+function getUserId() {
+    // 예: const userId = document.getElementById('user_id').value;
+
+    return 'xodn'; // 실제 구현에 맞게 수정
+}
+
+// 선택한 메뉴 번호들을 가져오는 함수
+function getSelectedMenuNos() {
+    // 선택한 메뉴 번호들을 어떻게 가져올지에 따라 구현 필요
+    // 예: const selectedMenuNos = [1, 2, 3]; // 선택한 메뉴 번호 배열
+    return [2, 3, 4]; // 실제 구현에 맞게 수정
+}

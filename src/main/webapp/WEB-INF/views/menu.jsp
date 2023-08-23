@@ -179,7 +179,7 @@
                         <option class="salad" value="샐러드">샐러드</option>
                     </select>
                     <button id="reset_btn">모두 드래그 해제</button>
-
+                    <button id="menu_save_btn" onclick="saveSelectedMenus()">식단 저장</button>
                 </div>
             </div>
         </div>
