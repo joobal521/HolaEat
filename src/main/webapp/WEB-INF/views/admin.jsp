@@ -20,8 +20,9 @@
                     success: function(response) {
                         $(".section").html(response);
                     },
-                    error: function() {
-                        alert("Failed to load the page.");
+                    error: function(xhr, status, error) {
+                        var errorMessage = "Failed to load the page: " + error;
+                        $(".section").html(errorMessage);
                     }
                 });
             }
@@ -36,8 +37,6 @@
                     url: pageUrl,
                     success: function(response) {
                         $(".section").html(response); // .section에 응답 페이지 삽입
-                        // 브라우저 주소 표시줄 업데이트
-                        history.pushState(null, pageTitle, pageUrl);
                     },
                     error: function() {
                         alert("페이지 로드에 실패했습니다.");
@@ -85,9 +84,9 @@
             <li>
                 <a href="adminHealth" class="menu-link">건강 정보</a>
             </li>
-<%--            <li>--%>
-<%--                <a href="adminUser" class="menu-link">유저 관리</a>--%>
-<%--            </li>--%>
+            <%--            <li>--%>
+            <%--                <a href="adminUser" class="menu-link">유저 관리</a>--%>
+            <%--            </li>--%>
         </ul>
     </section>
     <section class="section">

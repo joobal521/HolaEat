@@ -37,4 +37,8 @@ public interface FoodRepository extends JpaRepository<Food,String> {
 
     Food findByFoodName(String foodName);
 
+
+//      List<Food> findFoodIdAndAllergyInfoAndBalancedAndFoodGroupAndFoodNameAndFoodNationalAndFoodWeightAndSideDishAndVeganAndWeightControlAndKcalAndCarbAndProteinAndFatAndSugarsAndNatrium();
+
+
 }

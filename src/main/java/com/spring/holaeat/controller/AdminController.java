@@ -88,7 +88,7 @@ public String gainPower(@RequestParam("adminid") String id, @RequestParam("admin
             ingredientsService.remainImg(ingredient,img);
         }
 
-        return "adminIngr";
+        return "admin";
     }
 
     //재료삭제
@@ -96,22 +96,24 @@ public String gainPower(@RequestParam("adminid") String id, @RequestParam("admin
     public String deleteIngrByID(@PathVariable int ingrId){
         ingredientsService.deleteIngredientsByIngrId(ingrId);
 
-        return "adminIngr";
+        return "admin";
     }
 
 //메뉴관리
     @GetMapping("adminMenu")
     public String getAllMenu(Model model){
             List<Food> list = foodService.getAllFood();
+//            List<Food> list = foodService.getFoodWithoutFoodImg();
             model.addAttribute("foodList",list);
         return "adminMenu";
     }
+
 
     //음식 추가
     @PostMapping(value="adminMenu/create",consumes = "multipart/form-data")
     public String addFood(@ModelAttribute FoodRequestDto foodRequestDto) {
         foodService.addFood(foodRequestDto);
-        return "adminIngr";
+        return "admin";
     }
 
 
@@ -158,7 +160,7 @@ public String gainPower(@RequestParam("adminid") String id, @RequestParam("admin
     public String deleteFood(@PathVariable String foodId){
         foodService.deleteFoodByFoodId(foodId);
 
-        return "adminMenu";
+        return "admin";
     }
 
     //후기게시판관리
@@ -174,7 +176,7 @@ public String gainPower(@RequestParam("adminid") String id, @RequestParam("admin
         int reviewsPerPage = 10;
         List<Review> reviewList = reviewService.getReviewsByPage(page, reviewsPerPage);
         model.addAttribute("reviewList", reviewList);
-        return "adminReview"; // Return a partial view
+        return "adminReview";
     }
 
 
@@ -186,7 +188,7 @@ public String gainPower(@RequestParam("adminid") String id, @RequestParam("admin
         reviewCommentService.deleteByReviewNo(reviewNo);
         reviewService.delete(reviewNo);
 
-        return "adminReview";
+        return "admin";
     }
 
 //

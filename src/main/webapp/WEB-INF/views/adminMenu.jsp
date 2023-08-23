@@ -1,13 +1,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <style>
+
 .hide-nutrition {
     display: none;
 }
 
 </style>
 <body>
-<div>
     <h1 class="admin-title">메뉴관리</h1>
     <button id="toggleNutrition" class="toggle-button">영양소 보기</button>
     <div class="admin-menu">
@@ -68,6 +68,13 @@
                 </tr>
             </c:forEach>
             </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="18" style="text-align: center;">
+                    <button id="loadMoreBtn" data-currentPage="${currentPage + 1}">더 보기</button>
+                </td>
+            </tr>
+            </tfoot>
         </table>
         <div class="admin-menu-add">
             <input type="button" id="addBtn" value="추가하기">
@@ -129,7 +136,6 @@
         </div>
 
     </div>
-</div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="script/adminMenu.js"></script>
 </body>
