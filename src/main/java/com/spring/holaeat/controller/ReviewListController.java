@@ -10,6 +10,7 @@ import com.spring.holaeat.domain.review_comment.ReviewComment;
 import com.spring.holaeat.domain.review_comment.ReviewCommentRepository;
 import com.spring.holaeat.domain.review_like.ReviewLike;
 import com.spring.holaeat.domain.review_like.ReviewLikeRepository;
+import com.spring.holaeat.service.ReviewLikeService;
 import com.spring.holaeat.service.ReviewService;
 import com.spring.holaeat.util.ImageParsor;
 import lombok.RequiredArgsConstructor;
@@ -38,7 +39,7 @@ public class ReviewListController {
     private final ReviewService reviewService;
     private final ReviewRepository reviewRepository;
     private final ReviewCommentRepository reviewCommentRepository;
-    private final ReviewLikeRepository reviewLikeRepository; // ReviewLikeRepository 주입
+    private final ReviewLikeService reviewLikeService; // ReviewLikeRepository 주입
 
 
 //    @GetMapping("/reviewlist")
@@ -97,15 +98,12 @@ public class ReviewListController {
 
 
         // 가져온 리뷰 목록에 대해 각 리뷰에 대한 좋아요 여부를 확인하고 모델에 추가
-        List<Boolean> likedList = new ArrayList<>();
+        List<ReviewLike> likedList = new ArrayList<>();
 
         for (Review review : reviewPage) {
 
-            boolean isLiked = reviewLikeRepository.existsByUserIdAndReviewNo(userId, review.getReviewNo());
+            ReviewLike isLiked =  reviewLikeService.checkReviewLike(userId, review.getReviewNo());
             likedList.add(isLiked);
-
-
-
 
             if (review.getImg() != null) {
                 String base64Image = ImageParsor.parseBlobToBase64(review.getImg());
