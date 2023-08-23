@@ -46,8 +46,8 @@ public class ProfileImgService {
     //프로필 수정
     @Transactional
     public void uploadProfileImage(ProfileImg profileImg, ProfileImgRequestDto profileImgDto) {
+
         profileImg.update(profileImgDto);
-        profileImgRepository.save(profileImg);
     }
 
 

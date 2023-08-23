@@ -16,9 +16,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.context.annotation.SessionScope;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Map;
 
@@ -38,38 +41,21 @@ public class ProfileImgController {
         this.profileImgRepository=profileImgRepository;
     }
 
-
-
-
-    @PutMapping(value = "/profile/{profileNo}", consumes = {"multipart/form-data"})
-    public Response uploadProfile(@PathVariable long profileNo,@ModelAttribute ProfileImgRequestDto profileImgDto,  WebRequest request) throws IOException {
-        String log = (String) request.getAttribute("log", WebRequest.SCOPE_SESSION);
-
-        if (log == null) {
-            return new Response("update", "로그인 상태에서만 가능합니다.");
-
-        }
-        System.out.println("아이디"+log);
+    @PostMapping(value = "/profile/{profileNo}", consumes = {"multipart/form-data"})
+    public Response uploadProfile(@PathVariable long profileNo, @ModelAttribute ProfileImgRequestDto profileImgDto, HttpSession session) throws IOException {
 
         ProfileImg profileImg=profileImgRepository.findById(profileNo).orElseThrow(
                 ()->new IllegalArgumentException("프로필 이미지가 존재하지 않습니다.")
-              );
+        );
 
-            if(!profileImg.getUserId().equals(log)){
-                return new Response("update", "회원이 아니에요.");
-
-            }
-
-            if (profileImgDto.getProfileImg() != null) {
-                profileImgService.uploadProfileImage(profileImg,profileImgDto);
-            } else {
-                System.out.println("null이면?");
-            }
-
-
+        if (profileImgDto.getProfileImg() != null) {
+            profileImgService.uploadProfileImage(profileImg, profileImgDto);
+            session.setAttribute("profileImg", profileImg.getProfileImg());
+        } else {
+            System.out.println("null이면?");
+        }
         return new Response("update","success");
     }
-
 }
 
 
