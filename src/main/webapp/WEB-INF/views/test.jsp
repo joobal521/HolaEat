@@ -8,9 +8,8 @@
 <c:import url="header.jsp"/>
 <body>
 
-<div th:if="${food}">
-  <img th:src="@{'data:image/jpeg;base64,' + ${#strings.encodeBase64(food.foodImg)}}" alt="Food Image">
-</div>
+<img src="data:image/jpeg;base64,${foodImageBase64}" alt="Food Image">
+<span id="a">ql</span>
 
 </body>
 <c:import url="footer.jsp"/>

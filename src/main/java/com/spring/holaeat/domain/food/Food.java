@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.Base64;
 
 @NoArgsConstructor
 @Getter
@@ -106,6 +107,5 @@ public class Food {
         this.sugars = foodRequestDto.getSugars();
         this.natrium = foodRequestDto.getNatrium();
     }
-
 
 }

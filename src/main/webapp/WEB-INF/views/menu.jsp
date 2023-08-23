@@ -169,7 +169,7 @@
                         <option value="연근">연근</option>
                     </select>
                 </div>
-                <input type="button" class="button" id="menu_btn" name="menu_btn" value="메뉴보기"
+                <input type="button" class="button" id="menu_btn" name="menu_btn" value="모든 메뉴보기"
                        onclick="fetchAndDisplayMenu()">
                 <li>
                     <h3 class="mini_h3">열량 계산 기준</h3>
@@ -178,17 +178,25 @@
                 </li>
             </div>
         </form>
-        <div class="image-with-content">
-            <img class="food_img" src="img/table.jpg" alt="식단 이미지">
-            <div class="content">
-            <div class="personal_menu">
-                <h2>${userResponseDto.userName}님만을 위한 맞춤식단이 여기 있습니다!</h2>
-                <div id="generatedMenus"></div>
-                <div id="total_calories"></div>
-            </div>
-            </div>
-        </div>
 
+        <h2>${userResponseDto.userName}님만을 위한 맞춤식단이 여기 있습니다!</h2>
+        <div class="personal_menu" style="display: flex">
+            <div id="generatedMenus" class="menu_list" style="width: 50%; height: 500px;">
+                <!-- 이 부분에 동적으로 생성되는 식단 목록이 들어갈 예정입니다. -->
+            </div>
+            <div id="selectedMenus" class="menu_list" style="width: 50%;height: 500px; overflow: scroll">
+                <!-- 드래그해서 이동한 식단 목록이 여기에 들어갈 예정입니다. -->
+<%--                <div class="image-with-content">--%>
+<%--                    <img class="food_img" src="img/table.jpg" alt="식단 이미지">--%>
+<%--                    <div class="content">--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+                <img id="foodImage" src="" alt="Food Image">
+
+            </div>
+
+        </div>
+    </div>
 </section>
 <script src="script/cal.js"></script>
 

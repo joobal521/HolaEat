@@ -53,6 +53,20 @@ public class FoodController {
         return "menu";
     }
 
+    @GetMapping("/food/image/{foodName}")
+    public ResponseEntity<byte[]> getFoodImage(@PathVariable String foodName) {
+        Food food = foodRepository.findByFoodName(foodName);
+
+        if (food != null && food.getFoodImg() != null) {
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.IMAGE_JPEG);
+            return new ResponseEntity<>(food.getFoodImg(), headers, HttpStatus.OK);
+        }
+
+        return ResponseEntity.notFound().build();
+    }
+
+
 //    @Autowired
 //    @GetMapping("/food/{foodId}")
 //    public String showFoodImage(@PathVariable String foodId, Model model) {
@@ -60,7 +74,7 @@ public class FoodController {
 //        model.addAttribute("foodImg", foodImg);
 //        return "foodImage"; // Thymeleaf template name
 //    }
-
+//
 
 
 
