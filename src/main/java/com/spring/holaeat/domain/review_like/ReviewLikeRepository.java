@@ -11,7 +11,8 @@ public interface ReviewLikeRepository extends JpaRepository<ReviewLike, Long> {
 
 
 
-    public List<ReviewLike> findByUserIdAndReviewNo(String userId, long reviewNo);
+//    public List<ReviewLike> findByUserIdAndReviewNo(String userId, long reviewNo);
+    public ReviewLike findByUserIdAndReviewNo(String userId, long reviewNo);
 
     //엔티티 삭제
     public void deleteByUserIdAndReviewNo(String userId, long reviewNo);
@@ -21,5 +22,8 @@ public interface ReviewLikeRepository extends JpaRepository<ReviewLike, Long> {
 
 //엔티티 추가
     ReviewLike save(ReviewLike reviewLike);
+
+
+    ReviewLike findByUserIdAndReviewNo(String userId, Long reviewNo);
 
 }

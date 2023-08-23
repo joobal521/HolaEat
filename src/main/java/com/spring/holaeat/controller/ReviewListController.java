@@ -9,6 +9,8 @@ import com.spring.holaeat.domain.review.ReviewResponseDto;
 import com.spring.holaeat.domain.review_comment.ReviewComment;
 import com.spring.holaeat.domain.review_comment.ReviewCommentRepository;
 import com.spring.holaeat.domain.review_like.ReviewLike;
+import com.spring.holaeat.domain.review_like.ReviewLikeRepository;
+import com.spring.holaeat.service.ReviewLikeService;
 import com.spring.holaeat.service.ReviewService;
 import com.spring.holaeat.util.ImageParsor;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +26,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.imageio.ImageIO;
+import javax.servlet.http.HttpSession;
 import java.beans.Transient;
 import java.util.*;
 
@@ -36,6 +39,7 @@ public class ReviewListController {
     private final ReviewService reviewService;
     private final ReviewRepository reviewRepository;
     private final ReviewCommentRepository reviewCommentRepository;
+    private final ReviewLikeService reviewLikeService; // ReviewLikeRepository 주입
 
 
 //    @GetMapping("/reviewlist")
@@ -62,7 +66,7 @@ public class ReviewListController {
     public String getBoardAll(@PathVariable int pageNumber,
                               @RequestParam(required = false, value = "keyword") String keyword,
                               @RequestParam(required = false, value = "searchType") String searchType,
-                              @PageableDefault(size = 8) Pageable pageable, Model model) {
+                              @PageableDefault(size = 8) Pageable pageable, Model model, HttpSession session) {
 
         Map<Long, String> imageMap = new HashMap<>();
         List<Review> reviewPage = null;
@@ -86,10 +90,21 @@ public class ReviewListController {
         }
 
 
+        String userId = (String) session.getAttribute("log");
+
 
         model.addAttribute("reviewlistPage", reviewPage); // reviewPage를 모델에 추가
 
+
+
+        // 가져온 리뷰 목록에 대해 각 리뷰에 대한 좋아요 여부를 확인하고 모델에 추가
+        List<ReviewLike> likedList = new ArrayList<>();
+
         for (Review review : reviewPage) {
+
+            ReviewLike isLiked =  reviewLikeService.checkReviewLike(userId, review.getReviewNo());
+            likedList.add(isLiked);
+
             if (review.getImg() != null) {
                 String base64Image = ImageParsor.parseBlobToBase64(review.getImg());
                 imageMap.put(review.getReviewNo(), base64Image);
@@ -107,6 +122,8 @@ public class ReviewListController {
         model.addAttribute("reviewlistPage", reviewPage);
         model.addAttribute("imageMapPage", imageMap);
 
+
+        model.addAttribute("likedList", likedList); // 리뷰에 대한 좋아요 여부 목록 추가
         return "reviewlistPage";
     }
 

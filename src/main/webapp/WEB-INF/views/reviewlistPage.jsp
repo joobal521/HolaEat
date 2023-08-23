@@ -12,7 +12,7 @@
     <title>reviewlist</title>
     <link rel="stylesheet" type="text/css" href="/style/review.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/5d67eb2efc.js" crossorigin="anonymous"></script>
     <style>
         .scroll {
@@ -48,7 +48,69 @@
             cursor: grab;
         }
 
+
+        /*하트*/
+
+        /*.heart {*/
+        /*    width: 15px;*/
+        /*    height: 15px;*/
+        /*    background: #ea2027;*/
+        /*    position: relative;*/
+        /*    transform: rotate(45deg);*/
+        /*    border: 1px solid black;*/
+        /*}*/
+        /*.heart::before,*/
+        /*.heart::after {*/
+        /*    content: "";*/
+        /*    width: 15px;*/
+        /*    height: 15px;*/
+        /*    position: absolute;*/
+        /*    border-radius: 50%;*/
+        /*    background: #ea2027;*/
+        /*    border: 1px solid black;*/
+        /*}*/
+        /*.heart::before {*/
+        /*    left: -50%;*/
+        /*}*/
+        /*.heart::after {*/
+        /*    top: -50%;*/
+        /*}*/
+
+
+        /*빈하트*/
+        /*.heart {*/
+        /*    width: 100px;*/
+        /*    height: 100px;*/
+        /*    position: relative;*/
+        /*    margin: 50px;*/
+        /*    background-color: transparent;*/
+        /*    transform: rotate(-45deg);*/
+        /*    border: 2px solid #f00;*/
+        /*}*/
+
+        /*.heart:before,*/
+        /*.heart:after {*/
+        /*    content: "";*/
+        /*    width: 100px;*/
+        /*    height: 100px;*/
+        /*    border-radius: 100px;*/
+        /*    position: absolute;*/
+        /*}*/
+
+        /*.heart:before {*/
+        /*    left: 0;*/
+        /*    top: 0;*/
+        /*    background-color: #f00;*/
+        /*}*/
+
+        /*.heart:after {*/
+        /*    left: 100px;*/
+        /*    top: 0;*/
+        /*    background-color: #f00;*/
+        /*}*/
+
     </style>
+
 
 </head>
 <c:import url="header.jsp"/>
@@ -116,13 +178,27 @@
 
                     <c:choose>
                         <c:when test="${not empty log}">
-                            <button class="likeUp-btn" data-id="${review.reviewNo}">
-                                <i class="fa-regular fa-heart"></i>
-                            </button>
+
+                                <c:set var="heart" value="0"></c:set>
+
+                                        <button class="likeUp-btn" data-id="${review.reviewNo}"
+                            <c:forEach items="${likedList}" var="like">
+                                <c:if test="${review.reviewNo == like.reviewNo}">
+                                    value="heart">
+                                </c:if>
+                            </c:forEach>
+                                        <span class="heart">풀하트</span>
+                                        </button>
+                                        ${heart=1}
+
+
+<%--                                <i class="fa-regular fa-heart"></i>--%>
+
                         </c:when>
                         <c:otherwise>
                             <button class="likeUp-logout" data-id="${review.reviewNo}"  >
-                                <i class="fa-regular fa-heart"></i>
+                                <div class="heart">로그아웃 하트</div>
+<%--                                <i class="fa-regular fa-heart"></i>--%>
                             </button>
                         </c:otherwise>
                     </c:choose>
@@ -200,64 +276,11 @@
 
 </body>
 <script src="script/review.js"></script>
-
-
-<script>
-    function scrollToTop() {
-        $("html, body").animate({
-            scrollTop: 0
-        }, "slow");
-    }
-
-    // function likeUp(buttonElement) {
-    //     const reviewNo = $(buttonElement).data("id");
-    //     console.log(reviewNo);
-    //     console.log("1");
-    // }
-    //
-    // $(".likeUp-btn").click(function () {
-    //     var reviewNo = $(this).data("id");
-    //
-    //     console.log(reviewNo);
-    //
-    //     // 좋아요 등록
-    //     $.ajax({
-    //         url: "/reviewlike/" + reviewNo,
-    //         method: "PUT",
-    //     })
-    //
-    // })
-
-    $(".likeUp-btn").click(function () {
-        var reviewNo = $(this).data("id");
-        var $heartIcon = $(this).find('i.fa-regular');
-
-        console.log(reviewNo + "js확인");
-
-        // 좋아요 등록 및 취소 처리
-        $.ajax({
-            url: "/reviewlike/" + reviewNo,
-            method: "PUT",
-            success: function (data) {
-                if (data.success) {
-                    // 아이콘 클래스 변경
-                    $heartIcon.toggleClass('fa-solid').toggleClass('fa-regular');
-                }
-            }
-        });
-    });
+<script src="script/reviewList.js"></script>
 
 
 
 
-
-    //로그아웃 상태에서 좋아요 버튼 눌렀을때
-    $(".likeUp-logout").click(function (){
-        alert("로그인 후 이용가능합니다.");
-    })
-
-
-</script>
 
 
 <c:import url="footer.jsp"/>

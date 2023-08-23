@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.WebRequest;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 
@@ -66,39 +67,38 @@ public class ReviewLikeController {
 //    }
 
 
-        @Transactional
         @PostMapping("/reviewlike/{reviewNo}")
         public ResponseEntity<String> likeReview(
-                @PathVariable long reviewNo,
-                @RequestParam String userId) {
+                @PathVariable long reviewNo, HttpSession session) {
 
+            String userId = (String) session.getAttribute("log");
             reviewLikeService.likeReview(userId, reviewNo);
+
+            System.out.println("컨트롤러 확인 PostMapping " + reviewNo);
+            System.out.println("컨트롤러 확인 PostMapping " + userId);
 
             return ResponseEntity.ok("Review liked successfully!");
         }
 
-
-
-
-
-        @Transactional
-        @PutMapping(value = "/reviewlike/{reviewNo}")
-        public void inputReviewLike(@PathVariable long reviewNo,WebRequest request) {
-            String log = (String) request.getAttribute("log", WebRequest.SCOPE_SESSION);
-
-            System.out.println("컨트롤러 확인 " + reviewNo);
-            System.out.println("컨트롤러 확인 " + log);
-
-            List<ReviewLike> list = reviewLikeService.checkReviewLike(log, reviewNo);
-
-            if(list!=null){
-                reviewService.likeInsert(reviewNo);
-                System.out.println(reviewNo + "- reviewNo(컨트롤러 insert)");
-                //reviewlike 테이블 삭제
-                reviewLikeRepository.deleteByUserIdAndReviewNo(log, reviewNo);
-            }
-
-        }
+//        @PutMapping(value = "/reviewlike/{reviewNo}")
+//        public void inputReviewLike(@PathVariable long reviewNo,WebRequest request) {
+//            String log = (String) request.getAttribute("log", WebRequest.SCOPE_SESSION);
+//
+//            System.out.println("컨트롤러 확인 PutMapping " + reviewNo);
+//            System.out.println("컨트롤러 확인  PutMapping" + log);
+//
+//            List<ReviewLike> list = reviewLikeService.checkReviewLike(log, reviewNo);
+//
+//            System.out.println("list");
+//
+//            if(list!=null){
+//                reviewService.likeInsert(reviewNo);
+//                System.out.println(reviewNo + "- reviewNo(컨트롤러 insert)");
+//                //reviewlike 테이블 삭제
+//                reviewLikeRepository.deleteByUserIdAndReviewNo(log, reviewNo);
+//            }
+//
+//        }
 
 
 
