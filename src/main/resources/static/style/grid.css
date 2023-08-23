@@ -31,6 +31,10 @@ html,body,header,footer{
 .nav{
     display: flex;
     justify-content: center;
+    position: sticky;
+    top: 0;
+    /*background-color: white; !* 배경색 설정 *!*/
+    z-index: 1; /* 위로 띄워서 다른 콘텐츠 위에 표시 */
 }
 
 .nav>ul{

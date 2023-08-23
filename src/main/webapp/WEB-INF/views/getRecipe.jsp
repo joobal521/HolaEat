@@ -9,19 +9,17 @@
             display: flex;
         }
         .food-img-container {
-            flex: 1; /* Take up 50% width */
+            flex: 1;
             display: flex;
             justify-content: center;
             align-items: center;
             overflow: hidden;
-        }
-        .food-img-container img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: cover;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
         }
         .food-info-container {
-            flex: 1; /* Take up 50% width */
+            flex: 1;
             background: #b9b9b9;
         }
         .food-img-container img {

@@ -88,7 +88,7 @@ public String gainPower(@RequestParam("adminid") String id, @RequestParam("admin
             ingredientsService.remainImg(ingredient,img);
         }
 
-        return "adminIngr";
+        return "admin";
     }
 
     //재료삭제
@@ -96,7 +96,7 @@ public String gainPower(@RequestParam("adminid") String id, @RequestParam("admin
     public String deleteIngrByID(@PathVariable int ingrId){
         ingredientsService.deleteIngredientsByIngrId(ingrId);
 
-        return "adminIngr";
+        return "admin";
     }
 
 //메뉴관리
@@ -111,7 +111,7 @@ public String gainPower(@RequestParam("adminid") String id, @RequestParam("admin
     @PostMapping(value="adminMenu/create",consumes = "multipart/form-data")
     public String addFood(@ModelAttribute FoodRequestDto foodRequestDto) {
         foodService.addFood(foodRequestDto);
-        return "adminIngr";
+        return "admin";
     }
 
 
@@ -158,7 +158,7 @@ public String gainPower(@RequestParam("adminid") String id, @RequestParam("admin
     public String deleteFood(@PathVariable String foodId){
         foodService.deleteFoodByFoodId(foodId);
 
-        return "adminMenu";
+        return "admin";
     }
 
     //후기게시판관리
@@ -186,7 +186,7 @@ public String gainPower(@RequestParam("adminid") String id, @RequestParam("admin
         reviewCommentService.deleteByReviewNo(reviewNo);
         reviewService.delete(reviewNo);
 
-        return "adminReview";
+        return "admin";
     }
 
 //
