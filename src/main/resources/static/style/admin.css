@@ -31,10 +31,19 @@
 
 .section {
     padding: 5px;
+    text-align: center;
 }
 
 .admin-ingrList tr , .admin-foodList tr {
     height: 40px;
+}
+
+#toggleNutrition, #write-btn{
+    position: absolute;
+    left: 20%;
+    margin: 20px;
+
+
 }
 
 .gainpower{
@@ -181,6 +190,13 @@ input[type="submit"] {
     padding: 5px 10px;
     border: none;
     cursor: pointer;
+}
+
+thead th {
+    position: sticky;
+    top: 0;
+    /*background-color: white; !* 배경색 설정 *!*/
+    z-index: 1; /* 위로 띄워서 다른 콘텐츠 위에 표시 */
 }
 
 

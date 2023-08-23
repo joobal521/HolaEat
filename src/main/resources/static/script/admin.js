@@ -8,8 +8,9 @@ $(document).ready(function() {//admin페이지 접속시 menu관리 자동로드
             success: function(response) {
                 $(".section").html(response);
             },
-            error: function() {
-                alert("Failed to load the page.");
+            error: function(xhr, status, error) {
+                var errorMessage = "Failed to load the page: " + error;
+                $(".section").html(errorMessage);
             }
         });
     }
@@ -24,8 +25,6 @@ $(document).ready(function() {//admin페이지 접속시 menu관리 자동로드
             url: pageUrl,
             success: function(response) {
                 $(".section").html(response); // .section에 응답 페이지 삽입
-                // 브라우저 주소 표시줄 업데이트
-                history.pushState(null, pageTitle, pageUrl);
             },
             error: function() {
                 alert("페이지 로드에 실패했습니다.");
@@ -83,7 +82,6 @@ $(document).ready(function() {
             url: pageUrl,
             success: function(response) {
                 $(".section").html(response);
-                history.pushState(null, pageTitle, pageUrl);
             },
             error: function() {
                 alert("페이지 로드에 실패했습니다.");

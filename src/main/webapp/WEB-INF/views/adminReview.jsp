@@ -28,7 +28,6 @@
                         <td class="reviewUserId">${review.userId}</td>
                         <td class="reviewContent">${review.content}</td>
                             <%--                    <td class="reviewContent">${review.reviewLike}</td>--%>
-
                         <td>
                             <button class="removeBtn" data-id="${review.reviewNo}">삭제하기</button>
                         </td>
