@@ -28,6 +28,8 @@
     /* 폼 스타일링 */
     .update_container {
         margin: 10px;
+        display: flex;
+        justify-content: center;
 
     }
 
@@ -37,7 +39,7 @@
     }
 
     .input-box {
-    width: 70%;
+    width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;

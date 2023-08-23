@@ -88,14 +88,8 @@
     <c:url var="login" value="/login"></c:url>
     <c:redirect url="${login}"></c:redirect>
   </c:if>
-  <c:choose>
-    <c:when test="${empty profileImg}">
-      <img src="img/belle2.jpg" width="200px"><br/>
-    </c:when>
-    <c:otherwise>
-      <img src="data:image/png;base64,${ImageParsor.parseBlobToBase64(profileImg)}" style="max-width: 50%; height: auto;"> <br />
-    </c:otherwise>
-  </c:choose>
+<%--  <img src="${profileImgUrl}" class="card-img" alt="프로필 이미지"><br/>--%>
+<img src="data:image/png;base64,${ImageParsor.parseBlobToBase64(profileImg)}" style="max-width: 50%; height: auto;"> <br/>
   <form id="profileForm" enctype="multipart/form-data">
     <input type="file" name="userProfileImg" accept="image/png, image/jpg, image/jpeg, image.gif">
     <input type="hidden" name="userId" id="userId" value="${sessionScope.log}">
