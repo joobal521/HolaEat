@@ -41,10 +41,8 @@ public class ProfileImgController {
 
 
 
-
     @PutMapping(value = "/profile/{profileNo}", consumes = {"multipart/form-data"})
     public Response uploadProfile(@PathVariable long profileNo,@ModelAttribute ProfileImgRequestDto profileImgDto,  WebRequest request) throws IOException {
-        JSONObject response = new JSONObject();
         String log = (String) request.getAttribute("log", WebRequest.SCOPE_SESSION);
 
         if (log == null) {

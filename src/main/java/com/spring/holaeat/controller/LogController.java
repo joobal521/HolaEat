@@ -54,6 +54,7 @@ public class LogController {
             ProfileImg profileImg = profileImgRepository.findByUserId(userId);
             if (profileImg != null) {
                 session.setAttribute("profileImg", profileImg.getProfileImg());
+                session.setAttribute("profileNo",profileImg.getProfileNo());
                 System.out.println(profileImg);
             }
 

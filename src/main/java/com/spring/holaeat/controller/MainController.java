@@ -67,21 +67,14 @@ public class MainController {
 
 //    @GetMapping(value = "/myInfo")
 //    public String myInfo(@RequestParam(name = "profileNo", required = false) Long profileNo, Model model) {
-//        if (profileNo == null) {
-//            // 파라미터 값이 없는 경우 처리
-//            // 예: 오류 메시지를 보여주거나, 다른 페이지로 이동
-//            return "errorPage"; // 적절한 오류 페이지로 변경
-//        }
-//        Optional<ProfileImg> profileImgOptional = profileImgRepository.findById(profileNo);
+//        Optional<ProfileImg> profileImg = profileImgRepository.findById(profileNo);
 //
-//        if (!profileImgOptional.isPresent()) {
-//            // 해당 프로필 이미지를 찾지 못한 경우 처리
-//            // 예: 오류 메시지를 보여주거나, 다른 페이지로 이동
-//            return "errorPage"; // 적절한 오류 페이지로 변경
+//        if (profileImg == null) {
+//            return "mypage";
+//
 //        }
 //
-//        ProfileImg profileImg = profileImgOptional.get();
-//        model.addAttribute("profile", profileImg);
+//        model.addAttribute("profile", profileImg.get());
 //        return "myInfo";
 //    }
 

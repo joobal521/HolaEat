@@ -1,21 +1,24 @@
-$(document).ready(function() {//admin페이지 접속시 menu관리 자동로드
-    function loadContent() {
+$(document).ready(function() {
+    // 현재 활성화된 메뉴 버튼의 jQuery 객체를 저장하는 변수
+    let activeMenu = null;
 
-        $("li:nth-child(1) a.menu-link").addClass("active");
-
-        $.ajax({
-            url: "myInfo",
-            success: function(response) {
-                $(".section").html(response);
-            },
-            error: function() {
-                alert("Failed to load the page.");
-            }
-        });
-    }
-
+    // 메뉴 버튼 클릭 이벤트 핸들러
     $("a.menu-link").click(function(event) {
         event.preventDefault(); // 기본 링크 동작 방지
+
+        // 이미 활성화된 메뉴를 클릭한 경우, 아무런 동작하지 않음
+        if (activeMenu === this) {
+            return;
+        }
+
+        // 현재 활성화된 메뉴 버튼 비활성화
+        if (activeMenu) {
+            $(activeMenu).removeClass("active");
+        }
+
+        // 클릭한 메뉴 버튼 활성화
+        $(this).addClass("active");
+        activeMenu = this;
 
         var pageUrl = $(this).attr("href"); // 클릭한 링크의 URL
         var pageTitle = $(this).text(); // 클릭한 링크의 텍스트를 페이지 제목으로 사용
@@ -79,37 +82,4 @@ $(document).ready(function() {
 });
 
 
-//프로필 이미지 수정
-function updateImg(htmlForm, profileNo) {
-    const profileImg = htmlForm.userProfileImg.files[0];
-    const userId = htmlForm.userId.value;
 
-    const form = new FormData();
-    form.append("profileImg", profileImg);
-    form.append("userId", userId); // userId 추가
-
-    var settings = {
-        "url": "api/v1/my/profile/" + profileNo,
-        "method": "PUT",
-        "timeout": 0,
-        "processData": false,
-        "mimeType": "multipart/form-data",
-        "contentType": false,
-        "data": form,
-    };
-
-    $.ajax(settings)
-        .done(function (response) {
-            console.log(response);
-            alert("프로필 수정 성공.");
-            const newProfileImgUrl = URL.createObjectURL(profileImg);
-
-            const profileImgElement = document.querySelector(".card img");
-            profileImgElement.src = newProfileImgUrl;
-            localStorage.setItem("profileImgUrl", newProfileImgUrl);
-        })
-        .fail(function (jqXHR, textStatus, errorThrown) {
-            console.error(jqXHR.responseText);
-            alert("프로필 수정 실패.");
-        });
-}
