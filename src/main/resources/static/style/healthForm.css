@@ -1,0 +1,64 @@
+.health-box{
+    width: 70%;
+    padding: 20px;
+    text-align: center;
+    margin: 0 auto;
+}
+.health-title {
+    margin: 5px auto;
+    font-size: 30px;
+    padding: 10px;
+}
+.health-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.health-table td {
+    padding: 10px;
+    border: 1px solid rgb(160, 156, 156);
+    text-align: center;
+}
+
+.health-table tr:first-child{
+    border-top:1px solid rgb(160, 156, 156);
+}
+.health-table label {
+    font-weight: bold;
+}
+.health-table textarea {
+    width: 100%;
+    height: 500px;
+    resize: none;
+    padding: 5px;
+}
+.health-table input[type="text"] {
+    width: 100%;
+    padding: 5px;
+    height: 40px;
+}
+
+/*이미지*/
+.write_select_img {
+    margin-top: 10px;
+}
+
+.write_select_img #img {
+    max-width: 100%;
+    max-height: 200px;
+    display: block;
+    margin: 10px auto;
+}
+.health-write-btn button {
+    background-color:  #265037;
+    color: #DCE4CF;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.health-write-btn button:hover {
+    background-color: #4e9666;
+}

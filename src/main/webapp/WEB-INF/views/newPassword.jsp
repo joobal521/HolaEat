@@ -10,80 +10,9 @@
 <html>
 <head>
     <title>new password</title>
+    <link rel="stylesheet" type="text/css" href="/style/newPwd.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-
-<style>
-    #find-section {
-        text-align: center;
-        margin-top: 50px;
-    }
-
-    .text_box {
-        margin-bottom: 20px;
-    }
-
-    .find_text {
-        font-size: 24px;
-    }
-
-
-    .pwd_box {
-        background-color: #fff;
-        border: 1px solid #ccc;
-        padding: 20px;
-        margin: 0 auto;
-        max-width: 400px;
-        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    }
-
-    .input-container {
-        margin-bottom: 15px;
-    }
-
-    .form-title {
-        font-size: 16px;
-        margin-bottom: 5px;
-    }
-
-    .input-box {
-        width: 100%;
-        padding: 8px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-    }
-
-    .save-btn {
-        padding: 10px 40px;
-        background-color: #265037;
-        color:#DCE4CF;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        margin-top: 30px;
-    }
-    .save-btn:hover{
-        background-color: aliceblue;
-        color: #1e6b7b;
-    }
-
-    .btn_box {
-        text-align: center;
-        margin-top: 20px;
-    }
-
-    /* 경고 메시지 및 오류 스타일 */
-    .error {
-        color: #ff0000;
-        font-size: 12px;
-        display: none;
-    }
-
-    .err {
-        font-size: 12px;
-        margin-left: 5px;
-    }
-</style>
 
 </head>
 <c:import url="header.jsp"/>

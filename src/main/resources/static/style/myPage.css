@@ -23,7 +23,30 @@
 }
 
 
+.menu-link {
+    display: block;
+    text-decoration: none;
+    color: #333;
+}
+
+.menu-link:hover {
+    color: #e74c3c;
+}
+
+.section {
+    flex: 3;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+
 /*회원 탈퇴*/
+body {
+    margin: 0;
+    padding: 0;
+}
+
 
 .form_wrap {
     max-width: 600px;
@@ -38,11 +61,14 @@
 }
 .leave_text{
    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
 }
 
 .leave-form{
     display: flex;
     justify-content: center;
+    padding: 20px;
 }
 .input-leave {
     width: 100%;
