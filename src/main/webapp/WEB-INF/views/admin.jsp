@@ -1,14 +1,31 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<% response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); %>
+<% response.setHeader("Pragma", "no-cache"); %>
+<% response.setDateHeader("Expires", 0); %>
 
 <html>
 <head>
     <title>ADMIN</title>
     <c:set var="path" value="${pageContext.request.contextPath}"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-
     <script>
-        $(document).ready(function() {
+        $(document).ready(function() {//admin페이지 접속시 menu관리 자동로드
+            function loadContent() {
+
+                $("li:nth-child(1) a.menu-link").addClass("active");
+
+                $.ajax({
+                    url: "adminMenu",
+                    success: function(response) {
+                        $(".section").html(response);
+                    },
+                    error: function() {
+                        alert("Failed to load the page.");
+                    }
+                });
+            }
+
             $("a.menu-link").click(function(event) {
                 event.preventDefault(); // 기본 링크 동작 방지
 
@@ -27,16 +44,21 @@
                     }
                 });
             });
-        });
 
-        // 브라우저 뒤로가기/앞으로 가기 시 이벤트 처리
-        window.onpopstate = function(event) {
-            if (event.state) {
-                $(".section").html(event.state.content);
-                document.title = event.state.pageTitle;
-            }
-        };
+            var initialPageUrl = window.location.pathname;
+            loadContent(initialPageUrl);
+
+            window.onpopstate = function(event) {
+                if (event.state) {
+                    $(".section").html(event.state.content);
+                    document.title = event.state.pageTitle;
+                } else {
+                    loadContent(window.location.pathname);
+                }
+            };
+        });
     </script>
+
 
     <link rel="stylesheet" type="text/css" href="style/admin.css">
 </head>
@@ -73,6 +95,7 @@
     </section>
 </section>
 <script src="script/admin.js"></script>
+
 </body>
 <c:import url="footer.jsp"/>
 </html>

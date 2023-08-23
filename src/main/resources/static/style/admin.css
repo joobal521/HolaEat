@@ -3,6 +3,16 @@
     grid-template-columns: 20% 80%;
 }
 
+.admin-title {
+    display: inline-block;
+    width: 200px;
+    height: 60px;
+    line-height: 60px;
+    background: #1e6b7b;
+    color: white;
+    text-align: center;
+}
+
 .aside ul, .aside li, .aside a {
     display: inline-block;
     width: 100%;
@@ -19,7 +29,9 @@
     color: white;
 }
 
-
+.section {
+    padding: 5px;
+}
 
 .admin-ingrList tr , .admin-foodList tr {
     height: 40px;
@@ -88,6 +100,10 @@ button {
     padding: 5px 10px;
     border: none;
     cursor: pointer;
+}
+
+table td input {
+    max-width: 100px;
 }
 
 th button {
@@ -177,4 +193,3 @@ input[type="submit"] {
     }
 
 }
-

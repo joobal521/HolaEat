@@ -37,9 +37,10 @@ public class RecipeController {
     public String getRecipe(@PathVariable String foodId, Model model) {
         List<Recipe> recipe = recipeService.findStepsByFoodId(foodId);
         model.addAttribute("recipe", recipe);
-        Map<Integer,String> imageMap = new HashMap<>();
+//        Map<String,String> imageMap = new HashMap<>();
 
         String foodImg = ImageParsor.parseBlobToBase64(foodService.getFoodImgByFoodId(foodId));
+//        imageMap.put(foodId,foodImg);
         model.addAttribute("foodImg",foodImg);
 
         Food food = foodService.findFoodByFoodId(foodId);

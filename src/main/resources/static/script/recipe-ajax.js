@@ -29,7 +29,7 @@ function loadRecipe(btn, modal) {
         type: "GET",
         dataType: "html",
         success: function (response) {
-            $recipeContent.innerHTML = response; // Add recipe information to the modal content
+            $recipeContent.innerHTML = response;
         }
     });
 }

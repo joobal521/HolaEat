@@ -14,8 +14,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -114,20 +116,41 @@ public String gainPower(@RequestParam("adminid") String id, @RequestParam("admin
 
 
     //음식수정
+//    @Transactional
+//    @PutMapping("adminMenu/{foodId}")
+//    public String updateFood(@PathVariable String foodId, @ModelAttribute FoodRequestDto foodRequestDto){
+//
+//        Food food = foodService.findFoodByFoodId(foodId);
+//        System.out.println(foodRequestDto.getFoodName());
+//        System.out.println(Arrays.toString(foodRequestDto.getFoodImg()));
+//
+//        foodService.update(food,foodRequestDto);
+//
+//        if(foodRequestDto.getFoodImg()==null){
+//            byte[] img = food.getFoodImg();
+//            foodService.remainImg(food,img);
+//        }
+//        return "admin";
+//    }
     @Transactional
     @PutMapping("adminMenu/{foodId}")
-    public String updateFood(@PathVariable String foodId, @ModelAttribute FoodRequestDto foodRequestDto){
-
+    public String updateFood(
+            @PathVariable String foodId,
+            @ModelAttribute FoodRequestDto foodRequestDto
+    ) {
         Food food = foodService.findFoodByFoodId(foodId);
-        System.out.println(foodRequestDto.getFoodName());
-        System.out.println(Arrays.toString(foodRequestDto.getFoodImg()));
 
-        foodService.update(food,foodRequestDto);
-
-        if(foodRequestDto.getFoodImg()==null){
-            byte[] img = food.getFoodImg();
-            foodService.remainImg(food,img);
+        if (foodRequestDto.getFoodImg() != null && !foodRequestDto.getFoodImg().isEmpty()) {
+            try {
+                byte[] imgBytes = foodRequestDto.getFoodImg().getBytes();
+                foodService.updateFoodWithImage(food, foodRequestDto, imgBytes);
+            } catch (IOException e) {
+                // Handle the exception appropriately
+            }
+        } else {
+            foodService.update(food, foodRequestDto);
         }
+
         return "admin";
     }
 
@@ -139,13 +162,24 @@ public String gainPower(@RequestParam("adminid") String id, @RequestParam("admin
     }
 
     //후기게시판관리
+//    @GetMapping("adminReview")
+//    public String getReview(Model model){
+//        List<Review> reviewList = reviewService.getAllReview();
+//        System.out.println(reviewList.get(0).getTitle());
+//        model.addAttribute("reviewList",reviewList);
+//        return "adminReview";
+//    }
     @GetMapping("adminReview")
-    public String getReview(Model model){
-        List<Review> reviewList = reviewService.getAllReview();
-        System.out.println(reviewList.get(0).getTitle());
-        model.addAttribute("reviewList",reviewList);
-        return "adminReview";
+    public String getReview(@RequestParam(name = "page", defaultValue = "0") int page, Model model) {
+        int reviewsPerPage = 10;
+        List<Review> reviewList = reviewService.getReviewsByPage(page, reviewsPerPage);
+        model.addAttribute("reviewList", reviewList);
+        return "adminReview"; // Return a partial view
     }
+
+
+
+
 
     @DeleteMapping("adminReview/delete/{reviewNo}")
     public String deleteReview(@PathVariable long reviewNo){

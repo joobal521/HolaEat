@@ -21,6 +21,14 @@ public class FoodService {
 
     public void update(Food food, FoodRequestDto foodRequestDto){
         food.update(foodRequestDto);
+
+        foodRepository.save(food);
+    }
+
+    public void updateFoodWithImage(Food food, FoodRequestDto foodRequestDto, byte[] imgBytes){
+        food.update(foodRequestDto);
+        food.remainImg(imgBytes);
+
         foodRepository.save(food);
     }
 
