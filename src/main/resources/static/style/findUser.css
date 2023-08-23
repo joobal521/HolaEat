@@ -3,6 +3,9 @@ body {
     padding: 0;
     background-color: #f4f4f4;
 }
+.find-title{
+    text-align: center;
+}
 
 .form_wrap {
     background-color: #fff;
@@ -101,6 +104,7 @@ body {
 }
 
 .go-login {
+    text-align: center;
     margin-top: 20px;
 }
 

@@ -11,68 +11,14 @@
 <head>
     <title>Title</title>
     <c:set var="path" value="${pageContext.request.contextPath}"/>
-    <link rel="stylesheet" type="text/css" href="style/form.css">
+    <link rel="stylesheet" type="text/css" href="style/login.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-   <style>
-    .form_wrap {
-        background-color: #fff;
-        border: 1px solid #ccc;
-        padding: 20px;
-        margin: 120px auto;
-        max-width: 400px;
-        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 
-    }
-
-    #form-login {
-
-    }
-
-    .form-title {
-    font-size: 16px;
-    margin-bottom: 10px;
-    }
-
-    .input-box{
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-bottom: 15px;
-    }
-
-    .btn_login{
-        display: flex;
-        justify-content: center;
-    }
-
-    .submit-btn {
-        background-color: #265037;
-        color:#DCE4CF;
-        border: none;
-        border-radius: 4px;
-    padding: 10px 30px;
-    cursor: pointer;
-    }
-
-    .find-btn {
-    margin-top: 20px;
-    }
-
-    .f-text {
-    color: #007bff;
-    text-decoration: none;
-    margin: 0 10px;
-    }
-
-    .f-text:hover {
-    text-decoration: underline;
-    }
-
-   </style>
 </head>
 <c:import url="header.jsp"/>
 <body>
+<div class="login_box">
+<h1 class="title">Login</h1>
     <div class="form_wrap">
         <form id="form-login" action="login" method="POST">
             <h2 class="form-title">아이디</h2>
@@ -90,6 +36,7 @@
             </p>
         </div>
     </div>
+</div>
     <script>
         function validateForm() {
             var userId = document.getElementById("id").value;

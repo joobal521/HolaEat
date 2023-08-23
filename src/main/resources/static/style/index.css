@@ -1,6 +1,6 @@
 .carousel-inner > .item > img,
 .carousel-inner > .item > a > img {
-    width: 50%;
+    width: 100%;
     margin: auto;
 }
 
@@ -10,6 +10,78 @@ div, h5, p, button, span {
 
 #carouselExampleCaptions {
     padding: 10% 20%;
+}
+
+/* Carousel Slide Caption Styling */
+.carousel-caption {
+    background-color: unset;
+    color: #ffffff;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem;
+    background-color: rgba(0, 0, 0, 0.5); /* Add a semi-transparent background */
+}
+
+.carousel-caption h5 {
+    font-size: 1.5rem;
+    margin: 0;
+    padding: 0;
+}
+
+.carousel-caption p {
+    font-size: 1rem;
+    margin: 0;
+    padding: 0;
+}
+
+/* Slide Box Styling */
+.slide_box {
+    margin-top: 20px; /* Adjust as needed */
+    width: 100%;
+}
+
+/* Carousel Control Button Styling */
+.carousel-control-prev,
+.carousel-control-next {
+    background-color: unset;
+    border: none;
+    font-size: 2rem;
+    color: #265037;
+    transition: color 0.3s ease-in-out;
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+    color: #1e6b7b;
+}
+
+/* Set the carousel height */
+.carousel-inner {
+    height: 50vh;
+    overflow: unset;
+}
+
+/* Responsive styling for carousel images */
+.carousel-inner > .carousel-item > img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Center text within carousel */
+.carousel-caption {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.slide_box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #roullet {
@@ -261,13 +333,10 @@ body{
 /*    vertical-align:middle;*/
 /*}*/
 
-.form_wrap{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
 
+/*맞춤 검색 고 버튼*/
 .login_2{
+    width: 50%;
     background-color: #265037;
     color:#fff;
     border:none;
@@ -279,6 +348,8 @@ body{
     transition:800ms ease all;
     outline:none;
     border-radius: 10px;
+    margin-top: 50px;
+    margin-bottom: 150px;
 }
 .login_2:hover{
     background:transparent;
@@ -484,4 +555,7 @@ body{
     margin-top: 100px;
     margin-bottom: 50px;
 }
+
+
+
 

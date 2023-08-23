@@ -20,8 +20,9 @@
 </head>
 <c:import url="header.jsp"/>
 <body>
+<h2 class="find-title">아이디 찾기</h2>
 <div class="form_wrap">
-    <h2 class="find-title">아이디 찾기</h2>
+
     <form id=find>
         <div class="id_box">
             <div class="input-name">
