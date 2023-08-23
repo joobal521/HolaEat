@@ -213,7 +213,7 @@ div.roullet::before {
     font-weight: 700;
     background-color: #ffffff;
     padding: 5px 10px;
-    color: #000000;
+    color: #9EB384;
 }
 .snip1445 a {
     position: absolute;
@@ -293,14 +293,14 @@ hover effect 37
     transition: transform .6s cubic-bezier(.08, .35, .13, 1.02), opacity
 }
 
-#myform{
-    border: 1px solid #ffb9b9;
-    border-radius: 10px;
-}
+/*#myform{*/
+/*    border: 1px solid #ffb9b9;*/
+/*    border-radius: 10px;*/
+/*}*/
 
-#myform, #myform>ul, #myform h2, #myform span, #myform li, #myform label, #myform div{
-    background-color: #ffb9b9;
-}
+/*#myform, #myform>ul, #myform h2, #myform span, #myform li, #myform label, #myform div{*/
+/*    background-color: #ffb9b9;*/
+/*}*/
 
 .menu_btn{
     border-radius: 10px;
@@ -435,9 +435,9 @@ body{
 .backBtn{
     padding: 5px 20px;
     border-radius: 4px;
-    border: 2px solid #265037;
+    border: 2px solid  #265037;
     background-color: white;
-    color: #265037;
+    color:  #265037;
     font-size: 1.2rem;
     cursor: pointer;
     margin-top: 20px;
@@ -450,23 +450,34 @@ body{
     background: aliceblue;
 }
 /* 입력 폼 스타일 */
+.form_div{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+
 #myform {
-    border: 1px solid #ffb9b9;
+    border: 1px solid  #FAF1E4;
     border-radius: 10px;
-    padding: 20px;
-    background-color: #ffb9b9;
+    padding: 50px 100px;
+    background-color: #FAF1E4;
 }
 
 /*input*/
 #myform input[type="text"],
 #myform select {
-    width: 30%;
+    width: 40%;
     padding: 5px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
     font-size: 16px;
+}
+#myform input[type="radio"]{
+  font-size: 1.2rem;
+
 }
 
 
@@ -475,8 +486,8 @@ body{
     text-align: center;
     text-decoration: none;
     background-color: #265037;
-    color:#DCE4CF;
-    border: 2px solid #DCE4CF;
+    color:white;
+    border: 2px solid #265037;
     font-size: 16px;
     display: inline-block;
     border-radius: 0.3em;
@@ -489,8 +500,8 @@ body{
 }
 
 .cal-btn:hover{
-    background-color: aliceblue;
-    color: #1e6b7b;
+    background-color:#F3FDE8;
+    color: #A8DF8E;
 
 }
 /*저장 버튼*/
@@ -498,8 +509,8 @@ body{
     text-align: center;
     text-decoration: none;
     background-color: #265037;
-    color:#DCE4CF;
-    border: 2px solid #DCE4CF;
+    color:white;
+    border: 2px solid #265037;
     font-size: 16px;
     display: inline-block;
     border-radius: 0.3em;
@@ -511,8 +522,8 @@ body{
 
 }
 .save-btn:hover{
-    background-color: aliceblue;
-    color: #1e6b7b;
+    background-color:#F3FDE8;
+    color: #A8DF8E;
 
 }
 
