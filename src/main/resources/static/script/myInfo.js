@@ -31,11 +31,26 @@ function updateImg(htmlForm,profileNo) {
             profileImgElement.src = newProfileImgUrl; // 수정된 부분
             // 수정된 이미지 URL을 localStorage에 저장합니다.
             localStorage.setItem("profileImgUrl", newProfileImgUrl);
-            alert("프로필 수정 성공.");
+            Swal.fire({
+                title: '프로필 수정 완료',
+                text: '새로운 프로필을 이용해 보세요.',
+                icon: 'success',
+                showConfirmButton: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+                }
+            });
+            //alert("프로필 수정 성공.");
         })
         .fail(function (jqXHR, textStatus, errorThrown) {
             console.error(jqXHR.responseText);
-            alert("프로필 수정 실패.");
+            Swal.fire({
+                title: '프로필 수정 실패',
+                text: '프로필 사진을 다시 바꿔주세요.',
+                icon: 'error',
+            });
+            //alert("프로필 수정 실패.");
         });
 }
 

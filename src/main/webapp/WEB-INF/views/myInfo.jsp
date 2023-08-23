@@ -11,73 +11,9 @@
 <html>
 <head>
     <title>myInfo</title>
+  <link rel="stylesheet" type="text/css" href="/style/myInfo.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-  <style>
-    /* 스타일 초기화 */
-    body, html {
-      margin: 0;
-      padding: 0;
-    }
-
-    /* 전체 컨테이너 스타일링 */
-    .container {
-      display: flex;
-      justify-content: center
-
-    }
-
-    /* 카드 스타일링 */
-    .card {
-      background-color: #fff;
-      border-radius: 10px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      padding: 20px;
-      text-align: center;
-      width: 300px;
-      margin-top: 30px;
-    }
-
-    /* 프로필 이미지 스타일링 */
-    .card img {
-      width: 200px;
-      height: auto;
-      border-radius: 10px;
-      margin-bottom: 10px;
-    }
-
-    /* 프로필 버튼 스타일링 */
-    .profile-btn {
-      background-color: #265037;
-      color:#DCE4CF;
-      border: none;
-      border-radius: 4px;
-      padding: 8px 16px;
-      cursor: pointer;
-      margin-top: 10px;
-      margin-bottom: 20px;
-    }
-
-    .profile-btn:hover {
-      background-color: aliceblue;
-      color: #1e6b7b;
-    }
-
-    /* 정보 목록 스타일링 */
-    .my-info ul {
-      list-style-type: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .my-info li {
-      margin-bottom: 10px;
-    }
-
-    .my-info span {
-      font-weight: bold;
-    }
-
-  </style>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
 <body>
 <div class="container">

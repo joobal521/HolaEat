@@ -7,51 +7,8 @@
     <link rel="stylesheet" type="text/css" href="style/myPage.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-        }
 
-        .wrap {
-            display: grid;
-            grid-template-columns: 20% 80%;
-        }
 
-        .aside ul, .aside li, .aside a {
-            display: inline-block;
-            width: 100%;
-        }
-        .aside a {
-            background: #f0f0f0;
-            height: 60px;
-            text-align: center;
-            line-height: 60px;
-        }
-        .aside a:hover{
-            color: #1e6b7b;
-        }
-
-        .aside a.active {
-            background: #265037;
-            color: white;
-        }
-
-        .menu-link {
-            display: block;
-            margin-bottom: 10px;
-            text-decoration: none;
-            color: #333;
-        }
-
-        .menu-link:hover {
-            color: #e74c3c;
-        }
-
-        .section {
-            flex: 3;
-            padding: 20px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
 
         /* Add your own custom styles here */
     </style>

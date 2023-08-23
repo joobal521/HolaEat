@@ -15,21 +15,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-        }
 
-
-        .leave_text {
-            font-size: 24px;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .leave-form {
-            padding: 20px;
-        }
 
 
 
