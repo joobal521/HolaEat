@@ -122,6 +122,107 @@ button:hover{
         }
     }
 }
+/*input*/
+.form_wrap input[type="text"],
+.form_wrap select {
+    width: 80%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.form_wrap select {
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("arrow-down.png");
+    background-size: 15px 15px;
+    background-repeat: no-repeat;
+    background-position: right center;
+    padding: 20px;
+}
+
+/*제목*/
+.title{
+    margin-top: 10px;
+    margin-bottom: 20px;
+
+}
+
+/*계산하기 버튼*/
+.cal-btn{
+    text-align: center;
+    text-decoration: none;
+    background-color: #265037;
+    color:#DCE4CF;
+    border: 2px solid #DCE4CF;
+    font-size: 16px;
+    display: inline-block;
+    border-radius: 0.3em;
+    transition: all 0.2s ease-in-out;
+    position: relative;
+    overflow: hidden;
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+
+}
+
+
+.cal-btn:hover{
+    background-color: aliceblue;
+    color: #1e6b7b;
+
+}
+
+/*저장 버튼*/
+.save-btn{
+    text-align: center;
+    text-decoration: none;
+    background-color: #265037;
+    color:#DCE4CF;
+    border: 2px solid #DCE4CF;
+    font-size: 16px;
+    display: inline-block;
+    border-radius: 0.3em;
+    transition: all 0.2s ease-in-out;
+    position: relative;
+    overflow: hidden;
+    padding: 10px;
+    margin-top: 10px;
+    cursor: pointer;
+
+}
+
+.save-btn:hover{
+    background-color: aliceblue;
+    color: #1e6b7b;
+
+}
+
+/*메뉴 버튼*/
+.menu-btn{
+    text-align: center;
+    text-decoration: none;
+    background-color: #265037;
+    color:#DCE4CF;
+    border: 2px solid #DCE4CF;
+    font-size: 16px;
+    display: inline-block;
+    border-radius: 0.3em;
+    transition: all 0.2s ease-in-out;
+    position: relative;
+    overflow: hidden;
+    padding: 10px;
+    margin-top: 10px;
+    cursor: pointer;
+
+}
+
+.menu-btn:hover{
+    background-color: aliceblue;
+    color: #1e6b7b;
+
+}
 
 .json_wrap>div{
     display: flex;
