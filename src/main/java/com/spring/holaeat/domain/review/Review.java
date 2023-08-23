@@ -2,8 +2,10 @@ package com.spring.holaeat.domain.review;
 
 import com.spring.holaeat.domain.review_comment.ReviewComment;
 import com.spring.holaeat.util.Timestamp;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
@@ -80,6 +82,13 @@ public class Review extends Timestamp {
             this.img = null;
         }
     }
+
+
+//
+//    // likedByCurrentUser 프로퍼티 추가
+//    @Getter
+//    @Setter(AccessLevel.NONE) // Setter를 생성하지 않도록 설정
+//    private boolean likedByCurrentUser;
 
 
 }

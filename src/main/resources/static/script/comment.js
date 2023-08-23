@@ -18,9 +18,32 @@ function addComment() {
         console.log(response);
 
         if (userId === "") {
-            alert('로그인 후 이용 가능합니다.');
+            // alert('로그인 후 이용 가능합니다.');
+            Swal.fire({
+                title: '로그인 후 이용 가능합니다.',
+                text: '로그인 페이지로 이동하시겠습니까?',
+                icon: 'warning',
+                showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
+                confirmButtonColor: '#265037', // confrim 버튼 색깔 지정
+                confirmButtonText: '확인', // confirm 버튼 텍스트 지정
+                cancelButtonText: '취소', // cancel 버튼 텍스트 지정
+            }).then((result) => {
+
+                if (result.isConfirmed) {
+                    location.href = "login";
+                }
+            });
+
         } else if (msgBoxValue.trim() === "") {
-            alert('댓글을 입력해주세요.');
+
+            // alert('댓글을 입력해주세요.');
+            Swal.fire({
+                title: '댓글을 입력해주세요.',
+                icon: 'success',
+                confirmButtonColor: '#265037', // confrim 버튼 색깔 지정
+
+            });
+
         } else {
             console.log("userId 출력확인1 : " + userId);
             loadComments(reviewNo);
@@ -141,24 +164,38 @@ $(document).ready(function () {
 // 댓글 삭제
 function deleteComment(commentId) {
     console.log("deleteComment() 호출됨, commentId:", commentId);
-    if (confirm('정말로 삭제하시겠습니까?')) {
-        $.ajax({
-            type: 'DELETE',
-            url: `/comment/${commentId}/delete`,
-            success: function (response) {
-                if (response.message === 'success') {
-                    const reviewNo = $('#reviewNo').val();
-                    loadComments(reviewNo);
+    // if (confirm('정말로 삭제하시겠습니까?')) {
+
+
+    Swal.fire({
+        title: '정말 삭제하시겠습니까?',
+        text: '댓글 삭제 후 복구 불가합니다.',
+        icon: 'warning',
+        showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
+        confirmButtonColor: '#265037', // confrim 버튼 색깔 지정
+        confirmButtonText: '확인', // confirm 버튼 텍스트 지정
+        cancelButtonText: '취소', // cancel 버튼 텍스트 지정
+    }).then((result) => {
+
+        if (result.isConfirmed) {
+            $.ajax({
+                type: 'DELETE',
+                url: `/comment/${commentId}/delete`,
+                success: function (response) {
+                    if (response.message === 'success') {
+                        const reviewNo = $('#reviewNo').val();
+                        loadComments(reviewNo);
+                    }
+                    // else {
+                    //     alert(response.message);
+                    // }
+                },
+                error: function (error) {
+                    console.error(error);
                 }
-                // else {
-                //     alert(response.message);
-                // }
-            },
-            error: function (error) {
-                console.error(error);
-            }
-        });
-    }
+            });
+        }
+    });
 }
 
 

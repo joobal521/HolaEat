@@ -78,7 +78,7 @@
 
 .review_title {
     height: 10%;
-    padding: 10px 0;
+    padding: 15px 0;
 }
 
  #review-container #review_title_check {
@@ -105,12 +105,12 @@
 }
 /*글쓰기버튼*/
 
-.list-write-btn {
+.list-write-btn{
     text-align: right;
     width: 90%;
 }
 
-.list-write-btn a {
+.list-write-btn a,.list-write-btn button  {
     display: inline-block;
     background-color: #265037;
     color:#DCE4CF;
@@ -119,11 +119,17 @@
     text-decoration: none;
     font-weight: bold;
     transition: background-color 0.3s ease;
+    width: 100px;
+    text-align: center;
+    font-size: 18px;
 }
 
-.list-write-btn a:hover {
+.list-write-btn a:hover,
+.list-write-btn button:hover
+{
     color: #1e6b7b;
     background: aliceblue;
+
 }
 
 /* 검색창 */
@@ -569,12 +575,12 @@ border: none;
 }
 
 /*좋아요 css*/
-.review_like i{
+.review_like i.fa-heart{
     font-size: 20px;
     text-align: center;
 }
 
-.review_like >button.likeUp-btn {
+button.likeUp-btn,button.likeUp-logout {
     text-align: center;
     margin: auto;
     border: none;}
