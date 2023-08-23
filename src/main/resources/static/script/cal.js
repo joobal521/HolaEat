@@ -8,9 +8,7 @@ $(document).ready(function () {
         // 두 값이 모두 "<option value="">없음</option>"이 아닐 때에만 비교
         if (preferValue !== "" && dislikeValue !== "" && preferValue === dislikeValue) {
             Swal.fire({
-                title: '선호하는 재료와 선호하지 않는 재료는 같을 수 없습니다.',
-                text : '다시 선택 해주세요.',
-                icon : 'error'
+                title: '선호하는 재료와 선호하지 않는 재료는 같을 수 없습니다.', text: '다시 선택 해주세요.', icon: 'error'
             });
             $(this).val(""); // 선택을 초기화
         } else {
@@ -25,20 +23,18 @@ $(document).ready(function () {
         // 칼로리 계산 값이 없을 경우 알림 띄우기
         if (isNaN(recCaloriesValue)) {
             Swal.fire({
-                title: '칼로리 계산 값을 입력해주세요.',
-                icon : 'error'
+                title: '칼로리 계산 값을 입력해주세요.', icon: 'error'
             });
             return; // 칼로리 값이 없으면 함수 종료
         }
 
         // 폼 데이터 수집
         var formData = {
-            gender : $('input[name="gender"]:checked').val(),
-            age    : $('#age').val(),
-            height : $('#height').val(),
-            weight : $('#weight').val(),
-            allergy: $('#allergy').val(),
-            // recCalories: $('#recCalories').val()
+            gender     : $('input[name="gender"]:checked').val(),
+            age        : $('#age').val(),
+            height     : $('#height').val(),
+            weight     : $('#weight').val(),
+            allergy    : $('#allergy').val(), // recCalories: $('#recCalories').val()
             recCalories: recCaloriesValue
 
 
@@ -65,9 +61,7 @@ $(document).ready(function () {
         // 칼로리 계산 값이 없거나 라디오 버튼이 체크되지 않았을 경우 알림 띄우기
         if (!genderChecked || formData.age === '' || formData.height === '' || formData.weight === '' || formData.allergy === '' || formData.recCalories === '') {
             Swal.fire({
-                title: '칼로리 정보가 입력되지 않았습니다.',
-                text : '칼로리를 먼저 계산해 주세요.',
-                icon : 'error'
+                title: '칼로리 정보가 입력되지 않았습니다.', text: '칼로리를 먼저 계산해 주세요.', icon: 'error'
             });
             return; // 하나라도 비어있으면 함수 종료
         }
@@ -90,21 +84,15 @@ $(document).ready(function () {
 // 저장 함수
 function saveFormData(formData) {
     $.ajax({
-        type   : "POST",
-        url    : "/saveDetails",
-        data   : formData,
-        success: function (data) {
+        type    : "POST", url: "/saveDetails", data: formData, success: function (data) {
             console.log("저장 성공:", data);
             updateFields(data);
             Swal.fire({
-                title: '저장 완료',
-                text : '저장에 성공했습니다!',
-                icon : 'success'
+                title: '저장 완료', text: '저장에 성공했습니다!', icon: 'success'
             });
             $(this).val(""); // 선택을 초기화
 
-        },
-        error  : function (error) {
+        }, error: function (error) {
             console.error("저장 에러:", error);
             console.log("gender:", formData.gender);
             console.log("age:", formData.age);
@@ -134,8 +122,7 @@ function calculateCalories() {
     // 칼로리 계산 값이 없을 경우 알림 띄우기
     if (gender === '' || isNaN(age) || isNaN(height) || isNaN(weight) || allergy === '' || menuType === '') {
         Swal.fire({
-            title: '필요한 값들을 모두 입력해주세요.',
-            icon : 'error'
+            title: '필요한 값들을 모두 입력해주세요.', icon: 'error'
         });
         return; // 하나라도 비어있으면 함수 종료
     }
@@ -164,7 +151,6 @@ function calculateCalories() {
     document.getElementById("recCalories").value = baseCalories.toFixed(2); // 소수점 2자리까지 표시
 }
 
-
 function generateMenuInfo(menu, index) {
     var menuInfoHtml = "";
 
@@ -175,17 +161,18 @@ function generateMenuInfo(menu, index) {
         var foodCarb = menu['food' + i + 'Carb'];
         var foodProtein = menu['food' + i + 'Protein'];
         var foodFat = menu['food' + i + 'Fat'];
+        var foodImage = `/food/image/${foodName}`; // 이미지 URL
 
-
-        menuInfoHtml += `${foodName} (${foodWeight}g)  ` +
-            `<button class='toggle-btn'>Nutrition</button>` +
-            `<img src="/food/image/${foodName}" alt="" style="width: 200px">`+
-            `<div class='nutritional-info hidden'>` +
-            `칼로리: ${foodKcal}Kcal <br>` +
-            `탄수화물: ${foodCarb}g <br>` +
-            `단백질: ${foodProtein}g <br>` +
-            `지방: ${foodFat}g <br>` +
-            `</div>`;
+        menuInfoHtml += `<div class='food-info'>` +
+            `<img src='${foodImage}' alt='Food Image' class='food-image' draggable="false" onclick='showNutritionalInfo(this)'/>`
+            + `${foodName} (${foodWeight}g) ` +
+            // `<div class='nutritional-info hidden'>` +
+            // `<button class='toggle-btn'>Close</button>` +
+            // `칼로리: ${foodKcal}Kcal <br>` +
+            // `탄수화물: ${foodCarb}g <br>` +
+            // `단백질: ${foodProtein}g <br>` +
+            // `지방: ${foodFat}g <br>` +
+            `</div>` + `</div>`;
     }
 
     return menuInfoHtml;
@@ -200,9 +187,7 @@ function fetchAndDisplayMenu(selectedNational) {
     // 칼로리 계산 값이 없을 경우 알림 띄우기
     if (isNaN(userRecCalories)) {
         Swal.fire({
-            title: '칼로리 정보가 입력되지 않았습니다.',
-            text : '칼로리를 먼저 계산해 주세요.',
-            icon : 'error'
+            title: '칼로리 정보가 입력되지 않았습니다.', text: '칼로리를 먼저 계산해 주세요.', icon: 'error'
         });
         return; // 칼로리 값이 없으면 함수 종료
     }
@@ -211,45 +196,62 @@ function fetchAndDisplayMenu(selectedNational) {
         var generatedMenus = data;
         var generatedMenusDiv = document.getElementById("generatedMenus");
 
-        var resultHtml = "<h2>회원님만을 위한 식단입니다</h2><ul>";
+        var resultHtml = "<h2>원하시는 식단을 오른쪽으로 드래그 해보세요!</h2><ul>";
 
         var selectedPrefer = $('#prefer').val();
         var selectedDislike = $('#dislike').val();
 
-        var menuIndex = 1; // 식단 순번 초기화
 
         generatedMenus.forEach(function (menu, index) {
-            if (index !== 0) {
-                resultHtml += "<hr>";
-            }
+            // if (index !== 0) {
+            //     resultHtml += "<hr>";
+            // }
 
 
             var menuTotalWeight = menu.food1Weight + menu.food2Weight + menu.food3Weight + menu.food4Weight + menu.food5Weight;
 
             // Check if the menu's allergy value matches the selected allergy option
-            if (menu.allergy !== selectedAllergy &&
-                (selectedPrefer === "" || menu.main === selectedPrefer || menu.main2 === selectedPrefer) &&
-                (selectedDislike === "" || !menu.main.includes(selectedDislike) && !menu.main2.includes(selectedDislike)) &&
-                menuTotalWeight <= userRecCalories) {
+            if (menu.allergy !== selectedAllergy && (selectedPrefer === "" || menu.main === selectedPrefer || menu.main2 === selectedPrefer) && (selectedDislike === "" || !menu.main.includes(selectedDislike) && !menu.main2.includes(selectedDislike)) && menuTotalWeight <= userRecCalories) {
 
                 var totalCalories = menu.food1Kcal + menu.food2Kcal + menu.food3Kcal + menu.food4Kcal + menu.food5Kcal;
                 var totalCarbs = menu.food1Carb + menu.food2Carb + menu.food3Carb + menu.food4Carb + menu.food5Carb;
                 var totalProteins = menu.food1Protein + menu.food2Protein + menu.food3Protein + menu.food4Protein + menu.food5Protein;
                 var totalFats = menu.food1Fat + menu.food2Fat + menu.food3Fat + menu.food4Fat + menu.food5Fat;
 
-                var menuInfoHtml = generateMenuInfo(menu, menuIndex); // 식단 순번 추가
+                var menuInfoHtml = generateMenuInfo(menu); // 식단 순번 추가
 
-                resultHtml += "<li draggable='true'>" + menuIndex + "번 식단<br>식단정보<br>" + menuInfoHtml + "<br>" +
-                    "주재료1: " + menu.main + "<br>" +
-                    "주재료2: " + menu.main2 + "<br>" +
-                    "총 무게: " + menuTotalWeight + "g" + "<br>" +
-                    `총 칼로리: <span class='cals'>${totalCalories}</span>Kcal<br>` +
-                    "총 탄수화물: " + totalCarbs + "g" + "<br>" +
-                    "총 단백질: " + totalProteins + "g" + "<br>" +
-                    "총 지방: " + totalFats + "g" + "<br>" +
-                    "</li></hr></br>";
+                resultHtml += "<li draggable='true'>" + menuInfoHtml + "<br>"
+                    + `<span>총 칼로리: <span class='cals'>${totalCalories}</span>Kcal<br>`
+                    + "총 무게: " + menuTotalWeight + "g<br>"
+                    + "총 탄수화물: " + totalCarbs + "g<br>"
+                    + "총 단백질: " + totalProteins + "g<br>"
+                    + `총 지방: ${totalFats}g</span><br>`
+                    + `<canvas id="nut_chart"></canvas>`
+                    + "</li><br>";
+                document.addEventListener("DOMContentLoaded", function () {
 
-                menuIndex++; // 다음 식단 순번 증가
+                    var chartData = {
+                        labels: ["칼로리", "탄수화물", "단백질", "지방"], datasets: [{
+                            label          : "영양성분",
+                            backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9"],
+                            data           : [11, 11, 11, 11]
+                        }]
+                    };
+
+                    // 차트 생성
+                    var ctx = document.getElementById("nut_chart").getContext("2d");
+                    new Chart(ctx, {
+                        type: "bar", data: chartData, options: {
+                            legend: {display: false}, title: {
+                                display: true, text: "식단 영양성분 분포"
+                            }
+                        }
+                    });
+
+                    $(".hover").mouseleave(function () {
+                        $(this).removeClass("hover");
+                    });
+                });
             }
         });
 
@@ -266,31 +268,22 @@ function fetchAndDisplayMenu(selectedNational) {
     });
 }
 
-
 function fetchAndDisplayAllMenus(selectedValue) {
     var userRecCalories = parseInt($('#recCalories').val());
     var selectedAllergy = parseInt($('#allergy').val());
 
-    // 칼로리 계산 값이 없을 경우 알림 띄우기
     if (isNaN(userRecCalories)) {
         Swal.fire({
             title: '칼로리 정보가 입력되지 않았습니다.',
-            text : '칼로리를 먼저 계산해 주세요.',
-            icon : 'error'
+            text: '칼로리를 먼저 계산해 주세요.',
+            icon: 'error'
         });
-        return; // 칼로리 값이 없으면 함수 종료
+        return;
     }
 
-
-    // 메뉴 카테고리와 ID 매핑
     var menuIdMapping = {
-        "한식" : 1,
-        "중식" : 2,
-        "일식" : 3,
-        "양식" : 4,
-        "샐러드": 5
+        "한식": 1, "중식": 2, "일식": 3, "양식": 4, "샐러드": 5
     };
-
 
     var menuId = menuIdMapping[selectedValue];
     var selectedPrefer = $('#prefer').val();
@@ -299,58 +292,30 @@ function fetchAndDisplayAllMenus(selectedValue) {
     $.get("/menus/generate", function (data) {
         var generatedMenus = data;
         var generatedMenusDiv = document.getElementById("generatedMenus");
-        var resultHtml = "<h2>회원님만을 위한 식단입니다</h2><ul>";
-
-        var menuIndex = 1; // 식단 순번 초기화
+        var resultHtml = "<h2>원하시는 식단을 오른쪽으로 드래그 해보세요!</h2><ul>";
 
         generatedMenus.forEach(function (menu, index) {
-            if (index !== 0) {
-                resultHtml += "<hr>";
-            }
 
             if (menu.menuId === menuId) {
-                var totalWeight = menu.food1Weight + menu.food2Weight + menu.food3Weight + menu.food4Weight + menu.food5Weight;
+                var menuTotalWeight = menu.food1Weight + menu.food2Weight + menu.food3Weight + menu.food4Weight + menu.food5Weight;
 
-                // "선호하는 재료"와 "선호하지 않는 재료"를 모두 검사하여 필터링
-                if ((menu.allergy !== selectedAllergy && selectedPrefer === "" || menu.main === selectedPrefer || menu.main2 === selectedPrefer) &&
-                    (selectedDislike === "" || !menu.main.includes(selectedDislike) && !menu.main2.includes(selectedDislike)) &&
-                    totalWeight <= userRecCalories) {
+                if (menu.allergy !== selectedAllergy && (selectedPrefer === "" || menu.main === selectedPrefer || menu.main2 === selectedPrefer) && (selectedDislike === "" || !menu.main.includes(selectedDislike) && !menu.main2.includes(selectedDislike)) && menuTotalWeight <= userRecCalories) {
 
-                    // 코드 정리를 위해 변수를 사용하여 HTML 구조 생성
-                    var menuInfoHtml = "";
-
-                    for (var i = 1; i <= 5; i++) {
-                        menuInfoHtml += `<img src='${menu['food' + i + 'img']}' alt='Food Image' />` +
-                            `${menu['food' + i]} (${menu['food' + i + 'Weight']}g)  ` +
-                            `<button class='toggle-btn'>Nutrition</button>` +
-                            `<div class='nutritional-info hidden'>` +
-                            `칼로리: ${menu['food' + i + 'Kcal']}Kcal <br>` +
-                            `탄수화물: ${menu['food' + i + 'Carb']}g <br>` +
-                            `단백질: ${menu['food' + i + 'Protein']}g <br>` +
-                            `지방: ${menu['food' + i + 'Fat']}g <br>` +
-                            `</div>`;
-
-                    }
-
-                    var menuTotalWeight = totalWeight;
                     var totalCalories = menu.food1Kcal + menu.food2Kcal + menu.food3Kcal + menu.food4Kcal + menu.food5Kcal;
                     var totalCarbs = menu.food1Carb + menu.food2Carb + menu.food3Carb + menu.food4Carb + menu.food5Carb;
                     var totalProteins = menu.food1Protein + menu.food2Protein + menu.food3Protein + menu.food4Protein + menu.food5Protein;
                     var totalFats = menu.food1Fat + menu.food2Fat + menu.food3Fat + menu.food4Fat + menu.food5Fat;
 
-                    resultHtml += "<li draggable='true'>" + menuIndex + "번 식단<br>식단정보<br>" + menuInfoHtml + "<br>" +
-                        `식단정보<br>${menuInfoHtml}<br>` +
-                        `주재료1: ${menu.main}<br>` +
-                        `주재료2: ${menu.main2}<br>` +
-                        `총 무게: ${menuTotalWeight}g<br>` +
-                        `총 칼로리: <span class='cals'>${totalCalories}</span>Kcal<br>` +
-                        `총 탄수화물: ${totalCarbs}g<br>` +
-                        `총 단백질: ${totalProteins}g<br>` +
-                        `총 지방: ${totalFats}g<br>` +
-                        `</li>`;
+                    var menuInfoHtml = generateMenuInfo(menu);
 
-                    menuIndex++; // 다음 식단 순번 증가
-
+                    resultHtml += "<li draggable='true'>" + menuInfoHtml + "<br>"
+                        + `<span>총 칼로리: <span class='cals'>${totalCalories}</span>Kcal<br>`
+                        + "총 무게: " + menuTotalWeight + "g<br>"
+                        + "총 탄수화물: " + totalCarbs + "g<br>"
+                        + "총 단백질: " + totalProteins + "g<br>"
+                        + `총 지방: ${totalFats}g</span><br>`
+                        + `<canvas id="nut_chart"></canvas>`
+                        + "</li><br>";
                 }
             }
         });
@@ -362,11 +327,12 @@ function fetchAndDisplayAllMenus(selectedValue) {
         toggleButtons.forEach(function (button) {
             button.addEventListener('click', function () {
                 var nutritionalInfo = this.nextElementSibling;
-                nutritionalInfo.classList.toggle('hidden'); // Toggle the 'hidden' class
+                nutritionalInfo.classList.toggle('hidden');
             });
         });
     });
 }
+
 
 
 // 업데이트된 데이터로 페이지의 필드 업데이트
@@ -405,7 +371,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         menuList.addEventListener('dragend', function (e) {
             setTimeout(function () {
-                draggedItem.style.display = 'block';
+                draggedItem.style.display = 'inline-block'; // 변경된 부분
                 draggedItem = null;
             }, 0);
         });
@@ -441,18 +407,14 @@ document.addEventListener('DOMContentLoaded', function () {
             if (totalCalories > userRecCalories || selectedMenus.length > 2) {
                 if (totalCalories > userRecCalories) {
                     Swal.fire({
-                        title: '선택한 식단의 칼로리 합이 권장 칼로리를 초과합니다.',
-                        text: '다시 확인해주세요.',
-                        icon: 'warning'
+                        title: '선택한 식단의 칼로리 합이 권장 칼로리를 초과합니다.', text: '다시 확인해주세요.', icon: 'warning'
 
                     });
                     return; // 드래그 앤 드롭 불가 조건이 충족되면 함수 종료
                 }
                 if (selectedMenus.length > 2) {
                     Swal.fire({
-                        title: '식단 항목이 3개를 초과했습니다.',
-                        text: '최대 3개까지 선택할 수 있습니다.',
-                        icon: 'warning'
+                        title: '식단 항목이 3개를 초과했습니다.', text: '최대 3개까지 선택할 수 있습니다.', icon: 'warning'
                     });
                     return; // 드래그 앤 드롭 불가 조건이 충족되면 함수 종료
                 }
@@ -480,9 +442,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // #selectedMenus에 있는 항목이 3개를 넘어갈 때 알림 띄우기
         if (selectedMenus.length > 3) {
             Swal.fire({
-                title: '식단 항목이 3개를 초과했습니다.',
-                text : '최대 3개까지 선택할 수 있습니다.',
-                icon : 'warning'
+                title: '식단 항목이 3개를 초과했습니다.', text: '최대 3개까지 선택할 수 있습니다.', icon: 'warning'
             });
             return; // 항목이 3개를 초과할 경우 함수 종료
         }
@@ -497,9 +457,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // }
         if (totalCalories > userRecCalories) {
             Swal.fire({
-                title: '선택한 식단의 칼로리 합이 권장 칼로리를 초과합니다.',
-                text : '다시 확인해주세요.',
-                icon : 'warning'
+                title: '선택한 식단의 칼로리 합이 권장 칼로리를 초과합니다.', text: '다시 확인해주세요.', icon: 'warning'
             });
             return; // 칼로리 합이 초과할 경우 함수 종료
         }
@@ -508,3 +466,63 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
 });
+
+// 이미지를 클릭하여 영양 성분 정보를 보여주는 함수
+function showNutritionalInfo(imageElement) {
+    const menuContainer = imageElement.closest('.menu-container');
+    if (menuContainer) {
+        const nutritionalInfoOverlay = menuContainer.querySelector('.nutritional-info-overlay');
+        if (nutritionalInfoOverlay) {
+            nutritionalInfoOverlay.style.display = 'inline-block';
+
+            // 영양 성분 데이터를 가져오는 로직 (아래 코드는 예시이며, 실제 데이터에 맞게 수정 필요)
+            const totalCarbs = 40;
+            const totalProteins = 20;
+            const totalFats = 10;
+
+            // 도넛 차트 데이터 및 옵션 설정
+            const ctx = nutritionalInfoOverlay.querySelector('#nutritionChart').getContext('2d');
+            const nutritionChart = new Chart(ctx, {
+                type      : 'doughnut', data: {
+                    labels: ['탄수화물', '단백질', '지방'], datasets: [{
+                        data           : [totalCarbs, totalProteins, totalFats],
+                        backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+                    }],
+                }, options: {
+                    responsive: true, maintainAspectRatio: false, title: {
+                        display: true, text: '영양 성분 비율',
+                    },
+                },
+            });
+        }
+    }
+}
+
+// 초기화
+document.addEventListener('DOMContentLoaded', function () {
+    const foodImages = document.querySelectorAll('.food-image');
+    foodImages.forEach(function (image) {
+        image.addEventListener('click', function () {
+            showNutritionalInfo(this);
+        });
+    });
+
+    // 식단 정보에 대한 차트 생성
+    const nutritionalCharts = document.querySelectorAll('.nutrition-chart');
+    nutritionalCharts.forEach(function (chartElement) {
+        const chartCtx = chartElement.getContext('2d');
+        const nutritionChart = new Chart(chartCtx, {
+            type      : 'doughnut', data: {
+                labels: ['탄수화물', '단백질', '지방'], datasets: [{
+                    data           : [40, 20, 10], // 예시 데이터, 실제 데이터로 대체 필요
+                    backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+                }],
+            }, options: {
+                responsive: true, maintainAspectRatio: false, title: {
+                    display: true, text: '영양 성분 비율',
+                },
+            },
+        });
+    });
+});
+

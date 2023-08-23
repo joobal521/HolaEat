@@ -80,11 +80,11 @@
                 </li>
                 <input type="button" class="button" id="calculate" name="calculate" value="계산하기"
                        onclick="calculateCalories()">
-
+            
             </ul>
             <ul>
                 <li>
-                    <h2>필요 열량</h2>
+                    <h2>하루 필요 열량</h2>
                     <input type="text" class="btn6" id="recCalories" name="recCalories"
                            value="${userResponseDto.userRecCalories}">
                     <span>kcal</span>
@@ -93,23 +93,9 @@
             <input type="button" class="button" id="save_btn" name="save_btn" value="내 칼로리 정보 저장">
             <hr>
             <div class="json_wrap">
-
+                
                 <%--        카테고리    --%>
-
-                <div class="category_title">
-                    <h2>어떤 메뉴를 드시고 싶으신가요?</h2>
-                    <div class="category">
-                        <select name="national" id="national" onchange="fetchAndDisplayAllMenus(this.value)">
-                            <option value="">선택하세요</option>
-                            <option class="korean" value="한식">한식</option>
-                            <option class="chinese" value="중식">중식</option>
-                            <option class="japanese" value="일식">일식</option>
-                            <option class="western" value="양식">양식</option>
-                            <option class="salad" value="샐러드">샐러드</option>
-                        </select>
-                    </div>
-                </div>
-
+                
                 <div class="prefer">
                     <h2>이 재료는 넣어주세요!</h2>
                     <select name="prefer" id="prefer">
@@ -139,7 +125,7 @@
                         <option value="연근">연근</option>
                     </select>
                 </div>
-
+                
                 <div class="dislike">
                     <h2>이 재료는 빼주세요!</h2>
                     <select name="dislike" id="dislike">
@@ -174,31 +160,46 @@
                 <li>
                     <h3 class="mini_h3">열량 계산 기준</h3>
                     <span class="mini">*알레르기가 있으시면 권장 칼로리가 10% 감소합니다.</span><br>
-                    <span class="mini">*체중조절식은 일반균형식 대비 500kcal 감소합니다.</span>
+                    <span class="mini">*체중조절식은 일반균형식 대비 500kcal 감소합니다.</span><br>
+                    <span class="mini">*식단은 최대 3개까지 구성하실 수 있으며,<br>세 식단의 칼로리는 하루 필요 열량을 넘을 수 없습니다.</span>
                 </li>
             </div>
         </form>
-
-        <h2>${userResponseDto.userName}님만을 위한 맞춤식단이 여기 있습니다!</h2>
+        
+        <div class="cat" style="display: flex; justify-content: space-evenly">
+            <h2>${userResponseDto.userName}님만을 위한 맞춤식단이 여기 있습니다!</h2>
+            <div class="category_title">
+                <h2>어떤 메뉴를 드시고 싶으신가요?</h2>
+                <div class="category">
+                    <select name="national" id="national" onchange="fetchAndDisplayAllMenus(this.value)">
+                        <option value="">선택하세요</option>
+                        <option class="korean" value="한식">한식</option>
+                        <option class="chinese" value="중식">중식</option>
+                        <option class="japanese" value="일식">일식</option>
+                        <option class="western" value="양식">양식</option>
+                        <option class="salad" value="샐러드">샐러드</option>
+                    </select>
+                </div>
+            </div>
+        </div>
         <div class="personal_menu" style="display: flex">
             <div id="generatedMenus" class="menu_list" style="width: 50%; height: 500px;">
                 <!-- 이 부분에 동적으로 생성되는 식단 목록이 들어갈 예정입니다. -->
             </div>
             <div id="selectedMenus" class="menu_list" style="width: 50%;height: 500px; overflow: scroll">
                 <!-- 드래그해서 이동한 식단 목록이 여기에 들어갈 예정입니다. -->
-<%--                <div class="image-with-content">--%>
-<%--                    <img class="food_img" src="img/table.jpg" alt="식단 이미지">--%>
-<%--                    <div class="content">--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-                <img id="foodImage" src="" alt="Food Image">
-
+                <%--                <div class="image-with-content">--%>
+                <%--                    <img class="food_img" src="img/table.jpg" alt="식단 이미지">--%>
+                <%--                    <div class="content">--%>
+                <%--                    </div>--%>
+                <%--                </div>--%>
             </div>
-
+        
         </div>
     </div>
 </section>
 <script src="script/cal.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 
 </body>
 <c:import url="footer.jsp"/>
