@@ -53,13 +53,13 @@ public class FoodController {
         return "menu";
     }
 
-    @Autowired
-    @GetMapping("/food/{foodId}")
-    public String showFoodImage(@PathVariable String foodId, Model model) {
-        byte[] foodImg = foodRepository.getFoodImgByFoodId(foodId);
-        model.addAttribute("foodImg", foodImg);
-        return "foodImage"; // Thymeleaf template name
-    }
+//    @Autowired
+//    @GetMapping("/food/{foodId}")
+//    public String showFoodImage(@PathVariable String foodId, Model model) {
+//        byte[] foodImg = foodRepository.getFoodImgByFoodId(foodId);
+//        model.addAttribute("foodImg", foodImg);
+//        return "foodImage"; // Thymeleaf template name
+//    }
 
 
 
