@@ -4,6 +4,7 @@
     /*border: 1px solid black;*/
     margin: 20px auto;
     /*background-color: aliceblue;*/
+    letter-spacing: 1px;
 }
 
 
@@ -43,9 +44,10 @@
     min-width: 300px;
     height: 550px;
     border: solid 1px black;
-    padding: 2%;
+    padding: 3%;
     margin: 3%;
     background-color: #f5f5f5;
+    /*text-align: center;*/
 }
 
 .review_img {
@@ -63,8 +65,8 @@
 
 .user_profile {
     /*width: 90%;*/
-    height: 10%;
-    padding: 10px 0;
+    /*height: 10%;*/
+    padding: 20px;
     border-bottom: 1px solid #ccc;
 }
 
@@ -76,8 +78,7 @@
 
 .review_title {
     height: 10%;
-    padding: 10px 0;
-
+    padding: 15px 0;
 }
 
  #review-container #review_title_check {
@@ -104,12 +105,12 @@
 }
 /*글쓰기버튼*/
 
-.list-write-btn {
+.list-write-btn{
     text-align: right;
     width: 90%;
 }
 
-.list-write-btn a {
+.list-write-btn a,.list-write-btn button  {
     display: inline-block;
     background-color: #265037;
     color:#DCE4CF;
@@ -118,11 +119,17 @@
     text-decoration: none;
     font-weight: bold;
     transition: background-color 0.3s ease;
+    width: 100px;
+    text-align: center;
+    font-size: 18px;
 }
 
-.list-write-btn a:hover {
+.list-write-btn a:hover,
+.list-write-btn button:hover
+{
     color: #1e6b7b;
     background: aliceblue;
+
 }
 
 /* 검색창 */
@@ -267,6 +274,7 @@
 {
     border: none;
     padding: 0;
+    font-size: 15px;
 }
 
 #review-detail label{
@@ -566,3 +574,16 @@ border: none;
     background: aliceblue;
 }
 
+/*좋아요 css*/
+.review_like i.fa-heart{
+    font-size: 20px;
+    text-align: center;
+}
+
+button.likeUp-btn,button.likeUp-logout {
+    text-align: center;
+    margin: auto;
+    border: none;}
+button.likeUp-logout {
+    border: none;
+}

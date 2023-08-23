@@ -11,6 +11,7 @@
 <head>
     <title>reviewlist</title>
     <link rel="stylesheet" type="text/css" href="/style/review.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
     <script src="https://kit.fontawesome.com/5d67eb2efc.js" crossorigin="anonymous"></script>
     <style>
@@ -76,7 +77,7 @@
     <div class="list-write-btn">
         <c:choose>
             <c:when test="${empty log}">
-                <a href="login">글쓰기</a>
+                <button class="list-write-btn" onclick="goToLogin()">글쓰기</button>
             </c:when>
             <c:otherwise>
                 <a href="reviewform">글쓰기</a>
@@ -109,13 +110,13 @@
                             </c:otherwise>
                         </c:choose>
                     </div>
-                </a>
                 <div id="review_title_check" class="review_title">제목 : ${review.title}</div>
+                </a>
                 <div class="review_like">
 
                     <c:choose>
                         <c:when test="${not empty log}">
-                            <button class="likeUp-btn" data-id="${review.reviewNo}" id="logVal" value="${log}">
+                            <button class="likeUp-btn" data-id="${review.reviewNo}">
                                 <i class="fa-regular fa-heart"></i>
                             </button>
                         </c:when>
@@ -200,6 +201,7 @@
 </body>
 <script src="script/review.js"></script>
 
+
 <script>
     function scrollToTop() {
         $("html, body").animate({
@@ -212,23 +214,42 @@
     //     console.log(reviewNo);
     //     console.log("1");
     // }
+    //
+    // $(".likeUp-btn").click(function () {
+    //     var reviewNo = $(this).data("id");
+    //
+    //     console.log(reviewNo);
+    //
+    //     // 좋아요 등록
+    //     $.ajax({
+    //         url: "/reviewlike/" + reviewNo,
+    //         method: "PUT",
+    //     })
+    //
+    // })
 
     $(".likeUp-btn").click(function () {
         var reviewNo = $(this).data("id");
-        var userId = $("#logVal").val();
+        var $heartIcon = $(this).find('i.fa-regular');
 
-        console.log(reviewNo);
-        console.log(userId);
+        console.log(reviewNo + "js확인");
 
-
-
-        // 좋아요 등록
+        // 좋아요 등록 및 취소 처리
         $.ajax({
             url: "/reviewlike/" + reviewNo,
             method: "PUT",
-        })
+            success: function (data) {
+                if (data.success) {
+                    // 아이콘 클래스 변경
+                    $heartIcon.toggleClass('fa-solid').toggleClass('fa-regular');
+                }
+            }
+        });
+    });
 
-    })
+
+
+
 
     //로그아웃 상태에서 좋아요 버튼 눌렀을때
     $(".likeUp-logout").click(function (){

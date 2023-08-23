@@ -80,12 +80,22 @@ public void delete(long reviewNo){
 
 
 //좋아요 기능 repository > service
-    public void insert(long reviewNo){
+    public void likeInsert(long reviewNo){
 
         reviewRepository.likeCountByReviewNo(reviewNo);
         //기존 값 가져오기
 
     }
+
+
+    public void likeDelete(long reviewNo){
+
+        reviewRepository.likeDeleteByReviewNo(reviewNo);
+        //기존 값 가져오기
+
+    }
+
+
 
 
 

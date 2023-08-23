@@ -27,19 +27,29 @@ function checkValueWrite(htmlForm) {
 
     if (title.trim() === "") {
         console.log("Title is required.");
-        alert("!제목을 입력해주세요.")
+        // alert("!제목을 입력해주세요.")
+        Swal.fire({
+            title: '제목을 입력해주세요.',
+            icon: 'warning'
+        });
         return; // 제목이 비어있을 경우 처리 중단
     }
 
     if (content.trim() === "") {
         console.log("Title is required.");
-        alert("!내용을 입력해주세요.")
+        // alert("!내용을 입력해주세요.")
+        Swal.fire({
+            title: '내용을 입력해주세요.',
+            icon: 'warning'
+        });
         return; // 내용이 비어있을 경우 처리 중단
     }
 
-    if (!confirm("등록하시겠습니까?")) {
-        return;
-    }
+    // if (!confirm("등록하시겠습니까?")) {
+    //     return;
+    // }
+
+
 
 
     let check = true;
@@ -71,7 +81,21 @@ function checkValueWrite(htmlForm) {
 
         $.ajax(settings).done(function (response) {
             console.log(response);
-            location.href = "reviewlist/1";
+
+
+                Swal.fire({
+                    title: '등록하시겠습니까?',
+                    //icon: 'warning',
+                    showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
+                    confirmButtonText: '확인', // confirm 버튼 텍스트 지정
+                    cancelButtonText: '취소', // cancel 버튼 텍스트 지정
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        location.href = "reviewlist/1";
+                    }
+                });
+
+
         });
 
     }
@@ -121,12 +145,29 @@ function CheckValueUpdate(htmlForm, reviewNo) {
     $.ajax(settings)
         .done(function (response) {
             console.log(response);
-            alert("수정되었습니다.");
-            location.href = "review/" + reviewNo;
+            // alert("수정되었습니다.");
+
+            Swal.fire({
+                title: '수정되었습니다.',
+                icon: 'success',
+                confirmButtonColor: '#265037', // confrim 버튼 색깔 지정
+
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    location.href = "review/" + reviewNo;
+                }
+            });
+
         })
         .fail(function (jqXHR, textStatus, errorThrown) {
             console.error(jqXHR.responseText);
-            alert("수정실패하였습니다.");
+            // alert("수정실패하였습니다.");
+            Swal.fire({
+                title: '수정실패하였습니다.',
+                icon: 'warning',
+                confirmButtonColor: '#265037', // confrim 버튼 색깔 지정
+
+            });
         });
 }
 
@@ -142,26 +183,60 @@ function CheckValueUpdate(htmlForm, reviewNo) {
 //게시글 삭제
 
 function CheckValueDelete(htmlForm, reviewNo) {
-    const confirmed = window.confirm("정말 삭제하시겠습니까?");
+    // const confirmed = window.confirm("정말 삭제하시겠습니까?");
+    //
+    // if (confirmed) {
+    //     var form = new FormData();
+    //
+    //     var settings = {
+    //         "url": "/" + reviewNo + "/delete",
+    //         "method": "DELETE",
+    //         "timeout": 0,
+    //         "processData": false,
+    //         "mimeType": "multipart/form-data",
+    //         "contentType": false,
+    //         "data": form
+    //     };
+    //
+    //     $.ajax(settings).done(function (response) {
+    //         console.log(response);
+    //         location.href = "reviewlist/1";
+    //     });
+    // }
 
-    if (confirmed) {
-        var form = new FormData();
 
-        var settings = {
-            "url": "/" + reviewNo + "/delete",
-            "method": "DELETE",
-            "timeout": 0,
-            "processData": false,
-            "mimeType": "multipart/form-data",
-            "contentType": false,
-            "data": form
-        };
 
-        $.ajax(settings).done(function (response) {
-            console.log(response);
-            location.href = "reviewlist/1";
-        });
-    }
+
+    Swal.fire({
+        title: '정말 삭제하시겠습니까?',
+        text: '게시글 삭제 후 복구 불가합니다.',
+        icon: 'warning',
+        showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
+        confirmButtonColor: '#265037', // confrim 버튼 색깔 지정
+        confirmButtonText: '확인', // confirm 버튼 텍스트 지정
+        cancelButtonText: '취소', // cancel 버튼 텍스트 지정
+    }).then((result) => {
+
+        if (result.isConfirmed) {
+            var form = new FormData();
+
+            var settings = {
+                "url": "/" + reviewNo + "/delete",
+                "method": "DELETE",
+                "timeout": 0,
+                "processData": false,
+                "mimeType": "multipart/form-data",
+                "contentType": false,
+                "data": form
+            };
+
+            $.ajax(settings).done(function (response) {
+                console.log(response);
+                location.href = "reviewlist/1";
+            });
+
+        }
+    });
 }
 
 
@@ -175,19 +250,46 @@ function redirectToReviewUpdate() {
 }
 
 function goBack() {
-    var confirmation = confirm("취소하시겠습니까?");
+    // var confirmation = confirm("취소하시겠습니까?");
+    //
+    // if (confirmation) {
+    //     // window.scrollTo(0, 0);
+    //     // document.documentElement.style.overflow = 'hidden';
+    //     history.back();
+    //     // document.documentElement.style.overflow = 'auto';
+    // }
 
-    if (confirmation) {
-        // window.scrollTo(0, 0);
-        // document.documentElement.style.overflow = 'hidden';
-        history.back();
-        // document.documentElement.style.overflow = 'auto';
-    }
+
+    Swal.fire({
+        title: '취소하시겠습니까?',
+        icon: 'warning',
+        showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
+        confirmButtonColor: '#265037', // confrim 버튼 색깔 지정
+        confirmButtonText: '확인', // confirm 버튼 텍스트 지정
+        cancelButtonText: '취소', // cancel 버튼 텍스트 지정
+    }).then((result) => {
+        if (result.isConfirmed) { // 만약 모달창에서 confirm 버튼을 눌렀다면
+
+            history.back();
+        }
+
+
+    });
+
 }
 
 //목록으로 되돌아가기
 function goBackToList() {
-    location.href = "reviewlist/1";
+
+    Swal.fire({
+        title: '게시글 목록으로 이동합니다.',
+        icon: 'success'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            location.href = "reviewlist/1";
+        }
+    });
+
 }
 
 //글쓰기 썸네일
@@ -211,4 +313,16 @@ function writeThumbnail() {
 }
 
 
+function goToLogin(){
+    Swal.fire({
+        title: '로그인 후 이용가능합니다.',
+        text: '로그인 페이지로 이동됩니다.',
+        icon: 'warning',
+        confirmButtonColor: '#265037', // confrim 버튼 색깔 지정
+        confirmButtonText: '확인', // confirm 버튼 텍스트 지정
 
+    }).then((result) => {
+        if (result.isConfirmed) {
+        location.href = "login";}
+    });
+}

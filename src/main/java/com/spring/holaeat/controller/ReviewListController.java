@@ -8,6 +8,7 @@ import com.spring.holaeat.domain.review.ReviewRequestDto;
 import com.spring.holaeat.domain.review.ReviewResponseDto;
 import com.spring.holaeat.domain.review_comment.ReviewComment;
 import com.spring.holaeat.domain.review_comment.ReviewCommentRepository;
+import com.spring.holaeat.domain.review_like.ReviewLike;
 import com.spring.holaeat.service.ReviewService;
 import com.spring.holaeat.util.ImageParsor;
 import lombok.RequiredArgsConstructor;
@@ -83,6 +84,8 @@ public class ReviewListController {
         } else {
             reviewPage = reviewRepository.findAllByOrderByReviewNoDesc(adjustedPageable);
         }
+
+
 
         model.addAttribute("reviewlistPage", reviewPage); // reviewPage를 모델에 추가
 
