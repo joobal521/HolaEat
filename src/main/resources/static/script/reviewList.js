@@ -70,28 +70,55 @@
     // });
 
 
-    $(".likeUp-btn").click(function () {
-        var reviewNo = $(this).data("id");
-        var heartText = $(this).find('.heart');
+    // $(".likeUp-btn").click(function () {
+    //     var reviewNo = $(this).data("id");
+    //     var heartText = $(this).find('.heart');
+    //
+    //     console.log(reviewNo + " js확인");
+    //
+    //     // 좋아요 등록 및 취소 처리
+    //     $.ajax({
+    //         url: "/reviewlike/" + reviewNo,
+    //         method: "POST",
+    //         success: function (data) {
+    //             if (data.success) {
+    //                 // 텍스트 변경
+    //                 if (heartText.text() === "로그인 하트") {
+    //                     heartText.text("로그인 하트 취소");
+    //                 } else {
+    //                     heartText.text("로그인 하트");
+    //                 }
+    //             }
+    //         }
+    //     });
+    // });
 
-        console.log(reviewNo + " js확인");
 
-        // 좋아요 등록 및 취소 처리
-        $.ajax({
-            url: "/reviewlike/" + reviewNo,
-            method: "POST",
-            success: function (data) {
-                if (data.success) {
-                    // 텍스트 변경
-                    if (heartText.text() === "로그인 하트") {
-                        heartText.text("로그인 하트 취소");
-                    } else {
-                        heartText.text("로그인 하트");
+    $(document).ready(function() {
+        $(".likeUp-btn, .likeUp-logout").click(function() {
+            var reviewNo = $(this).data("id");
+            var heartIcon = $(this).find(".heart i");
+            console.log(reviewNo + "js 작동 확인 게시글번호");
+
+            $.ajax({
+                url: "/reviewlike/" + reviewNo,
+                method: "POST",
+                success: function(data) {
+                    if (data.success) {
+                        console.log(reviewNo + "ajax 작동 확인 게시글번호");
+                        // 좋아요 상태에 따라 하트 아이콘 변경
+                        if (heartIcon.hasClass("fa-regular")) {
+                            heartIcon.removeClass("fa-regular").addClass("fa-solid");
+                        } else {
+                            heartIcon.removeClass("fa-solid").addClass("fa-regular");
+                        }
                     }
                 }
-            }
+            });
         });
     });
+
+
 
     // $(".likeUp-btn").click(function () {
     //     var reviewNo = $(this).data("id");
