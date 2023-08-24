@@ -102,8 +102,10 @@ public String gainPower(@RequestParam("adminid") String id, @RequestParam("admin
 //메뉴관리
     @GetMapping("adminMenu")
     public String getAllMenu(Model model){
-            List<Food> list = foodService.getAllFood();
+//            List<Food> list = foodService.getAllFood();
 //            List<Food> list = foodService.getFoodWithoutFoodImg();
+            List<Food> list = foodService.findWithoutImage();
+
             model.addAttribute("foodList",list);
         return "adminMenu";
     }
@@ -147,7 +149,6 @@ public String gainPower(@RequestParam("adminid") String id, @RequestParam("admin
                 byte[] imgBytes = foodRequestDto.getFoodImg().getBytes();
                 foodService.updateFoodWithImage(food, foodRequestDto, imgBytes);
             } catch (IOException e) {
-                // Handle the exception appropriately
             }
         } else {
             foodService.update(food, foodRequestDto);

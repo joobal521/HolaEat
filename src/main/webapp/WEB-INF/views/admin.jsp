@@ -21,7 +21,7 @@
                         $(".section").html(response);
                     },
                     error: function(xhr, status, error) {
-                        var errorMessage = "Failed to load the page: " + error;
+                        var errorMessage = "페이지 로드에 실패했습니다." + error;
                         $(".section").html(errorMessage);
                     }
                 });
@@ -38,8 +38,9 @@
                     success: function(response) {
                         $(".section").html(response); // .section에 응답 페이지 삽입
                     },
-                    error: function() {
-                        alert("페이지 로드에 실패했습니다.");
+                    error: function(xhr, status, error) {
+                        var errorMessage = "페이지 로드에 실패했습니다." + error;
+                        $(".section").html(errorMessage);
                     }
                 });
             });
