@@ -165,7 +165,7 @@ function generateMenuInfo(menu, index) {
 
         menuInfoHtml += `<div class='food-info'>` +
             `<img src='${foodImage}' alt='Food Image' class='food-image' draggable="false" onclick='showNutritionalInfo(this)'/>`
-            + `${foodName} (${foodWeight}g) ` +
+            +"<br>" + `${foodName}` + "<br>" +`(${foodWeight}g) ` +
             // `<div class='nutritional-info hidden'>` +
             // `<button class='toggle-btn'>Close</button>` +
             // `칼로리: ${foodKcal}Kcal <br>` +
