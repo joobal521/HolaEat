@@ -53,6 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
         btn.addEventListener('click', () => {
             modals[index].style.display = 'block';
             loadRecipe(btn, modals[index]);
+            adjustTableHeaderPosition("static"); // 모달 열릴 때 style 변경
         });
     });
 
@@ -61,9 +62,16 @@ document.addEventListener("DOMContentLoaded", function () {
         window.addEventListener('click', (event) => {
             if (event.target === modal) {
                 modal.style.display = 'none';
+                adjustTableHeaderPosition("sticky"); // 모달 닫힐 때 style 변경
             }
         });
     });
+    function adjustTableHeaderPosition(positionValue) {
+        const tableHeader = document.querySelectorAll('thead th');
+        tableHeader.forEach(header => {
+            header.style.position = positionValue;
+        });
+    }
 });
 
 
