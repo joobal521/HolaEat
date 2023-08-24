@@ -24,9 +24,9 @@
             <%--            로그인 시 --%>
         <c:when test="${not empty log}">
 
-            <h2 class="title">내 하루 권장 칼로리는?</h2>
-<div class="form_div">
+            <div class="form_div">
             <form id="myform" action="/saveCalories" method="POST">
+                <h2 class="title">내 하루 권장 칼로리는?</h2>
                 <ul id="formSteps">
                     <li class="step" data-step="1">
                         <h3>성별을 선택하세요</h3>

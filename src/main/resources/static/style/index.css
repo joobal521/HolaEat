@@ -417,10 +417,11 @@ body{
 .next-btn{
     padding: 5px 20px;
     border-radius: 4px;
-    border: 2px solid #CCF6C8;
+    border: 2px solid #A8DF8E;
     background-color: white;
-    color: #CCF6C8;
+    color: #A8DF8E;
     font-size: 1.2rem;
+    font-weight: bold;
     cursor: pointer;
     margin-top: 40px;
 
@@ -435,10 +436,11 @@ body{
 .backBtn{
     padding: 5px 20px;
     border-radius: 4px;
-    border: 2px solid  #CCF6C8;
+    border: 2px solid  #A8DF8E;
     background-color: white;
-    color:  #CCF6C8;
+    color:  #A8DF8E;
     font-size: 1.2rem;
+    font-weight: bold;
     cursor: pointer;
     margin-top: 40px;
     margin-right: 30px;
@@ -462,19 +464,13 @@ body{
     border: 1px solid  #F9C0C0;
     border-radius: 10px;
     padding: 50px 100px;
-    background-color: #F9C0C0;
+    background-image: linear-gradient(to right, #ffecd2 0%, #fcb69f 100%);;
 }
 
-/*배경 이미지*/
-#myform {
-    background-image: url('../img/nutrition.jpg');
-    background-size: cover; /* 배경 이미지 크기 조절 */
-    background-repeat: no-repeat; /* 배경 이미지 반복 방지 */
-    background-position: right top; /* 배경 이미지 위치 설정 */
-    padding: 100px; /* 내용과의 간격 설정 */
-    text-align: center; /* 내용 중앙 정렬 */
-    color: white; /* 텍스트 색상 설정 */
+#formSteps{
+    padding: 0;
 }
+
 
 /*input*/
 #myform input[type="text"],
@@ -506,8 +502,8 @@ body{
     transition: all 0.2s ease-in-out;
     position: relative;
     overflow: hidden;
-    padding: 10px 20px;
-    margin-top: 10px;
+    padding: 10px;
+    margin-top: 40px;
 
 }
 
@@ -518,21 +514,21 @@ body{
 }
 /*저장 버튼*/
 .save-btn{
+    margin-top: 20px;
+    background-color: #A8DF8E;
+    border-color: #A8DF8E;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 1.2rem;
     text-align: center;
     text-decoration: none;
-    background-color:  #CCF6C8;
-    color:white;
-    border: 2px solid  #CCF6C8;
-    font-size: 16px;
+    transition: background-color 0.3s, color 0.3s;
     display: inline-block;
-    border-radius: 0.3em;
-    transition: all 0.2s ease-in-out;
     position: relative;
     overflow: hidden;
-    padding: 10px 20px;
-    margin-top: 10px;
-
 }
+
 .save-btn:hover{
     background-color:#F3FDE8;
     color: #A8DF8E;
@@ -594,7 +590,7 @@ body{
 .result-box h2 {
     font-size: 2rem;
     margin-bottom: 10px;
-    color: #265037;
+    color: #A8DF8E;
 }
 
 .r-text {
@@ -613,18 +609,6 @@ body{
     color: #1e6b7b;
 }
 
-.save-btn{
-    margin-top: 20px;
-    background-color: #A8DF8E;
-    border-color: #A8DF8E;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 4px;
-    font-size: 1.2rem;
-    text-decoration: none;
-    transition: background-color 0.3s, color 0.3s;
-    display: inline-block;
-}
 
 
 /* 보기로 가기 버튼 스타일 */
@@ -654,11 +638,10 @@ body{
 .title{
    font-weight: bold;
     color: white;
-    text-align: center;
 }
 
 .step{
-    width: 350px;
+
 }
 
 
