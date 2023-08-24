@@ -21,7 +21,7 @@
                         $(".section").html(response);
                     },
                     error: function(xhr, status, error) {
-                        var errorMessage = "Failed to load the page: " + error;
+                        var errorMessage = "페이지 로드에 실패했습니다." + error;
                         $(".section").html(errorMessage);
                     }
                 });
@@ -31,15 +31,15 @@
                 event.preventDefault(); // 기본 링크 동작 방지
 
                 var pageUrl = $(this).attr("href"); // 클릭한 링크의 URL
-                var pageTitle = $(this).text(); // 클릭한 링크의 텍스트를 페이지 제목으로 사용
                 // AJAX 요청
                 $.ajax({
                     url: pageUrl,
                     success: function(response) {
                         $(".section").html(response); // .section에 응답 페이지 삽입
                     },
-                    error: function() {
-                        alert("페이지 로드에 실패했습니다.");
+                    error: function(xhr, status, error) {
+                        var errorMessage = "페이지 로드에 실패했습니다." + error;
+                        $(".section").html(errorMessage);
                     }
                 });
             });
@@ -94,6 +94,8 @@
     </section>
 </section>
 <script src="script/admin.js"></script>
+<script src="script/adminIngr.js"></script>
+<script src="script/adminReview.js"></script>
 
 </body>
 <c:import url="footer.jsp"/>

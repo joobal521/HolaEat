@@ -45,12 +45,6 @@ function checkValueWrite(htmlForm) {
         return; // 내용이 비어있을 경우 처리 중단
     }
 
-    // if (!confirm("등록하시겠습니까?")) {
-    //     return;
-    // }
-
-
-
 
     let check = true;
     let title_space = /[ ]/; /* 공백 */
@@ -145,7 +139,6 @@ function CheckValueUpdate(htmlForm, reviewNo) {
     $.ajax(settings)
         .done(function (response) {
             console.log(response);
-            // alert("수정되었습니다.");
 
             Swal.fire({
                 title: '수정되었습니다.',
@@ -161,7 +154,6 @@ function CheckValueUpdate(htmlForm, reviewNo) {
         })
         .fail(function (jqXHR, textStatus, errorThrown) {
             console.error(jqXHR.responseText);
-            // alert("수정실패하였습니다.");
             Swal.fire({
                 title: '수정실패하였습니다.',
                 icon: 'warning',
@@ -183,29 +175,6 @@ function CheckValueUpdate(htmlForm, reviewNo) {
 //게시글 삭제
 
 function CheckValueDelete(htmlForm, reviewNo) {
-    // const confirmed = window.confirm("정말 삭제하시겠습니까?");
-    //
-    // if (confirmed) {
-    //     var form = new FormData();
-    //
-    //     var settings = {
-    //         "url": "/" + reviewNo + "/delete",
-    //         "method": "DELETE",
-    //         "timeout": 0,
-    //         "processData": false,
-    //         "mimeType": "multipart/form-data",
-    //         "contentType": false,
-    //         "data": form
-    //     };
-    //
-    //     $.ajax(settings).done(function (response) {
-    //         console.log(response);
-    //         location.href = "reviewlist/1";
-    //     });
-    // }
-
-
-
 
     Swal.fire({
         title: '정말 삭제하시겠습니까?',

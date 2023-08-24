@@ -18,7 +18,7 @@
 <c:import url="header.jsp"/>
 <body>
 <div class="login_box">
-<h1 class="title">Login</h1>
+<h1 class="title">로그인</h1>
     <div class="form_wrap">
         <form id="form-login" action="login" method="POST">
             <h2 class="form-title">아이디</h2>

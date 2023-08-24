@@ -50,10 +50,12 @@ body {
 
 .form_wrap {
     max-width: 600px;
-    margin: 0 auto;
+    margin: 30px auto;
     padding: 20px;
     border-radius: 10px;
+    background-color: #f5f5f5;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
 }
 
 .form_container{

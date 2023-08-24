@@ -8,41 +8,35 @@ import com.spring.holaeat.domain.health.Health;
 import com.spring.holaeat.domain.ingredients.Ingredients;
 import com.spring.holaeat.domain.ingredients.IngredientsRequestDto;
 import com.spring.holaeat.domain.review.Review;
+import com.spring.holaeat.domain.review.ReviewRepository;
+import com.spring.holaeat.domain.review.ReviewResponseDto;
 import com.spring.holaeat.service.*;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import org.json.JSONObject;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 @SessionAttributes("authority")
+@RequiredArgsConstructor
 @Controller
 public class AdminController {
     private final AdminRepository adminRepository;
     private final IngredientsService ingredientsService;
     private final ReviewService reviewService;
-
+    private final ReviewRepository reviewRepository;
     private final ReviewCommentService reviewCommentService;
     private final FoodService foodService;
-
     private final HealthService healthService;
-
-
-    @Autowired
-    public AdminController(AdminRepository adminRepository, IngredientsService ingredientsService, IngredientsRequestDto ingredientsRequestDto, MenuService menuService, ReviewService reviewService, ReviewCommentController reviewCommentController, ReviewCommentService reviewCommentService, FoodService foodService, HealthService healthService) {
-        this.adminRepository = adminRepository;
-        this.ingredientsService = ingredientsService;
-        this.reviewService = reviewService;
-        this.reviewCommentService = reviewCommentService;
-        this.foodService = foodService;
-        this.healthService=healthService;
-    }
 
     //관리자 로그인
 @PostMapping("gainpower")
@@ -102,8 +96,10 @@ public String gainPower(@RequestParam("adminid") String id, @RequestParam("admin
 //메뉴관리
     @GetMapping("adminMenu")
     public String getAllMenu(Model model){
-            List<Food> list = foodService.getAllFood();
+//            List<Food> list = foodService.getAllFood();
 //            List<Food> list = foodService.getFoodWithoutFoodImg();
+            List<Food> list = foodService.findWithoutImage();
+
             model.addAttribute("foodList",list);
         return "adminMenu";
     }
@@ -118,25 +114,9 @@ public String gainPower(@RequestParam("adminid") String id, @RequestParam("admin
 
 
     //음식수정
-//    @Transactional
-//    @PutMapping("adminMenu/{foodId}")
-//    public String updateFood(@PathVariable String foodId, @ModelAttribute FoodRequestDto foodRequestDto){
-//
-//        Food food = foodService.findFoodByFoodId(foodId);
-//        System.out.println(foodRequestDto.getFoodName());
-//        System.out.println(Arrays.toString(foodRequestDto.getFoodImg()));
-//
-//        foodService.update(food,foodRequestDto);
-//
-//        if(foodRequestDto.getFoodImg()==null){
-//            byte[] img = food.getFoodImg();
-//            foodService.remainImg(food,img);
-//        }
-//        return "admin";
-//    }
-    @Transactional
-    @PutMapping("adminMenu/{foodId}")
-    public String updateFood(
+    @ResponseBody
+    @PostMapping("adminMenu/{foodId}")
+    public FoodRequestDto updateFood(
             @PathVariable String foodId,
             @ModelAttribute FoodRequestDto foodRequestDto
     ) {
@@ -147,13 +127,12 @@ public String gainPower(@RequestParam("adminid") String id, @RequestParam("admin
                 byte[] imgBytes = foodRequestDto.getFoodImg().getBytes();
                 foodService.updateFoodWithImage(food, foodRequestDto, imgBytes);
             } catch (IOException e) {
-                // Handle the exception appropriately
             }
         } else {
             foodService.update(food, foodRequestDto);
         }
 
-        return "admin";
+        return foodRequestDto;
     }
 
     @DeleteMapping("adminMenu/delete/{foodId}")
@@ -179,9 +158,29 @@ public String gainPower(@RequestParam("adminid") String id, @RequestParam("admin
         return "adminReview";
     }
 
+    @ResponseBody
+    @GetMapping("adminReviewList")
+    public Map getReview(@RequestParam(required = false) String page, @PageableDefault Pageable pageable) {
+        int reqPage = (page == null || page.equals("")) ? 0 : Integer.parseInt(page);
+        reqPage = reqPage < 0 ? 0 : reqPage;
 
+        List<Review> reviewList = reviewRepository.findAll(pageable.withPage(reqPage)).getContent();
 
+        if(reviewList.isEmpty()) {
+            int count = (int) reviewRepository.count();
+            reqPage = count%10 > 0 ? count/10 : count/10-1;
+            System.out.println("last : " + reqPage);
+            reviewList = reviewRepository.findAll(pageable.withPage(reqPage)).getContent();
+        }
 
+        List<ReviewResponseDto> responseList = ReviewResponseDto.parse(reviewList);
+
+        JSONObject result = new JSONObject();
+        result.put("page", reqPage);
+        result.put("data", responseList);
+
+        return result.toMap();
+    }
 
     @DeleteMapping("adminReview/delete/{reviewNo}")
     public String deleteReview(@PathVariable long reviewNo){

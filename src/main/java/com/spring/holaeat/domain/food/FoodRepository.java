@@ -32,6 +32,12 @@ public interface FoodRepository extends JpaRepository<Food,String> {
 
     List<Food> findAll();
 
+
+
+    @Query("SELECT f FROM Food f")
+    List<Food> findAllWithoutImage();
+
+
     @Query(nativeQuery = true,value = "SELECT food_id from food")
     List<String> getAllFoodIds();
 

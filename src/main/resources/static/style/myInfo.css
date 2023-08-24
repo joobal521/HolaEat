@@ -61,10 +61,14 @@ body, html {
 .my-info span {
     font-weight: bold;
 }
+.my-info{
+    margin-top: 20px;
+}
 
 /*이미지*/
 .write_select_img {
-    margin-top: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .write_select_img #img {

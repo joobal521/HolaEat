@@ -48,10 +48,13 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
         }
-
+        .food-details {
+            margin: 0 auto;
+        }
         .food-nutrition{
             display: flex;
             text-align: center;
+            margin: 0 auto;
         }
         .recipe-list {
             background-color: #fff;
@@ -62,13 +65,16 @@
         }
 
 
+        .food-nutrition-pack {
+
+        }
+
 
         .food-nutrition span:hover {
             border-color: #000; /* 변경하고자 하는 색상 */
         }
 
         .carb {
-
             background-color: #FF5733;
         }
         .fat {
@@ -84,7 +90,7 @@
             background-color: #4CAF50;
         }
         .natrium {
-            background-color: #9C27B0;
+            background-color: #ee92fa;
         }
 
         .food-nutrition span {
@@ -98,6 +104,7 @@
             overflow: hidden;
             text-align: center;
             position: relative; /* 추가된 부분 */
+            margin:10px auto;
         }
 
         .bar-chart .bar {
@@ -141,12 +148,15 @@
                 <span>${food.foodNational}</span>
             </div>
             <div class="food-nutrition">
-                <span>총 열량 : ${food.kcal} Kcal</span>
-                <span class="carb">탄수화물 : ${food.carb}g</span>
-                <span class="fat">지방 : ${food.fat}g</span>
-                <span class="protein">단백질 : ${food.protein}g</span>
-                <span class="sugars">당 : ${food.sugars}g</span>
-                <span class="natrium">나트륨 : ${food.natrium}mg</span>
+                <h4>총 열량 : <br/>${food.kcal} Kcal</h4>
+                <div class="food-nutrition-pack">
+                    <span class="carb">탄수화물 : ${food.carb}g</span>
+                    <span class="fat">지방 : ${food.fat}g</span>
+                    <span class="protein">단백질 : ${food.protein}g</span>
+                    <span class="sugars">당 : ${food.sugars}g</span>
+                    <span class="natrium">나트륨 : ${food.natrium}mg</span>
+                </div>
+
                 <c:set var="total" value="${food.carb + food.fat + food.protein + food.sugars + (food.natrium/100)}"/>
 
             </div>

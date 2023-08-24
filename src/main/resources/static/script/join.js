@@ -126,7 +126,6 @@ function chkId() {
                     text: '아이디를 사용해 주세요.',
                     icon: 'success'
                 });
-                //swal('사용 가능한 아이디','중복되지 않는 아이디','success')
                 //alert("사용 가능한 아이디입니다.")
                 //$('#chkMsgEmail').html('사용 가능한 아이디입니다.').css('color', 'navy');
             } else {
@@ -135,7 +134,6 @@ function chkId() {
                     text: '다른 아이디를 입력해주세요.',
                     icon: 'warning'
                 });
-                //swal('이미 사용 중인 아이디','다른 아이디를 입력해주세요.','warning')
                 //alert("이미 사용 중인 아이디입니다.")
                 // $('#chkMsgEmail').html('이미 사용중인 아이디입니다.').css('color', 'red');
             }
@@ -374,8 +372,7 @@ function checkValue(htmlForm) {
     }
 
 
-    if (check && isIdChecked ) {
-    //&& isEmailChecked &&isToKenChecked
+    if (check && isIdChecked && isEmailChecked &&isToKenChecked ) {
         const data = {
             userId: id,
             userPassword: password,
@@ -431,24 +428,22 @@ function checkValue(htmlForm) {
             icon: 'warning'
         });
         //alert("아이디 중복 확인해 주세요.");
-    }
+    }else if(!isEmailChecked){
+        Swal.fire({
+            title: '회원 가입 실패',
+            text: '이메일 중복을 확인해 주세요.',
+            icon: 'warning'
+        });
+        //alert("이메일 중복 확인해 주세요")
+    }else if(!isToKenChecked){
+        Swal.fire({
+            title: '회원 가입 실패',
+            text: '이메일 인증을 먼저 해주세요.',
+            icon: 'warning'
+        });
+        //alert("이메일 인증을 해주세요.")
 
-    // else if(!isEmailChecked){
-    //     Swal.fire({
-    //         title: '회원 가입 실패',
-    //         text: '이메일 중복을 확인해 주세요.',
-    //         icon: 'warning'
-    //     });
-    //     //alert("이메일 중복 확인해 주세요")
-    // }else if(!isToKenChecked){
-    //     Swal.fire({
-    //         title: '회원 가입 실패',
-    //         text: '이메일 인증을 먼저 해주세요.',
-    //         icon: 'warning'
-    //     });
-    //     //alert("이메일 인증을 해주세요.")
-    //
-    // }
+    }
 
 
 }

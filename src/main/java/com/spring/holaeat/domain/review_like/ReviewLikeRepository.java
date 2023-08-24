@@ -26,4 +26,6 @@ public interface ReviewLikeRepository extends JpaRepository<ReviewLike, Long> {
     //좋아요 있는 게시글 삭제
     public void deleteByReviewNo(long reviewNo);
 
+
+
 }

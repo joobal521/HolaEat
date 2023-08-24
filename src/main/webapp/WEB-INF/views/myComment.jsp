@@ -34,7 +34,7 @@
 
                 <td>${myComment.commentId}</td>
                 <td>${myComment.userId}</td>
-                <td><a href="<c:url value='/review/${myComment.commentId}'/>">${myComment.content}</a></td>
+                <td>${myComment.content}</td>
                 <td>
                     <button class="removeBtn" data-id="${myComment.commentId}">삭제</button>
                 </td>
@@ -42,6 +42,9 @@
         </c:forEach>
         </tbody>
     </table>
+    <div class="more_btn">
+        <button class="more-btn" id="moreView-btn">더보기</button>
+    </div>
 </div>
 <script>
     $(document).ready(function() {
@@ -61,11 +64,13 @@
                 if (result.isConfirmed) {
                     $.ajax({
                         type: 'DELETE',
-                        url: `/comment/${commentId}/delete`,
+                        url: "/comment/"+commentId+"/delete",
                         success: function (response) {
                             if (response.message === 'success') {
-                                const reviewNo = $('#reviewNo').val();
-                                loadComments(reviewNo);
+                                console.log("삭제 후 이동");
+                                location.href = "mypage";
+                                console.log("마이페이지로");
+
                             }
                             // else {
                             //     alert(response.message);
@@ -80,6 +85,19 @@
 
         });
     })
+
+    //더보기 버튼
+    $(function() {
+        $("tr").hide();
+        $("tr").slice(0, 4).show(); // 초기갯수
+        $("#moreView-btn").click(function(e) { // 더보기 버튼 클릭
+            e.preventDefault();
+            $("tr:hidden").slice(0, 4).show(); // 클릭시 리스트 갯수 지정
+            if ($("tr:hidden").length == 0) { // 컨텐츠 남아있는지 확인
+                $("#moreView-btn").hide(); //더이상의 리스트가 없다면 버튼 사라짐
+            }
+        });
+    });
 
 </script>
 

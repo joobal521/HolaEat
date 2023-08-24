@@ -19,11 +19,11 @@ $(document).ready(function() {//admin페이지 접속시 menu관리 자동로드
         event.preventDefault(); // 기본 링크 동작 방지
 
         var pageUrl = $(this).attr("href"); // 클릭한 링크의 URL
-        var pageTitle = $(this).text(); // 클릭한 링크의 텍스트를 페이지 제목으로 사용
         // AJAX 요청
         $.ajax({
             url: pageUrl,
             success: function(response) {
+                $(".section").empty();
                 $(".section").html(response); // .section에 응답 페이지 삽입
             },
             error: function() {
@@ -43,6 +43,30 @@ $(document).ready(function() {//admin페이지 접속시 menu관리 자동로드
             loadContent(window.location.pathname);
         }
     };
+});
+
+
+
+$(document).ready(function() {
+    $("a.menu-link").click(function(event) {
+        event.preventDefault();
+
+        $("a.menu-link").removeClass("active");
+
+        $(this).addClass("active");
+
+        var pageUrl = $(this).attr("href");
+
+        $.ajax({
+            url: pageUrl,
+            success: function(response) {
+                $(".section").html(response);
+            },
+            error: function() {
+                alert("페이지 로드에 실패했습니다.");
+            }
+        });
+    });
 });
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -72,28 +96,4 @@ document.addEventListener("DOMContentLoaded", function () {
             header.style.position = positionValue;
         });
     }
-});
-
-
-$(document).ready(function() {
-    $("a.menu-link").click(function(event) {
-        event.preventDefault();
-
-        $("a.menu-link").removeClass("active");
-
-        $(this).addClass("active");
-
-        var pageUrl = $(this).attr("href");
-        var pageTitle = $(this).text();
-
-        $.ajax({
-            url: pageUrl,
-            success: function(response) {
-                $(".section").html(response);
-            },
-            error: function() {
-                alert("페이지 로드에 실패했습니다.");
-            }
-        });
-    });
 });

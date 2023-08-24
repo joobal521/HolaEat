@@ -1,5 +1,6 @@
 package com.spring.holaeat.service;
 
+import com.spring.holaeat.domain.review.Review;
 import com.spring.holaeat.domain.review.ReviewRepository;
 import com.spring.holaeat.domain.review_like.ReviewLike;
 import com.spring.holaeat.domain.review_like.ReviewLikeRepository;
@@ -49,6 +50,15 @@ public class ReviewLikeService {
         }
     }
 
+    //총 좋아요 개수
+    @Transactional
+    public int getTotalLikesForReview(Long reviewNo) {
+        Review review = reviewRepository.findById(reviewNo).orElse(null);
+        if (review != null) {
+            return reviewRepository.getTotalLikesForReview(review.getReviewLike());
+        }
+        return 0;
+    }
 
     //좋아요있는 게시글 삭제
     @javax.transaction.Transactional
