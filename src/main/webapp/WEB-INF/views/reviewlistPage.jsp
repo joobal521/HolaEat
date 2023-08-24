@@ -122,7 +122,7 @@
                                 <i id="heart-icon-${review.reviewNo}"
                                     class="fa ${heartMapPage[review.reviewNo] == 1 ? 'fa-solid fa-heart' : 'fa-regular fa-heart' }"></i>
                                     </span>
-<%--                                    ${review.reviewLike}--%>
+                                    ${review.reviewLike}
                                 <!-- 총 좋아요 개수 표시 -->
 <%--                                <span id="total-likes-${review.reviewNo}">Loading...</span>--%>
 <%--                                <input type="hidden" value="${heartMapPage[review.reviewNo]}"--%>
@@ -134,7 +134,7 @@
                             <button class="likeUp-logout" data-id="">
                                 <i class="fa-regular fa-heart"></i>
                             </button>
-<%--                            ${review.reviewLike}--%>
+                            ${review.reviewLike}
                             <!-- 총 좋아요 개수 표시 -->
 <%--                            <span id="total-likes-${review.reviewNo}">Loading...</span>--%>
                         </c:otherwise>

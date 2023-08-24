@@ -597,6 +597,7 @@ button.likeUp-btn,button.likeUp-logout {
     margin: auto;
     border: none;
     background: transparent;
+    font-weight: bold;
 }
 button.likeUp-logout {
     border: none;
