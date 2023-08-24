@@ -124,9 +124,9 @@
                                     </span>
 <%--                                    ${review.reviewLike}--%>
                                 <!-- 총 좋아요 개수 표시 -->
-                                <span id="total-likes-${review.reviewNo}">Loading...</span>
-                                <input type="hidden" value="${heartMapPage[review.reviewNo]}"
-                                       id="result-${review.reviewNo}">
+<%--                                <span id="total-likes-${review.reviewNo}">Loading...</span>--%>
+<%--                                <input type="hidden" value="${heartMapPage[review.reviewNo]}"--%>
+<%--                                       id="result-${review.reviewNo}">--%>
                             </button>
 
                         </c:when>
@@ -136,7 +136,7 @@
                             </button>
 <%--                            ${review.reviewLike}--%>
                             <!-- 총 좋아요 개수 표시 -->
-                            <span id="total-likes-${review.reviewNo}">Loading...</span>
+<%--                            <span id="total-likes-${review.reviewNo}">Loading...</span>--%>
                         </c:otherwise>
                     </c:choose>
                 </div>

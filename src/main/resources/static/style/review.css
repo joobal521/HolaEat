@@ -588,14 +588,20 @@ border: none;
 
 /*좋아요 css*/
 .review_like i.fa-heart{
-    font-size: 20px;
+    font-size: 25px;
     text-align: center;
 }
 
 button.likeUp-btn,button.likeUp-logout {
     text-align: center;
     margin: auto;
-    border: none;}
+    border: none;
+    background: transparent;
+}
 button.likeUp-logout {
     border: none;
+}
+
+.fa-heart {
+    color: #ED7B7B;
 }

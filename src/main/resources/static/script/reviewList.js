@@ -88,6 +88,9 @@ function toggleHeart(reviewNo) {
             if (heartIcon.classList.contains("fa-regular")) {
                 heartIcon.classList.remove("fa-regular");
                 heartIcon.classList.add("fa-solid");
+
+                console.log("resultInput:" + resultInput);
+                console.log("totalLikesElement:"+ totalLikesElement);
                 resultInput.value = "1";
             } else {
                 heartIcon.classList.remove("fa-solid");
@@ -101,15 +104,15 @@ function toggleHeart(reviewNo) {
 
             //  리뷰 번호에 대한 좋아요 수만 반환하는
             //  GET /reviewlike/{reviewNo}/likes
-            $.ajax({
-                url: "/reviewlike/" + reviewNo + /totallikes/,
-                method: "GET",
-                dataType: "json",
-                success: function (data) {
-                    var totalLikesElement = document.getElementById("total-likes-" + reviewNo);
-                    totalLikesElement.innerText = "Total Likes: " + data.totalLikes;
-                }
-            });
+            // $.ajax({
+            //     url: "/reviewlike/" + reviewNo + /totallikes/,
+            //     method: "GET",
+            //     dataType: "json",
+            //     success: function (data) {
+            //         var totalLikesElement = document.getElementById("total-likes-" + reviewNo);
+            //         totalLikesElement.innerText = "Total Likes: " + data.totalLikes;
+            //     }
+            // });
         }
 
     });
