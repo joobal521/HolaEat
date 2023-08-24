@@ -19,6 +19,8 @@
 </head>
 <c:import url="header.jsp"/>
 <body>
+<div class="join_box">
+<h1 class="title">회원 가입</h1>
     <div class="form_wrap">
         <form enctype="multipart/form-data">
             <div class="form_container">
@@ -111,6 +113,7 @@
             </div>
         </form>
     </div>
+</div>
 <script src="script/join.js"></script>
 </body>
 <c:import url="footer.jsp"/>
