@@ -45,5 +45,10 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
 
 
 
+    //좋아요 총 개수
+    @Query( nativeQuery = true, value = "SELECT * FROM review WHERE review_like")
+    int getTotalLikesForReview(int reviewLike);
+
+
 
 }

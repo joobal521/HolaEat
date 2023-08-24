@@ -116,30 +116,15 @@
                 <div class="review_like">
                     <c:choose>
                         <c:when test="${not empty log}">
-<%--                            <button class="likeUp-btn" data-id="${review.reviewNo}">--%>
-<%--                <span class="heart">--%>
-<%--                    <c:forEach items="${likedList}" var="like">--%>
-<%--                        <c:if test="${review.reviewNo == like.reviewNo}">--%>
-<%--                            <c:set var="heart" value="1"></c:set>--%>
-<%--                        </c:if>--%>
-<%--                    </c:forEach>--%>
-<%--                    <input type="hidden" value="${heart}" id="result">--%>
-<%--                    <c:choose>--%>
-<%--                        <c:when test="${heart == 1}">--%>
-<%--                            <i class="fa-solid fa-heart"></i>--%>
-<%--                        </c:when>--%>
-<%--                        <c:otherwise>--%>
-<%--                            <i class="fa-regular fa-heart"></i>--%>
-<%--                        </c:otherwise>--%>
-<%--                    </c:choose>--%>
-<%--                </span>--%>
-<%--                            </button>--%>
                             <button class="likeUp-btn" data-id="${review.reviewNo}"
                                     onclick="toggleHeart(${review.reviewNo})">
-            <span class="heart">
-                <i id="heart-icon-${review.reviewNo}"
-                   class="fa ${heartMapPage[review.reviewNo] == 1 ? 'fa-solid fa-heart' : 'fa-regular fa-heart' }"></i>
-            </span>
+                                <span class="heart">
+                                <i id="heart-icon-${review.reviewNo}"
+                                    class="fa ${heartMapPage[review.reviewNo] == 1 ? 'fa-solid fa-heart' : 'fa-regular fa-heart' }"></i>
+                                    </span>
+<%--                                    ${review.reviewLike}--%>
+                                <!-- 총 좋아요 개수 표시 -->
+                                <span id="total-likes-${review.reviewNo}">Loading...</span>
                                 <input type="hidden" value="${heartMapPage[review.reviewNo]}"
                                        id="result-${review.reviewNo}">
                             </button>
@@ -149,10 +134,13 @@
                             <button class="likeUp-logout" data-id="">
                                 <i class="fa-regular fa-heart"></i>
                             </button>
+<%--                            ${review.reviewLike}--%>
+                            <!-- 총 좋아요 개수 표시 -->
+                            <span id="total-likes-${review.reviewNo}">Loading...</span>
                         </c:otherwise>
                     </c:choose>
                 </div>
-                <div>하트 총 개수 : ${review.reviewLike}</div>
+
 
             </div>
 

@@ -5,17 +5,17 @@ import com.spring.holaeat.domain.review_like.ReviewLike;
 import com.spring.holaeat.domain.review_like.ReviewLikeRepository;
 import com.spring.holaeat.service.ReviewLikeService;
 import com.spring.holaeat.service.ReviewService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 @Controller
@@ -45,6 +45,22 @@ public class ReviewLikeController {
 
             return ResponseEntity.ok("Review liked successfully!");
         }
+
+
+
+        //좋아요 총 개수
+    @GetMapping("/review/{reviewNo}/totallikes")
+    public ResponseEntity<Map<String, Integer>> getTotalLikesForReview(@PathVariable long reviewNo) {
+        int totalLikes = reviewLikeService.getTotalLikesForReview(reviewNo);
+
+        Map<String, Integer> response = new HashMap<>();
+        response.put("totalLikes", totalLikes);
+
+        return ResponseEntity.ok(response);
+    }
+
+
+
 
 //        @PutMapping(value = "/reviewlike/{reviewNo}")
 //        public void inputReviewLike(@PathVariable long reviewNo,WebRequest request) {
