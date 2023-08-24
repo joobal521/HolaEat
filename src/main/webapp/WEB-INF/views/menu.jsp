@@ -174,6 +174,7 @@
             <div id="generatedMenus" class="menu_list" style="width: 50%; height: 500px;">
                 <!-- 이 부분에 동적으로 생성되는 식단 목록이 들어갈 예정입니다. -->
             </div>
+            <hr class="main_hr">
             <div id="selectedMenus" class="menu_list" style="width: 50%;height: 500px; overflow: scroll">
                 <!-- 드래그해서 이동한 식단 목록이 여기에 들어갈 예정입니다. -->
                 <%--                <div class="image-with-content">--%>

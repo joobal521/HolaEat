@@ -48,10 +48,13 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
         }
-
+        .food-details {
+            margin: 0 auto;
+        }
         .food-nutrition{
             display: flex;
             text-align: center;
+            margin: 0 auto;
         }
         .recipe-list {
             background-color: #fff;
@@ -67,24 +70,43 @@
             border-color: #000; /* 변경하고자 하는 색상 */
         }
 
-        .carb {
+        /*.carb {*/
 
-            background-color: #FF5733;
+        /*    background-color: #FF5733;*/
+        /*}*/
+        /*.fat {*/
+
+        /*    background-color: #FFC300;*/
+        /*}*/
+        /*.protein {*/
+
+        /*    background-color: #36A2EB;*/
+        /*}*/
+        /*.sugars {*/
+
+        /*    background-color: #4CAF50;*/
+        /*}*/
+        /*.natrium {*/
+        /*    background-color: #9C27B0;*/
+        /*}*/
+        .carb{
+            background-color: #CFFFB3; /* 연한 초록색 */
+
         }
         .fat {
-
-            background-color: #FFC300;
+            background-color: #FFD1DF; /* 연한 분홍색 */
         }
+
         .protein {
-
-            background-color: #36A2EB;
+            background-color: #DACAFF; /* 연한 보라색 */
         }
+
         .sugars {
-
-            background-color: #4CAF50;
+            background-color: #FFFAAF; /* 연한 노란색 */
         }
+
         .natrium {
-            background-color: #9C27B0;
+            background-color: #C9A2D7; /* 연한 파란색 */
         }
 
         .food-nutrition span {
@@ -98,6 +120,7 @@
             overflow: hidden;
             text-align: center;
             position: relative; /* 추가된 부분 */
+            margin:10px auto;
         }
 
         .bar-chart .bar {
@@ -141,7 +164,7 @@
                 <span>${food.foodNational}</span>
             </div>
             <div class="food-nutrition">
-                <span>총 열량 : ${food.kcal} Kcal</span>
+                <span>총 열량 : <br/>${food.kcal} Kcal</span>
                 <span class="carb">탄수화물 : ${food.carb}g</span>
                 <span class="fat">지방 : ${food.fat}g</span>
                 <span class="protein">단백질 : ${food.protein}g</span>

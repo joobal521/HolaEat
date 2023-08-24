@@ -196,7 +196,7 @@ function fetchAndDisplayMenu(selectedNational) {
         var generatedMenus = data;
         var generatedMenusDiv = document.getElementById("generatedMenus");
 
-        var resultHtml = "<h2>원하시는 식단을 오른쪽으로 드래그 해보세요!</h2><ul>";
+        var resultHtml = "<h3>원하시는 식단을 오른쪽으로<br>드래그 해보세요!</h3><ul>";
 
         var selectedPrefer = $('#prefer').val();
         var selectedDislike = $('#dislike').val();
@@ -226,8 +226,8 @@ function fetchAndDisplayMenu(selectedNational) {
                     + "총 탄수화물: " + totalCarbs + "g<br>"
                     + "총 단백질: " + totalProteins + "g<br>"
                     + `총 지방: ${totalFats}g</div><br>`
-                    + `<canvas id="nut_chart"></canvas>`
                     + "</li><br>";
+
                 document.addEventListener("DOMContentLoaded", function () {
 
                     var chartData = {
