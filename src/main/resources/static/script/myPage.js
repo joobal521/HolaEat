@@ -99,7 +99,7 @@ $(document).ready(function() {
 
                 $.ajax(settings).done(function (response) {
                     console.log(response);
-                    location.href = "admin";
+                    location.href = "mypage";
                 });
 
             }

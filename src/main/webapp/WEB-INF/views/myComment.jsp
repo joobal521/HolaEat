@@ -61,11 +61,12 @@
                 if (result.isConfirmed) {
                     $.ajax({
                         type: 'DELETE',
-                        url: `/comment/${commentId}/delete`,
+                        url: "/comment/"+commentId+"/delete",
                         success: function (response) {
                             if (response.message === 'success') {
                                 const reviewNo = $('#reviewNo').val();
                                 loadComments(reviewNo);
+                                location.href = "mypage";
                             }
                             // else {
                             //     alert(response.message);
