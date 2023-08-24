@@ -31,29 +31,77 @@
     //     });
     // });
 
-    $(".likeUp-btn").click(function () {
-        var button = $(this);
-        var reviewNo = button.data("id");
-        var heartText = button.find(".heart");
+    // $(".likeUp-btn").click(function () {
+    //     var button = $(this);
+    //     var reviewNo = button.data("id");
+    //     var heartText = button.find(".heart");
+    //
+    //     console.log(reviewNo + " js확인");
+    //
+    //     $.ajax({
+    //         url: "/reviewlike/" + reviewNo,
+    //         method: "POST",
+    //         success: function (data) {
+    //             if (data.success) {
+    //                 // 텍스트 변경
+    //                 console.log(reviewNo + "ajax확인")
+    //                 if (heartText.find("i").hasClass("fa-regular")) {
+    //                     heartText.html('<i class="fa-solid fa-heart"></i>');
+    //                 } else {
+    //                     heartText.html('<i class="fa-regular fa-heart"></i>');
+    //                 }
+    //             }
+    //         }
+    //     });
+    // });
 
-        console.log(reviewNo + " js확인");
+    // function toggleHeart(reviewNo) {
+    //     var heartIcon = document.getElementById("heart-icon-" + reviewNo);
+    //     var resultInput = document.getElementById("result-" + reviewNo);
+    //
+    //     if (heartIcon.classList.contains("fa-regular")) {
+    //         heartIcon.classList.remove("fa-regular");
+    //         heartIcon.classList.add("fa-solid");
+    //         resultInput.value = "1";
+    //     } else {
+    //         heartIcon.classList.remove("fa-solid");
+    //         heartIcon.classList.add("fa-regular");
+    //         resultInput.value = "0";
+    //     }
+    // }
+
+
+
+    function toggleHeart(reviewNo) {
+        var heartIcon = document.getElementById("heart-icon-" + reviewNo);
+        var resultInput = document.getElementById("result-" + reviewNo);
+
+        var newHeartStatus = (heartIcon.classList.contains("fa-regular")) ? 1 : 0;
 
         $.ajax({
             url: "/reviewlike/" + reviewNo,
             method: "POST",
+            data: { newHeartStatus: newHeartStatus }, // 좋아요 상태를 서버로 전달
             success: function (data) {
                 if (data.success) {
                     // 텍스트 변경
-                    console.log(reviewNo + "ajax확인")
-                    if (heartText.find("i").hasClass("fa-regular")) {
-                        heartText.html('<i class="fa-solid fa-heart"></i>');
+                    if (heartIcon.classList.contains("fa-regular")) {
+                        heartIcon.classList.remove("fa-regular");
+                        heartIcon.classList.add("fa-solid");
+                        resultInput.value = "1";
                     } else {
-                        heartText.html('<i class="fa-regular fa-heart"></i>');
+                        heartIcon.classList.remove("fa-solid");
+                        heartIcon.classList.add("fa-regular");
+                        resultInput.value = "0";
                     }
+
+                    // 좋아요 개수 업데이트
+                    var likeCountElement = document.getElementById("like-count-" + reviewNo);
+                    likeCountElement.innerText = data.updatedLikeCount;
                 }
             }
         });
-    });
+    }
 
 
 
