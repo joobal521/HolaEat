@@ -83,8 +83,13 @@ public class ReviewListController {
 
         for (Review review : reviewPage) {
 
-//            ReviewLike isLiked =  reviewLikeService.checkReviewLike(userId, review.getReviewNo());
-//            likedList.add(isLiked);
+            ReviewLike isLiked =  reviewLikeService.checkReviewLike(userId, review.getReviewNo());
+
+            System.out.println("userI확인"+userId+"review.getReviewNo()확인"+review.getReviewNo());
+
+            likedList.add(isLiked);
+
+            System.out.println("for문 안 isLiked" + isLiked);
 
 
             //이미지 출력
@@ -107,6 +112,7 @@ public class ReviewListController {
 
 
         model.addAttribute("likedList", likedList); // 리뷰에 대한 좋아요 여부 목록 추가
+        System.out.println(likedList+"likedList확인");
         return "reviewlistPage";
     }
 

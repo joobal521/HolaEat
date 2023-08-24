@@ -174,83 +174,69 @@
                     </div>
                     <div id="review_title_check" class="review_title">제목 : ${review.title}</div>
                 </a>
+<%--                <div class="review_like">--%>
+<%--                    <c:choose>--%>
+<%--                        <c:when test="${not empty log}">--%>
+<%--                            <button class="likeUp-btn" data-id="${review.reviewNo}" value="${heart}">--%>
+<%--                            빈하트--%>
+<%--                            </button>--%>
+
+<%--                                <c:forEach items="${likedList}" var="like">--%>
+<%--                                    <c:if test="${review.reviewNo == like.reviewNo}">--%>
+<%--                                        <c:set var="heart" value="1"></c:set>--%>
+<%--                                        <input type="hidden" value="${heart}" id="result">--%>
+<%--                                    </c:if>--%>
+<%--                                </c:forEach>--%>
+<%--                                <span class="heart">--%>
+<%--&lt;%&ndash;                                    <c:choose>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                        <c:when test="${heart == 1}">&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                            <i class="fa-solid fa-heart"></i>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                        </c:when>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                   <c:otherwise>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                             <i class="fa-regular fa-heart"></i>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                    </c:otherwise>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                     </c:choose>&ndash;%&gt;--%>
+<%--                                </span>--%>
+<%--                            </button>--%>
+<%--                        </c:when>--%>
+<%--                        <c:otherwise>--%>
+<%--&lt;%&ndash;                            <button class="likeUp-logout" data-id="${review.reviewNo}">&ndash;%&gt;--%>
+<%--                            <button class="likeUp-logout" data-id="">--%>
+<%--                                빈하트--%>
+<%--&lt;%&ndash;                                <div class="heart"><i class="fa-regular fa-heart"></i></div>&ndash;%&gt;--%>
+<%--                            </button>--%>
+<%--                        </c:otherwise>--%>
+<%--                    </c:choose>--%>
+<%--                </div>--%>
                 <div class="review_like">
                     <c:choose>
                         <c:when test="${not empty log}">
-                            <button class="likeUp-btn" data-id="${review.reviewNo}" value="${heart}">
-                                <c:forEach items="${likedList}" var="like">
-                                    <c:if test="${review.reviewNo == like.reviewNo}">
-                                        <c:set var="heart" value="1"></c:set>
-                                    </c:if>
-                                </c:forEach>
-                                <span class="heart">
-                                    <c:choose>
-                                        <c:when test="${heart == 1}">
-                                            <i class="fa-solid fa-heart"></i>
-                                        </c:when>
-                                   <c:otherwise>
-                                             <i class="fa-regular fa-heart"></i>
-                                    </c:otherwise>
-                                     </c:choose>
-                                </span>
+                            <button class="likeUp-btn" data-id="${review.reviewNo}">
+                <span class="heart">
+                    <c:forEach items="${likedList}" var="like">
+                        <c:if test="${review.reviewNo == like.reviewNo}">
+                            <c:set var="heart" value="1"></c:set>
+                        </c:if>
+                    </c:forEach>
+                    <input type="hidden" value="${heart}" id="result">
+                    <c:choose>
+                        <c:when test="${heart == 1}">
+                            <i class="fa-solid fa-heart"></i>
+                        </c:when>
+                        <c:otherwise>
+                            <i class="fa-regular fa-heart"></i>
+                        </c:otherwise>
+                    </c:choose>
+                </span>
                             </button>
                         </c:when>
                         <c:otherwise>
-<%--                            <button class="likeUp-logout" data-id="${review.reviewNo}">--%>
                             <button class="likeUp-logout" data-id="">
-                                <div class="heart"><i class="fa-regular fa-heart"></i></div>
+                                <i class="fa-regular fa-heart"></i>
                             </button>
                         </c:otherwise>
                     </c:choose>
                 </div>
-
-                    <%--                <div class="review_like">--%>
-
-                    <%--                    <c:choose>--%>
-                    <%--                        <c:when test="${not empty log}">--%>
-
-                    <%--                                <c:set var="heart" value="0"></c:set>--%>
-
-                    <%--                                        <button class="likeUp-btn" data-id="${review.reviewNo}"--%>
-                    <%--                            <c:forEach items="${likedList}" var="like">--%>
-                    <%--                                <c:if test="${review.reviewNo == like.reviewNo}">--%>
-                    <%--                                    value="heart">--%>
-                    <%--                                </c:if>--%>
-                    <%--                            </c:forEach>--%>
-                    <%--                                        <span class="heart">풀하트</span>--%>
-                    <%--                                        </button>--%>
-                    <%--                                        ${heart=1}--%>
-                    <%--&lt;%&ndash;                                <i class="fa-regular fa-heart"></i>&ndash;%&gt;--%>
-                    <%--                        </c:when>--%>
-                    <%--                        <c:otherwise>--%>
-                    <%--                            <button class="likeUp-logout" data-id="${review.reviewNo}"  >--%>
-                    <%--                                <div class="heart">로그아웃 하트</div>--%>
-                    <%--&lt;%&ndash;                                <i class="fa-regular fa-heart"></i>&ndash;%&gt;--%>
-                    <%--                            </button>--%>
-                    <%--                        </c:otherwise>--%>
-                    <%--                    </c:choose>--%>
-
-                    <%--                </div>--%>
-                    <%--                <<div class="review_like">--%>
-                    <%--                <c:choose>--%>
-                    <%--                    <c:when test="${not empty log}">--%>
-                    <%--                        <c:set var="heart" value="빈하트" />--%>
-                    <%--                        <c:forEach items="${likedList}" var="like">--%>
-                    <%--                            <c:if test="${review.reviewNo == like.reviewNo}">--%>
-                    <%--                                <c:set var="heart" value="풀하트" />--%>
-                    <%--                            </c:if>--%>
-                    <%--                        </c:forEach>--%>
-                    <%--                        <button class="likeUp-btn" data-id="${review.reviewNo}">--%>
-                    <%--                            <span class="heart">${heart}</span>--%>
-                    <%--                        </button>--%>
-                    <%--                    </c:when>--%>
-                    <%--                    <c:otherwise>--%>
-                    <%--                        <button class="likeUp-logout" data-id="${review.reviewNo}">--%>
-                    <%--                            <div class="heart">로그아웃 하트</div>--%>
-                    <%--                        </button>--%>
-                    <%--                    </c:otherwise>--%>
-                    <%--                </c:choose>--%>
-                    <%--            </div>--%>
 
             </div>
 
