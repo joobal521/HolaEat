@@ -54,7 +54,7 @@
                 </div>
             </div>
             <div class="nav">
-                <ul class="menu align-center expanded text-center SMN_effect-5">
+                <ul class="menu align-center expanded text-center SMN_effect-5" style="padding-left: 0 !important;;">
 
                     <li>
                         <a href="/">
@@ -64,7 +64,7 @@
                     </li>
                     <li>
                         <a href="ingredients">
-                            <span>이달의</br>식재료</span>
+                            <span>이달의 식재료</span>
                             <span>Mothnly Ingredients</span>
                         </a>
                     </li>

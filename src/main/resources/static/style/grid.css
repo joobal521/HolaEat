@@ -212,7 +212,7 @@ a:hover, a:focus {
 /*----*/
 
 h3 {
-    color: #fff;
+    /*color: #fff;*/
     font-weight: bold;
     margin: 0 0 50px 0;
     position: relative;

@@ -40,6 +40,8 @@
 }
 
 #myform{
+    width: 80%;
+    margin-left: 10%;
     border: 1px solid #ffb9b9;
     border-radius: 10px;
 }
@@ -50,6 +52,10 @@
 
 .ing{
     display: flex;
+}
+
+.personal_menu{
+    padding: 5% 7%;
 }
 
 .personal_menu li,
@@ -98,8 +104,8 @@ button:hover{
     }
 
     .button {
-        /*padding: 0.75em 2em;*/
-        height: ;
+        width: 50px;
+        height: 40px;
         text-align: center;
         text-decoration: none;
         color: #2194E0;
@@ -110,7 +116,7 @@ button:hover{
         transition: all 0.2s ease-in-out;
         position: relative;
         overflow: hidden;
-        width: 60%;
+        width: 40%;
 
         &:before {
             content: "";
@@ -312,7 +318,7 @@ button:hover{
     border-radius: 200px;
 }
 
-.food-image:hover{
+.food-image:hover, .food-info:hover{
     cursor: grab;
 }
 
@@ -348,4 +354,12 @@ input, select{
 .btn6{
     width: 20% !important;
     font-weight: 700;
+}
+
+#prefer, #dislike{
+    width: 25%;
+}
+
+.main_hr{
+    margin-right: 5%;
 }
