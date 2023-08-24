@@ -49,6 +49,9 @@
     </c:forEach>
     </tbody>
 </table>
+    <div class="more_btn">
+        <button class="more-btn" id="moreView-btn">더보기</button>
+    </div>
 <%--    <div class="paging" id="paging">--%>
 <%--        <ul class="pagination">--%>
 <%--            <c:choose>--%>
