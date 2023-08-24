@@ -137,6 +137,8 @@ public class MainController {
     @GetMapping(value = "test")
     public String test() {return "test";}
 
+//    @GetMapping(value = "myMenu")
+//    public String myMenu() {return "myMenu";}
 
 
 

@@ -4,23 +4,6 @@ $(document).ready(function() {
         loadMoreData(currentPage);
     });
 
-    function loadMoreData(page) {
-        $.ajax({
-            url: "adminMenu?page=" + page,
-            success: function(response) {
-                $(".admin-foodList").append(response); // 기존 데이터 아래에 추가 데이터 추가
-                $("#loadMoreBtn").data("currentPage", page + 1); // 다음 페이지 번호 업데이트
-
-                // 만약 추가 데이터가 없을 경우 "더 보기" 버튼 숨김
-                if (response.trim() === "") {
-                    $("#loadMoreBtn").hide();
-                }
-            },
-            error: function() {
-                alert("Failed to load more data.");
-            }
-        });
-    }
 
     $(".admin-menu").on("click", ".editBtn", function() {
         var row = $(this).closest("tr");

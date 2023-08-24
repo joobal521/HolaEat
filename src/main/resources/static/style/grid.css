@@ -43,6 +43,8 @@ html,body,header,footer{
 
 }
 
+
+
 .user_nav>a{
     width: 100px;
     height: 40px;
@@ -253,6 +255,16 @@ common style
 a{
     color: black;
     text-decoration: none;
+}
+
+#login, #logout{
+    margin-right: 15px;
+}
+
+#logout{
+    border: 1px solid black;
+    border-radius: 5px;
+    font-size: 1rem;
 }
 
 #logout, #login, #admin, #admin_login, #my, #join{

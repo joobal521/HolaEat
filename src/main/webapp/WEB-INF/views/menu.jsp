@@ -46,22 +46,27 @@
                     </label>
                 </li>
                 <li>
-                    <h2>나이</h2>
+                    <label for="age">
+                    <h2>나이(세)</h2>
+                    </label>
                     <input type="text" id="age" name="age" value="${userResponseDto.userAge}">
-                    <span>세</span>
                 </li>
                 <li>
-                    <h2>키</h2>
+                    <label for="height">
+                    <h2>키(cm)</h2>
+                    </label>
                     <input type="text" id="height" name="height" value="${userResponseDto.userHeight}">
-                    <span>cm</span>
                 </li>
                 <li>
-                    <h2>몸무게</h2>
+                    <label for="weight">
+                    <h2>몸무게(kg)</h2>
+                    </label>
                     <input type="text" id="weight" name="weight" value="${userResponseDto.userWeight}">
-                    <span>kg</span>
                 </li>
                 <li>
+                    <label for="allergy">
                     <h2>알레르기</h2>
+                    </label>
                     <select name="allergy" id="allergy">
                         <option value="0">없음</option>
                         <option value="1" ${userResponseDto.userAllergy eq '1' ? 'selected' : ''}>유제품</option>
@@ -78,21 +83,23 @@
                         <option value="3">비건</option>
                     </select>
                 </li>
+
                 <input type="button" class="button" id="calculate" name="calculate" value="계산하기"
                        onclick="calculateCalories()">
-            
+
             </ul>
             <ul>
                 <li>
                     <h2>하루 필요 열량</h2>
                     <input type="text" class="btn6" id="recCalories" name="recCalories"
-                           value="${userResponseDto.userRecCalories}">
+                           value="${userResponseDto.userRecCalories}" readonly>
                     <span>kcal</span>
                 </li>
             </ul>
+            <div id="btn_wrap">
             <input type="button" class="button" id="save_btn" name="save_btn" value="내 칼로리 정보 저장">
-            <hr>
-            <div class="json_wrap">
+            </div>
+                <div class="json_wrap">
                 
                 <%--        카테고리    --%>
                 
@@ -103,26 +110,15 @@
                         <option value="우유">우유</option>
                         <option value="메밀">메밀</option>
                         <option value="땅콩">땅콩</option>
-                        <option value="대두">대두</option>
                         <option value="밀">밀</option>
-                        <option value="게">게</option>
                         <option value="새우">새우</option>
-                        <option value="복숭아">복숭아</option>
-                        <option value="토마토">토마토</option>
                         <option value="두부">두부</option>
-                        <option value="깨">깨</option>
-                        <option value="두유">두유</option>
                         <option value="감자">감자</option>
                         <option value="계란">계란</option>
                         <option value="쇠고기">쇠고기</option>
                         <option value="생선">생선</option>
                         <option value="닭고기">닭고기</option>
                         <option value="돼지고기">돼지고기</option>
-                        <option value="수박">수박</option>
-                        <option value="참외">참외</option>
-                        <option value="케찹">케찹</option>
-                        <option value="포도">포도</option>
-                        <option value="연근">연근</option>
                     </select>
                 </div>
                 
@@ -133,30 +129,21 @@
                         <option value="우유">우유</option>
                         <option value="메밀">메밀</option>
                         <option value="땅콩">땅콩</option>
-                        <option value="대두">대두</option>
                         <option value="밀">밀</option>
-                        <option value="게">게</option>
                         <option value="새우">새우</option>
-                        <option value="복숭아">복숭아</option>
-                        <option value="토마토">토마토</option>
                         <option value="두부">두부</option>
-                        <option value="깨">깨</option>
-                        <option value="두유">두유</option>
                         <option value="감자">감자</option>
                         <option value="계란">계란</option>
                         <option value="쇠고기">쇠고기</option>
                         <option value="생선">생선</option>
                         <option value="닭고기">닭고기</option>
                         <option value="돼지고기">돼지고기</option>
-                        <option value="수박">수박</option>
-                        <option value="참외">참외</option>
-                        <option value="케찹">케찹</option>
-                        <option value="포도">포도</option>
-                        <option value="연근">연근</option>
                     </select>
                 </div>
+                    <div id="btn_wrap">
                 <input type="button" class="button" id="menu_btn" name="menu_btn" value="모든 메뉴보기"
                        onclick="fetchAndDisplayMenu()">
+                    </div>
                 <li>
                     <h3 class="mini_h3">열량 계산 기준</h3>
                     <span class="mini">*알레르기가 있으시면 권장 칼로리가 10% 감소합니다.</span><br>
@@ -167,9 +154,8 @@
         </form>
         
         <div class="cat" style="display: flex; justify-content: space-evenly">
-            <h2>${userResponseDto.userName}님만을 위한 맞춤식단이 여기 있습니다!</h2>
+            <h2>어떤 메뉴를 드시고 싶으신가요?</h2>
             <div class="category_title">
-                <h2>어떤 메뉴를 드시고 싶으신가요?</h2>
                 <div class="category">
                     <select name="national" id="national" onchange="fetchAndDisplayAllMenus(this.value)">
                         <option value="">선택하세요</option>
@@ -179,6 +165,8 @@
                         <option class="western" value="양식">양식</option>
                         <option class="salad" value="샐러드">샐러드</option>
                     </select>
+                    <button id="reset_btn">모두 드래그 해제</button>
+<%--                    <button id="menu_save_btn" onclick="saveSelectedMenus()">식단 저장</button>--%>
                 </div>
             </div>
         </div>

@@ -6,6 +6,11 @@
     cursor: pointer;
 }
 
+.category{
+    display: flex;
+
+}
+
 .category button.selected {
     background-color: darkcyan;
 }
@@ -67,10 +72,13 @@ button:hover{
 
 .form_wrap>form {
     display: flex;
-    align-items: center;
     flex-direction: column;
     border: solid 1px black;
+    padding: 5% 15%;
+    text-align: center;
     /*color: #2194E0;*/
+
+
 
     @keyframes sheen {
         0% {
@@ -91,6 +99,7 @@ button:hover{
 
     .button {
         /*padding: 0.75em 2em;*/
+        height: ;
         text-align: center;
         text-decoration: none;
         color: #2194E0;
@@ -101,6 +110,7 @@ button:hover{
         transition: all 0.2s ease-in-out;
         position: relative;
         overflow: hidden;
+        width: 60%;
 
         &:before {
             content: "";
@@ -145,7 +155,6 @@ button:hover{
     background-size: 15px 15px;
     background-repeat: no-repeat;
     background-position: right center;
-    padding: 20px;
 }
 
 /*제목*/
@@ -303,6 +312,40 @@ button:hover{
     border-radius: 200px;
 }
 
+.food-image:hover{
+    cursor: grab;
+}
+
 .food-info{
     background-image: none;
+}
+
+.cals_wrap{
+    padding: 5% 10%;
+}
+
+#reset_btn{
+    width: 100%;
+    white-space: nowrap;
+    margin-left: 100px;
+    height: 35px;
+    margin-top: 10px;
+}
+
+#national{
+    width: 100%;
+}
+
+.cat{
+    display: flex;
+    align-items: center;
+}
+
+input, select{
+    margin: 10px 0;
+}
+
+.btn6{
+    width: 20% !important;
+    font-weight: 700;
 }
