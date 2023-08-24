@@ -94,6 +94,8 @@
     </section>
 </section>
 <script src="script/admin.js"></script>
+<script src="script/adminIngr.js"></script>
+<script src="script/adminReview.js"></script>
 
 </body>
 <c:import url="footer.jsp"/>

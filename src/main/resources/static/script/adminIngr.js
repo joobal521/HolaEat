@@ -1,23 +1,48 @@
+function editIngr(element) {
+    const id = element.parentNode.parentNode.id;
+    const tr = $(`#${id}`);
+    const ingrName = tr.children('.ingrName');
+    const allergy = tr.children('.allergy');
+    const month = tr.children('.month');
+    const isMonth = month.text() === '예';
+
+    ingrName.html(`
+        <input type="text" id="ingrName-val" value="${ingrName.text()}">
+    `);
+    allergy.html(`
+        <input type="text" id="allergy-val" value="${allergy.text()}">
+    `);
+    month.html(`
+        <select id="month-val">
+            <option ${isMonth ? 'selected' : ''}>예</option>
+            <option ${!isMonth ? 'selected' : ''}>아니오</option>
+        </select>
+    `);
+
+}
+
 $(document).ready(function() {
-    $(".editBtn").click(function() {
-        var row = $(this).closest("tr");
-        var ingrNameCell = row.find(".ingrName");
-        var allergyCell = row.find(".allergy");
-        var monthCell = row.find(".month");
+    $(".editBtn").on("click", function(e) {
 
-        console.log(row)
-        console.log(ingrNameCell.text()+"-------")
-        console.log(allergyCell.text())
-        console.log(monthCell.text())
 
-        // 현재 데이터를 input 요소로 변경
-        ingrNameCell.html("<input type='text' class='editIngrName' value='" + ingrNameCell.text() + "'>");
-        allergyCell.html("<input type='checkbox' class='editAllergy' " + (allergyCell.text() === "예" ? "checked" : "") + ">");
-        monthCell.html("<input type='checkbox' class='editMonth' " + (monthCell.text() === "예" ? "checked" : "") + ">");
-
-        // 수정/취소 버튼 토글
-        $(this).hide();
-        row.find(".updateBtn, .cancelBtn,.imgBtn").show();
+        // var row = $(this).closest("tr");
+        // var ingrNameCell = row.find(".ingrName");
+        // var allergyCell = row.find(".allergy");
+        // var monthCell = row.find(".month");
+        //
+        // console.log(row)
+        // console.log(ingrNameCell.text()+"-------")
+        // console.log(allergyCell.text())
+        // console.log(monthCell.text())
+        //
+        // // 현재 데이터를 input 요소로 변경
+        // ingrNameCell.html("<input type='text' class='editIngrName' value='" + ingrNameCell.text() + "'>");
+        // allergyCell.html("<input type='checkbox' class='editAllergy' " + (allergyCell.text() === "예" ? "checked" : "") + ">");
+        // monthCell.html("<input type='checkbox' class='editMonth' " + (monthCell.text() === "예" ? "checked" : "") + ">");
+        //
+        // // 수정/취소 버튼 토글
+        // $(this).hide();
+        // row.find(".updateBtn, .cancelBtn,.imgBtn").show();
     });
 
 
