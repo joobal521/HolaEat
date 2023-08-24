@@ -23,7 +23,7 @@ function loadRecipe(btn, modal) {
     var foodId = btn.getAttribute("data-foodid");
     var $recipeContent = modal.querySelector(".recipe-content");
     // var ingrid = document.getElementById('ingrId-modal').value;
-    
+
     $.ajax({
         url: "getRecipe/" + foodId,
         type: "GET",
@@ -33,3 +33,4 @@ function loadRecipe(btn, modal) {
         }
     });
 }
+
