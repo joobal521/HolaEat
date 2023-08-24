@@ -48,67 +48,6 @@
             cursor: grab;
         }
 
-
-        /*하트*/
-
-        /*.heart {*/
-        /*    width: 15px;*/
-        /*    height: 15px;*/
-        /*    background: #ea2027;*/
-        /*    position: relative;*/
-        /*    transform: rotate(45deg);*/
-        /*    border: 1px solid black;*/
-        /*}*/
-        /*.heart::before,*/
-        /*.heart::after {*/
-        /*    content: "";*/
-        /*    width: 15px;*/
-        /*    height: 15px;*/
-        /*    position: absolute;*/
-        /*    border-radius: 50%;*/
-        /*    background: #ea2027;*/
-        /*    border: 1px solid black;*/
-        /*}*/
-        /*.heart::before {*/
-        /*    left: -50%;*/
-        /*}*/
-        /*.heart::after {*/
-        /*    top: -50%;*/
-        /*}*/
-
-
-        /*빈하트*/
-        /*.heart {*/
-        /*    width: 100px;*/
-        /*    height: 100px;*/
-        /*    position: relative;*/
-        /*    margin: 50px;*/
-        /*    background-color: transparent;*/
-        /*    transform: rotate(-45deg);*/
-        /*    border: 2px solid #f00;*/
-        /*}*/
-
-        /*.heart:before,*/
-        /*.heart:after {*/
-        /*    content: "";*/
-        /*    width: 100px;*/
-        /*    height: 100px;*/
-        /*    border-radius: 100px;*/
-        /*    position: absolute;*/
-        /*}*/
-
-        /*.heart:before {*/
-        /*    left: 0;*/
-        /*    top: 0;*/
-        /*    background-color: #f00;*/
-        /*}*/
-
-        /*.heart:after {*/
-        /*    left: 100px;*/
-        /*    top: 0;*/
-        /*    background-color: #f00;*/
-        /*}*/
-
     </style>
 
 
@@ -174,61 +113,37 @@
                     </div>
                     <div id="review_title_check" class="review_title">제목 : ${review.title}</div>
                 </a>
-<%--                <div class="review_like">--%>
-<%--                    <c:choose>--%>
-<%--                        <c:when test="${not empty log}">--%>
-<%--                            <button class="likeUp-btn" data-id="${review.reviewNo}" value="${heart}">--%>
-<%--                            빈하트--%>
-<%--                            </button>--%>
-
-<%--                                <c:forEach items="${likedList}" var="like">--%>
-<%--                                    <c:if test="${review.reviewNo == like.reviewNo}">--%>
-<%--                                        <c:set var="heart" value="1"></c:set>--%>
-<%--                                        <input type="hidden" value="${heart}" id="result">--%>
-<%--                                    </c:if>--%>
-<%--                                </c:forEach>--%>
-<%--                                <span class="heart">--%>
-<%--&lt;%&ndash;                                    <c:choose>&ndash;%&gt;--%>
-<%--&lt;%&ndash;                                        <c:when test="${heart == 1}">&ndash;%&gt;--%>
-<%--&lt;%&ndash;                                            <i class="fa-solid fa-heart"></i>&ndash;%&gt;--%>
-<%--&lt;%&ndash;                                        </c:when>&ndash;%&gt;--%>
-<%--&lt;%&ndash;                                   <c:otherwise>&ndash;%&gt;--%>
-<%--&lt;%&ndash;                                             <i class="fa-regular fa-heart"></i>&ndash;%&gt;--%>
-<%--&lt;%&ndash;                                    </c:otherwise>&ndash;%&gt;--%>
-<%--&lt;%&ndash;                                     </c:choose>&ndash;%&gt;--%>
-<%--                                </span>--%>
-<%--                            </button>--%>
-<%--                        </c:when>--%>
-<%--                        <c:otherwise>--%>
-<%--&lt;%&ndash;                            <button class="likeUp-logout" data-id="${review.reviewNo}">&ndash;%&gt;--%>
-<%--                            <button class="likeUp-logout" data-id="">--%>
-<%--                                빈하트--%>
-<%--&lt;%&ndash;                                <div class="heart"><i class="fa-regular fa-heart"></i></div>&ndash;%&gt;--%>
-<%--                            </button>--%>
-<%--                        </c:otherwise>--%>
-<%--                    </c:choose>--%>
-<%--                </div>--%>
                 <div class="review_like">
                     <c:choose>
                         <c:when test="${not empty log}">
-                            <button class="likeUp-btn" data-id="${review.reviewNo}">
-                <span class="heart">
-                    <c:forEach items="${likedList}" var="like">
-                        <c:if test="${review.reviewNo == like.reviewNo}">
-                            <c:set var="heart" value="1"></c:set>
-                        </c:if>
-                    </c:forEach>
-                    <input type="hidden" value="${heart}" id="result">
-                    <c:choose>
-                        <c:when test="${heart == 1}">
-                            <i class="fa-solid fa-heart"></i>
-                        </c:when>
-                        <c:otherwise>
-                            <i class="fa-regular fa-heart"></i>
-                        </c:otherwise>
-                    </c:choose>
-                </span>
+<%--                            <button class="likeUp-btn" data-id="${review.reviewNo}">--%>
+<%--                <span class="heart">--%>
+<%--                    <c:forEach items="${likedList}" var="like">--%>
+<%--                        <c:if test="${review.reviewNo == like.reviewNo}">--%>
+<%--                            <c:set var="heart" value="1"></c:set>--%>
+<%--                        </c:if>--%>
+<%--                    </c:forEach>--%>
+<%--                    <input type="hidden" value="${heart}" id="result">--%>
+<%--                    <c:choose>--%>
+<%--                        <c:when test="${heart == 1}">--%>
+<%--                            <i class="fa-solid fa-heart"></i>--%>
+<%--                        </c:when>--%>
+<%--                        <c:otherwise>--%>
+<%--                            <i class="fa-regular fa-heart"></i>--%>
+<%--                        </c:otherwise>--%>
+<%--                    </c:choose>--%>
+<%--                </span>--%>
+<%--                            </button>--%>
+                            <button class="likeUp-btn" data-id="${review.reviewNo}"
+                                    onclick="toggleHeart(${review.reviewNo})">
+            <span class="heart">
+                <i id="heart-icon-${review.reviewNo}"
+                   class="fa ${heartMapPage[review.reviewNo] == 1 ? 'fa-solid fa-heart' : 'fa-regular fa-heart' }"></i>
+            </span>
+                                <input type="hidden" value="${heartMapPage[review.reviewNo]}"
+                                       id="result-${review.reviewNo}">
                             </button>
+
                         </c:when>
                         <c:otherwise>
                             <button class="likeUp-logout" data-id="">
@@ -237,10 +152,12 @@
                         </c:otherwise>
                     </c:choose>
                 </div>
+                <div>하트 총 개수 : ${review.reviewLike}</div>
 
             </div>
 
         </c:forEach>
+
     </div>
     <div class="paging" id="paging">
         <ul class="pagination">
