@@ -25,7 +25,6 @@
                     <th>건강 정보 No</th>
                     <th>건강 정보 제목</th>
                     <th>내용</th>
-                    <th>파일</th>
                     <th>수정</th>
                     <th>삭제</th>
                 </tr>
@@ -36,10 +35,6 @@
                         <td>${health.healthNo}</td>
                         <td class="healthTitle">${health.title}</td>
                         <td class="healthContent">${health.content}</td>
-                        <td><c:if test="${not empty imageBase64}">
-                            <img src="data:image/jpeg;base64,${imageBase64}" id="img" name="img" alt="health Image">
-                        </c:if></td>
-
                         <td>
                             <button type="button" class="updateBtn" data-id="${health.healthNo}"  onclick="redirectToHealthUpdate(${health.healthNo})" >수정</button>
                         </td>

@@ -372,7 +372,7 @@ function checkValue(htmlForm) {
     }
 
 
-    if (check && isIdChecked && isEmailChecked &&isToKenChecked) {
+    if (check && isIdChecked && isEmailChecked &&isToKenChecked ) {
         const data = {
             userId: id,
             userPassword: password,
