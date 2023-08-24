@@ -31,7 +31,6 @@
                 event.preventDefault(); // 기본 링크 동작 방지
 
                 var pageUrl = $(this).attr("href"); // 클릭한 링크의 URL
-                var pageTitle = $(this).text(); // 클릭한 링크의 텍스트를 페이지 제목으로 사용
                 // AJAX 요청
                 $.ajax({
                     url: pageUrl,
