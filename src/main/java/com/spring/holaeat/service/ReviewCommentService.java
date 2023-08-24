@@ -1,5 +1,6 @@
 package com.spring.holaeat.service;
 
+import com.spring.holaeat.domain.review.Review;
 import com.spring.holaeat.domain.review_comment.ReviewComment;
 import com.spring.holaeat.domain.review_comment.ReviewCommentRepository;
 import com.spring.holaeat.domain.review_comment.ReviewCommentRequestDto;
@@ -7,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Service
@@ -54,6 +56,9 @@ public class ReviewCommentService {
         reviewCommentRepository.deleteByUserId(userId);
     }
 
+    public List<ReviewComment> findAllByUserId(String userId){
+        return reviewCommentRepository.findAllByUserId(userId);
+    }
 
 
 //    public List<Comment> getCommentsByReviewNo(String reviewNo) {

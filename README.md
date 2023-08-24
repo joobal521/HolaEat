@@ -2,7 +2,7 @@
 
 # HolaEat
 
-- 프로젝트 개요
+- 사용자들에게 맛있고 건강한 맞춤 식단을 제공 하는 서비스입니다.
 
   
 - [서비스 소개](https://www.canva.com/design/DAFqpwZ2qpI/yV_mPlNG9CQxftHpleFdXg/view?utm_content=DAFqpwZ2qpI&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink)
