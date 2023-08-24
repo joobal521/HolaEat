@@ -14,6 +14,7 @@
   <link rel="stylesheet" type="text/css" href="/style/myInfo.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
 </head>
 <body>
 <div class="container">
@@ -34,7 +35,10 @@
   </c:choose>
 <%--  <img src="${profileImgUrl}" class="card-img" alt="프로필 이미지"><br/>--%>
   <form id="profileForm" enctype="multipart/form-data">
-    <input type="file" name="userProfileImg" accept="image/png, image/jpg, image/jpeg, image.gif">
+    <input type="file" id="file" name="userProfileImg" accept="image/*" onchange="writeThumbnail()">
+    <div class="write_select_img" id="image-preview">
+      <img src="" id="img" name="img" alt="">
+    </div>
     <input type="hidden" name="userId" id="userId" value="${sessionScope.log}">
     <button type="button" class="profile-btn" onclick="updateImg(form, ${profileNo})">프로필 사진 변경</button>
   </form>
@@ -54,6 +58,7 @@
 </div>
 
 </div>
-<script src="script/myInfo.js"></script>
+<script src="/script/myPage.js"></script>
+<script src="/script/myInfo.js"></script>
 </body>
 </html>

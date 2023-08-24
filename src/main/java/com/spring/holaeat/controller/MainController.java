@@ -65,6 +65,7 @@ public class MainController {
     @GetMapping(value = "mypage")
     public String myPage() {return "myPage";}
 
+
 //    @GetMapping(value = "/myInfo")
 //    public String myInfo(@RequestParam(name = "profileNo", required = false) Long profileNo, Model model) {
 //        Optional<ProfileImg> profileImg = profileImgRepository.findById(profileNo);
@@ -78,7 +79,7 @@ public class MainController {
 //        return "myInfo";
 //    }
 
-    @GetMapping(value = "myInfo")
+    @GetMapping(value = "/myInfo")
     public String myInfo(){
         return "myInfo";
     }

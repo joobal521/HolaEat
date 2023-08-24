@@ -24,9 +24,9 @@
             <%--            로그인 시 --%>
         <c:when test="${not empty log}">
 
+            <h2 class="title">내 하루 권장 칼로리는?</h2>
 <div class="form_div">
             <form id="myform" action="/saveCalories" method="POST">
-                <h2>내 하루 권장 칼로리는?</h2>
                 <ul id="formSteps">
                     <li class="step" data-step="1">
                         <h3>성별을 선택하세요</h3>
@@ -100,15 +100,18 @@
                         </div>
                     </li>
                     <li class="step" data-step="7">
+                       <div class="result-box">
                         <h2>필요 열량</h2>
-                        <p>당신이 하루에 필요한 열량은, <span id="recCaloriesValue" >${userResponseDto.userRecCalories}</span>kcal입니다.</p>
-                        <p>${userResponseDto.userName}님에게 맞는 식단을 찾으러 가볼까요?</p>
+                        <p class="r-text">당신이 하루에 필요한 열량은,<br/> <span id="recCaloriesValue" >${userResponseDto.userRecCalories}</span>kcal입니다.</p>
+                        <p class="r-text2">${userResponseDto.userName}님에게 맞는 식단을 찾으러 가볼까요?</p>
                         <input type="button" class="save-btn" id="idx_save_btn" name="idx_save_btn" value="내 칼로리 정보 저장">
+                       </div>
                         <p>
                             <a href="menu" class="btn3">
                                 맞춤식단<br/>보러가기
                             </a>
                         </p>
+
                     </li>
                 </ul>
             </form>

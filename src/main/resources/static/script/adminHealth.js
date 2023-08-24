@@ -152,7 +152,7 @@ $(document).ready(function() {
     });
 })
 
-//글쓰기 썸네일
+//이미지 썸네일
 function writeThumbnail() {
     const fileInput = document.getElementById('file');
     const imgElement = document.getElementById('img');

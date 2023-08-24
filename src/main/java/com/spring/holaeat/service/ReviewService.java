@@ -24,6 +24,11 @@ public class ReviewService {
     public void deleteReviewsByUserId(String userId) {
         reviewRepository.deleteByUserId(userId);
     }
+    //내가 쓴글
+    public List<Review> findAllByUserId(String userId){
+         return reviewRepository.findAllByUserId(userId);
+    }
+
     //검색
 
    public List<Review> getAllReview(){
