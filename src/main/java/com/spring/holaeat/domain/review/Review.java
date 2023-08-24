@@ -45,6 +45,9 @@ public class Review extends Timestamp {
 //    @OneToMany(mappedBy = "review", cascade = CascadeType.ALL, orphanRemoval = true)
 //    private List<ReviewComment> comments;
 
+    @Transient
+    private int likedStatus;
+
 
     public Review(ReviewRequestDto reviewRequestDto) {
         this.title = reviewRequestDto.getTitle();

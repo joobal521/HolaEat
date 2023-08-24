@@ -39,29 +39,10 @@ public class ReviewListController {
     private final ReviewService reviewService;
     private final ReviewRepository reviewRepository;
     private final ReviewCommentRepository reviewCommentRepository;
-    private final ReviewLikeService reviewLikeService; // ReviewLikeRepository 주입
+    private final ReviewLikeService reviewLikeService;
 
 
-//    @GetMapping("/reviewlist")
-//    public String getReviewAll(Model model) {
-//        List<Review> list = reviewService.findAllByOrderByReviewNoDesc();
-//        Map<Long, String> imageMap = new HashMap<>();
-//
-//        for (Review review : list) {
-//            if (review.getImg() != null) {
-//                String base64Image = ImageParsor.parseBlobToBase64(review.getImg());
-//                imageMap.put(review.getReviewNo(), base64Image);
-//            }
-//        }
-//
-//        model.addAttribute("reviewlist", list);
-//        model.addAttribute("imageMap", imageMap);
-//        return "reviewlist";
-//    }
-
-
-    // 페이징
-
+    // 페이징,검색
     @GetMapping("/reviewlist/{pageNumber}")
     public String getBoardAll(@PathVariable int pageNumber,
                               @RequestParam(required = false, value = "keyword") String keyword,
@@ -72,8 +53,8 @@ public class ReviewListController {
         List<Review> reviewPage = null;
 
         Pageable adjustedPageable = PageRequest.of(pageNumber - 1, pageable.getPageSize(), pageable.getSort());
-        
-        
+
+        //검색
         if (keyword != null && !keyword.isEmpty()) {
             String pattern = "%" + keyword + "%";
             if ("title".equals(searchType)) {
@@ -103,8 +84,15 @@ public class ReviewListController {
         for (Review review : reviewPage) {
 
             ReviewLike isLiked =  reviewLikeService.checkReviewLike(userId, review.getReviewNo());
+
+            System.out.println("userI확인"+userId+"review.getReviewNo()확인"+review.getReviewNo());
+
             likedList.add(isLiked);
 
+            System.out.println("for문 안 isLiked" + isLiked);
+
+
+            //이미지 출력
             if (review.getImg() != null) {
                 String base64Image = ImageParsor.parseBlobToBase64(review.getImg());
                 imageMap.put(review.getReviewNo(), base64Image);
@@ -124,6 +112,7 @@ public class ReviewListController {
 
 
         model.addAttribute("likedList", likedList); // 리뷰에 대한 좋아요 여부 목록 추가
+        System.out.println(likedList+"likedList확인");
         return "reviewlistPage";
     }
 

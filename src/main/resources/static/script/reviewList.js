@@ -5,32 +5,13 @@
     }, "slow");
 }
 
-    // function likeUp(buttonElement) {
-    //     const reviewNo = $(buttonElement).data("id");
-    //     console.log(reviewNo);
-    //     console.log("1");
-    // }
-    //
+
     // $(".likeUp-btn").click(function () {
     //     var reviewNo = $(this).data("id");
+    //     var heartText = $("#result").value===1 ? "하트" : "빈하트";
+    //     $(this).text("하트");
     //
-    //     console.log(reviewNo);
-    //
-    //     // 좋아요 등록
-    //     $.ajax({
-    //         url: "/reviewlike/" + reviewNo,
-    //         method: "PUT",
-    //     })
-    //
-    // })
-
-
-    //완성코드(8/23)
-    // $(".likeUp-btn").click(function () {
-    //     var reviewNo = $(this).data("id");
-    //     var heartIcon = $(this).find('i.fa-regular');
-    //
-    //     console.log(reviewNo + "js확인");
+    //     console.log(reviewNo + " js확인");
     //
     //     // 좋아요 등록 및 취소 처리
     //     $.ajax({
@@ -38,78 +19,41 @@
     //         method: "POST",
     //         success: function (data) {
     //             if (data.success) {
-    //                 // 아이콘 클래스 변경
-    //                 heartIcon.toggleClass('fa-solid').toggleClass('fa-regular');
-    //             }
-    //         }
-    //     });
-
-
-    // $(".likeUp-btn").click(function () {
-    //     var reviewNo = $(this).data("id");
-    //     var heartIcon = $(this).find('i.fa-heart');
-    //
-    //
-    //     console.log(reviewNo + "js확인");
-    //
-    //     // 좋아요 등록 및 취소 처리
-    //     $.ajax({
-    //         url: "/reviewlike/" + reviewNo,
-    //         method: "POST",
-    //         success: function (data) {
-    //             if (data.success) {
-    //                 // 아이콘 클래스 변경
-    //                 if (heartIcon.hasClass('fas')) {
-    //                     heartIcon.removeClass('fas').addClass('far');
-    //                 } else {
-    //                     heartIcon.removeClass('far').addClass('fas');
+    //                 // 텍스트 변경
+    //                 if (heartText.text() === "하트") {
+    //                     heartText.text("빈하트");
+    //                 }
+    //                 if(heartText.text() === "빈하트"){
+    //                     heartText.text("하트");
     //                 }
     //             }
     //         }
     //     });
     // });
 
-
     $(".likeUp-btn").click(function () {
-        var reviewNo = $(this).data("id");
-        var heartText = $(this).find('.heart');
+        var button = $(this);
+        var reviewNo = button.data("id");
+        var heartText = button.find(".heart");
 
         console.log(reviewNo + " js확인");
 
-        // 좋아요 등록 및 취소 처리
         $.ajax({
             url: "/reviewlike/" + reviewNo,
             method: "POST",
             success: function (data) {
                 if (data.success) {
                     // 텍스트 변경
-                    if (heartText.text() === "로그인 하트") {
-                        heartText.text("로그인 하트 취소");
+                    console.log(reviewNo + "ajax확인")
+                    if (heartText.find("i").hasClass("fa-regular")) {
+                        heartText.html('<i class="fa-solid fa-heart"></i>');
                     } else {
-                        heartText.text("로그인 하트");
+                        heartText.html('<i class="fa-regular fa-heart"></i>');
                     }
                 }
             }
         });
     });
-
-
-
-        // $.ajax({
-        //     url: "/reviewlike/" + reviewNo,
-        //     method: "PUT",
-        //     success: function (data) {
-        //         if (data.success) {
-        //             // 아이콘 클래스 변경
-        //             $heartIcon.toggleClass('fa-solid').toggleClass('fa-regular');
-        //         }
-        //     }
-        // });
-
-
-
-
-
 
 
 

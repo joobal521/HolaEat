@@ -93,16 +93,7 @@
 </body>
 <script src="script/review.js"></script>
 <script src="script/comment.js"></script>
-<script>
-    function redirectToLogin() {
-        const confirmation = confirm("로그인 하시겠습니까?");
 
-        if (confirmation) {
-            window.location.href = "/login";
-
-        }
-    }
-</script>
 
 <c:import url="footer.jsp"/>
 </html>
