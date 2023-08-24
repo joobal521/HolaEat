@@ -36,7 +36,7 @@
             </thead>
             <tbody class="admin-foodList">
             <c:forEach items="${foodList}" var="food">
-                <tr>
+                <tr id="${food.foodId}">
                     <td>${food.foodId}</td>
                     <td class="foodName">${food.foodName}</td>
                     <td class="foodGroup">${food.foodGroup}</td>

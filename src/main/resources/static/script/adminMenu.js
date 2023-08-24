@@ -96,7 +96,7 @@ $(document).ready(function() {
         // Send the data to the backend using AJAX
         $.ajax({
             url: "adminMenu/" + foodId,
-            method: "PUT",
+            method: "POST",
             contentType: false,
             processData: false,
             data: formData,
