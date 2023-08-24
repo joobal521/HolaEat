@@ -37,7 +37,9 @@ public class FoodService {
         foodRepository.save(food);
     }
 
-
+    public List<Food> findWithoutImage(){
+        return foodRepository.findAllWithoutImage();
+    }
 
 
     public String generateNewFoodId() {
