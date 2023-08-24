@@ -54,7 +54,7 @@
                 </div>
             </div>
             <div class="nav">
-                <ul class="menu align-center expanded text-center SMN_effect-5" style="padding-left: 0 !important;;">
+                <ul class="menu align-center expanded text-center SMN_effect-5" style="padding-left: 0 !important;">
 
                     <li>
                         <a href="/">
