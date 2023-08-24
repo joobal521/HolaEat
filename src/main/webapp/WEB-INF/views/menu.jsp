@@ -171,6 +171,7 @@
             </div>
         </div>
         <div class="personal_menu" style="display: flex">
+            <div class="menus_wrap">
             <div id="generatedMenus" class="menu_list" style="width: 50%; height: 500px;">
                 <!-- 이 부분에 동적으로 생성되는 식단 목록이 들어갈 예정입니다. -->
             </div>
@@ -183,7 +184,7 @@
                 <%--                    </div>--%>
                 <%--                </div>--%>
             </div>
-        
+            </div>
         </div>
     </div>
 </section>

@@ -43,6 +43,7 @@
 #myform{
     width: 80%;
     margin-left: 10%;
+
     border: 1px solid #ffb9b9;
     border-radius: 10px;
 }
@@ -369,4 +370,11 @@ input, select{
 }
 h3{
     margin: 0 !important;
+}
+
+.menus_wrap{
+    border: 2px solid #ffb9b9;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
 }
