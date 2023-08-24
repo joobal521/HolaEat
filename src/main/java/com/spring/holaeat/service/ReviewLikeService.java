@@ -33,6 +33,10 @@ public class ReviewLikeService {
     }
 
 
+    //외래키 오류 삭제
+    public void deleteLikeByUserId(String userId){
+        reviewLikeRepository.deleteByUserId(userId);
+    }
 
     @Transactional
     public void likeReview(String userId, long reviewNo) {

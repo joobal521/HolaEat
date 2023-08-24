@@ -23,7 +23,6 @@ import java.util.List;
 public class MyPageController {
     private final ReviewService reviewService;
     private final ReviewRepository reviewRepository;
-
     private final ReviewCommentService reviewCommentService;
 
 

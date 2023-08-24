@@ -13,7 +13,7 @@
 
 
     <div class="health-box">
-        <h2 class="health-title">건강 정보 글 등록</h2>
+        <h2 class="health-title">건강 정보 글</h2>
     <form  enctype="multipart/form-data">
         <table class="health-table">
             <tr>

@@ -37,31 +37,31 @@
                     <label>
                         <input type="radio" id="male" name="gender"
                                value="male" ${userResponseDto.userGender eq 'male' ? 'checked' : ''}>
-                        <span>남자</span>
+                        <span class="gen-text">남자</span>
                     </label>
                     <label>
                         <input type="radio" id="female" name="gender"
                                value="female" ${userResponseDto.userGender eq 'female' ? 'checked' : ''}>
-                        <span>여자</span>
+                        <span class="gen-text">여자</span>
                     </label>
                 </li>
                 <li>
                     <label for="age">
                     <h2>나이(세)</h2>
                     </label>
-                    <input type="text" id="age" name="age" value="${userResponseDto.userAge}">
+                    <input type="text" class="input-box" id="age" name="age" value="${userResponseDto.userAge}">
                 </li>
                 <li>
                     <label for="height">
                     <h2>키(cm)</h2>
                     </label>
-                    <input type="text" id="height" name="height" value="${userResponseDto.userHeight}">
+                    <input type="text" id="height" class="input-box" name="height" value="${userResponseDto.userHeight}">
                 </li>
                 <li>
                     <label for="weight">
                     <h2>몸무게(kg)</h2>
                     </label>
-                    <input type="text" id="weight" name="weight" value="${userResponseDto.userWeight}">
+                    <input type="text" class="input-box" id="weight" name="weight" value="${userResponseDto.userWeight}">
                 </li>
                 <li>
                     <label for="allergy">
@@ -88,10 +88,10 @@
                        onclick="calculateCalories()">
 
             </ul>
-            <ul>
+            <ul class="cal_box">
                 <li>
                     <h2>하루 필요 열량</h2>
-                    <input type="text" class="btn6" id="recCalories" name="recCalories"
+                    <input type="text"  class="btn6" id="recCalories" name="recCalories"
                            value="${userResponseDto.userRecCalories}" readonly>
                     <span>kcal</span>
                 </li>

@@ -17,7 +17,7 @@
 <c:import url="header.jsp"/>
 <body>
 <div class="health-section">
-    <h2>건강 정보 게시판 상세</h2>
+    <h2>건강 정보 상세</h2>
     <c:if test="${health!=null}">
         <div id="health-contents">
             <form id="health-detail" enctype="multipart/form-data">

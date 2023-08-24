@@ -10,6 +10,7 @@
 <html>
 <head>
     <title>admin-health</title>
+    <link rel="stylesheet" type="text/css" href="/style/admin.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
@@ -45,6 +46,9 @@
                 </c:forEach>
                 </tbody>
             </table>
+            <div class="more_btn">
+                <button class="more-btn" id="moreView-btn">더보기</button>
+            </div>
 
         </div>
 <script src="script/adminHealth.js"></script>

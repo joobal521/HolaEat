@@ -19,7 +19,7 @@
 <table class="board-table">
     <thead>
     <tr>
-        <th>후기글 No</th>
+        <th>No</th>
         <th>후기글 이름</th>
         <th>작성자</th>
         <th>내용</th>
