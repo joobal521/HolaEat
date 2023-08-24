@@ -6,6 +6,11 @@
     cursor: pointer;
 }
 
+.category{
+    display: flex;
+
+}
+
 .category button.selected {
     background-color: darkcyan;
 }
@@ -305,4 +310,23 @@ button:hover{
 
 .food-info{
     background-image: none;
+}
+
+.cals_wrap{
+    padding: 5% 10%;
+}
+
+#reset_btn{
+    width: 100%;
+    white-space: nowrap;
+    margin-left: 100px;
+}
+
+#national{
+    width: 100%;
+}
+
+.cat{
+    display: flex;
+    align-items: center;
 }
