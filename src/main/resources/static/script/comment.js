@@ -164,20 +164,20 @@ $(document).ready(function () {
 // 댓글 삭제
 function deleteComment(commentId) {
     console.log("deleteComment() 호출됨, commentId:", commentId);
-    // if (confirm('정말로 삭제하시겠습니까?')) {
+    if (confirm('정말로 삭제하시겠습니까?')) {
 
 
-    Swal.fire({
-        title: '정말 삭제하시겠습니까?',
-        text: '댓글 삭제 후 복구 불가합니다.',
-        icon: 'warning',
-        showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
-        confirmButtonColor: '#265037', // confrim 버튼 색깔 지정
-        confirmButtonText: '확인', // confirm 버튼 텍스트 지정
-        cancelButtonText: '취소', // cancel 버튼 텍스트 지정
-    }).then((result) => {
+        // Swal.fire({
+        //     title: '정말 삭제하시겠습니까?',
+        //     text: '댓글 삭제 후 복구 불가합니다.',
+        //     icon: 'warning',
+        //     showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
+        //     confirmButtonColor: '#265037', // confrim 버튼 색깔 지정
+        //     confirmButtonText: '확인', // confirm 버튼 텍스트 지정
+        //     cancelButtonText: '취소', // cancel 버튼 텍스트 지정
+        // }).then((result) => {
 
-        if (result.isConfirmed) {
+            // if (result.isConfirmed) {
             $.ajax({
                 type: 'DELETE',
                 url: `/comment/${commentId}/delete`,
@@ -194,8 +194,9 @@ function deleteComment(commentId) {
                     console.error(error);
                 }
             });
-        }
-    });
+            // }
+        // });
+    }
 }
 
 
