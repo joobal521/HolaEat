@@ -257,6 +257,10 @@ a{
     text-decoration: none;
 }
 
+.logo_img{
+    height: 80%;
+}
+
 #login, #logout{
     margin-right: 15px;
 }

@@ -122,7 +122,7 @@ function calculateCalories() {
     // 칼로리 계산 값이 없을 경우 알림 띄우기
     if (gender === '' || isNaN(age) || isNaN(height) || isNaN(weight) || allergy === '' || menuType === '') {
         Swal.fire({
-            title: '필요한 값들을 모두 입력해주세요.', icon: 'error'
+            title: '필요한 값을 모두 입력해주세요.', icon: 'error'
         });
         return; // 하나라도 비어있으면 함수 종료
     }
@@ -152,28 +152,28 @@ function calculateCalories() {
 }
 
 function generateMenuInfo(menu, index) {
+    // var foodKcal = menu['food' + i + 'Kcal'];
+    // var foodCarb = menu['food' + i + 'Carb'];
+    // var foodProtein = menu['food' + i + 'Protein'];
+    // var foodFat = menu['food' + i + 'Fat'];
     var menuInfoHtml = "";
 
     for (var i = 1; i <= 5; i++) {
         var foodName = menu['food' + i];
         var foodWeight = menu['food' + i + 'Weight'];
-        var foodKcal = menu['food' + i + 'Kcal'];
-        var foodCarb = menu['food' + i + 'Carb'];
-        var foodProtein = menu['food' + i + 'Protein'];
-        var foodFat = menu['food' + i + 'Fat'];
         var foodImage = `/food/image/${foodName}`; // 이미지 URL
 
         menuInfoHtml += `<div class='food-info'>` +
             `<img src='${foodImage}' alt='Food Image' class='food-image' draggable="false" onclick='showNutritionalInfo(this)'/>`
             +"<br>" + `${foodName}` + "<br>" +`(${foodWeight}g) ` +
-            // `<div class='nutritional-info hidden'>` +
-            // `<button class='toggle-btn'>Close</button>` +
-            // `칼로리: ${foodKcal}Kcal <br>` +
-            // `탄수화물: ${foodCarb}g <br>` +
-            // `단백질: ${foodProtein}g <br>` +
-            // `지방: ${foodFat}g <br>` +
             `</div>` + `</div>`;
     }
+    // `<div class='nutritional-info hidden'>` +
+    // `<button class='toggle-btn'>Close</button>` +
+    // `칼로리: ${foodKcal}Kcal <br>` +
+    // `탄수화물: ${foodCarb}g <br>` +
+    // `단백질: ${foodProtein}g <br>` +
+    // `지방: ${foodFat}g <br>` +
 
     return menuInfoHtml;
 }
@@ -226,32 +226,7 @@ function fetchAndDisplayMenu(selectedNational) {
                     + "총 탄수화물: " + totalCarbs + "g<br>"
                     + "총 단백질: " + totalProteins + "g<br>"
                     + `총 지방: ${totalFats}g</div><br>`
-                    + "</li><br>";
-
-                document.addEventListener("DOMContentLoaded", function () {
-
-                    var chartData = {
-                        labels: ["칼로리", "탄수화물", "단백질", "지방"], datasets: [{
-                            label          : "영양성분",
-                            backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9"],
-                            data           : [11, 11, 11, 11]
-                        }]
-                    };
-
-                    // 차트 생성
-                    var ctx = document.getElementById("nut_chart").getContext("2d");
-                    new Chart(ctx, {
-                        type: "bar", data: chartData, options: {
-                            legend: {display: false}, title: {
-                                display: true, text: "식단 영양성분 분포"
-                            }
-                        }
-                    });
-
-                    $(".hover").mouseleave(function () {
-                        $(this).removeClass("hover");
-                    });
-                });
+                    + "</li>";
             }
         });
 
@@ -282,7 +257,7 @@ function fetchAndDisplayAllMenus(selectedValue) {
     }
 
     var menuIdMapping = {
-        "한식": 1, "중식": 2, "일식": 3, "양식": 4, "샐러드": 5
+        "한식": 1, "중식": 2, "일식": 3, "양식": 4, "샐러드(비건식)": 5
     };
 
     var menuId = menuIdMapping[selectedValue];
@@ -309,7 +284,7 @@ function fetchAndDisplayAllMenus(selectedValue) {
                     var menuInfoHtml = generateMenuInfo(menu);
 
                     resultHtml += "<li draggable='true'>" + menuInfoHtml + "<br>"
-                        + `<span>총 칼로리: <span class='cals'>${totalCalories}</span>Kcal<br>`
+                        + `<span class='cals_wrap'>총 칼로리: <span class='cals'>${totalCalories}</span>Kcal<br>`
                         + "총 무게: " + menuTotalWeight + "g<br>"
                         + "총 탄수화물: " + totalCarbs + "g<br>"
                         + "총 단백질: " + totalProteins + "g<br>"
@@ -407,14 +382,14 @@ document.addEventListener('DOMContentLoaded', function () {
             if (totalCalories > userRecCalories || selectedMenus.length > 2) {
                 if (totalCalories > userRecCalories) {
                     Swal.fire({
-                        title: '선택한 식단의 칼로리 합이 권장 칼로리를 초과합니다.', text: '다시 확인해주세요.', icon: 'warning'
+                        title: '선택한 식단의 칼로리 합이 <br>권장 칼로리를 초과합니다.', text: '다시 확인해주세요.', icon: 'warning'
 
                     });
                     return; // 드래그 앤 드롭 불가 조건이 충족되면 함수 종료
                 }
                 if (selectedMenus.length > 2) {
                     Swal.fire({
-                        title: '식단 항목이 3개를 초과했습니다.', text: '최대 3개까지 선택할 수 있습니다.', icon: 'warning'
+                        title: '식단 항목이 3개를 <br>초과했습니다.', text: '최대 3개까지 선택할 수 있습니다.', icon: 'warning'
                     });
                     return; // 드래그 앤 드롭 불가 조건이 충족되면 함수 종료
                 }
@@ -439,64 +414,55 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log("Total Calories:", totalCalories); // Output
         console.log("Total userRecCalories:", userRecCalories); // Output
 
-        // #selectedMenus에 있는 항목이 3개를 넘어갈 때 알림 띄우기
-        if (selectedMenus.length > 3) {
-            Swal.fire({
-                title: '식단 항목이 3개를 초과했습니다.', text: '최대 3개까지 선택할 수 있습니다.', icon: 'warning'
-            });
-            return; // 항목이 3개를 초과할 경우 함수 종료
+        if (selectedMenus.length > 3 || totalCalories > userRecCalories) {
+            if (selectedMenus.length > 3) {
+                Swal.fire({
+                    title: '식단 항목이 3개를 초과했습니다.',
+                    text: '최대 3개까지 선택할 수 있습니다.',
+                    icon: 'warning',
+                });
+                return;
+            }
+
+            if (totalCalories > userRecCalories) {
+                Swal.fire({
+                    title: '선택한 식단의 칼로리 합이 권장 칼로리를 초과합니다.',
+                    text: '다시 확인해주세요.',
+                    icon: 'warning',
+                    onClose: function () {
+                        // 권장 칼로리를 초과할 경우 #selectedMenus 내용 초기화
+                        $('#selectedMenus').empty();
+                        resetSelectedMenus(); // #selectedMenus 초기화
+
+                    }
+                });
+            }
+
+            return; // 선택한 식단이 3개 초과 또는 권장 칼로리를 초과할 경우 함수 종료
         }
-
-
-        // else if (selectedMenus.length === 3) {
-        //     Swal.fire({
-        //         title: '식단 선택을 완료하였습니다.',
-        //         text : '최대 3개까지 선택할 수 있습니다.',
-        //         icon : 'success'
-        //     });
-        // }
-        if (totalCalories > userRecCalories) {
-            Swal.fire({
-                title: '선택한 식단의 칼로리 합이 권장 칼로리를 초과합니다.', text: '다시 확인해주세요.', icon: 'warning'
-            });
-            return; // 칼로리 합이 초과할 경우 함수 종료
-        }
-
-
     }
 
+    function resetSelectedMenus() {
+        // #selectedMenus 내용 초기화
+        $('#selectedMenus').empty();
+    }
+
+    // 초기화 버튼 클릭 이벤트 핸들러
+    $('#reset_btn').click(function () {
+        const generatedMenusDiv = document.getElementById("generatedMenus");
+        const selectedMenusDiv = document.getElementById("selectedMenus");
+
+        // #selectedMenus로 옮겨진 식단을 다시 #generatedMenus로 복원
+        while (selectedMenusDiv.firstChild) {
+            generatedMenusDiv.appendChild(selectedMenusDiv.firstChild);
+        }
+
+        // 칼로리 계산 함수 호출
+        calculateTotalCalories();
+    });
 });
 
-// 이미지를 클릭하여 영양 성분 정보를 보여주는 함수
-function showNutritionalInfo(imageElement) {
-    const menuContainer = imageElement.closest('.menu-container');
-    if (menuContainer) {
-        const nutritionalInfoOverlay = menuContainer.querySelector('.nutritional-info-overlay');
-        if (nutritionalInfoOverlay) {
-            nutritionalInfoOverlay.style.display = 'flex';
 
-            // 영양 성분 데이터를 가져오는 로직 (아래 코드는 예시이며, 실제 데이터에 맞게다 수정 필요)
-            const totalCarbs = 40;
-            const totalProteins = 20;
-            const totalFats = 10;
-
-            // 도넛 차트 데이터 및 옵션 설정
-            const ctx = nutritionalInfoOverlay.querySelector('#nutritionChart').getContext('2d');
-            const nutritionChart = new Chart(ctx, {
-                type      : 'doughnut', data: {
-                    labels: ['탄수화물', '단백질', '지방'], datasets: [{
-                        data           : [totalCarbs, totalProteins, totalFats],
-                        backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
-                    }],
-                }, options: {
-                    responsive: true, maintainAspectRatio: false, title: {
-                        display: true, text: '영양 성분 비율',
-                    },
-                },
-            });
-        }
-    }
-}
 
 // 초기화
 document.addEventListener('DOMContentLoaded', function () {
@@ -526,67 +492,33 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-// 초기화 버튼 클릭 이벤트 핸들러
-$('#reset_btn').click(function () {
-    const generatedMenusDiv = document.getElementById("generatedMenus");
-    const selectedMenusDiv = document.getElementById("selectedMenus");
-
-    // #selectedMenus로 옮겨진 식단을 다시 #generatedMenus로 복원
-    while (selectedMenusDiv.firstChild) {
-        generatedMenusDiv.appendChild(selectedMenusDiv.firstChild);
-    }
-
-    // 칼로리 계산 함수 호출
-    calculateTotalCalories();
-});
-
-// "식단 저장" 버튼을 클릭했을 때 실행되는 함수
-function saveSelectedMenus() {
-    // 선택한 메뉴 정보를 추출
-    const userId = getUserId(); // 사용자 ID를 어떻게 가져올지에 따라 수정 필요
-    const selectedMenuNos = getSelectedMenuNos(); // 선택한 메뉴 번호들을 어떻게 가져올지에 따라 수정 필요
-
-    // UserMenuRequestDto 객체 생성
-    const userMenuRequestDto = {
-        userId: userId,
-        selectedMenuNos: selectedMenuNos
-    };
-
-    // 서버로 POST 요청을 보냄
-    fetch('/menus/saveSelectedMenus', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(userMenuRequestDto)
-    })
-        .then(response => {
-            if (response.ok) {
-                return response.text();
-            } else {
-                throw new Error('Error saving selected menus.');
-            }
-        })
-        .then(responseText => {
-            // 서버 응답에 대한 처리 (예: 알림 메시지 표시)
-            console.log(responseText); // 성공 메시지 출력
-        })
-        .catch(error => {
-            console.error(error);
-            // 에러 처리 (예: 알림 메시지 표시)
-        });
-}
-
-// 사용자 ID를 가져오는 함수
-function getUserId() {
-    // 예: const userId = document.getElementById('user_id').value;
-
-    return 'xodn'; // 실제 구현에 맞게 수정
-}
-
-// 선택한 메뉴 번호들을 가져오는 함수
-function getSelectedMenuNos() {
-    // 선택한 메뉴 번호들을 어떻게 가져올지에 따라 구현 필요
-    // 예: const selectedMenuNos = [1, 2, 3]; // 선택한 메뉴 번호 배열
-    return [2, 3, 4]; // 실제 구현에 맞게 수정
-}
+// 이미지를 클릭하여 영양 성분 정보를 보여주는 함수
+// function showNutritionalInfo(imageElement) {
+//     const menuContainer = imageElement.closest('.menu-container');
+//     if (menuContainer) {
+//         const nutritionalInfoOverlay = menuContainer.querySelector('.nutritional-info-overlay');
+//         if (nutritionalInfoOverlay) {
+//             nutritionalInfoOverlay.style.display = 'flex';
+//
+//             // 영양 성분 데이터를 가져오는 로직 (아래 코드는 예시이며, 실제 데이터에 맞게다 수정 필요)
+//             const totalCarbs = 40;
+//             const totalProteins = 20;
+//             const totalFats = 10;
+//
+//             // 도넛 차트 데이터 및 옵션 설정
+//             const ctx = nutritionalInfoOverlay.querySelector('#nutritionChart').getContext('2d');
+//             const nutritionChart = new Chart(ctx, {
+//                 type      : 'doughnut', data: {
+//                     labels: ['탄수화물', '단백질', '지방'], datasets: [{
+//                         data           : [totalCarbs, totalProteins, totalFats],
+//                         backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+//                     }],
+//                 }, options: {
+//                     responsive: true, maintainAspectRatio: false, title: {
+//                         display: true, text: '영양 성분 비율',
+//                     },
+//                 },
+//             });
+//         }
+//     }
+// }
