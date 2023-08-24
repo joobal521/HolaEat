@@ -92,8 +92,11 @@
 .review_like {
     padding: 5px 0;
     display: flex;
-    align-items: center;
-    height: 3%;
+    align-items: start;
+    height: 7%;
+    width: 12%;
+    margin: auto;
+    font-size: 17px;
 }
 
 .review_like > i {
