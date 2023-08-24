@@ -67,9 +67,9 @@
                         url: "/comment/"+commentId+"/delete",
                         success: function (response) {
                             if (response.message === 'success') {
-                                const reviewNo = $('#reviewNo').val();
+                                console.log("삭제 후 이동");
                                 location.href = "mypage";
-                                loadComments(reviewNo);
+                                console.log("마이페이지로");
 
                             }
                             // else {
