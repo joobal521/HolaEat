@@ -362,7 +362,7 @@ button:hover{
 }
 
 #national{
-    width: 100%;
+
 }
 
 .cat{
@@ -375,7 +375,7 @@ input, select{
 }
 
 .btn6{
-    width: 40% !important;
+    width: 45% !important;
     font-weight: 700;
     text-align: center;
 }
@@ -385,7 +385,8 @@ input, select{
 }
 
 #prefer, #dislike{
-    width: 25%;
+    width: 45%;
+    text-align: center;
 }
 
 .main_hr{
