@@ -89,7 +89,7 @@ function toggleHeart(reviewNo) {
                 heartIcon.classList.remove("fa-regular");
                 heartIcon.classList.add("fa-solid");
 
-                console.log("resultInput:" + resultInput);
+                console.log("resultInput:", resultInput);
                 console.log("totalLikesElement:"+ totalLikesElement);
                 resultInput.value = "1";
             } else {
@@ -129,6 +129,7 @@ $(".likeUp-logout").click(function (){
         icon: 'warning',
         confirmButtonColor: '#265037', // confrim 버튼 색깔 지정
         confirmButtonText: '확인', // confirm 버튼 텍스트 지정
+        cancelButtonText: '취소', // cancel 버튼 텍스트 지정
 
     }).then((result) => {
         if (result.isConfirmed) {

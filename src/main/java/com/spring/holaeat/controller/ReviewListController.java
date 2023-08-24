@@ -86,11 +86,10 @@ public class ReviewListController {
         for (Review review : reviewPage) {
 
             ReviewLike isLiked =  reviewLikeService.checkReviewLike(userId, review.getReviewNo());
-
-            System.out.println("userI확인"+userId+"review.getReviewNo()확인"+review.getReviewNo());
-
             likedList.add(isLiked);
-            System.out.println("for문 안 isLiked" + isLiked);
+
+//            System.out.println("userI확인"+userId+"review.getReviewNo()확인"+review.getReviewNo());
+//            System.out.println("for문 안 isLiked" + isLiked);
             // 하트 상태를 heartMapPage에 매핑
             int heartStatus = isLiked != null ? 1 : 0; // 좋아요 여부에 따라 하트 상태 결정
             heartMapPage.put(review.getReviewNo(), heartStatus);
