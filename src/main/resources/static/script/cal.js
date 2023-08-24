@@ -475,7 +475,7 @@ function showNutritionalInfo(imageElement) {
         if (nutritionalInfoOverlay) {
             nutritionalInfoOverlay.style.display = 'flex';
 
-            // 영양 성분 데이터를 가져오는 로직 (아래 코드는 예시이며, 실제 데이터에 맞게 수정 필요)
+            // 영양 성분 데이터를 가져오는 로직 (아래 코드는 예시이며, 실제 데이터에 맞게다 수정 필요)
             const totalCarbs = 40;
             const totalProteins = 20;
             const totalFats = 10;
