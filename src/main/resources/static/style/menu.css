@@ -72,10 +72,13 @@ button:hover{
 
 .form_wrap>form {
     display: flex;
-    align-items: center;
     flex-direction: column;
     border: solid 1px black;
+    padding: 5% 15%;
+    text-align: center;
     /*color: #2194E0;*/
+
+
 
     @keyframes sheen {
         0% {
@@ -96,6 +99,7 @@ button:hover{
 
     .button {
         /*padding: 0.75em 2em;*/
+        height: ;
         text-align: center;
         text-decoration: none;
         color: #2194E0;
@@ -106,6 +110,7 @@ button:hover{
         transition: all 0.2s ease-in-out;
         position: relative;
         overflow: hidden;
+        width: 60%;
 
         &:before {
             content: "";
@@ -308,6 +313,10 @@ button:hover{
     border-radius: 200px;
 }
 
+.food-image:hover{
+    cursor: grab;
+}
+
 .food-info{
     background-image: none;
 }
@@ -320,6 +329,8 @@ button:hover{
     width: 100%;
     white-space: nowrap;
     margin-left: 100px;
+    height: 50px;
+    margin-top: 15px;
 }
 
 #national{
@@ -329,4 +340,13 @@ button:hover{
 .cat{
     display: flex;
     align-items: center;
+}
+
+input, select{
+    margin: 10px 0;
+}
+
+.btn6{
+    width: 20% !important;
+    font-weight: 700;
 }

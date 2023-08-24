@@ -257,6 +257,10 @@ a{
     text-decoration: none;
 }
 
+#login, #logout{
+    margin-right: 15px;
+}
+
 #logout{
     border: 1px solid black;
     border-radius: 5px;
