@@ -55,8 +55,8 @@ dependencies {
     implementation 'org.springframework:spring-context-support:5.3.9'
 
 
-    //redis
-    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+//    //redis
+//    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 
     // spring에서 redis를 session storage로 사용하기 위한 의존성
     //implementation 'org.springframework.session:spring-session-data-redis'

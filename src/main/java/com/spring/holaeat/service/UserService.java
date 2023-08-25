@@ -9,14 +9,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 
 import javax.transaction.Transactional;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
-import java.time.Duration;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.Random;
 
@@ -28,7 +25,7 @@ public class UserService {
      private static final String AUTH_CODE_PREFIX = "AuthCode ";
      private  final UserRepository userRepository;
      private final MailService mailService;
-     private final RedisService redisService;
+
 
      public List<User>findByIdAndEmail(String userId, String userPassword){
           return (List<User>) userRepository.findAllByUserIdAndUserEmail(userId,userPassword);
