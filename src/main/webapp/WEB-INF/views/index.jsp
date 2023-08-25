@@ -96,13 +96,13 @@
                             <option value="2">체중조절식</option>
                             <option value="3">비건</option>
                         </select>
-                        <input type="button" class="cal-btn" id="calculate" name="calculate" value="계산하기">
+                        <input type="button" class="cal-btn" id="calculate" name="calculate" value="계산하기" onclick="main_calculateCalories()">
                         </div>
                     </li>
                     <li class="step" data-step="7">
                        <div class="result-box">
                         <h2>필요 열량</h2>
-                        <p class="r-text">귀하께서 하루에 필요한 열량은,<br/> <span id="recCaloriesValue" >${userResponseDto.userRecCalories}</span>kcal입니다.</p>
+                        <p class="r-text">귀하께서 하루에 필요한 열량은,<br/> <span id="recCalories" >${userResponseDto.userRecCalories}</span>kcal입니다.</p>
                         <p class="r-text2">${userResponseDto.userName}님에게 맞는 식단을 찾으러 가볼까요?</p>
                         <input type="button" class="save-btn" id="idx_save_btn" name="idx_save_btn" value="내 칼로리 정보 저장">
                        </div>
