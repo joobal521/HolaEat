@@ -20,6 +20,8 @@
 </head>
 <c:import url="header.jsp"/>
 <body>
+
+<div class="find-user">
 <h2 class="find-title">아이디 찾기</h2>
 <div class="form_wrap">
 
@@ -59,6 +61,7 @@
         </div>
     </form>
 
+</div>
 </div>
 <script src="script/find.js"></script>
 </body>

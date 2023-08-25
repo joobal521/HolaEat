@@ -10,6 +10,7 @@
 <html>
 <head>
     <title>admin-health</title>
+    <link rel="stylesheet" type="text/css" href="/style/admin.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
@@ -25,7 +26,6 @@
                     <th>건강 정보 No</th>
                     <th>건강 정보 제목</th>
                     <th>내용</th>
-                    <th>파일</th>
                     <th>수정</th>
                     <th>삭제</th>
                 </tr>
@@ -36,10 +36,6 @@
                         <td>${health.healthNo}</td>
                         <td class="healthTitle">${health.title}</td>
                         <td class="healthContent">${health.content}</td>
-                        <td><c:if test="${not empty imageBase64}">
-                            <img src="data:image/jpeg;base64,${imageBase64}" id="img" name="img" alt="health Image">
-                        </c:if></td>
-
                         <td>
                             <button type="button" class="updateBtn" data-id="${health.healthNo}"  onclick="redirectToHealthUpdate(${health.healthNo})" >수정</button>
                         </td>
@@ -50,6 +46,9 @@
                 </c:forEach>
                 </tbody>
             </table>
+            <div class="more_btn">
+                <button class="more-btn" id="moreView-btn">더보기</button>
+            </div>
 
         </div>
 <script src="script/adminHealth.js"></script>

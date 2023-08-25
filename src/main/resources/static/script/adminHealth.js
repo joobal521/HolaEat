@@ -184,3 +184,16 @@ function goBack() {
     }
 }
 
+//더보기 버튼
+$(function() {
+    $("tr").hide();
+    $("tr").slice(0, 4).show(); // 초기갯수
+    $("#moreView-btn").click(function(e) { // 더보기 버튼 클릭
+        e.preventDefault();
+        $("tr:hidden").slice(0, 4).show(); // 클릭시 리스트 갯수 지정
+        if ($("tr:hidden").length == 0) { // 컨텐츠 남아있는지 확인
+            $("#moreView-btn").hide(); //더이상의 리스트가 없다면 버튼 사라짐
+        }
+    });
+});
+

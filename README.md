@@ -33,6 +33,8 @@
     - 회원탈퇴
     - 회원수정
     - 회원조회
+    - 마이페이지
+      - 프로필 이미지 수정  
     
   
 - 건강정보 게시판
@@ -61,6 +63,7 @@
   - 맞춤 식단
     - 건강 정보 저장
     - 맞춤 식단 조회
+    - 맞춤 식단 저장
 
 4. 팀원 [조동현](mailto:sourcefilmer@gmail.com)([Github](https://github.com/dongtak))
  -  DB 구조 작업

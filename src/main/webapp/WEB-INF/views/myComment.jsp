@@ -18,7 +18,7 @@
     <table class="board-table">
         <thead>
         <tr>
-            <th>댓글 No</th>
+            <th>No</th>
             <th>작성자</th>
             <th>내용</th>
             <th></th>

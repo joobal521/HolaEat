@@ -39,9 +39,13 @@
     align-items: flex-start;
 }
 
+.body_header{
+    margin-top: 30px;
+}
+
 #myform{
-    width: 80%;
-    margin-left: 10%;
+    width: 60%;
+    margin-left: 20%;
     border: 1px solid #ffb9b9;
     border-radius: 10px;
 }
@@ -104,19 +108,19 @@ button:hover{
     }
 
     .button {
-        width: 50px;
-        height: 40px;
+        padding: 15px 40px;
         text-align: center;
         text-decoration: none;
-        color: #2194E0;
-        border: 2px solid #2194E0;
-        font-size: 16px;
+        color: #A8DF8E;
+        border: 2px solid #A8DF8E;
+        font-size: 20px;
+        font-weight: bold;
         display: inline-block;
         border-radius: 0.3em;
         transition: all 0.2s ease-in-out;
         position: relative;
         overflow: hidden;
-        width: 40%;
+
 
         &:before {
             content: "";
@@ -132,9 +136,9 @@ button:hover{
         }
 
         &:hover {
-            background-color: #2194E0;
+            background-color: #A8DF8E;
             color: #fff;
-            border-bottom: 4px solid #2194E0;
+            border-bottom: 4px solid #A8DF8E;
             cursor: pointer;
 
 
@@ -148,8 +152,16 @@ button:hover{
 /*input*/
 .form_wrap input[type="text"],
 .form_wrap select {
-    width: 80%;
-    padding: 8px;
+    padding: 15px 30px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+.input-box{
+    text-align: center;
+    padding: 15px 30px;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
@@ -162,6 +174,16 @@ button:hover{
     background-repeat: no-repeat;
     background-position: right center;
 }
+
+.form_wrap input[type="radio"]{
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+.cal_box{
+    margin-top: 30px;
+}
+
 
 /*제목*/
 .title{
@@ -250,6 +272,7 @@ button:hover{
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 40px;
 }
 
 /*.image-with-content {*/
@@ -339,7 +362,7 @@ button:hover{
 }
 
 #national{
-    width: 100%;
+
 }
 
 .cat{
@@ -352,14 +375,26 @@ input, select{
 }
 
 .btn6{
-    width: 20% !important;
+    width: 45% !important;
     font-weight: 700;
+    text-align: center;
+}
+
+#btn_wrap{
+    margin-bottom: 30px;
 }
 
 #prefer, #dislike{
-    width: 25%;
+    width: 45%;
+    text-align: center;
 }
 
 .main_hr{
     margin-right: 5%;
+}
+
+.gen-text{
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+
 }

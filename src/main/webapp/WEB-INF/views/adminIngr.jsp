@@ -23,13 +23,13 @@
     </thead>
     <tbody class="admin-ingrList">
     <c:forEach items="${ingredientList}" var="ingrList">
-        <tr>
+        <tr id="${ingrList.ingrId}">
             <td>${ingrList.ingrId}</td>
             <td class="ingrName">${ingrList.ingrName}</td>
             <td class="allergy">${ingrList.allergy ? '예' : '아니오'}</td>
             <td class="month">${ingrList.month ? '예' : '아니오'}</td>
             <td>
-                <button class="editBtn" data-id="${ingrList.ingrId}">수정하기</button>
+                <button class="editBtn" data-id="${ingrList.ingrId}" onclick="editIngr(this)">수정하기</button>
                 <button class="updateBtn" data-id="${ingrList.ingrId}" style="display: none;">수정완료</button>
                 <button class="cancelBtn" data-id="${ingrList.ingrId}" style="display: none;">수정취소</button>
                 <input type="file" id="editImg-${ingrList.ingrId}" name="ingrImg" class="imgBtn" style="display: none;" accept="image/png, image/jpg, image/jpeg, image/gif">
@@ -64,8 +64,5 @@
         </div>
     </div>
 </div>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="script/adminIngr.js"></script>
 </body>
 </html>
