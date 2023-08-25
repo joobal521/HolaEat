@@ -17,11 +17,11 @@ $(document).ready(function () {
     });
     $('#idx_save_btn').click(function () {
 
-        var recCaloriesValue = $('#recCaloriesValue').text(); // 추출된 값
+        var recCalories = $('#recCalories').text(); // 추출된 값
 
 
         // 칼로리 계산 값이 없을 경우 알림 띄우기
-        if (isNaN(recCaloriesValue)) {
+        if (isNaN(recCalories)) {
             Swal.fire({
                 title: '칼로리 계산 값을 입력해주세요.', icon: 'error'
             });
@@ -35,7 +35,7 @@ $(document).ready(function () {
             height     : $('#height').val(),
             weight     : $('#weight').val(),
             allergy    : $('#allergy').val(), // recCalories: $('#recCalories').val()
-            recCalories: recCaloriesValue
+            recCalories: recCalories
 
 
         };
@@ -492,33 +492,59 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-// 이미지를 클릭하여 영양 성분 정보를 보여주는 함수
-// function showNutritionalInfo(imageElement) {
-//     const menuContainer = imageElement.closest('.menu-container');
-//     if (menuContainer) {
-//         const nutritionalInfoOverlay = menuContainer.querySelector('.nutritional-info-overlay');
-//         if (nutritionalInfoOverlay) {
-//             nutritionalInfoOverlay.style.display = 'flex';
-//
-//             // 영양 성분 데이터를 가져오는 로직 (아래 코드는 예시이며, 실제 데이터에 맞게다 수정 필요)
-//             const totalCarbs = 40;
-//             const totalProteins = 20;
-//             const totalFats = 10;
-//
-//             // 도넛 차트 데이터 및 옵션 설정
-//             const ctx = nutritionalInfoOverlay.querySelector('#nutritionChart').getContext('2d');
-//             const nutritionChart = new Chart(ctx, {
-//                 type      : 'doughnut', data: {
-//                     labels: ['탄수화물', '단백질', '지방'], datasets: [{
-//                         data           : [totalCarbs, totalProteins, totalFats],
-//                         backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
-//                     }],
-//                 }, options: {
-//                     responsive: true, maintainAspectRatio: false, title: {
-//                         display: true, text: '영양 성분 비율',
-//                     },
-//                 },
-//             });
-//         }
-//     }
-// }
+// 칼로리 계산하는 함수
+function main_calculateCalories() {
+    // 필요한 변수들을 가져옴
+    var gender = '';
+    var genderElement = document.querySelector('input[name="gender"]:checked');
+    if (genderElement !== null) {
+        gender = genderElement.value;
+    }
+
+    var age = parseFloat(document.getElementById("age").value);
+    var height = parseFloat(document.getElementById("height").value);
+    var weight = parseFloat(document.getElementById("weight").value);
+    var allergy = document.getElementById("allergy").value;
+    var menuType = document.getElementById("menu_type").value; // 식단 종류 값 가져오기
+
+    // 칼로리 계산 값이 없을 경우 알림 띄우기
+    if (gender === '' || isNaN(age) || isNaN(height) || isNaN(weight) || allergy === '' || menuType === '') {
+        Swal.fire({
+            title: '필요한 값을 모두 입력해주세요.', icon: 'error'
+        });
+        return; // 하나라도 비어있으면 함수 종료
+    }
+
+    // 열량 계산 로직을 추가
+
+    var baseCalories = 0;
+    if (gender === "male") {
+        baseCalories = (10 * weight + 6.25 * height - 5 * age + 5) * 1.55;
+    } else if (gender === "female") {
+        baseCalories = (10 * weight + 6.25 * height - 5 * age - 161) * 1.55;
+    }
+
+    // 알레르기에 따른 보정 값 추가
+
+    if (allergy !== "0") {
+        baseCalories *= 0.9; // 알레르기가 있을 경우 열량을 90%로 조정
+    }
+
+    // 체중조절식이 선택된 경우 500kcal 빼기
+    if (menuType === "2") {
+        baseCalories -= 500;
+    }
+
+    // SweetAlert를 이용해 결과를 보여줍니다
+    Swal.fire({
+        title: '필요한 열량',
+        text: `귀하께서 하루에 필요한 열량은, ${baseCalories.toFixed(2)}kcal입니다.`,
+        icon: 'success'
+    });
+
+    // 결과를 HTML의 span 요소에도 표시합니다
+    var recCaloriesElement = document.getElementById("recCalories");
+    if (recCaloriesElement) {
+        recCaloriesElement.textContent = `${baseCalories.toFixed(2)}`;
+    }
+}

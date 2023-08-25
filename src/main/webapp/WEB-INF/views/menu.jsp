@@ -83,10 +83,8 @@
                         <option value="3">비건</option>
                     </select>
                 </li>
-
                 <input type="button" class="button" id="calculate" name="calculate" value="계산하기"
                        onclick="calculateCalories()">
-
             </ul>
             <ul>
                 <li>
