@@ -36,14 +36,10 @@ public class ReviewLikeController {
         @PostMapping("/reviewlike/{reviewNo}")
         public ResponseEntity<String> likeReview(
                 @PathVariable long reviewNo, HttpSession session) {
-
             String userId = (String) session.getAttribute("log");
             reviewLikeService.likeReview(userId, reviewNo);
 
-            System.out.println("컨트롤러 확인 PostMapping " + reviewNo);
-            System.out.println("컨트롤러 확인 PostMapping " + userId);
-
-            return ResponseEntity.ok("Review liked successfully!");
+            return ResponseEntity.ok("success");
         }
 
 

@@ -80,7 +80,7 @@ public class ReviewListController {
 
         // 가져온 리뷰 목록에 대해 각 리뷰에 대한 좋아요 여부를 확인하고 모델에 추가
         List<ReviewLike> likedList = new ArrayList<>();
-
+        // 하트 상태를 heartMapPage에 매핑
         Map<Long,Integer> heartMapPage = new HashMap<>();
 
         for (Review review : reviewPage) {
@@ -88,11 +88,11 @@ public class ReviewListController {
             ReviewLike isLiked =  reviewLikeService.checkReviewLike(userId, review.getReviewNo());
             likedList.add(isLiked);
 
-//            System.out.println("userI확인"+userId+"review.getReviewNo()확인"+review.getReviewNo());
-//            System.out.println("for문 안 isLiked" + isLiked);
-            // 하트 상태를 heartMapPage에 매핑
             int heartStatus = isLiked != null ? 1 : 0; // 좋아요 여부에 따라 하트 상태 결정
             heartMapPage.put(review.getReviewNo(), heartStatus);
+
+//            System.out.println("userI확인"+userId+"review.getReviewNo()확인"+review.getReviewNo());
+//            System.out.println("for문 안 isLiked" + isLiked);
 
             //이미지 출력
             if (review.getImg() != null) {

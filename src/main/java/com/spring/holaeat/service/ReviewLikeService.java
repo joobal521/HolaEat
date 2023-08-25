@@ -20,9 +20,6 @@ public class ReviewLikeService {
 //    public List<ReviewLike> checkReviewLike(String userId, long reviewNo) {
 //        return reviewLikeRepository.findByUserIdAndReviewNo(userId, reviewNo);
 //    }
-    public ReviewLike checkReviewLike(String userId, long reviewNo) {
-        return reviewLikeRepository.findByUserIdAndReviewNo(userId, reviewNo);
-    }
 
 
     //추가
@@ -32,12 +29,17 @@ public class ReviewLikeService {
         this.reviewRepository = reviewRepository;
     }
 
+    //좋아요 여부 확인
+    public ReviewLike checkReviewLike(String userId, long reviewNo) {
+        return reviewLikeRepository.findByUserIdAndReviewNo(userId, reviewNo);
+    }
 
     //외래키 오류 삭제
     public void deleteLikeByUserId(String userId){
         reviewLikeRepository.deleteByUserId(userId);
     }
 
+    //좋아요 상태 업데이트
     @Transactional
     public void likeReview(String userId, long reviewNo) {
         ReviewLike list = reviewLikeRepository.findByUserIdAndReviewNo(userId, reviewNo);
