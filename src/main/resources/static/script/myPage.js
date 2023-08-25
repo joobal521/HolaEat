@@ -69,6 +69,9 @@ $(document).ready(function() {
     });
 });
 
+
+
+
 //내가 쓴글 삭제
 $(document).ready(function() {
 
