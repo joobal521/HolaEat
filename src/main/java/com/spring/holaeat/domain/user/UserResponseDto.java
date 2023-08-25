@@ -7,31 +7,31 @@ import lombok.Setter;
 @Getter
 @Setter
 public class UserResponseDto {
-        private String userId;
-        private String userName;
-        private String userEmail;
-        private Integer userAge;
-        private int userHeight;
-        private int userWeight;
-        private Double userRecCalories;
-        private String userAllergy;
-        private String userGender;
-        private String userPrefer;
-        private String userDislike;
+    private String userId;
+    private String userName;
+    private String userEmail;
+    private Integer userAge;
+    private int userHeight;
+    private int userWeight;
+    private Double userRecCalories;
+    private String userAllergy;
+    private String userGender;
+    private String userPrefer;
+    private String userDislike;
 
-        public UserResponseDto(User user, UserDetail userDetail) {
-            this.userId = user.getUserId();
-            this.userName = user.getUserName();
-            this.userEmail = user.getUserEmail();
-            this.userAge = userDetail.getAge();
-            this.userHeight = userDetail.getHeight();
-            this.userWeight = userDetail.getWeight();
-            this.userRecCalories = userDetail.getRecCalories();
-            this.userAllergy = userDetail.getAllergy();
-            this.userGender = userDetail.getGender();
-            this.userPrefer = userDetail.getPrefer();
-            this.userDislike = userDetail.getDislike();
-        }
+    public UserResponseDto(User user, UserDetail userDetail) {
+        this.userId = user.getUserId();
+        this.userName = user.getUserName();
+        this.userEmail = user.getUserEmail();
+        this.userAge = userDetail.getAge();
+        this.userHeight = userDetail.getHeight();
+        this.userWeight = userDetail.getWeight();
+        this.userRecCalories = userDetail.getRecCalories();
+        this.userAllergy = userDetail.getAllergy();
+        this.userGender = userDetail.getGender();
+        this.userPrefer = userDetail.getPrefer();
+        this.userDislike = userDetail.getDislike();
+    }
 
     private UserDetail userDetail; // UserDetail 정보를 저장할 필드
 

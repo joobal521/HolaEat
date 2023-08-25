@@ -37,10 +37,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     align-items: flex-start;
-}
-
-.body_header{
-    margin-top: 30px;
+    margin-bottom: 15%;
 }
 
 #myform{
@@ -59,7 +56,9 @@
 }
 
 .personal_menu{
-    padding: 5% 7%;
+    padding: 5% 10%;
+    border-radius: 20px;
+    border: 5px solid #4CAF50;
 }
 
 .personal_menu li,
@@ -121,7 +120,6 @@ button:hover{
         position: relative;
         overflow: hidden;
 
-
         &:before {
             content: "";
             background-color: rgba(255, 255, 255, 0.5);
@@ -179,11 +177,6 @@ button:hover{
     font-size: 1.2rem;
     margin-bottom: 30px;
 }
-
-.cal_box{
-    margin-top: 30px;
-}
-
 
 /*제목*/
 .title{
@@ -350,7 +343,7 @@ button:hover{
 }
 
 .cals_wrap{
-    padding: 5% 10%;
+    padding: 10% 5%;
 }
 
 #reset_btn{
@@ -362,26 +355,28 @@ button:hover{
 }
 
 #national{
-
+    width: 100%;
 }
 
 .cat{
     display: flex;
     align-items: center;
+    padding: 0 10%;
 }
 
 input, select{
     margin: 10px 0;
 }
 
+#btn_wrap{
+    margin-bottom: 30px;
+}
+
 .btn6{
     width: 45% !important;
     font-weight: 700;
     text-align: center;
-}
-
-#btn_wrap{
-    margin-bottom: 30px;
+    font-weight: 700;
 }
 
 #prefer, #dislike{
@@ -392,9 +387,13 @@ input, select{
 .main_hr{
     margin-right: 5%;
 }
+h3{
+    margin: 0 !important;
+}
 
-.gen-text{
-    font-size: 1.4rem;
-    margin-bottom: 10px;
-
+.menus_wrap{
+    border: 2px solid #ffb9b9;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
 }
