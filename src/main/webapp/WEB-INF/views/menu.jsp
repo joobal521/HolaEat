@@ -159,11 +159,11 @@
                 <div class="category">
                     <select name="national" id="national" onchange="fetchAndDisplayAllMenus(this.value)">
                         <option value="">선택하세요</option>
-                        <option class="korean" value="1">한식</option>
-                        <option class="chinese" value="2">중식</option>
-                        <option class="japanese" value="3">일식</option>
-                        <option class="western" value="4">양식</option>
-                        <option class="salad" value="5">샐러드(비건식)</option>
+                        <option class="korean" value="한식">한식</option>
+                        <option class="chinese" value="중식">중식</option>
+                        <option class="japanese" value="일식">일식</option>
+                        <option class="western" value="양식">양식</option>
+                        <option class="salad" value="샐러드">샐러드(비건식)</option>
                     </select>
                     <button id="reset_btn">모두 드래그 해제</button>
 <%--                    <button id="menu_save_btn" onclick="saveSelectedMenus()">식단 저장</button>--%>
