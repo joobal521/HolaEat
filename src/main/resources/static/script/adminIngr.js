@@ -18,11 +18,44 @@ function editIngr(element) {
             <option ${!isMonth ? 'selected' : ''}>아니오</option>
         </select>
     `);
+    tr.find(".updateBtn, .cancelBtn,.imgBtn").show();
 
 }
 
+function updateIngr(element){
+    const id = element.parentNode.parentNode.id;
+    const tr = $(`#${id}`);
+    const ingrName = tr.children('.ingrName');
+    const allergy = tr.children('.allergy');
+    const month = tr.children('.month');
+    var imageFile = $("#editImg-" + id)[0].files[0];
+
+    var formData = new FormData();
+    formData.append("ingrName", ingrName);
+    formData.append("allergy", allergy);
+    formData.append("month", month);
+    if (imageFile != null) {
+        formData.append("ingrImg", imageFile);
+    }
+
+    $.ajax({
+        url: "adminIngr/" + id,
+        method: "PUT",
+        contentType: false,
+        processData: false,
+        data: formData,
+        success: function() {
+            // $(".section").html(response);
+            window.location.href="admin"
+        },
+        error: function() {
+            // alert("데이터 업데이트에 실패했습니다.");
+        }
+    });
+}
+
 $(document).ready(function() {
-    $(".editBtn").on("click", function(e) {
+    // $(".editBtn").on("click", function(e) {
 
 
         // var row = $(this).closest("tr");
@@ -43,7 +76,7 @@ $(document).ready(function() {
         // // 수정/취소 버튼 토글
         // $(this).hide();
         // row.find(".updateBtn, .cancelBtn,.imgBtn").show();
-    });
+    // });
 
 
     $(".updateBtn").click(function() {

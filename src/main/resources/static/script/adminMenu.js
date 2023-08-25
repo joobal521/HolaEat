@@ -1,9 +1,4 @@
 $(document).ready(function() {
-    $("#loadMoreBtn").click(function() {
-        var currentPage = $(this).data("currentPage");
-        loadMoreData(currentPage);
-    });
-
 
     $(".admin-menu").on("click", ".editBtn", function() {
         var row = $(this).closest("tr");
@@ -93,7 +88,6 @@ $(document).ready(function() {
             formData.append("foodImg", imageFile);
         }
 
-        // Send the data to the backend using AJAX
         $.ajax({
             url: "adminMenu/" + foodId,
             method: "POST",

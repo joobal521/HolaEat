@@ -36,6 +36,9 @@
 
         </div>
 
+        <a class="access" href="gainpower"></a>
+
+
     </div>
 </footer>
 </body>

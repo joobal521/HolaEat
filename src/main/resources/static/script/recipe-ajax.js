@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // 클릭 이벤트 추가: 모달 바깥 부분을 클릭하면 모달이 닫힘
-    modals.forEach((modal, index) => {
+    modals.forEach((modal) => {
         window.addEventListener('click', (event) => {
             if (event.target === modal) {
                 modal.style.display = 'none';
@@ -22,7 +22,6 @@ document.addEventListener("DOMContentLoaded", function () {
 function loadRecipe(btn, modal) {
     var foodId = btn.getAttribute("data-foodid");
     var $recipeContent = modal.querySelector(".recipe-content");
-    // var ingrid = document.getElementById('ingrId-modal').value;
 
     $.ajax({
         url: "getRecipe/" + foodId,

@@ -70,7 +70,7 @@ public String gainPower(@RequestParam("adminid") String id, @RequestParam("admin
     }
 
     //재료정보수정
-    @Transactional
+
     @PutMapping(value = "adminIngr/{ingrId}", consumes = "multipart/form-data")
     public String updateIngredient(@PathVariable int ingrId, @ModelAttribute IngredientsRequestDto ingredientsRequestDto) {
         Ingredients ingredient = ingredientsService.findById(ingrId);
@@ -161,6 +161,7 @@ public String gainPower(@RequestParam("adminid") String id, @RequestParam("admin
     @ResponseBody
     @GetMapping("adminReviewList")
     public Map getReview(@RequestParam(required = false) String page, @PageableDefault Pageable pageable) {
+
         int reqPage = (page == null || page.equals("")) ? 0 : Integer.parseInt(page);
         reqPage = reqPage < 0 ? 0 : reqPage;
 

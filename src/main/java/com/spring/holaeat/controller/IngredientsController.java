@@ -27,12 +27,12 @@ public class IngredientsController {
 
     @Autowired
     public IngredientsController(IngredientsService ingredientsService, FoodIngrService foodIngrService, FoodService foodService) {
+
         this.ingredientsService = ingredientsService;
         this.foodIngrService = foodIngrService;
         this.foodService = foodService;
 
     }
-
 
     @GetMapping("/ingredients")
     public String ingredientsOfMonth(Model model){

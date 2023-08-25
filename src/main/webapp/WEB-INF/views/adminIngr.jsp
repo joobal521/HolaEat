@@ -30,8 +30,8 @@
             <td class="month">${ingrList.month ? '예' : '아니오'}</td>
             <td>
                 <button class="editBtn" data-id="${ingrList.ingrId}" onclick="editIngr(this)">수정하기</button>
-                <button class="updateBtn" data-id="${ingrList.ingrId}" style="display: none;">수정완료</button>
-                <button class="cancelBtn" data-id="${ingrList.ingrId}" style="display: none;">수정취소</button>
+                <button class="updateBtn" data-id="${ingrList.ingrId}" onclick="updateIngr(this)" style="display: none;">수정완료</button>
+                <button class="cancelBtn" data-id="${ingrList.ingrId}" onclick="cancleEdit(this)" style="display: none;">수정취소</button>
                 <input type="file" id="editImg-${ingrList.ingrId}" name="ingrImg" class="imgBtn" style="display: none;" accept="image/png, image/jpg, image/jpeg, image/gif">
                 <button class="imgUpdate" data-id="${ingrList.ingrImg}" style="display: none;">사진업로드</button>
             </td>
