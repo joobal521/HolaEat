@@ -79,7 +79,7 @@ public class MainController {
 //        return "myInfo";
 //    }
 
-    @GetMapping(value = "myInfo")
+    @GetMapping(value = "/myInfo")
     public String myInfo(){
         return "myInfo";
     }
