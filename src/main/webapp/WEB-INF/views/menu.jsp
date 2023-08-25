@@ -68,7 +68,7 @@
                     <h2>알레르기</h2>
                     </label>
                     <select name="allergy" id="allergy">
-                        <option value="0">없음</option>
+                        <option value="5">없음</option>
                         <option value="1" ${userResponseDto.userAllergy eq '1' ? 'selected' : ''}>유제품</option>
                         <option value="2" ${userResponseDto.userAllergy eq '2' ? 'selected' : ''}>갑각류</option>
                         <option value="3" ${userResponseDto.userAllergy eq '3' ? 'selected' : ''}>과일류</option>
@@ -154,16 +154,16 @@
         </form>
         
         <div class="cat" style="display: flex; justify-content: space-evenly">
-            <h2>어떤 메뉴를 드시고 싶으신가요?</h2>
+            <span>어떤 메뉴를 원하세요?</span>
             <div class="category_title">
                 <div class="category">
                     <select name="national" id="national" onchange="fetchAndDisplayAllMenus(this.value)">
                         <option value="">선택하세요</option>
-                        <option class="korean" value="한식">한식</option>
-                        <option class="chinese" value="중식">중식</option>
-                        <option class="japanese" value="일식">일식</option>
-                        <option class="western" value="양식">양식</option>
-                        <option class="salad" value="샐러드">샐러드</option>
+                        <option class="korean" value="1">한식</option>
+                        <option class="chinese" value="2">중식</option>
+                        <option class="japanese" value="3">일식</option>
+                        <option class="western" value="4">양식</option>
+                        <option class="salad" value="5">샐러드(비건식)</option>
                     </select>
                     <button id="reset_btn">모두 드래그 해제</button>
 <%--                    <button id="menu_save_btn" onclick="saveSelectedMenus()">식단 저장</button>--%>
@@ -171,6 +171,7 @@
             </div>
         </div>
         <div class="personal_menu" style="display: flex">
+            <div class="menus_wrap">
             <div id="generatedMenus" class="menu_list" style="width: 50%; height: 500px;">
                 <!-- 이 부분에 동적으로 생성되는 식단 목록이 들어갈 예정입니다. -->
             </div>
@@ -183,7 +184,7 @@
                 <%--                    </div>--%>
                 <%--                </div>--%>
             </div>
-        
+            </div>
         </div>
     </div>
 </section>

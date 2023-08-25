@@ -102,7 +102,7 @@
                     <li class="step" data-step="7">
                        <div class="result-box">
                         <h2>필요 열량</h2>
-                        <p class="r-text">당신이 하루에 필요한 열량은,<br/> <span id="recCaloriesValue" >${userResponseDto.userRecCalories}</span>kcal입니다.</p>
+                        <p class="r-text">귀하께서 하루에 필요한 열량은,<br/> <span id="recCaloriesValue" >${userResponseDto.userRecCalories}</span>kcal입니다.</p>
                         <p class="r-text2">${userResponseDto.userName}님에게 맞는 식단을 찾으러 가볼까요?</p>
                         <input type="button" class="save-btn" id="idx_save_btn" name="idx_save_btn" value="내 칼로리 정보 저장">
                        </div>
@@ -120,8 +120,8 @@
 <%--            맞춤식단 이동 --%>
             <div class="menu_btn">
                 <div class="graph_t_box">
-                <h2 class="you-text">당신의 선택은 옳았습니다.</h2>
-                <h2>이렇게 많은 회원들이 Holaeat과 함께합니다.</h2>
+<%--                <h3 class="you-text">당신의 선택은 옳았습니다.</h3>--%>
+                <h3>이렇게 많은 회원들이 Holaeat과 함께합니다.</h3>
                 </div>
                 <canvas id="pie-chart"></canvas>
                 <script>
