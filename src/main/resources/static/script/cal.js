@@ -257,7 +257,7 @@ function fetchAndDisplayAllMenus(selectedValue) {
     }
 
     var menuIdMapping = {
-        "한식": 1, "중식": 2, "일식": 3, "양식": 4, "샐러드(비건식)": 5
+        "한식": 1, "중식": 2, "일식": 3, "양식": 4, "샐러드": 5
     };
 
     var menuId = menuIdMapping[selectedValue];
