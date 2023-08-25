@@ -14,6 +14,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <%--    차트--%>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <link rel="icon" type="image/png" sizes="32x32" href="img/pavicon.png">
 </head>
 <c:import url="header.jsp"/>
