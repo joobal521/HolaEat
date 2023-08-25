@@ -66,7 +66,7 @@
                         type: 'DELETE',
                         url: "/comment/"+commentId+"/delete",
                         success: function (response) {
-                            if (response.message === 'success') {
+                            if (response.message !== "") {
                                 console.log("삭제 후 이동");
                                 location.href = "mypage";
                                 console.log("마이페이지로");
