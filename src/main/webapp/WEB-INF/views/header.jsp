@@ -3,13 +3,13 @@
 <link rel="stylesheet" type="text/css" href="/style/grid.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-<link rel="icon" type="image/png" sizes="32x32" href="img/pavicon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://ibb.co/hDfBQQm">
 <%--기준 URL로 설정--%>
 <base href="http://localhost:8081/">
 
 <html>
     <head>
-        <link rel="shortcut icon" href="/img/holaEat.png">
+        <link rel="shortcut icon" href="https://ibb.co/TcccKLh">
 
         <meta property="og:title" content="holaEat">
         <meta property="og:description" content="사용자들에게 맛있고 건강한 맞춤식단를 제공하는 웹 서비스입니다.">
@@ -24,7 +24,8 @@
             <div class="top_wrap">
                 <div class="logo">
                     <a href="/">
-                        <img class="logo_img" src="img/logo.png">
+<%--                        <img class="logo_img" src="img/logo.png">--%>
+                        <img class="logo_img" src="https://i.ibb.co/b111HJd/logo.png">
                     </a>
                     <%--                로고 옆 로그인 상태 표시--%>
                     <c:choose>
