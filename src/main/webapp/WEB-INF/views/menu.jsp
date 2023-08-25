@@ -37,35 +37,35 @@
                     <label>
                         <input type="radio" id="male" name="gender"
                                value="male" ${userResponseDto.userGender eq 'male' ? 'checked' : ''}>
-                        <span class="gen-text">남자</span>
+                        <span>남자</span>
                     </label>
                     <label>
                         <input type="radio" id="female" name="gender"
                                value="female" ${userResponseDto.userGender eq 'female' ? 'checked' : ''}>
-                        <span class="gen-text">여자</span>
+                        <span>여자</span>
                     </label>
                 </li>
                 <li>
                     <label for="age">
-                    <h2>나이(세)</h2>
+                        <h2>나이(세)</h2>
                     </label>
-                    <input type="text" class="input-box" id="age" name="age" value="${userResponseDto.userAge}">
+                    <input type="text" id="age" name="age" value="${userResponseDto.userAge}">
                 </li>
                 <li>
                     <label for="height">
-                    <h2>키(cm)</h2>
+                        <h2>키(cm)</h2>
                     </label>
-                    <input type="text" id="height" class="input-box" name="height" value="${userResponseDto.userHeight}">
+                    <input type="text" id="height" name="height" value="${userResponseDto.userHeight}">
                 </li>
                 <li>
                     <label for="weight">
-                    <h2>몸무게(kg)</h2>
+                        <h2>몸무게(kg)</h2>
                     </label>
-                    <input type="text" class="input-box" id="weight" name="weight" value="${userResponseDto.userWeight}">
+                    <input type="text" id="weight" name="weight" value="${userResponseDto.userWeight}">
                 </li>
                 <li>
                     <label for="allergy">
-                    <h2>알레르기</h2>
+                        <h2>알레르기</h2>
                     </label>
                     <select name="allergy" id="allergy">
                         <option value="5">없음</option>
@@ -88,21 +88,21 @@
                        onclick="calculateCalories()">
 
             </ul>
-            <ul class="cal_box">
+            <ul>
                 <li>
                     <h2>하루 필요 열량</h2>
-                    <input type="text"  class="btn6" id="recCalories" name="recCalories"
+                    <input type="text" class="btn6" id="recCalories" name="recCalories"
                            value="${userResponseDto.userRecCalories}" readonly>
                     <span>kcal</span>
                 </li>
             </ul>
             <div id="btn_wrap">
-            <input type="button" class="button" id="save_btn" name="save_btn" value="내 칼로리 정보 저장">
+                <input type="button" class="button" id="save_btn" name="save_btn" value="내 칼로리 정보 저장">
             </div>
-                <div class="json_wrap">
-                
+            <div class="json_wrap">
+
                 <%--        카테고리    --%>
-                
+
                 <div class="prefer">
                     <h2>이 재료는 넣어주세요!</h2>
                     <select name="prefer" id="prefer">
@@ -121,7 +121,7 @@
                         <option value="돼지고기">돼지고기</option>
                     </select>
                 </div>
-                
+
                 <div class="dislike">
                     <h2>이 재료는 빼주세요!</h2>
                     <select name="dislike" id="dislike">
@@ -140,10 +140,10 @@
                         <option value="돼지고기">돼지고기</option>
                     </select>
                 </div>
-                    <div id="btn_wrap">
-                <input type="button" class="button" id="menu_btn" name="menu_btn" value="모든 메뉴보기"
-                       onclick="fetchAndDisplayMenu()">
-                    </div>
+                <div id="btn_wrap">
+                    <input type="button" class="button" id="menu_btn" name="menu_btn" value="모든 메뉴보기"
+                           onclick="fetchAndDisplayMenu()">
+                </div>
                 <li>
                     <h3 class="mini_h3">열량 계산 기준</h3>
                     <span class="mini">*알레르기가 있으시면 권장 칼로리가 10% 감소합니다.</span><br>
@@ -152,7 +152,7 @@
                 </li>
             </div>
         </form>
-        
+
         <div class="cat" style="display: flex; justify-content: space-evenly">
             <span>어떤 메뉴를 원하세요?</span>
             <div class="category_title">
@@ -166,24 +166,24 @@
                         <option class="salad" value="샐러드">샐러드(비건식)</option>
                     </select>
                     <button id="reset_btn">모두 드래그 해제</button>
-<%--                    <button id="menu_save_btn" onclick="saveSelectedMenus()">식단 저장</button>--%>
+                    <%--                    <button id="menu_save_btn" onclick="saveSelectedMenus()">식단 저장</button>--%>
                 </div>
             </div>
         </div>
         <div class="personal_menu" style="display: flex">
             <div class="menus_wrap">
-            <div id="generatedMenus" class="menu_list" style="width: 50%; height: 500px;">
-                <!-- 이 부분에 동적으로 생성되는 식단 목록이 들어갈 예정입니다. -->
-            </div>
-            <hr class="main_hr">
-            <div id="selectedMenus" class="menu_list" style="width: 50%;height: 500px; overflow: scroll">
-                <!-- 드래그해서 이동한 식단 목록이 여기에 들어갈 예정입니다. -->
-                <%--                <div class="image-with-content">--%>
-                <%--                    <img class="food_img" src="img/table.jpg" alt="식단 이미지">--%>
-                <%--                    <div class="content">--%>
-                <%--                    </div>--%>
-                <%--                </div>--%>
-            </div>
+                <div id="generatedMenus" class="menu_list" style="width: 50%; height: 500px;">
+                    <!-- 이 부분에 동적으로 생성되는 식단 목록이 들어갈 예정입니다. -->
+                </div>
+                <hr class="main_hr">
+                <div id="selectedMenus" class="menu_list" style="width: 50%;height: 500px; overflow: scroll">
+                    <!-- 드래그해서 이동한 식단 목록이 여기에 들어갈 예정입니다. -->
+                    <%--                <div class="image-with-content">--%>
+                    <%--                    <img class="food_img" src="img/table.jpg" alt="식단 이미지">--%>
+                    <%--                    <div class="content">--%>
+                    <%--                    </div>--%>
+                    <%--                </div>--%>
+                </div>
             </div>
         </div>
     </div>
