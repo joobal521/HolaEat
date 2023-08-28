@@ -6,7 +6,7 @@
     <title>Title</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="style/index.css">
+    <link rel="stylesheet" type="text/css" href="/style/index.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
             crossorigin="anonymous"></script>
@@ -237,44 +237,44 @@
         </svg>
             <%--            끝--%>
 
-        <div class="slide_box">
+<%--        <div class="slide_box">--%>
 
-                <%--                            캐러셀 BootStrap --%>
-            <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner" style="height: 50vh; overflow: unset;">
-                    <div class="carousel-item active">
-                        <img src="img/menu_main.jpg" class="d-block w-100" alt="...">
-                        <div class="carousel-caption d-none d-md-block" style="background-color: unset;">
-                            <h5>균형잡힌 식단이 중요합니다.</h5>
-                            <p>일반균형식</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="img/protein_main.jpg" class="d-block w-100" alt="...">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>몸을 만들고 계신가요?</h5>
-                            <p>체중조절식</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="img/vegan_main.jpg" class="d-block w-100" alt="...">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>당신의 선택을 생각합니다.</h5>
-                            <p>비건을 위한 식물성 식단</p>
-                        </div>
-                    </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
-                        data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
-                        data-bs-slide="next" style="background-color: unset">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
+<%--                &lt;%&ndash;                            캐러셀 BootStrap &ndash;%&gt;--%>
+<%--            <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">--%>
+<%--                <div class="carousel-inner" style="height: 50vh; overflow: unset;">--%>
+<%--                    <div class="carousel-item active">--%>
+<%--                        <img src="img/menu_main.jpg" class="d-block w-100" alt="...">--%>
+<%--                        <div class="carousel-caption d-none d-md-block" style="background-color: unset;">--%>
+<%--                            <h5>균형잡힌 식단이 중요합니다.</h5>--%>
+<%--                            <p>일반균형식</p>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                    <div class="carousel-item">--%>
+<%--                        <img src="img/protein_main.jpg" class="d-block w-100" alt="...">--%>
+<%--                        <div class="carousel-caption d-none d-md-block">--%>
+<%--                            <h5>몸을 만들고 계신가요?</h5>--%>
+<%--                            <p>체중조절식</p>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                    <div class="carousel-item">--%>
+<%--                        <img src="img/vegan_main.jpg" class="d-block w-100" alt="...">--%>
+<%--                        <div class="carousel-caption d-none d-md-block">--%>
+<%--                            <h5>당신의 선택을 생각합니다.</h5>--%>
+<%--                            <p>비건을 위한 식물성 식단</p>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"--%>
+<%--                        data-bs-slide="prev">--%>
+<%--                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>--%>
+<%--                    <span class="visually-hidden">Previous</span>--%>
+<%--                </button>--%>
+<%--                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"--%>
+<%--                        data-bs-slide="next" style="background-color: unset">--%>
+<%--                    <span class="carousel-control-next-icon" aria-hidden="true"></span>--%>
+<%--                    <span class="visually-hidden">Next</span>--%>
+<%--                </button>--%>
+<%--            </div>--%>
                 <%--                    캐러셀 BootStrap 끝 --%>
                 <%--                인덱싱 시작--%>
 

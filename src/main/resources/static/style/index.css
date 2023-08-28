@@ -347,7 +347,7 @@ body{
     transition: 800ms ease all;
     outline: none;
     border-radius: 10px;
-    margin: 50px auto;
+    margin-top: 50px;
     margin-bottom: 150px;
     font-weight: bold;
 
@@ -367,6 +367,7 @@ body{
     background: #1AAB8A;
     transition:400ms ease all;
 }
+
 .login_2:after{
     right:inherit;
     top:inherit;
