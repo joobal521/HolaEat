@@ -129,6 +129,7 @@ public String gainPower(@RequestParam("adminid") String id, @RequestParam("admin
             } catch (IOException e) {
             }
         } else {
+            foodService.remainImg(food,food.getFoodImg());
             foodService.update(food, foodRequestDto);
         }
 
