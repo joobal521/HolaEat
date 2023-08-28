@@ -40,7 +40,7 @@
                     <c:choose>
                         <c:when test="${not empty log }">
 
-                            <form action="logout" method="POST">
+                            <form action="../logout" method="POST">
                                 <input type="submit" id="logout" name="logout" value="로그아웃">
                             </form>
                             <a id="my" href="../mypage">내 정보</a>
