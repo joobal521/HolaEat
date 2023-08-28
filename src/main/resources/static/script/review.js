@@ -85,7 +85,7 @@ function checkValueWrite(htmlForm) {
                     cancelButtonText: '취소', // cancel 버튼 텍스트 지정
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        location.href = "reviewlist/1";
+                        location.href = "/reviewlist/1";
                     }
                 });
 
@@ -147,7 +147,7 @@ function CheckValueUpdate(htmlForm, reviewNo) {
 
             }).then((result) => {
                 if (result.isConfirmed) {
-                    location.href = "review/" + reviewNo;
+                    location.href = "/review/" + reviewNo;
                 }
             });
 
@@ -201,7 +201,7 @@ function CheckValueDelete(htmlForm, reviewNo) {
 
             $.ajax(settings).done(function (response) {
                 console.log(response);
-                location.href = "reviewlist/1";
+                location.href = "/reviewlist/1";
             });
 
         }
@@ -219,15 +219,6 @@ function redirectToReviewUpdate() {
 }
 
 function goBack() {
-    // var confirmation = confirm("취소하시겠습니까?");
-    //
-    // if (confirmation) {
-    //     // window.scrollTo(0, 0);
-    //     // document.documentElement.style.overflow = 'hidden';
-    //     history.back();
-    //     // document.documentElement.style.overflow = 'auto';
-    // }
-
 
     Swal.fire({
         title: '취소하시겠습니까?',
@@ -255,7 +246,7 @@ function goBackToList() {
         icon: 'success'
     }).then((result) => {
         if (result.isConfirmed) {
-            location.href = "reviewlist/1";
+            location.href = "/reviewlist/1";
         }
     });
 
@@ -294,7 +285,7 @@ function goToLogin(){
 
     }).then((result) => {
         if (result.isConfirmed) {
-        location.href = "login";}
+        location.href = "/login";}
     });
 }
 
@@ -302,15 +293,6 @@ function goToLogin(){
 // 로그아웃 상태로 댓글창 클릭시 로그인페이지 여부 확인
 
     function redirectToLogin() {
-    // const confirmation = confirm("로그인 하시겠습니까?");
-    //
-    // if (confirmation) {
-    //     window.location.href = "/login";
-    //
-    // }
-    //
-    //
-
     Swal.fire({
         title: '로그인 후 이용가능합니다.',
         text: '로그인 페이지로 이동하시겠습니까?',

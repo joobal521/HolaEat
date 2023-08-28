@@ -48,7 +48,7 @@
     </div>
 
 </div>
-<script src="script/review.js"></script>
+<script src="/script/review.js"></script>
 </body>
 <c:import url="footer.jsp"/>
 </html>

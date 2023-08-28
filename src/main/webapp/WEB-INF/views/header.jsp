@@ -43,11 +43,11 @@
                             <form action="logout" method="POST">
                                 <input type="submit" id="logout" name="logout" value="로그아웃">
                             </form>
-                            <a id="my" href="mypage">내 정보</a>
+                            <a id="my" href="../mypage">내 정보</a>
                         </c:when>
                         <c:otherwise>
-                            <a id="login" href="login">로그인</a>
-                            <a id="join" href="join">회원가입</a>
+                            <a id="login" href="../login">로그인</a>
+                            <a id="join" href="../join">회원가입</a>
                         </c:otherwise>
                     </c:choose>
                 </div>
@@ -56,13 +56,13 @@
                 <ul class="menu align-center expanded text-center SMN_effect-5" style="padding-left: 0 !important;">
 
                     <li>
-                        <a href="/">
+                        <a href="../">
                             <span>홈페이지</span>
                             <span>Home</span>
                         </a>
                     </li>
                     <li>
-                        <a href="ingredients">
+                        <a href="../ingredients">
                             <span>이달의 식재료</span>
                             <span>Mothnly Ingredients</span>
                         </a>
@@ -72,7 +72,7 @@
                     <c:choose>
                         <c:when test="${not empty log }">
                             <li>
-                                <a href="menu">
+                                <a href="../menu">
                                     <span>맞춤식단</span>
                                     <span>Personal Menu</span>
                                 </a>
@@ -80,7 +80,7 @@
                         </c:when>
                         <c:otherwise>
                             <li>
-                                <a href="login">
+                                <a href="../login">
                                     <span>맞춤식단</span>
                                     <span>Personal Menu</span>
                                 </a>
@@ -88,14 +88,14 @@
                         </c:otherwise>
                     </c:choose>
                     <li>
-                        <a href="reviewlist/1">
+                        <a href="../reviewlist/1">
                             <span>이용후기</span>
                             <span>Review</span>
                         </a>
                     </li>
 
                     <li>
-                        <a href="health-list/1">
+                        <a href="../health-list/1">
                             <span>건강정보</span>
                             <span>Health Info</span>
                         </a>

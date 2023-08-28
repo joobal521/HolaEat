@@ -59,8 +59,6 @@ public class MainController {
 //    @GetMapping(value = "review")
 //    public String review() {return "review";}
 
-    @GetMapping(value = "reviewform")
-    public String reviewForm() {return "reviewform";}
 
     @GetMapping(value = "mypage")
     public String myPage() {return "myPage";}
@@ -110,11 +108,15 @@ public class MainController {
     @GetMapping(value = "adminUser")
     public String adminUser() {return "adminUser";}
 
+    @GetMapping(value = "reviewform")
+    public String reviewForm() {return "reviewform";}
+
+
     @GetMapping(value = "/reviewUpdate")
     public String reviewUpdate(@RequestParam("reviewNo") long reviewNo, Model model) {
         Optional<Review> review = reviewRepository.findById(reviewNo);
 
-        if(review == null)
+        if(review.isEmpty())
             return "reviewlistPage";
 
         model.addAttribute("review", review.get());

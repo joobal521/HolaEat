@@ -91,8 +91,8 @@
 
 </div>
 </body>
-<script src="script/review.js"></script>
-<script src="script/comment.js"></script>
+<script src="/script/review.js"></script>
+<script src="/script/comment.js"></script>
 
 
 <c:import url="footer.jsp"/>

@@ -91,9 +91,6 @@ public class ReviewListController {
             int heartStatus = isLiked != null ? 1 : 0; // 좋아요 여부에 따라 하트 상태 결정
             heartMapPage.put(review.getReviewNo(), heartStatus);
 
-//            System.out.println("userI확인"+userId+"review.getReviewNo()확인"+review.getReviewNo());
-//            System.out.println("for문 안 isLiked" + isLiked);
-
             //이미지 출력
             if (review.getImg() != null) {
                 String base64Image = ImageParsor.parseBlobToBase64(review.getImg());

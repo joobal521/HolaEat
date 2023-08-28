@@ -81,7 +81,7 @@
                 <button class="list-write-btn" onclick="goToLogin()">글쓰기</button>
             </c:when>
             <c:otherwise>
-                <a href="reviewform">글쓰기</a>
+                <a href="../reviewform">글쓰기</a>
             </c:otherwise>
         </c:choose>
     </div>
@@ -107,7 +107,7 @@
                                 <img src="data:image/jpeg;base64,${imageBase64}" id="img" name="img" alt="Review Image">
                             </c:when>
                             <c:otherwise>
-                                <img src="img/reviewlist_thumb.png" id="img" name="img" alt="Review Image">
+                                <img src="../img/reviewlist_thumb.png" id="img" name="img" alt="Review Image">
                             </c:otherwise>
                         </c:choose>
                     </div>
@@ -213,8 +213,8 @@
 </div>
 
 </body>
-<script src="script/review.js"></script>
-<script src="script/reviewList.js"></script>
+<script src="/script/review.js"></script>
+<script src="/script/reviewList.js"></script>
 
 
 <c:import url="footer.jsp"/>

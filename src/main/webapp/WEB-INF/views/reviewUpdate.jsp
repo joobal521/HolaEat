@@ -102,7 +102,7 @@
     });
 </script>
 
-<script src="script/review.js"></script>
+<script src="/script/review.js"></script>
 
 <c:import url="footer.jsp"/>
 </html>
