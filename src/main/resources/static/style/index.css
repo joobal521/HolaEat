@@ -347,6 +347,7 @@ body{
     transition: 800ms ease all;
     outline: none;
     border-radius: 10px;
+    margin:auto;
     margin-top: 50px;
     margin-bottom: 150px;
     font-weight: bold;
