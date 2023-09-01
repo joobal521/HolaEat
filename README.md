@@ -3,23 +3,22 @@
 # HolaEat
 
 - 사용자들에게 맛있고 건강한 맞춤 식단을 제공 하는 서비스입니다.
-
-  
+ 
 - [서비스 소개](https://www.canva.com/design/DAFqpwZ2qpI/yV_mPlNG9CQxftHpleFdXg/view?utm_content=DAFqpwZ2qpI&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink)
 
+- [사이트 바로 가기](http://holaeat.site/)
+    
 ### 기술스택
 - Spring Boot
 - Spring MVC
 - Spring Data (JPA)
 - MySQL
 
-
-
-
+![img_1.png](img_1.png)
 
 
 ### 작업기간
--2023.08.01~2023.08.25(3주)
+- 2023.08.01~2023.08.25(3주)
 
 ### 테스크톨
  - [데스크툴 링크](https://midi-suede-677.notion.site/HolaEat-041bcf5334754aa49b820486778a166c?pvs=4)
@@ -28,15 +27,15 @@
 
 1. 팀장 [김주연](mailto:perbell521@gmail.com)([Github]())
   - 유저 관리
-    - 회원가입
+    - 회원 가입
       - 이메일 인증 
       - 아이디/이메일 중복 검사
-    - 회원탈퇴
-    - 회원수정
-    - 회원조회
+    - 회원 탈퇴
+    - 회원 수정
+    - 회원 조회
       - 아이디 찾기
-      - 비밀번호 찾기
-    - 마이페이지
+      - 비밀 번호 찾기
+    - 마이 페이지
       - 프로필 이미지 수정
       - 내가 쓴 글/ 내가 쓴 댓글
     
