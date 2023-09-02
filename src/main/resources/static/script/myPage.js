@@ -102,7 +102,7 @@ $(document).ready(function() {
 
                 $.ajax(settings).done(function (response) {
                     console.log(response);
-                    location.href = "mypage";
+                    location.href = "myPage";
                 });
 
             }

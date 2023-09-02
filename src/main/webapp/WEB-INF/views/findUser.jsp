@@ -48,10 +48,14 @@
                            value="인증">
             </div>
             <div class="btn_box">
-                <input type="button" id="find-btn" class="show-btn" value="아이디 조회 하기">
+                <input type="button" id="open-modal" class="show-btn" value="아이디 조회 하기">
             </div>
-            <div class="show_box">
+            <div id="modal">
+                <div class="modal-content">
+                    <h2>아이디 조회</h2>
                 <p class="show-id" id="result"></p>
+                    <button id="close-modal" class="close">닫기</button>
+                </div>
             </div>
             <p class="go-login">
                 <a href="login" class="g-text">로그인 하기 ></a>
