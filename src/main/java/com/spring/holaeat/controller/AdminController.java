@@ -202,7 +202,7 @@ public String gainPower(@RequestParam("adminid") String id, @RequestParam("admin
 //
     //건강정보관리
     @GetMapping("adminHealth")
-    public String gethealth(Model model){
+    public String getHealth(Model model){
         List<Health> healthList=healthService.getAllHealth();
         model.addAttribute("healthList",healthList);
         return "adminHealth";

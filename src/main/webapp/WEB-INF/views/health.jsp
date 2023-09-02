@@ -58,6 +58,6 @@
 
 </div>
 </body>
-<script src="script/health.js"></script>
+<script src="/script/adminHealth.js"></script>
 <c:import url="footer.jsp"/>
 </html>

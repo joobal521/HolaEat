@@ -28,7 +28,7 @@
                     <%--                로고 옆 로그인 상태 표시--%>
                     <c:choose>
                         <c:when test="${not empty log }">
-                            <span><a href="mypage">${userResponseDto.userName}</a>님 안녕하세요!</span>
+                            <span><a href="myPage">${userResponseDto.userName}</a>님 안녕하세요!</span>
                         </c:when>
                         <c:otherwise>
                         </c:otherwise>
@@ -43,7 +43,7 @@
                             <form action="../logout" method="POST">
                                 <input type="submit" id="logout" name="logout" value="로그아웃">
                             </form>
-                            <a id="my" href="../mypage">내 정보</a>
+                            <a id="my" href="../myPage">내 정보</a>
                         </c:when>
                         <c:otherwise>
                             <a id="login" href="../login">로그인</a>

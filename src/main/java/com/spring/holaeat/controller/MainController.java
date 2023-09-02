@@ -60,24 +60,10 @@ public class MainController {
 //    public String review() {return "review";}
 
 
-    @GetMapping(value = "mypage")
+    @GetMapping(value = "myPage")
     public String myPage() {return "myPage";}
 
-
-//    @GetMapping(value = "/myInfo")
-//    public String myInfo(@RequestParam(name = "profileNo", required = false) Long profileNo, Model model) {
-//        Optional<ProfileImg> profileImg = profileImgRepository.findById(profileNo);
-//
-//        if (profileImg == null) {
-//            return "mypage";
-//
-//        }
-//
-//        model.addAttribute("profile", profileImg.get());
-//        return "myInfo";
-//    }
-
-    @GetMapping(value = "/myInfo")
+    @GetMapping(value = "myInfo")
     public String myInfo(){
         return "myInfo";
     }
@@ -122,7 +108,6 @@ public class MainController {
         model.addAttribute("review", review.get());
         return "reviewUpdate";
     }
-
 
 
 

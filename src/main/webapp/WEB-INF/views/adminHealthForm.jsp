@@ -27,15 +27,9 @@
             <tr>
                 <td><label for="file">이미지</label></td>
                 <td>
-        <input type="file" id="file" name="file"  accept="image/*" onchange="writeThumbnail()" multiple/>
+        <input  type="file" id="file" name="file"  accept="image/*" onchange="writeThumbnail()" multiple/>
                     <div class="write_select_img" id="image-preview">
-                        <img src="" id="img" name="img" alt="">
-                    </div>
-                </td>
-                <td>
-                    <input type="file" id="file_2" name="file_2"  accept="image/*" onchange="writeThumbnail()" multiple/>
-                    <div class="write_select_img" id="image-preview_2">
-                        <img src="" id="img_2" name="img" alt="">
+                      <img src="" id="img" name="img" alt="">
                     </div>
                 </td>
             </tr>

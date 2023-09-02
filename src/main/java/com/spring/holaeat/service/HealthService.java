@@ -51,11 +51,11 @@ public class HealthService {
 
 
     //이미지 수정시
-   // @Transactional
-  //  public void remainImage(Health health, byte[] img){
-  //      health.remainImg(img);
- //       healthRepository.save(health);
- //   }
+    @Transactional
+    public void remainImage(Health health, byte[] img){
+        health.remainImg(img);
+        healthRepository.save(health);
+    }
 
     //삭제
     @Transactional
@@ -79,7 +79,7 @@ public class HealthService {
         if(!photoList.isEmpty()) {
             for(Photo photo : photoList) {
                 // 파일을 DB에 저장
-                health.addPhoto(photoRepository.save(photo));
+       //         health.addPhoto(photoRepository.save(photo));
             }
         }
 

@@ -16,7 +16,7 @@ public class HealthRequestDto {
     private Admin admin;
     private String title; //제목
     private String content;//내용
-   // private MultipartFile img;
+    private MultipartFile img;
 
 
     @Builder
