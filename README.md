@@ -21,7 +21,7 @@
 - 2023.08.01~2023.08.25(3주)
 
 ### 테스크톨
- - [데스크툴 링크](https://midi-suede-677.notion.site/HolaEat-041bcf5334754aa49b820486778a166c?pvs=4)
+ - [데스크툴 링크](https://www.notion.so/8d2f9fa4c1764838a9825644baee2f7e?v=ec690046a7ea4b2fac4b0af1a07a5069)
 
 ### 기능 및 담당자
 
@@ -59,6 +59,7 @@
    - 댓글 삭제
    - 댓글 수정
 
+
 3. 팀원 [이태우](mailto:terrylee61@naver.com)([Github](https://github.com/terryLee61))
   - 유저 관리
     - 로그인
@@ -67,6 +68,7 @@
     - 건강 정보 저장
     - 맞춤 식단 조회
     - 맞춤 식단 저장
+
 
 4. 팀원 [조동현](mailto:sourcefilmer@gmail.com)([Github](https://github.com/dongtak))
  -  DB 구조 작업
