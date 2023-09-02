@@ -35,10 +35,10 @@ public class HealthListController {
         Health health = healthRepository.findByHealthNo(healthNo);
         model.addAttribute("health", health);
 
-        if (health.getImg() == null)
-            return "health";
+     //   if (health.getImg() == null)
+     //       return "health";
 
-        model.addAttribute("blob", ImageParsor.parseBlobToBase64(health.getImg()));
+      //  model.addAttribute("blob", ImageParsor.parseBlobToBase64(health.getImg()));
         return "health";
 
     }
@@ -68,10 +68,10 @@ public class HealthListController {
         model.addAttribute("healthList", healthPage); // healthPage를 모델에 추가
 
         for (Health health : healthPage) {
-            if (health.getImg() != null) {
-                String base64Image = ImageParsor.parseBlobToBase64(health.getImg());
-                imageMap.put(health.getHealthNo(), base64Image);
-            }
+        //    if (health.getImg() != null) {
+        //        String base64Image = ImageParsor.parseBlobToBase64(health.getImg());
+        //        imageMap.put(health.getHealthNo(), base64Image);
+        //    }
         }
 
         int totalLength = (int) healthRepository.count(); // 총 건강 정보 수 가져오기

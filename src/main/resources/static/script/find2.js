@@ -46,7 +46,7 @@ function emailAuthentication() {
 
         $.ajax({
             type: "POST",
-            url: "api/v1/users/verification-email",
+            url: "users/verification-email",
             data: JSON.stringify(data),
             contentType: "application/json; charset=utf-8",
             dataType: "json",

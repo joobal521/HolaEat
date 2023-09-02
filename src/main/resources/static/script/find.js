@@ -57,7 +57,7 @@ function emailAuthentication() {
 
         $.ajax({
             type: "POST",
-            url: "api/v1/users/verification-email",
+            url: "users/verification-email",
             data: JSON.stringify(data),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
@@ -161,7 +161,7 @@ $("#find-btn").click(function () {
 
     $.ajax({
         type: "POST",
-        url: "api/v1/users/find-user", // 컨트롤러의 URL
+        url: "users/find-userId", // 컨트롤러의 URL
         data: {
             userEmail: userEmail,
             userName: userName

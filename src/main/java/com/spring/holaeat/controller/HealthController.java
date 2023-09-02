@@ -20,18 +20,34 @@ import org.springframework.web.context.request.WebRequest;
 
 import java.util.Map;
 
+@SessionAttributes("authority")
 @RequiredArgsConstructor
 @RestController
 
-@RequestMapping("api/v1/health")
 public class HealthController {
 
     private final HealthService healthService;
     private final HealthRepository healthRepository;
+    private final AdminService adminService;
 
 
 
+    @PostMapping("health-write")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Long create(HealthFileVo healthFileVo) throws Exception {
+        // 관리자 id
+        Admin admin= adminService.getAdminById(healthFileVo.getId());
 
+
+        HealthRequestDto healthDto =
+                HealthRequestDto.builder()
+                        .admin(admin)
+                        .title(healthFileVo.getTitle())
+                        .content(healthFileVo.getContent())
+                        .build();
+
+        return healthService.create(healthDto, healthFileVo.getFile());
+    }
 
    //관리자 글등록
     @PostMapping(value = "health-write", consumes = "multipart/form-data")
@@ -48,28 +64,28 @@ public class HealthController {
         }
         return response.toMap();
     }
+
     //관리자 글 수정
-    @PutMapping(value="/update/{healthNo}", consumes = {"multipart/form-data"})
-    public Response update(@PathVariable long healthNo, @ModelAttribute HealthRequestDto healthDto){
-        Health health=healthRepository.findById(healthNo).orElseThrow(
-                ()->new IllegalArgumentException("게시글이 존재하지 않습니다.")
-        );
+ //   @PutMapping(value="/update/{healthNo}", consumes = {"multipart/form-data"})
+//    public Response update(@PathVariable long healthNo, @ModelAttribute HealthRequestDto healthDto){
+//        Health health=healthRepository.findById(healthNo).orElseThrow(
+//                ()->new IllegalArgumentException("게시글이 존재하지 않습니다.")//       );
 
-        if(healthDto.getImg() ==null){
+//        if(healthDto.getImg() ==null){
 
-            System.out.println("기존 사진 넣기");
-            byte[]img=health.getImg(); //원래 있는 이미지 빼놓기
-            System.out.println("img"+img);
-            healthService.updateHealth(health,healthDto);
-            healthService.remainImage(health,img);
+//            System.out.println("기존 사진 넣기");
+//            byte[]img=health.getImg(); //원래 있는 이미지 빼놓기
+//            System.out.println("img"+img);
+//            healthService.updateHealth(health,healthDto);
+//            healthService.remainImage(health,img);
 
-        }else {
-            healthService.updateHealth(health,healthDto);
-        }
+//        }else {
+//            healthService.updateHealth(health,healthDto);
+//        }
 
 
-        return new Response("update","success");
-    }
+ //       return new Response("update","success");
+ //   }
 
 
     //관리자 글 삭제

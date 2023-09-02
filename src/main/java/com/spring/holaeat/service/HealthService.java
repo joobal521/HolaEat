@@ -51,11 +51,11 @@ public class HealthService {
 
 
     //이미지 수정시
-    @Transactional
-    public void remainImage(Health health, byte[] img){
-        health.remainImg(img);
-        healthRepository.save(health);
-    }
+   // @Transactional
+  //  public void remainImage(Health health, byte[] img){
+  //      health.remainImg(img);
+ //       healthRepository.save(health);
+ //   }
 
     //삭제
     @Transactional
@@ -65,26 +65,26 @@ public class HealthService {
     }
 
     //이미지 여러개
-//    @Transactional
-//    public Long create(
-//            HealthRequestDto healthDto,
-//            List<MultipartFile> files
-//    ) throws Exception {
-//        // 파일 처리를 위한 health 객체 생성
-//        Health health = new Health(healthDto);
-//
-//        List<Photo> photoList = fileHandler.parseFileInfo(files);
-//
-//        // 파일이 존재할 때에만 처리
-//        if(!photoList.isEmpty()) {
-//            for(Photo photo : photoList) {
-//                // 파일을 DB에 저장
-//                health.addPhoto(photoRepository.save(photo));
-//            }
-//        }
-//
-//        return healthRepository.save(health).getHealthNo();
-//    }
+    @Transactional
+    public Long create(
+            HealthRequestDto healthDto,
+            List<MultipartFile> files
+    ) throws Exception {
+        // 파일 처리를 위한 health 객체 생성
+        Health health = new Health(healthDto);
+
+        List<Photo> photoList = fileHandler.parseFileInfo(files);
+
+        // 파일이 존재할 때에만 처리
+        if(!photoList.isEmpty()) {
+            for(Photo photo : photoList) {
+                // 파일을 DB에 저장
+                health.addPhoto(photoRepository.save(photo));
+            }
+        }
+
+        return healthRepository.save(health).getHealthNo();
+    }
 
 
 

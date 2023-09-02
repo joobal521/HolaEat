@@ -32,6 +32,12 @@
                         <img src="" id="img" name="img" alt="">
                     </div>
                 </td>
+                <td>
+                    <input type="file" id="file_2" name="file_2"  accept="image/*" onchange="writeThumbnail()" multiple/>
+                    <div class="write_select_img" id="image-preview_2">
+                        <img src="" id="img_2" name="img" alt="">
+                    </div>
+                </td>
             </tr>
             <tr>
                 <td colspan="2" class="health-write-btn">

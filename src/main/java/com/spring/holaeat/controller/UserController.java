@@ -26,7 +26,7 @@ import java.util.Map;
 @Slf4j
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("api/v1/users")
+@RequestMapping("users")
 public class UserController {
 
     private final UserService userService;
@@ -68,7 +68,7 @@ public class UserController {
 }
 
 //아이디 찾기
-    @PostMapping(value = "find-user")
+    @PostMapping(value = "find-userId")
     public ResponseEntity<String> findIdByEmailAndName(@RequestParam String userEmail, @RequestParam String userName) {
         User user = userService.findUserByEmailAndName(userEmail, userName);
         if (user != null) {
@@ -90,7 +90,7 @@ public class UserController {
 //    }
 
 //아이디 중복체크
-    @PostMapping("userId-check")
+    @PostMapping("check-userId")
     public Map checkUserId(@RequestBody  Map<String, String> requestData) {
         String userId=requestData.get("userId");
         boolean dupl = userService.duplCheckUserId(userId);
@@ -107,7 +107,7 @@ public class UserController {
     }
 
     //이메일 중복체크
-    @PostMapping("userEmail-check")
+    @PostMapping("check-userEmail")
     public Map checkUserEmail(@RequestBody  Map<String, String> requestData) {
         String userEmail=requestData.get("userEmail");
         boolean dupl=userService.duplCheckUserEmail(userEmail);

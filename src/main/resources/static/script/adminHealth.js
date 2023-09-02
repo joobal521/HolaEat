@@ -39,7 +39,7 @@ function checkValue(htmlForm) {
         }
 
         var settings = {
-            "url": "api/v1/health/health-write",
+            "url": "health-write",
             "method": "POST",
             "timeout": 0,
             "processData": false,

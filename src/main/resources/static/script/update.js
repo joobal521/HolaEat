@@ -191,6 +191,8 @@ $(function() {
     // }
 
 
+//회원정보 수정
+
     function checkValue() {
     const id= $('#userId').val();
     const password = $('#userPassword').val();
@@ -256,7 +258,7 @@ $(function() {
 
         $.ajax({
             method: "PUT",
-            url: "api/v1/users/update",
+            url: "users/update",
             data: JSON.stringify(data),
             contentType: "application/json; charset=utf-8",
             dataType: "json"
