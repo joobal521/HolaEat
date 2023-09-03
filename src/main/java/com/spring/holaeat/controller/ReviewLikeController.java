@@ -43,46 +43,6 @@ public class ReviewLikeController {
         }
 
 
-
-        //좋아요 총 개수
-    @GetMapping("/review/{reviewNo}/totallikes")
-    public ResponseEntity<Map<String, Integer>> getTotalLikesForReview(@PathVariable long reviewNo) {
-        int totalLikes = reviewLikeService.getTotalLikesForReview(reviewNo);
-
-        Map<String, Integer> response = new HashMap<>();
-        response.put("totalLikes", totalLikes);
-
-        return ResponseEntity.ok(response);
-    }
-
-
-
-
-//        @PutMapping(value = "/reviewlike/{reviewNo}")
-//        public void inputReviewLike(@PathVariable long reviewNo,WebRequest request) {
-//            String log = (String) request.getAttribute("log", WebRequest.SCOPE_SESSION);
-//
-//            System.out.println("컨트롤러 확인 PutMapping " + reviewNo);
-//            System.out.println("컨트롤러 확인  PutMapping" + log);
-//
-//            List<ReviewLike> list = reviewLikeService.checkReviewLike(log, reviewNo);
-//
-//            System.out.println("list");
-//
-//            if(list!=null){
-//                reviewService.likeInsert(reviewNo);
-//                System.out.println(reviewNo + "- reviewNo(컨트롤러 insert)");
-//                //reviewlike 테이블 삭제
-//                reviewLikeRepository.deleteByUserIdAndReviewNo(log, reviewNo);
-//            }
-//
-//        }
-
-
-
-
-
-
 }
 
 
