@@ -35,16 +35,15 @@
                     </li>
 
 
+
                     <li class="input-container">
                         <h2 class="form-title">비밀번호</h2>
                         <input type="password" class="input-box" id="userPassword" name="userPassword" placeholder="4-10자의 영문, 특수문자, 숫자 조합">
+                        <p class="err">*특수문자는 '! @ # $ % ^ & +='만 사용 가능합니다.</p>
+                        <p class="error" id="error-password">비밀번호는 필수 정보입니다.</p>
+                        <span class="err" id="chkNotice1" size="1"></span>
                     </li>
 
-                    <li class="input-container">
-                    <p class="err">*특수문자는 '! @ # $ % ^ & +='만 사용 가능합니다.</p>
-                        <p class="error" id="error-password">비밀번호는 필수 정보입니다.</p>
-                    <span class="err" id="chkNotice1" size="1"></span>
-                   </li>
 
                 <li class="input-container">
                     <h2 class="form-title">비밀번호 확인</h2>

@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
@@ -7,7 +6,7 @@
     <title>Title</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="style/index.css">
+    <link rel="stylesheet" type="text/css" href="/style/index.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
             crossorigin="anonymous"></script>
@@ -102,9 +101,11 @@
                     <li class="step" data-step="7">
                         <div class="result-box">
                             <h2>필요 열량</h2>
-                            <p class="r-text">귀하께서 하루에 필요한 열량은,<br/> <span id="recCaloriesValue" >${userResponseDto.userRecCalories}</span>kcal입니다.</p>
+                            <p class="r-text">귀하께서 하루에 필요한 열량은,<br/> <span
+                                    id="recCaloriesValue">${userResponseDto.userRecCalories}</span>kcal입니다.</p>
                             <p class="r-text2">${userResponseDto.userName}님에게 맞는 식단을 찾으러 가볼까요?</p>
-                            <input type="button" class="save-btn" id="idx_save_btn" name="idx_save_btn" value="내 칼로리 정보 저장">
+                            <input type="button" class="save-btn" id="idx_save_btn" name="idx_save_btn"
+                                   value="내 칼로리 정보 저장">
                         </div>
                         <p>
                             <a href="menu" class="btn3">
@@ -126,19 +127,19 @@
             <canvas id="pie-chart"></canvas>
             <script>
                 new Chart(document.getElementById("pie-chart"), {
-                    type   : 'bar',
-                    data   : {
-                        labels  : ["균형잡힌 식사", "운동 식이조절", "다이어트", "비건", "기타"],
+                    type: 'bar',
+                    data: {
+                        labels: ["균형잡힌 식사", "운동 식이조절", "다이어트", "비건", "기타"],
                         datasets: [{
-                            label          : "단위(명)",
+                            label: "단위(명)",
                             backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
-                            data           : [942, 1241, 734, 784, 433]
+                            data: [942, 1241, 734, 784, 433]
                         }]
                     },
                     options: {
                         title: {
                             display: true,
-                            text   : 'Holaeat을 이용하는 이유는?'
+                            text: 'Holaeat을 이용하는 이유는?'
                         }
                     }
                 });
@@ -210,7 +211,8 @@
                     <feMergeNode in='secondShadow_11'/>
                 </feMerge>
 
-                <feImage x='0' y='0' width='600' height='200' xlink:href='https://s3-us-west-2.amazonaws.com/s.cdpn.io/78779/stripes.svg'/>
+                <feImage x='0' y='0' width='600' height='200'
+                         xlink:href='https://s3-us-west-2.amazonaws.com/s.cdpn.io/78779/stripes.svg'/>
                 <feComposite in2='secondShadow' operator='in' result='secondShadow'/>
 
                 <feMerge>
@@ -223,62 +225,62 @@
 
             <text dominant-baseline='middle' text-anchor='middle' x='50%' y='50%'>
                 Basic of
-            </text><br/>
+            </text>
+            <br/>
             <text dominant-baseline='middle' text-anchor='middle' x='80%' y='80%'>
                 Healthy Life,
-            </text><br/>
+            </text>
+            <br/>
             <text dominant-baseline='middle' text-anchor='middle' x='50%' y='50%'>
                 HOLAEAT!
             </text>
         </svg>
             <%--            끝--%>
 
-        <div class="slide_box">
+<%--        <div class="slide_box">--%>
 
-                <%--                            캐러셀 BootStrap --%>
-            <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner" style="height: 50vh; overflow: unset;">
-                    <div class="carousel-item active">
-                        <img src="img/menu_main.jpg" class="d-block w-100" alt="...">
-                        <div class="carousel-caption d-none d-md-block" style="background-color: unset;">
-                            <h5>균형잡힌 식단이 중요합니다.</h5>
-                            <p>일반균형식</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="img/protein_main.jpg" class="d-block w-100" alt="...">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>몸을 만들고 계신가요?</h5>
-                            <p>체중조절식</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="img/vegan_main.jpg" class="d-block w-100" alt="...">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>당신의 선택을 생각합니다.</h5>
-                            <p>비건을 위한 식물성 식단</p>
-                        </div>
-                    </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
-                        data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
-                        data-bs-slide="next" style="background-color: unset">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
+<%--                &lt;%&ndash;                            캐러셀 BootStrap &ndash;%&gt;--%>
+<%--            <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">--%>
+<%--                <div class="carousel-inner" style="height: 50vh; overflow: unset;">--%>
+<%--                    <div class="carousel-item active">--%>
+<%--                        <img src="img/menu_main.jpg" class="d-block w-100" alt="...">--%>
+<%--                        <div class="carousel-caption d-none d-md-block" style="background-color: unset;">--%>
+<%--                            <h5>균형잡힌 식단이 중요합니다.</h5>--%>
+<%--                            <p>일반균형식</p>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                    <div class="carousel-item">--%>
+<%--                        <img src="img/protein_main.jpg" class="d-block w-100" alt="...">--%>
+<%--                        <div class="carousel-caption d-none d-md-block">--%>
+<%--                            <h5>몸을 만들고 계신가요?</h5>--%>
+<%--                            <p>체중조절식</p>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                    <div class="carousel-item">--%>
+<%--                        <img src="img/vegan_main.jpg" class="d-block w-100" alt="...">--%>
+<%--                        <div class="carousel-caption d-none d-md-block">--%>
+<%--                            <h5>당신의 선택을 생각합니다.</h5>--%>
+<%--                            <p>비건을 위한 식물성 식단</p>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"--%>
+<%--                        data-bs-slide="prev">--%>
+<%--                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>--%>
+<%--                    <span class="visually-hidden">Previous</span>--%>
+<%--                </button>--%>
+<%--                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"--%>
+<%--                        data-bs-slide="next" style="background-color: unset">--%>
+<%--                    <span class="carousel-control-next-icon" aria-hidden="true"></span>--%>
+<%--                    <span class="visually-hidden">Next</span>--%>
+<%--                </button>--%>
+<%--            </div>--%>
                 <%--                    캐러셀 BootStrap 끝 --%>
                 <%--                인덱싱 시작--%>
 
                 <%--                인덱싱 끝--%>
 
-            <div class="login_2">
-                <button><a href="login" class="login_txt">로그인 후 맞춤식단</br>검색하기</a></button>
-            </div>
+
                 <%--        랜덤 룰렛 시작--%>
                 <%--        <div class="roullet">--%>
                 <%--            <canvas id="roullet" width="380" height='380'></canvas>--%>
@@ -286,6 +288,9 @@
                 <%--        </div>--%>
 
                 <%--        랜덤 룰렛 끝--%>
+        </div>
+        <div class="login_2">
+            <button><a href="../login" class="login_txt">로그인 후 맞춤식단</br>검색하기</a></button>
         </div>
         </c:otherwise>
         </c:choose>

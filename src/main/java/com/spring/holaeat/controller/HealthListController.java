@@ -36,16 +36,16 @@ public class HealthListController {
         model.addAttribute("health", health);
 
         if (health.getImg() == null)
-            return "health";
+           return "health";
 
-        model.addAttribute("blob", ImageParsor.parseBlobToBase64(health.getImg()));
+       model.addAttribute("blob", ImageParsor.parseBlobToBase64(health.getImg()));
         return "health";
 
     }
 
 
     //게시글 전체 조회 페이징
-    @GetMapping("health-list/{pageNumber}")
+    @GetMapping("/health-list/{pageNumber}")
     public String getBoardAll(@PathVariable int pageNumber, @RequestParam(required = false, value = "keyword") String keyword, @RequestParam(required = false, value = "searchType") String searchType, @PageableDefault(size = 4) Pageable pageable, Model model){
         Map<Long, String> imageMap = new HashMap<>();
         List<Health> healthPage  = null;
@@ -88,23 +88,23 @@ public class HealthListController {
     }
 
     //전체 조회
-//    @GetMapping("/health-list")
-//    public String getHelthAll(Model model) {
-//        List<Health> list = healthService.findAllByOrderByHealthNoDesc(Pageable.unpaged());
-//        Map<Long, String> imageMap = new HashMap<>();
-//
-//        for (Health health : list) {
-//            if (health.getImg() != null) {
-//                String base64Image = ImageParsor.parseBlobToBase64(health.getImg());
-//                imageMap.put(health.getHealthNo(), base64Image);
-//            }
-//        }
-//
-//        model.addAttribute("healthList", list);
-//        model.addAttribute("imageMap", imageMap);
-//        System.out.println("이게 되는겨?");
-//        return "healthList";
-//
-//    }
+    @GetMapping("/health-list")
+    public String getHealthAll(Model model) {
+        List<Health> list = healthService.findAllByOrderByHealthNoDesc(Pageable.unpaged());
+        Map<Long, String> imageMap = new HashMap<>();
+
+        for (Health health : list) {
+            if (health.getImg() != null) {
+                String base64Image = ImageParsor.parseBlobToBase64(health.getImg());
+                imageMap.put(health.getHealthNo(), base64Image);
+            }
+        }
+
+        model.addAttribute("healthList", list);
+        model.addAttribute("imageMap", imageMap);
+        System.out.println("이게 되는겨?");
+        return "healthList";
+
+    }
 
 }

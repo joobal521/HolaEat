@@ -52,7 +52,7 @@
             </div>
 
         </div>
-<script src="script/adminHealth.js"></script>
+<script src="/script/adminHealth.js"></script>
 </body>
 
 </html>

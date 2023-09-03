@@ -39,7 +39,7 @@ function checkValue(htmlForm) {
         }
 
         var settings = {
-            "url": "api/v1/health/health-write",
+            "url": "write-health",
             "method": "POST",
             "timeout": 0,
             "processData": false,
@@ -95,7 +95,7 @@ function CheckValueUpdate(htmlForm, healthNo) {
    // form.append("imgCheck", imgCheckUrl); // 이미지 수정을 하지 않았어도 이전 이미지 정보 추가
 
     var settings = {
-        "url": "api/v1/health/update/" + healthNo,
+        "url": "/update-health/" + healthNo,
         "method": "PUT",
         "timeout": 0,
         "processData": false,
@@ -127,7 +127,7 @@ $(document).ready(function() {
         var healthNo = $(this).data("id");
         var form = new FormData(); // FormData 객체 생성
         var settings = {
-            "url": "api/v1/health/delete/"+healthNo,
+            "url": "/delete-health/"+healthNo,
             "method": "DELETE",
             "timeout": 0,
             "processData": false,
@@ -151,6 +151,45 @@ $(document).ready(function() {
 
     });
 })
+
+
+// 이미지 썸네일
+//function writeThumbnail() {
+    const fileInput = document.getElementById('file');
+    const imagePreview = document.getElementById('image-preview');
+
+    // Clear existing previews
+    imagePreview.innerHTML = '';
+
+    // Loop through selected files
+    for (let i = 0; i < fileInput.files.length; i++) {
+        const file = fileInput.files[i];
+        if (file) {
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                // Create a container for each thumbnail
+                const thumbnailContainer = document.createElement('div');
+                thumbnailContainer.className = 'thumbnail-container'; // Add a class for styling (optional)
+
+                // Create an img element for the thumbnail
+                const imgElement = document.createElement('img');
+                imgElement.src = e.target.result;
+
+                // Append the thumbnail to its container
+                thumbnailContainer.appendChild(imgElement);
+
+                // Append the thumbnail container to the image preview container
+                imagePreview.appendChild(thumbnailContainer);
+            };
+
+            reader.readAsDataURL(file);
+        }
+    }
+
+    // Display the image preview container
+    imagePreview.style.display = 'block';
+//}
 
 //이미지 썸네일
 function writeThumbnail() {
@@ -187,7 +226,7 @@ function goBack() {
 //더보기 버튼
 $(function() {
     $("tr").hide();
-    $("tr").slice(0, 4).show(); // 초기갯수
+    $("tr").slice(0, 4).show(); // 초기개수
     $("#moreView-btn").click(function(e) { // 더보기 버튼 클릭
         e.preventDefault();
         $("tr:hidden").slice(0, 4).show(); // 클릭시 리스트 갯수 지정
@@ -196,4 +235,9 @@ $(function() {
         }
     });
 });
+
+//목록으로 되돌아가기
+function goBackToList() {
+    location.href = "../health-list/1";
+}
 

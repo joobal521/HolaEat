@@ -88,7 +88,7 @@ function checkValue() {
 
         $.ajax({
             method: "PUT",
-            url: "api/v1/users/find-pwd",
+            url: "users/find-pwd",
             data: JSON.stringify(data),
             contentType: "application/json; charset=utf-8",
             dataType: "json"

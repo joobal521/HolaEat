@@ -53,10 +53,12 @@ html,body,header,footer{
     display: flex;
     justify-content: space-around;
     align-items: center;
+
 }
 
 .user_nav>a:hover{
-    background-color: gray;
+    color: #1e6b7b;
+    background: aliceblue
 }
 
 .top_wrap{
@@ -274,11 +276,13 @@ a{
 #logout, #login, #admin, #admin_login, #my, #join{
     width: 95px;
     height: 40px;
-    background-color: white;
+    background:#265037 ;
+    color: white;
 }
 
 #logout:hover, #login:hover, #admin:hover, #admin_login:hover, #my:hover, #join:hover{
-    background-color: gainsboro;
+    color: #1e6b7b;
+    background: aliceblue;
     cursor: pointer;
 }
 

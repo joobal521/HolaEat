@@ -112,7 +112,7 @@ function chkId() {
         };
         $.ajax({
             method: 'POST',
-            url: 'api/v1/users/userId-check',
+            url: 'users/check-userId',
             data: JSON.stringify(data),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
@@ -165,7 +165,7 @@ function chkEmail() {
         };
         $.ajax({
             method: 'POST',
-            url: 'api/v1/users/userEmail-check',
+            url: 'users/check-userEmail',
             data: JSON.stringify(data),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
@@ -216,7 +216,7 @@ function emailAuthentication() {
 
          $.ajax({
              type: "POST",
-             url: "api/v1/users/verification-email",
+             url: "users/verification-email",
              data: JSON.stringify(data),
              contentType: "application/json; charset=utf-8",
              dataType: "json",
@@ -382,7 +382,7 @@ function checkValue(htmlForm) {
 
         $.ajax({
             method: "POST",
-            url: "api/v1/users/join",
+            url: "users/join",
             data: JSON.stringify(data),
             contentType: "application/json; charset=utf-8",
             dataType: "json"

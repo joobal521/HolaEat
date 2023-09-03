@@ -57,7 +57,7 @@ function emailAuthentication() {
 
         $.ajax({
             type: "POST",
-            url: "api/v1/users/verification-email",
+            url: "users/verification-email",
             data: JSON.stringify(data),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
@@ -140,7 +140,7 @@ function authCodeCheck() {
 
 
 
-$("#find-btn").click(function () {
+$("#open-modal").click(function () {
 
 
   if (isToKenChecked) { // isToKenChecked 가 true 이면
@@ -161,7 +161,7 @@ $("#find-btn").click(function () {
 
     $.ajax({
         type: "POST",
-        url: "api/v1/users/find-user", // 컨트롤러의 URL
+        url: "users/find-userId", // 컨트롤러의 URL
         data: {
             userEmail: userEmail,
             userName: userName
@@ -183,6 +183,21 @@ $("#find-btn").click(function () {
         //alert('이메일 인증을 먼저 해주세요!') // 경고 메시지 출력
     }
 
+});
+
+//모달창
+const modal = document.getElementById("modal");
+const openModalBtn = document.getElementById("open-modal");
+const closeModalBtn = document.getElementById("close-modal");
+// 모달창 열기
+openModalBtn.addEventListener("click", () => {
+    modal.style.display = "block";
+    document.body.style.overflow = "hidden"; // 스크롤바 제거
+});
+// 모달창 닫기
+closeModalBtn.addEventListener("click", () => {
+    modal.style.display = "none";
+    document.body.style.overflow = "auto"; // 스크롤바 보이기
 });
 
 

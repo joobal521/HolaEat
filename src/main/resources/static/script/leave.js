@@ -32,7 +32,7 @@ function checkValue(htmlForm) {
         };
         $.ajax({
             method: "DELETE",
-            url: "api/v1/users/leave",
+            url: "users/leave",
             data: JSON.stringify(data),
             contentType: "application/json; charset=utf-8",
             dataType: "json"

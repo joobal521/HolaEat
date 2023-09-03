@@ -336,17 +336,19 @@ body{
 
 /*맞춤 검색 고 버튼*/
 .login_2{
+    width: 40%;
     background-color: #265037;
     color: #fff;
     border: none;
     position: relative;
     font-size: 1.6em;
-    padding: 15px 150px;
+    padding: 15px 50px;
     cursor: pointer;
     transition: 800ms ease all;
     outline: none;
     border-radius: 10px;
-    margin-top: 50px;
+    margin:auto;
+    margin-top: 100px;
     margin-bottom: 150px;
     font-weight: bold;
 
@@ -366,6 +368,7 @@ body{
     background: #1AAB8A;
     transition:400ms ease all;
 }
+
 .login_2:after{
     right:inherit;
     top:inherit;

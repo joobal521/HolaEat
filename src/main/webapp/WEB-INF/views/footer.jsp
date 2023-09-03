@@ -36,7 +36,7 @@
 
         </div>
 
-        <a class="access" href="gainpower"></a>
+        <a class="access" href="../gainpower"></a>
 
 
     </div>
