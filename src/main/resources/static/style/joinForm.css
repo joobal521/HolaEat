@@ -69,7 +69,7 @@ color:#265037;
 /*버튼 모음*/
 /*중복확인*/
 .btn-dupl{
-   padding: 10px 20px;
+    padding: 10px;
     border-radius: 4px;
     border: 1px solid #265037;
     background-color: white;
@@ -144,11 +144,13 @@ color:#265037;
 /*경고 메시지*/
 .err{
     font-size: 0.8rem;
+    margin-top: 5px;
 }
 
 .error{
     display: none;
     color:red;
     font-size: 0.8em;
+    margin-top: 5px;
 }
 

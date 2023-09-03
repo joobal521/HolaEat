@@ -25,7 +25,7 @@
 
 ### 기능 및 담당자
 
-1. 팀장 [김주연](mailto:perbell521@gmail.com)([Github]())
+1. 팀장 [김주연](mailto:perbell521@gmail.com)([Github](https://github.com/joobal521))
   - 유저 관리
     - 회원 가입
       - 이메일 인증 
@@ -47,7 +47,7 @@
     - 게시판 삭제(관리자)
   
 
-2. 서기 [이서영](mailto:tjdud2249@gmail.com)([Github](https://github.com/joobal521))
+2. 서기 [이서영](mailto:tjdud2249@gmail.com)([Github](https://github.com/tjdud22))
  - 게시판 관리
    - 게시글 등록
    - 게시글 조회
