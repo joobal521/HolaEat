@@ -67,7 +67,7 @@
 
 </div>
 </div>
-<script src="script/find.js"></script>
+<script src="script/findUserId.js"></script>
 </body>
 <c:import url="footer.jsp"/>
 </html>

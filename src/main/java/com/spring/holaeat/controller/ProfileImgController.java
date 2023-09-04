@@ -26,7 +26,6 @@ import java.io.IOException;
 import java.util.Map;
 
 @RestController
-@RequestMapping("api/v1/my")
 public class ProfileImgController {
 
     private final ProfileImgService profileImgService;
