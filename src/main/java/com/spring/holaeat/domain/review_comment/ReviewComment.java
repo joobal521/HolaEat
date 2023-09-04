@@ -1,13 +1,10 @@
 package com.spring.holaeat.domain.review_comment;
 
-import com.spring.holaeat.domain.review.Review;
-import com.spring.holaeat.domain.review.ReviewRequestDto;
 import com.spring.holaeat.util.Timestamp;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.io.IOException;
 
 
 @NoArgsConstructor
@@ -36,7 +33,7 @@ public class ReviewComment extends Timestamp {
 
 
 
-    public ReviewComment(ReviewCommentRequestDto reviewCommentRequestDto){
+    public ReviewComment(ReviewCommentRequestDto reviewCommentRequestDto) {
 
         this.commentId = reviewCommentRequestDto.getCommentId();
         this.reviewNo = reviewCommentRequestDto.getReviewNo();

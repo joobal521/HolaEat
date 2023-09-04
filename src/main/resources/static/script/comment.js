@@ -60,22 +60,23 @@ function loadComments(reviewNo) {
         commentContainer.empty();
 
         comments.forEach(function (comment) {
-            drawComments(comment.userId, comment.content, comment.commentId);
+            drawComments(comment.userId, comment.content, comment.commentId, comment.createdAt);
         });
     });
 }
 
 // 댓글 출력
-function drawComments(userId, content, commentId) {
+function drawComments(userId, content, commentId, createdAt) {
     const log = $('#logVal').val();
     const isUserAuthor = userId === log;
+    createdAt = createdAt.replace("T", " ");
 
     const displayState = `
         <form class="comment-item" id="comment-item-${commentId}">
             <input type="text" value="ID : ${userId}" readonly />
             <br>
             <textarea readonly>${content}</textarea>
-            
+            <input class="comment-time" type="text" value="${createdAt}" readonly />
             <br>
             <div class="comment-btn">
                 ${isUserAuthor ? `<button style="display: none;" class="commentEditBtn" onclick="showEditPage(${commentId}, '${content}')">수정</button>` : ''}

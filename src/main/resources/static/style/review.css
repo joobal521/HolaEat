@@ -474,6 +474,12 @@ border: none;
     background: aliceblue;
     cursor : pointer;
 }
+/*댓글 시간*/
+.comment-time{
+    letter-spacing: 1px;
+    width: 200px;
+    font-size: 13px;
+}
 
 /*** reviewUpdate 페이지 (게시글 수정 페이지) ***/
 

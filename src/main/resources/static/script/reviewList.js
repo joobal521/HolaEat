@@ -4,49 +4,30 @@ function scrollToTop() {
         scrollTop: 0
     }, "slow");
 }
+
 function toggleHeart(reviewNo) {
     var heartIcon = document.getElementById("heart-icon-" + reviewNo);
-    var resultInput = document.getElementById("result-" + reviewNo);
+    var totalLikesElement = document.getElementById("total-likes-" + reviewNo); // Select the total likes element
 
     var newHeartStatus = (heartIcon.classList.contains("fa-regular")) ? 1 : 0;
 
     $.ajax({
         url: "/reviewlike/" + reviewNo,
         method: "POST",
-        data: { newHeartStatus: newHeartStatus }, // 좋아요 상태를 서버로 전달
+        data: { newHeartStatus: newHeartStatus },
         success: function (data) {
-
-            // 텍스트 변경
             if (heartIcon.classList.contains("fa-regular")) {
                 heartIcon.classList.remove("fa-regular");
                 heartIcon.classList.add("fa-solid");
-
-                console.log("resultInput:", resultInput);
-                console.log("totalLikesElement:"+ totalLikesElement);
-                resultInput.value = "1";
+                // 총 좋아요 개수 반영
+                totalLikesElement.textContent = parseInt(totalLikesElement.textContent) + 1; // Increment the likes count
             } else {
                 heartIcon.classList.remove("fa-solid");
                 heartIcon.classList.add("fa-regular");
-                resultInput.value = "0";
+                // 총 좋아요 개수 반영
+                totalLikesElement.textContent = parseInt(totalLikesElement.textContent) - 1; // Decrement the likes count
             }
-
-            // 좋아요 개수 업데이트
-            // var likeCountElement = document.getElementById("like-count-" + reviewNo);
-            // likeCountElement.innerText = data.updatedLikeCount;
-
-            //  리뷰 번호에 대한 좋아요 수만 반환하는
-            //  GET /reviewlike/{reviewNo}/likes
-            // $.ajax({
-            //     url: "/reviewlike/" + reviewNo + /totallikes/,
-            //     method: "GET",
-            //     dataType: "json",
-            //     success: function (data) {
-            //         var totalLikesElement = document.getElementById("total-likes-" + reviewNo);
-            //         totalLikesElement.innerText = "Total Likes: " + data.totalLikes;
-            //     }
-            // });
         }
-
     });
 }
 
