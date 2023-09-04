@@ -19,7 +19,6 @@ public class Ingredients {
     private Boolean month;
     private byte[] ingrImg;
 
-
     public Ingredients(int ingrId, String ingrName, Boolean allergy, Boolean month,byte[] ingrImg) {
         this.ingrId = ingrId;
         this.ingrName = ingrName;
@@ -28,6 +27,12 @@ public class Ingredients {
         this.ingrImg = ingrImg;
     }
 
+    public Ingredients(int ingrId, String ingrName, Boolean allergy, Boolean month) {
+        this.ingrId = ingrId;
+        this.ingrName = ingrName;
+        this.allergy = allergy;
+        this.month = month;
+    }
     public Ingredients(String ingrName, Boolean allergy, Boolean month,byte[] ingrImg) {
         this.ingrName = ingrName;
         this.allergy = allergy;
@@ -36,16 +41,23 @@ public class Ingredients {
 
     }
 
-    public Ingredients(IngredientsRequestDto ingredientsRequestDto) {
+    public Ingredients(String ingrName, Boolean allergy, Boolean month) {
+        this.ingrName = ingrName;
+        this.allergy = allergy;
+        this.month = month;
+    }
+    public Ingredients(IngredientsRequestDto ingredientsRequestDto){
         this.ingrName = ingredientsRequestDto.getIngrName();
         this.allergy = ingredientsRequestDto.getAllergy();
         this.month = ingredientsRequestDto.getMonth();
 
+
         if (ingredientsRequestDto.getIngrImg() != null) {
-            try {
-                this.ingrImg = ingredientsRequestDto.getIngrImg().getBytes();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+            try{
+            this.ingrImg = ingredientsRequestDto.getIngrImg().getBytes();
+
+            }catch (IOException e){
+
             }
         }else{
             this.ingrImg=null;
@@ -56,19 +68,18 @@ public class Ingredients {
     public void remainImg(byte[] img){
         this.ingrImg = img;
     }
-    public void update(IngredientsRequestDto ingredientsRequestDto) {
+    public void update(IngredientsRequestDto ingredientsRequestDto){
         this.allergy = ingredientsRequestDto.getAllergy();
         this.ingrName = ingredientsRequestDto.getIngrName();
         this.month = ingredientsRequestDto.getMonth();
 
         if (ingredientsRequestDto.getIngrImg() != null) {
-            try {
-                this.ingrImg = ingredientsRequestDto.getIngrImg().getBytes();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+            try{
+            this.ingrImg = ingredientsRequestDto.getIngrImg().getBytes();
+            }catch (IOException e){
+
             }
-        }else{
-            this.ingrImg=null;
+
         }
     }
 

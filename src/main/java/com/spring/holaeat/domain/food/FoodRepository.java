@@ -34,8 +34,10 @@ public interface FoodRepository extends JpaRepository<Food,String> {
 
 
 
-    @Query("SELECT f FROM Food f")
-    List<Food> findAllWithoutImage();
+    @Query(nativeQuery = true,value = "SELECT " +
+            "food_id, allergy_info, balanced, food_group, food_name, food_national, food_weight, side_dish, vegan, weight_control, kcal, carb, protein, fat, sugars, natrium FROM food")
+    List<Food> findAllWithoutImg();
+
 
 
     @Query(nativeQuery = true,value = "SELECT food_id from food")

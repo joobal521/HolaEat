@@ -269,7 +269,6 @@ $(document).ready(function() {
         }
 
         applyFilters();
-        updateButtonState(columnClass, buttonElement);
     }
 
     function applyFilters() {

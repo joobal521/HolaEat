@@ -7,6 +7,7 @@ import com.spring.holaeat.domain.food.FoodRequestDto;
 import com.spring.holaeat.domain.health.Health;
 import com.spring.holaeat.domain.ingredients.Ingredients;
 import com.spring.holaeat.domain.ingredients.IngredientsRequestDto;
+import com.spring.holaeat.domain.ingredients.IngredientsResponseDto;
 import com.spring.holaeat.domain.review.Review;
 import com.spring.holaeat.domain.review.ReviewRepository;
 import com.spring.holaeat.domain.review.ReviewResponseDto;
@@ -37,6 +38,7 @@ public class AdminController {
     private final ReviewCommentService reviewCommentService;
     private final FoodService foodService;
     private final HealthService healthService;
+    private final ReviewLikeService reviewLikeService;
 
     //관리자 로그인
 @PostMapping("gainpower")
@@ -57,8 +59,8 @@ public String gainPower(@RequestParam("adminid") String id, @RequestParam("admin
     @GetMapping("adminIngr")
     public String getIngredients(Model model){
         List<Ingredients> list = ingredientsService.getAllIngredients();
+//        List<Ingredients> list = ingredientsService.getIngredientsButImage();
         model.addAttribute("ingredientList",list);
-
         return "adminIngr";
     }
 
@@ -71,19 +73,65 @@ public String gainPower(@RequestParam("adminid") String id, @RequestParam("admin
 
     //재료정보수정
 
-    @PutMapping(value = "adminIngr/{ingrId}", consumes = "multipart/form-data")
-    public String updateIngredient(@PathVariable int ingrId, @ModelAttribute IngredientsRequestDto ingredientsRequestDto) {
-        Ingredients ingredient = ingredientsService.findById(ingrId);
+//    @PutMapping(value = "adminIngr/{ingrId}", consumes = "multipart/form-data")
+//    public String updateIngredient(@PathVariable int ingrId, @ModelAttribute IngredientsRequestDto ingredientsRequestDto) {
+//        Ingredients ingredient = ingredientsService.findById(ingrId);
+//
+//        ingredientsService.update(ingredient, ingredientsRequestDto);
+//
+//        if(ingredientsRequestDto.getIngrImg()==null){
+//            byte[] img = ingredient.getIngrImg();
+//            ingredientsService.remainImg(ingredient,img);
+//        }
+//
+//        return "admin";
+//    }
+//    @ResponseBody
+//    @PostMapping("adminIngr/{ingrId}")
+//    public IngredientsRequestDto updateIngredients(
+//            @PathVariable int ingrId,
+//            @ModelAttribute IngredientsRequestDto ingredientsRequestDto
+//    ) {
+//        Ingredients ingredients = ingredientsService.findById(ingrId);
+//
+//        if (ingredientsRequestDto.getIngrImg() != null && !ingredientsRequestDto.getIngrImg().isEmpty()) {
+//            try {
+//                byte[] imgBytes = ingredientsRequestDto.getIngrImg().getBytes();
+//                ingredientsService.updateIngrWithImage(ingredients, ingredientsRequestDto, imgBytes);
+//            } catch (IOException e) {
+//            }
+//        } else {
+//            ingredientsService.remainImg(ingredients,ingredients.getIngrImg());
+//            ingredientsService.update(ingredients, ingredientsRequestDto);
+//        }
+//
+//        return ingredientsRequestDto;
+//    }
+@ResponseBody
+@PostMapping("adminIngr/{ingrId}")
+public IngredientsRequestDto updateIngredients(
+        @PathVariable int ingrId,
+        @ModelAttribute IngredientsRequestDto ingredientsRequestDto
+) {
+    Ingredients ingredients = ingredientsService.findById(ingrId);
 
-        ingredientsService.update(ingredient, ingredientsRequestDto);
-
-        if(ingredientsRequestDto.getIngrImg()==null){
-            byte[] img = ingredient.getIngrImg();
-            ingredientsService.remainImg(ingredient,img);
+    if (ingredientsRequestDto.getIngrImg() != null && !ingredientsRequestDto.getIngrImg().isEmpty()) {
+        try {
+            // StandardMultipartFile을 byte[]로 변환
+            byte[] imgBytes = ingredientsRequestDto.getIngrImg().getBytes();
+            ingredientsService.updateIngrWithImage(ingredients, ingredientsRequestDto, imgBytes);
+        } catch (IOException e) {
+            // 예외 처리
         }
-
-        return "admin";
+    } else {
+        ingredientsService.remainImg(ingredients, ingredients.getIngrImg());
+        ingredientsService.update(ingredients, ingredientsRequestDto);
     }
+
+    return ingredientsRequestDto;
+}
+
+
 
     //재료삭제
     @DeleteMapping("adminIngr/delete/{ingrId}")
@@ -96,14 +144,12 @@ public String gainPower(@RequestParam("adminid") String id, @RequestParam("admin
 //메뉴관리
     @GetMapping("adminMenu")
     public String getAllMenu(Model model){
-//            List<Food> list = foodService.getAllFood();
+            List<Food> list = foodService.getAllFood();
 //            List<Food> list = foodService.getFoodWithoutFoodImg();
-            List<Food> list = foodService.findWithoutImage();
-
+//            List<Food> list = foodService.getAllWithoutImg();
             model.addAttribute("foodList",list);
         return "adminMenu";
     }
-
 
     //음식 추가
     @PostMapping(value="adminMenu/create",consumes = "multipart/form-data")
@@ -187,11 +233,10 @@ public String gainPower(@RequestParam("adminid") String id, @RequestParam("admin
     @DeleteMapping("adminReview/delete/{reviewNo}")
     public String deleteReview(@PathVariable long reviewNo){
         reviewCommentService.deleteByReviewNo(reviewNo);
+        reviewLikeService.deleteByReviewNo(reviewNo);
         reviewService.delete(reviewNo);
-
         return "admin";
     }
-
 //
 //    //유저관리
 //    @GetMapping("adminUser")
