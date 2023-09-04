@@ -14,18 +14,18 @@ import javax.persistence.*;
 public class HealthWishList {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "health_wish_no")
-    Long HealthWishNo;
-    @Column(name = "health_no")
-    Long HealthNo;
-    @Column(name = "user_id")
-    private String UserId;
+    Long healthWishNo;
+    @JoinColumn(name = "health_no")
+    Long healthNo;
+    @JoinColumn(name = "user_id")
+    private String userId;
 
 
     public HealthWishList(HealthWishListRequestDto healthWishListDto){
-        this.HealthWishNo=healthWishListDto.HealthWishNo;
-        this.HealthNo=healthWishListDto.HealthNo;
-        this.UserId= healthWishListDto.UserId;
+        this.healthNo=healthWishListDto.healthNo;
+        this.userId= healthWishListDto.userId;
     }
 
 

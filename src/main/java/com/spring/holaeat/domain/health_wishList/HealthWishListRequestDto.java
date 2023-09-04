@@ -1,9 +1,16 @@
 package com.spring.holaeat.domain.health_wishList;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Setter
+@Getter
+@NoArgsConstructor
 public class HealthWishListRequestDto {
-    Long HealthWishNo;
-    Long HealthNo;
-    String UserId;
+    Long healthWishNo;
+    Long healthNo;
+    String userId;
 
 
 }
