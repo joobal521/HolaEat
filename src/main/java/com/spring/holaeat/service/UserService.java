@@ -43,6 +43,7 @@ public class UserService {
           return user;
 
      }
+
      //이메일로 조회
      public User getUserByEmail(String userEmail){
           User user=userRepository.findByUserEmail(userEmail).orElseThrow(
