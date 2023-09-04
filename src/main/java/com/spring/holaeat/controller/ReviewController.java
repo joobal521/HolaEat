@@ -71,7 +71,7 @@ public class ReviewController {
 //수정
 
     @PutMapping(value = "/{reviewNo}/update", consumes = {"multipart/form-data"})
-    public Response update(@PathVariable long reviewNo, WebRequest request, @ModelAttribute ReviewRequestDto reviewRequestDto, Model model) {
+    public Response update(@PathVariable long reviewNo, WebRequest request, @ModelAttribute ReviewRequestDto reviewRequestDto) {
         String log = (String) request.getAttribute("log", WebRequest.SCOPE_SESSION);
         if (log == null) {
             return new Response("update", "로그인 상태에서만 가능합니다.");

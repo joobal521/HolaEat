@@ -13,7 +13,9 @@ import org.springframework.web.context.request.WebRequest;
 
 import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 //
 
 @RequiredArgsConstructor
@@ -53,10 +55,10 @@ public class ReviewCommentController {
             System.out.println("글작성 성공: " + log);
             System.out.println(reviewComment.getContent());
 
-            return ResponseEntity.ok(reviewComment); // Return the new comment
+            return ResponseEntity.ok(reviewComment);
         }
 
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build(); // Return unauthorized if not logged in
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }
 
 
@@ -85,7 +87,12 @@ public Response update(@PathVariable Long commentId, WebRequest request, @ModelA
 
     reviewCommentService.update(reviewComment, reviewCommentRequestDto);
 
-    return new Response("update", "success");
+
+    // 응답 객체에 content 값을 추가하여 클라이언트로 전송
+    Response response = new Response("update", "success");
+//    response.setData(reviewCommentRequestDto.getContent());
+
+    return response;
 }
 
 
@@ -115,25 +122,25 @@ public Response update(@PathVariable Long commentId, WebRequest request, @ModelA
 //    }
 
 //삭제
+//    @DeleteMapping("/comment/{commentId}/delete")
+//    @Transactional
+//    public void deleteComment(@PathVariable("commentId") long commentId) {
+//
+//        reviewCommentService.deleteByCommentId(commentId);
+//
+//    }
+
     @DeleteMapping("/comment/{commentId}/delete")
     @Transactional
-    public ResponseEntity<Response> deleteComment(@PathVariable("commentId") long commentId, WebRequest request) {
-        String log = (String) request.getAttribute("log", WebRequest.SCOPE_SESSION);
-        System.out.println("컨트롤러 로그인확인전 commentID" +commentId );
-
-        if (log != null) {
-            // 로그인한 사용자와 댓글 작성자가 동일한 경우에만 삭제 가능하도록 처리
-            ReviewComment comment = reviewCommentRepository.findById(commentId)
-                    .orElseThrow(() -> new EntityNotFoundException("Comment not found"));
-            if (comment.getUserId().equals(log)) {
-                System.out.println("컨트롤러 로그인시 commentID" +commentId );
-                reviewCommentService.delete(commentId);
-                return ResponseEntity.ok(new Response("delete", "success"));
-            } else {
-                return ResponseEntity.status(HttpStatus.FORBIDDEN).body(new Response("delete", "작성자만 삭제할 수 있습니다."));
-            }
-        } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+    public ResponseEntity<Map<String, String>> deleteComment(@PathVariable("commentId") long commentId) {
+        Map<String, String> response = new HashMap<>();
+        try {
+            reviewCommentService.deleteByCommentId(commentId);
+            response.put("message", "success");
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            response.put("message", "error");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }
     }
 
