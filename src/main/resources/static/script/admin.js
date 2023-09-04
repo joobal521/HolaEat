@@ -17,7 +17,9 @@ $(document).ready(function() {//admin페이지 접속시 menu관리 자동로드
 
     $("a.menu-link").click(function(event) {
         event.preventDefault(); // 기본 링크 동작 방지
+        $("a.menu-link").removeClass("active");
 
+        $(this).addClass("active");
         var pageUrl = $(this).attr("href"); // 클릭한 링크의 URL
         // AJAX 요청
         $.ajax({
@@ -26,9 +28,9 @@ $(document).ready(function() {//admin페이지 접속시 menu관리 자동로드
                 $(".section").empty();
                 $(".section").html(response); // .section에 응답 페이지 삽입
             },
-            error: function() {
-                alert("페이지 로드에 실패했습니다.");
-            }
+            // error: function() {
+            //     alert("페이지 로드에 실패했습니다.");
+            // }
         });
     });
 
@@ -43,57 +45,6 @@ $(document).ready(function() {//admin페이지 접속시 menu관리 자동로드
             loadContent(window.location.pathname);
         }
     };
-});
 
 
-
-$(document).ready(function() {
-    $("a.menu-link").click(function(event) {
-        event.preventDefault();
-
-        $("a.menu-link").removeClass("active");
-
-        $(this).addClass("active");
-
-        var pageUrl = $(this).attr("href");
-
-        $.ajax({
-            url: pageUrl,
-            success: function(response) {
-                $(".section").html(response);
-            },
-            error: function() {
-                alert("페이지 로드에 실패했습니다.");
-            }
-        });
-    });
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-    const btn = document.querySelectorAll('.addIngr');
-    const modals = document.querySelectorAll('.addIngr-modal');
-
-    btn.forEach((btn, index) => {
-        btn.addEventListener('click', () => {
-            modals[index].style.display = 'block';
-            loadRecipe(btn, modals[index]);
-            adjustTableHeaderPosition("static"); // 모달 열릴 때 style 변경
-        });
-    });
-
-    // 클릭 이벤트 추가: 모달 바깥 부분을 클릭하면 모달이 닫힘
-    modals.forEach((modal, index) => {
-        window.addEventListener('click', (event) => {
-            if (event.target === modal) {
-                modal.style.display = 'none';
-                adjustTableHeaderPosition("sticky"); // 모달 닫힐 때 style 변경
-            }
-        });
-    });
-    function adjustTableHeaderPosition(positionValue) {
-        const tableHeader = document.querySelectorAll('thead th');
-        tableHeader.forEach(header => {
-            header.style.position = positionValue;
-        });
-    }
 });

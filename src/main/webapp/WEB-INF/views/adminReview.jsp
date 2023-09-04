@@ -21,14 +21,14 @@
             </thead>
             <tbody class="admin-reviewList">
             <c:forEach items="${reviewList}" var="review">
-                <tr>
+                <tr id="${review.reviewNo}">
                     <td>${review.reviewNo}</td>
                     <td class="reviewTitle">${review.title}</td>
                     <td class="reviewUserId">${review.userId}</td>
                     <td class="reviewContent">${review.content}</td>
                     <td class="reviewContent">${review.reviewLike}</td>
                     <td>
-                        <button class="removeBtn" data-id="${review.reviewNo}" onclick="removeReview(this)">삭제하기</button>
+                        <button class="removeBtn" id="${review.reviewNo}" data-id="${review.reviewNo}" onclick="removeReview(this)">삭제하기</button>
                     </td>
                 </tr>
             </c:forEach>

@@ -37,8 +37,8 @@ public class FoodService {
         foodRepository.save(food);
     }
 
-    public List<Food> findWithoutImage(){
-        return foodRepository.findAllWithoutImage();
+    public List<Food> getAllWithoutImg(){
+        return foodRepository.findAllWithoutImg();
     }
 
 
@@ -85,10 +85,6 @@ public class FoodService {
     public List<Food> getAllFood(){
         return foodRepository.findAll();
     }
-
-//    public List<Food> getFoodWithoutFoodImg() {
-//        return foodRepository.findFoodIdAndAllergyInfoAndBalancedAndFoodGroupAndFoodNameAndFoodNationalAndFoodWeightAndSideDishAndVeganAndWeightControlAndKcalAndCarbAndProteinAndFatAndSugarsAndNatrium();
-//    }
 
     public void deleteFoodByFoodId(String foodId){
         foodRepository.deleteById(foodId);

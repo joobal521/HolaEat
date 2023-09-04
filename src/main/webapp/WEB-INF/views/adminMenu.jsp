@@ -60,7 +60,7 @@
                         <button class="cancelBtn" data-id="${food.foodId}" style="display: none;">수정취소</button>
                         <input type="file" id="editImg-${food.foodId}" name="foodImg" class="imgBtn"
                                style="display: none;" accept="image/png, image/jpg, image/jpeg, image/gif">
-                        <button class="imgUpdate" data-id="${food.foodImg}" style="display: none;">사진업로드</button>
+                        <button class="imgUpdate" data-id="${food.foodId}" style="display: none;">사진업로드</button>
                     </td>
                     <td>
                         <button class="removeBtn" data-id="${food.foodId}">삭제하기</button>

@@ -9,7 +9,6 @@ import org.springframework.web.multipart.MultipartFile;
 @Getter
 @Setter
 @NoArgsConstructor
-@Component
 public class IngredientsRequestDto {
     private int ingrId;
     private String ingrName;

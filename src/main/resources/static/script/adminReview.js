@@ -1,7 +1,9 @@
 var currentPage = 0;
 
 function removeReview(element) {
-    var reviewNo = element.parentNode.parentNode.id;
+    var reviewNo = element.getAttribute("data-id")
+    // var reviewNo = element.parentNode.parentNode.id;
+    console.log(reviewNo)
 
     $.ajax({
         url: "adminReview/delete/" + reviewNo,
@@ -31,7 +33,7 @@ function loadReviews(page) {
                         <td class="reviewContent">${review.content}</td>
                         <td class="reviewContent">${review.reviewLike}</td>
                         <td>
-                            <button class="removeBtn" data-id="${review.reviewNo}">삭제하기</button>
+                            <button class="removeBtn" data-id="${review.reviewNo}" onclick="removeReview(this)">삭제하기</button>
                         </td>
                     </tr>`
                 );

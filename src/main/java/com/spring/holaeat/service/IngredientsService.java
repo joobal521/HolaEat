@@ -2,15 +2,21 @@ package com.spring.holaeat.service;
 
 import com.spring.holaeat.domain.dislike.Dislike;
 import com.spring.holaeat.domain.dislike.DislikeRepository;
+import com.spring.holaeat.domain.food.Food;
+import com.spring.holaeat.domain.food.FoodRequestDto;
 import com.spring.holaeat.domain.ingredients.Ingredients;
 import com.spring.holaeat.domain.ingredients.IngredientsRepository;
 import com.spring.holaeat.domain.ingredients.IngredientsRequestDto;
+import com.spring.holaeat.domain.ingredients.IngredientsResponseDto;
 import com.spring.holaeat.domain.prefer.Prefer;
 import com.spring.holaeat.domain.prefer.PreferRepository;
 import com.spring.holaeat.domain.review.Review;
 import com.spring.holaeat.domain.review.ReviewRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -43,6 +49,13 @@ public class IngredientsService {
     public void update(Ingredients ingredient, IngredientsRequestDto ingredientsRequestDto){
         ingredient.update(ingredientsRequestDto);
         ingredientsRepository.save(ingredient);
+    }
+
+    public void updateIngrWithImage(Ingredients ingredients, IngredientsRequestDto ingredientsRequestDto, byte[] imgBytes){
+        ingredients.update(ingredientsRequestDto);
+        ingredients.remainImg(imgBytes);
+
+        ingredientsRepository.save(ingredients);
     }
 
     public void addIngredient(IngredientsRequestDto ingredientsRequestDto){
@@ -79,23 +92,15 @@ public class IngredientsService {
         ingredientsRepository.save(ingredients);
     }
 
-//    public String generateIngrId() {
-//        String CHARACTERS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-//        int ID_LENGTH = 10;
-//
-//        StringBuilder idBuilder = new StringBuilder();
-//        Random random = new Random();
-//
-//        for (int i = 0; i < ID_LENGTH; i++) {
-//            int randomIndex = random.nextInt(CHARACTERS.length());
-//            char randomChar = CHARACTERS.charAt(randomIndex);
-//            idBuilder.append(randomChar);
-//        }
-//
-//        return idBuilder.toString();
-//    }
+    public List<Ingredients> getIngrByPage(int page,int IngrPerPage){
+        Pageable pageable = PageRequest.of(page, IngrPerPage);
+        return ingredientsRepository.findAllByOrderByIngrIdDesc(pageable);
+    }
 
-
+    public List<Ingredients> getIngredientsButImage(){
+        List<Ingredients> list = ingredientsRepository.findAllButImage();
+        return list;
+    }
 
 }
 

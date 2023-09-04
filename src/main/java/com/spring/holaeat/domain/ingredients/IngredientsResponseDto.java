@@ -2,6 +2,7 @@ package com.spring.holaeat.domain.ingredients;
 
 import lombok.Getter;
 
+
 @Getter
 public class IngredientsResponseDto {
     private int ingrId;
