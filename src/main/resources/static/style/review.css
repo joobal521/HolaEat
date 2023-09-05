@@ -8,6 +8,10 @@
 }
 
 
+.review-contents-all{
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
 
 /* reviewlistPage*/
 @media (max-width: 900px) {

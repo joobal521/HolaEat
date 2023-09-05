@@ -14,7 +14,7 @@
 <c:import url="header.jsp"/>
 <body>
 <div class="review-section">
-    <h2>REVIEW 상세</h2>
+<%--    <h2>REVIEW 상세</h2>--%>
     <div class="review-contents-all">
         <c:if test="${review!=null}">
             <div id="review-contents">

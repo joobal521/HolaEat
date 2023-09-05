@@ -7,7 +7,7 @@ function scrollToTop() {
 
 function toggleHeart(reviewNo) {
     var heartIcon = document.getElementById("heart-icon-" + reviewNo);
-    var totalLikesElement = document.getElementById("total-likes-" + reviewNo); // Select the total likes element
+    var totalLikesElement = document.getElementById("total-likes-" + reviewNo);
 
     var newHeartStatus = (heartIcon.classList.contains("fa-regular")) ? 1 : 0;
 
@@ -20,12 +20,12 @@ function toggleHeart(reviewNo) {
                 heartIcon.classList.remove("fa-regular");
                 heartIcon.classList.add("fa-solid");
                 // 총 좋아요 개수 반영
-                totalLikesElement.textContent = parseInt(totalLikesElement.textContent) + 1; // Increment the likes count
+                totalLikesElement.textContent = parseInt(totalLikesElement.textContent) + 1;
             } else {
                 heartIcon.classList.remove("fa-solid");
                 heartIcon.classList.add("fa-regular");
                 // 총 좋아요 개수 반영
-                totalLikesElement.textContent = parseInt(totalLikesElement.textContent) - 1; // Decrement the likes count
+                totalLikesElement.textContent = parseInt(totalLikesElement.textContent) - 1;
             }
         }
     });

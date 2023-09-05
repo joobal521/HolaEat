@@ -95,7 +95,14 @@
                     <div class="user_profile">
                         <ul>
                             <li class="review-profile">NO. ${review.reviewNo}</li>
+<%--                            <c:set var="userImg" value="${userProfileImg[loop]}"></c:set>--%>
+<%--                            <c:choose>--%>
+<%--                                <c:when test="${not empty userImg}">--%>
+<%--                                    <img src="data:image/jpeg;base64,${userImg}" id="img" name="img" alt="Review Image" style="width: 30px; height: 30px;">--%>
+<%--                                </c:when>--%>
+<%--                            </c:choose>--%>
                             <li class="userId">작성자 : ${review.userId}</li>
+                            <li class="reviewCount">조회수 : ${review.reviewCount}</li>
                         </ul>
                     </div>
 

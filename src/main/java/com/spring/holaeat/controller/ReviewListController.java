@@ -10,8 +10,10 @@ import com.spring.holaeat.domain.review_comment.ReviewComment;
 import com.spring.holaeat.domain.review_comment.ReviewCommentRepository;
 import com.spring.holaeat.domain.review_like.ReviewLike;
 import com.spring.holaeat.domain.review_like.ReviewLikeRepository;
+import com.spring.holaeat.domain.user.User;
 import com.spring.holaeat.service.ReviewLikeService;
 import com.spring.holaeat.service.ReviewService;
+import com.spring.holaeat.service.UserService;
 import com.spring.holaeat.util.ImageParsor;
 import lombok.RequiredArgsConstructor;
 import netscape.javascript.JSObject;
@@ -40,6 +42,7 @@ public class ReviewListController {
     private final ReviewRepository reviewRepository;
     private final ReviewCommentRepository reviewCommentRepository;
     private final ReviewLikeService reviewLikeService;
+    private final UserService userService;
 
 
     // 페이징,검색
@@ -50,6 +53,8 @@ public class ReviewListController {
                               @PageableDefault(size = 8) Pageable pageable, Model model, HttpSession session) {
 
         Map<Long, String> imageMap = new HashMap<>();
+        //userId로 프로필 이미지 담기
+        Map<Long, String> userProfileimageMap = new HashMap<>();
         List<Review> reviewPage = null;
 
         Pageable adjustedPageable = PageRequest.of(pageNumber - 1, pageable.getPageSize(), pageable.getSort());
@@ -63,7 +68,7 @@ public class ReviewListController {
             if ("author".equals(searchType)) {
                 reviewPage = reviewRepository.findAllByUserIdLike(pattern, adjustedPageable);
             }
-            if("all".equals(searchType)){
+            if ("all".equals(searchType)) {
                 reviewPage = reviewRepository.findAllByTitleLikeOrUserIdLike(pattern, adjustedPageable);
             }
         } else {
@@ -77,15 +82,14 @@ public class ReviewListController {
         model.addAttribute("reviewlistPage", reviewPage); // reviewPage를 모델에 추가
 
 
-
         // 가져온 리뷰 목록에 대해 각 리뷰에 대한 좋아요 여부를 확인하고 모델에 추가
         List<ReviewLike> likedList = new ArrayList<>();
         // 하트 상태를 heartMapPage에 매핑
-        Map<Long,Integer> heartMapPage = new HashMap<>();
+        Map<Long, Integer> heartMapPage = new HashMap<>();
 
         for (Review review : reviewPage) {
 
-            ReviewLike isLiked =  reviewLikeService.checkReviewLike(userId, review.getReviewNo());
+            ReviewLike isLiked = reviewLikeService.checkReviewLike(userId, review.getReviewNo());
             likedList.add(isLiked);
 
             int heartStatus = isLiked != null ? 1 : 0; // 좋아요 여부에 따라 하트 상태 결정
@@ -96,43 +100,60 @@ public class ReviewListController {
                 String base64Image = ImageParsor.parseBlobToBase64(review.getImg());
                 imageMap.put(review.getReviewNo(), base64Image);
             }
+
+//            //userId로 프로필 이미지 가져오기
+//             byte[] userProfileImg = userService.findUserProfileImgByUserId(userId);
+//            // 이미지 타입 변환
+//            String base64Image = ImageParsor.parseBlobToBase64(userProfileImg);
+//            userProfileimageMap.put(review.getReviewNo(),base64Image);
+
+
+
         }
+
+
 
         int totalLength = (int) reviewRepository.count(); // 총 리뷰 수 가져오기
         int totalPages = (int) Math.ceil((double) totalLength / pageable.getPageSize()); // 전체 페이지 수 계산
 
-        System.out.println("totalLength :" + totalLength );
-        System.out.println("totalPages :" + totalPages );
+        System.out.println("totalLength :" + totalLength);
+        System.out.println("totalPages :" + totalPages);
         model.addAttribute("pageNumber", pageNumber);
         model.addAttribute("totalPages", totalPages);
 
         model.addAttribute("reviewlistPage", reviewPage);
         model.addAttribute("imageMapPage", imageMap);
-        model.addAttribute("heartMapPage",heartMapPage);
+        model.addAttribute("heartMapPage", heartMapPage);
 
         model.addAttribute("likedList", likedList); // 리뷰에 대한 좋아요 여부 목록 추가
-        System.out.println(likedList+"likedList확인");
+        System.out.println(likedList + "likedList확인");
+
+//        model.addAttribute("userProfileImg",userProfileimageMap );
+
         return "reviewlistPage";
     }
 
 
     //게시글 하나 조회
     @GetMapping("/review/{reviewNo}")
-    public String findByReviewNo(Model model, @PathVariable long reviewNo){
+    public String findByReviewNo(Model model, @PathVariable long reviewNo) {
         Review review = reviewService.findByReviewNo(reviewNo);
         model.addAttribute("review", review);
 
-        List<ReviewComment>  reviewComment = reviewCommentRepository.findAllByReviewNo(reviewNo);
+
+
+        List<ReviewComment> reviewComment = reviewCommentRepository.findAllByReviewNo(reviewNo);
         model.addAttribute("reviewComment", reviewComment);
 
+        // 조회수 출력
+        reviewService.reviewCountByReviewNo(reviewNo);
 
-        if(review.getImg()==null)
+
+        if (review.getImg() == null)
             return "review";
 
         model.addAttribute("blob", ImageParsor.parseBlobToBase64(review.getImg()));
         return "review";
 
     }
-
-
 }
