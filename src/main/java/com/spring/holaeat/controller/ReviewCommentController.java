@@ -24,25 +24,7 @@ public class ReviewCommentController {
     private final ReviewCommentRepository reviewCommentRepository;
     private final ReviewCommentService reviewCommentService;
 
-//    @PostMapping(value = "/comment?{reviewNo}", consumes = "multipart/form-data")
-//    public String write(@PathVariable long reviewNo, WebRequest request, @ModelAttribute ReviewCommentRequestDto reviewCommentRequestDto) {
-//
-//        String log = (String) request.getAttribute("log", WebRequest.SCOPE_SESSION);
-//        System.out.println("log 확인" + log);
-//
-//            if (log != null) {
-//                reviewCommentRequestDto.setUserId(log);
-//                ReviewComment reviewComment = new ReviewComment(reviewCommentRequestDto);
-//                reviewCommentRepository.save(reviewComment);
-//                System.out.println("글작성 성공:"+log);
-//                System.out.println(reviewComment.getContent());
-//
-//            }
-//
-//        return "review/"+reviewNo;
-//
-//    }
-
+    //댓글 등록
     @PostMapping(value = "/comment/{reviewNo}", consumes = "application/json")
     public ResponseEntity<ReviewComment> write(@PathVariable long reviewNo, WebRequest request, @RequestBody ReviewCommentRequestDto reviewCommentRequestDto) {
         String log = (String) request.getAttribute("log", WebRequest.SCOPE_SESSION);
@@ -61,7 +43,7 @@ public class ReviewCommentController {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }
 
-
+    // 주어진 리뷰 번호에 해당하는 모든 댓글을 데이터베이스에서 검색하고 이를 클라이언트에게 반환
     @GetMapping(value = "/comment/{reviewNo}")
     public ResponseEntity<List<ReviewComment>> getComments(@PathVariable long reviewNo) {
         List<ReviewComment> comments = reviewCommentRepository.findAllByReviewNo(reviewNo);
@@ -69,67 +51,31 @@ public class ReviewCommentController {
     }
 
 
-//수정
-@PutMapping(value = "/comment/{commentId}/update", consumes = {"multipart/form-data"})
-@Transactional
-public Response update(@PathVariable Long commentId, WebRequest request, @ModelAttribute ReviewCommentRequestDto reviewCommentRequestDto) {
-    String log = (String) request.getAttribute("log", WebRequest.SCOPE_SESSION);
-    if (log == null) {
-        return new Response("update", "로그인 상태에서만 가능합니다.");
+    //수정
+    @PutMapping(value = "/comment/{commentId}/update", consumes = {"multipart/form-data"})
+    @Transactional
+    public Response update(@PathVariable Long commentId, WebRequest request, @ModelAttribute ReviewCommentRequestDto reviewCommentRequestDto) {
+        String log = (String) request.getAttribute("log", WebRequest.SCOPE_SESSION);
+        if (log == null) {
+            return new Response("update", "로그인 상태에서만 가능합니다.");
+        }
+        ReviewComment reviewComment = reviewCommentRepository.findById(commentId).orElseThrow(
+                () -> new IllegalArgumentException("댓글이 존재하지 않습니다.")
+        );
+
+        if (!reviewComment.getUserId().equals(log)) {
+            return new Response("update", "작성자만 수정할 수 있습니다.");
+        }
+
+        reviewCommentService.update(reviewComment, reviewCommentRequestDto);
+
+        // 응답 객체에 content 값을 추가하여 클라이언트로 전송
+        Response response = new Response("update", "success");
+
+        return response;
     }
-    ReviewComment reviewComment = reviewCommentRepository.findById(commentId).orElseThrow(
-            () -> new IllegalArgumentException("댓글이 존재하지 않습니다.")
-    );
 
-    if (!reviewComment.getUserId().equals(log)) {
-        return new Response("update", "작성자만 수정할 수 있습니다.");
-    }
-
-    reviewCommentService.update(reviewComment, reviewCommentRequestDto);
-
-
-    // 응답 객체에 content 값을 추가하여 클라이언트로 전송
-    Response response = new Response("update", "success");
-//    response.setData(reviewCommentRequestDto.getContent());
-
-    return response;
-}
-
-
-//    @PutMapping(value = "/{commentId}/update", consumes = {"multipart/form-data"})
-//    @Transactional
-//    public Response update(@PathVariable String commentId, WebRequest request, @ModelAttribute ReviewCommentRequestDto reviewCommentRequestDto) {
-//        String log = (String) request.getAttribute("log", WebRequest.SCOPE_SESSION);
-//        if (log == null) {
-//            return new Response("update", "로그인 상태에서만 가능합니다.");
-//        }
-//        ReviewComment reviewComment = reviewCommentRepository.findById(Long.valueOf(commentId)).orElseThrow(
-//                () -> new IllegalArgumentException("게시글이 존재하지 않습니다.")
-//
-//        );
-//
-//        System.out.println(log + " = log 확인용");
-//
-//        if (!reviewComment.getUserId().equals(log)) {
-//            System.out.println(log + " = log 확인용");
-//            return new Response("update", "작성자만 수정할 수 있습니다.");
-//        }
-//
-//        reviewCommentService.update(reviewComment, reviewCommentRequestDto);
-//
-//        System.out.println("수정 성공" + " log : " + log);
-//        return new Response("update", "success");
-//    }
-
-//삭제
-//    @DeleteMapping("/comment/{commentId}/delete")
-//    @Transactional
-//    public void deleteComment(@PathVariable("commentId") long commentId) {
-//
-//        reviewCommentService.deleteByCommentId(commentId);
-//
-//    }
-
+    //삭제
     @DeleteMapping("/comment/{commentId}/delete")
     @Transactional
     public ResponseEntity<Map<String, String>> deleteComment(@PathVariable("commentId") long commentId) {
@@ -143,7 +89,6 @@ public Response update(@PathVariable Long commentId, WebRequest request, @ModelA
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }
     }
-
 
 
 }

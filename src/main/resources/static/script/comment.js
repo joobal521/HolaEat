@@ -57,6 +57,7 @@ function addComment() {
 function loadComments(reviewNo) {
     $.get(`/comment/${reviewNo}`, function (comments) {
         const commentContainer = $('#comment-container');
+        //새로운 댓글을 표시하기 전에 이전에 표시된 모든 댓글을 삭제
         commentContainer.empty();
 
         comments.forEach(function (comment) {
@@ -81,7 +82,7 @@ function drawComments(userId, content, commentId, createdAt) {
             <div class="comment-btn">
                 ${isUserAuthor ? `<button type="button" class="commentEditBtn" onclick="showEditPage(${commentId}, '${content}')">수정</button>` : ''}
                 ${isUserAuthor ? `<button type="button"  style="display: none;" class="commentSaveBtn" onclick="saveComment(${commentId})">저장</button>` : ''}
-                ${isUserAuthor ? ` <button type="button"  style="display: none;" class="commentCancelBtn" onclick="cancelEdit(${commentId})" type="button">취소</button>` : ''}
+                ${isUserAuthor ? `<button type="button"  style="display: none;" class="commentCancelBtn" onclick="cancelEdit(${commentId})" type="button">취소</button>` : ''}
                 ${isUserAuthor ? `<button type="button" class="commentDeleteBtn" onclick="deleteComment(${commentId})">삭제</button>` : ''}
             </div>
         </form>
@@ -96,6 +97,9 @@ function showEditPage(commentId) {
     const commentItem = $(`#comment-item-${commentId}`);
     const textarea = commentItem.find('textarea');
     const editButton = commentItem.find('.commentEditBtn');
+
+    // 이전 댓글 내용을 저장
+    textarea.data('original-content', textarea.val());
 
     // textarea의 readonly 속성 제거하여 수정 가능하도록 설정
     textarea.prop('readonly', false);
@@ -152,23 +156,21 @@ function cancelEdit(commentId) {
     const commentItem = $(`#comment-item-${commentId}`);
     const textarea = commentItem.find('textarea');
 
-console.log(String(textarea.data()))
-    // textarea의 readonly 속성 다시 설정하여 읽기 전용으로 변경
-    textarea.val(textarea.attr('data-id'));
-    console.log("확인용2"+ textarea.val());
+    // 이전 댓글 내용을 가져와서 textarea에 설정
+    textarea.val(textarea.data('original-content'));
+
+    // 취소 후 다시 읽기 전용으로 변경
     textarea.prop('readonly', true);
+
     commentItem.find(".commentCancelBtn, .commentSaveBtn").hide();
     commentItem.find(".commentEditBtn").show();
 }
-
 
 
 $(document).ready(function () {
     const reviewNo = $('#reviewNo').val();
     loadComments(reviewNo);
 });
-
-
 
 
 // 댓글 삭제
@@ -203,8 +205,6 @@ function deleteComment(commentId) {
         }
     });
 }
-
-
 
 
 /*댓글 등록 취소 */
