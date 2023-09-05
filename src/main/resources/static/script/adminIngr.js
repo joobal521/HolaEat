@@ -1,34 +1,30 @@
 function editIngr(element) {
     const id = element.parentNode.parentNode.id;
     const tr = $(`#${id}`);
-    const ingrName = tr.children('.ingrName');
-    const allergy = tr.children('.allergy');
-    const month = tr.children('.month');
-    const isMonth = month.text() === '예';
+    // const ingrName = tr.children('.ingrName');
+    const ingrName = document.getElementById("input-ingrName-" + id);
+    const allergySelect = document.getElementById("allergy-val-" + id);
+    const monthSelect = document.getElementById("month-val-" + id);
 
-    ingrName.html(`
-        <input type="text" id="ingrName-val" value="${ingrName.text()}">
-    `);
-    allergy.html(`
-        <input type="text" id="allergy-val" value="${allergy.text()}">
-    `);
-    month.html(`
-        <select id="month-val">
-            <option ${isMonth ? 'selected' : ''}>예</option>
-            <option ${!isMonth ? 'selected' : ''}>아니오</option>
-        </select>
-    `);
-    tr.find(".updateBtn, .cancelBtn,.imgBtn").show();
+    allergySelect.disabled = false;
+    monthSelect.disabled = false;
+    ingrName.readOnly = false;
 
+    // 입력 가능한 상태에서 사용자 입력을 받도록 합니다.
+    tr.find(".updateBtn, .cancelBtn, .imgBtn").show();
+    tr.find(".editBtn").hide();
 }
 
-function updateIngr(element){
+function updateIngr(element) {
     const id = element.parentNode.parentNode.id;
     const tr = $(`#${id}`);
-    const ingrName = tr.children('.ingrName');
-    const allergy = tr.children('.allergy');
-    const month = tr.children('.month');
+    const ingrName = tr.find('.ingrName-input').val();
+    const allergy = tr.find('.allergy-sel').val() === '예' ? true : false;
+    const month = tr.find('.month-sel').val() === '예' ? true : false;
     var imageFile = $("#editImg-" + id)[0].files[0];
+
+    // console.log(allergy)
+    // console.log(month)
 
     var formData = new FormData();
     formData.append("ingrName", ingrName);
@@ -40,179 +36,167 @@ function updateIngr(element){
 
     $.ajax({
         url: "adminIngr/" + id,
-        method: "PUT",
+        method: "POST",
         contentType: false,
         processData: false,
         data: formData,
-        success: function() {
+        success: function () {
             // $(".section").html(response);
-            window.location.href="admin"
+            Admin.pageRelocate("adminIngr");
         },
-        error: function() {
+        error: function () {
             // alert("데이터 업데이트에 실패했습니다.");
         }
     });
 }
 
-$(document).ready(function() {
-    // $(".editBtn").on("click", function(e) {
+function cancelEditIngr(element) {
+    const id = element.parentNode.parentNode.id;
+    var row = $(element).closest("tr");
+    const ingrNameInput = document.getElementById("input-ingrName-" + id);
+    var dataIdValue = ingrNameInput.getAttribute("data-id");
+    const allergySelect = document.getElementById("allergy-val-" + id);
+    const monthSelect = document.getElementById("month-val-" + id);
 
+    allergySelect.value = allergySelect.getAttribute("data-initial-value");
+    monthSelect.value = monthSelect.getAttribute("data-initial-value");
+    allergySelect.disabled = true;
+    monthSelect.disabled = true;
 
-        // var row = $(this).closest("tr");
-        // var ingrNameCell = row.find(".ingrName");
-        // var allergyCell = row.find(".allergy");
-        // var monthCell = row.find(".month");
-        //
-        // console.log(row)
-        // console.log(ingrNameCell.text()+"-------")
-        // console.log(allergyCell.text())
-        // console.log(monthCell.text())
-        //
-        // // 현재 데이터를 input 요소로 변경
-        // ingrNameCell.html("<input type='text' class='editIngrName' value='" + ingrNameCell.text() + "'>");
-        // allergyCell.html("<input type='checkbox' class='editAllergy' " + (allergyCell.text() === "예" ? "checked" : "") + ">");
-        // monthCell.html("<input type='checkbox' class='editMonth' " + (monthCell.text() === "예" ? "checked" : "") + ">");
-        //
-        // // 수정/취소 버튼 토글
-        // $(this).hide();
-        // row.find(".updateBtn, .cancelBtn,.imgBtn").show();
-    // });
+    document.getElementById("input-ingrName-" + id).value = dataIdValue;
+    ingrNameInput.readOnly = true;
 
+    // 수정/취소 버튼 토글
+    $(this).hide();
+    row.find(".editBtn").show();
+    row.find(".updateBtn, .imgBtn, .cancelBtn").hide();
+}
 
-    $(".updateBtn").click(function() {
-        var row = $(this).closest("tr");
-        var ingrId = $(this).data("id");
-        var ingrName = row.find(".editIngrName").val();
-        var allergy = row.find(".editAllergy").prop("checked");
-        var month = row.find(".editMonth").prop("checked");
-        var imageFile = $("#editImg-" + ingrId)[0].files[0];
+function deleteIngr(element) {
+    var ingrId = element.getAttribute("data-id");
 
-        var formData = new FormData();
-        formData.append("ingrName", ingrName);
-        formData.append("allergy", allergy);
-        formData.append("month", month);
-        if (imageFile != null) {
-            formData.append("ingrImg", imageFile);
-        }
+    // console.log(ingrId)
+    $.ajax({
+        url: "adminIngr/delete/" + ingrId,
+        method: "DELETE",
+        success: function (response) {
 
-        $.ajax({
-            url: "adminIngr/" + ingrId,
-            method: "PUT",
-            contentType: false,
-            processData: false,
-            data: formData,
-            success: function() {
-                // $(".section").html(response);
-                window.location.href="admin"
-            },
-            error: function() {
-                // alert("데이터 업데이트에 실패했습니다.");
-            }
-        });
-    });
-
-
-    $(".cancelBtn").click(function() {
-        var row = $(this).closest("tr");
-        var ingrName = row.find(".editIngrName").val();
-        var allergy = row.find(".editAllergy").prop("checked");
-        var month = row.find(".editMonth").prop("checked");
-
-        row.find(".ingrName").text(ingrName);
-        row.find(".allergy").text(allergy ? '예' : '아니오');
-        row.find(".month").text(month ? '예' : '아니오');
-
-        // 수정/취소 버튼 토글
-        $(this).hide();
-        row.find(".editBtn").show();
-        row.find(".updateBtn, .imgBtn").hide();
-    });
-
-
-    $(".removeBtn").click(function() {
-        var ingrId = $(this).data("id");
-
-        $.ajax({
-            url: "adminIngr/delete/" + ingrId,
-            method: "DELETE",
-            success: function(response) {
-
-                alert("삭제하기: " + ingrId);
-                window.location.href="admin"
-            },
-            error: function() {
-                // alert("삭제에 실패했습니다.");
-            }
-        });
-    });
-
-    $("#addBtn").click(function() {
-        $("#addModal").css("display", "block");
-    });
-
-    $(".close").click(function() {
-        $("#addModal").css("display", "none");
-    });
-
-    $(window).click(function(event) {
-        if (event.target == document.getElementById("addModal")) {
-            $("#addModal").css("display", "none");
+            alert("삭제하기: " + ingrId);
+            Admin.pageRelocate("adminIngr");
+        },
+        error: function () {
+            // alert("삭제에 실패했습니다.");
         }
     });
-
-    $("#addForm").submit(function(event) {
-        event.preventDefault();
-
-        var formData = new FormData();
-        formData.append("ingrName", $("#ingrName").val());
-        formData.append("month", $("#month").prop("checked"));
-        formData.append("allergy", $("#allergy").prop("checked"));
-        formData.append("ingrImg", $("#addImg")[0].files[0]);
-
-        $.ajax({
-            url: "adminIngr/create",
-            method: "POST",
-            contentType: false,
-            processData: false,
-            data: formData,
-            success: function(response) {
-                alert("추가 완료");
-                $("#addModal").css("display", "none");
-                window.location.href="admin"
-            },
-            error: function() {
-                // alert("추가 실패");
-            }
-
-        });
-
-    });
-});
-
-$(document).ready(function() {
-    $("#filterToggleAllergy").click(function () {
-        toggleFilter(".allergy", "예", $(this));
-    });
-
-    $("#filterToggleMonth").click(function () {
-        toggleFilter(".month", "예", $(this));
-    });
+}
 
 
-    function toggleFilter(columnClass, targetValue, buttonElement) {
-        var isActive = buttonElement.hasClass("active");
+var filterStates = {
+    ".allergy-sel": "all",
+    ".month-sel": "all"
+};
 
-        $(".admin-ingrList tr").each(function () {
-            var cell = $(this).find(columnClass);
-            var cellValue = cell.text();
+function allergyFilter() {
+    toggleFilter(".allergy-sel", this)
+}
 
-            if (isActive && cellValue !== targetValue) {
-                $(this).hide();
-            } else {
-                $(this).show();
-            }
-        });
 
-        buttonElement.toggleClass("active");
+function monthFilter() {
+    toggleFilter(".month-sel", this)
+}
+
+function toggleFilter(columnClass, buttonElement) {
+    var currentState = filterStates[columnClass];
+
+    if (currentState === "all") {
+        filterStates[columnClass] = "yes";
+    } else if (currentState === "yes") {
+        filterStates[columnClass] = "no";
+    } else if (currentState === "no") {
+        filterStates[columnClass] = "all";
     }
-});
+
+    applyFilters();
+}
+
+function applyFilters() {
+    $(".admin-ingrList tr").each(function () {
+        var shouldShow = true;
+
+        for (var columnClass in filterStates) {
+            if (filterStates.hasOwnProperty(columnClass)) {
+                var cell = $(this).find(columnClass);
+                var cellValue = cell.attr("data-initial-value");
+                var currentState = filterStates[columnClass];
+
+                if (currentState === "yes" && cellValue !== "예") {
+                    shouldShow = false;
+                    break;
+                } else if (currentState === "no" && cellValue !== "아니오") {
+                    shouldShow = false;
+                    break;
+                }
+            }
+        }
+
+        if (shouldShow) {
+            $(this).show();
+        } else {
+            $(this).hide();
+        }
+    });
+}
+
+function addIngr() {
+    var formData = new FormData();
+    formData.append("ingrName", $("#ingrName").val());
+    formData.append("month", $("#month").prop("checked"));
+    formData.append("allergy", $("#allergy").prop("checked"));
+    formData.append("ingrImg", $("#addImg")[0].files[0]);
+
+    $.ajax({
+        url: "adminIngr/create",
+        method: "POST",
+        contentType: false,
+        processData: false,
+        data: formData,
+        success: function (response) {
+            alert("추가 완료");
+            $("#addModal").css("display", "none");
+            Admin.pageRelocate("adminIngr"); // adminIngr 페이지 로드
+        },
+        error: function () {
+            // alert("추가 실패");
+        }
+    });
+}
+
+
+function addModal() {
+    var modal = document.getElementById("addModal");
+    modal.style.display = "block";
+    var thead = document.querySelector("thead tr");
+
+    // 모달 열기 시 thead를 static으로 변경
+    thead.style.position = "static";
+}
+
+// 모달 바깥을 클릭하면 모달 창을 닫습니다.
+window.onclick = function (event) {
+    var modal = document.getElementById("addModal");
+    var thead = document.querySelector("thead tr");
+
+    if (event.target == modal) {
+        modal.style.display = "none";
+        thead.style.position = "sticky";
+        thead.style.top = "0";
+    }
+}
+
+function closeModal() {
+    var modal = document.getElementById("addModal");
+    var thead = document.querySelector("thead tr");
+    modal.style.display = "none";
+    thead.style.position = "sticky";
+    thead.style.top = "0";
+}

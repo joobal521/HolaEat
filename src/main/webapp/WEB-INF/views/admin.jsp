@@ -9,56 +9,6 @@
     <title>ADMIN</title>
     <c:set var="path" value="${pageContext.request.contextPath}"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-    <script>
-        $(document).ready(function() {//admin페이지 접속시 menu관리 자동로드
-            function loadContent() {
-
-                $("li:nth-child(1) a.menu-link").addClass("active");
-
-                $.ajax({
-                    url: "adminMenu",
-                    success: function(response) {
-                        $(".section").html(response);
-                    },
-                    error: function(xhr, status, error) {
-                        var errorMessage = "페이지 로드에 실패했습니다." + error;
-                        $(".section").html(errorMessage);
-                    }
-                });
-            }
-
-            $("a.menu-link").click(function(event) {
-                event.preventDefault(); // 기본 링크 동작 방지
-
-                var pageUrl = $(this).attr("href"); // 클릭한 링크의 URL
-                // AJAX 요청
-                $.ajax({
-                    url: pageUrl,
-                    success: function(response) {
-                        $(".section").html(response); // .section에 응답 페이지 삽입
-                    },
-                    error: function(xhr, status, error) {
-                        var errorMessage = "페이지 로드에 실패했습니다." + error;
-                        $(".section").html(errorMessage);
-                    }
-                });
-            });
-
-            var initialPageUrl = window.location.pathname;
-            loadContent(initialPageUrl);
-
-            window.onpopstate = function(event) {
-                if (event.state) {
-                    $(".section").html(event.state.content);
-                    document.title = event.state.pageTitle;
-                } else {
-                    loadContent(window.location.pathname);
-                }
-            };
-        });
-    </script>
-
-
     <link rel="stylesheet" type="text/css" href="style/admin.css">
 </head>
 <c:import url="header.jsp"/>

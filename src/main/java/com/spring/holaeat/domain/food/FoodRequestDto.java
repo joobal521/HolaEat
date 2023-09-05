@@ -27,15 +27,12 @@ public class FoodRequestDto {
     private int sugars;
     private int natrium;
 
+//    private byte[] foodImg;
     private MultipartFile foodImg;
 
-    public MultipartFile getFoodImg() {
-        return foodImg;
-    }
-
-    public void setFoodImg(MultipartFile foodImg) {
-        this.foodImg = foodImg;
-    }
+//    public MultipartFile getFoodImg() {
+//        return foodImg;
+//    }
 
 
 

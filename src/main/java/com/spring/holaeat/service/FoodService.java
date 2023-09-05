@@ -37,8 +37,8 @@ public class FoodService {
         foodRepository.save(food);
     }
 
-    public List<Food> findWithoutImage(){
-        return foodRepository.findAllWithoutImage();
+    public List<Food> getAllWithoutImg(){
+        return foodRepository.findAllWithoutImg();
     }
 
 
@@ -71,8 +71,6 @@ public class FoodService {
 
         Food food = new Food(foodRequestDto);
         foodRepository.save(food);
-        // 이후에 데이터를 저장하고 관련 처리를 수행합니다.
-        // ...
     }
 
     public List<Food> findFoodListByFoodId(String foodId){
@@ -85,10 +83,6 @@ public class FoodService {
     public List<Food> getAllFood(){
         return foodRepository.findAll();
     }
-
-//    public List<Food> getFoodWithoutFoodImg() {
-//        return foodRepository.findFoodIdAndAllergyInfoAndBalancedAndFoodGroupAndFoodNameAndFoodNationalAndFoodWeightAndSideDishAndVeganAndWeightControlAndKcalAndCarbAndProteinAndFatAndSugarsAndNatrium();
-//    }
 
     public void deleteFoodByFoodId(String foodId){
         foodRepository.deleteById(foodId);

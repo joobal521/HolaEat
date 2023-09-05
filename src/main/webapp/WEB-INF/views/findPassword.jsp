@@ -45,7 +45,7 @@
         </div>
     </form>
 </div>
-<script src="script/find2.js"></script>
+<script src="script/findPwd.js"></script>
 </body>
 <c:import url="footer.jsp"/>
 </html>

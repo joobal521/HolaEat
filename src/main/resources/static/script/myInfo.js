@@ -12,7 +12,7 @@ function updateImg(htmlForm,profileNo) {
     form.append("id", id); // userId 대신 id로 변경
 
     var settings = {
-        "url": "api/v1/my/profile/" + profileNo,
+        "url": "profile/" + profileNo,
         "method": "POST",
         "timeout": 0,
         "processData": false,
