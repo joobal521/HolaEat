@@ -67,23 +67,6 @@ public class FoodController {
     }
 
 
-//    @Autowired
-//    @GetMapping("/food/{foodId}")
-//    public String showFoodImage(@PathVariable String foodId, Model model) {
-//        byte[] foodImg = foodRepository.getFoodImgByFoodId(foodId);
-//        model.addAttribute("foodImg", foodImg);
-//        return "foodImage"; // Thymeleaf template name
-//    }
-//
-
-
-
-//    public String getAllIngrNames(Model model) {
-//        List<String> ingrNames = ingredientsRepository.getAllIngrNames();
-//        model.addAttribute("ingrNames", ingrNames);
-//        return "menu"; // JSP 페이지 이름으로 변경해야 함
-//    }
-
 
 
 }

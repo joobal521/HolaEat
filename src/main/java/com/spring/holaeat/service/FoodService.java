@@ -71,8 +71,6 @@ public class FoodService {
 
         Food food = new Food(foodRequestDto);
         foodRepository.save(food);
-        // 이후에 데이터를 저장하고 관련 처리를 수행합니다.
-        // ...
     }
 
     public List<Food> findFoodListByFoodId(String foodId){

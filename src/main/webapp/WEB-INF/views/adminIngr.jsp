@@ -43,7 +43,7 @@
             <td>
                 <button class="editBtn" data-id="${ingrList.ingrId}" onclick="editIngr(this)">수정하기</button>
                 <button class="updateBtn" data-id="${ingrList.ingrId}" onclick="updateIngr(this)" style="display: none;">수정완료</button>
-                <button class="cancelBtn" data-id="${ingrList.ingrId}" onclick="cancelEdit(this)" style="display: none;">수정취소</button>
+                <button class="cancelBtn" data-id="${ingrList.ingrId}" onclick="cancelEditIngr(this)" style="display: none;">수정취소</button>
                 <input type="file" id="editImg-${ingrList.ingrId}" name="ingrImg" class="imgBtn" style="display: none;" accept="image/png, image/jpg, image/jpeg, image/gif">
                 <button class="imgUpdate" data-id="${ingrList.ingrId}" style="display: none;">사진업로드</button>
             </td>
@@ -55,10 +55,10 @@
     </tbody>
 </table>
 <div>
-    <input type="button" id="addBtn" value="추가하기" onclick="addIngrModal()">
+    <input type="button" id="addBtn" value="추가하기" onclick="addModal()">
     <div id="addModal" class="modal" style="display: none">
         <div class="modal-content">
-            <span class="close">&times;</span>
+            <span class="close" onclick="closeModal()">&times;</span>
             <form id="addForm">
                 <label for="ingrName">재료 이름:</label>
                 <input type="text" id="ingrName" name="ingrName" required><br><br>
@@ -71,7 +71,7 @@
 
                 <label for="addImg">사진:</label>
                 <input type="file" id="addImg" name="ingrImg" accept="image/png, image/jpg, image/jpeg, image/gif">
-                <input type="button" value="추가완료" onclick="addIngr(this)">
+                <input type="button" value="추가완료" onclick="addIngr()">
             </form>
         </div>
     </div>

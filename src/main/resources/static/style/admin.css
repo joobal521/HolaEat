@@ -63,11 +63,7 @@
     border: 1px solid red;
 }
 
-.gainpower-form {
-
-}
-
-table input[type="text"] {
+table input[type="text"] , table input[type=number]{
     text-align: center;
     width: 60px;
 }
