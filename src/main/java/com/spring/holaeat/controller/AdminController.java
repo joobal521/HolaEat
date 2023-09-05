@@ -17,6 +17,8 @@ import org.json.JSONObject;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -55,7 +57,7 @@ public String gainPower(@RequestParam("adminid") String id, @RequestParam("admin
     }
 }
 
-//재료관리
+//재료관리------------------
     @GetMapping("adminIngr")
     public String getIngredients(Model model){
         List<Ingredients> list = ingredientsService.getAllIngredients();
@@ -66,47 +68,22 @@ public String gainPower(@RequestParam("adminid") String id, @RequestParam("admin
 
     //재료정보생성
     @PostMapping(value="adminIngr/create",consumes = "multipart/form-data")
-    public String addIngredient(@ModelAttribute IngredientsRequestDto ingredientsRequestDto) {
-        ingredientsService.addIngredient(ingredientsRequestDto);
-        return "adminIngr";
+    public ResponseEntity<String> addIngredient(@ModelAttribute IngredientsRequestDto ingredientsRequestDto) {
+
+        try {
+            // 파일이 첨부되었는지 확인
+            if (ingredientsRequestDto.getIngrImg().isEmpty()) {
+                return ResponseEntity.badRequest().body("사진을 첨부하세요.");
+            }
+            ingredientsService.addIngredient(ingredientsRequestDto);
+            return ResponseEntity.ok("재료 추가 성공");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("파일 업로드 중 오류 발생");
+        }
+
     }
 
     //재료정보수정
-
-//    @PutMapping(value = "adminIngr/{ingrId}", consumes = "multipart/form-data")
-//    public String updateIngredient(@PathVariable int ingrId, @ModelAttribute IngredientsRequestDto ingredientsRequestDto) {
-//        Ingredients ingredient = ingredientsService.findById(ingrId);
-//
-//        ingredientsService.update(ingredient, ingredientsRequestDto);
-//
-//        if(ingredientsRequestDto.getIngrImg()==null){
-//            byte[] img = ingredient.getIngrImg();
-//            ingredientsService.remainImg(ingredient,img);
-//        }
-//
-//        return "admin";
-//    }
-//    @ResponseBody
-//    @PostMapping("adminIngr/{ingrId}")
-//    public IngredientsRequestDto updateIngredients(
-//            @PathVariable int ingrId,
-//            @ModelAttribute IngredientsRequestDto ingredientsRequestDto
-//    ) {
-//        Ingredients ingredients = ingredientsService.findById(ingrId);
-//
-//        if (ingredientsRequestDto.getIngrImg() != null && !ingredientsRequestDto.getIngrImg().isEmpty()) {
-//            try {
-//                byte[] imgBytes = ingredientsRequestDto.getIngrImg().getBytes();
-//                ingredientsService.updateIngrWithImage(ingredients, ingredientsRequestDto, imgBytes);
-//            } catch (IOException e) {
-//            }
-//        } else {
-//            ingredientsService.remainImg(ingredients,ingredients.getIngrImg());
-//            ingredientsService.update(ingredients, ingredientsRequestDto);
-//        }
-//
-//        return ingredientsRequestDto;
-//    }
 @ResponseBody
 @PostMapping("adminIngr/{ingrId}")
 public IngredientsRequestDto updateIngredients(
@@ -131,17 +108,19 @@ public IngredientsRequestDto updateIngredients(
     return ingredientsRequestDto;
 }
 
-
-
     //재료삭제
     @DeleteMapping("adminIngr/delete/{ingrId}")
-    public String deleteIngrByID(@PathVariable int ingrId){
-        ingredientsService.deleteIngredientsByIngrId(ingrId);
-
-        return "admin";
+    public ResponseEntity<String> deleteIngrByID(@PathVariable int ingrId){
+        try {
+            ingredientsService.deleteIngredientsByIngrId(ingrId);
+            return ResponseEntity.ok("재료 추가 성공");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("삭제 실패");
+        }
     }
 
-//메뉴관리
+
+//메뉴관리--------------------
     @GetMapping("adminMenu")
     public String getAllMenu(Model model){
             List<Food> list = foodService.getAllFood();
@@ -189,14 +168,7 @@ public IngredientsRequestDto updateIngredients(
         return "admin";
     }
 
-    //후기게시판관리
-//    @GetMapping("adminReview")
-//    public String getReview(Model model){
-//        List<Review> reviewList = reviewService.getAllReview();
-//        System.out.println(reviewList.get(0).getTitle());
-//        model.addAttribute("reviewList",reviewList);
-//        return "adminReview";
-//    }
+    //후기게시판관리-------------------
     @GetMapping("adminReview")
     public String getReview(@RequestParam(name = "page", defaultValue = "0") int page, Model model) {
         int reviewsPerPage = 10;
@@ -205,6 +177,7 @@ public IngredientsRequestDto updateIngredients(
         return "adminReview";
     }
 
+    //후기게시판관리 페이징
     @ResponseBody
     @GetMapping("adminReviewList")
     public Map getReview(@RequestParam(required = false) String page, @PageableDefault Pageable pageable) {
@@ -230,12 +203,18 @@ public IngredientsRequestDto updateIngredients(
         return result.toMap();
     }
 
+    //후기삭제
     @DeleteMapping("adminReview/delete/{reviewNo}")
-    public String deleteReview(@PathVariable long reviewNo){
-        reviewCommentService.deleteByReviewNo(reviewNo);
-        reviewLikeService.deleteByReviewNo(reviewNo);
-        reviewService.delete(reviewNo);
-        return "admin";
+    public ResponseEntity<String> deleteReview(@PathVariable long reviewNo){
+
+        try {
+            reviewCommentService.deleteByReviewNo(reviewNo);
+            reviewLikeService.deleteByReviewNo(reviewNo);
+            reviewService.delete(reviewNo);
+            return ResponseEntity.ok("후기삭제성공");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("삭제 실패");
+        }
     }
 //
 //    //유저관리
@@ -245,7 +224,8 @@ public IngredientsRequestDto updateIngredients(
 //        return "adminUser";
 //    }
 //
-    //건강정보관리
+
+    //건강정보관리-----------------
     @GetMapping("adminHealth")
     public String getHealth(Model model){
         List<Health> healthList=healthService.getAllHealth();

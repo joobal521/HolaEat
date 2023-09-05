@@ -8,14 +8,17 @@ function removeReview(element) {
     $.ajax({
         url: "adminReview/delete/" + reviewNo,
         method: "DELETE",
+        cache: false, // 캐시 무시
         success: function (response) {
-            // Handle success if needed
             alert("삭제하기: " + reviewNo);
+            Admin.pageRelocate("adminReview");
         },
-        error: function () {
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log("Error:", textStatus, errorThrown);
             alert("삭제에 실패했습니다.");
         }
     });
+
 }
 
 function loadReviews(page) {

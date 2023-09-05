@@ -42,7 +42,7 @@ function updateIngr(element) {
         data: formData,
         success: function () {
             // $(".section").html(response);
-            window.location.href = "admin"
+            Admin.pageRelocate("adminIngr");
         },
         error: function () {
             // alert("데이터 업데이트에 실패했습니다.");
@@ -50,7 +50,7 @@ function updateIngr(element) {
     });
 }
 
-function cancelEdit(element) {
+function cancelEditIngr(element) {
     const id = element.parentNode.parentNode.id;
     var row = $(element).closest("tr");
     const ingrNameInput = document.getElementById("input-ingrName-" + id);
@@ -82,7 +82,7 @@ function deleteIngr(element){
         success: function (response) {
 
             alert("삭제하기: " + ingrId);
-            window.location.href = "admin"
+            Admin.pageRelocate("adminIngr");
         },
         error: function () {
             // alert("삭제에 실패했습니다.");
@@ -91,17 +91,21 @@ function deleteIngr(element){
 }
 
 
+
 var filterStates = {
     ".allergy-sel": "all",
     ".month-sel":"all"
 };
+
 function allergyFilter(){
     toggleFilter(".allergy-sel",this)
 }
 
+
 function monthFilter(){
     toggleFilter(".month-sel",this)
 }
+
 function toggleFilter(columnClass, buttonElement) {
     var currentState = filterStates[columnClass];
 
@@ -144,8 +148,7 @@ function applyFilters() {
     });
 }
 
-function addIngr(event){
-
+function addIngr(){
     var formData = new FormData();
     formData.append("ingrName", $("#ingrName").val());
     formData.append("month", $("#month").prop("checked"));
@@ -161,17 +164,17 @@ function addIngr(event){
         success: function (response) {
             alert("추가 완료");
             $("#addModal").css("display", "none");
-            window.location.href = "admin"
+            Admin.pageRelocate("adminIngr"); // adminIngr 페이지 로드
         },
         error: function () {
             // alert("추가 실패");
         }
-
     });
 }
 
 
-function addIngrModal() {
+
+function addModal() {
     var modal = document.getElementById("addModal");
     modal.style.display = "block";
     var thead = document.querySelector("thead tr");
@@ -180,15 +183,22 @@ function addIngrModal() {
     thead.style.position = "static";
 }
 
+        // 모달 바깥을 클릭하면 모달 창을 닫습니다.
 window.onclick = function(event) {
     var modal = document.getElementById("addModal");
     var thead = document.querySelector("thead tr");
 
     if (event.target == modal) {
         modal.style.display = "none";
-        // 모달 바깥을 클릭하면 모달 창을 닫습니다.
         thead.style.position = "sticky";
         thead.style.top = "0";
     }
 }
 
+function closeModal() {
+    var modal = document.getElementById("addModal");
+    var thead = document.querySelector("thead tr");
+    modal.style.display = "none";
+    thead.style.position = "sticky";
+    thead.style.top = "0";
+}
