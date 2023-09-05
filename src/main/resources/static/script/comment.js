@@ -142,13 +142,20 @@ function saveComment(commentId) {
         }
     });
 
+    Swal.fire({
+        title: '수정되었습니다.',
+        icon: 'success'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // 수정 상태를 다시 읽기 전용으로 변경
+            textarea.prop('readonly', true);
 
-    // 수정 상태를 다시 읽기 전용으로 변경
-    textarea.prop('readonly', true);
+            // 수정 버튼으로 변경
+            commentItem.find(".commentCancelBtn, .commentSaveBtn").hide();
+            commentItem.find(".commentEditBtn").show();
+        }
+    });
 
-    // 수정 버튼으로 변경
-    commentItem.find(".commentCancelBtn, .commentSaveBtn").hide();
-    commentItem.find(".commentEditBtn").show();
 }
 
 // 취소 버튼을 눌렀을 때 호출되는 함수
