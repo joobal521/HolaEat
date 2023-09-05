@@ -196,7 +196,6 @@ function cancelEditFood(element) {
 }
 
 
-
 function deleteFood(element) {
     const id = element.parentNode.parentNode.id;
 
@@ -261,22 +260,24 @@ var foodFilterStates = {
     ".sideDish-sel": "all"
 };
 
-function allergyInfoFilter(){
-    toggleFoodFilter(".allergyInfo-sel",this)
-}
-function weightControlFilter(){
-    toggleFoodFilter(".weightControl-sel",this)
+function allergyInfoFilter() {
+    toggleFoodFilter(".allergyInfo-sel", this)
 }
 
-function veganFilter(){
-    toggleFoodFilter(".vegan-sel",this)
+function weightControlFilter() {
+    toggleFoodFilter(".weightControl-sel", this)
 }
 
-function sideDishFilter(){
-    toggleFoodFilter(".sideDish-sel",this)
+function veganFilter() {
+    toggleFoodFilter(".vegan-sel", this)
 }
-function balancedFilter(){
-    toggleFoodFilter(".balanced-sel",this)
+
+function sideDishFilter() {
+    toggleFoodFilter(".sideDish-sel", this)
+}
+
+function balancedFilter() {
+    toggleFoodFilter(".balanced-sel", this)
 }
 
 function toggleFoodFilter(columnClass, buttonElement) {
@@ -294,7 +295,7 @@ function toggleFoodFilter(columnClass, buttonElement) {
 }
 
 function applyFoodFilters() {
-    $(".admin-foodList tr").each(function() {
+    $(".admin-foodList tr").each(function () {
         var shouldShow = true;
 
         for (var columnClass in foodFilterStates) {

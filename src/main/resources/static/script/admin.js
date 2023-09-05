@@ -1,28 +1,28 @@
 var Admin = Admin || {}; // Admin 네임스페이스 생성
 
-$(document).ready(function() {//admin페이지 접속시 menu관리 자동로
+$(document).ready(function () {//admin페이지 접속시 menu관리 자동로
 
-    loadContent = function(url) {
-    if(url==="adminMenu"){
-        $("li:nth-child(1) a.menu-link").addClass("active");
-    }
+    loadContent = function (url) {
+        if (url === "adminMenu") {
+            $("li:nth-child(1) a.menu-link").addClass("active");
+        }
         $.ajax({
             url: url,
-            success: function(response) {
+            success: function (response) {
                 $(".section").html(response);
             },
-            error: function(xhr, status, error) {
+            error: function (xhr, status, error) {
                 var errorMessage = "Failed to load the page: " + error;
                 $(".section").html(errorMessage);
             }
         });
     };
 
-    Admin.pageRelocate = function (url){
+    Admin.pageRelocate = function (url) {
         loadContent(url);
     }
 
-    $("a.menu-link").click(function(event) {
+    $("a.menu-link").click(function (event) {
         event.preventDefault(); // 기본 링크 동작 방지
         $("a.menu-link").removeClass("active");
 
@@ -31,7 +31,7 @@ $(document).ready(function() {//admin페이지 접속시 menu관리 자동로
         // AJAX 요청
         $.ajax({
             url: pageUrl,
-            success: function(response) {
+            success: function (response) {
                 $(".section").empty();
                 $(".section").html(response); // .section에 응답 페이지 삽입
             },
@@ -44,15 +44,6 @@ $(document).ready(function() {//admin페이지 접속시 menu관리 자동로
     var initialPageUrl = "adminMenu"
 
     loadContent(initialPageUrl);
-
-    // window.onpopstate = function(event) {
-    //     if (event.state) {
-    //         $(".section").html(event.state.content);
-    //         document.title = event.state.pageTitle;
-    //     } else {
-    //         loadContent(window.location.pathname);
-    //     }
-    // };
 
 
 });

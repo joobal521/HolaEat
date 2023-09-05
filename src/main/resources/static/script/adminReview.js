@@ -3,7 +3,7 @@ var currentPage = 0;
 function removeReview(element) {
     var reviewNo = element.getAttribute("data-id")
     // var reviewNo = element.parentNode.parentNode.id;
-    console.log(reviewNo)
+    // console.log(reviewNo)
 
     $.ajax({
         url: "adminReview/delete/" + reviewNo,
@@ -14,7 +14,7 @@ function removeReview(element) {
             Admin.pageRelocate("adminReview");
         },
         error: function (jqXHR, textStatus, errorThrown) {
-            console.log("Error:", textStatus, errorThrown);
+            // console.log("Error:", textStatus, errorThrown);
             alert("삭제에 실패했습니다.");
         }
     });
@@ -25,7 +25,7 @@ function loadReviews(page) {
     $.ajax({
         url: "adminReviewList?page=" + page,
         success: function (response) {
-            console.log(response);
+            // console.log(response);
             $(".admin-reviewList").empty();
             response['data'].forEach(review => {
                 $(".admin-reviewList").append(
@@ -52,13 +52,13 @@ function loadReviews(page) {
 function preBtn() {
     if (currentPage > 0) {
         currentPage--;
-        console.log(currentPage);
+        // console.log(currentPage);
         loadReviews(currentPage);
     }
 }
 
 function nextBtn() {
     currentPage++;
-    console.log(currentPage);
+    // console.log(currentPage);
     loadReviews(currentPage);
 }

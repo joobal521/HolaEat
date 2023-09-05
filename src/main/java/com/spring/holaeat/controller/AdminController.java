@@ -43,31 +43,43 @@ public class AdminController {
     private final ReviewLikeService reviewLikeService;
 
     //관리자 로그인
-@PostMapping("gainpower")
-public String gainPower(@RequestParam("adminid") String id, @RequestParam("adminpwd") String pwd, HttpSession session) {
-    List<Admin> admin = adminRepository.findAdminByIdAndPassword(id, pwd);
+//@PostMapping("gainpower")
+//public String gainPower(@RequestParam("adminid") String id, @RequestParam("adminpwd") String pwd, HttpSession session) {
+//    List<Admin> admin = adminRepository.findAdminByIdAndPassword(id, pwd);
+//
+//    if (admin.isEmpty()) {
+//        System.out.println("관리자 로그인 실패");
+//        return "gainpower"; // 실패 시 해당 뷰로 반환
+//    } else {
+//        session.setAttribute("authority", "POWERED");
+//        System.out.println("관리자 로그인");
+//        return "redirect:/admin"; // 리다이렉트하여 주소창의 URL도 변경
+//    }
+//}
+    @PostMapping("gainpower")
+    public String gainPower(@RequestParam("adminid") String id, @RequestParam("adminpwd") String pwd, HttpSession session) {
+        List<Admin> admin = adminRepository.findAdminByIdAndPassword(id, pwd);
 
-    if (admin.isEmpty()) {
-        System.out.println("관리자 로그인 실패");
-        return "gainpower"; // 실패 시 해당 뷰로 반환
-    } else {
-        session.setAttribute("authority", "POWERED");
-        System.out.println("관리자 로그인");
-        return "redirect:/admin"; // 리다이렉트하여 주소창의 URL도 변경
+        if (admin.isEmpty()) {
+            System.out.println("관리자 로그인 실패");
+        } else {
+            session.setAttribute("authority", "POWERED");
+            System.out.println("관리자 로그인");
+        }
+        return admin.isEmpty() ? "gainpower" : "redirect:/admin";
     }
-}
 
-//재료관리------------------
+    //재료관리------------------
     @GetMapping("adminIngr")
-    public String getIngredients(Model model){
+    public String getIngredients(Model model) {
         List<Ingredients> list = ingredientsService.getAllIngredients();
 //        List<Ingredients> list = ingredientsService.getIngredientsButImage();
-        model.addAttribute("ingredientList",list);
+        model.addAttribute("ingredientList", list);
         return "adminIngr";
     }
 
     //재료정보생성
-    @PostMapping(value="adminIngr/create",consumes = "multipart/form-data")
+    @PostMapping(value = "adminIngr/create", consumes = "multipart/form-data")
     public ResponseEntity<String> addIngredient(@ModelAttribute IngredientsRequestDto ingredientsRequestDto) {
 
         try {
@@ -84,33 +96,33 @@ public String gainPower(@RequestParam("adminid") String id, @RequestParam("admin
     }
 
     //재료정보수정
-@ResponseBody
-@PostMapping("adminIngr/{ingrId}")
-public IngredientsRequestDto updateIngredients(
-        @PathVariable int ingrId,
-        @ModelAttribute IngredientsRequestDto ingredientsRequestDto
-) {
-    Ingredients ingredients = ingredientsService.findById(ingrId);
+    @ResponseBody
+    @PostMapping("adminIngr/{ingrId}")
+    public IngredientsRequestDto updateIngredients(
+            @PathVariable int ingrId,
+            @ModelAttribute IngredientsRequestDto ingredientsRequestDto
+    ) {
+        Ingredients ingredients = ingredientsService.findById(ingrId);
 
-    if (ingredientsRequestDto.getIngrImg() != null && !ingredientsRequestDto.getIngrImg().isEmpty()) {
-        try {
-            // StandardMultipartFile을 byte[]로 변환
-            byte[] imgBytes = ingredientsRequestDto.getIngrImg().getBytes();
-            ingredientsService.updateIngrWithImage(ingredients, ingredientsRequestDto, imgBytes);
-        } catch (IOException e) {
-            // 예외 처리
+        if (ingredientsRequestDto.getIngrImg() != null && !ingredientsRequestDto.getIngrImg().isEmpty()) {
+            try {
+                // StandardMultipartFile을 byte[]로 변환
+                byte[] imgBytes = ingredientsRequestDto.getIngrImg().getBytes();
+                ingredientsService.updateIngrWithImage(ingredients, ingredientsRequestDto, imgBytes);
+            } catch (IOException e) {
+                // 예외 처리
+            }
+        } else {
+            ingredientsService.remainImg(ingredients, ingredients.getIngrImg());
+            ingredientsService.update(ingredients, ingredientsRequestDto);
         }
-    } else {
-        ingredientsService.remainImg(ingredients, ingredients.getIngrImg());
-        ingredientsService.update(ingredients, ingredientsRequestDto);
-    }
 
-    return ingredientsRequestDto;
-}
+        return ingredientsRequestDto;
+    }
 
     //재료삭제
     @DeleteMapping("adminIngr/delete/{ingrId}")
-    public ResponseEntity<String> deleteIngrByID(@PathVariable int ingrId){
+    public ResponseEntity<String> deleteIngrByID(@PathVariable int ingrId) {
         try {
             ingredientsService.deleteIngredientsByIngrId(ingrId);
             return ResponseEntity.ok("재료 추가 성공");
@@ -120,18 +132,18 @@ public IngredientsRequestDto updateIngredients(
     }
 
 
-//메뉴관리--------------------
+    //메뉴관리--------------------
     @GetMapping("adminMenu")
-    public String getAllMenu(Model model){
-            List<Food> list = foodService.getAllFood();
+    public String getAllMenu(Model model) {
+        List<Food> list = foodService.getAllFood();
 //            List<Food> list = foodService.getFoodWithoutFoodImg();
 //            List<Food> list = foodService.getAllWithoutImg();
-            model.addAttribute("foodList",list);
+        model.addAttribute("foodList", list);
         return "adminMenu";
     }
 
     //음식 추가
-    @PostMapping(value="adminMenu/create",consumes = "multipart/form-data")
+    @PostMapping(value = "adminMenu/create", consumes = "multipart/form-data")
     public ResponseEntity<String> addFood(@ModelAttribute FoodRequestDto foodRequestDto) {
         try {
             foodService.addFood(foodRequestDto);
@@ -158,7 +170,7 @@ public IngredientsRequestDto updateIngredients(
             } catch (IOException e) {
             }
         } else {
-            foodService.remainImg(food,food.getFoodImg());
+            foodService.remainImg(food, food.getFoodImg());
             foodService.update(food, foodRequestDto);
         }
 
@@ -166,7 +178,7 @@ public IngredientsRequestDto updateIngredients(
     }
 
     @DeleteMapping("adminMenu/delete/{foodId}")
-    public ResponseEntity<String> deleteFood(@PathVariable String foodId){
+    public ResponseEntity<String> deleteFood(@PathVariable String foodId) {
         try {
             foodService.deleteFoodByFoodId(foodId);
             return ResponseEntity.ok("음식 삭제 성공");
@@ -194,9 +206,9 @@ public IngredientsRequestDto updateIngredients(
 
         List<Review> reviewList = reviewRepository.findAll(pageable.withPage(reqPage)).getContent();
 
-        if(reviewList.isEmpty()) {
+        if (reviewList.isEmpty()) {
             int count = (int) reviewRepository.count();
-            reqPage = count%10 > 0 ? count/10 : count/10-1;
+            reqPage = count % 10 > 0 ? count / 10 : count / 10 - 1;
             System.out.println("last : " + reqPage);
             reviewList = reviewRepository.findAll(pageable.withPage(reqPage)).getContent();
         }
@@ -212,7 +224,7 @@ public IngredientsRequestDto updateIngredients(
 
     //후기삭제
     @DeleteMapping("adminReview/delete/{reviewNo}")
-    public ResponseEntity<String> deleteReview(@PathVariable long reviewNo){
+    public ResponseEntity<String> deleteReview(@PathVariable long reviewNo) {
         try {
             reviewCommentService.deleteByReviewNo(reviewNo);
             reviewLikeService.deleteByReviewNo(reviewNo);
@@ -233,9 +245,9 @@ public IngredientsRequestDto updateIngredients(
 
     //건강정보관리-----------------
     @GetMapping("adminHealth")
-    public String getHealth(Model model){
-        List<Health> healthList=healthService.getAllHealth();
-        model.addAttribute("healthList",healthList);
+    public String getHealth(Model model) {
+        List<Health> healthList = healthService.getAllHealth();
+        model.addAttribute("healthList", healthList);
         return "adminHealth";
     }
 

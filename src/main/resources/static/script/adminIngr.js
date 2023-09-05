@@ -23,8 +23,8 @@ function updateIngr(element) {
     const month = tr.find('.month-sel').val() === '예' ? true : false;
     var imageFile = $("#editImg-" + id)[0].files[0];
 
-    console.log(allergy)
-    console.log(month)
+    // console.log(allergy)
+    // console.log(month)
 
     var formData = new FormData();
     formData.append("ingrName", ingrName);
@@ -72,10 +72,10 @@ function cancelEditIngr(element) {
     row.find(".updateBtn, .imgBtn, .cancelBtn").hide();
 }
 
-function deleteIngr(element){
+function deleteIngr(element) {
     var ingrId = element.getAttribute("data-id");
 
-    console.log(ingrId)
+    // console.log(ingrId)
     $.ajax({
         url: "adminIngr/delete/" + ingrId,
         method: "DELETE",
@@ -91,19 +91,18 @@ function deleteIngr(element){
 }
 
 
-
 var filterStates = {
     ".allergy-sel": "all",
-    ".month-sel":"all"
+    ".month-sel": "all"
 };
 
-function allergyFilter(){
-    toggleFilter(".allergy-sel",this)
+function allergyFilter() {
+    toggleFilter(".allergy-sel", this)
 }
 
 
-function monthFilter(){
-    toggleFilter(".month-sel",this)
+function monthFilter() {
+    toggleFilter(".month-sel", this)
 }
 
 function toggleFilter(columnClass, buttonElement) {
@@ -121,7 +120,7 @@ function toggleFilter(columnClass, buttonElement) {
 }
 
 function applyFilters() {
-    $(".admin-ingrList tr").each(function() {
+    $(".admin-ingrList tr").each(function () {
         var shouldShow = true;
 
         for (var columnClass in filterStates) {
@@ -148,7 +147,7 @@ function applyFilters() {
     });
 }
 
-function addIngr(){
+function addIngr() {
     var formData = new FormData();
     formData.append("ingrName", $("#ingrName").val());
     formData.append("month", $("#month").prop("checked"));
@@ -173,7 +172,6 @@ function addIngr(){
 }
 
 
-
 function addModal() {
     var modal = document.getElementById("addModal");
     modal.style.display = "block";
@@ -183,8 +181,8 @@ function addModal() {
     thead.style.position = "static";
 }
 
-        // 모달 바깥을 클릭하면 모달 창을 닫습니다.
-window.onclick = function(event) {
+// 모달 바깥을 클릭하면 모달 창을 닫습니다.
+window.onclick = function (event) {
     var modal = document.getElementById("addModal");
     var thead = document.querySelector("thead tr");
 
