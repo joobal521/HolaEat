@@ -17,6 +17,8 @@ public interface UserRepository extends JpaRepository<User, String> {
 
  public User findByUserEmailAndUserName(String userEmail, String userId);
 
+//게시판으로 userId 프로필 이미지 가져오기
+//byte[] findUserProfileImgByUserId(String userId);
 
 
 

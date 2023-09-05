@@ -79,32 +79,13 @@ public class ReviewService {
     @Transactional
 public void delete(long reviewNo){
         reviewRepository.deleteById(reviewNo);
-
-
 }
 
 
-//좋아요 기능 repository > service
-    public void likeInsert(long reviewNo){
-
-        reviewRepository.likeCountByReviewNo(reviewNo);
-        //기존 값 가져오기
-
+    //조회수 출력
+    public void reviewCountByReviewNo(Long reviewNo) {
+       reviewRepository.reviewCountByReviewNo(reviewNo);
     }
-
-
-    public void likeDelete(long reviewNo){
-
-        reviewRepository.likeDeleteByReviewNo(reviewNo);
-        //기존 값 가져오기
-
-    }
-
-
-
-
-
-
 
 
 

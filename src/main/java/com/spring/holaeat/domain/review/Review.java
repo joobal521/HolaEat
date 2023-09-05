@@ -41,19 +41,15 @@ public class Review extends Timestamp {
     @Column
     private int reviewLike;
 
-//추가
-//    @OneToMany(mappedBy = "review", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<ReviewComment> comments;
-
-    @Transient
-    private int likedStatus;
+    @ColumnDefault("0")
+    @Column(nullable = false)
+    private int reviewCount;
 
 
     public Review(ReviewRequestDto reviewRequestDto) {
         this.title = reviewRequestDto.getTitle();
         this.content = reviewRequestDto.getContent();
         this.userId = reviewRequestDto.getUserId();
-//        this.reviewLike = reviewRequestDto.getReviewLike();
 
         if (reviewRequestDto.getImg() != null) {
             try {
@@ -85,13 +81,5 @@ public class Review extends Timestamp {
             this.img = null;
         }
     }
-
-
-//
-//    // likedByCurrentUser 프로퍼티 추가
-//    @Getter
-//    @Setter(AccessLevel.NONE) // Setter를 생성하지 않도록 설정
-//    private boolean likedByCurrentUser;
-
 
 }

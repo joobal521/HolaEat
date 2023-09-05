@@ -43,11 +43,12 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
     @Query(nativeQuery = true,value = "UPDATE review SET review_like = review_like - 1 WHERE review_no = ?1")
     public void likeDeleteByReviewNo(long reviewNo);
 
+    //게시글 조회수 출력
+    @Modifying
+    @Transactional
+    @Query(nativeQuery = true,value = "UPDATE review SET review_count = review_count + 1 WHERE review_no = ?1")
+    public void reviewCountByReviewNo(long reviewNo);
 
-
-    //좋아요 총 개수
-//    @Query( nativeQuery = true, value = "SELECT * FROM review WHERE review_like")
-//    int getTotalLikesForReview(int reviewLike);
 
 
 
