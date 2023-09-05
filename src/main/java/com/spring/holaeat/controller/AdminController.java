@@ -132,9 +132,13 @@ public IngredientsRequestDto updateIngredients(
 
     //음식 추가
     @PostMapping(value="adminMenu/create",consumes = "multipart/form-data")
-    public String addFood(@ModelAttribute FoodRequestDto foodRequestDto) {
-        foodService.addFood(foodRequestDto);
-        return "admin";
+    public ResponseEntity<String> addFood(@ModelAttribute FoodRequestDto foodRequestDto) {
+        try {
+            foodService.addFood(foodRequestDto);
+            return ResponseEntity.ok("음식 추가 성공");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("추가 실패");
+        }
     }
 
 
@@ -162,10 +166,13 @@ public IngredientsRequestDto updateIngredients(
     }
 
     @DeleteMapping("adminMenu/delete/{foodId}")
-    public String deleteFood(@PathVariable String foodId){
-        foodService.deleteFoodByFoodId(foodId);
-
-        return "admin";
+    public ResponseEntity<String> deleteFood(@PathVariable String foodId){
+        try {
+            foodService.deleteFoodByFoodId(foodId);
+            return ResponseEntity.ok("음식 삭제 성공");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("삭제 실패");
+        }
     }
 
     //후기게시판관리-------------------
@@ -206,7 +213,6 @@ public IngredientsRequestDto updateIngredients(
     //후기삭제
     @DeleteMapping("adminReview/delete/{reviewNo}")
     public ResponseEntity<String> deleteReview(@PathVariable long reviewNo){
-
         try {
             reviewCommentService.deleteByReviewNo(reviewNo);
             reviewLikeService.deleteByReviewNo(reviewNo);

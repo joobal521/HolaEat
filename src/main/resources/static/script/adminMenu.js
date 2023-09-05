@@ -107,7 +107,7 @@ function updateFood(element) {
         data: formData,
         success: function () {
             // 성공적으로 업데이트된 경우 원하는 동작 수행 (예: 화면 새로고침)
-            window.location.href = "admin";
+            Admin.pageRelocate("adminMenu");
         },
         error: function () {
             // 실패 시 처리 (예: 오류 메시지 표시)
@@ -206,7 +206,7 @@ function deleteFood(element) {
         success: function (response) {
             // Handle success if needed
             alert("삭제하기: " + id);
-            window.location.href = "admin"
+            Admin.pageRelocate("adminMenu");
         },
         error: function () {
             // alert("삭제에 실패했습니다.");
@@ -245,7 +245,7 @@ function addFood() {
         success: function (response) {
             alert("추가 완료");
             $("#addModal").css("display", "none");
-            window.location.href = "admin"
+            Admin.pageRelocate("adminMenu");
         },
         error: function () {
             // alert("추가 실패");
