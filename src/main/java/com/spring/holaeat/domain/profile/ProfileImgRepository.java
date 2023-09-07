@@ -2,6 +2,7 @@ package com.spring.holaeat.domain.profile;
 
 import com.spring.holaeat.domain.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 public interface ProfileImgRepository extends JpaRepository<ProfileImg, Long> {
 
@@ -13,7 +14,9 @@ public interface ProfileImgRepository extends JpaRepository<ProfileImg, Long> {
     public void deleteByUserId(String userId);
 
 
-
+//게시판으로 userId 프로필 이미지 가져오기
+@Query(nativeQuery = true, value = "SELECT profile_img FROM user_profile WHERE user_id=?1")
+byte[] findUserProfileImgByUserId(String userId);
 
 
 }

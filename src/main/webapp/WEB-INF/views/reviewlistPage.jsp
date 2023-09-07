@@ -92,17 +92,23 @@
 
             <div id=review>
                 <a href="<c:url value='/review/${review.reviewNo}'/>">
-                    <div class="user_profile">
+                    <div class="user-profile">
                         <ul>
+
                             <li class="review-profile">NO. ${review.reviewNo}</li>
-<%--                            <c:set var="userImg" value="${userProfileImg[loop]}"></c:set>--%>
-<%--                            <c:choose>--%>
-<%--                                <c:when test="${not empty userImg}">--%>
-<%--                                    <img src="data:image/jpeg;base64,${userImg}" id="img" name="img" alt="Review Image" style="width: 30px; height: 30px;">--%>
-<%--                                </c:when>--%>
-<%--                            </c:choose>--%>
-                            <li class="userId">작성자 : ${review.userId}</li>
+                            <div>
+                            <c:set var="userImg" value="${userProfileImg[review.reviewNo]}"></c:set>
+                            <c:choose>
+                                <c:when test="${not empty userImg}">
+                                    <img src="data:image/jpeg;base64,${userImg}" id="img" name="img" alt="Review Image" >
+                                </c:when>
+                                <c:otherwise>
+                                    <img src="../img/reviewlist_thumb.png" id="img" name="img" alt="Review Image" >
+                                </c:otherwise>
+                            </c:choose>
+                            <li class="userId">${review.userId}</li>
                             <li class="reviewCount">조회수 : ${review.reviewCount}</li>
+                            </div>
                         </ul>
                     </div>
 

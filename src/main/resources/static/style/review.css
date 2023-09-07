@@ -48,7 +48,7 @@
     min-width: 300px;
     height: 550px;
     border: solid 1px black;
-    padding: 3%;
+    /*padding: 3%;*/
     margin: 3%;
     background-color: #f5f5f5;
     /*text-align: center;*/
@@ -56,7 +56,7 @@
 
 .review_img {
     width: 100%;
-    height: 70%;
+    height: 60%;
     overflow: hidden;
     object-fit: cover;
 }
@@ -67,18 +67,42 @@
     object-fit: cover;
 }
 
-.user_profile {
+.user-profile {
     /*width: 90%;*/
     /*height: 10%;*/
-    padding: 20px;
+    padding: 10px;
     border-bottom: 1px solid #ccc;
 }
 
 
-.user_profile li {
+.user-profile li {
     display: inline-block;
     margin-right: 10px;
 }
+
+/* 유저 프로필 이미지 */
+.user-profile img{
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+}
+.user-profile div{
+
+    display: flex;
+}
+.userId{
+    margin: auto;
+    margin-left: 10px;
+}
+.reviewCount{
+    margin: auto;
+    margin-right: 0;
+}
+
+li.review-profile {
+    margin: 10px 0;
+}
+
 
 .review_title {
     height: 10%;
@@ -88,6 +112,7 @@
  #review-container #review_title_check {
      white-space: nowrap; /* 텍스트가 너비를 벗어나더라도 한 줄로 표시 */
      overflow: hidden;
+     padding: 20px;
 
  }
 
@@ -97,7 +122,7 @@
     padding: 5px 0;
     display: flex;
     align-items: start;
-    height: 7%;
+    /*height: 7%;*/
     width: 12%;
     margin: auto;
     font-size: 17px;
