@@ -185,10 +185,5 @@ public class UserService {
 
 
 
-     //유저 프로필 이미지 출력
-//     public byte[] findUserProfileImgByUserId(String userId){
-//          return userRepository.findUserProfileImgByUserId(userId);
-//     }
-
 
 }

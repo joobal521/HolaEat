@@ -11,6 +11,7 @@ import com.spring.holaeat.domain.review_comment.ReviewCommentRepository;
 import com.spring.holaeat.domain.review_like.ReviewLike;
 import com.spring.holaeat.domain.review_like.ReviewLikeRepository;
 import com.spring.holaeat.domain.user.User;
+import com.spring.holaeat.service.ProfileImgService;
 import com.spring.holaeat.service.ReviewLikeService;
 import com.spring.holaeat.service.ReviewService;
 import com.spring.holaeat.service.UserService;
@@ -42,7 +43,7 @@ public class ReviewListController {
     private final ReviewRepository reviewRepository;
     private final ReviewCommentRepository reviewCommentRepository;
     private final ReviewLikeService reviewLikeService;
-    private final UserService userService;
+    private final ProfileImgService profileImgService;
 
 
     // 페이징,검색
@@ -101,13 +102,12 @@ public class ReviewListController {
                 imageMap.put(review.getReviewNo(), base64Image);
             }
 
-//            //userId로 프로필 이미지 가져오기
-//             byte[] userProfileImg = userService.findUserProfileImgByUserId(userId);
-//            // 이미지 타입 변환
-//            String base64Image = ImageParsor.parseBlobToBase64(userProfileImg);
-//            userProfileimageMap.put(review.getReviewNo(),base64Image);
+            //userId로 프로필 이미지 가져오기
+             byte[] userProfileImg = profileImgService.findUserProfileImgByUserId(review.getUserId());
 
-
+            // 이미지 타입 변환
+            String profileImg = ImageParsor.parseBlobToBase64(userProfileImg);
+            userProfileimageMap.put(review.getReviewNo(),profileImg);
 
         }
 
@@ -128,7 +128,7 @@ public class ReviewListController {
         model.addAttribute("likedList", likedList); // 리뷰에 대한 좋아요 여부 목록 추가
         System.out.println(likedList + "likedList확인");
 
-//        model.addAttribute("userProfileImg",userProfileimageMap );
+        model.addAttribute("userProfileImg",userProfileimageMap );
 
         return "reviewlistPage";
     }

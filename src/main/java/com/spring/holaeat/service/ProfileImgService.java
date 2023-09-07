@@ -4,14 +4,10 @@ package com.spring.holaeat.service;
 import com.spring.holaeat.domain.profile.ProfileImg;
 import com.spring.holaeat.domain.profile.ProfileImgRepository;
 import com.spring.holaeat.domain.profile.ProfileImgRequestDto;
-import com.spring.holaeat.domain.user.UserRepository;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
-import java.io.IOException;
 
 
 @Service
@@ -49,6 +45,13 @@ public class ProfileImgService {
 
         profileImg.update(profileImgDto);
     }
+
+
+    //유저 프로필 이미지 출력
+     public byte[] findUserProfileImgByUserId(String userId){
+          return profileImgRepository.findUserProfileImgByUserId(userId);
+
+     }
 
 
 
