@@ -10,7 +10,7 @@
 <html>
 <head>
     <title>my review</title>
-    <link rel="stylesheet" type="text/css" href="/style/my.css">
+    <link rel="stylesheet" type="text/css" href="style/my.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 
 </head>
@@ -109,6 +109,6 @@
 <%--        </ul>--%>
 <%--    </div>--%>
 </div>
-<script src="/script/myPage.js"></script>
+<script src="script/myReview.js"></script>
 </body>
 </html>

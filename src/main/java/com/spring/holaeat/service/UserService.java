@@ -27,6 +27,7 @@ public class UserService {
      private final MailService mailService;
 
 
+     //아이디와 이메일로
      public List<User>findByIdAndEmail(String userId, String userPassword){
           return (List<User>) userRepository.findAllByUserIdAndUserEmail(userId,userPassword);
      }
@@ -36,6 +37,8 @@ public class UserService {
           return list;
      }
 
+
+     //아이디 조회
      public User getUserById(String userId){
           User user=userRepository.findById(userId).orElseThrow(
                   ()->new IllegalArgumentException("존재하지 않는 사용자입니다.")

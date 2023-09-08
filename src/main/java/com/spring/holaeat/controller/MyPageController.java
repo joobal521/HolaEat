@@ -22,22 +22,20 @@ import java.util.List;
 @Controller
 public class MyPageController {
     private final ReviewService reviewService;
-    private final ReviewRepository reviewRepository;
     private final ReviewCommentService reviewCommentService;
 
 
 
     @Autowired
-    public MyPageController(ReviewService reviewService,ReviewRepository reviewRepository,ReviewCommentService reviewCommentService) {
+    public MyPageController(ReviewService reviewService,ReviewCommentService reviewCommentService) {
         this.reviewService = reviewService;
-        this.reviewRepository=reviewRepository;
         this.reviewCommentService=reviewCommentService;
 
     }
 
 
     //내가 쓴 글
-    @GetMapping("/myReviewPage")
+    @GetMapping("myReviewPage")
     public String getMyReview(Model model, WebRequest request){
         String log = (String) request.getAttribute("log", WebRequest.SCOPE_SESSION);
 
@@ -47,6 +45,7 @@ public class MyPageController {
             // 로그인 페이지로 리다이렉트 또는 오류 처리
             return "redirect:/login"; // 로그인 페이지로 리다이렉트
         }
+
         System.out.println("log는"+log);
         List<Review> reviewList = reviewService.findAllByUserId(log);
 
@@ -68,7 +67,7 @@ public class MyPageController {
     }
 
     //내가 쓴 댓글
-    @GetMapping("/myCommentPage")
+    @GetMapping("myCommentPage")
     public String getMyComment(Model model,WebRequest request){
         String log = (String) request.getAttribute("log", WebRequest.SCOPE_SESSION);
 

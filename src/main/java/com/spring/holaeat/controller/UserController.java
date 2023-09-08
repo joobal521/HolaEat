@@ -32,7 +32,6 @@ public class UserController {
     private final UserService userService;
     private final ReviewService reviewService;
     private final ReviewCommentService reviewCommentService;
-    private final UserRepository userRepository;
     private final ProfileImgService profileImgService;
     private final ReviewLikeService reviewLikeService;
 
