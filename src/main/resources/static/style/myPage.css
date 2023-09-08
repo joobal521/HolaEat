@@ -23,15 +23,15 @@
 }
 
 
-.menu-link {
-    display: block;
-    text-decoration: none;
-    color: #333;
-}
+/*.menu-link {*/
+/*    display: block;*/
+/*    text-decoration: none;*/
+/*    color: #333;*/
+/*}*/
 
-.menu-link:hover {
-    color: #e74c3c;
-}
+/*.menu-link:hover {*/
+/*    color: #e74c3c;*/
+/*}*/
 
 .section {
     flex: 3;

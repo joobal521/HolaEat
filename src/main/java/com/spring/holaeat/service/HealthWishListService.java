@@ -9,6 +9,7 @@ import com.spring.holaeat.exception.ExceptionCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Service
@@ -23,19 +24,29 @@ public class HealthWishListService {
 
 
     //게시물 찜하기
+    @Transactional
     public void createHealthWishList(HealthWishListRequestDto healthWishListDto){
         Optional<HealthWishList> existingWishList = healthWishListRepository
                 .findHealthWishListByUserIdAndHealthNo(healthWishListDto.getUserId(), healthWishListDto.getHealthNo());
 
         HealthWishList healthWishList=new HealthWishList(healthWishListDto);
 
-        //이미 찜한 게시물
+        //이미 찜한 게시물->찜 취소 처리
         if (existingWishList.isPresent()) {
+            healthWishListRepository.delete(healthWishList);
             throw new BusinessLogicException(ExceptionCode.WISHLIST_EXISTS);
+
+        }else{
+            healthWishListRepository.save(healthWishList);
         }
 
 
+
+
     }
+
+    //게시물 찜 취소
+
 
 
 
