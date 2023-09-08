@@ -14,6 +14,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 </head>
 <body>
+<c:if test="${empty log}">
+    <c:url var="login" value="/login"></c:url>
+    <c:redirect url="${login}"></c:redirect>
+</c:if>
 <div class="my-review">
     <table class="board-table">
         <thead>

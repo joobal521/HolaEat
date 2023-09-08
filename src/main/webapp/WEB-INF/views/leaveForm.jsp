@@ -14,14 +14,13 @@
     <link rel="stylesheet" type="text/css" href="style/myPage.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    <style>
 
-
-
-
-    </style>
 </head>
 <body>
+<c:if test="${empty log}">
+    <c:url var="login" value="/login"></c:url>
+    <c:redirect url="${login}"></c:redirect>
+</c:if>
 <section id="leave-section">
     <div class="form_wrap">
         <h2 class="leave_text"> "${userResponseDto.userName}"님 정말 떠나시나요?</h2>

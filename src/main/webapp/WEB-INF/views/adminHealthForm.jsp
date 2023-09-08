@@ -10,6 +10,11 @@
 
 <c:import url="header.jsp"/>
 <body>
+<c:choose>
+    <c:when test="${empty authority}">
+        <c:redirect url="/" /> <!-- authority가 비어있을 경우 인덱스로 리다이렉션 -->
+    </c:when>
+</c:choose>
 
 
     <div class="health-box">

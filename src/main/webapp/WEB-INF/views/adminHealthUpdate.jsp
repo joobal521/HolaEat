@@ -17,6 +17,11 @@
 </head>
 <c:import url="header.jsp"/>
 <body>
+<c:choose>
+    <c:when test="${empty authority}">
+        <c:redirect url="/" /> <!-- authority가 비어있을 경우 인덱스로 리다이렉션 -->
+    </c:when>
+</c:choose>
 <div class="health-section">
     <h2>건강 정보 게시판 수정</h2>
     <c:if test="${health!=null}">

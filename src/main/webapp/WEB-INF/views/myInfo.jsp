@@ -18,9 +18,7 @@
 </head>
 <body>
 <div class="container">
-
 <div class="card">
-
   <c:if test="${empty log}">
     <c:url var="login" value="/login"></c:url>
     <c:redirect url="${login}"></c:redirect>

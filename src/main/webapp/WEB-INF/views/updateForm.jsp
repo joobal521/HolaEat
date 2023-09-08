@@ -17,6 +17,10 @@
 
 </head>
 <body>
+<c:if test="${empty log}">
+    <c:url var="login" value="/login"></c:url>
+    <c:redirect url="${login}"></c:redirect>
+</c:if>
 <section>
     <div class="form_wrap">
         <form enctype="multipart/form-data">
