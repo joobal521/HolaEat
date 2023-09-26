@@ -44,12 +44,16 @@
     background-color: #265037;
 }
 
-.removeBtn {
+.removeBtn,.removeBtn2 {
     background-color: #c45850;
     color: white;
 }
 
 .removeBtn:hover {
+    background-color: #ff6050;
+}
+
+.removeBtn2:hover {
     background-color: #ff6050;
 }
 

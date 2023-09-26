@@ -12,6 +12,10 @@
     <title>healthInfo</title>
     <link rel="stylesheet" type="text/css" href="/style/healthList.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/be3fc84974.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+
 </head>
 <c:import url="header.jsp"/>
 
@@ -59,9 +63,30 @@
                                 </c:choose>
                             </div>
                             <div class="health_title">제목 : ${health.title}</div>
-                            <div class="health_like"><i class="fa-regular fa-heart"></i></div>
-
                     </a>
+                        <div class="health_like">
+<%--                            로그인 상태--%>
+                            <c:choose>
+                                <c:when test="${not empty log}">
+<%--                                    비어있을 때 --%>
+                                    <button id="like-btn" data-heatlhNo="${health.healthNo}" onclick="toggleStar">
+                                    <span class="star"><i class="fa-regular fa-star"></i></span>
+                                    </button>
+
+                                </c:when>
+                                <c:otherwise>
+                                    <%--클릭시 로그인창으로 이동 되게--%>
+                                    <button class="like-btn-logOut" data-id="${health.healthNo}">
+                                        <span class="star"><i class="fa-regular fa-star"></i></span>
+                                    </button>
+
+                                </c:otherwise>
+                            </c:choose>
+
+
+
+
+                           </div>
                     </div>
                 </c:forEach>
 
@@ -134,7 +159,7 @@
     </div>
 
 </body>
-<script src="script/health.js"></script>
+<script src="/script/healthWish.js"></script>
 
 <script>
     function scrollToTop() {
