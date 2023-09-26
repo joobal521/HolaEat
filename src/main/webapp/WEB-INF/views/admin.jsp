@@ -32,7 +32,7 @@
                 <a href="adminReview" class="menu-link">후기 게시판 관리</a>
             </li>
             <li>
-                <a href="adminHealth" class="menu-link">건강 정보</a>
+                <a href="adminHealth/1" class="menu-link">건강 정보</a>
             </li>
             <%--            <li>--%>
             <%--                <a href="adminUser" class="menu-link">유저 관리</a>--%>

@@ -26,8 +26,6 @@ public class HealthWishListController {
     @PostMapping(value = "healthWish/{healthNo}")
     public Response wishHealth(@PathVariable long healthNo, @ModelAttribute HealthWishListRequestDto healthWishListDto,  WebRequest request){
 
-
-
              healthWishListService.createHealthWishList(healthWishListDto);
 
              return new Response("wishList","success");

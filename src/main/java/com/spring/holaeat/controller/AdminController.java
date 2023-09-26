@@ -5,6 +5,7 @@ import com.spring.holaeat.domain.admin.AdminRepository;
 import com.spring.holaeat.domain.food.Food;
 import com.spring.holaeat.domain.food.FoodRequestDto;
 import com.spring.holaeat.domain.health.Health;
+import com.spring.holaeat.domain.health.HealthRepository;
 import com.spring.holaeat.domain.ingredients.Ingredients;
 import com.spring.holaeat.domain.ingredients.IngredientsRequestDto;
 import com.spring.holaeat.domain.ingredients.IngredientsResponseDto;
@@ -15,6 +16,7 @@ import com.spring.holaeat.service.*;
 import lombok.RequiredArgsConstructor;
 import org.json.JSONObject;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
@@ -39,7 +41,7 @@ public class AdminController {
     private final ReviewRepository reviewRepository;
     private final ReviewCommentService reviewCommentService;
     private final FoodService foodService;
-    private final HealthService healthService;
+    private final HealthRepository healthRepository;
     private final ReviewLikeService reviewLikeService;
 
     //관리자 로그인
@@ -244,10 +246,23 @@ public class AdminController {
 //
 
     //건강정보관리-----------------
-    @GetMapping("adminHealth")
-    public String getHealth(Model model) {
-        List<Health> healthList = healthService.getAllHealth();
-        model.addAttribute("healthList", healthList);
+    @GetMapping("adminHealth/{pageNumber}")
+    public String getHealth(@PathVariable int pageNumber, @PageableDefault(size = 4) Pageable pageable, Model model) {
+        List<Health> healthList = null;
+        Pageable adjustedPageable = PageRequest.of(pageNumber - 1, pageable.getPageSize(), pageable.getSort());
+        healthList = healthRepository.findAllByOrderByHealthNoDesc(adjustedPageable);
+
+        int totalLength = (int) healthRepository.count(); // 총 건강 정보 수 가져오기
+        int totalPages = (int) Math.ceil((double) totalLength / pageable.getPageSize()); // 전체 페이지 수 계산
+
+        System.out.println("totalLength :" + totalLength );
+        System.out.println("totalPages :" + totalPages );
+        model.addAttribute("pageNumber", pageNumber);
+        model.addAttribute("totalPages", totalPages);
+
+
+
+        model.addAttribute("adminHealth", healthList);
         return "adminHealth";
     }
 

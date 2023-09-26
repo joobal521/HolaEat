@@ -32,7 +32,7 @@
                 </tr>
                 </thead>
                 <tbody class="admin-healthList">
-                <c:forEach items="${healthList}" var="health">
+                <c:forEach items="${adminHealth}" var="health">
                     <tr>
                         <td>${health.healthNo}</td>
                         <td class="healthTitle">${health.title}</td>
@@ -47,9 +47,62 @@
                 </c:forEach>
                 </tbody>
             </table>
-            <div class="more_btn">
-                <button class="more-btn" id="moreView-btn">더보기</button>
-            </div>
+           <div class="paging" id="paging">
+            <ul class="pagination">
+                <c:choose>
+                    <c:when test="${pageNumber > 1}">
+                        <li><a href="/adminHealth/1"><i class="fa-solid fa-backward-fast"></i></a></li>
+                        <li><a href="/adminHealth/${pageNumber - 1}"><i class="fa-solid fa-caret-left"></i></a></li>
+
+
+                    </c:when>
+                    <c:otherwise>
+                        <li><i class="fa-solid fa-backward-fast"></i></li>
+                        <li><i class="fa-solid fa-caret-left"></i></li>
+
+                    </c:otherwise>
+                </c:choose>
+                <c:choose>
+                    <c:when test="${pageNumber <= 3}">
+                        <c:forEach var="i" begin="1" end="5" step="1">
+                            <li><a class="page-link" href="/adminHealth/${i}" style="
+                            <c:if test="${i==pageNumber}">
+                                    background: #265037; color: white; font-weight: bold;
+                            </c:if>
+                                    ">${i}</a></li>
+                        </c:forEach>
+                    </c:when>
+                    <c:when test="${pageNumber > 3 && pageNumber <= totalPages - 2}">
+                        <c:forEach var="i" begin="${pageNumber - 2}" end="${pageNumber + 2}" step="1">
+                            <li><a class="page-link" href="/adminHealth/${i}" style="
+                            <c:if test="${i==pageNumber}">
+                                    background: #265037; color: white; font-weight: bold;
+                            </c:if>
+                                    ">${i}</a></li>
+                        </c:forEach>
+                    </c:when>
+                    <c:otherwise>
+                        <c:forEach var="i" begin="${totalPages - 4}" end="${totalPages}" step="1">
+                            <li><a class="page-link" href="/adminHealth/${i}"style="
+                            <c:if test="${i==pageNumber}">
+                                    background: #265037; color: white; font-weight: bold;
+                            </c:if>
+                                    ">${i}</a></li>
+                        </c:forEach>
+                    </c:otherwise>
+                </c:choose>
+                <c:choose>
+                    <c:when test="${pageNumber < totalPages}">
+                        <li><a href="/aminHealth/${pageNumber + 1}"> <i class="fa-solid fa-caret-right"></i></a></li>
+                        <li><a href="/adminHealth/${totalPages}"> <i class="fa-solid fa-forward-fast"></i> </a></li>
+                    </c:when>
+                    <c:otherwise>
+                        <li><i class="fa-solid fa-caret-right"></i></li>
+                        <li><i class="fa-solid fa-forward-fast"></i></li>
+                    </c:otherwise>
+                </c:choose>
+            </ul>
+        </div>
 
         </div>
 <script src="/script/adminHealth.js"></script>

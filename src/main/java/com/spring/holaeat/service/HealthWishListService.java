@@ -34,18 +34,16 @@ public class HealthWishListService {
         //이미 찜한 게시물->찜 취소 처리
         if (existingWishList.isPresent()) {
             healthWishListRepository.delete(healthWishList);
-            throw new BusinessLogicException(ExceptionCode.WISHLIST_EXISTS);
+            System.out.println("찜 취소");
 
         }else{
             healthWishListRepository.save(healthWishList);
+            System.out.println("찜하기");
         }
-
-
 
 
     }
 
-    //게시물 찜 취소
 
 
 
