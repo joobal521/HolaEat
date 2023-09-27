@@ -25,7 +25,7 @@ public class HealthWishListService {
 
     //게시물 찜하기
     @Transactional
-    public void createHealthWishList(HealthWishListRequestDto healthWishListDto){
+    public void saveHealthWishList(HealthWishListRequestDto healthWishListDto){
         Optional<HealthWishList> existingWishList = healthWishListRepository
                 .findHealthWishListByUserIdAndHealthNo(healthWishListDto.getUserId(), healthWishListDto.getHealthNo());
 

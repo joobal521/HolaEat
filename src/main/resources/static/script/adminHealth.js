@@ -6,13 +6,11 @@ function checkValue(htmlForm) {
     const imgElement = htmlForm.file;
 
     if (title.trim() === "") {
-        console.log("Title is required.");
         alert("제목을 입력해 주세요.")
         return; // 제목이 비어있을 경우 처리 중단
     }
 
     if (content.trim() === "") {
-        console.log("Content is required.");
         alert("내용을 입력해 주세요.")
         return; // 제목이 비어있을 경우 처리 중단
     }
@@ -20,8 +18,6 @@ function checkValue(htmlForm) {
 
     let check = true;
     let title_space = /[ ]/; /* 공백 */
-    console.log(title);
-    console.log(content);
 
 
     if (check) {
@@ -49,7 +45,6 @@ function checkValue(htmlForm) {
         };
 
         $.ajax(settings).done(function (response) {
-            console.log(response);
             if(response.result === "") {
                 //swal('글 등록 실패','다시 시도 해주세요.','error')
                 alert("글 등록 실패");
@@ -78,7 +73,6 @@ function CheckValueUpdate(htmlForm, healthNo) {
         imgFile = htmlForm.file.files[0];
     }
 
-    console.log("imgFile 확인용" + imgFile);
 
     if (title.trim() === "" && content.trim() === "" && !imgFile) { // 이미지 수정 없을 때 추가된 부분
         alert("수정할 내용이 없습니다.");
@@ -106,7 +100,6 @@ function CheckValueUpdate(htmlForm, healthNo) {
 
     $.ajax(settings)
         .done(function (response) {
-            console.log(response);
             alert("글 수정 성공.");
             location.href = "admin";
         })
@@ -137,7 +130,6 @@ $(document).ready(function() {
         };
 
         $.ajax(settings).done(function (response) {
-            console.log(response);
             if(response.result === "") {
                 //swal('글 삭제 실패','다시 시도 해주세요.','error')
                 alert("글 삭제 실패");

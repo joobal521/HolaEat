@@ -42,7 +42,7 @@ public class UserController {
     JSONObject response =new JSONObject();
 
     try{
-        userService.getUserById(userDto.getUserId());
+        userService.getUserByUserId(userDto.getUserId());
         System.out.println("join fail");
         response.put("result", false);
 
@@ -133,7 +133,7 @@ public class UserController {
 
         try{
 
-            User user = userService.getUserById(userId);
+            User user = userService.getUserByUserId(userId);
 
             if (user != null && user.getUserPassword().equals(userPassword)) {
 
@@ -183,7 +183,7 @@ public class UserController {
 
 
         try {
-            User user = userService.getUserById(userId);
+            User user = userService.getUserByUserId(userId);
             if(user!=null && user.getUserId().equals(userId)) {
                 if (user.getUserPassword().equals(userPassword)) {
                     if (newPassword.equals(newPasswordCh)) {

@@ -208,10 +208,6 @@ $(function() {
     let pwd_space = /[ ]/; /* 공백 */
 
 
-    console.log(newPassword);
-
-
-
     if (newPassword === "") {
         $('#error-password').show();
         check = false;
@@ -263,7 +259,6 @@ $(function() {
             contentType: "application/json; charset=utf-8",
             dataType: "json"
         }).done(function(data){
-            console.log(data);
             if (data.result === true) {
                 Swal.fire({
                     title: '회원 수정 완료',

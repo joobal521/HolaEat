@@ -118,7 +118,6 @@ function chkId() {
             dataType: "json",
 
         }).done(function (data) {
-            console.log(data);
             if (data.result === true) {
                 isIdChecked = true;
                 Swal.fire({
@@ -208,7 +207,6 @@ function emailAuthentication() {
          var email = $('#userEmail').val();
          $("#code-ch").prop('disabled', true);
 
-         console.log(email);
 
          const data = {
              userEmail: email,
@@ -232,8 +230,6 @@ function emailAuthentication() {
                      text: '인증 번호를 확인해 주세요.',
                      icon: 'success',
                  });
-                 //alert("인증 번호를 확인해 주세요.");
-                 console.log("이메일 확인 코드가 발송되었습니다.");
                  //console.log("확인 코드: " + response.verification_code);
                  //console.log("확인 코드 유효 시간: " + response.verification_duration + "분");
              } else {
@@ -242,7 +238,7 @@ function emailAuthentication() {
                      text: '이메일 전송을 다시 시도해 주세요.',
                      icon: 'error',
                  });
-                 //console.log("이메일 확인 코드 발송에 실패하였습니다.");
+
              }
          }).fail(function (error) {
              alert("이메일 인증 보내기 실패입니다: " + error.responseJSON.message);
@@ -253,7 +249,7 @@ function emailAuthentication() {
              text: '이메일 중복을 확인해 주세요.',
              icon: 'warning',
          });
-         //alert("이메일 중복을 확인해 주세요.")
+
      }
 
 }
@@ -270,7 +266,6 @@ function authCodeCheck() {
         console.log(inputCodeAsNumber);
         console.log(codeAsNumber);
         if (inputCodeAsNumber === codeAsNumber) {
-            console.log("인증 번호 일치");
             Swal.fire({
                 title: '인증 성공',
                 text: '인증 번호가 일치합니다.',
@@ -286,7 +281,7 @@ function authCodeCheck() {
                 text: '인증 코드가 맞지 않습니다.',
                 icon: 'error',
             });
-           // alert("인증 코드가 맞지 않습니다.")
+
         }
 
         // if (data.result === "The token code has expired.") {
@@ -300,7 +295,7 @@ function authCodeCheck() {
             text: '이메일 중복을 확인해 주세요.',
             icon: 'warning',
         });
-        //alert("이메일 중복을 확인해 주세요.")
+
     }
 
 }
@@ -319,9 +314,6 @@ function checkValue(htmlForm) {
     var regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
     let pwdChk = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[$@$!%*#?&])/; /* 영문 + 숫자 + 특수문자 */
     let pwd_space = /[ ]/; /* 공백 */
-
-    console.log(id);
-    console.log(password);
 
 
     if (id === "") {
@@ -367,7 +359,7 @@ function checkValue(htmlForm) {
             text: '약관 동의를 체크해 주세요.',
             icon: 'warning'
         });
-        //alert("약관 동의를 체크해주세요.");
+
         check = false;
     }
 
@@ -387,7 +379,6 @@ function checkValue(htmlForm) {
             contentType: "application/json; charset=utf-8",
             dataType: "json"
         }).done(function(data){
-                console.log(data);
                 if (data.result === true) {
                     Swal.fire({
                         title: '회원 가입 완료',
@@ -399,7 +390,6 @@ function checkValue(htmlForm) {
                             location.href = "login";
                         }
                     });
-                    //alert("회원가입 완료")
                 }else{
                     Swal.fire({
                         title: '회원 가입 실패',
@@ -411,7 +401,6 @@ function checkValue(htmlForm) {
                             location.href="join";
                         }
                     });
-                    //alert("회원가입 실패")
 
                 }
             }).fail(function (error){
@@ -427,21 +416,20 @@ function checkValue(htmlForm) {
             text: '아이디 중복을 확인해 주세요.',
             icon: 'warning'
         });
-        //alert("아이디 중복 확인해 주세요.");
+
     }else if(!isEmailChecked){
         Swal.fire({
             title: '회원 가입 실패',
             text: '이메일 중복을 확인해 주세요.',
             icon: 'warning'
         });
-        //alert("이메일 중복 확인해 주세요")
+
     }else if(!isToKenChecked){
         Swal.fire({
             title: '회원 가입 실패',
             text: '이메일 인증을 먼저 해주세요.',
             icon: 'warning'
         });
-        //alert("이메일 인증을 해주세요.")
 
     }
 

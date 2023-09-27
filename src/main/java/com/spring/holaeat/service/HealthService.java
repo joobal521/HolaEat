@@ -59,7 +59,7 @@ public class HealthService {
 
     //삭제
     @Transactional
-    public void healthBoardDelete(long healthNo){
+    public void deleteHealthBoard(long healthNo){
         //게시글 삭제
         healthRepository.deleteById(healthNo);
     }
