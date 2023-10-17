@@ -13,7 +13,7 @@
     <title>admin-health</title>
     <link rel="stylesheet" type="text/css" href="/style/health.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
 <c:import url="header.jsp"/>
 <body>
@@ -23,7 +23,7 @@
     </c:when>
 </c:choose>
 <div class="health-section">
-    <h2>건강 정보 게시판 수정</h2>
+    <h2>건강 정보 글 수정</h2>
     <c:if test="${health!=null}">
         <div id="health-contents">
             <form id="health-update" enctype="multipart/form-data">

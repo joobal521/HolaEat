@@ -8,4 +8,6 @@ public interface HealthWishListRepository extends JpaRepository<HealthWishList, 
 
     Optional<HealthWishList> findHealthWishListByUserIdAndHealthNo(String userId, Long HealthNo);
 
+    HealthWishList findByHealthWishNo(long no);
+
 }
