@@ -12,7 +12,6 @@ $(document).ready(function() {
             confirmButtonText: '확인', // confirm 버튼 텍스트 지정
             cancelButtonText: '취소', // cancel 버튼 텍스트 지정
         }).then((result) => {
-
             if (result.isConfirmed) {
                 var form = new FormData();
 
@@ -27,7 +26,6 @@ $(document).ready(function() {
                 };
 
                 $.ajax(settings).done(function (response) {
-                    console.log(response);
                     location.href = "myPage";
                 });
 

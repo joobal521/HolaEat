@@ -6,22 +6,24 @@ function checkValue(htmlForm) {
     const imgElement = htmlForm.file;
 
     if (title.trim() === "") {
-        console.log("Title is required.");
-        alert("제목을 입력해 주세요.")
+        Swal.fire({
+            title: '제목을 입력해주세요.',
+            icon: 'warning'
+        });
         return; // 제목이 비어있을 경우 처리 중단
     }
 
     if (content.trim() === "") {
-        console.log("Content is required.");
-        alert("내용을 입력해 주세요.")
+        Swal.fire({
+            title: '내용을 입력해주세요.',
+            icon: 'warning'
+        });
         return; // 제목이 비어있을 경우 처리 중단
     }
 
 
     let check = true;
     let title_space = /[ ]/; /* 공백 */
-    console.log(title);
-    console.log(content);
 
 
     if (check) {
@@ -49,15 +51,22 @@ function checkValue(htmlForm) {
         };
 
         $.ajax(settings).done(function (response) {
-            console.log(response);
             if(response.result === "") {
-                //swal('글 등록 실패','다시 시도 해주세요.','error')
                 alert("글 등록 실패");
 
-            } else {
-                //swal('글 등록 성공','새로운 글을 또 등록해보세요.','success')
-                alert("글 등록 성공");
-                location.href="admin";
+            }else{
+                Swal.fire({
+                    title: '등록하시겠습니까?',
+                    //icon: 'warning',
+                    showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
+                    confirmButtonText: '확인', // confirm 버튼 텍스트 지정
+                    cancelButtonText: '취소', // cancel 버튼 텍스트 지정
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        location.href="admin";
+                    }
+                });
+
             }
 
         });
@@ -78,7 +87,6 @@ function CheckValueUpdate(htmlForm, healthNo) {
         imgFile = htmlForm.file.files[0];
     }
 
-    console.log("imgFile 확인용" + imgFile);
 
     if (title.trim() === "" && content.trim() === "" && !imgFile) { // 이미지 수정 없을 때 추가된 부분
         alert("수정할 내용이 없습니다.");
@@ -106,13 +114,26 @@ function CheckValueUpdate(htmlForm, healthNo) {
 
     $.ajax(settings)
         .done(function (response) {
-            console.log(response);
-            alert("글 수정 성공.");
-            location.href = "admin";
+            Swal.fire({
+                title: '수정되었습니다.',
+                icon: 'success',
+                confirmButtonColor: '#265037', // confrim 버튼 색깔 지정
+
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    location.href = "admin";
+                }
+            });
+
         })
         .fail(function (jqXHR, textStatus, errorThrown) {
             console.error(jqXHR.responseText);
-            alert("글 수정 실패.");
+            Swal.fire({
+                title: '수정실패하였습니다.',
+                icon: 'warning',
+                confirmButtonColor: '#265037', // confrim 버튼 색깔 지정
+
+            });
         });
 }
 function redirectToHealthUpdate(healthNo) {
@@ -137,59 +158,30 @@ $(document).ready(function() {
         };
 
         $.ajax(settings).done(function (response) {
-            console.log(response);
             if(response.result === "") {
-                //swal('글 삭제 실패','다시 시도 해주세요.','error')
                 alert("글 삭제 실패");
 
             } else {
-                //swal('글 삭제 성공','선택한 글이 삭제 되었습니다.','success')
-                alert("글 삭제 성공");
-               location.href="admin";
+                Swal.fire({
+                    title: '정말 삭제하시겠습니까?',
+                    text: '게시글 삭제 후 복구 불가합니다.',
+                    icon: 'warning',
+                    showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
+                    confirmButtonColor: '#265037', // confrim 버튼 색깔 지정
+                    confirmButtonText: '확인', // confirm 버튼 텍스트 지정
+                    cancelButtonText: '취소', // cancel 버튼 텍스트 지정
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        location.href="admin";
+                    }
+                });
+
             }
         });
 
     });
 })
 
-
-// 이미지 썸네일
-//function writeThumbnail() {
-    const fileInput = document.getElementById('file');
-    const imagePreview = document.getElementById('image-preview');
-
-    // Clear existing previews
-    imagePreview.innerHTML = '';
-
-    // Loop through selected files
-    for (let i = 0; i < fileInput.files.length; i++) {
-        const file = fileInput.files[i];
-        if (file) {
-            const reader = new FileReader();
-
-            reader.onload = function (e) {
-                // Create a container for each thumbnail
-                const thumbnailContainer = document.createElement('div');
-                thumbnailContainer.className = 'thumbnail-container'; // Add a class for styling (optional)
-
-                // Create an img element for the thumbnail
-                const imgElement = document.createElement('img');
-                imgElement.src = e.target.result;
-
-                // Append the thumbnail to its container
-                thumbnailContainer.appendChild(imgElement);
-
-                // Append the thumbnail container to the image preview container
-                imagePreview.appendChild(thumbnailContainer);
-            };
-
-            reader.readAsDataURL(file);
-        }
-    }
-
-    // Display the image preview container
-    imagePreview.style.display = 'block';
-//}
 
 //이미지 썸네일
 function writeThumbnail() {
@@ -213,14 +205,20 @@ function writeThumbnail() {
 
 //최소
 function goBack() {
-    var confirmation = confirm("취소 하시겠습니까?");
+    Swal.fire({
+        title: '취소하시겠습니까?',
+        icon: 'warning',
+        showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
+        confirmButtonColor: '#265037', // confrim 버튼 색깔 지정
+        confirmButtonText: '확인', // confirm 버튼 텍스트 지정
+        cancelButtonText: '취소', // cancel 버튼 텍스트 지정
+    }).then((result) => {
+        if (result.isConfirmed) { // 만약 모달창에서 confirm 버튼을 눌렀다면
+            history.back();
+        }
 
-    if (confirmation) {
-        // window.scrollTo(0, 0);
-        // document.documentElement.style.overflow = 'hidden';
-        location.href="admin";
-        // document.documentElement.style.overflow = 'auto';
-    }
+
+    });
 }
 
 //더보기 버튼

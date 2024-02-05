@@ -47,7 +47,7 @@ public class HealthController {
 
     //관리자 글등록
     @PostMapping(value = "write-health", consumes = "multipart/form-data")
-    public Map healthBoard(@ModelAttribute HealthRequestDto healthDto) throws Exception {
+    public Map createHealth(@ModelAttribute HealthRequestDto healthDto) throws Exception {
         JSONObject response = new JSONObject();
 
         try {
@@ -94,7 +94,7 @@ public class HealthController {
         );
 
 
-        healthService.healthBoardDelete(healthNo);
+        healthService.deleteHealthBoard(healthNo);
         System.out.println("게시글 삭제");
 
 

@@ -28,7 +28,7 @@ public class UserService {
 
 
      //아이디와 이메일로
-     public List<User>findByIdAndEmail(String userId, String userPassword){
+     public List<User>findByUserIdAndEmail(String userId, String userPassword){
           return (List<User>) userRepository.findAllByUserIdAndUserEmail(userId,userPassword);
      }
 
@@ -39,7 +39,7 @@ public class UserService {
 
 
      //아이디 조회
-     public User getUserById(String userId){
+     public User getUserByUserId(String userId){
           User user=userRepository.findById(userId).orElseThrow(
                   ()->new IllegalArgumentException("존재하지 않는 사용자입니다.")
           );
@@ -48,7 +48,7 @@ public class UserService {
      }
 
      //이메일로 조회
-     public User getUserByEmail(String userEmail){
+     public User getUserByUserEmail(String userEmail){
           User user=userRepository.findByUserEmail(userEmail).orElseThrow(
                   ()->new IllegalArgumentException("존재하지 않는 이메일입니다.")
           );
@@ -75,7 +75,7 @@ public class UserService {
      //비밀번호 찾기(비밀번호 바꾸기)
      @Transactional
      public void updateNewPwd(String userEmail, UserRequestDto userDto) {
-          User user=getUserByEmail(userEmail);
+          User user=getUserByUserEmail(userEmail);
           if (user != null) {
                user.updatePwd(userDto);
           } else {
@@ -95,7 +95,7 @@ public class UserService {
      //비밀번호 보내기
      public String sendPassword(String toEmail, String userEmail) {
           String title = "holaEat에서 비밀번호 보내드려요";
-          User user=this.getUserByEmail(userEmail);
+          User user=this.getUserByUserEmail(userEmail);
           String password= String.valueOf(this.findByUserPassword(user.getUserPassword()));
           System.out.println("비밀번호"+password);
           mailService.sendEmail(toEmail, title,password);
@@ -124,7 +124,7 @@ public class UserService {
      //회원정보 수정
      @Transactional
      public void updateUser(String userId, UserRequestDto userDto){
-          User user=getUserById(userId);
+          User user=getUserByUserId(userId);
           if (user != null) {
                user.update(userDto);
           } else {

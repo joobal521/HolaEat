@@ -3,9 +3,6 @@ function updateImg(htmlForm,profileNo) {
     const profileImg = htmlForm.userProfileImg.files[0];
     const id = htmlForm.userId.value;
 
-    console.log(id);
-    console.log(profileImg);
-    console.log(profileNo);
 
     const form = new FormData();
     form.append("profileImg", profileImg);
@@ -23,7 +20,6 @@ function updateImg(htmlForm,profileNo) {
 
     $.ajax(settings)
         .done(function (response) {
-            console.log(response);
 
             // 성공 시 프로필 이미지를 즉시 업데이트합니다.
             const newProfileImgUrl = URL.createObjectURL(profileImg);

@@ -30,7 +30,6 @@ function emailAuthentication() {
     $("#code-ch").prop('disabled', true);
     //비밀번호 찾기-다음 버튼
     $("#next-btn").prop('disabled', true);
-    console.log(email);
 
     if(email==="" || !regExp.test(email)) {
         Swal.fire({
@@ -52,7 +51,6 @@ function emailAuthentication() {
             dataType: "json",
 
         }).done(function (data) {
-            console.log(data);
             if (data !== null) {
                 $("#code-ch").prop('disabled', false);
                 code = data;
@@ -62,7 +60,6 @@ function emailAuthentication() {
                     text: '인증 번호를 확인해 주세요.',
                     icon: 'success',
                 });
-                //alert("인증 번호를 확인해 주세요.");
                 console.log("이메일 확인 코드가 발송되었습니다.");
                 //console.log("확인 코드: " + response.verification_code);
                 //console.log("확인 코드 유효 시간: " + response.verification_duration + "분");
@@ -72,7 +69,7 @@ function emailAuthentication() {
                     text: '이메일 전송을 다시 시도해 주세요.',
                     icon: 'error',
                 });
-                //console.log("이메일 확인 코드 발송에 실패하였습니다.");
+
             }
         }).fail(function (error) {
             alert("이메일 인증 보내기 실패입니다: " + error.responseJSON.message);
@@ -92,7 +89,7 @@ function authCodeCheck() {
             text: '이메일을 정확히 입력해 주세요.',
             icon: 'warning',
         });
-        //alert("사용 불가능한 이메일입니다.")
+
     }else {
 
         var inputCode = $('#input-code').val();
@@ -108,7 +105,7 @@ function authCodeCheck() {
                 text: '인증 번호가 일치합니다.',
                 icon: 'success',
             });
-            //alert("인증 되었습니다.");
+
             $("#input-code").prop('disabled', true);
             $("#code-ch").prop('disabled', true);
             //비밀번호 찾기-다음 버튼
@@ -121,7 +118,7 @@ function authCodeCheck() {
                 text: '인증 코드가 맞지 않습니다.',
                 icon: 'error',
             });
-            //alert("인증 코드가 맞지 않습니다.")
+
         }
     }
 
@@ -136,7 +133,7 @@ function findPwd(){
             text: '이메일 인증을 먼저 해주세요.',
             icon: 'error',
         });
-        //alert('이메일 인증을 먼저 해주세요!') // 경고 메시지 출력
+
     }
 }
 

@@ -24,8 +24,26 @@ public class HealthWishListService {
 
 
     //게시물 찜하기
+    public void saveHealthWishList(HealthWishListRequestDto healthWishListDto){
+        Optional<HealthWishList> existingWishList = healthWishListRepository
+                .findHealthWishListByUserIdAndHealthNo(healthWishListDto.getUserId(), healthWishListDto.getHealthNo());
+
+        HealthWishList healthWishList=new HealthWishList(healthWishListDto);
+
+
+        //게시물이 찜 안돼 있을때
+        if (existingWishList.isEmpty()) {
+            healthWishListRepository.save(healthWishList);
+            System.out.println("찜하기");
+        }
+
+
+
+    }
+
+//게시물 찜 취소
     @Transactional
-    public void createHealthWishList(HealthWishListRequestDto healthWishListDto){
+    public void deleteHealthWishList(HealthWishListRequestDto healthWishListDto){
         Optional<HealthWishList> existingWishList = healthWishListRepository
                 .findHealthWishListByUserIdAndHealthNo(healthWishListDto.getUserId(), healthWishListDto.getHealthNo());
 
@@ -35,16 +53,9 @@ public class HealthWishListService {
         if (existingWishList.isPresent()) {
             healthWishListRepository.delete(healthWishList);
             System.out.println("찜 취소");
-
-        }else{
-            healthWishListRepository.save(healthWishList);
-            System.out.println("찜하기");
         }
 
-
     }
-
-
 
 
 

@@ -97,8 +97,6 @@ function checkValueWrite(htmlForm) {
 
 
 //게시글 수정
-
-
 function CheckValueUpdate(htmlForm, reviewNo) {
     const title = htmlForm.title.value;
     const content = htmlForm.content.value;

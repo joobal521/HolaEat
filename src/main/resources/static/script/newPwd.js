@@ -63,7 +63,6 @@ function checkValue() {
     let pwdChk = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[$@$!%*#?&])/; /* 영문 + 숫자 + 특수문자 */
     let pwd_space = /[ ]/; /* 공백 */
 
-    console.log(newPassword);
 
     if (newPassword === "") {
         $('#error-password').show();
@@ -93,7 +92,6 @@ function checkValue() {
             contentType: "application/json; charset=utf-8",
             dataType: "json"
         }).done(function(data){
-            console.log(data);
             if (data.result === true) {
                 Swal.fire({
                     title: '비밀번호 변경 완료',

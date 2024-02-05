@@ -69,9 +69,11 @@
                             <c:choose>
                                 <c:when test="${not empty log}">
 <%--                                    비어있을 때 --%>
+                                    <c:when test="${empty health_wish_no}">
                                     <button id="like-btn" data-heatlhNo="${health.healthNo}" onclick="toggleStar">
                                     <span class="star"><i class="fa-regular fa-star"></i></span>
                                     </button>
+                                    </c:when>
 
                                 </c:when>
                                 <c:otherwise>

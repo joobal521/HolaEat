@@ -14,3 +14,7 @@ $(".like-btn-logOut").click(function(e) {
         }
     });
 });
+
+function toggleStar(){
+
+}
